@@ -1,5 +1,18 @@
 Vincent Prat (ViviCoder)
 Simon Nicolas (Dramac)
-28/07/2011
+05/08/2011
 
 This software is designed to be the perfect assistant for the game master in a role playing game
+
+**********************
+*    INSTRUCTIONS    *
+**********************
+
+To compile GM-Assistant, execute the following commands:
+
+./configure
+make
+
+Then, to launch GM-Assistant, just type:
+
+./GM-Assistant

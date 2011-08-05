@@ -1,0 +1,8 @@
+*.pro
+Makefile
+ui_*
+*.swp
+GM-Assistant
+*.o
+moc_*
+*.qm

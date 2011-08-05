@@ -1,0 +1,7 @@
+#!/bin/bash
+
+qmake -project
+lupdate GM-Assistant.pro
+lrelease GM-Assistant.pro
+mv translations/*.qm .
+qmake

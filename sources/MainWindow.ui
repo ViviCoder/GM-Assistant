@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainWindow</class>
+ <widget class="QMainWindow" name="mainWindow">
+  <property name="windowTitle">
+   <string>GM-Assistant</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <layout class="QGridLayout" name="gridLayout_4">
+    <item row="0" column="0">
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="4" column="0">
+       <widget class="QGroupBox" name="groupBox1">
+        <property name="title">
+         <string>Scenario</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout1">
+         <item>
+          <widget class="QTreeWidget" name="treeScenario">
+           <column>
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+           </column>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QGroupBox" name="groupBox2">
+        <property name="title">
+         <string>History</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout2">
+         <item>
+          <widget class="QListWidget" name="listHistory"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="4" column="1">
+       <widget class="QGroupBox" name="groupBox4">
+        <property name="title">
+         <string>Notes</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout4">
+         <item>
+          <widget class="QTextEdit" name="textNotes"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="4" column="2">
+       <widget class="QGroupBox" name="groupBox5">
+        <property name="title">
+         <string>Playing characters</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout5">
+         <item>
+          <widget class="QTableWidget" name="tablePC"/>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="5" column="2">
+       <widget class="QGroupBox" name="groupBox6">
+        <property name="title">
+         <string>Sound effects</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout6">
+         <item>
+          <widget class="QListWidget" name="listFX"/>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout2">
+           <item>
+            <widget class="QPushButton" name="buttonFX">
+             <property name="text">
+              <string>Play</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="sliderFX">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="5" column="1">
+       <widget class="QGroupBox" name="groupBox3">
+        <property name="title">
+         <string>Music</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout3">
+         <item>
+          <widget class="QListWidget" name="listMusic"/>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout1">
+           <item>
+            <widget class="QPushButton" name="buttonMusic">
+             <property name="text">
+              <string>Play</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="sliderMusic">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menuBar"/>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
