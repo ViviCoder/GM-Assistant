@@ -1,6 +1,7 @@
 #include "Model.h"
 
-Model::iterator::iterator(Model::IterationType type, State state): std::iterator<std::random_access_iterator_tag,std::pair<std::string,State> >(), itType(type), sState(state)
+// iterator's methods
+Model::iterator::iterator(Model::IterationType type, State state): itType(type), sState(state)
 {
 }
 
