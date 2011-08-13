@@ -1,5 +1,24 @@
 #!/bin/bash
 
+# Needed softwares
+softs="qmake lupdate lrelease make"
+
+echo "*****************************"
+echo "* Checking configuration... *"
+echo "*****************************" 
+for soft in $softs
+do
+    path=`which $soft`
+    if [ $path = "" ]
+    then
+        echo $soft missing !
+        exit
+    else
+        echo $soft: $path        
+    fi
+done
+echo 
+
 qmake -project
 lupdate GM-Assistant.pro
 lrelease GM-Assistant.pro
