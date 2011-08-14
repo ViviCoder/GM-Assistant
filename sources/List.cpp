@@ -13,6 +13,8 @@ void List::fromXML(std::string XMLCode)
     // not yet implemented
 }
 
+// new methods
+
 List::iterator List::begin() const
 {
     return List::iterator(data.begin());
@@ -21,22 +23,48 @@ List::iterator List::begin() const
 List::iterator List::beginUnchecked() const
 {
     std::vector<Item>::const_iterator it = data.begin();
-    while (it != data.end() && (it->second==sSuccess || it->second==sFailure)) it++;
+    while (it != data.end() && (it->second==sSuccess || it->second==sFailure))
+        it++;
     return List::iterator(it,itUnchecked);
 }
 
 List::iterator List::beginState(State state) const
 {
     std::vector<Item>::const_iterator it = data.begin();
-    while (it != data.end() && (it->second!=state)) it++;
+    while (it != data.end() && (it->second!=state))
+        it++;
     return List::iterator(it,itState,state);
 }
-
-// new methods
 
 List::iterator List::end() const
 {
     return List::iterator(data.end());
+}
+
+List::iterator List::endUnchecked() const
+{
+    std::vector<Item>::const_iterator it = data.end();
+    if (beginUnchecked()!=end())
+    {
+        it--;
+        while (it->second==sSuccess || it->second==sFailure)
+            it--;
+    }
+    it++;
+    return List::iterator(it);
+}
+
+List::iterator List::endState(State state) const
+{
+    std::vector<Item>::const_iterator it = data.end();
+    if (beginState(state)!=end())
+    {
+        it--;
+        while (it->second!=state)
+            it--;
+    }
+    it++;
+    return List::iterator(it);
 }
 
 List::List(std::string XMLCode): data()
@@ -129,7 +157,14 @@ List::iterator List::iterator::operator++(int i)
     return it;
 }
 
-Item List::iterator::operator*() const
+Item List::iterator::operator*()
 {
+    // It is at this moment that you have to go to the next unchecked item or to the next item of the given state 
+    switch (itType)
+    {
+        case itUnchecked:   while (viIt->second==sSuccess || viIt->second==sFailure) viIt++; break;
+        case itState:       while (viIt->second!=sState) viIt++; break;
+        default:            break;
+    }
     return *viIt;
 }

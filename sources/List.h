@@ -24,7 +24,7 @@ class List: public Model
                 bool operator==(const iterator& it) const;
                 iterator& operator++();
                 iterator operator++(int i);
-                Item operator*() const;
+                Item operator*();
         };
         // constructor
         List(std::string XMLCode = "");
@@ -35,6 +35,8 @@ class List: public Model
         iterator beginUnchecked() const;
         iterator beginState(State state) const;
         iterator end() const;        
+        iterator endUnchecked() const;
+        iterator endState(State state) const;
         // accessors
         Item operator[](int index) const;   // reader
         Item& operator[](int index);        // writer

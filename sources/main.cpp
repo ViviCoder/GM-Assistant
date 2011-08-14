@@ -33,7 +33,7 @@ int main(int argc, char* argv[])
         cout << (*it).first << endl;    
     }
     cout << endl;
-    for (List::iterator it = list.beginUnchecked(); it != list.end(); it++)
+    for (List::iterator it = list.beginUnchecked(); it != list.endUnchecked(); it++)
     {
         cout << (*it).first << endl;    
     }

@@ -27,7 +27,7 @@ class Model
                 IterationType type() const;
                 State state() const;
                 // operators
-                virtual Item operator*() const = 0;
+                virtual Item operator*() = 0;
         };
         // loading and saving methods
         virtual std::string toXML() const = 0;
