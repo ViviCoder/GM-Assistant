@@ -18,17 +18,23 @@ class List: public Model
                 std::vector<Item>::const_iterator viIt;
             public:
                 // constructors
-                iterator(std::vector<Item>::const_iterator it, IterationType type=itNormal, State state=sNone);
+                iterator(const std::vector<Item>::const_iterator& it, IterationType type=itNormal, State state=sNone);
+                // overloaded operators
+                bool operator!=(const iterator& it) const;
+                bool operator==(const iterator& it) const;
+                iterator& operator++();
+                iterator operator++(int i);
+                Item operator*() const;
         };
         // constructor
-        List(std::string XMLCode);
+        List(std::string XMLCode = "");
         // inherited methods
         std::string toXML() const;
         void fromXML(std::string XMLCode);
-        Model::iterator begin() const;
-        Model::iterator beginUnchecked() const;
-        Model::iterator beginState(State state) const;
-        Model::iterator end() const;        
+        iterator begin() const;
+        iterator beginUnchecked() const;
+        iterator beginState(State state) const;
+        iterator end() const;        
         // accessors
         Item operator[](int index) const;   // reader
         Item& operator[](int index);        // writer

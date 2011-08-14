@@ -13,31 +13,31 @@ void List::fromXML(std::string XMLCode)
     // not yet implemented
 }
 
-Model::iterator List::begin() const
+List::iterator List::begin() const
 {
     return List::iterator(data.begin());
 }
 
-Model::iterator List::beginUnchecked() const
+List::iterator List::beginUnchecked() const
 {
     std::vector<Item>::const_iterator it = data.begin();
     while (it != data.end() && (it->second==sSuccess || it->second==sFailure)) it++;
     return List::iterator(it,itUnchecked);
 }
 
-Model::iterator List::beginState(State state) const
+List::iterator List::beginState(State state) const
 {
     std::vector<Item>::const_iterator it = data.begin();
     while (it != data.end() && (it->second!=state)) it++;
     return List::iterator(it,itState,state);
 }
 
-Model::iterator List::end() const
+// new methods
+
+List::iterator List::end() const
 {
     return List::iterator(data.end());
 }
-
-// new methods
 
 List::List(std::string XMLCode): data()
 {
@@ -102,6 +102,34 @@ void List::move(int currentIndex, int newIndex)
 }
 
 // iterator's methods
-List::iterator::iterator(std::vector<Item>::const_iterator it, IterationType type, State state): Model::iterator(type,state), viIt(it)
+List::iterator::iterator(const std::vector<Item>::const_iterator& it, IterationType type, State state): Model::iterator(type,state), viIt(it)
 {
+}
+
+bool List::iterator::operator!=(const iterator& it) const
+{
+    return it.viIt!=viIt;
+}
+
+bool List::iterator::operator==(const iterator& it) const
+{
+    return it.viIt==viIt;
+}
+
+List::iterator& List::iterator::operator++()
+{
+    viIt++;
+    return *this;
+}
+
+List::iterator List::iterator::operator++(int i)
+{
+    List::iterator it = *this;
+    operator++(); 
+    return it;
+}
+
+Item List::iterator::operator*() const
+{
+    return *viIt;
 }
