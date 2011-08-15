@@ -17,7 +17,7 @@ class List: public Model
                 // underlying vector iterator
                 std::vector<Item>::const_iterator viIt;
             public:
-                // constructors
+                // constructor
                 iterator(const std::vector<Item>::const_iterator& it, IterationType type=itNormal, State state=sNone);
                 // overloaded operators
                 bool operator!=(const iterator& it) const;
@@ -31,6 +31,8 @@ class List: public Model
         // inherited methods
         std::string toXML() const;
         void fromXML(std::string XMLCode);
+        void clear();
+        // iterator-related methods
         iterator begin() const;
         iterator beginUnchecked() const;
         iterator beginState(State state) const;

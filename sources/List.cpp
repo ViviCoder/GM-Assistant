@@ -1,5 +1,12 @@
 #include "List.h"
 
+// constructor
+
+List::List(std::string XMLCode): data()
+{
+    fromXML(XMLCode);
+}
+
 // inherited methods
 
 std::string List::toXML() const
@@ -67,11 +74,6 @@ List::iterator List::endState(State state) const
     return List::iterator(it);
 }
 
-List::List(std::string XMLCode): data()
-{
-    fromXML(XMLCode);
-}
-
 std::pair<std::string,State> List::operator[](int index) const
 {
     if (index<0 || (unsigned int)index >= data.size())
@@ -129,6 +131,11 @@ void List::move(int currentIndex, int newIndex)
     }
 }
 
+void List::clear()
+{
+    data.clear();
+}
+
 // iterator's methods
 List::iterator::iterator(const std::vector<Item>::const_iterator& it, IterationType type, State state): Model::iterator(type,state), viIt(it)
 {
@@ -160,10 +167,18 @@ List::iterator List::iterator::operator++(int i)
 Item List::iterator::operator*()
 {
     // It is at this moment that you have to go to the next unchecked item or to the next item of the given state 
-    switch (itType)
+    switch (type())
     {
-        case itUnchecked:   while (viIt->second==sSuccess || viIt->second==sFailure) viIt++; break;
-        case itState:       while (viIt->second!=sState) viIt++; break;
+        case itUnchecked:   while (viIt->second==sSuccess || viIt->second==sFailure)
+                                viIt++;
+                            break;
+        case itState:
+            {
+                State sState = state();
+                while (viIt->second!=sState)
+                    viIt++;
+                break;
+            }
         default:            break;
     }
     return *viIt;

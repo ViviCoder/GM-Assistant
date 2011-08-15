@@ -42,6 +42,13 @@ int main(int argc, char* argv[])
     {
         cout << (*it).first << endl;    
     }
+    cout << endl;
+
+    list.clear();
+    for (List::iterator it = list.begin(); it != list.end(); it++)
+    {
+        cout << (*it).first << endl;    
+    }
 
     // Display of the main window
     MainWindow main;

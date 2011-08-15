@@ -17,7 +17,7 @@ class Model
         // iterator over the items of the model
         class iterator: public std::iterator<std::forward_iterator_tag,Item>
         {
-            protected:
+            private:
                 IterationType itType;
                 State sState;
             public:
@@ -32,7 +32,8 @@ class Model
         // loading and saving methods
         virtual std::string toXML() const = 0;
         virtual void fromXML(std::string XMLCode) = 0;
-        // different iterators
+        // emptying method
+        virtual void clear() = 0;
 };
 
 #endif
