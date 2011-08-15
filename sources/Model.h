@@ -26,6 +26,7 @@ class Model
                 // accessors
                 IterationType type() const;
                 State state() const;
+                void setType(IterationType type);
                 // operators
                 virtual Item operator*() = 0;
         };

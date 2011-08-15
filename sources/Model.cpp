@@ -14,3 +14,8 @@ State Model::iterator::state() const
 {
     return sState;
 }
+
+void Model::iterator::setType(IterationType type)
+{
+    itType=type;
+}

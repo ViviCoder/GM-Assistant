@@ -20,6 +20,11 @@ void List::fromXML(std::string XMLCode)
     // not yet implemented
 }
 
+void List::clear()
+{
+    data.clear();
+}
+
 // new methods
 
 List::iterator List::begin() const
@@ -131,12 +136,8 @@ void List::move(int currentIndex, int newIndex)
     }
 }
 
-void List::clear()
-{
-    data.clear();
-}
-
 // iterator's methods
+
 List::iterator::iterator(const std::vector<Item>::const_iterator& it, IterationType type, State state): Model::iterator(type,state), viIt(it)
 {
 }
@@ -170,13 +171,13 @@ Item List::iterator::operator*()
     switch (type())
     {
         case itUnchecked:   while (viIt->second==sSuccess || viIt->second==sFailure)
-                                viIt++;
+                                operator++();
                             break;
         case itState:
             {
                 State sState = state();
                 while (viIt->second!=sState)
-                    viIt++;
+                    operator++();
                 break;
             }
         default:            break;
