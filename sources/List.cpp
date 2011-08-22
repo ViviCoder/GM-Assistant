@@ -29,7 +29,7 @@ void List::clear()
 
 List::iterator List::begin() const
 {
-    return List::iterator(data.begin());
+    return iterator(data.begin());
 }
 
 List::iterator List::beginUnchecked() const
@@ -37,7 +37,7 @@ List::iterator List::beginUnchecked() const
     std::vector<Item>::const_iterator it = data.begin();
     while (it != data.end() && (it->second==sSuccess || it->second==sFailure))
         it++;
-    return List::iterator(it,itUnchecked);
+    return iterator(it,itUnchecked);
 }
 
 List::iterator List::beginState(State state) const
@@ -45,12 +45,12 @@ List::iterator List::beginState(State state) const
     std::vector<Item>::const_iterator it = data.begin();
     while (it != data.end() && (it->second!=state))
         it++;
-    return List::iterator(it,itState,state);
+    return iterator(it,itState,state);
 }
 
 List::iterator List::end() const
 {
-    return List::iterator(data.end());
+    return iterator(data.end());
 }
 
 List::iterator List::endUnchecked() const
@@ -61,9 +61,9 @@ List::iterator List::endUnchecked() const
         it--;
         while (it->second==sSuccess || it->second==sFailure)
             it--;
+        it++;
     }
-    it++;
-    return List::iterator(it);
+    return iterator(it);
 }
 
 List::iterator List::endState(State state) const
@@ -74,9 +74,9 @@ List::iterator List::endState(State state) const
         it--;
         while (it->second!=state)
             it--;
+        it++;
     }
-    it++;
-    return List::iterator(it);
+    return iterator(it);
 }
 
 std::pair<std::string,State> List::operator[](int index) const
@@ -160,7 +160,7 @@ List::iterator& List::iterator::operator++()
 
 List::iterator List::iterator::operator++(int i)
 {
-    List::iterator it = *this;
+    iterator it = *this;
     operator++(); 
     return it;
 }

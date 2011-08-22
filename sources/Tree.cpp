@@ -32,6 +32,7 @@ void Tree::fromXML(std::string XMLCode)
 
 void Tree::clear()
 {
+    // not complete
     vChildren.clear();
 }
 
@@ -41,14 +42,14 @@ Tree::iterator Tree::begin() const
 {
     std::vector<std::vector<Branch*>::const_iterator> stack;
     stack.push_back(vChildren.begin());
-    return Tree::iterator(stack);
+    return iterator(stack);
 }
 
 Tree::iterator Tree::beginUnchecked() const
 {
     std::vector<std::vector<Branch*>::const_iterator> stack;
     stack.push_back(vChildren.begin());
-    Tree::iterator it(stack);
+    iterator it(stack);
     while (it != end() && ((*it).second==sSuccess || (*it).second==sFailure))
     {
         it++;
@@ -57,11 +58,54 @@ Tree::iterator Tree::beginUnchecked() const
     return it;
 }
 
+Tree::iterator Tree::beginState(State state) const
+{
+    std::vector<std::vector<Branch*>::const_iterator> stack;
+    stack.push_back(vChildren.begin());
+    iterator it(stack,itNormal,state);
+    while (it != end() && (*it).second!=state)
+    {
+        it++;
+    }
+    it.setType(itState);
+    return it;
+}
+
 Tree::iterator Tree::end() const
 {
     std::vector<std::vector<Branch*>::const_iterator> stack;
     stack.push_back(vChildren.end());
-    return Tree::iterator(stack);
+    return iterator(stack);
+}
+
+Tree::iterator Tree::endUnchecked() const
+{
+    iterator it=beginUnchecked(),it2=it;
+    it.setType(itNormal);
+    while (it!=end())
+    {
+        it++;
+        if ((*it).second==sNone || (*it).second==sProgress)
+        {
+            it2 = it;    
+        }
+    }
+    return it2;
+}
+
+Tree::iterator Tree::endState(State state) const
+{
+    iterator it=beginState(state),it2=it;
+    it.setType(itNormal);
+    while (it!=end())
+    {
+        it++;
+        if ((*it).second==state)
+        {
+            it2 = it;    
+        }
+    }
+    return it2;
 }
 
 // iterator's methods
