@@ -11,8 +11,6 @@ typedef std::pair<Item,Tree> Branch;
 class Tree: public Model
 {
     private:
-        std::string sContent;
-        State sState;
         std::vector<Branch*> vChildren;
     public:
         // iterator
@@ -49,9 +47,11 @@ class Tree: public Model
         // accessors
         Item operator[](std::string indices) const;   // reader
         Item& operator[](std::string indices);        // writer
+        Branch* branch(std::string indices);
         // populating the list
         void insert(std::string indices, std::string content, State state);
-        void remove(std::string indices);
+        void insert(std::string indices, Branch *branch);
+        void remove(std::string indices, bool toDelete=true);
         void move(std::string currentIndices, std::string newIndices);
 };
 

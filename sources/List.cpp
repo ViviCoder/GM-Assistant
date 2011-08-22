@@ -1,21 +1,23 @@
 #include "List.h"
 
+using namespace std;
+
 // constructor
 
-List::List(std::string XMLCode): data()
+List::List(string XMLCode): data()
 {
     fromXML(XMLCode);
 }
 
 // inherited methods
 
-std::string List::toXML() const
+string List::toXML() const
 {
     // not yet implemented
     return "";
 }
 
-void List::fromXML(std::string XMLCode)
+void List::fromXML(string XMLCode)
 {
     // not yet implemented
 }
@@ -34,7 +36,7 @@ List::iterator List::begin() const
 
 List::iterator List::beginUnchecked() const
 {
-    std::vector<Item>::const_iterator it = data.begin();
+    vector<Item>::const_iterator it = data.begin();
     while (it != data.end() && (it->second==sSuccess || it->second==sFailure))
         it++;
     return iterator(it,itUnchecked);
@@ -42,7 +44,7 @@ List::iterator List::beginUnchecked() const
 
 List::iterator List::beginState(State state) const
 {
-    std::vector<Item>::const_iterator it = data.begin();
+    vector<Item>::const_iterator it = data.begin();
     while (it != data.end() && (it->second!=state))
         it++;
     return iterator(it,itState,state);
@@ -55,7 +57,7 @@ List::iterator List::end() const
 
 List::iterator List::endUnchecked() const
 {
-    std::vector<Item>::const_iterator it = data.end();
+    vector<Item>::const_iterator it = data.end();
     if (beginUnchecked()!=end())
     {
         it--;
@@ -68,7 +70,7 @@ List::iterator List::endUnchecked() const
 
 List::iterator List::endState(State state) const
 {
-    std::vector<Item>::const_iterator it = data.end();
+    vector<Item>::const_iterator it = data.end();
     if (beginState(state)!=end())
     {
         it--;
@@ -79,29 +81,29 @@ List::iterator List::endState(State state) const
     return iterator(it);
 }
 
-std::pair<std::string,State> List::operator[](int index) const
+pair<string,State> List::operator[](int index) const
 {
     if (index<0 || (unsigned int)index >= data.size())
     {
-        throw std::string("Index out of range");
+        throw string("List::operator[] : Index out of bounds");
     }
     return data[index];
 }
 
-std::pair<std::string,State>& List::operator[](int index)
+pair<string,State>& List::operator[](int index)
 {
     if (index<0 || (unsigned int)index >= data.size())
     {
-        throw std::string("Index out of range");
+        throw string("List::operator[] : Index out of bounds");
     }
     return data[index];
 }
 
-void List::insert(int index, std::string content, State state)
+void List::insert(int index, string content, State state)
 {
     if (index<0 || (unsigned int)index > data.size()) // index can be data.size() 
     {
-        throw std::string("Index out of range");
+        throw string("List::insert : Index out of bounds");
     }
     data.insert(data.begin()+index,Item(content,state));
 }
@@ -110,7 +112,7 @@ void List::remove(int index)
 {
     if (index<0 || (unsigned int)index >= data.size()) // index can be data.size() 
     {
-        throw std::string("Index out of range");
+        throw string("List::remove : Index out of bounds");
     }
     data.erase(data.begin()+index);
 }
@@ -120,7 +122,7 @@ void List::move(int currentIndex, int newIndex)
     // the new index is counted before the move
     if (currentIndex<0 || newIndex<0 || (unsigned int)currentIndex >= data.size() || (unsigned int)newIndex >= data.size()) // index can be data.size() 
     {
-        throw std::string("Index out of range");
+        throw string("List::move : Index out of bounds");
     }
     // test if the indices are the same
     if (currentIndex==newIndex) return;
@@ -138,7 +140,7 @@ void List::move(int currentIndex, int newIndex)
 
 // iterator's methods
 
-List::iterator::iterator(const std::vector<Item>::const_iterator& it, IterationType type, State state): Model::iterator(type,state), viIt(it)
+List::iterator::iterator(const vector<Item>::const_iterator& it, IterationType type, State state): Model::iterator(type,state), viIt(it)
 {
 }
 
