@@ -126,15 +126,14 @@ void List::move(int currentIndex, int newIndex)
     }
     // test if the indices are the same
     if (currentIndex==newIndex) return;
-    Item item = data[currentIndex];
-    data.erase(data.begin()+currentIndex);
+    data.insert(data.begin()+newIndex,operator[](currentIndex));
     if (currentIndex>newIndex)
     {
-        data.insert(data.begin()+newIndex,item);
+        data.erase(data.begin()+currentIndex+1);
     }
     else
     {
-        data.insert(data.begin()+newIndex-1,item);
+        data.erase(data.begin()+currentIndex);
     }
 }
 

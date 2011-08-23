@@ -12,6 +12,10 @@ class Tree: public Model
 {
     private:
         std::vector<Branch*> vChildren;
+        // branch accessor
+        Branch* branch(std::string indices);
+        // branch inserter
+        void insert(std::string indices, Branch *branch);
     public:
         // iterator
         class iterator: public Model::iterator
@@ -28,6 +32,9 @@ class Tree: public Model
                 iterator& operator++();
                 iterator operator++(int i);
                 Item operator*();
+                // information about the position of the iterator
+                int depth() const;
+
         };
         // constructor
         Tree(std::string XMLCode = "");
@@ -47,10 +54,8 @@ class Tree: public Model
         // accessors
         Item operator[](std::string indices) const;   // reader
         Item& operator[](std::string indices);        // writer
-        Branch* branch(std::string indices);
         // populating the list
         void insert(std::string indices, std::string content, State state);
-        void insert(std::string indices, Branch *branch);
         void remove(std::string indices, bool toDelete=true);
         void move(std::string currentIndices, std::string newIndices);
 };

@@ -1,5 +1,7 @@
 #include "Tree.h"
-#include <cstdlib>
+#include <sstream>
+// for debug
+//#include <iostream>
 
 using namespace std;
 
@@ -32,11 +34,7 @@ void Tree::fromXML(string XMLCode)
 
 void Tree::clear()
 {
-    for (vector<Branch*>::iterator it = vChildren.begin(); it != vChildren.end(); it++)
-    {
-        (*it)->second.clear();
-        delete *it;
-    }
+    vChildren.clear();
 }
 
 // new methods
@@ -93,7 +91,7 @@ Tree::iterator Tree::endUnchecked() const
             it2 = it;    
         }
     }
-    return it2;
+    return ++it2;
 }
 
 Tree::iterator Tree::endState(State state) const
@@ -108,19 +106,30 @@ Tree::iterator Tree::endState(State state) const
             it2 = it;    
         }
     }
-    return it2;
+    return ++it2;
 }
 
 Item Tree::operator[](string indices) const
 {
+    stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
-    int n = atoi(indices.substr(0,pos).c_str());
+    int n;
+    if (pos==-1)
+    {
+        buf << indices;
+    }
+    else
+    {
+        buf << indices.substr(0,pos);
+    
+    }
+    buf >> n;
     if (n<0 || (unsigned int) n >= vChildren.size())
     {
         throw string("Tree::operator[] : Index out of bounds");
     }
     string sub = indices.substr(pos+1);
-    if (sub=="")
+    if (pos==-1)
     {
         return vChildren[n]->first;
     }
@@ -132,14 +141,25 @@ Item Tree::operator[](string indices) const
 
 Item& Tree::operator[](string indices)
 {
+    stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
-    int n = atoi(indices.substr(0,pos).c_str());
+    int n;
+    if (pos==-1)
+    {
+        buf << indices;
+    }
+    else
+    {
+        buf << indices.substr(0,pos);
+    
+    }
+    buf >> n;
     if (n<0 || (unsigned int) n >= vChildren.size())
     {
         throw string("Tree::operator[] : Index out of bounds");
     }
     string sub = indices.substr(pos+1);
-    if (sub=="")
+    if (pos==-1)
     {
         return vChildren[n]->first;
     }
@@ -151,14 +171,25 @@ Item& Tree::operator[](string indices)
 
 Branch* Tree::branch(string indices)
 {
+    stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
-    int n = atoi(indices.substr(0,pos).c_str());
+    int n;
+    if (pos==-1)
+    {
+        buf << indices;
+    }
+    else
+    {
+        buf << indices.substr(0,pos);
+    
+    }
+    buf >> n;
     if (n<0 || (unsigned int) n >= vChildren.size())
     {
-        throw string("Tree::operator[] : Index out of bounds");
+        throw string("Tree::branch : Index out of bounds");
     }
     string sub = indices.substr(pos+1);
-    if (sub=="")
+    if (pos==-1)
     {
         return vChildren[n];
     }
@@ -170,14 +201,24 @@ Branch* Tree::branch(string indices)
 
 void Tree::insert(string indices, string content, State state)
 {
+    stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
-    int n = atoi(indices.substr(0,pos).c_str());
+    int n;
+    if (pos==-1)
+    {
+        buf << indices;
+    }
+    else
+    {
+        buf << indices.substr(0,pos);
+    }
+    buf >> n;
     if (n<0 || (unsigned int) n > vChildren.size()) // n can be equal to vChildren.size() but only for the last index
     {
-        throw string("Tree::operator[] : Index out of bounds");
+        throw string("Tree::insert : Index out of bounds");
     }
     string sub = indices.substr(pos+1);
-    if (sub=="")
+    if (pos == -1)
     {
         Branch *branch = new Branch;
         branch->first = pair<string,State>(content,state);
@@ -187,7 +228,7 @@ void Tree::insert(string indices, string content, State state)
     {
         if ((unsigned int)n==vChildren.size())
         {
-            throw string("Tree::operator[] : Index out of bounds");
+            throw string("Tree::insert : Index out of bounds");
         }
         vChildren[n]->second.insert(sub,content,state);
     }
@@ -195,14 +236,24 @@ void Tree::insert(string indices, string content, State state)
 
 void Tree::insert(string indices, Branch *branch)
 {
+    stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
-    int n = atoi(indices.substr(0,pos).c_str());
+    int n;
+    if (pos==-1)
+    {
+        buf << indices;
+    }
+    else
+    {
+        buf << indices.substr(0,pos);
+    }
+    buf >> n;
     if (n<0 || (unsigned int) n > vChildren.size()) // n can be equal to vChildren.size() but only for the last index
     {
-        throw string("Tree::operator[] : Index out of bounds");
+        throw string("Tree::insert : Index out of bounds");
     }
     string sub = indices.substr(pos+1);
-    if (sub=="")
+    if (pos==-1)
     {
         vChildren.insert(vChildren.begin()+n,branch);
     }
@@ -210,7 +261,7 @@ void Tree::insert(string indices, Branch *branch)
     {
         if ((unsigned int)n==vChildren.size())
         {
-            throw string("Tree::operator[] : Index out of bounds");
+            throw string("Tree::insert : Index out of bounds");
         }
         vChildren[n]->second.insert(sub,branch);
     }
@@ -218,14 +269,24 @@ void Tree::insert(string indices, Branch *branch)
 
 void Tree::remove(string indices, bool toDelete)
 {
+    stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
-    int n = atoi(indices.substr(0,pos).c_str());
+    int n;
+    if (pos==-1)
+    {
+        buf << indices;
+    }
+    else
+    {
+        buf << indices.substr(0,pos);
+    }
+    buf >> n;
     if (n<0 || (unsigned int) n >= vChildren.size())
     {
-        throw string("Tree::operator[] : Index out of bounds");
+        throw string("Tree::remove : Index out of bounds");
     }
     string sub = indices.substr(pos+1);
-    if (sub=="")
+    if (pos==-1)
     {
         if (toDelete)
         {
@@ -241,7 +302,23 @@ void Tree::remove(string indices, bool toDelete)
 
 void Tree::move(string currentIndices, string newIndices)
 {
+    stringstream buf(stringstream::in | stringstream::out);
     insert(newIndices,branch(currentIndices));
+    // we now determine if there is need to modify newIndices for the suppression
+    int pos = currentIndices.rfind("_");
+    int pos2 = newIndices.rfind("_");
+    if ((pos==-1 && pos2==-1) || currentIndices.substr(0,pos)==newIndices.substr(0,pos2))
+    {
+        int n,n2;
+        buf << currentIndices.substr(pos+1) << " " << newIndices.substr(pos2+1);
+        buf >> n >> n2;
+        if (n>n2)
+        {
+            stringstream buf2(stringstream::in | stringstream::out);
+            buf2 << currentIndices.substr(0,pos+1) << (n+1);
+            buf2 >> currentIndices;
+        }
+    }
     remove(currentIndices,false);    
 }
 
@@ -288,9 +365,11 @@ Tree::iterator& Tree::iterator::operator++()
     else    // otherwise, go to the next (if there is one)
     {
         (*it)++;
-        while (it-1 != qIts.rend() && *it == (*(*(it-1)))->second.vChildren.end())
+        while (it+1 != qIts.rend() && *it == (*(*(it+1)))->second.vChildren.end())
         {
             qIts.pop_back();
+            it++;
+            (*it)++;
         }
     }   
     return *this;
@@ -320,4 +399,9 @@ Item Tree::iterator::operator*()
         default:            break;
     }
     return (*(qIts.back()))->first;
+}
+
+int Tree::iterator::depth() const
+{
+    return qIts.size();
 }

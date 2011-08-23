@@ -1,7 +1,7 @@
 *.pro
 Makefile
 ui_*
-*.swp
+.*
 GM-Assistant
 *.o
 moc_*
