@@ -1,6 +1,6 @@
 #include "Tree.h"
 #include <sstream>
-// for debug
+// for debugging
 //#include <iostream>
 
 using namespace std;
@@ -34,6 +34,10 @@ void Tree::fromXML(string XMLCode)
 
 void Tree::clear()
 {
+    for (vector<Branch*>::const_iterator it=vChildren.begin(); it!=vChildren.end(); it++)
+    {
+        delete *it;
+    }
     vChildren.clear();
 }
 
@@ -85,11 +89,11 @@ Tree::iterator Tree::endUnchecked() const
     it.setType(itNormal);
     while (it!=end())
     {
-        it++;
         if ((*it).second==sNone || (*it).second==sProgress)
         {
             it2 = it;    
         }
+        it++;
     }
     return ++it2;
 }
@@ -100,11 +104,11 @@ Tree::iterator Tree::endState(State state) const
     it.setType(itNormal);
     while (it!=end())
     {
-        it++;
         if ((*it).second==state)
         {
             it2 = it;    
         }
+        it++;
     }
     return ++it2;
 }
@@ -288,15 +292,16 @@ void Tree::remove(string indices, bool toDelete)
     string sub = indices.substr(pos+1);
     if (pos==-1)
     {
+        Branch *branch = vChildren[n];
+        vChildren.erase(vChildren.begin()+n);
         if (toDelete)
         {
-            vChildren[n]->second.clear();
+            delete branch;
         }
-        vChildren.erase(vChildren.begin()+n);
     }
     else
     {
-        vChildren[n]->second.remove(sub);
+        vChildren[n]->second.remove(sub,toDelete);
     }
 }
 
@@ -377,7 +382,7 @@ Tree::iterator& Tree::iterator::operator++()
 
 Tree::iterator Tree::iterator::operator++(int i)
 {
-    Tree::iterator it = *this;
+    iterator it = *this;
     operator++();
     return it;
 }
