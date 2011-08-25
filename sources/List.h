@@ -43,7 +43,8 @@ class List: public Model
         Item operator[](int index) const;   // reader
         Item& operator[](int index);        // writer
         // populating the list
-        void insert(int index, const std::string &content, State state);
+        void insert(int index, const std::string &content, State state=sNone);
+        void add(const std::string &content, State state=sNone);
         void remove(int index);
         void move(int currentIndex, int newIndex);
 };

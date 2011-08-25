@@ -21,8 +21,8 @@ int main(int argc, char* argv[])
 
     // Tests for the List class
     List list;
-    list.insert(0,"Premier élément",sNone);
-    list.insert(1,"n'importe quoi",sSuccess);
+    list.add("Premier élément");
+    list.add("n'importe quoi",sSuccess);
     list.insert(1,"deuxième (en fait troisième)",sProgress);
     list.insert(0,"Avant premier élément",sFailure);
     list.insert(3,"encore un", sSuccess);
@@ -53,20 +53,20 @@ int main(int argc, char* argv[])
     cout << endl;
 
     Tree tree;
-    tree.insert("0","Hein ?",sNone);
-    tree.insert("0_0","Quoi ?",sNone);
-    tree.insert("0_1","Oui ?",sSuccess);
-    tree.insert("0_2","Ben non...",sProgress);
-    tree.insert("1","Échec !",sFailure);
-    tree.insert("2","Branche",sSuccess);
-    tree.insert("2_0","Encore une feuille",sProgress);
-    tree.insert("2_0","Feuille",sNone);
-    tree.insert("3","Autre branche",sFailure);
-    tree.insert("3_0","Grande feuille",sProgress);
-    tree.insert("3_0_0","Et encore une !",sFailure);
-    tree.insert("3_1","Bouh",sNone);
-    tree.insert("3_2","Re-bouh",sNone);
-    tree.insert("3_2_0","Boubou",sSuccess);
+    tree.add("Hein ?");
+    tree.addChild("Quoi ?");
+    tree.add("Oui ?",sSuccess);
+    tree.add("Ben non...",sProgress);
+    tree.add(1,"Échec !",sFailure);
+    tree.add("Branche",sSuccess);
+    tree.addChild("Encore une feuille",sProgress);
+    tree.insert("2_0","Feuille");
+    tree.add(1,"Autre branche",sFailure);
+    tree.addChild("Grande feuille",sProgress);
+    tree.addChild("Et encore une !",sFailure);
+    tree.add(2,"Bouh");
+    tree.add("Re-bouh");
+    tree.addChild("Boubou",sSuccess);
     
     tree.remove("3_1");
     tree.move("3_1","3_0");

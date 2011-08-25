@@ -225,7 +225,7 @@ void Tree::insert(const string &indices, const string &content, State state)
     if (pos == -1)
     {
         Branch *branch = new Branch;
-        branch->first = pair<string,State>(content,state);
+        branch->first = Item(content,state);
         vChildren.insert(vChildren.begin()+n,branch);
     }
     else
@@ -268,6 +268,57 @@ void Tree::insert(const string &indices, Branch *branch)
             throw string("Tree::insert : Index out of bounds");
         }
         vChildren[n]->second.insert(sub,branch);
+    }
+}
+
+void Tree::add(const string &content, State state)
+{
+    if (vChildren.size()==0 || vChildren.back()->second.vChildren.size()==0)
+    {
+        Branch *branch = new Branch;
+        branch->first = Item(content,state);
+        vChildren.push_back(branch);
+    }
+    else
+    {
+        vChildren.back()->second.add(content,state);
+    }
+}
+
+void Tree::add(int depth, const string &content, State state)
+{
+    // insert at the given depth (1 is root)
+    if (depth<1)
+    {
+        throw string("Tree::add : depth must be non-negative");
+    }
+    if (depth==1)
+    {
+        Branch *branch = new Branch;
+        branch->first = Item(content,state);
+        vChildren.push_back(branch);
+    }
+    else
+    {
+        if (vChildren.size()==0)
+        {
+            throw string("Tree::add : the given depth is unavailable");
+        }
+        vChildren.back()->second.add(depth-1,content,state);
+    }
+}
+
+void Tree::addChild(const string &content, State state)
+{
+    if (vChildren.size()==0)
+    {
+        Branch *branch = new Branch;
+        branch->first = Item(content,state);
+        vChildren.push_back(branch);
+    }
+    else
+    {
+        vChildren.back()->second.addChild(content,state);
     }
 }
 

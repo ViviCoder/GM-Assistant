@@ -35,6 +35,8 @@ class Model
         virtual void fromXML(const std::string &fileName) = 0;
         // emptying method
         virtual void clear() = 0;
+        // adding method
+        virtual void add(const std::string &content, State state=sNone) = 0;
 };
 
 #endif

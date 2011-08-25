@@ -55,7 +55,10 @@ class Tree: public Model
         Item operator[](const std::string &indices) const;   // reader
         Item& operator[](const std::string &indices);        // writer
         // populating the list
-        void insert(const std::string &indices, const std::string &content, State state);
+        void insert(const std::string &indices, const std::string &content, State state=sNone);
+        void add(const std::string &content, State state=sNone);
+        void add(int depth, const std::string &content, State state=sNone);
+        void addChild(const std::string &content, State state=sNone);
         void remove(const std::string &indices, bool toDelete=true);
         void move(const std::string &currentIndices, const std::string &newIndices);
 };

@@ -81,7 +81,7 @@ List::iterator List::endState(State state) const
     return iterator(it);
 }
 
-pair<string,State> List::operator[](int index) const
+Item List::operator[](int index) const
 {
     if (index<0 || (unsigned int)index >= data.size())
     {
@@ -90,7 +90,7 @@ pair<string,State> List::operator[](int index) const
     return data[index];
 }
 
-pair<string,State>& List::operator[](int index)
+Item& List::operator[](int index)
 {
     if (index<0 || (unsigned int)index >= data.size())
     {
@@ -106,6 +106,11 @@ void List::insert(int index, const string &content, State state)
         throw string("List::insert : Index out of bounds");
     }
     data.insert(data.begin()+index,Item(content,state));
+}
+
+void List::add(const string &content, State state)
+{
+    data.push_back(Item(content,state));
 }
 
 void List::remove(int index)
