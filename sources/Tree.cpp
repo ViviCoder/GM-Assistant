@@ -21,10 +21,9 @@ Tree::~Tree()
 
 //inherited methods
 
-string Tree::toXML() const
+void Tree::toXML(const string &fileName) const
 {
     // not yet implemented
-    return "";
 }
 
 void Tree::fromXML(const string &fileName)

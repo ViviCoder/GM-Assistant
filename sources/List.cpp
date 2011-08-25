@@ -11,10 +11,9 @@ List::List(const string &fileName): data()
 
 // inherited methods
 
-string List::toXML() const
+void List::toXML(const string &fileName) const
 {
     // not yet implemented
-    return "";
 }
 
 void List::fromXML(const string &fileName)

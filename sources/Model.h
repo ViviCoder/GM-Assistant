@@ -31,7 +31,7 @@ class Model
                 virtual Item operator*() = 0;
         };
         // loading and saving methods
-        virtual std::string toXML() const = 0;
+        virtual void toXML(const std::string &fileName) const = 0;
         virtual void fromXML(const std::string &fileName) = 0;
         // emptying method
         virtual void clear() = 0;

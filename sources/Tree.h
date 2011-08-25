@@ -41,7 +41,7 @@ class Tree: public Model
         //destructor
         ~Tree();
         // inherited methods
-        std::string toXML() const;
+        void toXML(const std::string &fileName) const;
         void fromXML(const std::string &fileName);
         void clear();
         // iterator-related methods

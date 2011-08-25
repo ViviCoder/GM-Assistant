@@ -1,7 +1,9 @@
 #!/bin/bash
 
 # Needed softwares
-softs="qmake lupdate lrelease make"
+softs="g++ qmake lupdate lrelease make"
+cxx_devs="iterator string vector sstream iostream"
+xml_devs="document"
 
 echo "*****************************"
 echo "* Checking configuration... *"
@@ -19,8 +21,52 @@ do
 done
 echo 
 
+echo "*********************************"
+echo "* Checking development files... *"
+echo "*********************************"
+
+cxx_version=`g++ --version | sed -e "s/g++.*(.*) //" | grep -o -e "[0-9]\{1,\}\.[0-9]\{1,\}"`
+cxx_dev_path="/usr/include/c++/$cxx_version/"
+echo - C++ standard library: $cxx_dev_path
+for dev in $cxx_devs
+do
+    if [ -e "$cxx_dev_path$dev" ]
+    then
+        echo $dev: OK
+    else
+        echo $dev missing !
+        exit
+    fi
+done
+
+echo
+xml_dev_path="/usr/include/"`ls -l /usr/include/ | grep -o -e "libxml++-[0-9]\{1,\}\.[0-9]\{1,\}" | head -n 1`"/libxml++/"
+echo - XML++ library: $xml_dev_path
+for dev in $xml_devs
+do
+    if [ -e "$xml_dev_path$dev.h" ]
+    then
+        echo $dev.h: OK
+    else
+        echo $dev.h missing !
+        exit
+    fi
+done
+
+echo
+echo "*****************************"
+echo "* Preparing the compilation *"
+echo "*****************************"
+
+
 qmake -project
 lupdate GM-Assistant.pro
 lrelease GM-Assistant.pro
 mv translations/*.qm .
 qmake
+
+echo
+echo "********************"
+echo "* Ready to compile *"
+echo "********************"
+echo To compile, type make
