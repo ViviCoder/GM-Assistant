@@ -7,9 +7,9 @@ using namespace std;
 
 // constructor
 
-Tree::Tree(string XMLCode): vChildren()
+Tree::Tree(const string &fileName): vChildren()
 {
-    fromXML(XMLCode);
+    fromXML(fileName);
 }
 
 // destructor
@@ -27,7 +27,7 @@ string Tree::toXML() const
     return "";
 }
 
-void Tree::fromXML(string XMLCode)
+void Tree::fromXML(const string &fileName)
 {
     // not yet implemented
 }
@@ -113,7 +113,7 @@ Tree::iterator Tree::endState(State state) const
     return ++it2;
 }
 
-Item Tree::operator[](string indices) const
+Item Tree::operator[](const string &indices) const
 {
     stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
@@ -143,7 +143,7 @@ Item Tree::operator[](string indices) const
     }
 }
 
-Item& Tree::operator[](string indices)
+Item& Tree::operator[](const string &indices)
 {
     stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
@@ -173,7 +173,7 @@ Item& Tree::operator[](string indices)
     }
 }
 
-Branch* Tree::branch(string indices)
+Branch* Tree::branch(const string &indices)
 {
     stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
@@ -203,7 +203,7 @@ Branch* Tree::branch(string indices)
     }
 }
 
-void Tree::insert(string indices, string content, State state)
+void Tree::insert(const string &indices, const string &content, State state)
 {
     stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
@@ -238,7 +238,7 @@ void Tree::insert(string indices, string content, State state)
     }
 }
 
-void Tree::insert(string indices, Branch *branch)
+void Tree::insert(const string &indices, Branch *branch)
 {
     stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
@@ -271,7 +271,7 @@ void Tree::insert(string indices, Branch *branch)
     }
 }
 
-void Tree::remove(string indices, bool toDelete)
+void Tree::remove(const string &indices, bool toDelete)
 {
     stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
@@ -305,13 +305,14 @@ void Tree::remove(string indices, bool toDelete)
     }
 }
 
-void Tree::move(string currentIndices, string newIndices)
+void Tree::move(const string &currentIndices, const string &newIndices)
 {
     stringstream buf(stringstream::in | stringstream::out);
     insert(newIndices,branch(currentIndices));
     // we now determine if there is need to modify newIndices for the suppression
     int pos = currentIndices.rfind("_");
     int pos2 = newIndices.rfind("_");
+    string indices(currentIndices);
     if ((pos==-1 && pos2==-1) || currentIndices.substr(0,pos)==newIndices.substr(0,pos2))
     {
         int n,n2;
@@ -321,10 +322,10 @@ void Tree::move(string currentIndices, string newIndices)
         {
             stringstream buf2(stringstream::in | stringstream::out);
             buf2 << currentIndices.substr(0,pos+1) << (n+1);
-            buf2 >> currentIndices;
+            indices = buf2.str();
         }
     }
-    remove(currentIndices,false);    
+    remove(indices,false);    
 }
 
 // iterator's methods

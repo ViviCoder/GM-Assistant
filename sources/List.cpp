@@ -4,9 +4,9 @@ using namespace std;
 
 // constructor
 
-List::List(string XMLCode): data()
+List::List(const string &fileName): data()
 {
-    fromXML(XMLCode);
+    fromXML(fileName);
 }
 
 // inherited methods
@@ -17,7 +17,7 @@ string List::toXML() const
     return "";
 }
 
-void List::fromXML(string XMLCode)
+void List::fromXML(const string &fileName)
 {
     // not yet implemented
 }
@@ -99,7 +99,7 @@ pair<string,State>& List::operator[](int index)
     return data[index];
 }
 
-void List::insert(int index, string content, State state)
+void List::insert(int index, const string &content, State state)
 {
     if (index<0 || (unsigned int)index > data.size()) // index can be data.size() 
     {

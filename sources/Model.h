@@ -32,7 +32,7 @@ class Model
         };
         // loading and saving methods
         virtual std::string toXML() const = 0;
-        virtual void fromXML(std::string XMLCode) = 0;
+        virtual void fromXML(const std::string &fileName) = 0;
         // emptying method
         virtual void clear() = 0;
 };

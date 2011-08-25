@@ -13,9 +13,9 @@ class Tree: public Model
     private:
         std::vector<Branch*> vChildren;
         // branch accessor
-        Branch* branch(std::string indices);
+        Branch* branch(const std::string &indices);
         // branch inserter
-        void insert(std::string indices, Branch *branch);
+        void insert(const std::string &indices, Branch *branch);
     public:
         // iterator
         class iterator: public Model::iterator
@@ -37,12 +37,12 @@ class Tree: public Model
 
         };
         // constructor
-        Tree(std::string XMLCode = "");
+        Tree(const std::string &fileName = "");
         //destructor
         ~Tree();
         // inherited methods
         std::string toXML() const;
-        void fromXML(std::string XMLCode);
+        void fromXML(const std::string &fileName);
         void clear();
         // iterator-related methods
         iterator begin() const;
@@ -52,12 +52,12 @@ class Tree: public Model
         iterator endUnchecked() const;
         iterator endState(State state) const;
         // accessors
-        Item operator[](std::string indices) const;   // reader
-        Item& operator[](std::string indices);        // writer
+        Item operator[](const std::string &indices) const;   // reader
+        Item& operator[](const std::string &indices);        // writer
         // populating the list
-        void insert(std::string indices, std::string content, State state);
-        void remove(std::string indices, bool toDelete=true);
-        void move(std::string currentIndices, std::string newIndices);
+        void insert(const std::string &indices, const std::string &content, State state);
+        void remove(const std::string &indices, bool toDelete=true);
+        void move(const std::string &currentIndices, const std::string &newIndices);
 };
 
 #endif

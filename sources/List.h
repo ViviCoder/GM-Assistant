@@ -27,10 +27,10 @@ class List: public Model
                 Item operator*();
         };
         // constructor
-        List(std::string XMLCode = "");
+        List(const std::string &fileName = "");
         // inherited methods
         std::string toXML() const;
-        void fromXML(std::string XMLCode);
+        void fromXML(const std::string &fileName);
         void clear();
         // iterator-related methods
         iterator begin() const;
@@ -43,7 +43,7 @@ class List: public Model
         Item operator[](int index) const;   // reader
         Item& operator[](int index);        // writer
         // populating the list
-        void insert(int index, std::string content, State state);
+        void insert(int index, const std::string &content, State state);
         void remove(int index);
         void move(int currentIndex, int newIndex);
 };
