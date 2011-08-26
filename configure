@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # Needed softwares
-softs="g++ qmake lupdate lrelease make"
+softs="g++ moc-qt4 qmake lupdate lrelease make"
 cxx_devs="iterator string vector sstream iostream"
-xml_devs="document"
+xml_devs="libxml++"
 
 echo "*****************************"
 echo "* Checking configuration... *"
@@ -26,11 +26,11 @@ echo "* Checking development files... *"
 echo "*********************************"
 
 cxx_version=`g++ --version | sed -e "s/g++.*(.*) //" | grep -o -e "[0-9]\{1,\}\.[0-9]\{1,\}"`
-cxx_dev_path="/usr/include/c++/$cxx_version/"
+cxx_dev_path="/usr/include/c++/$cxx_version"
 echo - C++ standard library: $cxx_dev_path
 for dev in $cxx_devs
 do
-    if [ -e "$cxx_dev_path$dev" ]
+    if [ -e "$cxx_dev_path/$dev" ]
     then
         echo $dev: OK
     else
@@ -40,11 +40,11 @@ do
 done
 
 echo
-xml_dev_path="/usr/include/"`ls -l /usr/include/ | grep -o -e "libxml++-[0-9]\{1,\}\.[0-9]\{1,\}" | head -n 1`"/libxml++/"
-echo - XML++ library: $xml_dev_path
+xml_dev_path=`ls -l /usr/include/ | grep -o -e "libxml++-[0-9]\{1,\}\.[0-9]\{1,\}" | head -n 1`
+echo - XML++ library: /usr/include/$xml_dev_path
 for dev in $xml_devs
 do
-    if [ -e "$xml_dev_path$dev.h" ]
+    if [ -e "/usr/include/$xml_dev_path/libxml++/$dev.h" ]
     then
         echo $dev.h: OK
     else
@@ -64,6 +64,10 @@ lupdate GM-Assistant.pro
 lrelease GM-Assistant.pro
 mv translations/*.qm .
 qmake
+
+# adding libxml++ library includes in the Makefile
+sed -i -e "s#-I\.#`pkg-config $xml_dev_path --cflags | sed -e "s/-pthread //"`#" Makefile
+sed -i -e "s#-lpthread#-lpthread `pkg-config $xml_dev_path --libs`#" Makefile
 
 echo
 echo "********************"

@@ -1,11 +1,48 @@
 #include "Tree.h"
 #include <sstream>
 // for debugging
-//#include <iostream>
+#include <iostream>
+#include <typeinfo>
 
 using namespace std;
 
-// constructor
+// constructors
+
+Tree::Tree(): vChildren()
+{
+}
+
+Tree::Tree(const Tree &tree)
+{
+    for (vector<Branch*>::const_iterator it=tree.vChildren.begin(); it != tree.vChildren.end(); it++)
+    {
+        Branch *branch = new Branch(**it);
+        vChildren.push_back(branch);
+    }
+}
+
+Tree::Tree(const xmlpp::Element &element): vChildren()
+{
+    using namespace xmlpp;
+
+    Node::NodeList list = element.get_children("item");
+    for (Node::NodeList::const_iterator it = list.begin(); it != list.end(); it++)
+    {
+        Branch *branch = new Branch;
+        Element *elem = dynamic_cast<Element*>(*it);
+        Attribute *attr = elem->get_attribute("state");
+        int state = 0;
+        if (attr!=NULL)
+        {
+            stringstream buf(stringstream::in | stringstream::out);
+            buf << attr->get_value();
+            buf >> state;
+        }
+        branch->first = Item(elem->get_child_text()->get_content(),State(state));
+        branch->second = Tree(*elem);
+        vChildren.push_back(branch);
+    }
+}
 
 Tree::Tree(const string &fileName): vChildren()
 {
@@ -19,16 +56,61 @@ Tree::~Tree()
     clear();
 }
 
-//inherited methods
+// copy operator
+
+Tree& Tree::operator=(const Tree &tree)
+{
+    clear();
+    for (vector<Branch*>::const_iterator it=tree.vChildren.begin(); it != tree.vChildren.end(); it++)
+    {
+        Branch *branch = new Branch(**it);
+        vChildren.push_back(branch);
+    }
+    return *this;
+}
+
+// inherited methods
 
 void Tree::toXML(const string &fileName) const
 {
-    // not yet implemented
+    using namespace xmlpp;
+
+    Document document;
+    Element *root = document.create_root_node("tree");
+    int depth=1;
+    vector<Element *> nodes;
+    nodes.push_back(root);
+    for (iterator it=begin(); it != end(); it++)
+    {
+        int diff = depth-it.depth();  // number of elements to pop
+        for (int i=0; i< diff; i++)
+        {
+            nodes.pop_back();
+        }
+        depth = it.depth();
+        Element *tmp = nodes.back()->add_child("item");
+        depth++;
+        stringstream buf(stringstream::in | stringstream::out);
+        buf << (*it).second;
+        tmp->set_attribute("state",buf.str());
+        tmp->set_child_text((*it).first);
+        nodes.push_back(tmp);
+    }
+    document.write_to_file(fileName,"UTF-8");
 }
 
 void Tree::fromXML(const string &fileName)
 {
-    // not yet implemented
+    using namespace xmlpp;
+    
+    DomParser parser(fileName);
+    Document *document = parser.get_document();
+    Element *root = document->get_root_node();
+    if (root->get_name()!="tree")
+    {
+        throw string("Tree::fromXML : the given XML file doesn't contain a tree");
+    }
+    *this = Tree(*root);
 }
 
 void Tree::clear()
@@ -85,6 +167,10 @@ Tree::iterator Tree::end() const
 Tree::iterator Tree::endUnchecked() const
 {
     iterator it=beginUnchecked(),it2=it;
+    if (it==end())
+    {
+        return it;
+    }
     it.setType(itNormal);
     while (it!=end())
     {
@@ -100,6 +186,10 @@ Tree::iterator Tree::endUnchecked() const
 Tree::iterator Tree::endState(State state) const
 {
     iterator it=beginState(state),it2=it;
+    if (it==end())
+    {
+        return it;
+    }
     it.setType(itNormal);
     while (it!=end())
     {

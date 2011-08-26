@@ -27,7 +27,7 @@ class List: public Model
                 Item operator*();
         };
         // constructor
-        List(const std::string &fileName = "");
+        List(const std::string &fileName);
         // inherited methods
         void toXML(const std::string &fileName) const;
         void fromXML(const std::string &fileName);

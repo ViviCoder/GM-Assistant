@@ -20,15 +20,15 @@ int main(int argc, char* argv[])
     app.installTranslator(&translator);
 
     // Tests for the List class
-    List list;
-    list.add("Premier élément");
+    List list("list.xml");
+/*    list.add("Premier élément");
     list.add("n'importe quoi",sSuccess);
     list.insert(1,"deuxième (en fait troisième)",sProgress);
     list.insert(0,"Avant premier élément",sFailure);
     list.insert(3,"encore un", sSuccess);
     list.insert(3,"élément à supprimer",sProgress);
     list.remove(3);
-    list.move(3,2);
+    list.move(3,2);*/
     for (List::iterator it = list.begin(); it != list.end(); it++)
     {
         cout << (*it).first << endl;    
@@ -45,6 +45,8 @@ int main(int argc, char* argv[])
     }
     cout << endl;
 
+//    list.toXML("list.xml");
+
     list.clear();
     for (List::iterator it = list.begin(); it != list.end(); it++)
     {
@@ -52,8 +54,8 @@ int main(int argc, char* argv[])
     }
     cout << endl;
 
-    Tree tree;
-    tree.add("Hein ?");
+    Tree tree("tree.xml");
+/*    tree.add("Hein ?");
     tree.addChild("Quoi ?");
     tree.add("Oui ?",sSuccess);
     tree.add("Ben non...",sProgress);
@@ -70,7 +72,7 @@ int main(int argc, char* argv[])
     
     tree.remove("3_1");
     tree.move("3_1","3_0");
-    tree.move("2","1_0");
+    tree.move("2","1_0");*/
 
     for (Tree::iterator it = tree.begin(); it != tree.end(); it++)
     {
@@ -89,6 +91,8 @@ int main(int argc, char* argv[])
         cout << it.depth() << "-" << (*it).first << endl;    
     }
     cout << endl;
+
+//    tree.toXML("tree.xml");
 
     tree.clear();
     

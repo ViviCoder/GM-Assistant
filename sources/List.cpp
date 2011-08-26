@@ -1,4 +1,8 @@
 #include "List.h"
+#include <libxml++/document.h>
+#include <libxml++/parsers/domparser.h>
+#include <libxml++/nodes/node.h>
+#include <libxml++/nodes/textnode.h>
 
 using namespace std;
 
@@ -13,12 +17,50 @@ List::List(const string &fileName): data()
 
 void List::toXML(const string &fileName) const
 {
-    // not yet implemented
+    using namespace xmlpp;
+    
+    Document document;
+    Element *root = document.create_root_node("list");
+    for (vector<Item>::const_iterator it=data.begin(); it!=data.end(); it++)
+    {
+        Element *tmp = root->add_child("item");
+        stringstream buf(stringstream::in | stringstream::out);
+        buf << it->second;
+        tmp->set_attribute("state",buf.str());
+        tmp->set_child_text(it->first);
+    }
+    document.write_to_file(fileName,"UTF-8");
 }
 
 void List::fromXML(const string &fileName)
 {
-    // not yet implemented
+    using namespace xmlpp;
+    
+    DomParser parser(fileName);
+    Document *document = parser.get_document();    
+    Element *root = document->get_root_node();
+    if (root->get_name()!="list")
+    {
+        throw string("List::fromXML : the given XML file doesn't contain a list");
+    }
+    Node::NodeList list = root->get_children("item");
+    for (Node::NodeList::const_iterator it = list.begin(); it != list.end(); it++)
+    {
+        Element *elem = dynamic_cast<Element*>(*it);
+        Attribute *attr = elem->get_attribute("state");
+        if (attr==NULL)
+        {
+            add(elem->get_child_text()->get_content());
+        }
+        else
+        {
+            stringstream buf(stringstream::in | stringstream::out);
+            buf << attr->get_value();
+            int state;
+            buf >> state;
+            add(elem->get_child_text()->get_content(),State(state));
+        }
+    }
 }
 
 void List::clear()

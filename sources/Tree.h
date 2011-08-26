@@ -3,6 +3,7 @@
 
 #include "Model.h"
 #include <vector>
+#include <libxml++/libxml++.h>
 
 class Tree;
 // alias for a branch
@@ -36,10 +37,15 @@ class Tree: public Model
                 int depth() const;
 
         };
-        // constructor
-        Tree(const std::string &fileName = "");
-        //destructor
+        // constructors
+        Tree();
+        Tree(const Tree &tree);
+        Tree(const xmlpp::Element &element);
+        Tree(const std::string &fileName);
+        // destructor
         ~Tree();
+        // copy operator
+        Tree& operator=(const Tree &tree);
         // inherited methods
         void toXML(const std::string &fileName) const;
         void fromXML(const std::string &fileName);
