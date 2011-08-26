@@ -1,14 +1,14 @@
 #include "List.h"
-#include <libxml++/document.h>
-#include <libxml++/parsers/domparser.h>
-#include <libxml++/nodes/node.h>
-#include <libxml++/nodes/textnode.h>
 
 using namespace std;
 
-// constructor
+// constructors
 
-List::List(const string &fileName): data()
+List::List()
+{
+}
+
+List::List(const string &fileName)
 {
     fromXML(fileName);
 }
@@ -21,15 +21,22 @@ void List::toXML(const string &fileName) const
     
     Document document;
     Element *root = document.create_root_node("list");
+    toXML(*root);
+    document.write_to_file(fileName,"UTF-8");
+}
+
+void List::toXML(xmlpp::Element &root) const
+{
+    using namespace xmlpp;
+    
     for (vector<Item>::const_iterator it=data.begin(); it!=data.end(); it++)
     {
-        Element *tmp = root->add_child("item");
+        Element *tmp = root.add_child("item");
         stringstream buf(stringstream::in | stringstream::out);
         buf << it->second;
         tmp->set_attribute("state",buf.str());
         tmp->set_child_text(it->first);
     }
-    document.write_to_file(fileName,"UTF-8");
 }
 
 void List::fromXML(const string &fileName)
@@ -43,23 +50,27 @@ void List::fromXML(const string &fileName)
     {
         throw string("List::fromXML : the given XML file doesn't contain a list");
     }
-    Node::NodeList list = root->get_children("item");
+    fromXML(*root);
+}
+
+void List::fromXML(const xmlpp::Element &root)
+{
+    clear();
+    using namespace xmlpp;
+    
+    Node::NodeList list = root.get_children("item");
     for (Node::NodeList::const_iterator it = list.begin(); it != list.end(); it++)
     {
         Element *elem = dynamic_cast<Element*>(*it);
         Attribute *attr = elem->get_attribute("state");
-        if (attr==NULL)
-        {
-            add(elem->get_child_text()->get_content());
-        }
-        else
+        int state = 0;
+        if (attr!=NULL)
         {
             stringstream buf(stringstream::in | stringstream::out);
             buf << attr->get_value();
-            int state;
             buf >> state;
-            add(elem->get_child_text()->get_content(),State(state));
         }
+        data.push_back(Item(elem->get_child_text()->get_content(),State(state)));
     }
 }
 

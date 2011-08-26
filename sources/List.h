@@ -26,11 +26,14 @@ class List: public Model
                 iterator operator++(int i);
                 Item operator*();
         };
-        // constructor
+        // constructors
+        List();
         List(const std::string &fileName);
         // inherited methods
         void toXML(const std::string &fileName) const;
+        void toXML(xmlpp::Element &root) const;
         void fromXML(const std::string &fileName);
+        void fromXML(const xmlpp::Element &root);
         void clear();
         // iterator-related methods
         iterator begin() const;

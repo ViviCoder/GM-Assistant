@@ -3,6 +3,7 @@
 
 #include <iterator>
 #include <string>
+#include <libxml++/libxml++.h>
 
 // Different possible states for the items of the model   
 enum State {sNone,sProgress,sSuccess,sFailure};
@@ -32,7 +33,9 @@ class Model
         };
         // loading and saving methods
         virtual void toXML(const std::string &fileName) const = 0;
+        virtual void toXML(xmlpp::Element &root) const = 0;
         virtual void fromXML(const std::string &fileName) = 0;
+        virtual void fromXML(const xmlpp::Element &root) = 0;
         // emptying method
         virtual void clear() = 0;
         // adding method
