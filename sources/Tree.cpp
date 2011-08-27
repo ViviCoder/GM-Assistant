@@ -61,7 +61,7 @@ void Tree::toXML(const string &fileName) const
     Document document;
     Element *root = document.create_root_node("tree");
     toXML(*root);
-    document.write_to_file(fileName,"UTF-8");
+    document.write_to_file_formatted(fileName,"UTF-8");
 }
 
 void Tree::toXML(xmlpp::Element &root) const
