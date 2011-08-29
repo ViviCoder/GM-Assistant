@@ -1,9 +1,20 @@
-#!/bin/bash
+#!/bin/sh
 
 # Needed softwares
-softs="g++ moc-qt4 qmake lupdate lrelease make"
+softs="pkg-config g++ moc-qt4 qmake lupdate lrelease make"
 cxx_devs="iterator string vector sstream iostream"
 xml_devs="libxml++"
+
+# Reading options
+supported_options="g"
+while getopts $supported_options opt
+do
+    case $opt in
+        g) debug="true";;
+        *) echo "No such a parameter"
+            exit 1;;
+    esac
+done
 
 echo "*****************************"
 echo "* Checking configuration... *"
@@ -66,8 +77,16 @@ mv translations/*.qm .
 qmake
 
 # adding libxml++ library includes in the Makefile
-sed -i -e "s#-I\.#`pkg-config $xml_dev_path --cflags | sed -e "s/-pthread //"`#" Makefile
+sed -i -e "s#-I\.#`pkg-config $xml_dev_path --cflags-only-I`#" Makefile
 sed -i -e "s#-lpthread#-lpthread `pkg-config $xml_dev_path --libs`#" Makefile
+# adding the -g flag if the debug option is enabled
+if [ $debug = "true" ]
+then
+    sed -i -e "s#-pipe#-pipe -g#" Makefile
+fi
+
+# cleaning previous compilation
+make -s clean
 
 echo
 echo "********************"
