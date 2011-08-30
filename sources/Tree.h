@@ -31,7 +31,7 @@ class Tree: public Model
                 bool operator==(const iterator& it) const;
                 iterator& operator++();
                 iterator operator++(int i);
-                Item operator*();
+                const Item& operator*();
                 // information about the position of the iterator
                 int depth() const;
 
@@ -59,7 +59,7 @@ class Tree: public Model
         iterator endUnchecked() const;
         iterator endState(State state) const;
         // accessors
-        Item operator[](const std::string &indices) const;   // reader
+        const Item& operator[](const std::string &indices) const;   // reader
         Item& operator[](const std::string &indices);        // writer
         // populating the list
         void insert(const std::string &indices, const std::string &content, State state=sNone);

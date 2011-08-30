@@ -24,7 +24,7 @@ class List: public Model
                 bool operator==(const iterator& it) const;
                 iterator& operator++();
                 iterator operator++(int i);
-                Item operator*();
+                const Item& operator*();
         };
         // constructors
         List();
@@ -43,7 +43,7 @@ class List: public Model
         iterator endUnchecked() const;
         iterator endState(State state) const;
         // accessors
-        Item operator[](int index) const;   // reader
+        const Item& operator[](int index) const;   // reader
         Item& operator[](int index);        // writer
         // populating the list
         void insert(int index, const std::string &content, State state=sNone);

@@ -15,11 +15,7 @@ Tree::Tree()
 
 Tree::Tree(const Tree &tree)
 {
-    for (vector<Branch*>::const_iterator it=tree.vChildren.begin(); it != tree.vChildren.end(); it++)
-    {
-        Branch *branch = new Branch(**it);
-        vChildren.push_back(branch);
-    }
+    *this = tree;
 }
 
 Tree::Tree(const xmlpp::Element &root)
@@ -206,7 +202,7 @@ Tree::iterator Tree::endState(State state) const
     return ++it2;
 }
 
-Item Tree::operator[](const string &indices) const
+const Item& Tree::operator[](const string &indices) const
 {
     stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
@@ -532,7 +528,7 @@ Tree::iterator Tree::iterator::operator++(int i)
     return it;
 }
 
-Item Tree::iterator::operator*()
+const Item& Tree::iterator::operator*()
 {
     switch (type())
     {

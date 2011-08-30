@@ -133,7 +133,7 @@ List::iterator List::endState(State state) const
     return iterator(it);
 }
 
-Item List::operator[](int index) const
+const Item& List::operator[](int index) const
 {
     if (index<0 || (unsigned int)index >= data.size())
     {
@@ -223,7 +223,7 @@ List::iterator List::iterator::operator++(int i)
     return it;
 }
 
-Item List::iterator::operator*()
+const Item& List::iterator::operator*()
 {
     // It is at this moment that you have to go to the next unchecked item or to the next item of the given state 
     switch (type())

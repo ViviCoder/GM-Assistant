@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Initializing some options
+debug="false"
+
 # Needed softwares
 softs="pkg-config g++ moc-qt4 qmake lupdate lrelease make"
 cxx_devs="iterator string vector sstream iostream"
@@ -65,9 +68,9 @@ do
 done
 
 echo
-echo "*****************************"
-echo "* Preparing the compilation *"
-echo "*****************************"
+echo "********************************"
+echo "* Preparing the compilation... *"
+echo "********************************"
 
 
 qmake -project
