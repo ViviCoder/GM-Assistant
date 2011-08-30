@@ -1,9 +1,8 @@
 #include "Tree.h"
 #include <sstream>
 // for debugging
-/*#include <iostream>
-#include <typeinfo>
-*/
+//#include <iostream>
+
 
 using namespace std;
 
@@ -200,36 +199,6 @@ Tree::iterator Tree::endState(State state) const
         it++;
     }
     return ++it2;
-}
-
-const Item& Tree::operator[](const string &indices) const
-{
-    stringstream buf(stringstream::in | stringstream::out);
-    int pos = indices.find("_");
-    int n;
-    if (pos==-1)
-    {
-        buf << indices;
-    }
-    else
-    {
-        buf << indices.substr(0,pos);
-    
-    }
-    buf >> n;
-    if (n<0 || (unsigned int) n >= vChildren.size())
-    {
-        throw string("Tree::operator[] : Index out of bounds");
-    }
-    string sub = indices.substr(pos+1);
-    if (pos==-1)
-    {
-        return vChildren[n]->first;
-    }
-    else
-    {
-        return vChildren[n]->second[sub];
-    }
 }
 
 Item& Tree::operator[](const string &indices)

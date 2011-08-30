@@ -42,9 +42,8 @@ class List: public Model
         iterator end() const;        
         iterator endUnchecked() const;
         iterator endState(State state) const;
-        // accessors
-        const Item& operator[](int index) const;   // reader
-        Item& operator[](int index);        // writer
+        // accessor
+        Item& operator[](int index);
         // populating the list
         void insert(int index, const std::string &content, State state=sNone);
         void add(const std::string &content, State state=sNone);

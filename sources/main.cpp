@@ -50,6 +50,13 @@ int main(int argc, char* argv[])
     Tree &tree = engine.scenario();
     tree.fromXML("tree.xml");
 
+    cout << tree["2"].first << endl;
+    tree["2"].first = "Coucou";
+    cout << tree["2"].first << endl;
+    Item item("Autre branche",sFailure);
+    tree["2"] = item;
+    cout << tree["2"].first << endl << endl;
+
     for (Tree::iterator it = tree.begin(); it != tree.end(); it++)
     {
         cout << it.depth() << "-" << (*it).first << endl;    

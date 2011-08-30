@@ -133,15 +133,6 @@ List::iterator List::endState(State state) const
     return iterator(it);
 }
 
-const Item& List::operator[](int index) const
-{
-    if (index<0 || (unsigned int)index >= data.size())
-    {
-        throw string("List::operator[] : Index out of bounds");
-    }
-    return data[index];
-}
-
 Item& List::operator[](int index)
 {
     if (index<0 || (unsigned int)index >= data.size())

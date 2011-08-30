@@ -58,9 +58,8 @@ class Tree: public Model
         iterator end() const;        
         iterator endUnchecked() const;
         iterator endState(State state) const;
-        // accessors
-        const Item& operator[](const std::string &indices) const;   // reader
-        Item& operator[](const std::string &indices);        // writer
+        // accessor
+        Item& operator[](const std::string &indices);
         // populating the list
         void insert(const std::string &indices, const std::string &content, State state=sNone);
         void add(const std::string &content, State state=sNone);
