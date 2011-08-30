@@ -67,6 +67,8 @@ class Tree: public Model
         void addChild(const std::string &content, State state=sNone);
         void remove(const std::string &indices, bool toDelete=true);
         void move(const std::string &currentIndices, const std::string &newIndices);
+        // index extractor
+        static int extractIndex(std::string &indices);
 };
 
 #endif

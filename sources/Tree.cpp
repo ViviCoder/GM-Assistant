@@ -201,27 +201,34 @@ Tree::iterator Tree::endState(State state) const
     return ++it2;
 }
 
-Item& Tree::operator[](const string &indices)
+int Tree::extractIndex(string &indices)
 {
     stringstream buf(stringstream::in | stringstream::out);
     int pos = indices.find("_");
-    int n;
-    if (pos==-1)
+    if (pos==-1)    // this is the last index
     {
         buf << indices;
+        indices = "";
     }
     else
     {
         buf << indices.substr(0,pos);
-    
+        indices = indices.substr(pos+1);
     }
+    int n;
     buf >> n;
+    return n;
+}
+
+Item& Tree::operator[](const string &indices)
+{
+    string sub(indices);
+    int n = extractIndex(sub);
     if (n<0 || (unsigned int) n >= vChildren.size())
     {
         throw string("Tree::operator[] : Index out of bounds");
     }
-    string sub = indices.substr(pos+1);
-    if (pos==-1)
+    if (sub=="")    // we are at the last tree
     {
         return vChildren[n]->first;
     }
@@ -233,25 +240,13 @@ Item& Tree::operator[](const string &indices)
 
 Branch* Tree::branch(const string &indices)
 {
-    stringstream buf(stringstream::in | stringstream::out);
-    int pos = indices.find("_");
-    int n;
-    if (pos==-1)
-    {
-        buf << indices;
-    }
-    else
-    {
-        buf << indices.substr(0,pos);
-    
-    }
-    buf >> n;
+    string sub(indices);
+    int n = extractIndex(sub);
     if (n<0 || (unsigned int) n >= vChildren.size())
     {
         throw string("Tree::branch : Index out of bounds");
     }
-    string sub = indices.substr(pos+1);
-    if (pos==-1)
+    if (sub=="")
     {
         return vChildren[n];
     }
@@ -263,24 +258,13 @@ Branch* Tree::branch(const string &indices)
 
 void Tree::insert(const string &indices, const string &content, State state)
 {
-    stringstream buf(stringstream::in | stringstream::out);
-    int pos = indices.find("_");
-    int n;
-    if (pos==-1)
-    {
-        buf << indices;
-    }
-    else
-    {
-        buf << indices.substr(0,pos);
-    }
-    buf >> n;
+    string sub(indices);
+    int n = extractIndex(sub);
     if (n<0 || (unsigned int) n > vChildren.size()) // n can be equal to vChildren.size() but only for the last index
     {
         throw string("Tree::insert : Index out of bounds");
     }
-    string sub = indices.substr(pos+1);
-    if (pos == -1)
+    if (sub=="")
     {
         Branch *branch = new Branch;
         branch->first = Item(content,state);
@@ -297,25 +281,14 @@ void Tree::insert(const string &indices, const string &content, State state)
 }
 
 void Tree::insert(const string &indices, Branch *branch)
-{
-    stringstream buf(stringstream::in | stringstream::out);
-    int pos = indices.find("_");
-    int n;
-    if (pos==-1)
-    {
-        buf << indices;
-    }
-    else
-    {
-        buf << indices.substr(0,pos);
-    }
-    buf >> n;
+{ 
+    string sub(indices);
+    int n = extractIndex(sub);
     if (n<0 || (unsigned int) n > vChildren.size()) // n can be equal to vChildren.size() but only for the last index
     {
         throw string("Tree::insert : Index out of bounds");
     }
-    string sub = indices.substr(pos+1);
-    if (pos==-1)
+    if (sub=="")
     {
         vChildren.insert(vChildren.begin()+n,branch);
     }
@@ -382,24 +355,13 @@ void Tree::addChild(const string &content, State state)
 
 void Tree::remove(const string &indices, bool toDelete)
 {
-    stringstream buf(stringstream::in | stringstream::out);
-    int pos = indices.find("_");
-    int n;
-    if (pos==-1)
-    {
-        buf << indices;
-    }
-    else
-    {
-        buf << indices.substr(0,pos);
-    }
-    buf >> n;
+    string sub(indices);
+    int n = extractIndex(sub);
     if (n<0 || (unsigned int) n >= vChildren.size())
     {
         throw string("Tree::remove : Index out of bounds");
     }
-    string sub = indices.substr(pos+1);
-    if (pos==-1)
+    if (sub=="")
     {
         Branch *branch = vChildren[n];
         vChildren.erase(vChildren.begin()+n);
@@ -423,7 +385,7 @@ void Tree::move(const string &currentIndices, const string &newIndices)
     int pos2 = newIndices.rfind("_");
     string indices(currentIndices);
     if ((pos==-1 && pos2==-1) || currentIndices.substr(0,pos)==newIndices.substr(0,pos2))
-    {
+    {   // if both indices are "brothers"
         int n,n2;
         buf << currentIndices.substr(pos+1) << " " << newIndices.substr(pos2+1);
         buf >> n >> n2;
