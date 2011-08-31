@@ -26,6 +26,7 @@ class Tree: public Model
             public:
                 // constructor
                 iterator(const std::vector<std::vector<Branch*>::const_iterator>& its, IterationType type=itNormal, State state=sNone);
+                iterator(const std::vector<Branch*>::const_iterator& it, IterationType type=itNormal, State state=sNone);
                 // overloaded operators
                 bool operator!=(const iterator& it) const;
                 bool operator==(const iterator& it) const;

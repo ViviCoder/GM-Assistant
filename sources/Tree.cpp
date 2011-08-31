@@ -125,16 +125,12 @@ void Tree::clear()
 
 Tree::iterator Tree::begin() const
 {
-    vector<vector<Branch*>::const_iterator> stack;
-    stack.push_back(vChildren.begin());
-    return iterator(stack);
+    return iterator(vChildren.begin());
 }
 
 Tree::iterator Tree::beginUnchecked() const
 {
-    vector<vector<Branch*>::const_iterator> stack;
-    stack.push_back(vChildren.begin());
-    iterator it(stack);
+    iterator it(vChildren.begin());
     while (it != end() && ((*it).state()==sSuccess || (*it).state()==sFailure))
     {
         it++;
@@ -145,9 +141,7 @@ Tree::iterator Tree::beginUnchecked() const
 
 Tree::iterator Tree::beginState(State state) const
 {
-    vector<vector<Branch*>::const_iterator> stack;
-    stack.push_back(vChildren.begin());
-    iterator it(stack,itNormal,state);
+    iterator it(vChildren.begin(),itNormal,state);
     while (it != end() && (*it).state()!=state)
     {
         it++;
@@ -158,9 +152,7 @@ Tree::iterator Tree::beginState(State state) const
 
 Tree::iterator Tree::end() const
 {
-    vector<vector<Branch*>::const_iterator> stack;
-    stack.push_back(vChildren.end());
-    return iterator(stack);
+    return iterator(vChildren.end());
 }
 
 Tree::iterator Tree::endUnchecked() const
@@ -403,6 +395,11 @@ void Tree::move(const string &currentIndices, const string &newIndices)
 
 Tree::iterator::iterator(const vector<vector<Branch*>::const_iterator>& its, IterationType type, State state): Model::iterator(type,state), qIts(its)
 {
+}
+
+Tree::iterator::iterator(const vector<Branch*>::const_iterator& it, IterationType type, State state): Model::iterator(type,state)
+{
+	qIts.push_back(it);
 }
 
 bool Tree::iterator::operator!=(const iterator& it) const
