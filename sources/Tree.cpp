@@ -67,9 +67,9 @@ void Tree::toXML(xmlpp::Element &root) const
     {
         Element *tmp = root.add_child("item");
         stringstream buf(stringstream::in | stringstream::out);
-        buf << (*it)->first.second;
+        buf << (*it)->first.state();
         tmp->set_attribute("state",buf.str());
-        tmp->set_child_text((*it)->first.first);
+        tmp->set_child_text((*it)->first.content());
         (*it)->second.toXML(*tmp);
     }
 }
@@ -135,7 +135,7 @@ Tree::iterator Tree::beginUnchecked() const
     vector<vector<Branch*>::const_iterator> stack;
     stack.push_back(vChildren.begin());
     iterator it(stack);
-    while (it != end() && ((*it).second==sSuccess || (*it).second==sFailure))
+    while (it != end() && ((*it).state()==sSuccess || (*it).state()==sFailure))
     {
         it++;
     }
@@ -148,7 +148,7 @@ Tree::iterator Tree::beginState(State state) const
     vector<vector<Branch*>::const_iterator> stack;
     stack.push_back(vChildren.begin());
     iterator it(stack,itNormal,state);
-    while (it != end() && (*it).second!=state)
+    while (it != end() && (*it).state()!=state)
     {
         it++;
     }
@@ -173,7 +173,7 @@ Tree::iterator Tree::endUnchecked() const
     it.setType(itNormal);
     while (it!=end())
     {
-        if ((*it).second==sNone || (*it).second==sProgress)
+        if ((*it).state()==sNone || (*it).state()==sProgress)
         {
             it2 = it;    
         }
@@ -192,7 +192,7 @@ Tree::iterator Tree::endState(State state) const
     it.setType(itNormal);
     while (it!=end())
     {
-        if ((*it).second==state)
+        if ((*it).state()==state)
         {
             it2 = it;    
         }
@@ -463,13 +463,13 @@ const Item& Tree::iterator::operator*()
 {
     switch (type())
     {
-        case itUnchecked:   while ((*(qIts.back()))->first.second==sSuccess || (*(qIts.back()))->first.second==sFailure)
+        case itUnchecked:   while ((*(qIts.back()))->first.state()==sSuccess || (*(qIts.back()))->first.state()==sFailure)
                                 operator++();
                             break; 
         case itState:
             {
                 State sState = state();
-                while ((*(qIts.back()))->first.second!=sState)
+                while ((*(qIts.back()))->first.state()!=sState)
                     operator++();
                 break;
             }

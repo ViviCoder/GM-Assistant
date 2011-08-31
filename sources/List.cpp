@@ -33,9 +33,9 @@ void List::toXML(xmlpp::Element &root) const
     {
         Element *tmp = root.add_child("item");
         stringstream buf(stringstream::in | stringstream::out);
-        buf << it->second;
+        buf << it->state();
         tmp->set_attribute("state",buf.str());
-        tmp->set_child_text(it->first);
+        tmp->set_child_text(it->content());
     }
 }
 
@@ -89,7 +89,7 @@ List::iterator List::begin() const
 List::iterator List::beginUnchecked() const
 {
     vector<Item>::const_iterator it = data.begin();
-    while (it != data.end() && (it->second==sSuccess || it->second==sFailure))
+    while (it != data.end() && (it->state()==sSuccess || it->state()==sFailure))
         it++;
     return iterator(it,itUnchecked);
 }
@@ -97,7 +97,7 @@ List::iterator List::beginUnchecked() const
 List::iterator List::beginState(State state) const
 {
     vector<Item>::const_iterator it = data.begin();
-    while (it != data.end() && (it->second!=state))
+    while (it != data.end() && (it->state()!=state))
         it++;
     return iterator(it,itState,state);
 }
@@ -113,7 +113,7 @@ List::iterator List::endUnchecked() const
     if (beginUnchecked()!=end())
     {
         it--;
-        while (it->second==sSuccess || it->second==sFailure)
+        while (it->state()==sSuccess || it->state()==sFailure)
             it--;
         it++;
     }
@@ -126,7 +126,7 @@ List::iterator List::endState(State state) const
     if (beginState(state)!=end())
     {
         it--;
-        while (it->second!=state)
+        while (it->state()!=state)
             it--;
         it++;
     }
@@ -219,13 +219,13 @@ const Item& List::iterator::operator*()
     // It is at this moment that you have to go to the next unchecked item or to the next item of the given state 
     switch (type())
     {
-        case itUnchecked:   while (viIt->second==sSuccess || viIt->second==sFailure)
+        case itUnchecked:   while (viIt->state()==sSuccess || viIt->state()==sFailure)
                                 operator++();
                             break;
         case itState:
             {
                 State sState = state();
-                while (viIt->second!=sState)
+                while (viIt->state()!=sState)
                     operator++();
                 break;
             }

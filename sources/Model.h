@@ -2,13 +2,8 @@
 #define HEADER_MODEL
 
 #include <iterator>
-#include <string>
 #include <libxml++/libxml++.h>
-
-// Different possible states for the items of the model   
-enum State {sNone,sProgress,sSuccess,sFailure};
-// alias for the items
-typedef std::pair<std::string,State> Item;
+#include "Item.h"
 
 class Model
 {

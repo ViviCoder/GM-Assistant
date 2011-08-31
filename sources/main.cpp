@@ -31,17 +31,17 @@ int main(int argc, char* argv[])
 
     for (List::iterator it = list.begin(); it != list.end(); it++)
     {
-        cout << (*it).first << endl;    
+        cout << (*it).content() << endl;    
     }
     cout << endl;
     for (List::iterator it = list.beginUnchecked(); it != list.endUnchecked(); it++)
     {
-        cout << (*it).first << endl;    
+        cout << (*it).content() << endl;    
     }
     cout << endl;
     for (List::iterator it = list.beginState(sSuccess); it != list.endState(sSuccess); it++)
     {
-        cout << (*it).first << endl;    
+        cout << (*it).content() << endl;    
     }
     cout << endl;
 
@@ -50,28 +50,28 @@ int main(int argc, char* argv[])
     Tree &tree = engine.scenario();
     tree.fromXML("tree.xml");
 
-    cout << tree["2"].first << endl;
-    tree["2"].first = "Coucou";
-    cout << tree["2"].first << endl;
+    cout << tree["2"].content() << endl;
+    tree["2"].setContent("Coucou");
+    cout << tree["2"].content() << endl;
     Item item("Autre branche",sFailure);
     tree["2"] = item;
-    cout << tree["2"].first << endl << endl;
+    cout << tree["2"].content() << endl << endl;
 
     for (Tree::iterator it = tree.begin(); it != tree.end(); it++)
     {
-        cout << it.depth() << "-" << (*it).first << endl;    
+        cout << it.depth() << "-" << (*it).content() << endl;    
     }
     cout << endl;
     
     for (Tree::iterator it = tree.beginUnchecked(); it != tree.endUnchecked(); it++)
     {
-        cout << it.depth() << "-" << (*it).first << endl;    
+        cout << it.depth() << "-" << (*it).content() << endl;    
     }
     cout << endl;
 
     for (Tree::iterator it = tree.beginState(sFailure); it != tree.endState(sFailure); it++)
     {
-        cout << it.depth() << "-" << (*it).first << endl;    
+        cout << it.depth() << "-" << (*it).content() << endl;    
     }
     cout << endl;
 
