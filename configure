@@ -3,28 +3,37 @@
 # Initializing some options
 debug="false"
 
-# Needed softwares
-softs="pkg-config g++ moc-qt4 qmake lupdate lrelease make"
-cxx_devs="iterator string vector sstream iostream"
-xml_devs="libxml++"
-
 # Reading options
-supported_options="g"
-while getopts $supported_options opt
+supported_short_options="gh"
+supported_long_options="help,debug"
+
+options=$(getopt -s sh -l $supported_long_options $supported_short_options $@)
+if [ $? = 1 ]   # unsupported options
+then
+    echo "Try the --help option for more information"
+    exit 1
+fi
+
+for opt in $options
 do
     case $opt in
-        g) debug="true";;
-        *) echo "No such a parameter"
-            exit 1;;
+        -g | --debug)   debug="true";;
+        -h | --help)    echo "Usage: configure [options]\n\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide"
+            exit 0;;
+        --) break;;
     esac
 done
 
-echo "*****************************"
-echo "* Checking configuration... *"
-echo "*****************************" 
+echo "*************************"
+echo "* Checking softwares... *"
+echo "*************************" 
+
+# Needed softwares
+softs="pkg-config g++ moc-qt4 qmake lupdate lrelease make"
+
 for soft in $softs
 do
-    path=`which $soft`
+    path=$(which $soft)
     if [ $path = "" ]
     then
         echo $soft missing !
@@ -39,7 +48,11 @@ echo "*********************************"
 echo "* Checking development files... *"
 echo "*********************************"
 
-cxx_version=`g++ --version | sed -e "s/g++.*(.*) //" | grep -o -e "[0-9]\{1,\}\.[0-9]\{1,\}"`
+# Needed headers
+cxx_devs="iterator string vector sstream iostream"
+xml_devs="libxml++"
+
+cxx_version=$(g++ --version | sed -e "s/g++.*(.*) //" | grep -o -e "[0-9]\{1,\}\.[0-9]\{1,\}")
 cxx_dev_path="/usr/include/c++/$cxx_version"
 echo - C++ standard library: $cxx_dev_path
 for dev in $cxx_devs
@@ -54,7 +67,7 @@ do
 done
 
 echo
-xml_dev_path=`ls -l /usr/include/ | grep -o -e "libxml++-[0-9]\{1,\}\.[0-9]\{1,\}" | head -n 1`
+xml_dev_path=$(ls -l /usr/include/ | grep -o -e "libxml++-[0-9]\{1,\}\.[0-9]\{1,\}" | head -n 1)
 echo - XML++ library: /usr/include/$xml_dev_path
 for dev in $xml_devs
 do
@@ -72,7 +85,6 @@ echo "********************************"
 echo "* Preparing the compilation... *"
 echo "********************************"
 
-
 qmake -project
 lupdate GM-Assistant.pro
 lrelease GM-Assistant.pro
@@ -80,8 +92,8 @@ mv translations/*.qm .
 qmake
 
 # adding libxml++ library includes in the Makefile
-sed -i -e "s#-I\.#`pkg-config $xml_dev_path --cflags-only-I`#" Makefile
-sed -i -e "s#-lpthread#-lpthread `pkg-config $xml_dev_path --libs`#" Makefile
+sed -i -e "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I)#" Makefile
+sed -i -e "s#-lpthread#-lpthread $(pkg-config $xml_dev_path --libs)#" Makefile
 # adding the -g flag if the debug option is enabled
 if [ $debug = "true" ]
 then
