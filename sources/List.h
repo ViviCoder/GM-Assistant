@@ -8,17 +8,17 @@ class List: public Model
 {
     private:
         // data contained in the list
-        std::vector<Item> data;
+        std::vector<Item*> data;
     public:
         // iterator
         class iterator: public Model::iterator
         {            
             private:
                 // underlying vector iterator
-                std::vector<Item>::const_iterator viIt;
+                std::vector<Item*>::const_iterator viIt;
             public:
                 // constructor
-                iterator(const std::vector<Item>::const_iterator& it, IterationType type=itNormal, State state=sNone);
+                iterator(const std::vector<Item*>::const_iterator& it, IterationType type=itNormal, State state=sNone);
                 // overloaded operators
                 bool operator!=(const iterator& it) const;
                 bool operator==(const iterator& it) const;
@@ -29,6 +29,8 @@ class List: public Model
         // constructors
         List();
         List(const std::string &fileName);
+        // destructor
+        ~List();
         // inherited methods
         void toXML(const std::string &fileName) const;
         void toXML(xmlpp::Element &root) const;

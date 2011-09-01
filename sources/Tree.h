@@ -4,9 +4,7 @@
 #include "Model.h"
 #include <vector>
 
-class Tree;
-// alias for a branch
-typedef std::pair<Item,Tree> Branch;
+class Branch;
 
 class Tree: public Model
 {
@@ -75,5 +73,7 @@ class Tree: public Model
         // index extractor
         static int extractIndex(std::string &indices);
 };
+
+#include "Branch.h"
 
 #endif
