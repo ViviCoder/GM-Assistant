@@ -1,7 +1,6 @@
 #ifndef HEADER_BRANCH
 #define HEADER_BRANCH
 
-#include "Item.h"
 #include "Tree.h"
 
 class Branch

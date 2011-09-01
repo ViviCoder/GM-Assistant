@@ -10,8 +10,8 @@ class Tree: public Model
 {
     private:
         std::vector<Branch*> vChildren;
-		// pointer to its parent
-		Tree* pParent;
+        // pointer to its parent
+        Tree* pParent;
         // branch accessor
         Branch* branch(const std::string &indices);
         // branch inserter
@@ -35,8 +35,7 @@ class Tree: public Model
                 const Item& operator*();
                 // information about the position of the iterator
                 int depth() const;
-				Tree* parent() const;
-
+                Tree* parent() const;
         };
         // constructors
         Tree(Tree* parent=NULL);
@@ -62,7 +61,7 @@ class Tree: public Model
         iterator endState(State state) const;
         // accessors
         Item& operator[](const std::string &indices);
-		Tree* parent() const;
+        Tree* parent() const;
         // populating the list
         void insert(const std::string &indices, const std::string &content, State state=sNone);
         void add(const std::string &content, State state=sNone);

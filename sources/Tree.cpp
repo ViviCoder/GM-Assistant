@@ -229,6 +229,11 @@ Item& Tree::operator[](const string &indices)
     }
 }
 
+Tree* Tree::parent() const
+{
+    return pParent;
+}
+
 Branch* Tree::branch(const string &indices)
 {
     string sub(indices);
@@ -478,20 +483,12 @@ int Tree::iterator::depth() const
 
 Tree* Tree::iterator::parent() const
 {
-	try
-	{
-		return (*qIts.back())->tree().parent();
-	}
-	catch(exception e)
-	{
-		return NULL;
-	}
-
-}
-
-
-// accessor
-Tree* Tree::parent() const
-{
-	return pParent;
+    try
+    {
+        return (*qIts.back())->tree().parent();
+    }
+    catch(exception e)
+    {
+    return NULL;
+    }
 }
