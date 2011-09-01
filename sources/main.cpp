@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
 
     for (Tree::iterator it = tree.begin(); it != tree.end(); it++)
     {
-        cout << it.depth() << "-" << (*it).content() << endl;    
+        cout << it.depth() << "-" << (*it).content() << "-" << it.parent() << endl;    
     }
     cout << endl;
     

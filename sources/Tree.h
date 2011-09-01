@@ -12,6 +12,8 @@ class Tree: public Model
 {
     private:
         std::vector<Branch*> vChildren;
+		// pointer to its parent
+		Tree* pParent;
         // branch accessor
         Branch* branch(const std::string &indices);
         // branch inserter
@@ -35,12 +37,13 @@ class Tree: public Model
                 const Item& operator*();
                 // information about the position of the iterator
                 int depth() const;
+				Tree* parent() const;
 
         };
         // constructors
-        Tree();
-        Tree(const Tree &tree);
-        Tree(const xmlpp::Element &root);
+        Tree(Tree* parent=NULL);
+        Tree(const Tree &tree, Tree* parent=NULL);
+        Tree(const xmlpp::Element &root, Tree* parent=NULL);
         Tree(const std::string &fileName);
         // destructor
         ~Tree();
@@ -59,8 +62,9 @@ class Tree: public Model
         iterator end() const;        
         iterator endUnchecked() const;
         iterator endState(State state) const;
-        // accessor
+        // accessors
         Item& operator[](const std::string &indices);
+		Tree* parent() const;
         // populating the list
         void insert(const std::string &indices, const std::string &content, State state=sNone);
         void add(const std::string &content, State state=sNone);

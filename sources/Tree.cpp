@@ -8,16 +8,16 @@ using namespace std;
 
 // constructors
 
-Tree::Tree()
+Tree::Tree(Tree* parent): pParent(parent)
 {
 }
 
-Tree::Tree(const Tree &tree)
+Tree::Tree(const Tree &tree, Tree* parent): pParent(parent)
 {
     *this = tree;
 }
 
-Tree::Tree(const xmlpp::Element &root)
+Tree::Tree(const xmlpp::Element &root, Tree* parent): pParent(parent)
 {
     fromXML(root);
 }
@@ -42,6 +42,7 @@ Tree& Tree::operator=(const Tree &tree)
     for (vector<Branch*>::const_iterator it=tree.vChildren.begin(); it != tree.vChildren.end(); it++)
     {
         Branch *branch = new Branch(**it);
+		branch->second.pParent = this;
         vChildren.push_back(branch);
     }
     return *this;
@@ -478,4 +479,24 @@ const Item& Tree::iterator::operator*()
 int Tree::iterator::depth() const
 {
     return qIts.size();
+}
+
+Tree* Tree::iterator::parent() const
+{
+	try
+	{
+		return (*qIts.back())->second.parent();
+	}
+	catch(exception e)
+	{
+		return NULL;
+	}
+
+}
+
+
+// accessor
+Tree* Tree::parent() const
+{
+	return pParent;
 }
