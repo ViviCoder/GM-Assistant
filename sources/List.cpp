@@ -144,13 +144,13 @@ List::iterator List::endState(State state) const
     return iterator(it);
 }
 
-Item& List::operator[](int index)
+Item* List::operator[](int index)
 {
     if (index<0 || (unsigned int)index >= data.size())
     {
         throw string("List::operator[] : Index out of bounds");
     }
-    return *data[index];
+    return data[index];
 }
 
 void List::insert(int index, const string &content, State state)
@@ -186,7 +186,7 @@ void List::move(int currentIndex, int newIndex)
     }
     // test if the indices are the same
     if (currentIndex==newIndex) return;
-    data.insert(data.begin()+newIndex,&operator[](currentIndex));
+    data.insert(data.begin()+newIndex,operator[](currentIndex));
     if (currentIndex>newIndex)
     {
         data.erase(data.begin()+currentIndex+1);
@@ -226,7 +226,7 @@ List::iterator List::iterator::operator++(int i)
     return it;
 }
 
-const Item& List::iterator::operator*()
+const Item* List::iterator::operator*()
 {
     // It is at this moment that you have to go to the next unchecked item or to the next item of the given state 
     switch (type())
@@ -243,5 +243,5 @@ const Item& List::iterator::operator*()
             }
         default:            break;
     }
-    return **viIt;
+    return *viIt;
 }

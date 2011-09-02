@@ -130,7 +130,7 @@ Tree::iterator Tree::begin() const
 Tree::iterator Tree::beginUnchecked() const
 {
     iterator it(vChildren.begin());
-    while (it != end() && ((*it).state()==sSuccess || (*it).state()==sFailure))
+    while (it != end() && ((*it)->state()==sSuccess || (*it)->state()==sFailure))
     {
         it++;
     }
@@ -141,7 +141,7 @@ Tree::iterator Tree::beginUnchecked() const
 Tree::iterator Tree::beginState(State state) const
 {
     iterator it(vChildren.begin(),itNormal,state);
-    while (it != end() && (*it).state()!=state)
+    while (it != end() && (*it)->state()!=state)
     {
         it++;
     }
@@ -164,7 +164,7 @@ Tree::iterator Tree::endUnchecked() const
     it.setType(itNormal);
     while (it!=end())
     {
-        if ((*it).state()==sNone || (*it).state()==sProgress)
+        if ((*it)->state()==sNone || (*it)->state()==sProgress)
         {
             it2 = it;    
         }
@@ -183,7 +183,7 @@ Tree::iterator Tree::endState(State state) const
     it.setType(itNormal);
     while (it!=end())
     {
-        if ((*it).state()==state)
+        if ((*it)->state()==state)
         {
             it2 = it;    
         }
@@ -211,7 +211,7 @@ int Tree::extractIndex(string &indices)
     return n;
 }
 
-Item& Tree::operator[](const string &indices)
+Item* Tree::operator[](const string &indices)
 {
     string sub(indices);
     int n = extractIndex(sub);
@@ -221,7 +221,7 @@ Item& Tree::operator[](const string &indices)
     }
     if (sub=="")    // we are at the last tree
     {
-        return *(vChildren[n]->item());
+        return vChildren[n]->item();
     }
     else
     {
@@ -457,7 +457,7 @@ Tree::iterator Tree::iterator::operator++(int i)
     return it;
 }
 
-const Item& Tree::iterator::operator*()
+const Item* Tree::iterator::operator*()
 {
     switch (type())
     {
@@ -473,7 +473,7 @@ const Item& Tree::iterator::operator*()
             }
         default:            break;
     }
-    return *(*(qIts.back()))->item();
+    return (*(qIts.back()))->item();
 }
 
 int Tree::iterator::depth() const
