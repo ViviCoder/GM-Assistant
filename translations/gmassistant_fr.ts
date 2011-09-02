@@ -2,6 +2,19 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="fr_FR">
 <context>
+    <name>action_Load</name>
+    <message>
+        <location filename="../sources/MainWindow.cpp" line="16"/>
+        <source>Select the file to open</source>
+        <translation>Sélectionnez le fichier à ouvrir</translation>
+    </message>
+    <message>
+        <location filename="../sources/MainWindow.cpp" line="16"/>
+        <source>XML files (*.xml)</source>
+        <translation>Fichiers XML (*.xml)</translation>
+    </message>
+</context>
+<context>
     <name>mainWindow</name>
     <message>
         <location filename="../sources/MainWindow.ui" line="14"/>

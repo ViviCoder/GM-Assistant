@@ -15,6 +15,7 @@ class MainWindow : public QMainWindow, private Ui::mainWindow
     Q_OBJECT
     private slots:
         void on_action_Quit_triggered();
+        void on_action_Load_triggered();
 };
 
 #endif

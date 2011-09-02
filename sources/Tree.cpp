@@ -495,6 +495,6 @@ Tree* Tree::iterator::parent() const
     }
     catch(exception e)
     {
-    return NULL;
+        return NULL;
     }
 }

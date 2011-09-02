@@ -150,7 +150,7 @@
     </property>
     <addaction name="action_New"/>
     <addaction name="separator"/>
-    <addaction name="actionL_oad"/>
+    <addaction name="action_Load"/>
     <addaction name="action_Save"/>
     <addaction name="actionS_ave_as"/>
     <addaction name="separator"/>
@@ -170,7 +170,7 @@
     <string>Ctrl+N</string>
    </property>
   </action>
-  <action name="actionL_oad">
+  <action name="action_Load">
    <property name="text">
     <string>&amp;Load</string>
    </property>
