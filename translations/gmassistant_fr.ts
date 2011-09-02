@@ -17,6 +17,7 @@
     </message>
     <message>
         <location filename="../sources/MainWindow.cpp" line="17"/>
+        <location filename="../sources/MainWindow.cpp" line="46"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
     </message>
@@ -24,6 +25,14 @@
         <location filename="../sources/MainWindow.cpp" line="25"/>
         <source>Error</source>
         <translation>Erreur</translation>
+    </message>
+</context>
+<context>
+    <name>action_Save</name>
+    <message>
+        <location filename="../sources/MainWindow.cpp" line="46"/>
+        <source>Select the file to save</source>
+        <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
 </context>
 <context>

@@ -1,6 +1,7 @@
 #include <QApplication>
 #include <QTranslator>
 #include <QLocale>
+#include <QTextCodec>
 #include <iostream>
 
 #include "MainWindow.h"
@@ -12,43 +13,18 @@ int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
 
+    // encoding
+    QTextCodec::setCodecForLocale(QTextCodec::codecForName("UTF-8"));
+    QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
+    QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
+
     // Translation of predefined Qt strings
     QString locale = QLocale::system().name().section('_',0,0);
     QTranslator translator;
     translator.load(QString("gmassistant_") + locale);
     app.installTranslator(&translator);
 
-    Engine engine("game.xml");
-    List &list = engine.music();
-    list.clear();
-    list.add("Premier morceau.mp3");
-    list.add("Morceau déjà joué.mp3",sSuccess);
-    list.add("Morceau non trouvé.mp3",sFailure);
-    list.add("Morceau en cours.mp3",sProgress);
-
-    List &list2 = engine.history();
-    list2.fromXML("list.xml");
-
-    for (List::iterator it = list.begin(); it != list.end(); it++)
-    {
-        cout << (*it)->content() << endl;    
-    }
-    cout << endl;
-    for (List::iterator it = list.beginUnchecked(); it != list.endUnchecked(); it++)
-    {
-        cout << (*it)->content() << endl;    
-    }
-    cout << endl;
-    for (List::iterator it = list.beginState(sSuccess); it != list.endState(sSuccess); it++)
-    {
-        cout << (*it)->content() << endl;    
-    }
-    cout << endl;
-
-//    list.toXML("list.xml");
-
-    Tree &tree = engine.scenario();
-    tree.fromXML("tree.xml");
+    Tree tree("tree.xml");
 
     cout << tree["2"]->content() << endl;
     tree["2"]->setContent("Coucou");
@@ -73,10 +49,6 @@ int main(int argc, char* argv[])
         cout << it.depth() << "-" << (*it)->content() << endl;    
     }
     cout << endl;
-
-//    tree.toXML("tree.xml");
-
-    engine.toFile("game.xml");
 
     // Display of the main window
     MainWindow main;

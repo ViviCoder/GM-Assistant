@@ -37,7 +37,15 @@ void Engine::fromFile(const std::string &fileName)
     node = root->get_children("notes");
     if (!node.empty())
     {
-        sNotes = (dynamic_cast<Element*>(node.front()))->get_child_text()->get_content();
+        Element *elem = dynamic_cast<Element*>(node.front());
+        if (elem->has_child_text())
+        {
+            sNotes = elem->get_child_text()->get_content();
+        }
+        else
+        {
+            sNotes = "";
+        }
     }
     node = root->get_children("characters");
     // not yet implemented
