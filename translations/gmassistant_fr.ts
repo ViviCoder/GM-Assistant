@@ -2,16 +2,28 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="fr_FR">
 <context>
+    <name>Application</name>
+    <message>
+        <source>Error</source>
+        <translation type="obsolete">Erreur</translation>
+    </message>
+</context>
+<context>
     <name>action_Load</name>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="16"/>
+        <location filename="../sources/MainWindow.cpp" line="17"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="16"/>
+        <location filename="../sources/MainWindow.cpp" line="17"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
+    </message>
+    <message>
+        <location filename="../sources/MainWindow.cpp" line="25"/>
+        <source>Error</source>
+        <translation>Erreur</translation>
     </message>
 </context>
 <context>
