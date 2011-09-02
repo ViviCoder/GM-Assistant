@@ -51,6 +51,7 @@ class Tree: public Model
         void toXML(xmlpp::Element &root) const;
         void fromXML(const std::string &fileName);
         void fromXML(const xmlpp::Element &root);
+        void fromXML(const xmlpp::Element &root, Tree *parent);
         void clear();
         // iterator-related methods
         iterator begin() const;

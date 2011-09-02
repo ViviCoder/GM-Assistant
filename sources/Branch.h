@@ -10,8 +10,10 @@ class Branch
         Tree tTree;
     public:
         // constructors
-        Branch(const Branch &branch);
-        Branch(Item* item, const Tree &tree);
+        Branch(const Branch &branch, Tree *parent=NULL);
+        Branch(Item* item, Tree *parent=NULL);
+        Branch(Item* item, const Tree &tree, Tree *parent=NULL);
+        Branch(Item* item, const xmlpp::Element &root, Tree* parent=NULL);
         // destructor
         ~Branch();
         //accessors
