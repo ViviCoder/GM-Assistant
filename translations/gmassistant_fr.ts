@@ -9,30 +9,73 @@
     </message>
 </context>
 <context>
-    <name>action_Load</name>
+    <name>action</name>
     <message>
         <location filename="../sources/MainWindow.cpp" line="17"/>
+        <location filename="../sources/MainWindow.cpp" line="67"/>
+        <source>Confirmation</source>
+        <translation>Confirmation</translation>
+    </message>
+    <message>
+        <location filename="../sources/MainWindow.cpp" line="17"/>
+        <location filename="../sources/MainWindow.cpp" line="67"/>
+        <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
+        <translation>Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
+    </message>
+    <message>
+        <location filename="../sources/MainWindow.cpp" line="19"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="17"/>
-        <location filename="../sources/MainWindow.cpp" line="46"/>
+        <location filename="../sources/MainWindow.cpp" line="19"/>
+        <location filename="../sources/MainWindow.cpp" line="55"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="25"/>
+        <location filename="../sources/MainWindow.cpp" line="31"/>
         <source>Error</source>
         <translation>Erreur</translation>
+    </message>
+    <message>
+        <location filename="../sources/MainWindow.cpp" line="55"/>
+        <source>Select the file to save</source>
+        <translation>Sélectionnez le fichier à sauvegarder</translation>
+    </message>
+</context>
+<context>
+    <name>action_Load</name>
+    <message>
+        <source>Confirmation</source>
+        <translation type="obsolete">Confirmation</translation>
+    </message>
+    <message>
+        <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue ?</source>
+        <translation type="obsolete">Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
+    </message>
+    <message>
+        <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
+        <translation type="obsolete">Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
+    </message>
+    <message>
+        <source>Select the file to open</source>
+        <translation type="obsolete">Sélectionnez le fichier à ouvrir</translation>
+    </message>
+    <message>
+        <source>XML files (*.xml)</source>
+        <translation type="obsolete">Fichiers XML (*.xml)</translation>
+    </message>
+    <message>
+        <source>Error</source>
+        <translation type="obsolete">Erreur</translation>
     </message>
 </context>
 <context>
     <name>action_Save</name>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="46"/>
         <source>Select the file to save</source>
-        <translation>Sélectionnez le fichier à sauvegarder</translation>
+        <translation type="obsolete">Sélectionnez le fichier à sauvegarder</translation>
     </message>
 </context>
 <context>

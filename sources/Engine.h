@@ -26,7 +26,9 @@ class Engine
         List& history();
         List& music();
         List& effects();
-
+        // populating
+//      addCharacter(const Character character&);
+        void clear();
 };
 
 #endif

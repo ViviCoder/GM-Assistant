@@ -113,3 +113,14 @@ List& Engine::effects()
 {
     return lEffects;
 }
+
+void Engine::clear()
+{
+    tScenario.clear();
+    sNotes = "";
+    lHistory.clear();
+    lMusic.clear();
+    lEffects.clear();
+    iMusic = lMusic.begin();
+    iEffects = lEffects.begin();
+}

@@ -2,7 +2,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-MainWindow::MainWindow(): QMainWindow()
+MainWindow::MainWindow(): QMainWindow(), bModified(false)
 {
     setupUi(this);
 }
@@ -14,47 +14,65 @@ void MainWindow::on_action_Quit_triggered()
 
 void MainWindow::on_action_Load_triggered()
 {
-    QString file = QFileDialog::getOpenFileName(this,QApplication::translate("action_Load","Select the file to open",0),"",QApplication::translate("action_Load","XML files (*.xml)",0)); 
-    if (!file.isNull())
+    if (!bModified || (QMessageBox::question(this,QApplication::translate("action","Confirmation",0),QApplication::translate("action","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
     {
-        try
+        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("action","Select the file to open",0),"",QApplication::translate("action","XML files (*.xml)",0)); 
+        if (!file.isNull())
         {
-            eGame.fromFile(fileName.toStdString());
-            textNotes->setText(eGame.notes().c_str());
-        }
-        catch (std::string s)
-        {
-            QMessageBox::critical(0,QApplication::translate("action_Load","Error",0),s.c_str());
+            sFileName = file;
+            try
+            {
+                eGame.fromFile(sFileName.toStdString());
+                textNotes->setText(eGame.notes().c_str());
+                bModified = false;
+            }
+            catch (std::string s)
+            {
+                QMessageBox::critical(this,QApplication::translate("action","Error",0),s.c_str());
+            }
         }
     }
 }
 
 void MainWindow::on_action_Save_triggered()
 {
-    if (fileName.isNull())
+    if (sFileName.isNull())
     {
         on_actionS_ave_as_triggered();
     }
     else
     {
         eGame.notes() = textNotes->toPlainText().toStdString();
-        eGame.toFile(fileName.toStdString());
+        eGame.toFile(sFileName.toStdString());
         action_Save->setEnabled(false);
+        bModified = false;
     }
 }
 
 void MainWindow::on_actionS_ave_as_triggered()
 {
     eGame.notes() = textNotes->toPlainText().toStdString();
-    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("action_Save","Select the file to save",0),"",QApplication::translate("action_Load","XML files (*.xml)",0));
+    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("action","Select the file to save",0),"",QApplication::translate("action","XML files (*.xml)",0));
     if (!file.isNull())
     {
-        eGame.toFile(fileName.toStdString());
+        sFileName = file;
+        eGame.toFile(sFileName.toStdString());
         action_Save->setEnabled(false);
+        bModified = false;
+    }
+}
+
+void MainWindow::on_action_New_triggered()
+{
+    if (!bModified || (QMessageBox::question(this,QApplication::translate("action","Confirmation",0),QApplication::translate("action","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
+    {
+        eGame.clear();
+        textNotes->setText("");
     }
 }
 
 void MainWindow::on_textNotes_textChanged()
 {
+    bModified = true;
     action_Save->setEnabled(true);
 }
