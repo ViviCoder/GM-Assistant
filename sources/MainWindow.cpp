@@ -26,7 +26,11 @@ void MainWindow::on_action_Load_triggered()
                 textNotes->setText(eGame.notes().c_str());
                 bModified = false;
             }
-            catch (std::string s)
+            catch (xmlpp::exception &xml)
+            {
+                QMessageBox::critical(this,QApplication::translate("action","Error",0),xml.what());
+            }
+            catch (std::string &s)
             {
                 QMessageBox::critical(this,QApplication::translate("action","Error",0),s.c_str());
             }
