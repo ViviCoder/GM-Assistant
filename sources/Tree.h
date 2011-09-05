@@ -10,8 +10,8 @@ class Tree: public Model
 {
     private:
         std::vector<Branch*> vChildren;
-        // pointer to its parent
-        Tree* pParent;
+        // pointer to its parent branch
+        Branch* pParent;
         // branch accessor
         Branch* branch(const std::string &indices);
         // branch inserter
@@ -35,12 +35,12 @@ class Tree: public Model
                 const Item* operator*();
                 // information about the position of the iterator
                 int depth() const;
-                Tree* parent() const;
+                Branch* parent() const;
         };
         // constructors
-        Tree(Tree* parent=NULL);
-        Tree(const Tree &tree, Tree* parent=NULL);
-        Tree(const xmlpp::Element &root, Tree* parent=NULL);
+        Tree(Branch* parent=NULL);
+        Tree(const Tree &tree, Branch* parent=NULL);
+        Tree(const xmlpp::Element &root, Branch* parent=NULL);
         Tree(const std::string &fileName);
         // destructor
         ~Tree();
@@ -51,7 +51,6 @@ class Tree: public Model
         void toXML(xmlpp::Element &root) const;
         void fromXML(const std::string &fileName);
         void fromXML(const xmlpp::Element &root);
-        void fromXML(const xmlpp::Element &root, Tree *parent);
         void clear();
         // iterator-related methods
         iterator begin() const;
@@ -62,7 +61,7 @@ class Tree: public Model
         iterator endState(State state) const;
         // accessors
         Item* operator[](const std::string &indices);
-        Tree* parent() const;
+        Branch* parent() const;
         // populating the list
         void insert(const std::string &indices, const std::string &content, State state=sNone);
         void add(const std::string &content, State state=sNone);

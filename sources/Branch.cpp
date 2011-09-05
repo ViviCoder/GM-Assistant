@@ -2,19 +2,19 @@
 
 // constructors
 
-Branch::Branch(Item* item, Tree *parent): pItem(item), tTree(parent)
+Branch::Branch(Item* item, Branch *parent): pItem(item), tTree(this), pParent(parent)
 {
 }
 
-Branch::Branch(Item* item, const Tree &tree, Tree* parent): pItem(item), tTree(tree,parent)
+Branch::Branch(Item* item, const Tree &tree, Branch* parent): pItem(item), tTree(tree,this), pParent(parent)
 {
 }
 
-Branch::Branch(Item* item, const xmlpp::Element &root, Tree* parent): pItem(item), tTree(root,parent)
+Branch::Branch(Item* item, const xmlpp::Element &root, Branch* parent): pItem(item), tTree(root,this), pParent(parent)
 {
 }
 
-Branch::Branch(const Branch &branch, Tree* parent): pItem(new Item(*branch.pItem)),tTree(branch.tTree,parent)
+Branch::Branch(const Branch &branch, Branch* parent): pItem(new Item(*branch.pItem)),tTree(branch.tTree,this), pParent(parent)
 {
 }
 
@@ -35,6 +35,11 @@ Item* Branch::item() const
 Tree& Branch::tree()
 {
     return tTree;
+}
+
+Branch* Branch::parent() const
+{
+    return pParent;
 }
 
 // operators

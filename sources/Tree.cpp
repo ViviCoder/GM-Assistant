@@ -8,23 +8,25 @@ using namespace std;
 
 // constructors
 
-Tree::Tree(Tree* parent): pParent(parent)
+Tree::Tree(Branch* parent): pParent(parent)
 {
 }
 
-Tree::Tree(const Tree &tree, Tree* parent): pParent(parent)
+Tree::Tree(const Tree &tree, Branch* parent)
 {
     *this = tree;
+    pParent = parent;
 }
 
-Tree::Tree(const xmlpp::Element &root, Tree* parent): pParent(parent)
+Tree::Tree(const xmlpp::Element &root, Branch* parent): pParent(parent)
 {
-    fromXML(root,parent);
+    fromXML(root);
 }
 
-Tree::Tree(const string &fileName)
+Tree::Tree(const string &fileName): pParent(NULL)
 {
     fromXML(fileName);
+
 }
 
 // destructor
@@ -41,9 +43,10 @@ Tree& Tree::operator=(const Tree &tree)
     clear();
     for (vector<Branch*>::const_iterator it=tree.vChildren.begin(); it != tree.vChildren.end(); it++)
     {
-        Branch *branch = new Branch(**it,this);
+        Branch *branch = new Branch(**it,pParent);
         vChildren.push_back(branch);
     }
+    pParent = NULL;
     return *this;
 }
 
@@ -90,13 +93,7 @@ void Tree::fromXML(const string &fileName)
 
 void Tree::fromXML(const xmlpp::Element &root)
 {
-    fromXML(root,NULL);
-}
-
-void Tree::fromXML(const xmlpp::Element &root, Tree *parent)
-{
     clear();
-    pParent = parent;
     using namespace xmlpp;
 
     Node::NodeList list = root.get_children("item");
@@ -111,7 +108,7 @@ void Tree::fromXML(const xmlpp::Element &root, Tree *parent)
             buf << attr->get_value();
             buf >> state;
         }
-        Branch *branch = new Branch(new Item(elem->get_child_text()->get_content(),State(state)),*elem,this);
+        Branch *branch = new Branch(new Item(elem->get_child_text()->get_content(),State(state)),*elem,pParent);
         vChildren.push_back(branch);
     }
 }
@@ -234,7 +231,7 @@ Item* Tree::operator[](const string &indices)
     }
 }
 
-Tree* Tree::parent() const
+Branch* Tree::parent() const
 {
     return pParent;
 }
@@ -267,7 +264,7 @@ void Tree::insert(const string &indices, const string &content, State state)
     }
     if (sub=="")
     {
-        Branch *branch = new Branch(new Item(content,state), this);
+        Branch *branch = new Branch(new Item(content,state),pParent);
         vChildren.insert(vChildren.begin()+n,branch);
     }
     else
@@ -291,7 +288,7 @@ void Tree::insert(const string &indices, Branch *branch)
     if (sub=="")
     {
         vChildren.insert(vChildren.begin()+n,branch);
-        branch->tree().pParent = this;
+        branch->tree().pParent = pParent;
     }
     else
     {
@@ -307,7 +304,7 @@ void Tree::add(const string &content, State state)
 {
     if (vChildren.size()==0 || vChildren.back()->tree().vChildren.size()==0)
     {
-        Branch *branch = new Branch(new Item(content,state),this);
+        Branch *branch = new Branch(new Item(content,state),pParent);
         vChildren.push_back(branch);
     }
     else
@@ -325,7 +322,7 @@ void Tree::add(int depth, const string &content, State state)
     }
     if (depth==1)
     {
-        Branch *branch = new Branch(new Item(content,state), this);
+        Branch *branch = new Branch(new Item(content,state),pParent);
         vChildren.push_back(branch);
     }
     else
@@ -342,7 +339,7 @@ void Tree::addChild(const string &content, State state)
 {
     if (vChildren.size()==0)
     {
-        Branch *branch = new Branch(new Item(content,state),this);
+        Branch *branch = new Branch(new Item(content,state),pParent);
         vChildren.push_back(branch);
     }
     else
@@ -487,11 +484,11 @@ int Tree::iterator::depth() const
     return qIts.size();
 }
 
-Tree* Tree::iterator::parent() const
+Branch* Tree::iterator::parent() const
 {
     try
     {
-        return (*qIts.back())->tree().parent();
+        return (*qIts.back())->parent();
     }
     catch(exception e)
     {
