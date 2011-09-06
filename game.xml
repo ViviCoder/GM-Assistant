@@ -22,5 +22,7 @@ Celle-ci aussi, et sans bug !</notes>
     <item state="3">Morceau non trouvé.mp3</item>
     <item state="1">Morceau en cours.mp3</item>
   </music>
-  <effects/>
+  <effects>
+    <item state="0">Silence pesant</item>
+  </effects>
 </game>

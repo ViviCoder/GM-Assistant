@@ -23,7 +23,7 @@ void MainWindow::on_action_Load_triggered()
             try
             {
                 eGame.fromFile(sFileName.toStdString());
-                textNotes->setText(eGame.notes().c_str());
+                updateDisplay();
                 bModified = false;
             }
             catch (xmlpp::exception &xml)
@@ -67,7 +67,8 @@ void MainWindow::on_action_New_triggered()
     if (!bModified || (QMessageBox::question(this,QApplication::translate("action","Confirmation",0),QApplication::translate("action","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
     {
         eGame.clear();
-        textNotes->setText("");
+        updateDisplay();
+        bModified = false;
     }
 }
 
@@ -75,4 +76,33 @@ void MainWindow::on_textNotes_textChanged()
 {
     bModified = true;
     action_Save->setEnabled(true);
+}
+
+void MainWindow::updateDisplay()
+{
+    // scenario (to do)
+    // notes
+    textNotes->setText(eGame.notes().c_str());
+    // characters (to do)
+    // history
+    listHistory->clear();
+    List &list = eGame.history();
+    for (List::iterator it=list.begin(); it != list.end(); it++)
+    {
+        listHistory->addItem((*it)->content().c_str());
+    }
+    // music
+    listMusic->clear();
+    List &list2 = eGame.music();
+    for (List::iterator it=list2.begin(); it != list2.end(); it++)
+    {
+        listMusic->addItem((*it)->content().c_str());
+    }
+    // effects
+    listFX->clear();
+    List &list3 = eGame.effects();
+    for (List::iterator it=list3.begin(); it != list3.end(); it++)
+    {
+        listFX->addItem((*it)->content().c_str());
+    }
 }

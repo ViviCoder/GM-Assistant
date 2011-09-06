@@ -24,6 +24,8 @@ class MainWindow : public QMainWindow, private Ui::mainWindow
         void on_action_New_triggered();
         // textNotes
         void on_textNotes_textChanged();
+        // general slots
+        void updateDisplay();
 };
 
 #endif
