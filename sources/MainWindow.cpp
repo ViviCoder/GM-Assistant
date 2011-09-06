@@ -80,6 +80,9 @@ void MainWindow::on_textNotes_textChanged()
 
 void MainWindow::updateDisplay()
 {
+    // common brushes
+    QBrush none(QColor("white")),progress(QColor(0x00FFFF88)),failure(QColor(0x00FF8888)),success(QColor(0x0088FF88));
+
     // scenario
     treeScenario->clear();
     Tree &tree = eGame.scenario();
@@ -103,6 +106,13 @@ void MainWindow::updateDisplay()
             item = new QTreeWidgetItem(items[depth-1]);
         }
         item->setText(0,(*it)->content().c_str());
+        switch ((*it)->state())
+        {
+            case    sNone:      item->setBackground(0,none); break;
+            case    sProgress:  item->setBackground(0,progress); break;
+            case    sFailure:   item->setBackground(0,failure); break;
+            case    sSuccess:   item->setBackground(0,success); break;
+        }
         prev = item;
         if (items.size() > (unsigned int)(depth))
         {
@@ -119,22 +129,44 @@ void MainWindow::updateDisplay()
     // history
     listHistory->clear();
     List &list = eGame.history();
+    QListWidgetItem *listItem;
     for (List::iterator it=list.begin(); it != list.end(); it++)
     {
-        listHistory->addItem((*it)->content().c_str());
+        listItem = new QListWidgetItem((*it)->content().c_str(),listHistory);
+        switch ((*it)->state())
+        {
+            case    sNone:      listItem->setBackground(none); break;
+            case    sProgress:  listItem->setBackground(progress); break;
+            case    sFailure:   listItem->setBackground(failure); break;
+            case    sSuccess:   listItem->setBackground(success); break;
+        }
     }
     // music
     listMusic->clear();
     List &list2 = eGame.music();
     for (List::iterator it=list2.begin(); it != list2.end(); it++)
     {
-        listMusic->addItem((*it)->content().c_str());
+        listItem = new QListWidgetItem((*it)->content().c_str(),listMusic);
+        switch ((*it)->state())
+        {
+            case    sNone:      listItem->setBackground(none); break;
+            case    sProgress:  listItem->setBackground(progress); break;
+            case    sFailure:   listItem->setBackground(failure); break;
+            case    sSuccess:   listItem->setBackground(success); break;
+        }
     }
     // effects
     listFX->clear();
     List &list3 = eGame.effects();
     for (List::iterator it=list3.begin(); it != list3.end(); it++)
     {
-        listFX->addItem((*it)->content().c_str());
+        listItem = new QListWidgetItem((*it)->content().c_str(),listFX);
+        switch ((*it)->state())
+        {
+            case    sNone:      listItem->setBackground(none); break;
+            case    sProgress:  listItem->setBackground(progress); break;
+            case    sFailure:   listItem->setBackground(failure); break;
+            case    sSuccess:   listItem->setBackground(success); break;
+        }
     }
 }
