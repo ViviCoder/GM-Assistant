@@ -23,10 +23,17 @@ Tree::Tree(const xmlpp::Element &root, Branch* parent): pParent(parent)
     fromXML(root);
 }
 
-Tree::Tree(const string &fileName): pParent(NULL)
+Tree::Tree(const string &fileName) throw(xmlpp::exception): pParent(NULL)
 {
-    fromXML(fileName);
-
+    try
+    {
+        fromXML(fileName);
+    }
+    catch (xmlpp::exception)
+    {
+        clear();
+        throw;
+    }
 }
 
 // destructor
@@ -77,7 +84,7 @@ void Tree::toXML(xmlpp::Element &root) const
     }
 }
 
-void Tree::fromXML(const string &fileName)
+void Tree::fromXML(const string &fileName) throw(xmlpp::exception)
 {
     using namespace xmlpp;
     
@@ -86,7 +93,7 @@ void Tree::fromXML(const string &fileName)
     Element *root = document->get_root_node();
     if (root->get_name()!="tree")
     {
-        throw string("Tree::fromXML : the given XML file doesn't contain a tree");
+        throw xmlpp::exception("Bad document content type: tree expected");
     }
     fromXML(*root);
 }
@@ -213,13 +220,13 @@ int Tree::extractIndex(string &indices)
     return n;
 }
 
-Item* Tree::operator[](const string &indices)
+Item* Tree::operator[](const string &indices) throw(out_of_range)
 {
     string sub(indices);
     int n = extractIndex(sub);
     if (n<0 || (unsigned int) n >= vChildren.size())
     {
-        throw string("Tree::operator[] : Index out of bounds");
+        throw out_of_range("Index out of bounds");
     }
     if (sub=="")    // we are at the last tree
     {
@@ -236,13 +243,13 @@ Branch* Tree::parent() const
     return pParent;
 }
 
-Branch* Tree::branch(const string &indices)
+Branch* Tree::branch(const string &indices) throw(out_of_range)
 {
     string sub(indices);
     int n = extractIndex(sub);
     if (n<0 || (unsigned int) n >= vChildren.size())
     {
-        throw string("Tree::branch : Index out of bounds");
+        throw out_of_range("Index out of bounds");
     }
     if (sub=="")
     {
@@ -254,13 +261,13 @@ Branch* Tree::branch(const string &indices)
     }
 }
 
-void Tree::insert(const string &indices, const string &content, State state)
+void Tree::insert(const string &indices, const string &content, State state) throw(out_of_range)
 {
     string sub(indices);
     int n = extractIndex(sub);
     if (n<0 || (unsigned int) n > vChildren.size()) // n can be equal to vChildren.size() but only for the last index
     {
-        throw string("Tree::insert : Index out of bounds");
+        throw out_of_range("Index out of bounds");
     }
     if (sub=="")
     {
@@ -271,19 +278,19 @@ void Tree::insert(const string &indices, const string &content, State state)
     {
         if ((unsigned int)n==vChildren.size())
         {
-            throw string("Tree::insert : Index out of bounds");
+            throw out_of_range("Index out of bounds");
         }
         vChildren[n]->tree().insert(sub,content,state);
     }
 }
 
-void Tree::insert(const string &indices, Branch *branch)
+void Tree::insert(const string &indices, Branch *branch) throw(out_of_range)
 { 
     string sub(indices);
     int n = extractIndex(sub);
     if (n<0 || (unsigned int) n > vChildren.size()) // n can be equal to vChildren.size() but only for the last index
     {
-        throw string("Tree::insert : Index out of bounds");
+        throw out_of_range("Index out of bounds");
     }
     if (sub=="")
     {
@@ -294,7 +301,7 @@ void Tree::insert(const string &indices, Branch *branch)
     {
         if ((unsigned int)n==vChildren.size())
         {
-            throw string("Tree::insert : Index out of bounds");
+            throw out_of_range("Index out of bounds");
         }
         vChildren[n]->tree().insert(sub,branch);
     }
@@ -313,12 +320,12 @@ void Tree::add(const string &content, State state)
     }
 }
 
-void Tree::add(int depth, const string &content, State state)
+void Tree::add(int depth, const string &content, State state) throw(out_of_range)
 {
     // insert at the given depth (1 is root)
     if (depth<1)
     {
-        throw string("Tree::add : depth must be non-negative");
+        throw out_of_range("Depth out of range");
     }
     if (depth==1)
     {
@@ -329,7 +336,7 @@ void Tree::add(int depth, const string &content, State state)
     {
         if (vChildren.size()==0)
         {
-            throw string("Tree::add : the given depth is unavailable");
+            throw out_of_range("Depth out of range");
         }
         vChildren.back()->tree().add(depth-1,content,state);
     }
@@ -348,13 +355,13 @@ void Tree::addChild(const string &content, State state)
     }
 }
 
-void Tree::remove(const string &indices, bool toDelete)
+void Tree::remove(const string &indices, bool toDelete) throw(out_of_range)
 {
     string sub(indices);
     int n = extractIndex(sub);
     if (n<0 || (unsigned int) n >= vChildren.size())
     {
-        throw string("Tree::remove : Index out of bounds");
+        throw out_of_range("Index out of bounds");
     }
     if (sub=="")
     {
@@ -429,12 +436,12 @@ bool Tree::iterator::operator==(const iterator& it) const
     return !operator!=(it);
 }
 
-Tree::iterator& Tree::iterator::operator++()
+Tree::iterator& Tree::iterator::operator++() throw(out_of_range)
 {
     vector<vector<Branch*>::const_iterator>::reverse_iterator it = qIts.rbegin();
     if (it==qIts.rend())
     {
-        throw string("Tree::iterator::operator++ : End of the tree reached");
+        throw out_of_range("End of tree reached");
     }
     if ((*(*it))->tree().vChildren.size()!=0)   // if there are children, go to the item() child
     {

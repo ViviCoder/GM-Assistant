@@ -12,13 +12,13 @@
     <name>action</name>
     <message>
         <location filename="../sources/MainWindow.cpp" line="17"/>
-        <location filename="../sources/MainWindow.cpp" line="71"/>
+        <location filename="../sources/MainWindow.cpp" line="67"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
         <location filename="../sources/MainWindow.cpp" line="17"/>
-        <location filename="../sources/MainWindow.cpp" line="71"/>
+        <location filename="../sources/MainWindow.cpp" line="67"/>
         <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
         <translation>Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
@@ -29,18 +29,17 @@
     </message>
     <message>
         <location filename="../sources/MainWindow.cpp" line="19"/>
-        <location filename="../sources/MainWindow.cpp" line="59"/>
+        <location filename="../sources/MainWindow.cpp" line="55"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
     </message>
     <message>
         <location filename="../sources/MainWindow.cpp" line="31"/>
-        <location filename="../sources/MainWindow.cpp" line="35"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="59"/>
+        <location filename="../sources/MainWindow.cpp" line="55"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>

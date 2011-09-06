@@ -30,10 +30,6 @@ void MainWindow::on_action_Load_triggered()
             {
                 QMessageBox::critical(this,QApplication::translate("action","Error",0),xml.what());
             }
-            catch (std::string &s)
-            {
-                QMessageBox::critical(this,QApplication::translate("action","Error",0),s.c_str());
-            }
         }
     }
 }

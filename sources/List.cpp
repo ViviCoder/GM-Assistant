@@ -8,9 +8,17 @@ List::List()
 {
 }
 
-List::List(const string &fileName)
+List::List(const string &fileName) throw(xmlpp::exception)
 {
-    fromXML(fileName);
+    try
+    {
+        fromXML(fileName);
+    }
+    catch(xmlpp::exception)
+    {
+        clear();
+        throw;
+    }
 }
 
 // destructor
@@ -46,7 +54,7 @@ void List::toXML(xmlpp::Element &root) const
     }
 }
 
-void List::fromXML(const string &fileName)
+void List::fromXML(const string &fileName) throw(xmlpp::exception)
 {
     using namespace xmlpp;
     
@@ -55,7 +63,7 @@ void List::fromXML(const string &fileName)
     Element *root = document->get_root_node();
     if (root->get_name()!="list")
     {
-        throw string("List::fromXML : the given XML file doesn't contain a list");
+        throw xmlpp::exception("Bad document content type: list expected");
     }
     fromXML(*root);
 }
@@ -144,20 +152,20 @@ List::iterator List::endState(State state) const
     return iterator(it);
 }
 
-Item* List::operator[](int index)
+Item* List::operator[](int index) throw(out_of_range)
 {
     if (index<0 || (unsigned int)index >= data.size())
     {
-        throw string("List::operator[] : Index out of bounds");
+        throw out_of_range("Index out of bounds");
     }
     return data[index];
 }
 
-void List::insert(int index, const string &content, State state)
+void List::insert(int index, const string &content, State state) throw(out_of_range)
 {
     if (index<0 || (unsigned int)index > data.size()) // index can be data.size() 
     {
-        throw string("List::insert : Index out of bounds");
+        throw out_of_range("Index out of bounds");
     }
     data.insert(data.begin()+index,new Item(content,state));
 }
@@ -167,22 +175,22 @@ void List::add(const string &content, State state)
     data.push_back(new Item(content,state));
 }
 
-void List::remove(int index)
+void List::remove(int index) throw(out_of_range)
 {
     if (index<0 || (unsigned int)index >= data.size()) // index can be data.size() 
     {
-        throw string("List::remove : Index out of bounds");
+        throw out_of_range("Index out of bounds");
     }
     delete data[index];
     data.erase(data.begin()+index);
 }
 
-void List::move(int currentIndex, int newIndex)
+void List::move(int currentIndex, int newIndex) throw(out_of_range)
 {
     // the new index is counted before the move
     if (currentIndex<0 || newIndex<0 || (unsigned int)currentIndex >= data.size() || (unsigned int)newIndex >= data.size()) // index can be data.size() 
     {
-        throw string("List::move : Index out of bounds");
+        throw out_of_range("Index out of bounds");
     }
     // test if the indices are the same
     if (currentIndex==newIndex) return;

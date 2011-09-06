@@ -8,16 +8,24 @@ Engine::Engine():iMusic(lMusic.begin()), iEffects(lEffects.begin())
 {
 }
 
-Engine::Engine(const string &fileName):iMusic(lMusic.begin()), iEffects(lEffects.begin())
+Engine::Engine(const string &fileName) throw(xmlpp::exception): iMusic(lMusic.begin()), iEffects(lEffects.begin())
 {
-   fromFile(fileName);
-   iMusic = lMusic.begin();
-   iEffects = lEffects.begin();
+    try
+    {
+        fromFile(fileName);
+    }
+    catch (xmlpp::exception)
+    {
+        clear();
+        throw;
+    }
+    iMusic = lMusic.begin();
+    iEffects = lEffects.begin();
 }
 
 // methods
 
-void Engine::fromFile(const std::string &fileName)
+void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception)
 {
     using namespace xmlpp;
 
@@ -26,7 +34,7 @@ void Engine::fromFile(const std::string &fileName)
     Element *root = document->get_root_node();
     if (root->get_name()!="game")
     {
-        throw string("Engine::fromFile : the given XML file doesn't contain a game");
+        throw xmlpp::exception("Bad document content type: game expected");
     }
     // now loading the different parts of the game
     Node::NodeList node = root->get_children("scenario");

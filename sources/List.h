@@ -3,6 +3,7 @@
 
 #include "Model.h"
 #include <vector>
+#include <stdexcept>
 
 class List: public Model
 {
@@ -28,13 +29,13 @@ class List: public Model
         };
         // constructors
         List();
-        List(const std::string &fileName);
+        List(const std::string &fileName) throw(xmlpp::exception);
         // destructor
         ~List();
         // inherited methods
         void toXML(const std::string &fileName) const;
         void toXML(xmlpp::Element &root) const;
-        void fromXML(const std::string &fileName);
+        void fromXML(const std::string &fileName) throw(xmlpp::exception);
         void fromXML(const xmlpp::Element &root);
         void clear();
         // iterator-related methods
@@ -45,12 +46,12 @@ class List: public Model
         iterator endUnchecked() const;
         iterator endState(State state) const;
         // accessor
-        Item* operator[](int index);
+        Item* operator[](int index) throw(std::out_of_range);
         // populating the list
-        void insert(int index, const std::string &content, State state=sNone);
+        void insert(int index, const std::string &content, State state=sNone) throw(std::out_of_range);
         void add(const std::string &content, State state=sNone);
-        void remove(int index);
-        void move(int currentIndex, int newIndex);
+        void remove(int index) throw(std::out_of_range);
+        void move(int currentIndex, int newIndex) throw(std::out_of_range);
 };
 
 #endif

@@ -49,7 +49,7 @@ echo "* Checking development files... *"
 echo "*********************************"
 
 # Needed headers
-cxx_devs="iterator string vector sstream iostream"
+cxx_devs="iterator string vector sstream iostream stdexcept"
 xml_devs="libxml++"
 
 cxx_version=$(g++ --version | sed -e "s/g++.*(.*) //" | grep -o -e "[0-9]\{1,\}\.[0-9]\{1,\}")

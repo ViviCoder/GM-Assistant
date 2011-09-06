@@ -15,9 +15,9 @@ class Engine
     public:
         // constructors
         Engine();
-        Engine(const std::string &fileName);
+        Engine(const std::string &fileName) throw(xmlpp::exception);
         // loading and saving methods
-        void fromFile(const std::string &fileName);
+        void fromFile(const std::string &fileName) throw(xmlpp::exception);
         void toFile(const std::string &fileName) const;
         // accessors
         Tree& scenario();

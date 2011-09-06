@@ -3,6 +3,7 @@
 
 #include "Model.h"
 #include <vector>
+#include <stdexcept>
 
 class Branch;
 
@@ -13,9 +14,9 @@ class Tree: public Model
         // pointer to its parent branch
         Branch* pParent;
         // branch accessor
-        Branch* branch(const std::string &indices);
+        Branch* branch(const std::string &indices) throw(std::out_of_range);
         // branch inserter
-        void insert(const std::string &indices, Branch *branch);
+        void insert(const std::string &indices, Branch *branch) throw(std::out_of_range);
     public:
         // iterator
         class iterator: public Model::iterator
@@ -30,7 +31,7 @@ class Tree: public Model
                 // overloaded operators
                 bool operator!=(const iterator& it) const;
                 bool operator==(const iterator& it) const;
-                iterator& operator++();
+                iterator& operator++() throw(std::out_of_range);
                 iterator operator++(int i);
                 const Item* operator*();
                 // information about the position of the iterator
@@ -41,7 +42,7 @@ class Tree: public Model
         Tree(Branch* parent=NULL);
         Tree(const Tree &tree, Branch* parent=NULL);
         Tree(const xmlpp::Element &root, Branch* parent=NULL);
-        Tree(const std::string &fileName);
+        Tree(const std::string &fileName) throw(xmlpp::exception);
         // destructor
         ~Tree();
         // copy operator
@@ -49,7 +50,7 @@ class Tree: public Model
         // inherited methods
         void toXML(const std::string &fileName) const;
         void toXML(xmlpp::Element &root) const;
-        void fromXML(const std::string &fileName);
+        void fromXML(const std::string &fileName) throw(xmlpp::exception);
         void fromXML(const xmlpp::Element &root);
         void clear();
         // iterator-related methods
@@ -60,14 +61,14 @@ class Tree: public Model
         iterator endUnchecked() const;
         iterator endState(State state) const;
         // accessors
-        Item* operator[](const std::string &indices);
+        Item* operator[](const std::string &indices) throw(std::out_of_range);
         Branch* parent() const;
         // populating the list
-        void insert(const std::string &indices, const std::string &content, State state=sNone);
+        void insert(const std::string &indices, const std::string &content, State state=sNone) throw(std::out_of_range);
         void add(const std::string &content, State state=sNone);
-        void add(int depth, const std::string &content, State state=sNone);
+        void add(int depth, const std::string &content, State state=sNone) throw(std::out_of_range);
         void addChild(const std::string &content, State state=sNone);
-        void remove(const std::string &indices, bool toDelete=true);
+        void remove(const std::string &indices, bool toDelete=true) throw(std::out_of_range);
         void move(const std::string &currentIndices, const std::string &newIndices);
         // index extractor
         static int extractIndex(std::string &indices);
