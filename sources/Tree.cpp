@@ -323,11 +323,11 @@ void Tree::add(const string &content, State state)
 void Tree::add(int depth, const string &content, State state) throw(out_of_range)
 {
     // insert at the given depth (1 is root)
-    if (depth<1)
+    if (depth<0)
     {
         throw out_of_range("Depth out of range");
     }
-    if (depth==1)
+    if (depth==0)
     {
         Branch *branch = new Branch(new Item(content,state),pParent);
         vChildren.push_back(branch);
@@ -488,7 +488,7 @@ const Item* Tree::iterator::operator*()
 
 int Tree::iterator::depth() const
 {
-    return qIts.size();
+    return qIts.size()-1;
 }
 
 Branch* Tree::iterator::parent() const

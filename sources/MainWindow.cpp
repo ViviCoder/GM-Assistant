@@ -80,7 +80,39 @@ void MainWindow::on_textNotes_textChanged()
 
 void MainWindow::updateDisplay()
 {
-    // scenario (to do)
+    // scenario
+    treeScenario->clear();
+    Tree &tree = eGame.scenario();
+    std::vector<QTreeWidgetItem*> items;
+    QTreeWidgetItem* item,*prev=NULL;
+    int depth=0,oldDepth;
+    for (Tree::iterator it=tree.begin(); it != tree.end(); it++)
+    {
+        oldDepth = depth;
+        depth = it.depth();
+        if (depth==0)
+        {
+            item = new QTreeWidgetItem(treeScenario);
+        }
+        else if (depth==oldDepth)
+        {
+            item = new QTreeWidgetItem(items[depth-1],prev);
+        }
+        else
+        {
+            item = new QTreeWidgetItem(items[depth-1]);
+        }
+        item->setText(0,(*it)->content().c_str());
+        prev = item;
+        if (items.size() > (unsigned int)(depth))
+        {
+            items[depth] = item;
+        }
+        else
+        {
+            items.push_back(item);
+        }
+    }
     // notes
     textNotes->setText(eGame.notes().c_str());
     // characters (to do)
