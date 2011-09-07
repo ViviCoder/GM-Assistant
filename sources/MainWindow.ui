@@ -24,7 +24,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout1">
          <item>
-          <widget class="QTreeWidget" name="treeScenario">
+          <widget class="QCustomTreeWidget" name="treeScenario">
            <property name="headerHidden">
             <bool>true</bool>
            </property>
@@ -144,7 +144,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
@@ -218,6 +218,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QCustomTreeWidget</class>
+   <extends>QTreeWidget</extends>
+   <header>QCustomTreeWidget.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
