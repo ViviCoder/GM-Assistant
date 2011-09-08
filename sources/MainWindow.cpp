@@ -2,9 +2,10 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-MainWindow::MainWindow(): QMainWindow(), bModified(false), iFailure("data/images/failure.png"),iSuccess("data/images/check.png"),iProgress("data/images/uncheck.png")
+MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), iFailure("data/images/failure.png"),iSuccess("data/images/check.png"),iProgress("data/images/uncheck.png")
 {
     setupUi(this);
+    updateDisplay();
 }
 
 void MainWindow::on_action_Quit_triggered()
@@ -124,6 +125,7 @@ void MainWindow::updateDisplay()
             items.push_back(item);
         }
     }
+    treeScenario->resizeColumnToContents(0);
     treeScenario->resizeColumnToContents(1);
     // notes
     textNotes->setText(eGame.notes().c_str());

@@ -8,6 +8,7 @@ class QCustomTreeWidget: public QTreeWidget
 {
     protected:
         void mousePressEvent(QMouseEvent *e);
+        void keyReleaseEvent(QKeyEvent *e);
     public:
         QCustomTreeWidget(QWidget *parent=NULL);
 };

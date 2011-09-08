@@ -2,7 +2,7 @@
 <game>
   <scenario>
     <item state="0">Hein ?<item state="0">Quoi ?</item><item state="2">Oui ?</item><item state="1">Ben non...</item></item>
-    <item state="3">Échec !<item state="2">Branche<item state="0">Feuille</item><item state="1">Encore une feuille</item></item></item>
+    <item state="3">Échec !<item state="2">Branche<item state="0">Feuille</item><item state="1">Encore une feuille qui dit coucou parce que c'est chouette</item></item></item>
     <item state="3">Autre branche<item state="0">Re-bouh<item state="2">Boubou</item></item><item state="1">Grande feuille<item state="3">Et encore une !</item></item></item>
   </scenario>
   <notes>Ceci est mes notes.
