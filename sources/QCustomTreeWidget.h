@@ -4,6 +4,7 @@
 #include <QTreeWidget>
 #include <QMouseEvent>
 #include <QMenu>
+#include "Tree.h"
 
 class QCustomTreeWidget: public QTreeWidget
 {
@@ -13,14 +14,19 @@ class QCustomTreeWidget: public QTreeWidget
         QMenu *menuIcons;
         QIcon iFailure,iSuccess,iProgress;
         QAction *actionNone, *actionProgress, *actionFailure, *actionSuccess;
+        Tree *pTree;
     protected:
+        // overriden methods
         void mousePressEvent(QMouseEvent *e);
         void keyReleaseEvent(QKeyEvent *e);
+        void paintEvent(QPaintEvent *e);
     protected slots:
         void changeItem(QTreeWidgetItem* item,int column);
     public:
         QCustomTreeWidget(QWidget *parent=NULL);
         ~QCustomTreeWidget();
+        // associating a tree to the widget
+        void setTree(Tree *tree);
 };
 
 #endif

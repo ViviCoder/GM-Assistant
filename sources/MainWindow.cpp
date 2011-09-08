@@ -6,6 +6,7 @@
 MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), iFailure("data/images/failure.png"),iSuccess("data/images/check.png"),iProgress("data/images/uncheck.png")
 {
     setupUi(this);
+    treeScenario->setTree(&eGame.scenario());
     updateDisplay();
 }
 
@@ -25,6 +26,7 @@ void MainWindow::on_action_Load_triggered()
             try
             {
                 eGame.fromFile(sFileName.toStdString());
+                treeScenario->setTree(&eGame.scenario());
                 updateDisplay();
                 bModified = false;
             }
@@ -86,42 +88,7 @@ void MainWindow::updateDisplay()
     QBrush none(QColor("white")),progress(QColor(0x00FFFF88)),failure(QColor(0x00FF8888)),success(QColor(0x0088FF88));
 
     // scenario
-    treeScenario->clear();
-    treeScenario->setColumnCount(2);
-    Tree &tree = eGame.scenario();
-    std::vector<QCustomTreeWidgetItem*> items;
-    QCustomTreeWidgetItem* item;
-    int depth=0;
-    for (Tree::iterator it=tree.begin(); it != tree.end(); it++)
-    {
-        depth = it.depth();
-        if (depth==0)
-        {
-            item = new QCustomTreeWidgetItem(treeScenario, *it);
-        }
-        else
-        {
-            item = new QCustomTreeWidgetItem(items[depth-1], *it);
-        }
-        item->setText(0,(*it)->content().c_str());
-        switch ((*it)->state())
-        {
-            case    sProgress:  item->setIcon(1,iProgress); break;
-            case    sFailure:   item->setIcon(1,iFailure); break;
-            case    sSuccess:   item->setIcon(1,iSuccess); break;
-            default:    break;
-        }
-        if (items.size() > (unsigned int)(depth))
-        {
-            items[depth] = item;
-        }
-        else
-        {
-            items.push_back(item);
-        }
-    }
-    treeScenario->resizeColumnToContents(0);
-    treeScenario->resizeColumnToContents(1);
+    treeScenario->repaint();
     // notes
     textNotes->setText(eGame.notes().c_str());
     // characters (to do)
