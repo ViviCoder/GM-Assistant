@@ -467,7 +467,7 @@ Tree::iterator Tree::iterator::operator++(int i)
     return it;
 }
 
-const Item* Tree::iterator::operator*()
+Item* Tree::iterator::operator*()
 {
     switch (type())
     {

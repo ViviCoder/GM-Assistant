@@ -1,6 +1,7 @@
 #include "MainWindow.h"
 #include <QFileDialog>
 #include <QMessageBox>
+#include "QCustomTreeWidgetItem.h"
 
 MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), iFailure("data/images/failure.png"),iSuccess("data/images/check.png"),iProgress("data/images/uncheck.png")
 {
@@ -88,24 +89,19 @@ void MainWindow::updateDisplay()
     treeScenario->clear();
     treeScenario->setColumnCount(2);
     Tree &tree = eGame.scenario();
-    std::vector<QTreeWidgetItem*> items;
-    QTreeWidgetItem* item,*prev=NULL;
-    int depth=0,oldDepth;
+    std::vector<QCustomTreeWidgetItem*> items;
+    QCustomTreeWidgetItem* item;
+    int depth=0;
     for (Tree::iterator it=tree.begin(); it != tree.end(); it++)
     {
-        oldDepth = depth;
         depth = it.depth();
         if (depth==0)
         {
-            item = new QTreeWidgetItem(treeScenario);
-        }
-        else if (depth==oldDepth)
-        {
-            item = new QTreeWidgetItem(items[depth-1],prev);
+            item = new QCustomTreeWidgetItem(treeScenario, *it);
         }
         else
         {
-            item = new QTreeWidgetItem(items[depth-1]);
+            item = new QCustomTreeWidgetItem(items[depth-1], *it);
         }
         item->setText(0,(*it)->content().c_str());
         switch ((*it)->state())
@@ -115,7 +111,6 @@ void MainWindow::updateDisplay()
             case    sSuccess:   item->setIcon(1,iSuccess); break;
             default:    break;
         }
-        prev = item;
         if (items.size() > (unsigned int)(depth))
         {
             items[depth] = item;

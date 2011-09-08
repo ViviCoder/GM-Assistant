@@ -33,7 +33,7 @@ class Tree: public Model
                 bool operator==(const iterator& it) const;
                 iterator& operator++() throw(std::out_of_range);
                 iterator operator++(int i);
-                const Item* operator*();
+                Item* operator*();
                 // information about the position of the iterator
                 int depth() const;
                 Branch* parent() const;

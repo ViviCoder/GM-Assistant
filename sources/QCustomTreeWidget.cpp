@@ -1,4 +1,5 @@
 #include "QCustomTreeWidget.h"
+#include "QCustomTreeWidgetItem.h"
 #include <QApplication>
 
 QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), iFailure("data/images/failure.png"),iSuccess("data/images/check.png"),iProgress("data/images/uncheck.png") 
@@ -63,7 +64,10 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
         if (item != NULL && item->isSelected())
         {
             item->setFlags(item->flags() | Qt::ItemIsEditable);
-            QTreeWidget::editItem(item);
+            editItem(item);
+            item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+
+            dynamic_cast<QCustomTreeWidgetItem*>(item)->item()->setContent(item->text(0).toStdString());
         }
     }
 }
