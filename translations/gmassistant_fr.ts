@@ -4,35 +4,35 @@
 <context>
     <name>action</name>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="17"/>
-        <location filename="../sources/MainWindow.cpp" line="67"/>
+        <location filename="../sources/MainWindow.cpp" line="18"/>
+        <location filename="../sources/MainWindow.cpp" line="68"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="17"/>
-        <location filename="../sources/MainWindow.cpp" line="67"/>
+        <location filename="../sources/MainWindow.cpp" line="18"/>
+        <location filename="../sources/MainWindow.cpp" line="68"/>
         <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
         <translation>Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="19"/>
+        <location filename="../sources/MainWindow.cpp" line="20"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="19"/>
-        <location filename="../sources/MainWindow.cpp" line="55"/>
+        <location filename="../sources/MainWindow.cpp" line="20"/>
+        <location filename="../sources/MainWindow.cpp" line="56"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="31"/>
+        <location filename="../sources/MainWindow.cpp" line="32"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="55"/>
+        <location filename="../sources/MainWindow.cpp" line="56"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
@@ -69,6 +69,29 @@
     <message>
         <source>Select the file to save</source>
         <translation type="obsolete">Sélectionnez le fichier à sauvegarder</translation>
+    </message>
+</context>
+<context>
+    <name>custom</name>
+    <message>
+        <location filename="../sources/QCustomTreeWidget.cpp" line="6"/>
+        <source>&amp;None</source>
+        <translation>&amp;Aucun</translation>
+    </message>
+    <message>
+        <location filename="../sources/QCustomTreeWidget.cpp" line="7"/>
+        <source>In &amp;progress</source>
+        <translation>En &amp;cours</translation>
+    </message>
+    <message>
+        <location filename="../sources/QCustomTreeWidget.cpp" line="9"/>
+        <source>&amp;Failed</source>
+        <translation>&amp;Échoué</translation>
+    </message>
+    <message>
+        <location filename="../sources/QCustomTreeWidget.cpp" line="11"/>
+        <source>&amp;Succeeded</source>
+        <translation>&amp;Réussi</translation>
     </message>
 </context>
 <context>
