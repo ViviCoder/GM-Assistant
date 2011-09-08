@@ -2,7 +2,7 @@
 #include <QFileDialog>
 #include <QMessageBox>
 
-MainWindow::MainWindow(): QMainWindow(), bModified(false)
+MainWindow::MainWindow(): QMainWindow(), bModified(false), iFailure("data/images/failure.png"),iSuccess("data/images/check.png"),iProgress("data/images/uncheck.png")
 {
     setupUi(this);
 }
@@ -85,6 +85,7 @@ void MainWindow::updateDisplay()
 
     // scenario
     treeScenario->clear();
+    treeScenario->setColumnCount(2);
     Tree &tree = eGame.scenario();
     std::vector<QTreeWidgetItem*> items;
     QTreeWidgetItem* item,*prev=NULL;
@@ -108,10 +109,10 @@ void MainWindow::updateDisplay()
         item->setText(0,(*it)->content().c_str());
         switch ((*it)->state())
         {
-            case    sNone:      item->setBackground(0,none); break;
-            case    sProgress:  item->setBackground(0,progress); break;
-            case    sFailure:   item->setBackground(0,failure); break;
-            case    sSuccess:   item->setBackground(0,success); break;
+            case    sProgress:  item->setIcon(1,iProgress); break;
+            case    sFailure:   item->setIcon(1,iFailure); break;
+            case    sSuccess:   item->setIcon(1,iSuccess); break;
+            default:    break;
         }
         prev = item;
         if (items.size() > (unsigned int)(depth))
@@ -123,6 +124,7 @@ void MainWindow::updateDisplay()
             items.push_back(item);
         }
     }
+    treeScenario->resizeColumnToContents(1);
     // notes
     textNotes->setText(eGame.notes().c_str());
     // characters (to do)

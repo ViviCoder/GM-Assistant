@@ -10,6 +10,7 @@ class MainWindow : public QMainWindow, private Ui::mainWindow
         Engine eGame;
         QString sFileName;
         bool bModified;
+        QIcon iFailure,iSuccess,iProgress;
     public:
         // constructor
         MainWindow();
