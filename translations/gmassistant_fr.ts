@@ -74,22 +74,22 @@
 <context>
     <name>custom</name>
     <message>
-        <location filename="../sources/QCustomTreeWidget.cpp" line="7"/>
+        <location filename="../sources/QCustomTreeWidget.cpp" line="8"/>
         <source>&amp;None</source>
         <translation>&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/QCustomTreeWidget.cpp" line="8"/>
+        <location filename="../sources/QCustomTreeWidget.cpp" line="9"/>
         <source>In &amp;progress</source>
         <translation>En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/QCustomTreeWidget.cpp" line="10"/>
+        <location filename="../sources/QCustomTreeWidget.cpp" line="11"/>
         <source>&amp;Failed</source>
         <translation>&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/QCustomTreeWidget.cpp" line="12"/>
+        <location filename="../sources/QCustomTreeWidget.cpp" line="13"/>
         <source>&amp;Succeeded</source>
         <translation>&amp;Réussi</translation>
     </message>

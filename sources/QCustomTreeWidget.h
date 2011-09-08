@@ -7,6 +7,8 @@
 
 class QCustomTreeWidget: public QTreeWidget
 {
+    Q_OBJECT
+
     private:
         QMenu *menuIcons;
         QIcon iFailure,iSuccess,iProgress;
@@ -14,6 +16,8 @@ class QCustomTreeWidget: public QTreeWidget
     protected:
         void mousePressEvent(QMouseEvent *e);
         void keyReleaseEvent(QKeyEvent *e);
+    protected slots:
+        void changeItem(QTreeWidgetItem* item,int column);
     public:
         QCustomTreeWidget(QWidget *parent=NULL);
         ~QCustomTreeWidget();
