@@ -23,6 +23,7 @@ class QCustomTreeWidget: public QTreeWidget
         void on_itemChanged(QTreeWidgetItem* item,int column);
         void on_itemCollapsed();
         void on_itemExpanded();
+        void deleteItem(QTreeWidgetItem* item);
     public:
         QCustomTreeWidget(QWidget *parent=NULL);
         ~QCustomTreeWidget();

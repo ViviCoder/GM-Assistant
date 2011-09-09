@@ -44,8 +44,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                 break;
         case Qt::RightButton:   if (item != NULL)
                                 {
-                                    Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
-                                    Item *treeItem = branch->item();
+                                    Item *treeItem = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()->item();
                                     QAction* action = menuIcons->exec(e->globalPos());
                                     if (action == actionNone)
                                     {
@@ -69,22 +68,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     }
                                     else if (action == actionDelete)
                                     {
-                                        // delete item
-                                        Branch *parent = branch->parent();
-                                        if (parent==NULL)
-                                        {
-                                            if (pTree != NULL)
-                                            {
-                                                pTree->remove(pTree->indexOf(branch));
-                                            }
-                                        }
-                                        else
-                                        {
-                                            parent->tree().remove(parent->tree().indexOf(branch));
-                                        }
-                                        // delete widgetItem
-                                        delete item;
-                                        resizeColumnToContents(0);
+                                        deleteItem(item);
                                     }
                                 }
                                 break;
@@ -94,15 +78,18 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
 
 void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
 {
-    if (e->key()==Qt::Key_F2)
+    QTreeWidgetItem *item = currentItem();
+    if (item != NULL)
     {
-        QTreeWidgetItem *item = currentItem();
-        if (item != NULL)
+        switch (e->key())
         {
-            item->setFlags(item->flags() | Qt::ItemIsEditable);
-            editItem(item);
-            item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-
+            case Qt::Key_F2:    item->setFlags(item->flags() | Qt::ItemIsEditable);
+                                editItem(item);
+                                item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+                                break;
+            case Qt::Key_Delete:    deleteItem(item);
+                                    break;
+            default: break; 
         }
     }
 }
@@ -168,4 +155,25 @@ void QCustomTreeWidget::setTree(Tree *tree)
     }
     resizeColumnToContents(0);
     resizeColumnToContents(1);
+}
+
+void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
+{
+    Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
+    // delete item
+    Branch *parent = branch->parent();
+    if (parent==NULL)
+    {
+        if (pTree != NULL)
+        {
+            pTree->remove(pTree->indexOf(branch));
+        }
+    }
+    else
+    {
+        parent->tree().remove(parent->tree().indexOf(branch));
+    }
+    // delete widgetItem
+    delete item;
+    resizeColumnToContents(0);
 }
