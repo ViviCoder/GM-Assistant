@@ -7,6 +7,9 @@ MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), iFa
 {
     setupUi(this);
     treeScenario->setTree(&eGame.scenario());
+    treeHistory->setTree(&eGame.history());
+    treeMusic->setTree(&eGame.music());
+    treeFX->setTree(&eGame.effects());
     updateDisplay();
 }
 
@@ -27,6 +30,10 @@ void MainWindow::on_action_Load_triggered()
             {
                 eGame.fromFile(sFileName.toStdString());
                 treeScenario->setTree(&eGame.scenario());
+                textNotes->setText(eGame.notes().c_str());
+                treeHistory->setTree(&eGame.history());
+                treeMusic->setTree(&eGame.music());
+                treeFX->setTree(&eGame.effects());
                 updateDisplay();
                 bModified = false;
             }
@@ -84,55 +91,15 @@ void MainWindow::on_textNotes_textChanged()
 
 void MainWindow::updateDisplay()
 {
-    // common brushes
-    QBrush none(QColor("white")),progress(QColor(0x00FFFF88)),failure(QColor(0x00FF8888)),success(QColor(0x0088FF88));
-
     // scenario
     treeScenario->repaint();
     // notes
     textNotes->setText(eGame.notes().c_str());
     // characters (to do)
     // history
-    listHistory->clear();
-    List &list = eGame.history();
-    QListWidgetItem *listItem;
-    for (List::iterator it=list.begin(); it != list.end(); it++)
-    {
-        listItem = new QListWidgetItem((*it)->content().c_str(),listHistory);
-        switch ((*it)->state())
-        {
-            case    sNone:      listItem->setBackground(none); break;
-            case    sProgress:  listItem->setBackground(progress); break;
-            case    sFailure:   listItem->setBackground(failure); break;
-            case    sSuccess:   listItem->setBackground(success); break;
-        }
-    }
+    treeHistory->repaint();
     // music
-    listMusic->clear();
-    List &list2 = eGame.music();
-    for (List::iterator it=list2.begin(); it != list2.end(); it++)
-    {
-        listItem = new QListWidgetItem((*it)->content().c_str(),listMusic);
-        switch ((*it)->state())
-        {
-            case    sNone:      listItem->setBackground(none); break;
-            case    sProgress:  listItem->setBackground(progress); break;
-            case    sFailure:   listItem->setBackground(failure); break;
-            case    sSuccess:   listItem->setBackground(success); break;
-        }
-    }
+    treeMusic->repaint();
     // effects
-    listFX->clear();
-    List &list3 = eGame.effects();
-    for (List::iterator it=list3.begin(); it != list3.end(); it++)
-    {
-        listItem = new QListWidgetItem((*it)->content().c_str(),listFX);
-        switch ((*it)->state())
-        {
-            case    sNone:      listItem->setBackground(none); break;
-            case    sProgress:  listItem->setBackground(progress); break;
-            case    sFailure:   listItem->setBackground(failure); break;
-            case    sSuccess:   listItem->setBackground(success); break;
-        }
-    }
+    treeFX->repaint();
 }

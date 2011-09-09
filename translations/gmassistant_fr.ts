@@ -4,35 +4,35 @@
 <context>
     <name>action</name>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="20"/>
-        <location filename="../sources/MainWindow.cpp" line="71"/>
+        <location filename="../sources/MainWindow.cpp" line="23"/>
+        <location filename="../sources/MainWindow.cpp" line="78"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="20"/>
-        <location filename="../sources/MainWindow.cpp" line="71"/>
+        <location filename="../sources/MainWindow.cpp" line="23"/>
+        <location filename="../sources/MainWindow.cpp" line="78"/>
         <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
         <translation>Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="22"/>
+        <location filename="../sources/MainWindow.cpp" line="25"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="22"/>
-        <location filename="../sources/MainWindow.cpp" line="59"/>
+        <location filename="../sources/MainWindow.cpp" line="25"/>
+        <location filename="../sources/MainWindow.cpp" line="66"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="35"/>
+        <location filename="../sources/MainWindow.cpp" line="42"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.cpp" line="59"/>
+        <location filename="../sources/MainWindow.cpp" line="66"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
@@ -112,108 +112,108 @@
         <translation>Historique</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="59"/>
+        <location filename="../sources/MainWindow.ui" line="71"/>
         <source>Notes</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="71"/>
+        <location filename="../sources/MainWindow.ui" line="83"/>
         <source>Playing characters</source>
         <translation>Personnages joueurs</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="83"/>
+        <location filename="../sources/MainWindow.ui" line="95"/>
         <source>Sound effects</source>
         <translation>Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="94"/>
-        <location filename="../sources/MainWindow.ui" line="124"/>
+        <location filename="../sources/MainWindow.ui" line="118"/>
+        <location filename="../sources/MainWindow.ui" line="160"/>
         <source>Play</source>
         <translation>Jouer</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="113"/>
+        <location filename="../sources/MainWindow.ui" line="137"/>
         <source>Music</source>
         <translation>Musique</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="155"/>
+        <location filename="../sources/MainWindow.ui" line="191"/>
         <source>&amp;Game</source>
         <translation>&amp;Jeu</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="170"/>
+        <location filename="../sources/MainWindow.ui" line="206"/>
         <source>&amp;New</source>
         <translation>&amp;Nouveau</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="173"/>
+        <location filename="../sources/MainWindow.ui" line="209"/>
         <source>Create a new game</source>
         <translation>Crée un nouveau jeu</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="176"/>
+        <location filename="../sources/MainWindow.ui" line="212"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="181"/>
+        <location filename="../sources/MainWindow.ui" line="217"/>
         <source>&amp;Load</source>
         <translation>&amp;Charger</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="184"/>
+        <location filename="../sources/MainWindow.ui" line="220"/>
         <source>Load a game</source>
         <translation>Charge un jeu</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="187"/>
+        <location filename="../sources/MainWindow.ui" line="223"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="192"/>
+        <location filename="../sources/MainWindow.ui" line="228"/>
         <source>&amp;Save</source>
         <translation>&amp;Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="195"/>
+        <location filename="../sources/MainWindow.ui" line="231"/>
         <source>Save the current game</source>
         <translation>Sauvegarde le jeu en cours</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="198"/>
+        <location filename="../sources/MainWindow.ui" line="234"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="203"/>
+        <location filename="../sources/MainWindow.ui" line="239"/>
         <source>S&amp;ave as</source>
         <translation>S&amp;auvegarder sous</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="206"/>
+        <location filename="../sources/MainWindow.ui" line="242"/>
         <source>Save the current game in a new file</source>
         <translation>Sauvegarde le jeu en cours dans un nouveau fichier</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="209"/>
+        <location filename="../sources/MainWindow.ui" line="245"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="214"/>
+        <location filename="../sources/MainWindow.ui" line="250"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="217"/>
+        <location filename="../sources/MainWindow.ui" line="253"/>
         <source>Exit the application</source>
         <translation>Sort de l&apos;application</translation>
     </message>
     <message>
-        <location filename="../sources/MainWindow.ui" line="220"/>
+        <location filename="../sources/MainWindow.ui" line="256"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>

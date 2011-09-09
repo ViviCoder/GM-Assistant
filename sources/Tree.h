@@ -1,13 +1,15 @@
 #ifndef HEADER_TREE
 #define HEADER_TREE
 
-#include "Model.h"
+#include "Item.h"
 #include <vector>
 #include <stdexcept>
+#include <iterator>
+#include <libxml++/libxml++.h>
 
 class Branch;
 
-class Tree: public Model
+class Tree
 {
     private:
         std::vector<Branch*> vChildren;
@@ -18,16 +20,24 @@ class Tree: public Model
         // branch inserter
         void insert(const std::string &indices, Branch *branch) throw(std::out_of_range);
     public:
+        // different possible types of iterating over the items of the model
+        enum IterationType {itNormal,itUnchecked,itState};
         // iterator
-        class iterator: public Model::iterator
+        class iterator: public std::iterator<std::forward_iterator_tag,Item*>
         {
             private:
+                IterationType itType;
+                State sState;
                 // underlying vector iterators
                 std::vector<std::vector<Branch*>::const_iterator> qIts;
             public:
                 // constructor
                 iterator(const std::vector<std::vector<Branch*>::const_iterator>& its, IterationType type=itNormal, State state=sNone);
                 iterator(const std::vector<Branch*>::const_iterator& it, IterationType type=itNormal, State state=sNone);
+                // accessors
+                IterationType type() const;
+                State state() const;
+                void setType(IterationType type);
                 // overloaded operators
                 bool operator!=(const iterator& it) const;
                 bool operator==(const iterator& it) const;

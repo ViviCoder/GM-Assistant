@@ -48,7 +48,19 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout2">
          <item>
-          <widget class="QListWidget" name="listHistory"/>
+          <widget class="QCustomTreeWidget" name="treeHistory">
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="headerHidden">
+            <bool>true</bool>
+           </property>
+           <column>
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+           </column>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -84,7 +96,19 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout6">
          <item>
-          <widget class="QListWidget" name="listFX"/>
+          <widget class="QCustomTreeWidget" name="treeFX">
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="headerHidden">
+            <bool>true</bool>
+           </property>
+           <column>
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+           </column>
+          </widget>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout2">
@@ -114,7 +138,19 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout3">
          <item>
-          <widget class="QListWidget" name="listMusic"/>
+          <widget class="QCustomTreeWidget" name="treeMusic">
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="headerHidden">
+            <bool>true</bool>
+           </property>
+           <column>
+            <property name="text">
+             <string notr="true">1</string>
+            </property>
+           </column>
+          </widget>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout1">

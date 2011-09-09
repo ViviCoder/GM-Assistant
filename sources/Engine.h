@@ -2,16 +2,13 @@
 #define HEADER_ENGINE
 
 #include "Tree.h"
-#include "List.h"
 
 class Engine
 {
     private:
-        Tree tScenario;
+        Tree tScenario,tHistory,tMusic,tEffects;
         std::string sNotes;
 //        std::vector<Character> vCharacters;
-        List lHistory,lMusic,lEffects;
-        List::iterator iMusic,iEffects;
     public:
         // constructors
         Engine();
@@ -23,9 +20,9 @@ class Engine
         Tree& scenario();
         std::string& notes();
 //        Character& character(int index);
-        List& history();
-        List& music();
-        List& effects();
+        Tree& history();
+        Tree& music();
+        Tree& effects();
         // populating
 //      addCharacter(const Character character&);
         void clear();

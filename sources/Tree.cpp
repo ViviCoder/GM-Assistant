@@ -404,13 +404,28 @@ void Tree::move(const string &currentIndices, const string &newIndices)
 
 // iterator's methods
 
-Tree::iterator::iterator(const vector<vector<Branch*>::const_iterator>& its, IterationType type, State state): Model::iterator(type,state), qIts(its)
+Tree::iterator::iterator(const vector<vector<Branch*>::const_iterator>& its, IterationType type, State state): itType(type), sState(state), qIts(its)
 {
 }
 
-Tree::iterator::iterator(const vector<Branch*>::const_iterator& it, IterationType type, State state): Model::iterator(type,state)
+Tree::iterator::iterator(const vector<Branch*>::const_iterator& it, IterationType type, State state): itType(type),sState(state)
 {
 	qIts.push_back(it);
+}
+
+Tree::IterationType Tree::iterator::type() const
+{
+    return itType;
+}
+
+State Tree::iterator::state() const
+{
+    return sState;
+}
+
+void Tree::iterator::setType(IterationType type)
+{
+    itType=type;
 }
 
 bool Tree::iterator::operator!=(const iterator& it) const

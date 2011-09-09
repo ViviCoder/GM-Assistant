@@ -4,11 +4,11 @@ using namespace std;
 
 // constructors
 
-Engine::Engine():iMusic(lMusic.begin()), iEffects(lEffects.begin())
+Engine::Engine()
 {
 }
 
-Engine::Engine(const string &fileName) throw(xmlpp::exception): iMusic(lMusic.begin()), iEffects(lEffects.begin())
+Engine::Engine(const string &fileName) throw(xmlpp::exception)
 {
     try
     {
@@ -19,8 +19,6 @@ Engine::Engine(const string &fileName) throw(xmlpp::exception): iMusic(lMusic.be
         clear();
         throw;
     }
-    iMusic = lMusic.begin();
-    iEffects = lEffects.begin();
 }
 
 // methods
@@ -60,17 +58,17 @@ void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception)
     node = root->get_children("history");
     if (!node.empty())
     {
-        lHistory.fromXML(*dynamic_cast<Element*>(node.front()));
+        tHistory.fromXML(*dynamic_cast<Element*>(node.front()));
     }
     node = root->get_children("music");
     if (!node.empty())
     {
-        lMusic.fromXML(*dynamic_cast<Element*>(node.front()));
+        tMusic.fromXML(*dynamic_cast<Element*>(node.front()));
     }
     node = root->get_children("effects");
     if (!node.empty())
     {
-        lEffects.fromXML(*dynamic_cast<Element*>(node.front()));
+        tEffects.fromXML(*dynamic_cast<Element*>(node.front()));
     }
 }
 
@@ -87,11 +85,11 @@ void Engine::toFile(const string &fileName) const
     tmp = root->add_child("characters");
     // not yet implemented
     tmp = root->add_child("history");
-    lHistory.toXML(*tmp);
+    tHistory.toXML(*tmp);
     tmp = root->add_child("music");
-    lMusic.toXML(*tmp);
+    tMusic.toXML(*tmp);
     tmp = root->add_child("effects");
-    lEffects.toXML(*tmp);
+    tEffects.toXML(*tmp);
     document.write_to_file_formatted(fileName,"UTF-8");
 }
 
@@ -107,28 +105,26 @@ string& Engine::notes()
     return sNotes;
 }
 
-List& Engine::history()
+Tree& Engine::history()
 {
-    return lHistory;
+    return tHistory;
 }
 
-List& Engine::music()
+Tree& Engine::music()
 {
-    return lMusic;
+    return tMusic;
 }
 
-List& Engine::effects()
+Tree& Engine::effects()
 {
-    return lEffects;
+    return tEffects;
 }
 
 void Engine::clear()
 {
     tScenario.clear();
     sNotes = "";
-    lHistory.clear();
-    lMusic.clear();
-    lEffects.clear();
-    iMusic = lMusic.begin();
-    iEffects = lEffects.begin();
+    tHistory.clear();
+    tMusic.clear();
+    tEffects.clear();
 }
