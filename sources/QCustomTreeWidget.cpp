@@ -13,7 +13,9 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     actionSuccess = menuIcons->addAction(iSuccess,QApplication::translate("custom","&Succeeded",0));
     actionSuccess->setIconVisibleInMenu(true);
     // connecting signals
-    connect(this, SIGNAL(itemChanged(QTreeWidgetItem *,int)), SLOT(changeItem(QTreeWidgetItem*, int)));
+    connect(this, SIGNAL(itemChanged(QTreeWidgetItem *,int)), SLOT(on_itemChanged(QTreeWidgetItem*, int)));
+    connect(this, SIGNAL(itemCollapsed(QTreeWidgetItem *)), SLOT(on_itemCollapsed()));
+    connect(this, SIGNAL(itemExpanded(QTreeWidgetItem *)), SLOT(on_itemExpanded()));
 }
 
 QCustomTreeWidget::~QCustomTreeWidget()
@@ -80,21 +82,22 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
     }
 }
 
-void QCustomTreeWidget::paintEvent(QPaintEvent *e)
-{
-    for (int i=0; i<columnCount(); i++)
-    {
-        resizeColumnToContents(i);
-    }
-    QTreeWidget::paintEvent(e);
-}
-
-void QCustomTreeWidget::changeItem(QTreeWidgetItem* item, int column)
+void QCustomTreeWidget::on_itemChanged(QTreeWidgetItem* item, int column)
 {
     if (item != NULL && column == 0)
     {
         dynamic_cast<QCustomTreeWidgetItem*>(item)->item()->setContent(item->text(0).toStdString());
     }
+}
+
+void QCustomTreeWidget::on_itemCollapsed()
+{
+    resizeColumnToContents(0);
+}
+
+void QCustomTreeWidget::on_itemExpanded()
+{
+    resizeColumnToContents(0);
 }
 
 void QCustomTreeWidget::setTree(Tree *tree)
@@ -109,31 +112,33 @@ void QCustomTreeWidget::setTree(Tree *tree)
         // iterating the tree to populate the widget
         for (Tree::iterator it=tree->begin(); it != tree->end(); it++)
         {
-        depth = it.depth();
-        if (depth==0)
-        {
-            item = new QCustomTreeWidgetItem(this, *it);
-        }
-        else
-        {
-            item = new QCustomTreeWidgetItem(items[depth-1], *it);
-        }
-        item->setText(0,(*it)->content().c_str());
-        switch ((*it)->state())
-        {
-            case    sProgress:  item->setIcon(1,iProgress); break;
-            case    sFailure:   item->setIcon(1,iFailure); break;
-            case    sSuccess:   item->setIcon(1,iSuccess); break;
-            default:    break;
-        }
-        if (items.size() > (unsigned int)(depth))
-        {
-            items[depth] = item;
-        }
-        else
-        {
-            items.push_back(item);
+            depth = it.depth();
+            if (depth==0)
+            {
+                item = new QCustomTreeWidgetItem(this, *it);
+            }
+            else
+            {
+                item = new QCustomTreeWidgetItem(items[depth-1], *it);
+            }
+            item->setText(0,(*it)->content().c_str());
+            switch ((*it)->state())
+            {
+                case    sProgress:  item->setIcon(1,iProgress); break;
+                case    sFailure:   item->setIcon(1,iFailure); break;
+                case    sSuccess:   item->setIcon(1,iSuccess); break;
+                default:    break;
+            }
+            if (items.size() > (unsigned int)(depth))
+            {
+                items[depth] = item;
+            }
+            else
+            {
+                items.push_back(item);
+            }
         }
     }
-    }
+    resizeColumnToContents(0);
+    resizeColumnToContents(1);
 }

@@ -19,9 +19,10 @@ class QCustomTreeWidget: public QTreeWidget
         // overriden methods
         void mousePressEvent(QMouseEvent *e);
         void keyReleaseEvent(QKeyEvent *e);
-        void paintEvent(QPaintEvent *e);
-    protected slots:
-        void changeItem(QTreeWidgetItem* item,int column);
+    public slots:
+        void on_itemChanged(QTreeWidgetItem* item,int column);
+        void on_itemCollapsed();
+        void on_itemExpanded();
     public:
         QCustomTreeWidget(QWidget *parent=NULL);
         ~QCustomTreeWidget();
