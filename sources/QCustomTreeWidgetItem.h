@@ -3,16 +3,16 @@
 
 #include <QTreeWidgetItem>
 #include "QCustomTreeWidget.h"
-#include "Item.h"
+#include "Branch.h"
 
 class QCustomTreeWidgetItem: public QTreeWidgetItem
 {
     private:
-        Item* pItem;
+        Branch* pBranch;
     public:
-        QCustomTreeWidgetItem(QCustomTreeWidget *parent, Item *item);
-        QCustomTreeWidgetItem(QCustomTreeWidgetItem *parent, Item *item);
-        Item* item();
+        QCustomTreeWidgetItem(QCustomTreeWidget *parent, Branch *branch);
+        QCustomTreeWidgetItem(QCustomTreeWidgetItem *parent, Branch *branch);
+        Branch* branch();
 };
 
 #endif

@@ -1,14 +1,14 @@
 #include "QCustomTreeWidgetItem.h"
 
-QCustomTreeWidgetItem::QCustomTreeWidgetItem(QCustomTreeWidget *parent, Item *item): QTreeWidgetItem(parent), pItem(item)
+QCustomTreeWidgetItem::QCustomTreeWidgetItem(QCustomTreeWidget *parent, Branch *branch): QTreeWidgetItem(parent), pBranch(branch)
 {
 }
 
-QCustomTreeWidgetItem::QCustomTreeWidgetItem(QCustomTreeWidgetItem *parent, Item *item): QTreeWidgetItem(parent), pItem(item)
+QCustomTreeWidgetItem::QCustomTreeWidgetItem(QCustomTreeWidgetItem *parent, Branch *branch): QTreeWidgetItem(parent), pBranch(branch)
 {
 }
 
-Item* QCustomTreeWidgetItem::item()
+Branch* QCustomTreeWidgetItem::branch()
 {
-    return pItem;
+    return pBranch;
 }

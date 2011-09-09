@@ -39,7 +39,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                 break;
         case Qt::RightButton:   if (item != NULL)
                                 {
-                                    Item *treeItem = dynamic_cast<QCustomTreeWidgetItem*>(item)->item();
+                                    Item *treeItem = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()->item();
                                     QAction* action = menuIcons->exec(e->globalPos());
                                     if (action == actionNone)
                                     {
@@ -86,7 +86,8 @@ void QCustomTreeWidget::on_itemChanged(QTreeWidgetItem* item, int column)
 {
     if (item != NULL && column == 0)
     {
-        dynamic_cast<QCustomTreeWidgetItem*>(item)->item()->setContent(item->text(0).toStdString());
+        dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()->item()->setContent(item->text(0).toStdString());
+        resizeColumnToContents(0);
     }
 }
 
@@ -115,11 +116,11 @@ void QCustomTreeWidget::setTree(Tree *tree)
             depth = it.depth();
             if (depth==0)
             {
-                item = new QCustomTreeWidgetItem(this, *it);
+                item = new QCustomTreeWidgetItem(this, it.branch());
             }
             else
             {
-                item = new QCustomTreeWidgetItem(items[depth-1], *it);
+                item = new QCustomTreeWidgetItem(items[depth-1], it.branch());
             }
             item->setText(0,(*it)->content().c_str());
             switch ((*it)->state())

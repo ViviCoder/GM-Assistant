@@ -517,3 +517,16 @@ Branch* Tree::iterator::parent() const
         return NULL;
     }
 }
+
+Branch* Tree::iterator::branch() const
+{
+    try
+    {
+        return *qIts.back();
+    }
+    catch(exception e)
+    {
+        return NULL;
+    }
+    
+}

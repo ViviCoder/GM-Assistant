@@ -47,6 +47,7 @@ class Tree
                 // information about the position of the iterator
                 int depth() const;
                 Branch* parent() const;
+                Branch* branch() const;
         };
         // constructors
         Tree(Branch* parent=NULL);
