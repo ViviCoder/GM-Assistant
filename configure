@@ -3,6 +3,10 @@
 # Initializing some options
 debug="false"
 
+# Find the OS
+OS=$(uname)
+echo OS system: $OS
+
 # Reading options
 supported_short_options="gh"
 supported_long_options="help,debug"
@@ -49,29 +53,36 @@ echo "* Checking development files... *"
 echo "*********************************"
 
 # Needed headers
-cxx_devs="iterator string vector sstream iostream stdexcept"
+#cxx_devs="iterator string vector sstream iostream stdexcept"
 xml_devs="libxml++"
 
-cxx_version=$(g++ --version | sed -e "s/g++.*(.*) //" | grep -o -e "[0-9]\{1,\}\.[0-9]\{1,\}")
-cxx_dev_path="/usr/include/c++/$cxx_version"
-echo - C++ standard library: $cxx_dev_path
-for dev in $cxx_devs
-do
-    if [ -e "$cxx_dev_path/$dev" ]
-    then
-        echo $dev: OK
-    else
-        echo $dev missing !
-        exit
-    fi
-done
+#cxx_version=$(g++ --version | sed -e "s/g++.*(.*) //" | grep -o -e "[0-9]\{1,\}\.[0-9]\{1,\}")
+#cxx_dev_path="/usr/include/c++/$cxx_version"
+#echo - C++ standard library: $cxx_dev_path
+#for dev in $cxx_devs
+#do
+#    if [ -e "$cxx_dev_path/$dev" ]
+#    then
+#        echo $dev: OK
+#    else
+#        echo $dev missing !
+#        exit
+#    fi
+#done
 
 echo
-xml_dev_path=$(ls -l /usr/include/ | grep -o -e "libxml++-[0-9]\{1,\}\.[0-9]\{1,\}" | head -n 1)
-echo - XML++ library: /usr/include/$xml_dev_path
+if [ $OS = "Linux" ]
+then
+	lib_path="/usr/include/"
+elif [ $OS = "Darwin" ]
+then
+	lib_path="/opt/local/include/"
+fi
+xml_dev_path=$(ls -l $lib_path | grep -o -e "libxml++-[0-9]\{1,\}\.[0-9]\{1,\}" | head -n 1)
+
 for dev in $xml_devs
 do
-    if [ -e "/usr/include/$xml_dev_path/libxml++/$dev.h" ]
+    if [ -e "$lib_path$xml_dev_path/libxml++/$dev.h" ]
     then
         echo $dev.h: OK
     else
