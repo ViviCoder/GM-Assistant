@@ -2,7 +2,7 @@
 #include "QCustomTreeWidgetItem.h"
 #include <QApplication>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), iFailure("data/images/failure.png"),iSuccess("data/images/check.png"),iProgress("data/images/uncheck.png") 
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), iFailure("data/images/failure.png"),iSuccess("data/images/check.png"),iProgress("data/images/uncheck.png"), pTree(NULL) 
 {
     // popup menu
     actionNone = menuIcons->addAction(QApplication::translate("custom","&None",0));
@@ -12,6 +12,11 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     actionFailure->setIconVisibleInMenu(true);
     actionSuccess = menuIcons->addAction(iSuccess,QApplication::translate("custom","&Succeeded",0));
     actionSuccess->setIconVisibleInMenu(true);
+    menuIcons->addSeparator();
+    actionAdd = menuIcons->addAction(QIcon("data/images/Add.png"),QApplication::translate("custom","&Add",0));
+    actionAdd->setIconVisibleInMenu(true);
+    actionDelete = menuIcons->addAction(QIcon("data/images/remove.png"),QApplication::translate("custom","&Delete",0));
+    actionDelete->setIconVisibleInMenu(true);
     // connecting signals
     connect(this, SIGNAL(itemChanged(QTreeWidgetItem *,int)), SLOT(on_itemChanged(QTreeWidgetItem*, int)));
     connect(this, SIGNAL(itemCollapsed(QTreeWidgetItem *)), SLOT(on_itemCollapsed()));
@@ -39,7 +44,8 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                 break;
         case Qt::RightButton:   if (item != NULL)
                                 {
-                                    Item *treeItem = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()->item();
+                                    Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
+                                    Item *treeItem = branch->item();
                                     QAction* action = menuIcons->exec(e->globalPos());
                                     if (action == actionNone)
                                     {
@@ -60,6 +66,25 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     {
                                         item->setIcon(1,iSuccess);
                                         treeItem->setState(sSuccess);
+                                    }
+                                    else if (action == actionDelete)
+                                    {
+                                        // delete item
+                                        Branch *parent = branch->parent();
+                                        if (parent==NULL)
+                                        {
+                                            if (pTree != NULL)
+                                            {
+                                                pTree->remove(pTree->indexOf(branch));
+                                            }
+                                        }
+                                        else
+                                        {
+                                            parent->tree().remove(parent->tree().indexOf(branch));
+                                        }
+                                        // delete widgetItem
+                                        delete item;
+                                        resizeColumnToContents(0);
                                     }
                                 }
                                 break;
@@ -103,6 +128,7 @@ void QCustomTreeWidget::on_itemExpanded()
 
 void QCustomTreeWidget::setTree(Tree *tree)
 {
+    pTree = tree;
     clear();
     setColumnCount(2);
     if (tree != NULL)

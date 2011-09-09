@@ -13,7 +13,7 @@ class QCustomTreeWidget: public QTreeWidget
     private:
         QMenu *menuIcons;
         QIcon iFailure,iSuccess,iProgress;
-        QAction *actionNone, *actionProgress, *actionFailure, *actionSuccess;
+        QAction *actionNone, *actionProgress, *actionFailure, *actionSuccess, *actionAdd, *actionDelete;
         Tree *pTree;
     protected:
         // overriden methods

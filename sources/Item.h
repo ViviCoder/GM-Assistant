@@ -15,7 +15,7 @@ class Item
         // constructor
         Item(const std::string &content="", State state=sNone);
         // accessors
-        const std::string& content() const;
+        std::string content() const;
         void setContent(const std::string &content);
         State state() const;
         void setState(State state);

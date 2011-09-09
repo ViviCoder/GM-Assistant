@@ -79,10 +79,13 @@ class Tree
         void add(const std::string &content, State state=sNone);
         void add(int depth, const std::string &content, State state=sNone) throw(std::out_of_range);
         void addChild(const std::string &content, State state=sNone);
-        void remove(const std::string &indices, bool toDelete=true) throw(std::out_of_range);
+        void remove(int index, bool toDelete=true) throw(std::out_of_range);
+        void remove(const std::string &indices, bool toDelete=true);
         void move(const std::string &currentIndices, const std::string &newIndices);
         // index extractor
         static int extractIndex(std::string &indices);
+        // get the index of a branch
+        int indexOf(Branch *branch) const;
 };
 
 #include "Branch.h"

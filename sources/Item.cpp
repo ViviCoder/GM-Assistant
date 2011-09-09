@@ -6,7 +6,7 @@ Item::Item(const string &content, State state): sState(state), sContent(content)
 {
 }
 
-const string& Item::content() const
+string Item::content() const
 {
     return sContent;
 }

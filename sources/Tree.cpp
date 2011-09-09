@@ -355,23 +355,27 @@ void Tree::addChild(const string &content, State state)
     }
 }
 
-void Tree::remove(const string &indices, bool toDelete) throw(out_of_range)
+void Tree::remove(int index, bool toDelete) throw(out_of_range)
 {
-    string sub(indices);
-    int n = extractIndex(sub);
-    if (n<0 || (unsigned int) n >= vChildren.size())
+    if (index<0 || (unsigned int) index >= vChildren.size())
     {
         throw out_of_range("Index out of bounds");
     }
+    Branch *branch = vChildren[index];
+    vChildren.erase(vChildren.begin()+index);
+    if (toDelete)
+    {
+        delete branch;
+    }
+}
+
+void Tree::remove(const string &indices, bool toDelete)
+{
+    string sub(indices);
+    int n = extractIndex(sub);
     if (sub=="")
     {
-        Branch *branch = vChildren[n];
-        vChildren.erase(vChildren.begin()+n);
-        if (toDelete)
-        {
-            delete branch->item();
-            delete branch;
-        }
+        remove(n,toDelete);
     }
     else
     {
@@ -400,6 +404,27 @@ void Tree::move(const string &currentIndices, const string &newIndices)
         }
     }
     remove(indices,false);    
+}
+
+int Tree::indexOf(Branch *branch) const
+{
+    if (vChildren.size()==0)
+    {
+        return -1;  // not found
+    }
+    int res = 0;
+    for (vector<Branch *>::const_iterator it = vChildren.begin(); it != vChildren.end() && *it != branch; it++)
+    {
+        res++;
+    }
+    if ((unsigned int)res < vChildren.size() && vChildren[res] == branch)
+    {
+        return res;
+    }
+    else
+    {
+        return -1;
+    }
 }
 
 // iterator's methods

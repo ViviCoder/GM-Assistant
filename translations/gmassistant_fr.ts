@@ -2,6 +2,53 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="fr_FR">
 <context>
+    <name>DialogItem</name>
+    <message>
+        <source>Create item</source>
+        <translation type="obsolete">Créer un item</translation>
+    </message>
+    <message>
+        <location filename="../sources/DiaglogItem.ui" line="14"/>
+        <source>Create a new item</source>
+        <translation>Créer un nouvel item</translation>
+    </message>
+    <message>
+        <location filename="../sources/DiaglogItem.ui" line="32"/>
+        <source>&amp;None</source>
+        <translation>&amp;Aucun</translation>
+    </message>
+    <message>
+        <location filename="../sources/DiaglogItem.ui" line="39"/>
+        <source>In &amp;progress</source>
+        <translation>En &amp;cours</translation>
+    </message>
+    <message>
+        <location filename="../sources/DiaglogItem.ui" line="50"/>
+        <source>&amp;Failed</source>
+        <translation>&amp;Échoué</translation>
+    </message>
+    <message>
+        <location filename="../sources/DiaglogItem.ui" line="61"/>
+        <source>&amp;Succeeded</source>
+        <translation>&amp;Réussi</translation>
+    </message>
+    <message>
+        <location filename="../sources/DiaglogItem.ui" line="74"/>
+        <source>&amp;Add</source>
+        <translation>A&amp;jouter</translation>
+    </message>
+    <message>
+        <location filename="../sources/DiaglogItem.ui" line="85"/>
+        <source>S&amp;on</source>
+        <translation>&amp;Fils</translation>
+    </message>
+    <message>
+        <location filename="../sources/DiaglogItem.ui" line="96"/>
+        <source>&amp;Cancel</source>
+        <translation>A&amp;nnuler</translation>
+    </message>
+</context>
+<context>
     <name>action</name>
     <message>
         <location filename="../sources/MainWindow.cpp" line="23"/>
@@ -92,6 +139,16 @@
         <location filename="../sources/QCustomTreeWidget.cpp" line="13"/>
         <source>&amp;Succeeded</source>
         <translation>&amp;Réussi</translation>
+    </message>
+    <message>
+        <location filename="../sources/QCustomTreeWidget.cpp" line="16"/>
+        <source>&amp;Add</source>
+        <translation>A&amp;jouter</translation>
+    </message>
+    <message>
+        <location filename="../sources/QCustomTreeWidget.cpp" line="18"/>
+        <source>&amp;Delete</source>
+        <translation>&amp;Supprimer</translation>
     </message>
 </context>
 <context>
