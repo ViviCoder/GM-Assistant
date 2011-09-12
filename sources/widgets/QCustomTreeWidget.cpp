@@ -44,7 +44,8 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                 break;
         case Qt::RightButton:   if (item != NULL)
                                 {
-                                    Item *treeItem = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()->item();
+                                    QCustomTreeWidgetItem *qItem = dynamic_cast<QCustomTreeWidgetItem*>(item);
+                                    Item *treeItem = qItem->branch()->item();
                                     QAction* action = menuIcons->exec(e->globalPos());
                                     if (action == actionNone)
                                     {
@@ -73,6 +74,19 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     else if (action == actionAdd)
                                     {
                                         pItemDial->show();
+                                        if (pItemDial->result()!=ItemDialog::rCancel)
+                                        {
+                                            switch (pItemDial->result())
+                                            {
+                                                case ItemDialog::rBrother:  {
+                                                                                break;
+                                                                            }
+                                                case ItemDialog::rChild:    {
+                                                                                break;
+                                                                            }
+                                                default: break;
+                                            }
+                                        }
                                     }
                                 }
                                 break;

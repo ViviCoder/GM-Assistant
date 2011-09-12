@@ -207,6 +207,18 @@
         <source>&amp;Cancel</source>
         <translation>A&amp;nnuler</translation>
     </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="40"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="53"/>
+        <source>Uncomplete data</source>
+        <translation>Données incomplètes</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="40"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="53"/>
+        <source>You must fill the content before validating.</source>
+        <translation>Vous devez remplir le contenu avant de valider.</translation>
+    </message>
 </context>
 <context>
     <name>mainWindow</name>
