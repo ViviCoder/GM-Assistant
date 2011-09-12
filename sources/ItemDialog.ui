@@ -32,8 +32,8 @@
       <string>&amp;None</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../data/images/empty.png</normaloff>../data/images/empty.png</iconset>
+      <iconset resource="../ressource.qrc">
+       <normaloff>:/data/images/empty.png</normaloff>:/data/images/empty.png</iconset>
      </property>
     </widget>
    </item>
@@ -43,8 +43,8 @@
       <string>In &amp;progress</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../data/images/uncheck.png</normaloff>../data/images/uncheck.png</iconset>
+      <iconset resource="../ressource.qrc">
+       <normaloff>:/data/images/uncheck.png</normaloff>:/data/images/uncheck.png</iconset>
      </property>
     </widget>
    </item>
@@ -54,8 +54,8 @@
       <string>&amp;Failed</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../data/images/failure.png</normaloff>../data/images/failure.png</iconset>
+      <iconset resource="../ressource.qrc">
+       <normaloff>:/data/images/failure.png</normaloff>:/data/images/failure.png</iconset>
      </property>
     </widget>
    </item>
@@ -65,8 +65,8 @@
       <string>&amp;Succeeded</string>
      </property>
      <property name="icon">
-      <iconset>
-       <normaloff>../data/images/check.png</normaloff>../data/images/check.png</iconset>
+      <iconset resource="../ressource.qrc">
+       <normaloff>:/data/images/check.png</normaloff>:/data/images/check.png</iconset>
      </property>
     </widget>
    </item>
@@ -78,8 +78,8 @@
         <string>&amp;Add</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>../data/images/add.png</normaloff>../data/images/add.png</iconset>
+        <iconset resource="../ressource.qrc">
+         <normaloff>:/data/images/add.png</normaloff>:/data/images/add.png</iconset>
        </property>
        <property name="shortcut">
         <string>Return</string>
@@ -92,8 +92,8 @@
         <string>S&amp;on</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>../data/images/son.png</normaloff>../data/images/son.png</iconset>
+        <iconset resource="../ressource.qrc">
+         <normaloff>:/data/images/son.png</normaloff>:/data/images/son.png</iconset>
        </property>
       </widget>
      </item>
@@ -103,8 +103,8 @@
         <string>&amp;Cancel</string>
        </property>
        <property name="icon">
-        <iconset>
-         <normaloff>../data/images/delete.png</normaloff>../data/images/delete.png</iconset>
+        <iconset resource="../ressource.qrc">
+         <normaloff>:/data/images/delete.png</normaloff>:/data/images/delete.png</iconset>
        </property>
        <property name="shortcut">
         <string>Esc</string>
@@ -118,6 +118,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../ressource.qrc"/>
+ </resources>
  <connections/>
 </ui>
