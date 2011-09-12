@@ -13,7 +13,7 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     actionSuccess = menuIcons->addAction(iSuccess,QApplication::translate("custom","&Succeeded",0));
     actionSuccess->setIconVisibleInMenu(true);
     menuIcons->addSeparator();
-    actionAdd = menuIcons->addAction(QIcon("data/images/Add.png"),QApplication::translate("custom","&Add",0));
+    actionAdd = menuIcons->addAction(QIcon("data/images/add.png"),QApplication::translate("custom","&Add",0));
     actionAdd->setIconVisibleInMenu(true);
     actionDelete = menuIcons->addAction(QIcon("data/images/remove.png"),QApplication::translate("custom","&Delete",0));
     actionDelete->setIconVisibleInMenu(true);

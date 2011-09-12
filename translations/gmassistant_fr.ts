@@ -146,7 +146,7 @@
 <context>
     <name>itemDialog</name>
     <message>
-        <location filename="../sources/ItemDialog.ui" line="14"/>
+        <location filename="../sources/ItemDialog.ui" line="17"/>
         <source>Create a new item</source>
         <translation>Créer un nouvel item</translation>
     </message>
@@ -176,14 +176,24 @@
         <translation>A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/ItemDialog.ui" line="85"/>
+        <location filename="../sources/ItemDialog.ui" line="81"/>
+        <source>Return</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../sources/ItemDialog.ui" line="88"/>
         <source>S&amp;on</source>
         <translation>&amp;Fils</translation>
     </message>
     <message>
-        <location filename="../sources/ItemDialog.ui" line="96"/>
+        <location filename="../sources/ItemDialog.ui" line="99"/>
         <source>&amp;Cancel</source>
         <translation>A&amp;nnuler</translation>
+    </message>
+    <message>
+        <location filename="../sources/ItemDialog.ui" line="106"/>
+        <source>Esc</source>
+        <translation></translation>
     </message>
 </context>
 <context>
