@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>itemDialog</class>
+ <widget class="QDialog" name="itemDialog">
+  <property name="windowModality">
+   <enum>Qt::ApplicationModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>289</width>
+    <height>295</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Create a new item</string>
+  </property>
+  <property name="modal">
+   <bool>true</bool>
+  </property>
+  <layout class="QVBoxLayout" name="_2">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetFixedSize</enum>
+   </property>
+   <item>
+    <widget class="QGroupBox" name="groupBox_2">
+     <property name="title">
+      <string>Content</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLineEdit" name="editItem"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="title">
+      <string>State</string>
+     </property>
+     <layout class="QVBoxLayout" name="_3">
+      <item>
+       <widget class="QRadioButton" name="radioNone">
+        <property name="text">
+         <string>&amp;None</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../ressource.qrc">
+          <normaloff>:/data/images/empty.png</normaloff>:/data/images/empty.png</iconset>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioProgress">
+        <property name="text">
+         <string>In &amp;progress</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../ressource.qrc">
+          <normaloff>:/data/images/uncheck.png</normaloff>:/data/images/uncheck.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioFailure">
+        <property name="text">
+         <string>&amp;Failed</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../ressource.qrc">
+          <normaloff>:/data/images/failure.png</normaloff>:/data/images/failure.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioSuccess">
+        <property name="text">
+         <string>&amp;Succeeded</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../ressource.qrc">
+          <normaloff>:/data/images/check.png</normaloff>:/data/images/check.png</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QPushButton" name="pushBrother">
+       <property name="text">
+        <string>&amp;Add</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../ressource.qrc">
+         <normaloff>:/data/images/add.png</normaloff>:/data/images/add.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushChild">
+       <property name="text">
+        <string>C&amp;hild</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../ressource.qrc">
+         <normaloff>:/data/images/son.png</normaloff>:/data/images/son.png</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushCancel">
+       <property name="text">
+        <string>&amp;Cancel</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../ressource.qrc">
+         <normaloff>:/data/images/delete.png</normaloff>:/data/images/delete.png</iconset>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../ressource.qrc"/>
+ </resources>
+ <connections/>
+</ui>

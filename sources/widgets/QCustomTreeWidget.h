@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <QMenu>
 #include "Tree.h"
+#include "ItemDialog.h"
 
 class QCustomTreeWidget: public QTreeWidget
 {
@@ -15,6 +16,7 @@ class QCustomTreeWidget: public QTreeWidget
         QIcon iFailure,iSuccess,iProgress;
         QAction *actionNone, *actionProgress, *actionFailure, *actionSuccess, *actionAdd, *actionDelete;
         Tree *pTree;
+        ItemDialog *pItemDial;
     protected:
         // overriden methods
         void mousePressEvent(QMouseEvent *e);

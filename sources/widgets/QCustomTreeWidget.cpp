@@ -2,7 +2,7 @@
 #include "QCustomTreeWidgetItem.h"
 #include <QApplication>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), iFailure(":/data/images/failure.png"),iSuccess(":/data/images/check.png"),iProgress(":/data/images/uncheck.png"), pTree(NULL) 
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), iFailure(":/data/images/failure.png"),iSuccess(":/data/images/check.png"),iProgress(":/data/images/uncheck.png"), pTree(NULL), pItemDial(new ItemDialog(this)) 
 {
     // popup menu
     actionNone = menuIcons->addAction(QApplication::translate("custom","&None",0));
@@ -69,6 +69,10 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     else if (action == actionDelete)
                                     {
                                         deleteItem(item);
+                                    }
+                                    else if (action == actionAdd)
+                                    {
+                                        pItemDial->show();
                                     }
                                 }
                                 break;

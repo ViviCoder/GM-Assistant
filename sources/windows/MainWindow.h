@@ -3,7 +3,6 @@
 
 #include "ui_MainWindow.h"
 #include "Engine.h"
-#include "ItemDialog.h"
 
 class MainWindow: public QMainWindow, private Ui::mainWindow
 {
@@ -12,7 +11,6 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         QString sFileName;
         bool bModified;
         QIcon iFailure,iSuccess,iProgress;
-        ItemDialog *pItemDial;
     public:
         // constructor
         MainWindow();
