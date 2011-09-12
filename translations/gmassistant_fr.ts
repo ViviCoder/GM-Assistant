@@ -8,44 +8,36 @@
         <translation type="obsolete">Créer un item</translation>
     </message>
     <message>
-        <location filename="../sources/DiaglogItem.ui" line="14"/>
         <source>Create a new item</source>
-        <translation>Créer un nouvel item</translation>
+        <translation type="obsolete">Créer un nouvel item</translation>
     </message>
     <message>
-        <location filename="../sources/DiaglogItem.ui" line="32"/>
         <source>&amp;None</source>
-        <translation>&amp;Aucun</translation>
+        <translation type="obsolete">&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/DiaglogItem.ui" line="39"/>
         <source>In &amp;progress</source>
-        <translation>En &amp;cours</translation>
+        <translation type="obsolete">En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/DiaglogItem.ui" line="50"/>
         <source>&amp;Failed</source>
-        <translation>&amp;Échoué</translation>
+        <translation type="obsolete">&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/DiaglogItem.ui" line="61"/>
         <source>&amp;Succeeded</source>
-        <translation>&amp;Réussi</translation>
+        <translation type="obsolete">&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/DiaglogItem.ui" line="74"/>
         <source>&amp;Add</source>
-        <translation>A&amp;jouter</translation>
+        <translation type="obsolete">A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/DiaglogItem.ui" line="85"/>
         <source>S&amp;on</source>
-        <translation>&amp;Fils</translation>
+        <translation type="obsolete">&amp;Fils</translation>
     </message>
     <message>
-        <location filename="../sources/DiaglogItem.ui" line="96"/>
         <source>&amp;Cancel</source>
-        <translation>A&amp;nnuler</translation>
+        <translation type="obsolete">A&amp;nnuler</translation>
     </message>
 </context>
 <context>
@@ -149,6 +141,49 @@
         <location filename="../sources/QCustomTreeWidget.cpp" line="18"/>
         <source>&amp;Delete</source>
         <translation>&amp;Supprimer</translation>
+    </message>
+</context>
+<context>
+    <name>itemDialog</name>
+    <message>
+        <location filename="../sources/ItemDialog.ui" line="14"/>
+        <source>Create a new item</source>
+        <translation>Créer un nouvel item</translation>
+    </message>
+    <message>
+        <location filename="../sources/ItemDialog.ui" line="32"/>
+        <source>&amp;None</source>
+        <translation>&amp;Aucun</translation>
+    </message>
+    <message>
+        <location filename="../sources/ItemDialog.ui" line="39"/>
+        <source>In &amp;progress</source>
+        <translation>En &amp;cours</translation>
+    </message>
+    <message>
+        <location filename="../sources/ItemDialog.ui" line="50"/>
+        <source>&amp;Failed</source>
+        <translation>&amp;Échoué</translation>
+    </message>
+    <message>
+        <location filename="../sources/ItemDialog.ui" line="61"/>
+        <source>&amp;Succeeded</source>
+        <translation>&amp;Réussi</translation>
+    </message>
+    <message>
+        <location filename="../sources/ItemDialog.ui" line="74"/>
+        <source>&amp;Add</source>
+        <translation>A&amp;jouter</translation>
+    </message>
+    <message>
+        <location filename="../sources/ItemDialog.ui" line="85"/>
+        <source>S&amp;on</source>
+        <translation>&amp;Fils</translation>
+    </message>
+    <message>
+        <location filename="../sources/ItemDialog.ui" line="96"/>
+        <source>&amp;Cancel</source>
+        <translation>A&amp;nnuler</translation>
     </message>
 </context>
 <context>
