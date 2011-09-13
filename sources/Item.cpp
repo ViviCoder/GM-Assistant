@@ -26,7 +26,7 @@ void Item::setState(State state)
     sState = state;
 }
 
-Type Item::type()
+Item::Type Item::type() const
 {
-    return tBasic
+    return tBasic;
 }
