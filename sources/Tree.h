@@ -73,7 +73,8 @@ class Tree
         Item* operator[](const std::string &indices) throw(std::out_of_range);
         Branch* parent() const;
         // populating the list
-        Branch* insert(const std::string &indices, Item *item) throw(std::out_of_range);
+        Branch* insert(int index, Item *item) throw(std::out_of_range);
+        Branch* insert(const std::string &indices, Item *item);
         Branch* add(Item *item);
         Branch* add(int depth, Item *item) throw(std::out_of_range);
         Branch* addChild(Item *item);

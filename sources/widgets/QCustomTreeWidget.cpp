@@ -84,13 +84,13 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                                                                 Branch *branch = qItem->branch()->parent();
                                                                                 if (branch==NULL)
                                                                                 {
-                                                                                    Branch *newBranch = pTree->add(newItem);
-                                                                                    newQItem = new QCustomTreeWidgetItem(this,newBranch);
+                                                                                    Branch *newBranch = pTree->insert(pTree->indexOf(qItem->branch())+1,newItem);
+                                                                                    newQItem = new QCustomTreeWidgetItem(this,newBranch,qItem);
                                                                                 }
                                                                                 else
                                                                                 {
-                                                                                    Branch *newBranch = branch->tree().add(newItem);
-                                                                                    newQItem = new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem->parent()),newBranch);
+                                                                                    Branch *newBranch = branch->tree().insert(branch->tree().indexOf(qItem->branch())+1,newItem);
+                                                                                    newQItem = new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem->parent()),newBranch,qItem);
                                                                                 }
                                                                                 break;
                                                                             }
@@ -106,6 +106,21 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                             resizeColumnToContents(0);
                                         }
                                     }
+                                }
+                                else if (topLevelItemCount()==0)
+                                {
+                                    pItemDial->exec();
+                                    if (pItemDial->result()==QDialog::Accepted)
+                                    {
+                                        Item *newItem = new Item(pItemDial->text().toStdString(),pItemDial->state());
+                                        QCustomTreeWidgetItem *newQItem = NULL;
+                                        Branch *newBranch = pTree->add(newItem);
+                                        newQItem = new QCustomTreeWidgetItem(this,newBranch);
+                                        newQItem->setText(0,newItem->content().c_str());;
+                                        newQItem->setIcon(1,icon(newItem->state()));
+                                        resizeColumnToContents(0);
+                                    }
+                                    
                                 }
                                 break;
         default:    break;

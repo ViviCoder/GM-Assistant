@@ -278,26 +278,27 @@ Branch* Tree::branch(const string &indices) throw(out_of_range)
     }
 }
 
-Branch* Tree::insert(const string &indices, Item *item) throw(out_of_range)
+Branch* Tree::insert(int index, Item *item) throw(out_of_range)
 {
-    string sub(indices);
-    int n = extractIndex(sub);
-    if (n<0 || (unsigned int) n > vChildren.size()) // n can be equal to vChildren.size() but only for the last index
+    if (index<0 || (unsigned int) index > vChildren.size()) // n can be equal to vChildren.size() but only for the last index
     {
         throw out_of_range("Index out of bounds");
     }
+    Branch *branch = new Branch(item,pParent);
+    vChildren.insert(vChildren.begin()+index,branch);
+    return branch;  // returns the branch just created
+}
+
+Branch* Tree::insert(const string &indices, Item *item)
+{
+    string sub(indices);
+    int n = extractIndex(sub);
     if (sub=="")
     {
-        Branch *branch = new Branch(item,pParent);
-        vChildren.insert(vChildren.begin()+n,branch);
-        return branch;  // returns the branch just created
+        return insert(n,item);
     }
     else
     {
-        if ((unsigned int)n==vChildren.size())
-        {
-            throw out_of_range("Index out of bounds");
-        }
         return vChildren[n]->tree().insert(sub,item);
     }
 }
