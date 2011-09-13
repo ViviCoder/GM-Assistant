@@ -25,3 +25,8 @@ void Item::setState(State state)
 {
     sState = state;
 }
+
+Type Item::type()
+{
+    return tBasic
+}
