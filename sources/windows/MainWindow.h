@@ -3,6 +3,7 @@
 
 #include "ui_MainWindow.h"
 #include "Engine.h"
+#include "AboutDialog.h"
 
 class MainWindow: public QMainWindow, private Ui::mainWindow
 {
@@ -11,6 +12,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         QString sFileName;
         bool bModified;
         QIcon iFailure,iSuccess,iProgress;
+        AboutDialog *pAboutDial;
     public:
         // constructor
         MainWindow();
@@ -18,6 +20,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
     Q_OBJECT
     private slots:
         // actions
+        void on_actionAbout_triggered();
         void on_action_Quit_triggered();
         void on_action_Load_triggered();
         void on_action_Save_triggered();

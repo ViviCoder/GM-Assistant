@@ -3,7 +3,7 @@
 #include <QMessageBox>
 #include "QCustomTreeWidgetItem.h"
 
-MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), iFailure(":/data/images/failure.png"),iSuccess(":/data/images/check.png"),iProgress(":/data/images/uncheck.png")
+MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), iFailure(":/data/images/failure.png"),iSuccess(":/data/images/check.png"),iProgress(":/data/images/uncheck.png"), pAboutDial(new AboutDialog(this))
 {
     setupUi(this);
     treeScenario->setTree(&eGame.scenario());
@@ -12,6 +12,12 @@ MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), iFa
     treeFX->setTree(&eGame.effects());
     updateDisplay();
 }
+
+void MainWindow::on_actionAbout_triggered()
+{
+    pAboutDial->exec();
+}
+
 
 void MainWindow::on_action_Quit_triggered()
 {

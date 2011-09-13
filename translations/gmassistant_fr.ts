@@ -2,6 +2,64 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="fr_FR">
 <context>
+    <name>AboutDialog</name>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="26"/>
+        <source>Dialog</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="51"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Version:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="62"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;GM-Assistant&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="73"/>
+        <source>Gm-Assistant is a free software
+ to assiste a Game master
+ during a role playing game</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="82"/>
+        <source>&amp;Close</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="89"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Using:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;and&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.fmod.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Audio engine : FMOD Sound &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.fmod.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;System by Firelight Technologies&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;and&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;LibXML++&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="106"/>
+        <source>1.0</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>DialogItem</name>
     <message>
         <source>Create item</source>
@@ -41,37 +99,80 @@
     </message>
 </context>
 <context>
+    <name>Dialog_Item</name>
+    <message>
+        <location filename="../sources/EditItem.ui" line="14"/>
+        <source>Create item</source>
+        <translation type="unfinished">Créer un item</translation>
+    </message>
+    <message>
+        <location filename="../sources/EditItem.ui" line="32"/>
+        <source>&amp;None</source>
+        <translation type="unfinished">&amp;Aucun</translation>
+    </message>
+    <message>
+        <location filename="../sources/EditItem.ui" line="39"/>
+        <source>In &amp;progress</source>
+        <translation type="unfinished">En &amp;cours</translation>
+    </message>
+    <message>
+        <location filename="../sources/EditItem.ui" line="50"/>
+        <source>&amp;Failed</source>
+        <translation type="unfinished">&amp;Échoué</translation>
+    </message>
+    <message>
+        <location filename="../sources/EditItem.ui" line="61"/>
+        <source>&amp;Succeeded</source>
+        <translation type="unfinished">&amp;Réussi</translation>
+    </message>
+    <message>
+        <location filename="../sources/EditItem.ui" line="74"/>
+        <source>&amp;Add</source>
+        <translation type="unfinished">A&amp;jouter</translation>
+    </message>
+    <message>
+        <location filename="../sources/EditItem.ui" line="85"/>
+        <source>S&amp;on</source>
+        <translation type="unfinished">&amp;Fils</translation>
+    </message>
+    <message>
+        <location filename="../sources/EditItem.ui" line="96"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished">A&amp;nnuler</translation>
+    </message>
+</context>
+<context>
     <name>action</name>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="23"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="78"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="29"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="84"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="23"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="78"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="29"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="84"/>
         <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
         <translation>Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="25"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="31"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="25"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="66"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="31"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="72"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="42"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="48"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="66"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="72"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
@@ -269,79 +370,89 @@
         <translation>&amp;Jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="206"/>
+        <location filename="../sources/windows/MainWindow.ui" line="203"/>
+        <source>&amp;?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.ui" line="213"/>
         <source>&amp;New</source>
         <translation>&amp;Nouveau</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="209"/>
+        <location filename="../sources/windows/MainWindow.ui" line="216"/>
         <source>Create a new game</source>
         <translation>Crée un nouveau jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="212"/>
+        <location filename="../sources/windows/MainWindow.ui" line="219"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="217"/>
+        <location filename="../sources/windows/MainWindow.ui" line="224"/>
         <source>&amp;Load</source>
         <translation>&amp;Charger</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="220"/>
+        <location filename="../sources/windows/MainWindow.ui" line="227"/>
         <source>Load a game</source>
         <translation>Charge un jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="223"/>
+        <location filename="../sources/windows/MainWindow.ui" line="230"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="228"/>
+        <location filename="../sources/windows/MainWindow.ui" line="235"/>
         <source>&amp;Save</source>
         <translation>&amp;Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="231"/>
+        <location filename="../sources/windows/MainWindow.ui" line="238"/>
         <source>Save the current game</source>
         <translation>Sauvegarde le jeu en cours</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="234"/>
+        <location filename="../sources/windows/MainWindow.ui" line="241"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="239"/>
+        <location filename="../sources/windows/MainWindow.ui" line="246"/>
         <source>S&amp;ave as</source>
         <translation>S&amp;auvegarder sous</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="242"/>
+        <location filename="../sources/windows/MainWindow.ui" line="249"/>
         <source>Save the current game in a new file</source>
         <translation>Sauvegarde le jeu en cours dans un nouveau fichier</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="245"/>
+        <location filename="../sources/windows/MainWindow.ui" line="252"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="250"/>
+        <location filename="../sources/windows/MainWindow.ui" line="257"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="253"/>
+        <location filename="../sources/windows/MainWindow.ui" line="260"/>
         <source>Exit the application</source>
         <translation>Sort de l&apos;application</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="256"/>
+        <location filename="../sources/windows/MainWindow.ui" line="263"/>
         <source>Ctrl+Q</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.ui" line="268"/>
+        <source>&amp;About</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 </TS>
