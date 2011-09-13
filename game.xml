@@ -33,12 +33,22 @@ Celle-ci aussi, et sans bug !</notes>
     <item state="success" type="basic" content="n'importe quoi"/>
   </history>
   <music>
-    <item state="none" type="basic" content="Premier morceau.mp3"/>
-    <item state="success" type="basic" content="Morceau déjà joué.mp3"/>
-    <item state="failure" type="basic" content="Morceau non trouvé.mp3"/>
-    <item state="progress" type="basic" content="Morceau en cours.mp3"/>
+    <item state="none" type="sound" content="Premier morceau">
+      <file name="first.mp3"/>
+    </item>
+    <item state="success" type="sound" content="Morceau déjà joué">
+      <file name="already.mp3"/>
+    </item>
+    <item state="failure" type="sound" content="Morceau non trouvé">
+      <file name="notfound.mp3"/>
+    </item>
+    <item state="progress" type="sound" content="Morceau en cours">
+      <file name="progress.mp3"/>
+    </item>
   </music>
   <effects>
-    <item state="none" type="basic" content="Silence pesant"/>
+    <item state="none" type="sound" content="Porte">
+      <file name="door.mp3"/>
+    </item>
   </effects>
 </game>

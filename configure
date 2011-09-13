@@ -5,7 +5,7 @@ debug="false"
 
 # Find the OS
 OS=$(uname)
-echo OS system: $OS
+echo Operating system: $OS
 
 # Reading options
 supported_short_options="gh"

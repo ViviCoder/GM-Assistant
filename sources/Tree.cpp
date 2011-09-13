@@ -1,6 +1,6 @@
 #include "Tree.h"
 #include <sstream>
-#include "SoundItem.h"
+#include "ItemFactory.h"
 // for debugging
 //#include <iostream>
 
@@ -125,12 +125,7 @@ void Tree::fromXML(const xmlpp::Element &root)
         {
             content = attr->get_value();
         }
-        Item *item;
-        switch (type)
-        {
-            case Item::tBasic:  item = new Item(content,state); break;
-            case Item::tSound:  item = new SoundItem(content,state);    break;
-        }
+        Item *item = ItemFactory::createItem(type,content,state);
         item->fromXML(*elem);
         Branch *branch = new Branch(item,*elem,pParent);
         vChildren.push_back(branch);

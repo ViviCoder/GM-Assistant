@@ -1,5 +1,6 @@
 #include "QCustomTreeWidget.h"
 #include "QCustomTreeWidgetItem.h"
+#include "ItemFactory.h"
 #include <QApplication>
 
 QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), iFailure(":/data/images/failure.png"),iSuccess(":/data/images/check.png"),iProgress(":/data/images/uncheck.png"), pTree(NULL), pItemDial(new ItemDialog(this)) 
@@ -76,7 +77,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                         pItemDial->exec();
                                         if (pItemDial->result()==QDialog::Accepted)
                                         {
-                                            Item *newItem = new Item(pItemDial->text().toStdString(),pItemDial->state());
+                                            Item *newItem = ItemFactory::createItem(Item::tBasic,pItemDial->text().toStdString(),pItemDial->state());
                                             QCustomTreeWidgetItem *newQItem = NULL;
                                             switch (pItemDial->selectionResult())
                                             {
@@ -112,7 +113,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     pItemDial->exec();
                                     if (pItemDial->result()==QDialog::Accepted)
                                     {
-                                        Item *newItem = new Item(pItemDial->text().toStdString(),pItemDial->state());
+                                        Item *newItem = ItemFactory::createItem(Item::tBasic,pItemDial->text().toStdString(),pItemDial->state());
                                         QCustomTreeWidgetItem *newQItem = NULL;
                                         Branch *newBranch = pTree->add(newItem);
                                         newQItem = new QCustomTreeWidgetItem(this,newBranch);

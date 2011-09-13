@@ -1,4 +1,5 @@
 #include "Branch.h"
+#include "ItemFactory.h"
 
 // constructors
 
@@ -14,8 +15,9 @@ Branch::Branch(Item* item, const xmlpp::Element &root, Branch* parent): pItem(it
 {
 }
 
-Branch::Branch(const Branch &branch, Branch* parent): pItem(new Item(*branch.pItem)),tTree(branch.tTree,this), pParent(parent)
+Branch::Branch(const Branch &branch, Branch* parent): pParent(parent)
 {
+    *this = branch;
 }
 
 // destructor
@@ -46,7 +48,7 @@ Branch* Branch::parent() const
 
 Branch& Branch::operator=(const Branch &branch)
 {
-    pItem = new Item(*branch.pItem);
+    pItem = ItemFactory::copyItem(branch.item());
     tTree = branch.tTree;
 
     return *this;
