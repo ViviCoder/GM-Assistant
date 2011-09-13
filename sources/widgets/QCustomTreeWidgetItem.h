@@ -10,8 +10,8 @@ class QCustomTreeWidgetItem: public QTreeWidgetItem
     private:
         Branch* pBranch;
     public:
-        QCustomTreeWidgetItem(QTreeWidget *parent, Branch *branch);
-        QCustomTreeWidgetItem(QTreeWidgetItem *parent, Branch *branch);
+        QCustomTreeWidgetItem(QCustomTreeWidget *parent, Branch *branch);
+        QCustomTreeWidgetItem(QCustomTreeWidgetItem *parent, Branch *branch);
         Branch* branch();
 };
 

@@ -50,22 +50,22 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     if (action == actionNone)
                                     {
                                         item->setIcon(1,QIcon());
-                                        treeItem->setState(sNone);
+                                        treeItem->setState(Item::sNone);
                                     }
                                     else if (action == actionProgress)
                                     {
                                         item->setIcon(1,iProgress);
-                                        treeItem->setState(sProgress);
+                                        treeItem->setState(Item::sProgress);
                                     }
                                     else if (action == actionFailure)
                                     {
                                         item->setIcon(1,iFailure);
-                                        treeItem->setState(sFailure);
+                                        treeItem->setState(Item::sFailure);
                                     }
                                     else if (action == actionSuccess)
                                     {
                                         item->setIcon(1,iSuccess);
-                                        treeItem->setState(sSuccess);
+                                        treeItem->setState(Item::sSuccess);
                                     }
                                     else if (action == actionDelete)
                                     {
@@ -154,13 +154,7 @@ void QCustomTreeWidget::setTree(Tree *tree)
                 item = new QCustomTreeWidgetItem(items[depth-1], it.branch());
             }
             item->setText(0,(*it)->content().c_str());
-            switch ((*it)->state())
-            {
-                case    sProgress:  item->setIcon(1,iProgress); break;
-                case    sFailure:   item->setIcon(1,iFailure); break;
-                case    sSuccess:   item->setIcon(1,iSuccess); break;
-                default:    break;
-            }
+            item->setIcon(1,icon((*it)->state()));
             if (items.size() > (unsigned int)(depth))
             {
                 items[depth] = item;
@@ -194,4 +188,15 @@ void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
     // delete widgetItem
     delete item;
     resizeColumnToContents(0);
+}
+
+QIcon QCustomTreeWidget::icon(Item::State state) const
+{
+    switch (state)
+    {
+        case Item::sProgress: return iProgress;   break;
+        case Item::sFailure:  return iFailure;    break;
+        case Item::sSuccess:  return iSuccess;    break;
+        default:    return QIcon(); break;
+    }
 }

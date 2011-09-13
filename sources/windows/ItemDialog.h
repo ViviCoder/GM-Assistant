@@ -12,7 +12,7 @@ class ItemDialog: public QDialog, private Ui::itemDialog
         // constructor
         ItemDialog(QWidget *parent=NULL);
         // accessors
-        State state() const;
+        Item::State state() const;
         QString text() const;
 
     Q_OBJECT

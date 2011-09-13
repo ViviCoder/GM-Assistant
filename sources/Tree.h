@@ -27,16 +27,16 @@ class Tree
         {
             private:
                 IterationType itType;
-                State sState;
+                Item::State sState;
                 // underlying vector iterators
                 std::vector<std::vector<Branch*>::const_iterator> qIts;
             public:
                 // constructor
-                iterator(const std::vector<std::vector<Branch*>::const_iterator>& its, IterationType type=itNormal, State state=sNone);
-                iterator(const std::vector<Branch*>::const_iterator& it, IterationType type=itNormal, State state=sNone);
+                iterator(const std::vector<std::vector<Branch*>::const_iterator>& its, IterationType type=itNormal, Item::State state=Item::sNone);
+                iterator(const std::vector<Branch*>::const_iterator& it, IterationType type=itNormal, Item::State state=Item::sNone);
                 // accessors
                 IterationType type() const;
-                State state() const;
+                Item::State state() const;
                 void setType(IterationType type);
                 // overloaded operators
                 bool operator!=(const iterator& it) const;
@@ -67,18 +67,18 @@ class Tree
         // iterator-related methods
         iterator begin() const;
         iterator beginUnchecked() const;
-        iterator beginState(State state) const;
+        iterator beginState(Item::State state) const;
         iterator end() const;        
         iterator endUnchecked() const;
-        iterator endState(State state) const;
+        iterator endState(Item::State state) const;
         // accessors
         Item* operator[](const std::string &indices) throw(std::out_of_range);
         Branch* parent() const;
         // populating the list
-        void insert(const std::string &indices, const std::string &content, State state=sNone) throw(std::out_of_range);
-        void add(const std::string &content, State state=sNone);
-        void add(int depth, const std::string &content, State state=sNone) throw(std::out_of_range);
-        void addChild(const std::string &content, State state=sNone);
+        Branch* insert(const std::string &indices, Item *item) throw(std::out_of_range);
+        Branch* add(Item *item);
+        Branch* add(int depth, Item *item) throw(std::out_of_range);
+        Branch* addChild(Item *item);
         void remove(int index, bool toDelete=true) throw(std::out_of_range);
         void remove(const std::string &indices, bool toDelete=true);
         void move(const std::string &currentIndices, const std::string &newIndices);

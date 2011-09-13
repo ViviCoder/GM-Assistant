@@ -31,6 +31,8 @@ class QCustomTreeWidget: public QTreeWidget
         ~QCustomTreeWidget();
         // associating a tree to the widget
         void setTree(Tree *tree);
+        // associating an icon to a state
+        QIcon icon(Item::State state) const;
 };
 
 #endif

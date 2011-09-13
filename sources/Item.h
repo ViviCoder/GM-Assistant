@@ -3,15 +3,11 @@
 
 #include <string>
 
-// Different possible states for the item   
-enum State {sNone,sProgress,sSuccess,sFailure};
-
 class Item
 {
-    private:
-        State sState;
-        std::string sContent;
     public:
+        // Different possible states for the item   
+        enum State {sNone,sProgress,sSuccess,sFailure};
         // constructor
         Item(const std::string &content="", State state=sNone);
         // accessors
@@ -19,6 +15,9 @@ class Item
         void setContent(const std::string &content);
         State state() const;
         void setState(State state);
+    private:
+        State sState;
+        std::string sContent;
 };
 
 #endif

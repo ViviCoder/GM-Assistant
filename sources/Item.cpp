@@ -16,7 +16,7 @@ void Item::setContent(const string &content)
     sContent = content;
 }
 
-State Item::state() const
+Item::State Item::state() const
 {
     return sState;
 }

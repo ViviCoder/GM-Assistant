@@ -3,7 +3,6 @@
 // for debugging
 //#include <iostream>
 
-
 using namespace std;
 
 // constructors
@@ -115,7 +114,7 @@ void Tree::fromXML(const xmlpp::Element &root)
             buf << attr->get_value();
             buf >> state;
         }
-        Branch *branch = new Branch(new Item(elem->get_child_text()->get_content(),State(state)),*elem,pParent);
+        Branch *branch = new Branch(new Item(elem->get_child_text()->get_content(),Item::State(state)),*elem,pParent);
         vChildren.push_back(branch);
     }
 }
@@ -139,7 +138,7 @@ Tree::iterator Tree::begin() const
 Tree::iterator Tree::beginUnchecked() const
 {
     iterator it(vChildren.begin());
-    while (it != end() && ((*it)->state()==sSuccess || (*it)->state()==sFailure))
+    while (it != end() && ((*it)->state()==Item::sSuccess || (*it)->state()==Item::sFailure))
     {
         it++;
     }
@@ -147,7 +146,7 @@ Tree::iterator Tree::beginUnchecked() const
     return it;
 }
 
-Tree::iterator Tree::beginState(State state) const
+Tree::iterator Tree::beginState(Item::State state) const
 {
     iterator it(vChildren.begin(),itNormal,state);
     while (it != end() && (*it)->state()!=state)
@@ -173,7 +172,7 @@ Tree::iterator Tree::endUnchecked() const
     it.setType(itNormal);
     while (it!=end())
     {
-        if ((*it)->state()==sNone || (*it)->state()==sProgress)
+        if ((*it)->state()==Item::sNone || (*it)->state()==Item::sProgress)
         {
             it2 = it;    
         }
@@ -182,7 +181,7 @@ Tree::iterator Tree::endUnchecked() const
     return ++it2;
 }
 
-Tree::iterator Tree::endState(State state) const
+Tree::iterator Tree::endState(Item::State state) const
 {
     iterator it=beginState(state),it2=it;
     if (it==end())
@@ -261,7 +260,7 @@ Branch* Tree::branch(const string &indices) throw(out_of_range)
     }
 }
 
-void Tree::insert(const string &indices, const string &content, State state) throw(out_of_range)
+Branch* Tree::insert(const string &indices, Item *item) throw(out_of_range)
 {
     string sub(indices);
     int n = extractIndex(sub);
@@ -271,8 +270,9 @@ void Tree::insert(const string &indices, const string &content, State state) thr
     }
     if (sub=="")
     {
-        Branch *branch = new Branch(new Item(content,state),pParent);
+        Branch *branch = new Branch(item,pParent);
         vChildren.insert(vChildren.begin()+n,branch);
+        return branch;  // returns the branch just created
     }
     else
     {
@@ -280,7 +280,7 @@ void Tree::insert(const string &indices, const string &content, State state) thr
         {
             throw out_of_range("Index out of bounds");
         }
-        vChildren[n]->tree().insert(sub,content,state);
+        return vChildren[n]->tree().insert(sub,item);
     }
 }
 
@@ -307,20 +307,21 @@ void Tree::insert(const string &indices, Branch *branch) throw(out_of_range)
     }
 }
 
-void Tree::add(const string &content, State state)
+Branch* Tree::add(Item *item)
 {
     if (vChildren.size()==0 || vChildren.back()->tree().vChildren.size()==0)
     {
-        Branch *branch = new Branch(new Item(content,state),pParent);
+        Branch *branch = new Branch(item,pParent);
         vChildren.push_back(branch);
+        return branch;
     }
     else
     {
-        vChildren.back()->tree().add(content,state);
+        return vChildren.back()->tree().add(item);
     }
 }
 
-void Tree::add(int depth, const string &content, State state) throw(out_of_range)
+Branch* Tree::add(int depth, Item *item) throw(out_of_range)
 {
     // insert at the given depth (1 is root)
     if (depth<0)
@@ -329,8 +330,9 @@ void Tree::add(int depth, const string &content, State state) throw(out_of_range
     }
     if (depth==0)
     {
-        Branch *branch = new Branch(new Item(content,state),pParent);
+        Branch *branch = new Branch(item,pParent);
         vChildren.push_back(branch);
+        return branch;
     }
     else
     {
@@ -338,20 +340,21 @@ void Tree::add(int depth, const string &content, State state) throw(out_of_range
         {
             throw out_of_range("Depth out of range");
         }
-        vChildren.back()->tree().add(depth-1,content,state);
+        return vChildren.back()->tree().add(depth-1,item);
     }
 }
 
-void Tree::addChild(const string &content, State state)
+Branch* Tree::addChild(Item *item)
 {
     if (vChildren.size()==0)
     {
-        Branch *branch = new Branch(new Item(content,state),pParent);
+        Branch *branch = new Branch(item,pParent);
         vChildren.push_back(branch);
+        return branch;
     }
     else
     {
-        vChildren.back()->tree().addChild(content,state);
+        return vChildren.back()->tree().addChild(item);
     }
 }
 
@@ -429,11 +432,11 @@ int Tree::indexOf(Branch *branch) const
 
 // iterator's methods
 
-Tree::iterator::iterator(const vector<vector<Branch*>::const_iterator>& its, IterationType type, State state): itType(type), sState(state), qIts(its)
+Tree::iterator::iterator(const vector<vector<Branch*>::const_iterator>& its, IterationType type, Item::State state): itType(type), sState(state), qIts(its)
 {
 }
 
-Tree::iterator::iterator(const vector<Branch*>::const_iterator& it, IterationType type, State state): itType(type),sState(state)
+Tree::iterator::iterator(const vector<Branch*>::const_iterator& it, IterationType type, Item::State state): itType(type),sState(state)
 {
 	qIts.push_back(it);
 }
@@ -443,7 +446,7 @@ Tree::IterationType Tree::iterator::type() const
     return itType;
 }
 
-State Tree::iterator::state() const
+Item::State Tree::iterator::state() const
 {
     return sState;
 }
@@ -511,12 +514,12 @@ Item* Tree::iterator::operator*()
 {
     switch (type())
     {
-        case itUnchecked:   while ((*(qIts.back()))->item()->state()==sSuccess || (*(qIts.back()))->item()->state()==sFailure)
+        case itUnchecked:   while ((*(qIts.back()))->item()->state()==Item::sSuccess || (*(qIts.back()))->item()->state()==Item::sFailure)
                                 operator++();
                             break; 
         case itState:
             {
-                State sState = state();
+                Item::State sState = state();
                 while ((*(qIts.back()))->item()->state()!=sState)
                     operator++();
                 break;

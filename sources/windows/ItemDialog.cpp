@@ -6,16 +6,16 @@ ItemDialog::ItemDialog(QWidget *parent): QDialog(parent)
     setupUi(this);
 }
 
-State ItemDialog::state() const
+Item::State ItemDialog::state() const
 {
     if (radioNone->isChecked())
-        return sNone;
+        return Item::sNone;
     else if (radioProgress->isChecked())
-        return sProgress;
+        return Item::sProgress;
     else if (radioFailure->isChecked())
-        return sFailure;
+        return Item::sFailure;
     else
-        return sSuccess;
+        return Item::sSuccess;
 }
 
 QString ItemDialog::text() const
