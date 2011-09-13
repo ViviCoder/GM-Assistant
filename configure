@@ -104,7 +104,7 @@ qmake
 
 # adding libxml++ library includes in the Makefile
 sed -i -e "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I)#" Makefile
-sed -i -e "s#-lpthread#-lpthread $(pkg-config $xml_dev_path --libs)#" Makefile
+sed -i -e "s#-lpthread#-lpthread $(pkg-config $xml_dev_path --libs) libs/api/lib/libfmodex64.so#" Makefile
 # adding the -g flag if the debug option is enabled
 if [ $debug = "true" ]
 then

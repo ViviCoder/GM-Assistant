@@ -4,42 +4,50 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="26"/>
-        <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <location filename="../sources/windows/AboutDialog.ui" line="23"/>
+        <source>About GM-Assistant</source>
+        <translation>À propos de GM-Assistant</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="51"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="59"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Version:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="62"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="77"/>
+        <source>GM-Assistant is a free software
+designed to assist the Game Master
+during a role playing game</source>
+        <translation>GM-Assistant est un logiciel libre
+conçu pour assister le Maître du Jeu
+lors d&apos;une partie de jeu de rôle</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="38"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;GM-Assistant&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="73"/>
         <source>Gm-Assistant is a free software
  to assiste a Game master
  during a role playing game</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">GM-Assistant est un logiciel libre conçu pour assister le Maître du Jeu lors d&apos;une partie de jeu de rôle</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="82"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="103"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fermer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="89"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="86"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -54,9 +62,9 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="106"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="70"/>
         <source>1.0</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
 </context>
 <context>
@@ -101,44 +109,36 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Dialog_Item</name>
     <message>
-        <location filename="../sources/EditItem.ui" line="14"/>
         <source>Create item</source>
-        <translation type="unfinished">Créer un item</translation>
+        <translation type="obsolete">Créer un item</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="32"/>
         <source>&amp;None</source>
-        <translation type="unfinished">&amp;Aucun</translation>
+        <translation type="obsolete">&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="39"/>
         <source>In &amp;progress</source>
-        <translation type="unfinished">En &amp;cours</translation>
+        <translation type="obsolete">En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="50"/>
         <source>&amp;Failed</source>
-        <translation type="unfinished">&amp;Échoué</translation>
+        <translation type="obsolete">&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="61"/>
         <source>&amp;Succeeded</source>
-        <translation type="unfinished">&amp;Réussi</translation>
+        <translation type="obsolete">&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="74"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">A&amp;jouter</translation>
+        <translation type="obsolete">A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="85"/>
         <source>S&amp;on</source>
-        <translation type="unfinished">&amp;Fils</translation>
+        <translation type="obsolete">&amp;Fils</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="96"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">A&amp;nnuler</translation>
+        <translation type="obsolete">A&amp;nnuler</translation>
     </message>
 </context>
 <context>
@@ -372,7 +372,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="203"/>
         <source>&amp;?</source>
-        <translation type="unfinished"></translation>
+        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="213"/>
@@ -452,7 +452,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="268"/>
         <source>&amp;About</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;À propos</translation>
     </message>
 </context>
 </TS>

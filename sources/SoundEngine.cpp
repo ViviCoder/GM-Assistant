@@ -3,7 +3,7 @@
 using namespace std;
 
 // Constructor
-SoundEngine::SoundEngine():lenms(0), currentsound(0)
+SoundEngine::SoundEngine(): currentsound(0), lenms(0)
 {
     sPath = "../data/sound/";
     /*
@@ -19,7 +19,7 @@ SoundEngine::SoundEngine():lenms(0), currentsound(0)
     errcheck(result);
 }
 
-SoundEngine::SoundEngine(std::string &filename):lenms(0), currentsound(0)
+SoundEngine::SoundEngine(std::string &filename): currentsound(0), lenms(0)
 {
     sFilename = filename;
     sPath = "../data/sound/";
