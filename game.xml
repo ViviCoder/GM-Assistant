@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <game>
   <scenario>
-    <item state="0">Hein ?<item state="0">Quoi ?</item><item state="2">Oui ?</item><item state="1">Ben non...</item></item>
-    <item state="3">Échec !<item state="2">Branche<item state="0">Feuille</item><item state="1">Encore une feuille qui dit coucou parce que c'est chouette</item></item></item>
-    <item state="3">Autre branche<item state="0">Re-bouh<item state="2">Boubou</item></item><item state="1">Grande feuille<item state="3">Et encore une !</item></item></item>
+    <item state="none" type="basic" content="Hein ?">
+      <item state="none" type="basic" content="Quoi ?"/>
+      <item state="success" type="basic" content="Oui ?"/>
+      <item state="progress" type="basic" content="Ben non..."/>
+    </item>
+    <item state="failure" type="basic" content="Échec !">
+      <item state="success" type="basic" content="Branche">
+        <item state="none" type="basic" content="Feuille"/>
+        <item state="progress" type="basic" content="Encore une feuille qui dit coucou parce que c'est chouette"/>
+      </item>
+    </item>
+    <item state="failure" type="basic" content="Autre branche">
+      <item state="none" type="basic" content="Re-bouh">
+        <item state="success" type="basic" content="Boubou"/>
+      </item>
+      <item state="progress" type="basic" content="Grande feuille">
+        <item state="failure" type="basic" content="Et encore une !"/>
+      </item>
+    </item>
   </scenario>
   <notes>Ceci est mes notes.
 Cette phrase a été rajoutée depuis le logiciel.
 Celle-ci aussi, et sans bug !</notes>
   <characters/>
   <history>
-    <item state="3">Avant premier élément</item>
-    <item state="0">Premier élément</item>
-    <item state="2">encore un</item>
-    <item state="1">deuxième (en fait troisième)</item>
-    <item state="2">n'importe quoi</item>
+    <item state="failure" type="basic" content="Avant premier élément"/>
+    <item state="none" type="basic" content="Premier élément"/>
+    <item state="success" type="basic" content="encore un"/>
+    <item state="progress" type="basic" content="deuxième (en fait troisième)"/>
+    <item state="success" type="basic" content="n'importe quoi"/>
   </history>
   <music>
-    <item state="0">Premier morceau.mp3</item>
-    <item state="2">Morceau déjà joué.mp3</item>
-    <item state="3">Morceau non trouvé.mp3</item>
-    <item state="1">Morceau en cours.mp3</item>
+    <item state="none" type="basic" content="Premier morceau.mp3"/>
+    <item state="success" type="basic" content="Morceau déjà joué.mp3"/>
+    <item state="failure" type="basic" content="Morceau non trouvé.mp3"/>
+    <item state="progress" type="basic" content="Morceau en cours.mp3"/>
   </music>
   <effects>
-    <item state="0">Silence pesant</item>
+    <item state="none" type="basic" content="Silence pesant"/>
   </effects>
 </game>

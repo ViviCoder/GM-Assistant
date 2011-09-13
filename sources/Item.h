@@ -2,6 +2,8 @@
 #define HEADER_ITEM
 
 #include <string>
+#include <stdexcept>
+#include <libxml++/libxml++.h>
 
 class Item
 {
@@ -18,6 +20,14 @@ class Item
         State state() const;
         void setState(State state);
         virtual Type type() const;
+        // XML-related methods
+        virtual void fromXML(const xmlpp::Element &root);
+        virtual void toXML(xmlpp::Element &root);
+        // static methods to get a link between strings and state or type
+        static std::string stateToStr(State state);
+        static std::string typeToStr(Type type);
+        static State strToState(const std::string &name) throw(std::invalid_argument);
+        static Type strToType(const std::string &name) throw(std::invalid_argument);
     private:
         State sState;
         std::string sContent;

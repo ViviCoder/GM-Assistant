@@ -6,6 +6,9 @@
 class SoundItem: public Item
 {
     public:
+        // constructor
+            SoundItem(const std::string &content="", State state=sNone);
+        // accessors
         Type type() const;
 };
 

@@ -1,5 +1,6 @@
 #include "Tree.h"
 #include <sstream>
+#include "SoundItem.h"
 // for debugging
 //#include <iostream>
 
@@ -75,10 +76,10 @@ void Tree::toXML(xmlpp::Element &root) const
     for (vector<Branch*>::const_iterator it=vChildren.begin(); it != vChildren.end(); it++)
     {
         Element *tmp = root.add_child("item");
-        stringstream buf(stringstream::in | stringstream::out);
-        buf << (*it)->item()->state();
-        tmp->set_attribute("state",buf.str());
-        tmp->set_child_text((*it)->item()->content());
+        tmp->set_attribute("state",Item::stateToStr((*it)->item()->state()));
+        tmp->set_attribute("type",Item::typeToStr((*it)->item()->type()));
+        tmp->set_attribute("content",(*it)->item()->content());
+        (*it)->item()->toXML(*tmp);
         (*it)->tree().toXML(*tmp);
     }
 }
@@ -107,14 +108,31 @@ void Tree::fromXML(const xmlpp::Element &root)
     {
         Element *elem = dynamic_cast<Element*>(*it);
         Attribute *attr = elem->get_attribute("state");
-        int state = 0;
+        Item::State state =  Item::sNone;
         if (attr!=NULL)
         {
-            stringstream buf(stringstream::in | stringstream::out);
-            buf << attr->get_value();
-            buf >> state;
+            state = Item::strToState(attr->get_value());
         }
-        Branch *branch = new Branch(new Item(elem->get_child_text()->get_content(),Item::State(state)),*elem,pParent);
+        attr = elem->get_attribute("type");
+        Item::Type type = Item::tBasic;
+        if (attr!=NULL)
+        {
+            type = Item::strToType(attr->get_value());
+        }
+        attr = elem->get_attribute("content");
+        string content="";
+        if (attr!=NULL)
+        {
+            content = attr->get_value();
+        }
+        Item *item;
+        switch (type)
+        {
+            case Item::tBasic:  item = new Item(content,state); break;
+            case Item::tSound:  item = new SoundItem(content,state);    break;
+        }
+        item->fromXML(*elem);
+        Branch *branch = new Branch(item,*elem,pParent);
         vChildren.push_back(branch);
     }
 }

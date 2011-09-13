@@ -3,9 +3,7 @@
 
 #include "Item.h"
 #include <vector>
-#include <stdexcept>
 #include <iterator>
-#include <libxml++/libxml++.h>
 
 class Branch;
 
