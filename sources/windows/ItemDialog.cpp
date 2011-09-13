@@ -25,16 +25,15 @@ QString ItemDialog::text() const
 
 void ItemDialog::on_pushCancel_clicked()
 {
-    setResult(rCancel);
-    close();
+    reject();
 }
 
 void ItemDialog::on_pushChild_clicked()
 {
     if (editItem->text()!="")
     {
-        setResult(rChild);
-        close();
+        rRes = rChild;
+        accept();
     }
     else
     {
@@ -46,11 +45,25 @@ void ItemDialog::on_pushBrother_clicked()
 {
     if (editItem->text()!="")
     {
-        setResult(rBrother);
-        close();
+        rRes = rBrother;
+        accept();
     }
     else
     {
         QMessageBox::critical(this,QApplication::translate("itemDialog","Uncomplete data",0),QApplication::translate("itemDialog","You must fill the content before validating.",0));
     }
+}
+
+void ItemDialog::showEvent(QShowEvent *e)
+{
+    // reset the window
+    radioNone->setChecked(true);
+    editItem->setText("");
+
+    QDialog::showEvent(e);
+}
+
+ItemDialog::Result ItemDialog::selectionResult() const
+{
+    return rRes;
 }
