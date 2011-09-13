@@ -13,7 +13,6 @@ class QCustomTreeWidget: public QTreeWidget
 
     private:
         QMenu *menuIcons;
-        QIcon iFailure,iSuccess,iProgress;
         QAction *actionNone, *actionProgress, *actionFailure, *actionSuccess, *actionAdd, *actionDelete;
         Tree *pTree;
         ItemDialog *pItemDial;
@@ -32,7 +31,7 @@ class QCustomTreeWidget: public QTreeWidget
         // associating a tree to the widget
         void setTree(Tree *tree);
         // associating an icon to a state
-        QIcon icon(Item::State state) const;
+        static QIcon icon(Item::State state);
 };
 
 #endif

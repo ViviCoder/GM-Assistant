@@ -3,15 +3,15 @@
 #include "ItemFactory.h"
 #include <QApplication>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), iFailure(":/data/images/failure.png"),iSuccess(":/data/images/check.png"),iProgress(":/data/images/uncheck.png"), pTree(NULL), pItemDial(new ItemDialog(this)) 
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)) 
 {
     // popup menu
     actionNone = menuIcons->addAction(QApplication::translate("custom","&None",0));
-    actionProgress = menuIcons->addAction(iProgress,QApplication::translate("custom","In &progress",0));
+    actionProgress = menuIcons->addAction(QIcon(":/data/images/uncheck.png"),QApplication::translate("custom","In &progress",0));
     actionProgress->setIconVisibleInMenu(true);
-    actionFailure = menuIcons->addAction(iFailure,QApplication::translate("custom","&Failed",0));
+    actionFailure = menuIcons->addAction(QIcon(":/data/images/failure.png"),QApplication::translate("custom","&Failed",0));
     actionFailure->setIconVisibleInMenu(true);
-    actionSuccess = menuIcons->addAction(iSuccess,QApplication::translate("custom","&Succeeded",0));
+    actionSuccess = menuIcons->addAction(QIcon(":/data/images/check.png"),QApplication::translate("custom","&Succeeded",0));
     actionSuccess->setIconVisibleInMenu(true);
     menuIcons->addSeparator();
     actionAdd = menuIcons->addAction(QIcon(":/data/images/add.png"),QApplication::translate("custom","&Add",0));
@@ -55,17 +55,17 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     }
                                     else if (action == actionProgress)
                                     {
-                                        item->setIcon(1,iProgress);
+                                        item->setIcon(1,QIcon(":/data/images/uncheck.png"));
                                         treeItem->setState(Item::sProgress);
                                     }
                                     else if (action == actionFailure)
                                     {
-                                        item->setIcon(1,iFailure);
+                                        item->setIcon(1,QIcon(":/data/images/failure.png"));
                                         treeItem->setState(Item::sFailure);
                                     }
                                     else if (action == actionSuccess)
                                     {
-                                        item->setIcon(1,iSuccess);
+                                        item->setIcon(1,QIcon(":/data/images/check.png"));
                                         treeItem->setState(Item::sSuccess);
                                     }
                                     else if (action == actionDelete)
@@ -102,8 +102,6 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                                                                 break;
                                                                             }
                                             }
-                                            newQItem->setText(0,newItem->content().c_str());;
-                                            newQItem->setIcon(1,icon(newItem->state()));
                                             resizeColumnToContents(0);
                                         }
                                     }
@@ -117,8 +115,6 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                         QCustomTreeWidgetItem *newQItem = NULL;
                                         Branch *newBranch = pTree->add(newItem);
                                         newQItem = new QCustomTreeWidgetItem(this,newBranch);
-                                        newQItem->setText(0,newItem->content().c_str());;
-                                        newQItem->setIcon(1,icon(newItem->state()));
                                         resizeColumnToContents(0);
                                     }
                                     
@@ -187,8 +183,6 @@ void QCustomTreeWidget::setTree(Tree *tree)
             {
                 item = new QCustomTreeWidgetItem(items[depth-1], it.branch());
             }
-            item->setText(0,(*it)->content().c_str());
-            item->setIcon(1,icon((*it)->state()));
             if (items.size() > (unsigned int)(depth))
             {
                 items[depth] = item;
@@ -224,13 +218,13 @@ void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
     resizeColumnToContents(0);
 }
 
-QIcon QCustomTreeWidget::icon(Item::State state) const
+QIcon QCustomTreeWidget::icon(Item::State state)
 {
     switch (state)
     {
-        case Item::sProgress: return iProgress;   break;
-        case Item::sFailure:  return iFailure;    break;
-        case Item::sSuccess:  return iSuccess;    break;
+        case Item::sProgress: return QIcon(":/data/images/uncheck.png");    break;
+        case Item::sFailure:  return QIcon(":/data/images/failure.png");    break;
+        case Item::sSuccess:  return QIcon(":/data/images/check.png");      break;
         default:    return QIcon(); break;
     }
 }

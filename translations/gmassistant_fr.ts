@@ -242,32 +242,32 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>custom</name>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="8"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="9"/>
         <source>&amp;None</source>
         <translation>&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="9"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="10"/>
         <source>In &amp;progress</source>
         <translation>En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="11"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="12"/>
         <source>&amp;Failed</source>
         <translation>&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="13"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="14"/>
         <source>&amp;Succeeded</source>
         <translation>&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="16"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="17"/>
         <source>&amp;Add</source>
         <translation>A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="18"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="19"/>
         <source>&amp;Delete</source>
         <translation>&amp;Supprimer</translation>
     </message>

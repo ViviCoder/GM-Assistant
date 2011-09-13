@@ -13,6 +13,8 @@ class QCustomTreeWidgetItem: public QTreeWidgetItem
         QCustomTreeWidgetItem(QCustomTreeWidget *parent, Branch *branch, QCustomTreeWidgetItem *previous=NULL);
         QCustomTreeWidgetItem(QCustomTreeWidgetItem *parent, Branch *branch, QCustomTreeWidgetItem *previous=NULL);
         Branch* branch();
+        // update the displat (text and icons)
+        void updateDisplay();
 };
 
 #endif
