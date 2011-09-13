@@ -55,17 +55,17 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     }
                                     else if (action == actionProgress)
                                     {
-                                        item->setIcon(1,QIcon(":/data/images/uncheck.png"));
+                                        item->setIcon(1,action->icon());
                                         treeItem->setState(Item::sProgress);
                                     }
                                     else if (action == actionFailure)
                                     {
-                                        item->setIcon(1,QIcon(":/data/images/failure.png"));
+                                        item->setIcon(1,action->icon());
                                         treeItem->setState(Item::sFailure);
                                     }
                                     else if (action == actionSuccess)
                                     {
-                                        item->setIcon(1,QIcon(":/data/images/check.png"));
+                                        item->setIcon(1,action->icon());
                                         treeItem->setState(Item::sSuccess);
                                     }
                                     else if (action == actionDelete)

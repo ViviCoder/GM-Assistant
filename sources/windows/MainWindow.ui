@@ -25,6 +25,9 @@
         <layout class="QVBoxLayout" name="verticalLayout1">
          <item>
           <widget class="QCustomTreeWidget" name="treeScenario">
+           <property name="mouseTracking">
+            <bool>true</bool>
+           </property>
            <property name="alternatingRowColors">
             <bool>true</bool>
            </property>
@@ -49,6 +52,9 @@
         <layout class="QVBoxLayout" name="verticalLayout2">
          <item>
           <widget class="QCustomTreeWidget" name="treeHistory">
+           <property name="mouseTracking">
+            <bool>true</bool>
+           </property>
            <property name="alternatingRowColors">
             <bool>true</bool>
            </property>
@@ -80,7 +86,7 @@
       <item row="4" column="2">
        <widget class="QGroupBox" name="groupBox5">
         <property name="title">
-         <string>Playing characters</string>
+         <string>Characters</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout5">
          <item>
@@ -97,6 +103,9 @@
         <layout class="QVBoxLayout" name="verticalLayout6">
          <item>
           <widget class="QCustomTreeWidget" name="treeFX">
+           <property name="mouseTracking">
+            <bool>true</bool>
+           </property>
            <property name="alternatingRowColors">
             <bool>true</bool>
            </property>
@@ -110,24 +119,6 @@
            </column>
           </widget>
          </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout2">
-           <item>
-            <widget class="QPushButton" name="buttonFX">
-             <property name="text">
-              <string>Play</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSlider" name="sliderFX">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
         </layout>
        </widget>
       </item>
@@ -139,6 +130,9 @@
         <layout class="QVBoxLayout" name="verticalLayout3">
          <item>
           <widget class="QCustomTreeWidget" name="treeMusic">
+           <property name="mouseTracking">
+            <bool>true</bool>
+           </property>
            <property name="alternatingRowColors">
             <bool>true</bool>
            </property>

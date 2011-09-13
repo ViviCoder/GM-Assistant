@@ -25,5 +25,6 @@ void QCustomTreeWidgetItem::updateDisplay()
     {
         setIcon(0,QIcon(":/data/images/speaker.png"));
         setToolTip(0,dynamic_cast<SoundItem*>(item)->fileName().c_str()); 
+        setStatusTip(0,QApplication::translate("custom","Double click to play the file",0));
     }
 }
