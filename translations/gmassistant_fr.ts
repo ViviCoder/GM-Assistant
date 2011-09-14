@@ -137,44 +137,36 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Dialog_Item</name>
     <message>
-        <location filename="../sources/EditItem.ui" line="14"/>
         <source>Create item</source>
-        <translation type="unfinished">Créer un item</translation>
+        <translation type="obsolete">Créer un item</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="32"/>
         <source>&amp;None</source>
-        <translation type="unfinished">&amp;Aucun</translation>
+        <translation type="obsolete">&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="39"/>
         <source>In &amp;progress</source>
-        <translation type="unfinished">En &amp;cours</translation>
+        <translation type="obsolete">En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="50"/>
         <source>&amp;Failed</source>
-        <translation type="unfinished">&amp;Échoué</translation>
+        <translation type="obsolete">&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="61"/>
         <source>&amp;Succeeded</source>
-        <translation type="unfinished">&amp;Réussi</translation>
+        <translation type="obsolete">&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="74"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">A&amp;jouter</translation>
+        <translation type="obsolete">A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="85"/>
         <source>S&amp;on</source>
-        <translation type="unfinished">&amp;Fils</translation>
+        <translation type="obsolete">&amp;Fils</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="96"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">A&amp;nnuler</translation>
+        <translation type="obsolete">A&amp;nnuler</translation>
     </message>
 </context>
 <context>
@@ -282,7 +274,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="54"/>
         <source>Error</source>
-        <translation type="unfinished">Erreur</translation>
+        <translation>Erreur</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="38"/>

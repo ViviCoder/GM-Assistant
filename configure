@@ -109,9 +109,9 @@ mv translations/*.qm .
 qmake # -spec macx-g++
 
 echo
-echo "******************"
-echo "* Adding Libs... *"
-echo "******************"
+echo "************************"
+echo "* Adding librairies... *"
+echo "************************"
 
 # adding libxml++ library includes in the Makefile
 if [ $OS = "Linux" ]

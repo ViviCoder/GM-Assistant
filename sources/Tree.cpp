@@ -402,25 +402,29 @@ void Tree::remove(const string &indices, bool toDelete)
 
 void Tree::move(const string &currentIndices, const string &newIndices)
 {
-    stringstream buf(stringstream::in | stringstream::out);
     insert(newIndices,branch(currentIndices));
     // we now determine if there is need to modify newIndices for the suppression
-    int pos = currentIndices.rfind("_");
-    int pos2 = newIndices.rfind("_");
-    string indices(currentIndices);
-    if ((pos==-1 && pos2==-1) || currentIndices.substr(0,pos)==newIndices.substr(0,pos2))
-    {   // if both indices are "brothers"
-        int n,n2;
-        buf << currentIndices.substr(pos+1) << " " << newIndices.substr(pos2+1);
-        buf >> n >> n2;
-        if (n>n2)
+    string subNew(newIndices), subCurrent(currentIndices);
+    int nNew = extractIndex(subNew);
+    int nCurrent = extractIndex(subCurrent);
+    stringstream buf(stringstream::in | stringstream::out);
+    while (subNew!="" && subCurrent!="")
+    {
+        if (nNew != nCurrent)
         {
-            stringstream buf2(stringstream::in | stringstream::out);
-            buf2 << currentIndices.substr(0,pos+1) << (n+1);
-            indices = buf2.str();
+            break;
         }
+        buf << nCurrent << "_";
     }
-    remove(indices,false);    
+    if (subNew=="" && nNew <= nCurrent)
+    {
+        buf << (nCurrent+1) << "_" << subCurrent;
+    }
+    else
+    {
+        buf << nCurrent << "_" << subCurrent;
+    }
+    remove(buf.str(),false);    
 }
 
 int Tree::indexOf(Branch *branch) const
