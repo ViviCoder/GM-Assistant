@@ -27,7 +27,7 @@ Branch::~Branch()
     delete pItem;
 }
 
-//methods
+// methods
 
 Item* Branch::item() const
 {

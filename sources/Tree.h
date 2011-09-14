@@ -85,6 +85,7 @@ class Tree
         static int extractIndex(std::string &indices);
         // get the index of a branch
         int indexOf(Branch *branch) const;
+        std::string indicesOf(Branch *branch) const;
 };
 
 #include "Branch.h"

@@ -444,6 +444,28 @@ int Tree::indexOf(Branch *branch) const
     }
 }
 
+string Tree::indicesOf(Branch *branch) const
+{
+    stringstream buf(stringstream::in | stringstream::out);
+    int n = indexOf(branch);
+    if (n == -1)
+    {
+        if (branch->parent()==NULL)
+        {
+            return "";
+        }
+        else
+        {
+            buf << indicesOf(branch->parent()) << "_" << branch->parent()->tree().indexOf(branch);
+        }
+    }
+    else
+    {
+        buf << n;
+    }
+    return buf.str();
+}
+
 // iterator's methods
 
 Tree::iterator::iterator(const vector<vector<Branch*>::const_iterator>& its, IterationType type, Item::State state): itType(type), sState(state), qIts(its)

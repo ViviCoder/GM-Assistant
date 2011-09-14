@@ -249,3 +249,18 @@ QIcon QCustomTreeWidget::icon(Item::State state)
         default:    return QIcon(); break;
     }
 }
+
+void QCustomTreeWidget::dragEnterEvent(QDragEnterEvent *e)
+{
+    dragSource = itemAt(e->pos());
+    QTreeWidget::dragEnterEvent(e);
+}
+
+void QCustomTreeWidget::dropEvent(QDropEvent *e)
+{
+    if (e->proposedAction()==Qt::MoveAction)
+    {
+        pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(dragSource)->branch()),pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(itemAt(e->pos()))->branch()));
+    }
+    QTreeWidget::dropEvent(e);
+}

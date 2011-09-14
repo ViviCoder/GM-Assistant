@@ -18,11 +18,14 @@ class QCustomTreeWidget: public QTreeWidget
         Tree *pTree;
         SoundEngine *pSoundEngine;
         ItemDialog *pItemDial;
+        QTreeWidgetItem *dragSource;
     protected:
         // overriden methods
         void mouseDoubleClickEvent(QMouseEvent *e);
         void mousePressEvent(QMouseEvent *e);
         void keyReleaseEvent(QKeyEvent *e);
+        void dragEnterEvent(QDragEnterEvent *e);
+        void dropEvent(QDropEvent *e);
     public slots:
         void on_itemChanged(QTreeWidgetItem* item,int column);
         void on_itemCollapsed();

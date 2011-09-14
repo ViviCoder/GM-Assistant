@@ -28,6 +28,18 @@
            <property name="mouseTracking">
             <bool>true</bool>
            </property>
+           <property name="acceptDrops">
+            <bool>true</bool>
+           </property>
+           <property name="dragEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="dragDropMode">
+            <enum>QAbstractItemView::InternalMove</enum>
+           </property>
+           <property name="defaultDropAction">
+            <enum>Qt::MoveAction</enum>
+           </property>
            <property name="alternatingRowColors">
             <bool>true</bool>
            </property>
@@ -54,6 +66,18 @@
           <widget class="QCustomTreeWidget" name="treeHistory">
            <property name="mouseTracking">
             <bool>true</bool>
+           </property>
+           <property name="acceptDrops">
+            <bool>true</bool>
+           </property>
+           <property name="dragEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="dragDropMode">
+            <enum>QAbstractItemView::InternalMove</enum>
+           </property>
+           <property name="defaultDropAction">
+            <enum>Qt::MoveAction</enum>
            </property>
            <property name="alternatingRowColors">
             <bool>true</bool>
@@ -106,6 +130,18 @@
            <property name="mouseTracking">
             <bool>true</bool>
            </property>
+           <property name="acceptDrops">
+            <bool>true</bool>
+           </property>
+           <property name="dragEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="dragDropMode">
+            <enum>QAbstractItemView::InternalMove</enum>
+           </property>
+           <property name="defaultDropAction">
+            <enum>Qt::MoveAction</enum>
+           </property>
            <property name="alternatingRowColors">
             <bool>true</bool>
            </property>
@@ -132,6 +168,18 @@
           <widget class="QCustomTreeWidget" name="treeMusic">
            <property name="mouseTracking">
             <bool>true</bool>
+           </property>
+           <property name="acceptDrops">
+            <bool>true</bool>
+           </property>
+           <property name="dragEnabled">
+            <bool>true</bool>
+           </property>
+           <property name="dragDropMode">
+            <enum>QAbstractItemView::InternalMove</enum>
+           </property>
+           <property name="defaultDropAction">
+            <enum>Qt::MoveAction</enum>
            </property>
            <property name="alternatingRowColors">
             <bool>true</bool>
@@ -177,7 +225,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
