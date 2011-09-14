@@ -4,7 +4,7 @@
 #include "SoundEngine.h"
 #include <QApplication>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)) 
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pSoundEngine(NULL) 
 {
     // popup menu
     actionNone = menuIcons->addAction(QApplication::translate("custom","&None",0));
@@ -33,15 +33,21 @@ QCustomTreeWidget::~QCustomTreeWidget()
 void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
 {
     QTreeWidgetItem *qtwitem = itemAt(e->pos());
-    QCustomTreeWidgetItem *qctwitem = dynamic_cast<QCustomTreeWidgetItem*>(qtwitem);
-    Item *item = qctwitem->branch()->item();
-    switch (item->type())
+    if (qtwitem != NULL)
     {
-        case Item::tSound: {
-                               SoundItem *sounditem = dynamic_cast<SoundItem*>(item);
-                               pSoundEngine->playSound(sounditem->fileName());
-                           }
-        case Item::tBasic: break;
+        QCustomTreeWidgetItem *qctwitem = dynamic_cast<QCustomTreeWidgetItem*>(qtwitem);
+        Item *item = qctwitem->branch()->item();
+        switch (item->type())
+        {
+            case Item::tSound: {
+                                   if (pSoundEngine != NULL)
+                                   {
+                                   SoundItem *sounditem = dynamic_cast<SoundItem*>(item);
+                                   pSoundEngine->playSound(sounditem->fileName());
+                                   }
+                               }
+            case Item::tBasic: break;
+        }
     }
 }
 

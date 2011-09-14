@@ -60,6 +60,7 @@ void SoundEngine::errcheck(FMOD_RESULT result)
 void SoundEngine::playSound(const std::string &filename)
 {
     sFilename = filename;
+    
     cout << "File tried: " << sFilename << endl;
 
     result = system->createSound(sFilename.c_str(), FMOD_SOFTWARE, 0,&sound);
