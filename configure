@@ -110,16 +110,17 @@ qmake # -spec macx-g++
 
 echo
 echo "******************"
-echo "* Adding Libs... *
+echo "* Adding Libs... *"
 echo "******************"
 
 # adding libxml++ library includes in the Makefile
-sed -i "" -e "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I)#" Makefile
 if [ $OS = "Linux" ]
 then
-	sed -i "" -e "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) libs/api/lib/libfmodex64.so#" Makefile
+    sed -i -e "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I)#" Makefile
+	sed -i -e "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) libs/api/lib/libfmodex64.so#" Makefile
 elif [ $OS = "Darwin" ]
 then
+    sed -i "" -e "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I)#" Makefile
 	sed -i "" -e "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) libfmodex.dylib#" Makefile
 fi
 # adding the -g flag if the debug option is enabled
