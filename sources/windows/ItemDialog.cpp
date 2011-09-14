@@ -58,7 +58,10 @@ void ItemDialog::showEvent(QShowEvent *e)
 {
     // reset the window
     radioNone->setChecked(true);
+    radioBasic->setChecked(true);
+    updateDisplay();
     editItem->setText("");
+    editFile->setText("");
 
     QDialog::showEvent(e);
 }
@@ -66,4 +69,19 @@ void ItemDialog::showEvent(QShowEvent *e)
 ItemDialog::Result ItemDialog::selectionResult() const
 {
     return rRes;
+}
+
+void ItemDialog::on_radioBasic_clicked()
+{
+    updateDisplay();
+}
+
+void ItemDialog::on_radioSound_clicked()
+{
+    updateDisplay();
+}
+
+void ItemDialog::updateDisplay()
+{
+    toolBrowse->setEnabled(radioSound->isChecked());
 }

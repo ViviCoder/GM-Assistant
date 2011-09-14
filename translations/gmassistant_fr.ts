@@ -320,7 +320,33 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="99"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="97"/>
+        <source>Type</source>
+        <translation>Type
+</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.ui" line="103"/>
+        <source>&amp;Basic</source>
+        <translation>&amp;Basique</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.ui" line="119"/>
+        <source>S&amp;ound</source>
+        <translation>&amp;Son</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.ui" line="132"/>
+        <source>File:</source>
+        <translation>Fichier :</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.ui" line="149"/>
+        <source>...</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.ui" line="165"/>
         <source>&amp;Add</source>
         <translation>A&amp;jouter</translation>
     </message>
@@ -333,7 +359,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Esc, Alt+N</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="110"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="176"/>
         <source>C&amp;hild</source>
         <translation>En&amp;fant</translation>
     </message>
@@ -342,7 +368,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&amp;Fils</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="121"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="187"/>
         <source>&amp;Cancel</source>
         <translation>A&amp;nnuler</translation>
     </message>

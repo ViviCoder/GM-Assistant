@@ -15,6 +15,7 @@ class ItemDialog: public QDialog, private Ui::itemDialog
         Item::State state() const;
         QString text() const;
         Result selectionResult() const;
+        void updateDisplay();
     protected:
         void showEvent(QShowEvent *e);
     private:
@@ -25,6 +26,8 @@ class ItemDialog: public QDialog, private Ui::itemDialog
         void on_pushCancel_clicked();
         void on_pushChild_clicked();
         void on_pushBrother_clicked();
+        void on_radioBasic_clicked();
+        void on_radioSound_clicked();
 };
 
 #endif
