@@ -10,8 +10,10 @@ class QCustomTreeWidgetItem: public QTreeWidgetItem
     private:
         Branch* pBranch;
     public:
-        QCustomTreeWidgetItem(QCustomTreeWidget *parent, Branch *branch, QCustomTreeWidgetItem *previous=NULL);
-        QCustomTreeWidgetItem(QCustomTreeWidgetItem *parent, Branch *branch, QCustomTreeWidgetItem *previous=NULL);
+        QCustomTreeWidgetItem(QCustomTreeWidget *parent, Branch *branch);
+        QCustomTreeWidgetItem(QCustomTreeWidgetItem *parent, Branch *branch);
+        QCustomTreeWidgetItem(QCustomTreeWidget *parent, Branch *branch, QCustomTreeWidgetItem *previous);
+        QCustomTreeWidgetItem(QCustomTreeWidgetItem *parent, Branch *branch, QCustomTreeWidgetItem *previous);
         Branch* branch();
         // update the displat (text and icons)
         void updateDisplay();

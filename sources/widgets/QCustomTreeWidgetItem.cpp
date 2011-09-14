@@ -1,6 +1,16 @@
 #include "QCustomTreeWidgetItem.h"
 #include "ItemFactory.h"
 
+QCustomTreeWidgetItem::QCustomTreeWidgetItem(QCustomTreeWidget *parent, Branch *branch): QTreeWidgetItem(parent), pBranch(branch)
+{
+    updateDisplay();
+}
+
+QCustomTreeWidgetItem::QCustomTreeWidgetItem(QCustomTreeWidgetItem *parent, Branch *branch): QTreeWidgetItem(parent), pBranch(branch)
+{
+    updateDisplay();
+}
+
 QCustomTreeWidgetItem::QCustomTreeWidgetItem(QCustomTreeWidget *parent, Branch *branch, QCustomTreeWidgetItem *previous): QTreeWidgetItem(parent,previous), pBranch(branch)
 {
     updateDisplay();
