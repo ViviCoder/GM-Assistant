@@ -3,8 +3,10 @@
 #include "ItemFactory.h"
 #include "SoundEngine.h"
 #include <QApplication>
+#include <QMessageBox>
+#include <exception>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pSoundEngine(NULL) 
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pSoundEngine(NULL) , pItemDial(new ItemDialog(this))
 {
     // popup menu
     actionNone = menuIcons->addAction(QApplication::translate("custom","&None",0));
@@ -42,8 +44,16 @@ void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
             case Item::tSound: {
                                    if (pSoundEngine != NULL)
                                    {
-                                   SoundItem *sounditem = dynamic_cast<SoundItem*>(item);
-                                   pSoundEngine->playSound(sounditem->fileName());
+                                       try
+                                       {
+                                           SoundItem *sounditem = dynamic_cast<SoundItem*>(item);
+                                           pSoundEngine->playSound(sounditem->fileName());
+                                       }
+                                       catch (std::runtime_error &e)
+                                       {
+                                           QMessageBox::critical(this,QApplication::translate("custom","Error",0),e.what());
+                                       }
+
                                    }
                                }
             case Item::tBasic: break;

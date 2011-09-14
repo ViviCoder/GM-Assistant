@@ -1,4 +1,5 @@
 #include "SoundEngine.h"
+#include <stdexcept>
 
 using namespace std;
 
@@ -52,8 +53,9 @@ void SoundEngine::errcheck(FMOD_RESULT result)
 {
     if (result != FMOD_OK)
     {
-        cout << "FMOD error! (" << result << ") " << FMOD_ErrorString(result) <<endl;
-        exit(-1);
+        //cout << "FMOD error! (" << result << ") " << FMOD_ErrorString(result) <<endl;
+        //exit(-1);
+        throw std::runtime_error(FMOD_ErrorString(result));
     }
 }
 
@@ -61,7 +63,7 @@ void SoundEngine::playSound(const std::string &filename)
 {
     sFilename = filename;
     
-    cout << "File tried: " << sFilename << endl;
+    //cout << "File tried: " << sFilename << endl;
 
     result = system->createSound(sFilename.c_str(), FMOD_SOFTWARE, 0,&sound);
     errcheck(result);
