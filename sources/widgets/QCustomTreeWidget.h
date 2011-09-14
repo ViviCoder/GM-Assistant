@@ -6,6 +6,7 @@
 #include <QMenu>
 #include "Tree.h"
 #include "ItemDialog.h"
+#include "SoundEngine.h"
 
 class QCustomTreeWidget: public QTreeWidget
 {
@@ -15,9 +16,11 @@ class QCustomTreeWidget: public QTreeWidget
         QMenu *menuIcons;
         QAction *actionNone, *actionProgress, *actionFailure, *actionSuccess, *actionAdd, *actionDelete;
         Tree *pTree;
+        SoundEngine *pSoundEngine;
         ItemDialog *pItemDial;
     protected:
         // overriden methods
+        void mouseDoubleClickEvent(QMouseEvent *e);
         void mousePressEvent(QMouseEvent *e);
         void keyReleaseEvent(QKeyEvent *e);
     public slots:
@@ -30,6 +33,7 @@ class QCustomTreeWidget: public QTreeWidget
         ~QCustomTreeWidget();
         // associating a tree to the widget
         void setTree(Tree *tree);
+        void setSoundEngine(SoundEngine *soundEngine);
         // associating an icon to a state
         static QIcon icon(Item::State state);
 };

@@ -1,6 +1,7 @@
 #include "QCustomTreeWidget.h"
 #include "QCustomTreeWidgetItem.h"
 #include "ItemFactory.h"
+#include "SoundEngine.h"
 #include <QApplication>
 
 QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)) 
@@ -27,6 +28,21 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
 QCustomTreeWidget::~QCustomTreeWidget()
 {
     delete menuIcons;
+}
+
+void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
+{
+    QTreeWidgetItem *qtwitem = itemAt(e->pos());
+    QCustomTreeWidgetItem *qctwitem = dynamic_cast<QCustomTreeWidgetItem*>(qtwitem);
+    Item *item = qctwitem->branch()->item();
+    switch (item->type())
+    {
+        case Item::tSound: {
+                               SoundItem *sounditem = dynamic_cast<SoundItem*>(item);
+                               pSoundEngine->playSound(sounditem->fileName());
+                           }
+        case Item::tBasic: break;
+    }
 }
 
 void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
@@ -159,6 +175,11 @@ void QCustomTreeWidget::on_itemCollapsed()
 void QCustomTreeWidget::on_itemExpanded()
 {
     resizeColumnToContents(0);
+}
+
+void QCustomTreeWidget::setSoundEngine(SoundEngine *soundEngine)
+{
+    pSoundEngine = soundEngine;
 }
 
 void QCustomTreeWidget::setTree(Tree *tree)

@@ -29,8 +29,7 @@ class SoundEngine
         // destructor
         ~SoundEngine();
 		// accessors
-        void playSound();
-		void playSound(std::string &filename);
+		void playSound(const std::string &filename);
 		void errcheck(FMOD_RESULT result);
         void clear();
 };

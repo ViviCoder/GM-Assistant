@@ -9,7 +9,9 @@ MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), pAb
     treeScenario->setTree(&eGame.scenario());
     treeHistory->setTree(&eGame.history());
     treeMusic->setTree(&eGame.music());
+    treeMusic->setSoundEngine(&eGame.soundEngine());
     treeFX->setTree(&eGame.effects());
+    treeFX->setSoundEngine(&eGame.soundEngine());
     updateDisplay();
 }
 

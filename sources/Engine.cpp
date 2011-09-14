@@ -120,6 +120,11 @@ Tree& Engine::effects()
     return tEffects;
 }
 
+SoundEngine& Engine::soundEngine()
+{
+    return sSoundEngine;
+}
+
 void Engine::clear()
 {
     tScenario.clear();

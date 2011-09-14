@@ -48,7 +48,7 @@ Celle-ci aussi, et sans bug !</notes>
   </music>
   <effects>
     <item state="none" type="sound" content="Porte">
-      <file name="door.mp3"/>
+        <file name="data/sound/grince.mp3"/>
     </item>
   </effects>
 </game>

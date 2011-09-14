@@ -137,70 +137,78 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Dialog_Item</name>
     <message>
+        <location filename="../sources/EditItem.ui" line="14"/>
         <source>Create item</source>
-        <translation type="obsolete">Créer un item</translation>
+        <translation type="unfinished">Créer un item</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="32"/>
         <source>&amp;None</source>
-        <translation type="obsolete">&amp;Aucun</translation>
+        <translation type="unfinished">&amp;Aucun</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="39"/>
         <source>In &amp;progress</source>
-        <translation type="obsolete">En &amp;cours</translation>
+        <translation type="unfinished">En &amp;cours</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="50"/>
         <source>&amp;Failed</source>
-        <translation type="obsolete">&amp;Échoué</translation>
+        <translation type="unfinished">&amp;Échoué</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="61"/>
         <source>&amp;Succeeded</source>
-        <translation type="obsolete">&amp;Réussi</translation>
+        <translation type="unfinished">&amp;Réussi</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="74"/>
         <source>&amp;Add</source>
-        <translation type="obsolete">A&amp;jouter</translation>
+        <translation type="unfinished">A&amp;jouter</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="85"/>
         <source>S&amp;on</source>
-        <translation type="obsolete">&amp;Fils</translation>
+        <translation type="unfinished">&amp;Fils</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="96"/>
         <source>&amp;Cancel</source>
-        <translation type="obsolete">A&amp;nnuler</translation>
+        <translation type="unfinished">A&amp;nnuler</translation>
     </message>
 </context>
 <context>
     <name>action</name>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="29"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="84"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="31"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="86"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="29"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="84"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="31"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="86"/>
         <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
         <translation>Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="31"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="33"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="31"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="72"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="33"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="74"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="48"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="50"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="72"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="74"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
@@ -242,32 +250,32 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>custom</name>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="9"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="10"/>
         <source>&amp;None</source>
         <translation>&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="10"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="11"/>
         <source>In &amp;progress</source>
         <translation>En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="12"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="13"/>
         <source>&amp;Failed</source>
         <translation>&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="14"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="15"/>
         <source>&amp;Succeeded</source>
         <translation>&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="17"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="18"/>
         <source>&amp;Add</source>
         <translation>A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="19"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="20"/>
         <source>&amp;Delete</source>
         <translation>&amp;Supprimer</translation>
     </message>

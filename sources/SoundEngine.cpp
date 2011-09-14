@@ -57,19 +57,10 @@ void SoundEngine::errcheck(FMOD_RESULT result)
     }
 }
 
-void SoundEngine::playSound()
-{
-    result = system->playSound(FMOD_CHANNEL_FREE, sound, 0, &channel);
-    errcheck(result);
-    channel->getCurrentSound(&currentsound);
-    result = currentsound->getLength(&lenms, FMOD_TIMEUNIT_MS);
-    cout << "Duree totale: "<< lenms << " ms" << endl;
-
-    Sleep(2000);
-}
-void SoundEngine::playSound(std::string &filename)
+void SoundEngine::playSound(const std::string &filename)
 {
     sFilename = filename;
+    cout << "File tried: " << sFilename << endl;
 
     result = system->createSound(sFilename.c_str(), FMOD_SOFTWARE, 0,&sound);
     errcheck(result);

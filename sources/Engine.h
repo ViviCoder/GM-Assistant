@@ -2,12 +2,14 @@
 #define HEADER_ENGINE
 
 #include "Tree.h"
+#include "SoundEngine.h"
 
 class Engine
 {
     private:
         Tree tScenario,tHistory,tMusic,tEffects;
         std::string sNotes;
+        SoundEngine sSoundEngine;
 //        std::vector<Character> vCharacters;
     public:
         // constructors
@@ -19,6 +21,7 @@ class Engine
         // accessors
         Tree& scenario();
         std::string& notes();
+        SoundEngine& soundEngine();
 //        Character& character(int index);
         Tree& history();
         Tree& music();
