@@ -285,68 +285,68 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>itemDialog</name>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="17"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="9"/>
         <source>Create a new item</source>
         <translation>Créer un nouvel item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="29"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="21"/>
         <source>Content</source>
         <translation>Contenu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="41"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="33"/>
         <source>State</source>
         <translation>État</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="47"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="39"/>
         <source>&amp;None</source>
         <translation>&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="61"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="53"/>
         <source>In &amp;progress</source>
         <translation>En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="72"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="64"/>
         <source>&amp;Failed</source>
         <translation>&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="83"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="75"/>
         <source>&amp;Succeeded</source>
         <translation>&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="97"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="89"/>
         <source>Type</source>
         <translation>Type
 </translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="103"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="95"/>
         <source>&amp;Basic</source>
         <translation>&amp;Basique</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="119"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="111"/>
         <source>S&amp;ound</source>
         <translation>&amp;Son</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="132"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="124"/>
         <source>File:</source>
         <translation>Fichier :</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="149"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="141"/>
         <source>...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="165"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="157"/>
         <source>&amp;Add</source>
         <translation>A&amp;jouter</translation>
     </message>
@@ -359,7 +359,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Esc, Alt+N</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="176"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="168"/>
         <source>C&amp;hild</source>
         <translation>En&amp;fant</translation>
     </message>
@@ -368,21 +368,39 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&amp;Fils</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="187"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="179"/>
         <source>&amp;Cancel</source>
         <translation>A&amp;nnuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="40"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="53"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="55"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="60"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="75"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="80"/>
         <source>Uncomplete data</source>
         <translation>Données incomplètes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="40"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="53"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="55"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="75"/>
+        <source>You must select a file before validating.</source>
+        <translation>Vous devez sélectionner un fichier avant de valider.</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="60"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="80"/>
         <source>You must fill the content before validating.</source>
         <translation>Vous devez remplir le contenu avant de valider.</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="118"/>
+        <source>Select the sound file to associate to the item</source>
+        <translation>Sélectionnez le fichier son à associer à l&apos;item</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="118"/>
+        <source>Audio files (*.mp3 *.wav *.ogg)</source>
+        <translation>Fichiers audio (*.mp3 *.wav *.ogg)</translation>
     </message>
 </context>
 <context>
@@ -432,92 +450,92 @@ p, li { white-space: pre-wrap; }
         <translation>Personnages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="233"/>
+        <location filename="../sources/windows/MainWindow.ui" line="236"/>
         <source>&amp;Game</source>
         <translation>&amp;Jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="245"/>
+        <location filename="../sources/windows/MainWindow.ui" line="248"/>
         <source>&amp;?</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="255"/>
+        <location filename="../sources/windows/MainWindow.ui" line="258"/>
         <source>&amp;New</source>
         <translation>&amp;Nouveau</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="258"/>
+        <location filename="../sources/windows/MainWindow.ui" line="261"/>
         <source>Create a new game</source>
         <translation>Crée un nouveau jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="261"/>
+        <location filename="../sources/windows/MainWindow.ui" line="264"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="266"/>
+        <location filename="../sources/windows/MainWindow.ui" line="269"/>
         <source>&amp;Load</source>
         <translation>&amp;Charger</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="269"/>
+        <location filename="../sources/windows/MainWindow.ui" line="272"/>
         <source>Load a game</source>
         <translation>Charge un jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="272"/>
+        <location filename="../sources/windows/MainWindow.ui" line="275"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="277"/>
+        <location filename="../sources/windows/MainWindow.ui" line="280"/>
         <source>&amp;Save</source>
         <translation>&amp;Sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="280"/>
+        <location filename="../sources/windows/MainWindow.ui" line="283"/>
         <source>Save the current game</source>
         <translation>Sauvegarde le jeu en cours</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="283"/>
+        <location filename="../sources/windows/MainWindow.ui" line="286"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="288"/>
+        <location filename="../sources/windows/MainWindow.ui" line="291"/>
         <source>S&amp;ave as</source>
         <translation>S&amp;auvegarder sous</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="291"/>
+        <location filename="../sources/windows/MainWindow.ui" line="294"/>
         <source>Save the current game in a new file</source>
         <translation>Sauvegarde le jeu en cours dans un nouveau fichier</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="294"/>
+        <location filename="../sources/windows/MainWindow.ui" line="297"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="299"/>
+        <location filename="../sources/windows/MainWindow.ui" line="302"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="302"/>
+        <location filename="../sources/windows/MainWindow.ui" line="305"/>
         <source>Exit the application</source>
         <translation>Sort de l&apos;application</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="305"/>
+        <location filename="../sources/windows/MainWindow.ui" line="308"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="310"/>
+        <location filename="../sources/windows/MainWindow.ui" line="313"/>
         <source>&amp;About</source>
         <translation>&amp;À propos</translation>
     </message>

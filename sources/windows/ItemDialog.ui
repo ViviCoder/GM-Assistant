@@ -5,14 +5,6 @@
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>289</width>
-    <height>436</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>Create a new item</string>
   </property>

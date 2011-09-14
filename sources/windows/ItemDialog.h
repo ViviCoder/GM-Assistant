@@ -14,6 +14,8 @@ class ItemDialog: public QDialog, private Ui::itemDialog
         // accessors
         Item::State state() const;
         QString text() const;
+        Item::Type type() const;
+        QString fileName() const;
         Result selectionResult() const;
         void updateDisplay();
     protected:
@@ -28,6 +30,7 @@ class ItemDialog: public QDialog, private Ui::itemDialog
         void on_pushBrother_clicked();
         void on_radioBasic_clicked();
         void on_radioSound_clicked();
+        void on_toolBrowse_clicked();
 };
 
 #endif
