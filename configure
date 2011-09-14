@@ -33,12 +33,18 @@ echo "* Checking softwares... *"
 echo "*************************" 
 
 # Needed softwares
-softs="pkg-config g++ moc-qt4 qmake lupdate lrelease make"
+if [ $OS = "Linux" ]
+then
+	softs="pkg-config g++ moc-qt4 qmake lupdate lrelease make"
+elif [ $OS = "Darwin" ]
+then
+	softs="pkg-config g++ moc qmake lupdate lrelease make"
+fi
 
 for soft in $softs
 do
     path=$(which $soft)
-    if [ $path = "" ]
+    if [ $? = 1 ]
     then
         echo $soft missing !
         exit
@@ -100,15 +106,26 @@ qmake -project
 lupdate GM-Assistant.pro
 lrelease GM-Assistant.pro
 mv translations/*.qm .
-qmake
+qmake # -spec macx-g++
+
+echo
+echo "******************"
+echo "* Adding Libs... *
+echo "******************"
 
 # adding libxml++ library includes in the Makefile
-sed -i -e "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I)#" Makefile
-sed -i -e "s#-lpthread#-lpthread $(pkg-config $xml_dev_path --libs) libs/api/lib/libfmodex64.so#" Makefile
+sed -i "" -e "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I)#" Makefile
+if [ $OS = "Linux" ]
+then
+	sed -i "" -e "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) libs/api/lib/libfmodex64.so#" Makefile
+elif [ $OS = "Darwin" ]
+then
+	sed -i "" -e "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) libfmodex.dylib#" Makefile
+fi
 # adding the -g flag if the debug option is enabled
 if [ $debug = "true" ]
 then
-    sed -i -e "s#-pipe#-pipe -g#" Makefile
+    sed -i  "s#-pipe#-pipe -g#" Makefile
 fi
 
 # cleaning previous compilation
