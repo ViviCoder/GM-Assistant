@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
-#include "../libs/api/inc/fmod.hpp"
-#include "../libs/api/inc/fmod_errors.h"
-#include "../libs/common/wincompat.h"
+#include "fmod.hpp"
+#include "fmod_errors.h"
+#include "wincompat.h"
 #include <string>
 
 class SoundEngine

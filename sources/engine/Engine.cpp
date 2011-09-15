@@ -21,7 +21,7 @@ Engine::Engine(const string &fileName) throw(xmlpp::exception)
     }
 }
 
-// methods
+// XML methods
 
 void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception)
 {
@@ -125,6 +125,17 @@ SoundEngine& Engine::soundEngine()
     return sSoundEngine;
 }
 
+Character& Engine::character(int index) throw(std::out_of_range)
+{
+    if (index<0 || (unsigned int)index >= vCharacters.size())
+    {
+        throw out_of_range("Index out of bounds");
+    }
+    return vCharacters[index];
+}
+
+// methods
+
 void Engine::clear()
 {
     tScenario.clear();
@@ -132,4 +143,18 @@ void Engine::clear()
     tHistory.clear();
     tMusic.clear();
     tEffects.clear();
+}
+
+void Engine::addCharacter(const Character &character)
+{
+    vCharacters.push_back(character);
+}
+
+void Engine::removeCharacter(int index) throw(out_of_range)
+{
+    if (index<0 || (unsigned int)index >= vCharacters.size())
+    {
+        throw out_of_range("Index out of bounds");
+    }
+    vCharacters.erase(vCharacters.begin()+index);
 }

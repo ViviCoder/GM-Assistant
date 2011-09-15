@@ -3,6 +3,7 @@
 
 #include "Tree.h"
 #include "SoundEngine.h"
+#include "Character.h"
 
 class Engine
 {
@@ -10,7 +11,7 @@ class Engine
         Tree tScenario,tHistory,tMusic,tEffects;
         std::string sNotes;
         SoundEngine sSoundEngine;
-//        std::vector<Character> vCharacters;
+        std::vector<Character> vCharacters;
     public:
         // constructors
         Engine();
@@ -22,12 +23,13 @@ class Engine
         Tree& scenario();
         std::string& notes();
         SoundEngine& soundEngine();
-//        Character& character(int index);
+        Character& character(int index) throw(std::out_of_range);
         Tree& history();
         Tree& music();
         Tree& effects();
         // populating
-//      addCharacter(const Character character&);
+        void addCharacter(const Character &character);
+        void removeCharacter(int index) throw(std::out_of_range);
         void clear();
 };
 
