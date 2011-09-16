@@ -54,7 +54,29 @@ void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception)
         }
     }
     node = root->get_children("characters");
-    // not yet implemented
+    if (!node.empty())
+    {
+        node = node.front()->get_children("character");
+        for (Node::NodeList::const_iterator it = node.begin(); it != node.end(); it++)
+        {
+            Element *elem = dynamic_cast<Element*>(*it);
+            string name="";
+            Attribute *attr = elem->get_attribute("name");
+            if (attr != NULL)
+            {
+                name = attr->get_value();
+            }
+            string playerName="";
+            attr = elem->get_attribute("playername");
+            if (attr != NULL)
+            {
+                playerName = attr->get_value();
+            }
+            Character character = Character(name,playerName);
+            character.fromXML(*elem);
+            vCharacters.push_back(character);
+        }        
+    }
     node = root->get_children("history");
     if (!node.empty())
     {
@@ -83,7 +105,13 @@ void Engine::toFile(const string &fileName) const
     tmp = root->add_child("notes");
     tmp->add_child_text(sNotes);
     tmp = root->add_child("characters");
-    // not yet implemented
+    for (vector<Character>::const_iterator it = vCharacters.begin(); it != vCharacters.end(); it++)
+    {
+        Element *tmp2 = tmp->add_child("character");
+        tmp2->set_attribute("name",it->name());
+        tmp2->set_attribute("playername",it->playerName());
+        it->toXML(*tmp2);
+    }
     tmp = root->add_child("history");
     tHistory.toXML(*tmp);
     tmp = root->add_child("music");

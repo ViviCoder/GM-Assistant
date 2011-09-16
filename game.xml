@@ -24,7 +24,17 @@
   <notes>Ceci est mes notes.
 Cette phrase a été rajoutée depuis le logiciel.
 Celle-ci aussi, et sans bug !</notes>
-  <characters/>
+  <characters>
+      <character name="Grosbill" playername="Dramac">
+        <skill name="For" value="40000"/>
+        <skill name="Dex" value="20000"/>
+        <skill name="Int" value="2"/>
+        <skill name="Per" value="4"/>
+      </character>
+      <character name="Billounet" playername="Vivi">
+        <skill name="Int" value="40000"/>
+      </character>
+  </characters>
   <history>
     <item state="failure" type="basic" content="Avant premier élément"/>
     <item state="none" type="basic" content="Premier élément"/>

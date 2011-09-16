@@ -1,17 +1,17 @@
 #ifndef HEADER_CHARACTER
 #define HEADER_CHARACTER
 
-#include <string>
 #include <vector>
 #include <libxml++/libxml++.h>
 #include <stdexcept>
+#include "Skill.h"
 
 class Character
 {
     private:
         std::string sName;
         std::string sPlayerName;
-//        std::vector<Characteristic> vCharac;
+        std::vector<Skill> vSkill;
     public:
         // constructors
         Character(const std::string &name);    // for NPC
@@ -23,7 +23,11 @@ class Character
         std::string name() const;
         std::string playerName() const;
         bool isPlaying() const;
-//        Characteristic& characteristic(int index) throw(std::out_of_range);
+        Skill& skill(int index) throw(std::out_of_range);
+        // populating
+        void addSkill(const Skill &skill);
+        void removeSkill(int index) throw(std::out_of_range);
+        void clearSkills();
 };
 
 #endif
