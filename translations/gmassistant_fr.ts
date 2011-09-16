@@ -173,13 +173,13 @@ p, li { white-space: pre-wrap; }
     <name>action</name>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="31"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="86"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="81"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="31"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="86"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="81"/>
         <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
         <translation>Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
@@ -190,17 +190,17 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="33"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="74"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="69"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="50"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="45"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="74"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="69"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>

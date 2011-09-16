@@ -37,11 +37,6 @@ void MainWindow::on_action_Load_triggered()
             try
             {
                 eGame.fromFile(sFileName.toStdString());
-                treeScenario->setTree(&eGame.scenario());
-                textNotes->setText(eGame.notes().c_str());
-                treeHistory->setTree(&eGame.history());
-                treeMusic->setTree(&eGame.music());
-                treeFX->setTree(&eGame.effects());
                 updateDisplay();
                 bModified = false;
             }
@@ -99,15 +94,10 @@ void MainWindow::on_textNotes_textChanged()
 
 void MainWindow::updateDisplay()
 {
-    // scenario
-    treeScenario->repaint();
-    // notes
+    treeScenario->setTree(&eGame.scenario());
     textNotes->setText(eGame.notes().c_str());
-    // characters (to do)
-    // history
-    treeHistory->repaint();
-    // music
-    treeMusic->repaint();
-    // effects
-    treeFX->repaint();
+//    tableChar->setChars(***)
+    treeHistory->setTree(&eGame.history());
+    treeMusic->setTree(&eGame.music());
+    treeFX->setTree(&eGame.effects());
 }

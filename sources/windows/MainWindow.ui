@@ -114,7 +114,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout5">
          <item>
-          <widget class="QTableWidget" name="tablePC"/>
+          <widget class="QTableWidget" name="tableChar"/>
          </item>
         </layout>
        </widget>
