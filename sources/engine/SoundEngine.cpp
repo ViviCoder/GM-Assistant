@@ -4,7 +4,7 @@
 using namespace std;
 
 // Constructor
-SoundEngine::SoundEngine() throw(runtime_error): music(NULL), sound(NULL)
+SoundEngine::SoundEngine() throw(runtime_error): mmMusic(NULL)
 {
     SDL_Init(SDL_INIT_AUDIO);
 
@@ -14,7 +14,7 @@ SoundEngine::SoundEngine() throw(runtime_error): music(NULL), sound(NULL)
     int audio_channels = 2;
     int audio_buffers = 4096;
 
-    if(Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers))
+    if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers))
     {
         throw runtime_error("Unable to open the audio device");        
     }
@@ -24,12 +24,28 @@ SoundEngine::SoundEngine() throw(runtime_error): music(NULL), sound(NULL)
 
 SoundEngine::~SoundEngine()
 {
+    if (mmMusic != NULL)
+    {
+        Mix_FreeMusic(mmMusic);
+    }
     Mix_CloseAudio();
     SDL_Quit();
 }
 
 // Methods
 
-void SoundEngine::playSound(const std::string &filename)
+void SoundEngine::playSound(const std::string &fileName)
 {
+    if (mmMusic != NULL)
+    {
+        Mix_HaltMusic();
+        Mix_FreeMusic(mmMusic);
+        mmMusic = NULL;
+    }
+    mmMusic = Mix_LoadMUS(fileName.c_str());
+    if (mmMusic == NULL)
+    {
+        throw runtime_error("Unable to load the file");
+    }
+    Mix_PlayMusic(mmMusic,0);
 }

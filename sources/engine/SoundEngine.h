@@ -9,8 +9,7 @@
 class SoundEngine
 {
 	private:
-        Mix_Music *music;
-        Mix_Chunk *sound;
+        Mix_Music *mmMusic;
 
 	public:
 		// constructor
@@ -18,8 +17,7 @@ class SoundEngine
         // destructor
         ~SoundEngine();
 		// accessors
-		void playSound(const std::string &filename);
-//		void playMusic(const std::string &filename);
+		void playSound(const std::string &fileName);
 };
 
 #endif
