@@ -1,6 +1,6 @@
 Vincent Prat (ViviCoder)
 Simon Nicolas (Dramac)
-25/08/2011
+17/09/2011
 
 This software is designed to be the perfect assistant for the game master in a role playing game
 
@@ -13,6 +13,7 @@ To compile, you need:
 - C++ standard library (with development files)
 - Qt4 library (with development files)
 - XML++ library (with development files)
+- SDL_mixer library (with development files)
 
 **********************
 *    INSTRUCTIONS    *

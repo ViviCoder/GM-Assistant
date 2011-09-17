@@ -59,36 +59,39 @@ echo "* Checking development files... *"
 echo "*********************************"
 
 # Needed headers
-#cxx_devs="iterator string vector sstream iostream stdexcept"
-xml_devs="libxml++"
 
-#cxx_version=$(g++ --version | sed -e "s/g++.*(.*) //" | grep -o -e "[0-9]\{1,\}\.[0-9]\{1,\}")
-#cxx_dev_path="/usr/include/c++/$cxx_version"
-#echo - C++ standard library: $cxx_dev_path
-#for dev in $cxx_devs
-#do
-#    if [ -e "$cxx_dev_path/$dev" ]
-#    then
-#        echo $dev: OK
-#    else
-#        echo $dev missing !
-#        exit
-#    fi
-#done
-
-echo
 if [ $OS = "Linux" ]
 then
-	lib_path="/usr/include/"
+	inc_path="/usr/include/"
 elif [ $OS = "Darwin" ]
 then
-	lib_path="/opt/local/include/"
+	inc_path="/opt/local/include/"
 fi
-xml_dev_path=$(ls -l $lib_path | grep -o -e "libxml++-[0-9]\{1,\}\.[0-9]\{1,\}" | head -n 1)
+
+# libXML++
+echo
+xml_devs="libxml++"
+xml_dev_path=$(ls -l $inc_path | grep -o -e "libxml++-[0-9]\{1,\}\.[0-9]\{1,\}" | head -n 1)
 
 for dev in $xml_devs
 do
-    if [ -e "$lib_path$xml_dev_path/libxml++/$dev.h" ]
+    if [ -e "$inc_path$xml_dev_path/libxml++/$dev.h" ]
+    then
+        echo $dev.h: OK
+    else
+        echo $dev.h missing !
+        exit
+    fi
+done
+
+# SDL
+echo
+sdl_devs="SDL SDL_mixer"
+sdl_dev_path=$inc_path"SDL"
+
+for dev in $sdl_devs
+do
+    if [ -e "$sdl_dev_path/$dev.h" ]
     then
         echo $dev.h: OK
     else
@@ -122,16 +125,16 @@ echo "************************"
 echo "* Adding librairies... *"
 echo "************************"
 
-# adding libxml++ includes in the Makefile
-sed -i  "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I)#" Makefile
+# adding libxml++ and SDL includes in the Makefile
+sed -i  "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --cflags-only-I)#" Makefile
 
-# adding libxml++ and FMOD binaries
+# adding libxml++ and SDL binaries
 if [ $OS = "Linux" ]
 then
-	sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) libs/api/lib/libfmodex64.so#" Makefile
+    sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) $(pkg-config sdl --libs) -lSDL_mixer#" Makefile
 elif [ $OS = "Darwin" ]
 then
-	sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) libfmodex.dylib#" Makefile
+    sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) $(pkg-config sdl --libs) -lSDL_mixer#" Makefile
 fi
 
 echo
