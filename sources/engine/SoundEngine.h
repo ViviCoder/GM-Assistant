@@ -3,14 +3,13 @@
 
 #include <SDL.h>
 #include <SDL_mixer.h>
+#include <SDL_sound.h>
 #include <string>
 #include <stdexcept>
 
 class SoundEngine
 {
 	private:
-        Mix_Music *mmMusic;
-
 	public:
 		// constructor
 		SoundEngine() throw(std::runtime_error);

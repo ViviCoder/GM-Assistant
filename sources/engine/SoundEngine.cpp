@@ -1,18 +1,18 @@
 #include "SoundEngine.h"
-#include <stdexcept>
 
 using namespace std;
 
 // Constructor
-SoundEngine::SoundEngine() throw(runtime_error): mmMusic(NULL)
+SoundEngine::SoundEngine() throw(runtime_error)
 {
     SDL_Init(SDL_INIT_AUDIO);
+    Sound_Init();
 
     // set up
-    int audio_rate = 22050;
+    int audio_rate = 44100;
     Uint16 audio_format = AUDIO_S16; 
     int audio_channels = 2;
-    int audio_buffers = 4096;
+    int audio_buffers = 1024;
 
     if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers))
     {
@@ -24,10 +24,7 @@ SoundEngine::SoundEngine() throw(runtime_error): mmMusic(NULL)
 
 SoundEngine::~SoundEngine()
 {
-    if (mmMusic != NULL)
-    {
-        Mix_FreeMusic(mmMusic);
-    }
+    Sound_Quit();
     Mix_CloseAudio();
     SDL_Quit();
 }
@@ -36,16 +33,21 @@ SoundEngine::~SoundEngine()
 
 void SoundEngine::playSound(const std::string &fileName)
 {
-    if (mmMusic != NULL)
-    {
-        Mix_HaltMusic();
-        Mix_FreeMusic(mmMusic);
-        mmMusic = NULL;
-    }
-    mmMusic = Mix_LoadMUS(fileName.c_str());
-    if (mmMusic == NULL)
+    Sound_Sample *sample = Sound_NewSampleFromFile(fileName.c_str(),NULL,1024);
+    if (sample == NULL)
     {
         throw runtime_error("Unable to load the file");
     }
-    Mix_PlayMusic(mmMusic,0);
+    int size = Sound_DecodeAll(sample);
+    Mix_Chunk *mcSound = Mix_QuickLoad_RAW((Uint8 *)sample->buffer,size);
+    Sound_FreeSample(sample);
+    if (mcSound == NULL)
+    {
+        throw runtime_error("Unable to convert the file");
+    }
+    int channel = Mix_PlayChannel(-1,mcSound,0);
+    if (channel < 0)
+    {
+        throw runtime_error("Unable to play the file");
+    }
 }
