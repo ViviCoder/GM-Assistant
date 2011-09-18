@@ -10,13 +10,22 @@
 class SoundEngine
 {
 	private:
+        int iRate;
+        Uint16 uFormat;
+        int iChannels;  // 1 : mono / 2 : stereo
+        int iBufferSize;
 	public:
 		// constructor
 		SoundEngine() throw(std::runtime_error);
         // destructor
         ~SoundEngine();
 		// accessors
-		void playSound(const std::string &fileName);
+        int audioRate() const;
+        Uint16 audioFormat() const;
+        int audioChannels() const;
+        int bufferSize() const;
+        // methods
+		void playSound(const std::string &fileName) throw(std::runtime_error);
 };
 
 #endif

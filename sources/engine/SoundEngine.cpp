@@ -2,22 +2,17 @@
 
 using namespace std;
 
-// Constructor
-SoundEngine::SoundEngine() throw(runtime_error)
+// constructor
+SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(AUDIO_S16), iChannels(2), iBufferSize(1024)
 {
     SDL_Init(SDL_INIT_AUDIO);
     Sound_Init();
 
-    // set up
-    int audio_rate = 44100;
-    Uint16 audio_format = AUDIO_S16; 
-    int audio_channels = 2;
-    int audio_buffers = 1024;
-
-    if (Mix_OpenAudio(audio_rate, audio_format, audio_channels, audio_buffers))
+    if (Mix_OpenAudio(iRate,uFormat,iChannels,iBufferSize))
     {
         throw runtime_error("Unable to open the audio device");        
     }
+    Mix_QuerySpec(&iRate,&uFormat,&iChannels);  // gathering real parameters
 }
 
 // destructor
@@ -29,11 +24,33 @@ SoundEngine::~SoundEngine()
     SDL_Quit();
 }
 
-// Methods
+// accessors
 
-void SoundEngine::playSound(const std::string &fileName)
+int SoundEngine::audioRate() const
 {
-    Sound_Sample *sample = Sound_NewSampleFromFile(fileName.c_str(),NULL,1024);
+    return iRate;
+}
+
+Uint16 SoundEngine::audioFormat() const
+{
+    return uFormat;
+}
+
+int SoundEngine::audioChannels() const
+{
+    return iChannels;
+}
+
+int SoundEngine::bufferSize() const
+{
+    return iBufferSize;
+}
+
+// methods
+
+void SoundEngine::playSound(const std::string &fileName) throw(runtime_error)
+{
+    Sound_Sample *sample = Sound_NewSampleFromFile(fileName.c_str(),NULL,iBufferSize);
     if (sample == NULL)
     {
         throw runtime_error("Unable to load the file");
