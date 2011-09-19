@@ -17,6 +17,7 @@ class QCustomTreeWidget: public QTreeWidget
         QAction *actionNone, *actionProgress, *actionFailure, *actionSuccess, *actionAdd, *actionDelete;
         Tree *pTree;
         SoundEngine *pSoundEngine;
+        bool bPlayMusic;
         ItemDialog *pItemDial;
         QTreeWidgetItem *dragSource;
     protected:
@@ -36,7 +37,7 @@ class QCustomTreeWidget: public QTreeWidget
         ~QCustomTreeWidget();
         // associating a tree to the widget
         void setTree(Tree *tree);
-        void setSoundEngine(SoundEngine *soundEngine);
+        void setSoundEngine(SoundEngine *soundEngine, bool playMusic=false);
         // associating an icon to a state
         static QIcon icon(Item::State state);
 };

@@ -1,11 +1,9 @@
 #ifndef HEADER_SOUNDENGINE
 #define HEADER_SOUNDENGINE
 
-#include <SDL.h>
-#include <SDL_mixer.h>
-#include <SDL_sound.h>
 #include <string>
 #include <stdexcept>
+#include <SDL.h>
 
 class SoundEngine
 {
@@ -14,6 +12,10 @@ class SoundEngine
         Uint16 uFormat;
         int iChannels;  // 1 : mono / 2 : stereo
         int iBufferSize;
+        // channel on which music is played
+        int iMusicChannel;
+        // method for loading,converting and playing a file
+        int playFile(const std::string &filename) throw(std::runtime_error);
 	public:
 		// constructor
 		SoundEngine() throw(std::runtime_error);
@@ -26,6 +28,7 @@ class SoundEngine
         int bufferSize() const;
         // methods
 		void playSound(const std::string &fileName) throw(std::runtime_error);
+		void playMusic(const std::string &fileName) throw(std::runtime_error);
 };
 
 #endif

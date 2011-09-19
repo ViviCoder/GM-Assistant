@@ -1,9 +1,11 @@
 #include "SoundEngine.h"
+#include <SDL_sound.h>
+#include <SDL_mixer.h>
 
 using namespace std;
 
 // constructor
-SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(AUDIO_S16), iChannels(2), iBufferSize(1024)
+SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(AUDIO_S16), iChannels(2), iBufferSize(1024), iMusicChannel(-1)
 {
     SDL_Init(SDL_INIT_AUDIO);
     Sound_Init();
@@ -48,7 +50,7 @@ int SoundEngine::bufferSize() const
 
 // methods
 
-void SoundEngine::playSound(const std::string &fileName) throw(runtime_error)
+int SoundEngine::playFile(const string &fileName) throw(runtime_error)
 {
     Sound_Sample *sample = Sound_NewSampleFromFile(fileName.c_str(),NULL,iBufferSize);
     if (sample == NULL)
@@ -67,4 +69,26 @@ void SoundEngine::playSound(const std::string &fileName) throw(runtime_error)
     {
         throw runtime_error("Unable to play the file");
     }
+    return channel;
+}
+
+void SoundEngine::playSound(const string &fileName) throw(runtime_error)
+{
+    int channel = playFile(fileName);
+    if (channel==iMusicChannel)
+    {
+        // free the music channel if used by the sound (it means that music has finished)
+        iMusicChannel = -1;
+    }
+}
+
+void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
+{
+    if (iMusicChannel != -1)
+    {
+        // stops music if the channel is busy
+        Mix_HaltChannel(iMusicChannel);
+        iMusicChannel = -1;
+    }
+    iMusicChannel = playFile(fileName);
 }

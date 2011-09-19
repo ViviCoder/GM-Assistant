@@ -272,7 +272,7 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="54"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="61"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>

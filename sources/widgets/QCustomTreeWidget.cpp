@@ -41,21 +41,28 @@ void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
         Item *item = qctwitem->branch()->item();
         switch (item->type())
         {
-            case Item::tSound: {
-                                   if (pSoundEngine != NULL)
-                                   {
-                                       try
-                                       {
-                                           SoundItem *sounditem = dynamic_cast<SoundItem*>(item);
-                                           pSoundEngine->playSound(sounditem->fileName());
-                                       }
-                                       catch (std::runtime_error &e)
-                                       {
-                                           QMessageBox::critical(this,QApplication::translate("custom","Error",0),e.what());
-                                       }
+            case Item::tSound:  {
+                                    if (pSoundEngine != NULL)
+                                    {
+                                        try
+                                        {
+                                            SoundItem *sounditem = dynamic_cast<SoundItem*>(item);
+                                            if (bPlayMusic)
+                                            {
+                                                pSoundEngine->playMusic(sounditem->fileName());
+                                            }
+                                            else
+                                            {
+                                                pSoundEngine->playSound(sounditem->fileName());
+                                            }
+                                        }
+                                        catch (std::runtime_error &e)
+                                        {
+                                            QMessageBox::critical(this,QApplication::translate("custom","Error",0),e.what());
+                                        }
 
-                                   }
-                               }
+                                    }
+                                }
             case Item::tBasic: break;
         }
     }
@@ -197,9 +204,10 @@ void QCustomTreeWidget::on_itemExpanded()
     resizeColumnToContents(0);
 }
 
-void QCustomTreeWidget::setSoundEngine(SoundEngine *soundEngine)
+void QCustomTreeWidget::setSoundEngine(SoundEngine *soundEngine, bool playMusic)
 {
     pSoundEngine = soundEngine;
+    bPlayMusic = playMusic;
 }
 
 void QCustomTreeWidget::setTree(Tree *tree)
