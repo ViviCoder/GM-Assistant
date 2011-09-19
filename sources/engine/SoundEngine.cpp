@@ -1,11 +1,10 @@
 #include "SoundEngine.h"
 #include <SDL_sound.h>
-#include <SDL_mixer.h>
 
 using namespace std;
 
 // constructor
-SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(AUDIO_S16), iChannels(2), iBufferSize(1024), iMusicChannel(-1)
+SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(AUDIO_S16), iChannels(2), iBufferSize(1024), mmMusic(NULL)
 {
     SDL_Init(SDL_INIT_AUDIO);
     Sound_Init();
@@ -21,6 +20,10 @@ SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(AUDIO_S16
 
 SoundEngine::~SoundEngine()
 {
+    if (mmMusic != NULL)
+    {
+        Mix_FreeMusic(mmMusic);
+    }
     Sound_Quit();
     Mix_CloseAudio();
     SDL_Quit();
@@ -50,7 +53,7 @@ int SoundEngine::bufferSize() const
 
 // methods
 
-int SoundEngine::playFile(const string &fileName) throw(runtime_error)
+void SoundEngine::playSound(const string &fileName) throw(runtime_error)
 {
     Sound_Sample *sample = Sound_NewSampleFromFile(fileName.c_str(),NULL,iBufferSize);
     if (sample == NULL)
@@ -69,26 +72,20 @@ int SoundEngine::playFile(const string &fileName) throw(runtime_error)
     {
         throw runtime_error("Unable to play the file");
     }
-    return channel;
-}
-
-void SoundEngine::playSound(const string &fileName) throw(runtime_error)
-{
-    int channel = playFile(fileName);
-    if (channel==iMusicChannel)
-    {
-        // free the music channel if used by the sound (it means that music has finished)
-        iMusicChannel = -1;
-    }
 }
 
 void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
 {
-    if (iMusicChannel != -1)
+    if (mmMusic != NULL)
     {
-        // stops music if the channel is busy
-        Mix_HaltChannel(iMusicChannel);
-        iMusicChannel = -1;
+        Mix_HaltMusic();
+        Mix_FreeMusic(mmMusic);
+        mmMusic = NULL;
     }
-    iMusicChannel = playFile(fileName);
+    mmMusic = Mix_LoadMUS(fileName.c_str());
+    if (mmMusic == NULL)
+    {
+        throw runtime_error("Unable to load the file");
+    }
+    Mix_PlayMusic(mmMusic,0);
 }

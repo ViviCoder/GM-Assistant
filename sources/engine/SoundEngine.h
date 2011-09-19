@@ -4,6 +4,7 @@
 #include <string>
 #include <stdexcept>
 #include <SDL.h>
+#include <SDL_mixer.h>
 
 class SoundEngine
 {
@@ -12,10 +13,8 @@ class SoundEngine
         Uint16 uFormat;
         int iChannels;  // 1 : mono / 2 : stereo
         int iBufferSize;
-        // channel on which music is played
-        int iMusicChannel;
-        // method for loading,converting and playing a file
-        int playFile(const std::string &filename) throw(std::runtime_error);
+        // music
+        Mix_Music *mmMusic;
 	public:
 		// constructor
 		SoundEngine() throw(std::runtime_error);
