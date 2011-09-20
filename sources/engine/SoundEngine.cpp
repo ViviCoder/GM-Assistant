@@ -1,10 +1,9 @@
 #include "SoundEngine.h"
-#include <SDL_sound.h>
 
 using namespace std;
 
 // constructor
-SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAULT_FORMAT), iChannels(MIX_DEFAULT_CHANNELS), iBufferSize(1024), mmMusic(NULL)
+SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAULT_FORMAT), iChannels(MIX_DEFAULT_CHANNELS), iBufferSize(1024), mmMusic(NULL), ssSample(NULL)
 {
     SDL_Init(SDL_INIT_AUDIO);
     Sound_Init();
@@ -14,6 +13,8 @@ SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAU
         throw runtime_error("Unable to open the audio device");        
     }
     Mix_QuerySpec(&iRate,&uFormat,&iChannels);  // gathering real parameters
+    // allocating the sound channel
+    Mix_AllocateChannels(1);
 }
 
 // destructor
@@ -22,7 +23,13 @@ SoundEngine::~SoundEngine()
 {
     if (mmMusic != NULL)
     {
+        Mix_HaltMusic();
         Mix_FreeMusic(mmMusic);
+    }
+    if (ssSample != NULL)
+    {
+        Mix_HaltChannel(0);
+        Sound_FreeSample(ssSample);
     }
     Sound_Quit();
     Mix_CloseAudio();
@@ -55,19 +62,24 @@ int SoundEngine::bufferSize() const
 
 void SoundEngine::playSound(const string &fileName) throw(runtime_error)
 {
-    Sound_Sample *sample = Sound_NewSampleFromFile(fileName.c_str(),NULL,iBufferSize);
-    if (sample == NULL)
+    if (ssSample != NULL)
+    {
+        Mix_HaltChannel(0);
+        Sound_FreeSample(ssSample);
+        ssSample = NULL;
+    }
+    ssSample = Sound_NewSampleFromFile(fileName.c_str(),NULL,iBufferSize);
+    if (ssSample == NULL)
     {
         throw runtime_error("Unable to load the file");
     }
-    int size = Sound_DecodeAll(sample);
-    Mix_Chunk *mcSound = Mix_QuickLoad_RAW((Uint8 *)sample->buffer,size);
-    Sound_FreeSample(sample);
+    int size = Sound_DecodeAll(ssSample);
+    Mix_Chunk *mcSound = Mix_QuickLoad_RAW((Uint8 *)ssSample->buffer,size);
     if (mcSound == NULL)
     {
         throw runtime_error("Unable to convert the file");
     }
-    int channel = Mix_PlayChannel(-1,mcSound,0);
+    int channel = Mix_PlayChannel(0,mcSound,0);
     if (channel < 0)
     {
         throw runtime_error("Unable to play the file");

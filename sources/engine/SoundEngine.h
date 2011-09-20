@@ -5,6 +5,7 @@
 #include <stdexcept>
 #include <SDL.h>
 #include <SDL_mixer.h>
+#include <SDL_sound.h>
 
 class SoundEngine
 {
@@ -15,6 +16,8 @@ class SoundEngine
         int iBufferSize;
         // music
         Mix_Music *mmMusic;
+        // sample of the sound
+        Sound_Sample *ssSample;
 	public:
 		// constructor
 		SoundEngine() throw(std::runtime_error);
