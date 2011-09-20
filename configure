@@ -86,7 +86,7 @@ done
 
 # SDL
 echo
-sdl_devs="SDL SDL_mixer SDL_sound"
+sdl_devs="SDL_mixer SDL_sound"
 sdl_dev_path=$inc_path"SDL"
 
 for dev in $sdl_devs
@@ -131,10 +131,10 @@ sed -i  "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --c
 # adding libxml++ and SDL binaries
 if [ $OS = "Linux" ]
 then
-    sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL -lSDL_mixer -lSDL_sound#" Makefile
+    sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
 elif [ $OS = "Darwin" ]
 then
-    sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL -lSDL_mixer -lSDL_sound#" Makefile
+    sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
 fi
 
 echo

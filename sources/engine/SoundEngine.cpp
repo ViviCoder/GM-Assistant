@@ -5,7 +5,6 @@ using namespace std;
 // constructor
 SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAULT_FORMAT), iChannels(MIX_DEFAULT_CHANNELS), iBufferSize(1024), mmMusic(NULL), ssSample(NULL)
 {
-    SDL_Init(SDL_INIT_AUDIO);
     Sound_Init();
 
     if (Mix_OpenAudio(iRate,uFormat,iChannels,iBufferSize))
@@ -33,7 +32,6 @@ SoundEngine::~SoundEngine()
     }
     Sound_Quit();
     Mix_CloseAudio();
-    SDL_Quit();
 }
 
 // accessors

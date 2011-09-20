@@ -3,7 +3,6 @@
 
 #include <string>
 #include <stdexcept>
-#include <SDL.h>
 #include <SDL_mixer.h>
 #include <SDL_sound.h>
 
