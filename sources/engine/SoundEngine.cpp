@@ -4,7 +4,7 @@
 using namespace std;
 
 // constructor
-SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(AUDIO_S16), iChannels(2), iBufferSize(1024), mmMusic(NULL)
+SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAULT_FORMAT), iChannels(MIX_DEFAULT_CHANNELS), iBufferSize(1024), mmMusic(NULL)
 {
     SDL_Init(SDL_INIT_AUDIO);
     Sound_Init();
@@ -87,5 +87,8 @@ void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
     {
         throw runtime_error("Unable to load the file");
     }
-    Mix_PlayMusic(mmMusic,0);
+    while (!Mix_PlayingMusic())
+    {
+        Mix_PlayMusic(mmMusic,0);
+    }
 }
