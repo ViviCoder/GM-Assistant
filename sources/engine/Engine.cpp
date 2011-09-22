@@ -53,30 +53,30 @@ void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception)
             sNotes = "";
         }
     }
-    node = root->get_children("characters");
-    if (!node.empty())
-    {
-        node = node.front()->get_children("character");
-        for (Node::NodeList::const_iterator it = node.begin(); it != node.end(); it++)
-        {
-            Element *elem = dynamic_cast<Element*>(*it);
-            string name="";
-            Attribute *attr = elem->get_attribute("name");
-            if (attr != NULL)
-            {
-                name = attr->get_value();
-            }
-            string playerName="";
-            attr = elem->get_attribute("playername");
-            if (attr != NULL)
-            {
-                playerName = attr->get_value();
-            }
-            Character character = Character(name,playerName);
-            character.fromXML(*elem);
-            vCharacters.push_back(character);
-        }        
-    }
+    //node = root->get_children("characters");
+    //if (!node.empty())
+    //{
+        //node = node.front()->get_children("character");
+        //for (Node::NodeList::const_iterator it = node.begin(); it != node.end(); it++)
+        //{
+            //Element *elem = dynamic_cast<Element*>(*it);
+            //string name="";
+            //Attribute *attr = elem->get_attribute("name");
+            //if (attr != NULL)
+            //{
+                //name = attr->get_value();
+            //}
+            //string playerName="";
+            //attr = elem->get_attribute("playername");
+            //if (attr != NULL)
+            //{
+                //playerName = attr->get_value();
+            //}
+            //Character character = Character(name,playerName);
+            //character.fromXML(*elem);
+            //vCharacters.push_back(character);
+        //}        
+    //}
     node = root->get_children("history");
     if (!node.empty())
     {
@@ -104,14 +104,14 @@ void Engine::toFile(const string &fileName) const
     tScenario.toXML(*tmp);
     tmp = root->add_child("notes");
     tmp->add_child_text(sNotes);
-    tmp = root->add_child("characters");
-    for (vector<Character>::const_iterator it = vCharacters.begin(); it != vCharacters.end(); it++)
-    {
-        Element *tmp2 = tmp->add_child("character");
-        tmp2->set_attribute("name",it->name());
-        tmp2->set_attribute("playername",it->playerName());
-        it->toXML(*tmp2);
-    }
+    //tmp = root->add_child("characters");
+    //for (vector<Character>::const_iterator it = vCharacters.begin(); it != vCharacters.end(); it++)
+    //{
+        //Element *tmp2 = tmp->add_child("character");
+        //tmp2->set_attribute("name",it->name());
+        //tmp2->set_attribute("playername",it->playerName());
+        //it->toXML(*tmp2);
+    //}
     tmp = root->add_child("history");
     tHistory.toXML(*tmp);
     tmp = root->add_child("music");
@@ -171,6 +171,8 @@ void Engine::clear()
     tHistory.clear();
     tMusic.clear();
     tEffects.clear();
+    vSkillList.clear();
+    vCharacters.clear();
 }
 
 void Engine::addCharacter(const Character &character)
@@ -186,3 +188,38 @@ void Engine::removeCharacter(int index) throw(out_of_range)
     }
     vCharacters.erase(vCharacters.begin()+index);
 }
+
+void Engine::addSkill(const std::string &skill)
+{
+    vSkillList.push_back(skill);
+}
+
+void Engine::removeSkill(int index) throw(out_of_range)
+{
+    if (index < 0 || (unsigned int)index >= vSkillList.size())
+    {
+        throw out_of_range("Index out of bounds");
+    }
+    vSkillList.erase(vSkillList.begin()+index);
+}
+
+std::vector<Character> Engine::characterList()
+{
+    return vCharacters;
+}
+
+std::vector<std::string> Engine::skillList()
+{
+    return vSkillList;
+}
+
+std::string& Engine::skill(int index)
+{
+    if (index<0 || (unsigned int)index >= vSkillList.size())
+    {
+        throw out_of_range("Index out of bounds");
+    }
+    return vSkillList[index];
+}
+
+

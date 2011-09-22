@@ -12,6 +12,7 @@ class Engine
         std::string sNotes;
         SoundEngine sSoundEngine;
         std::vector<Character> vCharacters;
+        std::vector<std::string> vSkillList;
     public:
         // constructors
         Engine();
@@ -23,10 +24,15 @@ class Engine
         Tree& scenario();
         std::string& notes();
         SoundEngine& soundEngine();
+        std::vector<Character> characterList();
         Character& character(int index) throw(std::out_of_range);
         Tree& history();
         Tree& music();
         Tree& effects();
+        std::vector<std::string> skillList();
+        std::string& skill(int index);
+        void addSkill(const std::string &skill);
+        void removeSkill(int idex) throw(std::out_of_range);
         // populating
         void addCharacter(const Character &character);
         void removeCharacter(int index) throw(std::out_of_range);
