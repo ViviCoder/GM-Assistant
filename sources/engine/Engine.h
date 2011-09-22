@@ -12,7 +12,7 @@ class Engine
         std::string sNotes;
         SoundEngine sSoundEngine;
         std::vector<Character> vCharacters;
-        std::vector<std::string> vSkillList;
+        std::vector<std::string> vSkills;
     public:
         // constructors
         Engine();

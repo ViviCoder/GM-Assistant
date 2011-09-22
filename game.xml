@@ -24,16 +24,25 @@
   <notes>Ceci est mes notes.
 Cette phrase a été rajoutée depuis le logiciel.
 Celle-ci aussi, et sans bug !</notes>
+  <skills>
+    <skill name="For"/>
+    <skill name="Dex"/>
+    <skill name="Int"/>
+    <skill name="Per"/>
+  </skills>
   <characters>
-      <character name="Grosbill" playername="Dramac">
-        <skill name="For" value="40000"/>
-        <skill name="Dex" value="20000"/>
-        <skill name="Int" value="2"/>
-        <skill name="Per" value="4"/>
-      </character>
-      <character name="Billounet" playername="Vivi">
-        <skill name="Int" value="40000"/>
-      </character>
+    <character name="Grosbill" playername="Dramac">
+      <skill value="40000"/>
+      <skill value="20000"/>
+      <skill value="2"/>
+      <skill value="4"/>
+    </character>
+    <character name="Billounet" playername="Vivi">
+      <skill value="18"/>
+      <skill value="19"/>
+      <skill value="40000"/>
+      <skill value="20"/>
+    </character>
   </characters>
   <history>
     <item state="failure" type="basic" content="Avant premier élément"/>
@@ -44,21 +53,21 @@ Celle-ci aussi, et sans bug !</notes>
   </history>
   <music>
     <item state="none" type="sound" content="Bataille">
-        <file name="data/sound/ak47.mp3"/>
+      <file name="data/sound/ak47.mp3"/>
     </item>
     <item state="none" type="sound" content="Pluie">
-        <file name="data/sound/pluie.mp3"/>
+      <file name="data/sound/pluie.mp3"/>
     </item>
   </music>
   <effects>
     <item state="none" type="sound" content="grincement de porte">
-        <file name="data/sound/grince.mp3"/>
+      <file name="data/sound/grince.mp3"/>
     </item>
     <item state="none" type="sound" content="Cri">
-        <file name="data/sound/cri.mp3"/>
+      <file name="data/sound/cri.mp3"/>
     </item>
     <item state="none" type="sound" content="Coup de feu">
-        <file name="data/sound/pan.mp3"/>
+      <file name="data/sound/pan.mp3"/>
     </item>
   </effects>
 </game>

@@ -10,15 +10,15 @@ class Character
     private:
         std::string sName;
         std::string sPlayerName;
-        //std::vector<Skill> vSkill;
-        std::vector<std::string> vSkill;
+        //std::vector<Skill> vSkills;
+        std::vector<std::string> vSkills;
     public:
         // constructors
         Character(const std::string &name);    // for NPC
         Character(const std::string &name, const std::string &playerName);    // for PC
         // XML-related methods
-        //void toXML(xmlpp::Element &root) const;
-        //void fromXML(const xmlpp::Element &root);
+        void toXML(xmlpp::Element &root) const;
+        void fromXML(const xmlpp::Element &root);
         // accessors
         std::string name() const;
         std::string playerName() const;

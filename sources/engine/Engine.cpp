@@ -53,30 +53,46 @@ void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception)
             sNotes = "";
         }
     }
-    //node = root->get_children("characters");
-    //if (!node.empty())
-    //{
-        //node = node.front()->get_children("character");
-        //for (Node::NodeList::const_iterator it = node.begin(); it != node.end(); it++)
-        //{
-            //Element *elem = dynamic_cast<Element*>(*it);
-            //string name="";
-            //Attribute *attr = elem->get_attribute("name");
-            //if (attr != NULL)
-            //{
-                //name = attr->get_value();
-            //}
-            //string playerName="";
-            //attr = elem->get_attribute("playername");
-            //if (attr != NULL)
-            //{
-                //playerName = attr->get_value();
-            //}
-            //Character character = Character(name,playerName);
-            //character.fromXML(*elem);
-            //vCharacters.push_back(character);
-        //}        
-    //}
+    node = root->get_children("skills");
+    if (!node.empty())
+    {
+        node = node.front()->get_children("skill");
+        for (Node::NodeList::const_iterator it = node.begin(); it != node.end(); it++)
+        {
+            Element *elem = dynamic_cast<Element*>(*it);
+            string name;
+            Attribute *attr = elem->get_attribute("name");
+            if (attr != NULL)
+            {
+                name = attr->get_value();
+            }
+            vSkills.push_back(name);
+        }
+    }
+    node = root->get_children("characters");
+    if (!node.empty())
+    {
+        node = node.front()->get_children("character");
+        for (Node::NodeList::const_iterator it = node.begin(); it != node.end(); it++)
+        {
+            Element *elem = dynamic_cast<Element*>(*it);
+            string name="";
+            Attribute *attr = elem->get_attribute("name");
+            if (attr != NULL)
+            {
+                name = attr->get_value();
+            }
+            string playerName="";
+            attr = elem->get_attribute("playername");
+            if (attr != NULL)
+            {
+                playerName = attr->get_value();
+            }
+            Character character = Character(name,playerName);
+            character.fromXML(*elem);
+            vCharacters.push_back(character);
+        }        
+    }
     node = root->get_children("history");
     if (!node.empty())
     {
@@ -104,14 +120,20 @@ void Engine::toFile(const string &fileName) const
     tScenario.toXML(*tmp);
     tmp = root->add_child("notes");
     tmp->add_child_text(sNotes);
-    //tmp = root->add_child("characters");
-    //for (vector<Character>::const_iterator it = vCharacters.begin(); it != vCharacters.end(); it++)
-    //{
-        //Element *tmp2 = tmp->add_child("character");
-        //tmp2->set_attribute("name",it->name());
-        //tmp2->set_attribute("playername",it->playerName());
-        //it->toXML(*tmp2);
-    //}
+    tmp = root->add_child("skills");
+    for (vector<string>::const_iterator it = vSkills.begin(); it != vSkills.end(); it++)
+    {
+        Element *tmp2 = tmp->add_child("skill");
+        tmp2->set_attribute("name",*it);
+    }
+    tmp = root->add_child("characters");
+    for (vector<Character>::const_iterator it = vCharacters.begin(); it != vCharacters.end(); it++)
+    {
+        Element *tmp2 = tmp->add_child("character");
+        tmp2->set_attribute("name",it->name());
+        tmp2->set_attribute("playername",it->playerName());
+        it->toXML(*tmp2);
+    }
     tmp = root->add_child("history");
     tHistory.toXML(*tmp);
     tmp = root->add_child("music");
@@ -171,7 +193,7 @@ void Engine::clear()
     tHistory.clear();
     tMusic.clear();
     tEffects.clear();
-    vSkillList.clear();
+    vSkills.clear();
     vCharacters.clear();
 }
 
@@ -191,16 +213,16 @@ void Engine::removeCharacter(int index) throw(out_of_range)
 
 void Engine::addSkill(const std::string &skill)
 {
-    vSkillList.push_back(skill);
+    vSkills.push_back(skill);
 }
 
 void Engine::removeSkill(int index) throw(out_of_range)
 {
-    if (index < 0 || (unsigned int)index >= vSkillList.size())
+    if (index < 0 || (unsigned int)index >= vSkills.size())
     {
         throw out_of_range("Index out of bounds");
     }
-    vSkillList.erase(vSkillList.begin()+index);
+    vSkills.erase(vSkills.begin()+index);
 }
 
 std::vector<Character> Engine::characterList()
@@ -210,16 +232,16 @@ std::vector<Character> Engine::characterList()
 
 std::vector<std::string> Engine::skillList()
 {
-    return vSkillList;
+    return vSkills;
 }
 
 std::string& Engine::skill(int index)
 {
-    if (index<0 || (unsigned int)index >= vSkillList.size())
+    if (index<0 || (unsigned int)index >= vSkills.size())
     {
         throw out_of_range("Index out of bounds");
     }
-    return vSkillList[index];
+    return vSkills[index];
 }
 
 

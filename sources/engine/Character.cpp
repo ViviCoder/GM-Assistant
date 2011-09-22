@@ -31,71 +31,60 @@ bool Character::isPlaying() const
 
 std::string& Character::skill(int index) throw(out_of_range)
 {
-    if (index < 0 || (unsigned int)index >= vSkill.size())
+    if (index < 0 || (unsigned int)index >= vSkills.size())
     {
         throw out_of_range("Index out of bounds");
     }
-    return vSkill[index];
+    return vSkills[index];
 }
 
 // methods
 
-//void Character::toXML(xmlpp::Element &root) const
-//{
-    //using namespace xmlpp;
-//
-    //for (vector<std::string>::const_iterator it = vSkill.begin(); it != vSkill.end(); it++)
-    //{
-        //Element *tmp = root.add_child("skill");
-        //tmp->set_attribute("name",it->name());
-        //stringstream buf(stringstream::in | stringstream::out);
-        //buf << it->value();
-        //tmp->set_attribute("value",buf.str());
-    //}
-//}
-//
-//void Character::fromXML(const xmlpp::Element &root)
-//{
-    //using namespace xmlpp;
-//
-    //clearSkills();
-    //Node::NodeList list = root.get_children("skill");
-    //for (Node::NodeList::const_iterator it = list.begin(); it != list.end(); it++)
-    //{
-        //Element *elem = dynamic_cast<Element *>(*it);
-        //string name="";
-        //Attribute *attr = elem->get_attribute("name");
-        //if (attr != NULL)
-        //{
-            //name = attr->get_value();
-        //}
-        //int value = 0;
-        //attr = elem->get_attribute("value");
-        //if (attr != NULL)
-        //{
-            //stringstream buf(stringstream::in | stringstream::out);
-            //buf << attr->get_value();
-            //buf >> value;
-        //}
-        //vSkill.push_back(Skill(name,value));
-    //}
-//}
+void Character::toXML(xmlpp::Element &root) const
+{
+    using namespace xmlpp;
+
+    for (vector<std::string>::const_iterator it = vSkills.begin(); it != vSkills.end(); it++)
+    {
+        Element *tmp = root.add_child("skill");
+        tmp->set_attribute("value",*it);
+    }
+}
+
+void Character::fromXML(const xmlpp::Element &root)
+{
+    using namespace xmlpp;
+
+    clearSkills();
+    Node::NodeList list = root.get_children("skill");
+    for (Node::NodeList::const_iterator it = list.begin(); it != list.end(); it++)
+    {
+        Element *elem = dynamic_cast<Element *>(*it);
+        string value;
+        Attribute *attr = elem->get_attribute("value");
+        if (attr != NULL)
+        {
+            value = attr->get_value();
+        }
+        vSkills.push_back(value);
+    }
+}
 
 void Character::addSkill(const std::string &skill)
 {
-    vSkill.push_back(skill);
+    vSkills.push_back(skill);
 }
 
 void Character::removeSkill(int index) throw(out_of_range)
 {
-    if (index < 0 || (unsigned int)index >= vSkill.size())
+    if (index < 0 || (unsigned int)index >= vSkills.size())
     {
         throw out_of_range("Index out of bounds");
     }
-    vSkill.erase(vSkill.begin()+index);
+    vSkills.erase(vSkills.begin()+index);
 }
 
 void Character::clearSkills()
 {
-    vSkill.clear();
+    vSkills.clear();
 }
