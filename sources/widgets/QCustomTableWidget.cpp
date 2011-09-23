@@ -73,7 +73,7 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     {
                                         if (qtwitem != NULL)
                                         {
-                                            insertRow(rowPosition);
+                                            removeRow(rowPosition);
                                         }
                                     }
                                     if (action == actionEditColumn)
