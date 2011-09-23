@@ -177,44 +177,36 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Dialog_Item</name>
     <message>
-        <location filename="../sources/EditItem.ui" line="14"/>
         <source>Create item</source>
-        <translation type="unfinished">Créer un item</translation>
+        <translation type="obsolete">Créer un item</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="32"/>
         <source>&amp;None</source>
-        <translation type="unfinished">&amp;Aucun</translation>
+        <translation type="obsolete">&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="39"/>
         <source>In &amp;progress</source>
-        <translation type="unfinished">En &amp;cours</translation>
+        <translation type="obsolete">En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="50"/>
         <source>&amp;Failed</source>
-        <translation type="unfinished">&amp;Échoué</translation>
+        <translation type="obsolete">&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="61"/>
         <source>&amp;Succeeded</source>
-        <translation type="unfinished">&amp;Réussi</translation>
+        <translation type="obsolete">&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="74"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">A&amp;jouter</translation>
+        <translation type="obsolete">A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="85"/>
         <source>S&amp;on</source>
-        <translation type="unfinished">&amp;Fils</translation>
+        <translation type="obsolete">&amp;Fils</translation>
     </message>
     <message>
-        <location filename="../sources/EditItem.ui" line="96"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">A&amp;nnuler</translation>
+        <translation type="obsolete">A&amp;nnuler</translation>
     </message>
 </context>
 <context>
@@ -290,24 +282,28 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>changeHeaderDialog</name>
     <message>
-        <location filename="../sources/windows/ChangeHeaderDialog.ui" line="17"/>
         <source>Create a new item</source>
-        <translation type="unfinished">Créer un nouvel item</translation>
+        <translation type="obsolete">Créer un nouvel item</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeHeaderDialog.ui" line="17"/>
+        <source>Change the name</source>
+        <translation>Changer le nom</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangeHeaderDialog.ui" line="29"/>
-        <source>Change title</source>
-        <translation type="unfinished"></translation>
+        <source>New name:</source>
+        <translation>Nouveau nom :</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeHeaderDialog.ui" line="43"/>
+        <location filename="../sources/windows/ChangeHeaderDialog.ui" line="41"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Éditer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeHeaderDialog.ui" line="50"/>
+        <location filename="../sources/windows/ChangeHeaderDialog.ui" line="52"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">A&amp;nnuler</translation>
+        <translation>A&amp;nnuler</translation>
     </message>
 </context>
 <context>
@@ -316,36 +312,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="30"/>
         <source>&amp;None</source>
         <translation>&amp;Aucun</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="9"/>
-        <source>&amp;Add column</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="11"/>
-        <source>&amp;Remove column</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="13"/>
-        <source>&amp;Add row</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="15"/>
-        <source>&amp;Remove row</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="17"/>
-        <source>Edit row</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="18"/>
-        <source>Edit column</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="31"/>
@@ -381,6 +347,68 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="56"/>
         <source>Double click to play the file</source>
         <translation>Double-cliquez pour jouer le fichier</translation>
+    </message>
+    <message>
+        <source>&amp;Add a column</source>
+        <translation type="obsolete">&amp;Ajouter une colonne</translation>
+    </message>
+    <message>
+        <source>&amp;Remove the column</source>
+        <translation type="obsolete">&amp;Supprimer la colonne</translation>
+    </message>
+    <message>
+        <source>A&amp;dd a row</source>
+        <translation type="obsolete">A&amp;jouter une ligne</translation>
+    </message>
+    <message>
+        <source>R&amp;emove the row</source>
+        <translation type="obsolete">S&amp;upprimer la ligne</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="9"/>
+        <source>&amp;Add a skill</source>
+        <translation>&amp;Ajouter une compétence</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="11"/>
+        <source>&amp;Remove the skill</source>
+        <translation>&amp;Supprimer la compétence</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="15"/>
+        <source>A&amp;dd a character</source>
+        <translation>A&amp;jouter un personnage</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="17"/>
+        <source>R&amp;emove the character</source>
+        <translation>S&amp;upprimer le personnage</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="19"/>
+        <source>Change &amp;character&apos;s name</source>
+        <translation>Changer le nom du &amp;personnage</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="13"/>
+        <source>Change &amp;skill&apos;s name</source>
+        <translation>Changer le nom de la &amp;compétence</translation>
+    </message>
+    <message>
+        <source>&amp;Add a row</source>
+        <translation type="obsolete">A&amp;jouter une ligne</translation>
+    </message>
+    <message>
+        <source>&amp;Remove the row</source>
+        <translation type="obsolete">S&amp;upprimer la ligne</translation>
+    </message>
+    <message>
+        <source>Change character&apos;s name</source>
+        <translation type="obsolete">Changer le nom du &amp;personnage</translation>
+    </message>
+    <message>
+        <source>Edit the row</source>
+        <translation type="obsolete">Éditer l</translation>
     </message>
 </context>
 <context>

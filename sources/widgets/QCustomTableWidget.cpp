@@ -6,16 +6,19 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
 {
     //popup menu
     //actionNone = menuColumn->addAction(QApplication::translate("custom","&None",0));
-    actionAddColumn = menuColumn->addAction(QIcon(":/data/images/add.png"),QApplication::translate("custom","&Add column",0));
+    actionAddColumn = menuColumn->addAction(QIcon(":/data/images/add.png"),QApplication::translate("custom","&Add a skill",0));
     actionAddColumn->setIconVisibleInMenu(true);
-    actionRemoveColumn = menuColumn->addAction(QIcon(":/data/images/remove.png"),QApplication::translate("custom","&Remove column",0));
+    actionRemoveColumn = menuColumn->addAction(QIcon(":/data/images/remove.png"),QApplication::translate("custom","&Remove the skill",0));
     actionRemoveColumn->setIconVisibleInMenu(true);
-    actionAddRow = menuColumn->addAction(QIcon(":/data/images/add.png"),QApplication::translate("custom","&Add row",0));
+    actionEditColumn = menuColumn->addAction(QIcon(":/data/images/son.png"),QApplication::translate("custom","Change &skill's name",0));
+    actionEditColumn->setIconVisibleInMenu(true);
+    menuColumn->addSeparator();
+    actionAddRow = menuColumn->addAction(QIcon(":/data/images/add.png"),QApplication::translate("custom","A&dd a character",0));
     actionAddRow->setIconVisibleInMenu(true);
-    actionRemoveRow = menuColumn->addAction(QIcon(":/data/images/remove.png"),QApplication::translate("custom","&Remove row",0));
+    actionRemoveRow = menuColumn->addAction(QIcon(":/data/images/remove.png"),QApplication::translate("custom","R&emove the character",0));
     actionRemoveRow->setIconVisibleInMenu(true);
-    actionEditRow = menuColumn->addAction(QApplication::translate("custom","Edit row",0));
-    actionEditColumn = menuColumn->addAction(QApplication::translate("custom","Edit column",0));
+    actionEditRow = menuColumn->addAction(QIcon(":/data/images/son.png"),QApplication::translate("custom","Change &character's name",0));
+    actionEditRow->setIconVisibleInMenu(true);
 }
 
 QCustomTableWidget::~QCustomTableWidget()

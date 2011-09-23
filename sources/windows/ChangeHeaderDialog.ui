@@ -9,12 +9,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>196</width>
-    <height>116</height>
+    <width>199</width>
+    <height>117</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Create a new item</string>
+   <string>Change the name</string>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -24,16 +24,14 @@
     <enum>QLayout::SetFixedSize</enum>
    </property>
    <item>
-    <widget class="QGroupBox" name="groupBox_2">
-     <property name="title">
-      <string>Change title</string>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>New name:</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
-       <widget class="QLineEdit" name="editItem"/>
-      </item>
-     </layout>
     </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="editItem"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -41,6 +39,10 @@
       <widget class="QPushButton" name="pushEdit">
        <property name="text">
         <string>&amp;Edit</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../../ressource.qrc">
+         <normaloff>:/data/images/check.png</normaloff>:/data/images/check.png</iconset>
        </property>
       </widget>
      </item>
