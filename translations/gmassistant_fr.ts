@@ -242,9 +242,30 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>custom</name>
     <message>
+        <location filename="../sources/widgets/QCustomTableWidget .cpp" line="7"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="12"/>
         <source>&amp;None</source>
         <translation>&amp;Aucun</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget .cpp" line="8"/>
+        <source>&amp;Add column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget .cpp" line="10"/>
+        <source>&amp;Remove column</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget .cpp" line="12"/>
+        <source>&amp;Add row</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget .cpp" line="14"/>
+        <source>&amp;Remove row</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="13"/>

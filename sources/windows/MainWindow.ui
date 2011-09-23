@@ -114,7 +114,7 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout5">
          <item>
-          <widget class="QTableWidget" name="tableChar"/>
+          <widget class="QCustomTableWidget" name="tableWidget"/>
          </item>
         </layout>
        </widget>
@@ -319,6 +319,11 @@
    <class>QCustomTreeWidget</class>
    <extends>QTreeWidget</extends>
    <header>QCustomTreeWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QCustomTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>QCustomTableWidget.h</header>
   </customwidget>
  </customwidgets>
  <resources/>
