@@ -4,6 +4,13 @@ Simon Nicolas (Dramac)
 
 This software is designed to be the perfect assistant for the game master in a role playing game
 
+*****************
+*    LICENSE    *
+*****************
+
+This software is under the GNU General Public License v3
+See the LICENSE file for more information about this license
+
 **********************
 *    REQUIREMENTS    *
 **********************
@@ -13,7 +20,7 @@ To compile, you need:
 - C++ standard library (with development files)
 - Qt4 library (with development files)
 - XML++ library (with development files)
-- SDL_mixer and SDL_sound libraries (with development files)
+- SDL-mixer and SDL-sound libraries (with development files)
 
 **********************
 *    INSTRUCTIONS    *
