@@ -43,7 +43,6 @@ class ItemDialog: public QDialog, private Ui::itemDialog
 
     Q_OBJECT
     public slots:
-        void on_pushCancel_clicked();
         void on_pushChild_clicked();
         void on_pushBrother_clicked();
         void on_radioBasic_clicked();

@@ -54,11 +54,6 @@ QString ItemDialog::fileName() const
     return editFile->text();
 }
 
-void ItemDialog::on_pushCancel_clicked()
-{
-    reject();
-}
-
 void ItemDialog::on_pushChild_clicked()
 {
     if (editItem->text()!="")

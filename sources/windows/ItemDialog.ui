@@ -5,6 +5,14 @@
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>289</width>
+    <height>436</height>
+   </rect>
+  </property>
   <property name="windowTitle">
    <string>Create a new item</string>
   </property>
@@ -191,5 +199,22 @@
  <resources>
   <include location="../../ressource.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>pushCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>itemDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>271</x>
+     <y>404</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>285</x>
+     <y>377</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
