@@ -45,9 +45,14 @@ class SoundEngine
         Uint16 audioFormat() const;
         int audioChannels() const;
         int bufferSize() const;
+        bool isPlayingMusic() const;
         // methods
 		void playSound(const std::string &fileName) throw(std::runtime_error);
 		void playMusic(const std::string &fileName) throw(std::runtime_error);
+        void pauseMusic();
+        void resumeMusic();
+        // callback method
+        static void onStopSound(int channel);
 };
 
 #endif

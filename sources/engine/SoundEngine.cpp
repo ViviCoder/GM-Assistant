@@ -78,6 +78,8 @@ int SoundEngine::bufferSize() const
 
 void SoundEngine::playSound(const string &fileName) throw(runtime_error)
 {
+    // change the volume of the music
+    Mix_VolumeMusic(MIX_MAX_VOLUME/2);
     if (ssSample != NULL)
     {
         Mix_HaltChannel(0);
@@ -100,6 +102,8 @@ void SoundEngine::playSound(const string &fileName) throw(runtime_error)
     {
         throw runtime_error("Unable to play the file");
     }
+    // callback when finished
+    Mix_ChannelFinished(onStopSound);
 }
 
 void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
@@ -119,4 +123,24 @@ void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
     {
         Mix_PlayMusic(mmMusic,0);
     }
+}
+
+void SoundEngine::onStopSound(int channel)
+{
+    Mix_VolumeMusic(MIX_MAX_VOLUME);
+}
+
+void SoundEngine::pauseMusic()
+{
+    Mix_PauseMusic();
+}
+
+void SoundEngine::resumeMusic()
+{
+    Mix_ResumeMusic();
+}
+
+bool SoundEngine::isPlayingMusic() const
+{
+    return Mix_PlayingMusic();
 }

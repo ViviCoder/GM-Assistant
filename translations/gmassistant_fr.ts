@@ -212,35 +212,35 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>action</name>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="49"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="99"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="52"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="102"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="49"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="99"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="52"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="102"/>
         <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
         <translation>Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="51"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="54"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="51"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="87"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="54"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="90"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="63"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="66"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="87"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="90"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
@@ -375,17 +375,17 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Supprimer la compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="15"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="16"/>
         <source>A&amp;dd a character</source>
         <translation>A&amp;jouter un personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="17"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="18"/>
         <source>R&amp;emove the character</source>
         <translation>S&amp;upprimer le personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="19"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="20"/>
         <source>Change &amp;character&apos;s name</source>
         <translation>Changer le nom du &amp;personnage</translation>
     </message>

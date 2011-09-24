@@ -22,6 +22,7 @@
 #include "ui_MainWindow.h"
 #include "Engine.h"
 #include "AboutDialog.h"
+#include <QTimer>
 
 class MainWindow: public QMainWindow, private Ui::mainWindow
 {
@@ -30,6 +31,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         QString sFileName;
         bool bModified;
         AboutDialog *pAboutDial;
+        QTimer *timer;
     public:
         // constructor
         MainWindow();
@@ -45,6 +47,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void on_action_New_triggered();
         // textNotes
         void on_textNotes_textChanged();
+        // button
+        void on_buttonMusic_clicked();
+        // timer
+        void onTimer_timeout();
         // general slots
         void updateDisplay();
 };

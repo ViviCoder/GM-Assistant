@@ -21,7 +21,7 @@
 #include <QMessageBox>
 #include "QCustomTreeWidgetItem.h"
 
-MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), pAboutDial(new AboutDialog(this))
+MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this))
 {
     setupUi(this);
     treeScenario->setTree(&eGame.scenario());
@@ -31,13 +31,16 @@ MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), pAb
     treeFX->setTree(&eGame.effects());
     treeFX->setSoundEngine(&eGame.soundEngine());
     updateDisplay();
+
+    timer->setInterval(100);
+    timer->setSingleShot(false);
+    connect(timer,SIGNAL(timeout()),this,SLOT(onTimer_timeout()));
 }
 
 void MainWindow::on_actionAbout_triggered()
 {
     pAboutDial->exec();
 }
-
 
 void MainWindow::on_action_Quit_triggered()
 {
@@ -118,4 +121,21 @@ void MainWindow::updateDisplay()
     treeHistory->setTree(&eGame.history());
     treeMusic->setTree(&eGame.music());
     treeFX->setTree(&eGame.effects());
+}
+
+void MainWindow::on_buttonMusic_clicked()
+{
+    timer->start();
+}
+
+void MainWindow::onTimer_timeout()
+{
+    if (eGame.soundEngine().isPlayingMusic())
+    {
+        buttonMusic->setText("Pause");
+    }
+    else
+    {
+        buttonMusic->setText("Resume");
+    }
 }
