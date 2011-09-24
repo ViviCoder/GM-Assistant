@@ -554,9 +554,8 @@ p, li { white-space: pre-wrap; }
         <translation>Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="202"/>
         <source>Play</source>
-        <translation>Jouer</translation>
+        <translation type="obsolete">Jouer</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="164"/>
@@ -577,6 +576,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.ui" line="113"/>
         <source>Characters</source>
         <translation>Personnages</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.ui" line="202"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="152"/>
+        <source>&amp;Play</source>
+        <translation>&amp;Lecture</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="236"/>
@@ -667,6 +672,24 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.ui" line="313"/>
         <source>&amp;About</source>
         <translation>&amp;À propos</translation>
+    </message>
+    <message>
+        <source>Pause</source>
+        <translation type="obsolete">Pause</translation>
+    </message>
+    <message>
+        <source>Resume</source>
+        <translation type="obsolete">Reprise</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.cpp" line="133"/>
+        <source>&amp;Pause</source>
+        <translation>&amp;Pause</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.cpp" line="138"/>
+        <source>&amp;Resume</source>
+        <translation>&amp;Reprise</translation>
     </message>
 </context>
 </TS>

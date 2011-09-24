@@ -29,7 +29,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
     private:
         Engine eGame;
         QString sFileName;
-        bool bModified;
+        bool bModified,bPaused;
         AboutDialog *pAboutDial;
         QTimer *timer;
     public:
