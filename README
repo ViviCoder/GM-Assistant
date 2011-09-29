@@ -21,6 +21,7 @@ To compile, you need:
 - Qt4 library (with development files)
 - XML++ library (with development files)
 - SDL-mixer and SDL-sound libraries (with development files)
+- Boost-thread library (with development files)
 
 **********************
 *    INSTRUCTIONS    *

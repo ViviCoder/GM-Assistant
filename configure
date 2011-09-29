@@ -88,6 +88,7 @@ fi
 
 # libXML++
 echo
+echo libXML++:
 xml_devs="libxml++"
 xml_dev_path=$(ls -l $inc_path | grep -o -e "libxml++-[0-9]\{1,\}\.[0-9]\{1,\}" | head -n 1)
 
@@ -95,7 +96,7 @@ for dev in $xml_devs
 do
     if [ -e "$inc_path$xml_dev_path/libxml++/$dev.h" ]
     then
-        echo $dev.h: OK
+        echo $inc_path$xml_dev_path/libxml++/$dev.h: OK
     else
         echo $dev.h missing !
         exit
@@ -104,6 +105,7 @@ done
 
 # SDL
 echo
+echo SDL:
 sdl_devs="SDL_mixer SDL_sound"
 sdl_dev_path=$inc_path"SDL"
 
@@ -111,9 +113,26 @@ for dev in $sdl_devs
 do
     if [ -e "$sdl_dev_path/$dev.h" ]
     then
-        echo $dev.h: OK
+        echo $sdl_dev_path/$dev.h: OK
     else
         echo $dev.h missing !
+        exit
+    fi
+done
+
+#Boost
+echo
+echo Boost:
+boost_devs="thread"
+boost_dev_path=$inc_path"boost"
+
+for dev in $boost_devs
+do
+    if [ -e "$boost_dev_path/$dev.hpp" ]
+    then
+        echo $boost_dev_path/$dev.hpp: OK
+    else
+        echo $dev.hpp missing !
         exit
     fi
 done
@@ -147,13 +166,7 @@ echo "************************"
 sed -i  "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --cflags-only-I)#" Makefile
 
 # adding libxml++ and SDL binaries
-if [ $OS = "Linux" ]
-then
-    sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
-elif [ $OS = "Darwin" ]
-then
-    sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
-fi
+sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound -lboost_thread#" Makefile
 
 echo
 echo "********************"

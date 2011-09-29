@@ -17,11 +17,12 @@
 *************************************************************************/
 
 #include "SoundEngine.h"
+#include <iostream>
 
 using namespace std;
 
 // constructor
-SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAULT_FORMAT), iChannels(MIX_DEFAULT_CHANNELS), iBufferSize(1024), mmMusic(NULL), ssSample(NULL)
+SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAULT_FORMAT), iChannels(MIX_DEFAULT_CHANNELS), iBufferSize(1024), mmMusic(NULL), ssSample(NULL), dDuration(0.0), pThread(NULL) 
 {
     Sound_Init();
 
@@ -48,6 +49,10 @@ SoundEngine::~SoundEngine()
         Mix_HaltChannel(0);
         Sound_FreeSample(ssSample);
     }
+    if (pThread != NULL)
+    {
+        delete pThread;
+    }
     Sound_Quit();
     Mix_CloseAudio();
 }
@@ -72,6 +77,19 @@ int SoundEngine::audioChannels() const
 int SoundEngine::bufferSize() const
 {
     return iBufferSize;
+}
+
+double SoundEngine::duration() const
+{
+    if (pThread==NULL)
+    {
+        return 0.0;
+    }
+    else
+    {
+        pThread->join();
+        return dDuration;
+    }
 }
 
 // methods
@@ -114,6 +132,10 @@ void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
         Mix_FreeMusic(mmMusic);
         mmMusic = NULL;
     }
+    if (pThread != NULL)
+    {
+        delete pThread;
+    }
     mmMusic = Mix_LoadMUS(fileName.c_str());
     if (mmMusic == NULL)
     {
@@ -123,6 +145,7 @@ void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
     {
         Mix_PlayMusic(mmMusic,0);
     }
+    pThread = new boost::thread(computeDuration,fileName,iBufferSize,&dDuration); 
 }
 
 void SoundEngine::onStopSound(int channel)
@@ -143,4 +166,15 @@ void SoundEngine::resumeMusic()
 bool SoundEngine::isPlayingMusic() const
 {
     return Mix_PlayingMusic();
+}
+
+void SoundEngine::computeDuration(const string &fileName, int bufferSize, double *result) throw(runtime_error)
+{
+    Sound_Sample *sample = Sound_NewSampleFromFile(fileName.c_str(),NULL,bufferSize);
+    if (sample == NULL)
+    {
+        throw runtime_error("Unable to load the file");
+    }
+    int size = Sound_DecodeAll(sample);
+    *result = 8192*(double)(size) / (sample->actual.rate*sample->actual.format); 
 }
