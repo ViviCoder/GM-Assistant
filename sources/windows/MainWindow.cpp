@@ -21,8 +21,9 @@
 #include <QMessageBox>
 #include "QCustomTreeWidgetItem.h"
 #include "ItemFactory.h"
+#include <cstdlib>
 
-MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this))
+MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0)
 {
     setupUi(this);
     treeScenario->setTree(&eGame.scenario());
@@ -166,6 +167,9 @@ void MainWindow::onTimer_timeout()
         buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
         timer->stop();
     }
+    // calculate the percentage of the music played
+    iTimerCount++;
+    sliderMusic->setValue(floor(10*iTimerCount/eGame.soundEngine().duration()));
 }
 
 void MainWindow::playMusic(const std::string &fileName)
@@ -173,4 +177,5 @@ void MainWindow::playMusic(const std::string &fileName)
     eGame.soundEngine().playMusic(fileName);
     timer->start();
     buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
+    iTimerCount = 0;
 }

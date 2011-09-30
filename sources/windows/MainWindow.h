@@ -32,6 +32,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         bool bModified;
         AboutDialog *pAboutDial;
         QTimer *timer;
+        int iTimerCount;
     public:
         // constructor
         MainWindow();
