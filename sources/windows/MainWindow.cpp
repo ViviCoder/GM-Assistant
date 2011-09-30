@@ -20,8 +20,9 @@
 #include <QFileDialog>
 #include <QMessageBox>
 #include "QCustomTreeWidgetItem.h"
+#include "ItemFactory.h"
 
-MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), bPaused(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this))
+MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this))
 {
     setupUi(this);
     treeScenario->setTree(&eGame.scenario());
@@ -35,6 +36,7 @@ MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), bPa
     timer->setInterval(100);
     timer->setSingleShot(false);
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimer_timeout()));
+    connect(treeMusic,SIGNAL(musicToPlay(std::string)),this,SLOT(playMusic(std::string)));
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -127,7 +129,7 @@ void MainWindow::on_buttonMusic_clicked()
 {
     if (eGame.soundEngine().isPlayingMusic())
     {
-        if (bPaused)
+        if (eGame.soundEngine().isMusicPaused())
         {
             eGame.soundEngine().resumeMusic();
             buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
@@ -137,7 +139,19 @@ void MainWindow::on_buttonMusic_clicked()
             eGame.soundEngine().pauseMusic();
             buttonMusic->setText(QApplication::translate("mainWindow","&Resume",0));
         }
-        bPaused = !bPaused;
+    }
+    else
+    {
+        // we play the selected song (if it is a sound item)
+        QTreeWidgetItem *qItem = treeMusic->currentItem();
+        if (qItem != NULL)
+        {
+            Item *item = dynamic_cast<QCustomTreeWidgetItem*>(qItem)->branch()->item();
+            if (item->type()==Item::tSound)
+            {
+                playMusic(dynamic_cast<SoundItem*>(item)->fileName());
+            }
+        }
     }
     if (!timer->isActive())
     {
@@ -150,7 +164,13 @@ void MainWindow::onTimer_timeout()
     if (!eGame.soundEngine().isPlayingMusic())
     {
         buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
-        bPaused = false;
         timer->stop();
     }
+}
+
+void MainWindow::playMusic(const std::string &fileName)
+{
+    eGame.soundEngine().playMusic(fileName);
+    timer->start();
+    buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
 }

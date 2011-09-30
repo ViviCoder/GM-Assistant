@@ -64,21 +64,21 @@ void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
                                     {
                                         try
                                         {
-                                            SoundItem *sounditem = dynamic_cast<SoundItem*>(item);
+                                            SoundItem *soundItem = dynamic_cast<SoundItem*>(item);
                                             if (bPlayMusic)
                                             {
-                                                pSoundEngine->playMusic(sounditem->fileName());
+                                                // we send a signal to play the music (and do some other things)
+                                                emit musicToPlay(soundItem->fileName());
                                             }
                                             else
                                             {
-                                                pSoundEngine->playSound(sounditem->fileName());
+                                                pSoundEngine->playSound(soundItem->fileName());
                                             }
                                         }
                                         catch (std::runtime_error &e)
                                         {
                                             QMessageBox::critical(this,QApplication::translate("custom","Error",0),e.what());
                                         }
-
                                     }
                                 }
             case Item::tBasic: break;

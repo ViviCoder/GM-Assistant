@@ -29,7 +29,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
     private:
         Engine eGame;
         QString sFileName;
-        bool bModified,bPaused;
+        bool bModified;
         AboutDialog *pAboutDial;
         QTimer *timer;
     public:
@@ -53,6 +53,9 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void onTimer_timeout();
         // general slots
         void updateDisplay();
+    public slots:
+        // play music
+        void playMusic(const std::string &fileName);
 };
 
 #endif

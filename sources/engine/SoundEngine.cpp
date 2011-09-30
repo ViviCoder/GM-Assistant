@@ -88,6 +88,11 @@ double SoundEngine::duration()
     return dDuration;
 }
 
+bool SoundEngine::isMusicPaused() const
+{
+    return Mix_PausedMusic();
+}
+
 // methods
 
 void SoundEngine::playSound(const string &fileName) throw(runtime_error)
@@ -184,4 +189,5 @@ void SoundEngine::computeDuration(const string &fileName, int bufferSize, double
         *result = 8192*(double)(totalSize) / (sample->actual.rate*sample->actual.format); 
     }
     *finished = true;
+    Sound_FreeSample(sample);
 }

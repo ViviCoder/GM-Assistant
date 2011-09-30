@@ -58,6 +58,8 @@ class QCustomTreeWidget: public QTreeWidget
         void setSoundEngine(SoundEngine *soundEngine, bool playMusic=false);
         // associating an icon to a state
         static QIcon icon(Item::State state);
+    signals:
+        void musicToPlay(const std::string &fileName);
 };
 
 #endif

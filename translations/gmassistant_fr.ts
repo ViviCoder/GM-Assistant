@@ -212,35 +212,35 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>action</name>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="52"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="102"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="54"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="104"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="52"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="102"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="54"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="104"/>
         <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
         <translation>Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="54"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="56"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="54"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="90"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="56"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="92"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="66"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="68"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="90"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="92"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
@@ -339,7 +339,7 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="79"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="80"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -579,7 +579,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="202"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="152"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="166"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
@@ -682,12 +682,13 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="133"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="135"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="175"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="138"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="140"/>
         <source>&amp;Resume</source>
         <translation>&amp;Reprise</translation>
     </message>

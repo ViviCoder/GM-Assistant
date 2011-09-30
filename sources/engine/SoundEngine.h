@@ -53,6 +53,7 @@ class SoundEngine
         int audioChannels() const;
         int bufferSize() const;
         bool isPlayingMusic() const;
+        bool isMusicPaused() const;
         double duration();
         // methods
 		void playSound(const std::string &fileName) throw(std::runtime_error);
