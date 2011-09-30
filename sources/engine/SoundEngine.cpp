@@ -17,12 +17,11 @@
 *************************************************************************/
 
 #include "SoundEngine.h"
-#include <iostream>
 
 using namespace std;
 
 // constructor
-SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAULT_FORMAT), iChannels(MIX_DEFAULT_CHANNELS), iBufferSize(1024), mmMusic(NULL), ssSample(NULL), dDuration(0.0), pThread(NULL) 
+SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAULT_FORMAT), iChannels(MIX_DEFAULT_CHANNELS), iBufferSize(1024), mmMusic(NULL), ssSample(NULL), dDuration(0.0), pThread(NULL), bThreadFinished(true) 
 {
     Sound_Init();
 
@@ -79,17 +78,14 @@ int SoundEngine::bufferSize() const
     return iBufferSize;
 }
 
-double SoundEngine::duration() const
+double SoundEngine::duration()
 {
-    if (pThread==NULL)
+    if (bThreadFinished)
     {
-        return 0.0;
+        delete pThread;
+        pThread = NULL;
     }
-    else
-    {
-        pThread->join();
-        return dDuration;
-    }
+    return dDuration;
 }
 
 // methods
@@ -135,6 +131,7 @@ void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
     if (pThread != NULL)
     {
         delete pThread;
+        pThread = NULL;
     }
     mmMusic = Mix_LoadMUS(fileName.c_str());
     if (mmMusic == NULL)
@@ -145,7 +142,7 @@ void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
     {
         Mix_PlayMusic(mmMusic,0);
     }
-    pThread = new boost::thread(computeDuration,fileName,iBufferSize,&dDuration); 
+    pThread = new boost::thread(computeDuration,fileName,iBufferSize,&dDuration,&bThreadFinished); 
 }
 
 void SoundEngine::onStopSound(int channel)
@@ -168,13 +165,23 @@ bool SoundEngine::isPlayingMusic() const
     return Mix_PlayingMusic();
 }
 
-void SoundEngine::computeDuration(const string &fileName, int bufferSize, double *result) throw(runtime_error)
+void SoundEngine::computeDuration(const string &fileName, int bufferSize, double *result, bool *finished) throw(runtime_error)
 {
+    // the thread is still running
+    *finished = false;
+    // decoding
     Sound_Sample *sample = Sound_NewSampleFromFile(fileName.c_str(),NULL,bufferSize);
     if (sample == NULL)
     {
         throw runtime_error("Unable to load the file");
     }
-    int size = Sound_DecodeAll(sample);
-    *result = 8192*(double)(size) / (sample->actual.rate*sample->actual.format); 
+    int totalSize=0;
+    int size = Sound_Decode(sample);
+    while (size==bufferSize)
+    {
+        size = Sound_Decode(sample);
+        totalSize += size;
+        *result = 8192*(double)(totalSize) / (sample->actual.rate*sample->actual.format); 
+    }
+    *finished = true;
 }

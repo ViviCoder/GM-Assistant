@@ -40,6 +40,8 @@ class SoundEngine
         double dDuration;
         // thread used to compute duration
         boost::thread *pThread;
+        // flag to know wether the thread has finished or not
+        bool bThreadFinished;
 	public:
 		// constructor
 		SoundEngine() throw(std::runtime_error);
@@ -51,7 +53,7 @@ class SoundEngine
         int audioChannels() const;
         int bufferSize() const;
         bool isPlayingMusic() const;
-        double duration() const;
+        double duration();
         // methods
 		void playSound(const std::string &fileName) throw(std::runtime_error);
 		void playMusic(const std::string &fileName) throw(std::runtime_error);
@@ -59,7 +61,7 @@ class SoundEngine
         void resumeMusic();
         // callback method
         static void onStopSound(int channel);
-        static void computeDuration(const std::string &fileName, int bufferSize, double *result) throw(std::runtime_error);
+        static void computeDuration(const std::string &fileName, int bufferSize, double *result, bool *finished) throw(std::runtime_error);
 };
 
 #endif
