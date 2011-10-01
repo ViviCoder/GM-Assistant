@@ -188,11 +188,6 @@ Tree& Engine::effects()
     return tEffects;
 }
 
-SoundEngine& Engine::soundEngine()
-{
-    return sSoundEngine;
-}
-
 Character& Engine::character(int index) throw(std::out_of_range)
 {
     if (index<0 || (unsigned int)index >= vCharacters.size())

@@ -24,7 +24,7 @@
 #include <QMessageBox>
 #include <exception>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pSoundEngine(NULL) , pItemDial(new ItemDialog(this))
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this))
 {
     // popup menu
     actionNone = menuIcons->addAction(QApplication::translate("custom","&None",0));
@@ -60,26 +60,9 @@ void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
         switch (item->type())
         {
             case Item::tSound:  {
-                                    if (pSoundEngine != NULL)
-                                    {
-                                        try
-                                        {
-                                            SoundItem *soundItem = dynamic_cast<SoundItem*>(item);
-                                            if (bPlayMusic)
-                                            {
-                                                // we send a signal to play the music (and do some other things)
-                                                emit musicToPlay(soundItem->fileName());
-                                            }
-                                            else
-                                            {
-                                                pSoundEngine->playSound(soundItem->fileName());
-                                            }
-                                        }
-                                        catch (std::runtime_error &e)
-                                        {
-                                            QMessageBox::critical(this,QApplication::translate("custom","Error",0),e.what());
-                                        }
-                                    }
+                                    SoundItem *soundItem = dynamic_cast<SoundItem*>(item);
+                                    // we send a signal to play the music (and do some other things)
+                                    emit fileToPlay(soundItem->fileName());
                                 }
             case Item::tBasic: break;
         }
@@ -220,12 +203,6 @@ void QCustomTreeWidget::on_itemCollapsed()
 void QCustomTreeWidget::on_itemExpanded()
 {
     resizeColumnToContents(0);
-}
-
-void QCustomTreeWidget::setSoundEngine(SoundEngine *soundEngine, bool playMusic)
-{
-    pSoundEngine = soundEngine;
-    bPlayMusic = playMusic;
 }
 
 void QCustomTreeWidget::setTree(Tree *tree)

@@ -29,15 +29,14 @@ MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), pAb
     treeScenario->setTree(&eGame.scenario());
     treeHistory->setTree(&eGame.history());
     treeMusic->setTree(&eGame.music());
-    treeMusic->setSoundEngine(&eGame.soundEngine(),true);
     treeFX->setTree(&eGame.effects());
-    treeFX->setSoundEngine(&eGame.soundEngine());
     updateDisplay();
 
     timer->setInterval(100);
     timer->setSingleShot(false);
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimer_timeout()));
-    connect(treeMusic,SIGNAL(musicToPlay(std::string)),this,SLOT(playMusic(std::string)));
+    connect(treeMusic,SIGNAL(fileToPlay(std::string)),this,SLOT(playMusic(std::string)));
+    connect(treeFX,SIGNAL(fileToPlay(std::string)),this,SLOT(playSound(std::string)));
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -128,16 +127,18 @@ void MainWindow::updateDisplay()
 
 void MainWindow::on_buttonMusic_clicked()
 {
-    if (eGame.soundEngine().isPlayingMusic())
+    if (soundEngine.isPlayingMusic())
     {
-        if (eGame.soundEngine().isMusicPaused())
+        if (soundEngine.isMusicPaused())
         {
-            eGame.soundEngine().resumeMusic();
+            timer->start();
+            soundEngine.resumeMusic();
             buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
         }
         else
         {
-            eGame.soundEngine().pauseMusic();
+            timer->stop();
+            soundEngine.pauseMusic();
             buttonMusic->setText(QApplication::translate("mainWindow","&Resume",0));
         }
     }
@@ -153,29 +154,45 @@ void MainWindow::on_buttonMusic_clicked()
                 playMusic(dynamic_cast<SoundItem*>(item)->fileName());
             }
         }
-    }
-    if (!timer->isActive())
-    {
         timer->start();
     }
 }
 
 void MainWindow::onTimer_timeout()
 {
-    if (!eGame.soundEngine().isPlayingMusic())
+    if (!soundEngine.isPlayingMusic())
     {
         buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
         timer->stop();
     }
     // calculate the percentage of the music played
     iTimerCount++;
-    sliderMusic->setValue(floor(10*iTimerCount/eGame.soundEngine().duration()));
+    sliderMusic->setValue(floor(10*iTimerCount/soundEngine.duration()));
 }
 
 void MainWindow::playMusic(const std::string &fileName)
 {
-    eGame.soundEngine().playMusic(fileName);
+    try
+    {
+        soundEngine.playMusic(fileName);
+    }
+    catch (std::runtime_error &e)
+    {
+        QMessageBox::critical(this,QApplication::translate("custom","Error",0),e.what());
+    }
     timer->start();
     buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
     iTimerCount = 0;
+}
+
+void MainWindow::playSound(const std::string &fileName)
+{
+    try
+    {
+        soundEngine.playSound(fileName);
+    }
+    catch (std::runtime_error &e)
+    {
+        QMessageBox::critical(this,QApplication::translate("custom","Error",0),e.what());
+    }
 }

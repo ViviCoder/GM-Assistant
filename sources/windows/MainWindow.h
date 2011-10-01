@@ -21,6 +21,7 @@
 
 #include "ui_MainWindow.h"
 #include "Engine.h"
+#include "SoundEngine.h"
 #include "AboutDialog.h"
 #include <QTimer>
 
@@ -28,6 +29,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
 {
     private:
         Engine eGame;
+        SoundEngine soundEngine;
         QString sFileName;
         bool bModified;
         AboutDialog *pAboutDial;
@@ -55,8 +57,9 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         // general slots
         void updateDisplay();
     public slots:
-        // play music
+        // play music and sound
         void playMusic(const std::string &fileName);
+        void playSound(const std::string &fileName);
 };
 
 #endif

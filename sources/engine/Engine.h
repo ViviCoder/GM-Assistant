@@ -20,7 +20,6 @@
 #define HEADER_ENGINE
 
 #include "Tree.h"
-#include "SoundEngine.h"
 #include "Character.h"
 
 class Engine
@@ -28,7 +27,6 @@ class Engine
     private:
         Tree tScenario,tHistory,tMusic,tEffects;
         std::string sNotes;
-        SoundEngine sSoundEngine;
         std::vector<Character> vCharacters;
         std::vector<std::string> vSkills;
     public:
@@ -41,7 +39,6 @@ class Engine
         // accessors
         Tree& scenario();
         std::string& notes();
-        SoundEngine& soundEngine();
         std::vector<Character> characterList();
         Character& character(int index) throw(std::out_of_range);
         Tree& history();
