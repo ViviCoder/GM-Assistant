@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>GM-Assistant</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../ressource.qrc">
+    <normaloff>:/data/images/GMA.png</normaloff>:/data/images/GMA.png</iconset>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout_4">
     <item row="0" column="0">
@@ -228,7 +232,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>25</height>
+     <height>34</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
@@ -326,6 +330,8 @@
    <header>QCustomTableWidget.h</header>
   </customwidget>
  </customwidgets>
- <resources/>
+ <resources>
+  <include location="../../ressource.qrc"/>
+ </resources>
  <connections/>
 </ui>
