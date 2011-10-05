@@ -47,11 +47,19 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
         case Qt::RightButton:   {
                                     if (qtwitem == NULL)
                                     {
-                                        rowPosition = -1;
-                                        columnPosition = -1;
+                                        setCurrentItem(NULL);
+
+                                        int row_nb;
+                                        row_nb = rowCount();
+                                        rowPosition = row_nb -1;
+
+                                        int column_nb;
+                                        column_nb = columnCount();
+                                        columnPosition = column_nb -1;
                                     }
                                     else
                                     {
+                                        QTableWidget::mousePressEvent(e);
                                         rowPosition = currentRow();
                                         columnPosition = currentColumn();
                                     }
@@ -60,6 +68,28 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     if (action == actionAddColumn)
                                     {
                                         insertColumn(columnPosition+1);
+                                        int row_nb;
+                                        row_nb = rowCount();
+                                        for (int i = 0; i <= row_nb; i++)
+                                        {
+                                            QTableWidgetItem *col1 = new QTableWidgetItem( "0" );
+                                            setItem(i,columnPosition+1,col1);
+                                        }
+                                        if(pChangeHeaderDial->exec()==QDialog::Accepted)
+                                        {
+                                            QTableWidgetItem *columnHeaderItem = horizontalHeaderItem ( columnPosition+1 );
+                                            if (columnHeaderItem != NULL)
+                                            {
+                                                columnHeaderItem->setText(pChangeHeaderDial->text());
+                                            }
+                                            else
+                                            {
+                                                columnHeaderItem = new QTableWidgetItem(pChangeHeaderDial->text());
+                                                setHorizontalHeaderItem(columnPosition+1, columnHeaderItem);
+                                            }
+                                        }
+                                        resizeColumnToContents(columnPosition+1);
+
                                     }
                                     if (action == actionRemoveColumn)
                                     {
@@ -71,6 +101,27 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     if (action == actionAddRow)
                                     {
                                         insertRow(rowPosition+1);
+                                        int column_nb;
+                                        column_nb = columnCount();
+                                        for (int i = 0; i <= column_nb; i++)
+                                        {
+                                            QTableWidgetItem *row1 = new QTableWidgetItem( "0" );
+                                            setItem(rowPosition+1,i,row1);
+                                        }
+                                            if(pChangeHeaderDial->exec()==QDialog::Accepted)
+                                            {
+                                                QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( rowPosition+1 );
+                                                if (rowHeaderItem != NULL)
+                                                {
+                                                    rowHeaderItem->setText(pChangeHeaderDial->text());
+                                                }
+                                                else
+                                                {
+                                                    rowHeaderItem = new QTableWidgetItem(pChangeHeaderDial->text());
+                                                    setVerticalHeaderItem(rowPosition+1, rowHeaderItem);
+                                                }
+                                            }
+ 
                                     }
                                     if (action == actionRemoveRow)
                                     {
@@ -137,6 +188,7 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
                                 editItem(item);
                                 item->setFlags(item->flags() & ~Qt::ItemIsEditable);
                                 break;
+            case Qt::Key_Delete: item->setText("0");
             default: break; 
         }
     }
