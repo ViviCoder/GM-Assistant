@@ -25,6 +25,9 @@
 #include "AboutDialog.h"
 #include <QTimer>
 
+// frequency of refreshing music information
+#define TICK 10
+
 class MainWindow: public QMainWindow, private Ui::mainWindow
 {
     private:
@@ -56,6 +59,8 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void onTimer_timeout();
         // general slots
         void updateDisplay();
+        // slider
+        void on_sliderMusic_sliderReleased();
     public slots:
         // play music and sound
         void playMusic(const std::string &fileName);

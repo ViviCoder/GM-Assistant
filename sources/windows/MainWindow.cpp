@@ -162,12 +162,17 @@ void MainWindow::onTimer_timeout()
 {
     if (!soundEngine.isPlayingMusic())
     {
+        sliderMusic->setValue(sliderMusic->maximum());
         buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
         timer->stop();
     }
     // calculate the percentage of the music played
     iTimerCount++;
-    sliderMusic->setValue(floor(10*iTimerCount/soundEngine.duration()));
+    if (!sliderMusic->isSliderDown())
+    {
+        // we move the slider only if the user is not moving it manually
+        sliderMusic->setValue(floor(TICK*iTimerCount/soundEngine.duration()));
+    }
 }
 
 void MainWindow::playMusic(const std::string &fileName)
@@ -195,4 +200,14 @@ void MainWindow::playSound(const std::string &fileName)
     {
         QMessageBox::critical(this,QApplication::translate("custom","Error",0),e.what());
     }
+}
+
+void MainWindow::on_sliderMusic_sliderReleased()
+{
+    // new position in the music
+    double position = (double)sliderMusic->value()/sliderMusic->maximum()*soundEngine.duration();
+    soundEngine.move(position-double(iTimerCount)/TICK);
+    // updating the timer count
+    iTimerCount = floor(TICK*position);
+    timer->start();
 }
