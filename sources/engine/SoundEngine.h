@@ -60,6 +60,7 @@ class SoundEngine
 		void playMusic(const std::string &fileName) throw(std::runtime_error);
         void pauseMusic();
         void resumeMusic();
+        void move(double step);
         // callback method
         static void onStopSound(int channel);
         static void computeDuration(const std::string &fileName, int bufferSize, double *result, bool *finished) throw(std::runtime_error);

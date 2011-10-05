@@ -191,3 +191,11 @@ void SoundEngine::computeDuration(const string &fileName, int bufferSize, double
     *finished = true;
     Sound_FreeSample(sample);
 }
+
+void SoundEngine::move(double step)
+{
+    if (mmMusic != NULL)
+    {
+        Mix_SetMusicPosition(step);
+    }
+}
