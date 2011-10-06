@@ -16,39 +16,29 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_ENGINE
-#define HEADER_ENGINE
+#ifndef HEADER_SKILLLIST
+#define HEADER_SKILLLIST
 
-#include "Tree.h"
-#include "Character.h"
-#include "SkillList.h"
+#include <string>
+#include <stdexcept>
+#include <vector>
+#include <libxml++/libxml++.h>
 
-class Engine
+class SkillList
 {
     private:
-        Tree tScenario,tHistory,tMusic,tEffects;
-        std::string sNotes;
-        std::vector<Character> vCharacters;
-        SkillList lSkills;
+        std::vector<std::string> vSkills;
     public:
-        // constructors
-        Engine();
-        Engine(const std::string &fileName) throw(xmlpp::exception);
-        // loading and saving methods
-        void fromFile(const std::string &fileName) throw(xmlpp::exception);
-        void toFile(const std::string &fileName) const;
-        // accessors
-        Tree& scenario();
-        std::string& notes();
-        std::vector<Character> characterList();
-        Character& character(int index) throw(std::out_of_range);
-        Tree& history();
-        Tree& music();
-        Tree& effects();
-        SkillList& skills();
+        // constructor
+        SkillList();
+        // XML-related methods
+        void toXML(xmlpp::Element &root) const;
+        void fromXML(const xmlpp::Element &root);
+        // accessor
+        std::string& operator[](int index) throw(std::out_of_range);
         // populating
-        void addCharacter(const Character &character);
-        void removeCharacter(int index) throw(std::out_of_range);
+        void add(const std::string &skill);
+        void remove(int index) throw(std::out_of_range);
         void clear();
 };
 

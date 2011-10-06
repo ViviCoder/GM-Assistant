@@ -41,19 +41,6 @@ Tree::Tree(const xmlpp::Element &root, Branch* parent): pParent(parent)
     fromXML(root);
 }
 
-Tree::Tree(const string &fileName) throw(xmlpp::exception): pParent(NULL)
-{
-    try
-    {
-        fromXML(fileName);
-    }
-    catch (xmlpp::exception)
-    {
-        clear();
-        throw;
-    }
-}
-
 // destructor
 
 Tree::~Tree()
@@ -75,17 +62,7 @@ Tree& Tree::operator=(const Tree &tree)
     return *this;
 }
 
-// inherited methods
-
-void Tree::toXML(const string &fileName) const
-{
-    using namespace xmlpp;
-
-    Document document;
-    Element *root = document.create_root_node("tree");
-    toXML(*root);
-    document.write_to_file_formatted(fileName,"UTF-8");
-}
+// methods
 
 void Tree::toXML(xmlpp::Element &root) const
 {
@@ -100,20 +77,6 @@ void Tree::toXML(xmlpp::Element &root) const
         (*it)->item()->toXML(*tmp);
         (*it)->tree().toXML(*tmp);
     }
-}
-
-void Tree::fromXML(const string &fileName) throw(xmlpp::exception)
-{
-    using namespace xmlpp;
-    
-    DomParser parser(fileName);
-    Document *document = parser.get_document();
-    Element *root = document->get_root_node();
-    if (root->get_name()!="tree")
-    {
-        throw xmlpp::exception("Bad document content type: tree expected");
-    }
-    fromXML(*root);
 }
 
 void Tree::fromXML(const xmlpp::Element &root)
@@ -158,8 +121,6 @@ void Tree::clear()
     }
     vChildren.clear();
 }
-
-// new methods
 
 Tree::iterator Tree::begin() const
 {

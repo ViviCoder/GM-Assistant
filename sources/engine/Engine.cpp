@@ -18,6 +18,8 @@
 
 #include "Engine.h"
 
+#define VERSION "1.0"
+
 using namespace std;
 
 // constructors
@@ -74,18 +76,7 @@ void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception)
     node = root->get_children("skills");
     if (!node.empty())
     {
-        node = node.front()->get_children("skill");
-        for (Node::NodeList::const_iterator it = node.begin(); it != node.end(); it++)
-        {
-            Element *elem = dynamic_cast<Element*>(*it);
-            string name;
-            Attribute *attr = elem->get_attribute("name");
-            if (attr != NULL)
-            {
-                name = attr->get_value();
-            }
-            vSkills.push_back(name);
-        }
+        lSkills.fromXML(*dynamic_cast<Element*>(node.front()));
     }
     node = root->get_children("characters");
     if (!node.empty())
@@ -134,16 +125,13 @@ void Engine::toFile(const string &fileName) const
 
     Document document;
     Element *root = document.create_root_node("game");
+    root->set_attribute("version",VERSION);
     Element *tmp = root->add_child("scenario");
     tScenario.toXML(*tmp);
     tmp = root->add_child("notes");
     tmp->add_child_text(sNotes);
     tmp = root->add_child("skills");
-    for (vector<string>::const_iterator it = vSkills.begin(); it != vSkills.end(); it++)
-    {
-        Element *tmp2 = tmp->add_child("skill");
-        tmp2->set_attribute("name",*it);
-    }
+    lSkills.toXML(*tmp);
     tmp = root->add_child("characters");
     for (vector<Character>::const_iterator it = vCharacters.begin(); it != vCharacters.end(); it++)
     {
@@ -206,7 +194,7 @@ void Engine::clear()
     tHistory.clear();
     tMusic.clear();
     tEffects.clear();
-    vSkills.clear();
+    lSkills.clear();
     vCharacters.clear();
 }
 
@@ -224,37 +212,12 @@ void Engine::removeCharacter(int index) throw(out_of_range)
     vCharacters.erase(vCharacters.begin()+index);
 }
 
-void Engine::addSkill(const std::string &skill)
-{
-    vSkills.push_back(skill);
-}
-
-void Engine::removeSkill(int index) throw(out_of_range)
-{
-    if (index < 0 || (unsigned int)index >= vSkills.size())
-    {
-        throw out_of_range("Index out of bounds");
-    }
-    vSkills.erase(vSkills.begin()+index);
-}
-
 std::vector<Character> Engine::characterList()
 {
     return vCharacters;
 }
 
-std::vector<std::string> Engine::skillList()
+SkillList& Engine::skills()
 {
-    return vSkills;
+    return lSkills;
 }
-
-std::string& Engine::skill(int index)
-{
-    if (index<0 || (unsigned int)index >= vSkills.size())
-    {
-        throw out_of_range("Index out of bounds");
-    }
-    return vSkills[index];
-}
-
-

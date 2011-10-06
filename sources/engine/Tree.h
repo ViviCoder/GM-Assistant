@@ -69,17 +69,13 @@ class Tree
         Tree(Branch* parent=NULL);
         Tree(const Tree &tree, Branch* parent=NULL);
         Tree(const xmlpp::Element &root, Branch* parent=NULL);
-        Tree(const std::string &fileName) throw(xmlpp::exception);
         // destructor
         ~Tree();
         // copy operator
         Tree& operator=(const Tree &tree);
-        // inherited methods
-        void toXML(const std::string &fileName) const;
+        // XML-related methods
         void toXML(xmlpp::Element &root) const;
-        void fromXML(const std::string &fileName) throw(xmlpp::exception);
         void fromXML(const xmlpp::Element &root);
-        void clear();
         // iterator-related methods
         iterator begin() const;
         iterator beginUnchecked() const;
@@ -99,6 +95,7 @@ class Tree
         void remove(int index, bool toDelete=true) throw(std::out_of_range);
         void remove(const std::string &indices, bool toDelete=true);
         void move(const std::string &currentIndices, const std::string &newIndices);
+        void clear();
         // index extractor
         static int extractIndex(std::string &indices);
         // get the index of a branch
