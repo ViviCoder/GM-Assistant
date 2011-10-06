@@ -199,3 +199,12 @@ void SoundEngine::move(double step)
         Mix_SetMusicPosition(step);
     }
 }
+
+void SoundEngine::goTo(double position)
+{
+    if (mmMusic != NULL)
+    {
+        Mix_RewindMusic();
+        Mix_SetMusicPosition(position);
+    }
+}

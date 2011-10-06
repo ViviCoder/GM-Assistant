@@ -61,6 +61,7 @@ class SoundEngine
         void pauseMusic();
         void resumeMusic();
         void move(double step);
+        void goTo(double position);
         // callback method
         static void onStopSound(int channel);
         static void computeDuration(const std::string &fileName, int bufferSize, double *result, bool *finished) throw(std::runtime_error);

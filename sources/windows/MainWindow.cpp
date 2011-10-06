@@ -206,7 +206,15 @@ void MainWindow::on_sliderMusic_sliderReleased()
 {
     // new position in the music
     double position = (double)sliderMusic->value()/sliderMusic->maximum()*soundEngine.duration();
-    soundEngine.move(position-double(iTimerCount)/TICK);
+    double shift = position-double(iTimerCount)/TICK;
+    if (shift>0)
+    {
+        soundEngine.move(position-double(iTimerCount)/TICK);
+    }
+    else
+    {
+        soundEngine.goTo(position);
+    }
     // updating the timer count
     iTimerCount = floor(TICK*position);
     timer->start();
