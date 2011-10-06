@@ -16,31 +16,33 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "SkillList.h"
+#include "CharacterList.h"
 
 using namespace std;
 
-SkillList::SkillList()
+CharacterList::CharacterList()
 {
 }
 
-void SkillList::toXML(xmlpp::Element &root) const
+void CharacterList::toXML(xmlpp::Element &root) const
 {
     using namespace xmlpp;
 
-    for (vector<string>::const_iterator it = vSkills.begin(); it != vSkills.end(); it++)
+    for (vector<Character>::const_iterator it = vCharacters.begin(); it != vCharacters.end(); it++)
     {
-        Element *tmp = root.add_child("skill");
-        tmp->set_attribute("name",*it);
+        Element *tmp = root.add_child("character");
+        tmp->set_attribute("name",it->name());
+        tmp->set_attribute("playername",it->playerName());
+        it->toXML(*tmp);
     }
 }
 
-void SkillList::fromXML(const xmlpp::Element &root)
+void CharacterList::fromXML(const xmlpp::Element &root)
 {
     using namespace xmlpp;
 
     clear();
-    Node::NodeList node = root.get_children("skill");
+    Node::NodeList node = root.get_children("character");
     for (Node::NodeList::const_iterator it = node.begin(); it != node.end(); it++)
     {
         Element *elem = dynamic_cast<Element*>(*it);
@@ -50,34 +52,42 @@ void SkillList::fromXML(const xmlpp::Element &root)
         {
             name = attr->get_value();
         }
-        vSkills.push_back(name);
-    }
+        string playerName="";
+        attr = elem->get_attribute("playername");
+        if (attr != NULL)
+        {
+            playerName = attr->get_value();
+        }
+        Character character = Character(name,playerName);
+        character.fromXML(*elem);
+        vCharacters.push_back(character);
+    }        
 }
 
-void SkillList::clear()
+void CharacterList::clear()
 {
-    vSkills.clear();
+    vCharacters.clear();
 }
 
-void SkillList::add(const std::string &skill)
+void CharacterList::add(const std::string &character)
 {
-    vSkills.push_back(skill);
+    vCharacters.push_back(character);
 }
 
-void SkillList::remove(int index) throw(out_of_range)
+void CharacterList::remove(int index) throw(out_of_range)
 {
-    if (index < 0 || (unsigned int)index >= vSkills.size())
+    if (index < 0 || (unsigned int)index >= vCharacters.size())
     {
         throw out_of_range("Index out of bounds");
     }
-    vSkills.erase(vSkills.begin()+index);
+    vCharacters.erase(vCharacters.begin()+index);
 }
 
-std::string& SkillList::operator[](int index) throw(out_of_range)
+Character& CharacterList::operator[](int index) throw(out_of_range)
 {
-    if (index<0 || (unsigned int)index >= vSkills.size())
+    if (index<0 || (unsigned int)index >= vCharacters.size())
     {
         throw out_of_range("Index out of bounds");
     }
-    return vSkills[index];
+    return vCharacters[index];
 }

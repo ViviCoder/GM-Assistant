@@ -16,36 +16,29 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_ENGINE
-#define HEADER_ENGINE
+#ifndef HEADER_CHARACTERLIST
+#define HEADER_CHARACTERLIST
 
-#include "Tree.h"
-#include "CharacterList.h"
-#include "SkillList.h"
+#include "Character.h"
+#include <stdexcept>
+#include <vector>
+#include <libxml++/libxml++.h>
 
-class Engine
+class CharacterList
 {
     private:
-        Tree tScenario,tHistory,tMusic,tEffects;
-        std::string sNotes;
-        CharacterList lCharacters;
-        SkillList lSkills;
+        std::vector<Character> vCharacters;
     public:
-        // constructors
-        Engine();
-        Engine(const std::string &fileName) throw(xmlpp::exception);
-        // loading and saving methods
-        void fromFile(const std::string &fileName) throw(xmlpp::exception);
-        void toFile(const std::string &fileName) const;
-        // accessors
-        Tree& scenario();
-        std::string& notes();
-        Tree& history();
-        Tree& music();
-        Tree& effects();
-        SkillList& skills();
-        CharacterList& characters();
-        // emptying
+        // constructor
+        CharacterList();
+        // XML-related methods
+        void toXML(xmlpp::Element &root) const;
+        void fromXML(const xmlpp::Element &root);
+        // accessor
+        Character& operator[](int index) throw(std::out_of_range);
+        // populating
+        void add(const std::string &character);
+        void remove(int index) throw(std::out_of_range);
         void clear();
 };
 

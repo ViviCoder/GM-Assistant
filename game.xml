@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<game>
+<game version="1.0">
   <scenario>
     <item state="none" type="basic" content="Hein ?">
       <item state="none" type="basic" content="Quoi ?"/>
