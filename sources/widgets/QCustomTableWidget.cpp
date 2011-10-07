@@ -194,3 +194,38 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
     }
 }
 
+void QCustomTableWidget::setLists(SkillList &skills, CharacterList &chars)
+{
+    clear();
+    int i=0;
+    for (SkillList::iterator it = skills.begin(); it != skills.end(); it++)
+    {
+        insertColumn(i);
+        setHorizontalHeaderItem(i,new QTableWidgetItem((*it).c_str()));
+        i++;
+    }
+    int j=0,k;
+    for (CharacterList::iterator it = chars.begin(); it != chars.end(); it++)
+    {
+        insertRow(j);
+        setVerticalHeaderItem(j,new QTableWidgetItem(((*it).name()+"\n"+(*it).playerName()).c_str()));
+        resizeRowToContents(j);
+        // creating items
+        for (k=0;k<i;k++)
+        {
+            setItem(j,k,new QTableWidgetItem("0"));
+        }
+        // setting values
+        k = 0;
+        for (Character::SkillIterator itSkill = (*it).begin(); itSkill != (*it).end() && k<i; itSkill++)
+        {
+            item(j,k)->setText((*itSkill).c_str());
+            k++;
+        } 
+        j++;
+    }
+    for (k=0;k<i;k++)
+    {
+        resizeColumnToContents(k);
+    }
+}

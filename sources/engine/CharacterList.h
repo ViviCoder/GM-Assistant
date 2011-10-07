@@ -29,6 +29,13 @@ class CharacterList
     private:
         std::vector<Character> vCharacters;
     public:
+        // iterator
+        class iterator: public std::vector<Character>::const_iterator
+        {
+            public:
+                // constructor
+                iterator(const std::vector<Character>::const_iterator &it);
+        };
         // constructor
         CharacterList();
         // XML-related methods
@@ -40,6 +47,9 @@ class CharacterList
         void add(const std::string &character);
         void remove(int index) throw(std::out_of_range);
         void clear();
+        // iterators
+        iterator begin() const;
+        iterator end() const;
 };
 
 #endif

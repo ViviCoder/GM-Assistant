@@ -106,3 +106,19 @@ void Character::clearSkills()
 {
     vSkills.clear();
 }
+
+Character::SkillIterator Character::begin() const
+{
+    return SkillIterator(vSkills.begin());
+}
+
+Character::SkillIterator Character::end() const
+{
+    return SkillIterator(vSkills.end());
+}
+
+// iterator's method
+
+Character::SkillIterator::SkillIterator(const vector<string>::const_iterator &it): vector<string>::const_iterator(it)
+{
+}

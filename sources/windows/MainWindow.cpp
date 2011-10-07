@@ -30,6 +30,7 @@ MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), pAb
     treeHistory->setTree(&eGame.history());
     treeMusic->setTree(&eGame.music());
     treeFX->setTree(&eGame.effects());
+    tableStats->setLists(eGame.skills(),eGame.characters());
     updateDisplay();
 
     timer->setInterval(100);

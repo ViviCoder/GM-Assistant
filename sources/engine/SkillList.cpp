@@ -81,3 +81,19 @@ std::string& SkillList::operator[](int index) throw(out_of_range)
     }
     return vSkills[index];
 }
+
+SkillList::iterator SkillList::begin() const
+{
+    return iterator(vSkills.begin());
+}
+
+SkillList::iterator SkillList::end() const
+{
+    return iterator(vSkills.end());
+}
+
+// iterator's method
+
+SkillList::iterator::iterator(const vector<string>::const_iterator &it): vector<string>::const_iterator(it)
+{
+}

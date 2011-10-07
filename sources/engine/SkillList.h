@@ -29,6 +29,13 @@ class SkillList
     private:
         std::vector<std::string> vSkills;
     public:
+        // iterator
+        class iterator: public std::vector<std::string>::const_iterator
+        {
+            public:
+                // constructor
+                iterator(const std::vector<std::string>::const_iterator &it);
+        };
         // constructor
         SkillList();
         // XML-related methods
@@ -40,6 +47,9 @@ class SkillList
         void add(const std::string &skill);
         void remove(int index) throw(std::out_of_range);
         void clear();
+        // iterators
+        iterator begin() const;
+        iterator end() const;
 };
 
 #endif

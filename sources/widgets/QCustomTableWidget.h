@@ -6,6 +6,8 @@
 #include <QMouseEvent>
 #include <QMenu>
 #include "ChangeHeaderDialog.h"
+#include "SkillList.h"
+#include "CharacterList.h"
 
 class QCustomTableWidget: public QTableWidget
 {
@@ -21,8 +23,12 @@ class QCustomTableWidget: public QTableWidget
         void keyReleaseEvent(QKeyEvent *e);
 
     public:
+        // constructor
         QCustomTableWidget(QWidget *parent=NULL);
+        // destructor
         ~QCustomTableWidget();
+        // associating a skill list and a character list to the widget
+        void setLists(SkillList &skills, CharacterList &chars);
 };
 
 #endif

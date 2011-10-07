@@ -31,6 +31,13 @@ class Character
         //std::vector<Skill> vSkills;
         std::vector<std::string> vSkills;
     public:
+        // iterator
+        class SkillIterator: public std::vector<std::string>::const_iterator
+        {
+            public:
+                // constructor
+                SkillIterator(const std::vector<std::string>::const_iterator &it);
+        };
         // constructors
         Character(const std::string &name);    // for NPC
         Character(const std::string &name, const std::string &playerName);    // for PC
@@ -46,6 +53,9 @@ class Character
         void addSkill(const std::string &skill);
         void removeSkill(int index) throw(std::out_of_range);
         void clearSkills();
+        // iterators
+        SkillIterator begin() const;
+        SkillIterator end() const;
 };
 
 #endif

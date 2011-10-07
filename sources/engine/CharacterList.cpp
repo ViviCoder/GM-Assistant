@@ -91,3 +91,19 @@ Character& CharacterList::operator[](int index) throw(out_of_range)
     }
     return vCharacters[index];
 }
+
+CharacterList::iterator CharacterList::begin() const
+{
+    return iterator(vCharacters.begin());
+}
+
+CharacterList::iterator CharacterList::end() const
+{
+    return iterator(vCharacters.end());
+}
+
+// iterator's method
+
+CharacterList::iterator::iterator(const vector<Character>::const_iterator &it): vector<Character>::const_iterator(it)
+{
+}
