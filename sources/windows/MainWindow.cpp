@@ -26,11 +26,6 @@
 MainWindow::MainWindow(): QMainWindow(),eGame("game.xml"), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0)
 {
     setupUi(this);
-    treeScenario->setTree(&eGame.scenario());
-    treeHistory->setTree(&eGame.history());
-    treeMusic->setTree(&eGame.music());
-    treeFX->setTree(&eGame.effects());
-    tableStats->setLists(eGame.skills(),eGame.characters());
     updateDisplay();
 
     timer->setInterval(100);
@@ -124,6 +119,7 @@ void MainWindow::updateDisplay()
     treeHistory->setTree(&eGame.history());
     treeMusic->setTree(&eGame.music());
     treeFX->setTree(&eGame.effects());
+    tableStats->setLists(&eGame.skills(),&eGame.characters());
 }
 
 void MainWindow::on_buttonMusic_clicked()

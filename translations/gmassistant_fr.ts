@@ -232,35 +232,35 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>action</name>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="55"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="105"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="50"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="100"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="55"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="105"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="50"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="100"/>
         <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
         <translation>Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="57"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="52"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="57"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="93"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="52"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="88"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="69"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="64"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="93"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="88"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
@@ -359,8 +359,8 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="187"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="202"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="183"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="198"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -600,7 +600,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="225"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="167"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="163"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
@@ -703,13 +703,13 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="137"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="190"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="133"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="186"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="143"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="139"/>
         <source>&amp;Resume</source>
         <translation>&amp;Reprise</translation>
     </message>

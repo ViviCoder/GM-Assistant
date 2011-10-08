@@ -2,7 +2,7 @@
 #include "ChangeHeaderDialog.h"
 #include <QApplication>
 
-QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menuColumn(new QMenu(this)), pChangeHeaderDial(new ChangeHeaderDialog(this))
+QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menuColumn(new QMenu(this)), pChangeHeaderDial(new ChangeHeaderDialog(this)), pSkills(NULL), pCharacters(NULL)
 {
     //popup menu
     //actionNone = menuColumn->addAction(QApplication::translate("custom","&None",0));
@@ -194,22 +194,25 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
     }
 }
 
-void QCustomTableWidget::setLists(SkillList &skills, CharacterList &chars)
+void QCustomTableWidget::setLists(SkillList *skills, CharacterList *chars)
 {
+    pSkills = skills;
+    pCharacters = chars;
     clear();
+    setColumnCount(0);
+    setRowCount(0);
     int i=0;
-    for (SkillList::iterator it = skills.begin(); it != skills.end(); it++)
+    for (SkillList::iterator it = skills->begin(); it != skills->end(); it++)
     {
         insertColumn(i);
         setHorizontalHeaderItem(i,new QTableWidgetItem((*it).c_str()));
         i++;
     }
     int j=0,k;
-    for (CharacterList::iterator it = chars.begin(); it != chars.end(); it++)
+    for (CharacterList::iterator it = chars->begin(); it != chars->end(); it++)
     {
         insertRow(j);
         setVerticalHeaderItem(j,new QTableWidgetItem(((*it).name()+"\n"+(*it).playerName()).c_str()));
-        resizeRowToContents(j);
         // creating items
         for (k=0;k<i;k++)
         {
@@ -224,8 +227,6 @@ void QCustomTableWidget::setLists(SkillList &skills, CharacterList &chars)
         } 
         j++;
     }
-    for (k=0;k<i;k++)
-    {
-        resizeColumnToContents(k);
-    }
+    resizeRowsToContents();
+    resizeColumnsToContents();
 }

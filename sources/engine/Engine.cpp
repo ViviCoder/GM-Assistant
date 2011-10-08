@@ -47,6 +47,7 @@ void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception)
 {
     using namespace xmlpp;
 
+    clear();
     DomParser parser(fileName);
     Document *document = parser.get_document();
     Element *root = document->get_root_node();

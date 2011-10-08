@@ -17,6 +17,8 @@ class QCustomTableWidget: public QTableWidget
         QMenu *menuColumn;
         QAction *actionNone, *actionAddColumn, *actionRemoveColumn, *actionAddRow, *actionRemoveRow, *actionEditRow, *actionEditColumn;
         ChangeHeaderDialog *pChangeHeaderDial;
+        SkillList *pSkills;
+        CharacterList *pCharacters;
 
     protected:
         void mousePressEvent(QMouseEvent *e);
@@ -28,7 +30,7 @@ class QCustomTableWidget: public QTableWidget
         // destructor
         ~QCustomTableWidget();
         // associating a skill list and a character list to the widget
-        void setLists(SkillList &skills, CharacterList &chars);
+        void setLists(SkillList *skills, CharacterList *chars);
 };
 
 #endif
