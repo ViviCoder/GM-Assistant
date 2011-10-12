@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>changeSkillDialog</class>
- <widget class="QDialog" name="changeSkillDialog">
+ <class>changeCharacterDialog</class>
+ <widget class="QDialog" name="changeCharacterDialog">
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>198</width>
-    <height>106</height>
+    <height>160</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,12 +26,22 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Name of the skill:</string>
+      <string>Character's name:</string>
      </property>
     </widget>
    </item>
    <item>
     <widget class="QLineEdit" name="editName"/>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Player's name:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="editPlayer"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
@@ -68,7 +78,7 @@
   <connection>
    <sender>pushCancel</sender>
    <signal>clicked()</signal>
-   <receiver>changeSkillDialog</receiver>
+   <receiver>changeCharacterDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

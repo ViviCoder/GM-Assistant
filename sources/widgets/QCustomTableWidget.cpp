@@ -20,7 +20,7 @@
 #include "ChangeSkillDialog.h"
 #include <QApplication>
 
-QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menuColumn(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pSkills(NULL), pCharacters(NULL)
+QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menuColumn(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(NULL), pCharacters(NULL)
 {
     //popup menu
     //actionNone = menuColumn->addAction(QApplication::translate("custom","&None",0));
@@ -107,7 +107,6 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                             }
                                         }
                                         resizeColumnToContents(columnPosition+1);
-
                                     }
                                     if (action == actionRemoveColumn)
                                     {
@@ -126,20 +125,19 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                             QTableWidgetItem *row1 = new QTableWidgetItem( "0" );
                                             setItem(rowPosition+1,i,row1);
                                         }
-                                            if(pChangeSkillDial->exec()==QDialog::Accepted)
+                                        if(pChangeCharacterDial->exec()==QDialog::Accepted)
+                                        {
+                                            QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( rowPosition+1 );
+                                            if (rowHeaderItem != NULL)
                                             {
-                                                QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( rowPosition+1 );
-                                                if (rowHeaderItem != NULL)
-                                                {
-                                                    rowHeaderItem->setText(pChangeSkillDial->text());
-                                                }
-                                                else
-                                                {
-                                                    rowHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
-                                                    setVerticalHeaderItem(rowPosition+1, rowHeaderItem);
-                                                }
+                                                rowHeaderItem->setText(pChangeCharacterDial->text());
                                             }
- 
+                                            else
+                                            {
+                                                rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->text());
+                                                setVerticalHeaderItem(rowPosition+1, rowHeaderItem);
+                                            }
+                                        }
                                     }
                                     if (action == actionRemoveRow)
                                     {
@@ -166,27 +164,25 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                                 }
                                             }
                                         }
-
                                     }
                                     if (action == actionEditRow)
                                     {
                                         if (qtwitem != NULL)
                                         {
-                                            if(pChangeSkillDial->exec()==QDialog::Accepted)
+                                            if(pChangeCharacterDial->exec()==QDialog::Accepted)
                                             {
                                                 QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( rowPosition );
                                                 if (rowHeaderItem != NULL)
                                                 {
-                                                    rowHeaderItem->setText(pChangeSkillDial->text());
+                                                    rowHeaderItem->setText(pChangeCharacterDial->text());
                                                 }
                                                 else
                                                 {
-                                                    rowHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
+                                                    rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->text());
                                                     setVerticalHeaderItem(rowPosition, rowHeaderItem);
                                                 }
                                             }
                                         }
-
                                     }
                                     break;
                                 }

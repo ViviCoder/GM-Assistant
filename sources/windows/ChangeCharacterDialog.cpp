@@ -16,34 +16,35 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "ChangeSkillDialog.h"
+#include "ChangeCharacterDialog.h"
 #include <QMessageBox>
 #include <QFileDialog>
 
-ChangeSkillDialog::ChangeSkillDialog(QWidget *parent): QDialog(parent)
+ChangeCharacterDialog::ChangeCharacterDialog(QWidget *parent): QDialog(parent)
 {
     setupUi(this);
 }
 
-QString ChangeSkillDialog::text() const
+QString ChangeCharacterDialog::text() const
 {
-    return editName->text();
+    return editName->text()+"\n"+editPlayer->text();
 }
 
-void ChangeSkillDialog::on_pushEdit_clicked()
+void ChangeCharacterDialog::on_pushEdit_clicked()
 {
-    if (editName->text()!="")
+    if (editName->text()!="" && editPlayer->text()!="")
     {
         accept();
     }
     else
     {
-        QMessageBox::critical(this,QApplication::translate("changeSkillDialog","Uncomplete data",0),QApplication::translate("changeSkillDialog","You must fill the content before validating.",0));
+        QMessageBox::critical(this,QApplication::translate("changeCharacterDialog","Uncomplete data",0),QApplication::translate("changeCharacterDialog","You must fill the content before validating.",0));
     }
 }
 
-void ChangeSkillDialog::showEvent(QShowEvent *e)
+void ChangeCharacterDialog::showEvent(QShowEvent *e)
 {
     editName->setText("");
+    editPlayer->setText("");
     QDialog::showEvent(e);
 }

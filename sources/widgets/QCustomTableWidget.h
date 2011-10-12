@@ -24,6 +24,7 @@
 #include <QMouseEvent>
 #include <QMenu>
 #include "ChangeSkillDialog.h"
+#include "ChangeCharacterDialog.h"
 #include "SkillList.h"
 #include "CharacterList.h"
 
@@ -35,6 +36,7 @@ class QCustomTableWidget: public QTableWidget
         QMenu *menuColumn;
         QAction *actionNone, *actionAddColumn, *actionRemoveColumn, *actionAddRow, *actionRemoveRow, *actionEditRow, *actionEditColumn;
         ChangeSkillDialog *pChangeSkillDial;
+        ChangeCharacterDialog *pChangeCharacterDial;
         SkillList *pSkills;
         CharacterList *pCharacters;
 

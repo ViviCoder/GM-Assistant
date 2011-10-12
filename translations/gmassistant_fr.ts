@@ -300,6 +300,48 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>changeCharacterDialog</name>
+    <message>
+        <location filename="../sources/windows/ChangeCharacterDialog.ui" line="17"/>
+        <source>New name</source>
+        <translation>Nouveau nom</translation>
+    </message>
+    <message>
+        <source>Name of the character:</source>
+        <translation type="obsolete">Nom du personnage :</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeCharacterDialog.ui" line="29"/>
+        <source>Character&apos;s name:</source>
+        <translation>Nom du personnage :</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeCharacterDialog.ui" line="39"/>
+        <source>Player&apos;s name:</source>
+        <translation>Nom du joueur :</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeCharacterDialog.ui" line="51"/>
+        <source>&amp;Edit</source>
+        <translation>&amp;Éditer</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeCharacterDialog.ui" line="62"/>
+        <source>&amp;Cancel</source>
+        <translation>A&amp;nnuler</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="41"/>
+        <source>Uncomplete data</source>
+        <translation>Données incomplètes</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="41"/>
+        <source>You must fill the content before validating.</source>
+        <translation>Vous devez remplir le contenu avant de valider.</translation>
+    </message>
+</context>
+<context>
     <name>changeHeaderDialog</name>
     <message>
         <source>Create a new item</source>
