@@ -16,39 +16,24 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_QCUSTOMTABLEWIDGET
-#define HEADER_QCUSTOMTABLEWIDGET
+#ifndef HEADER_CHANGESKILLDIALOG
+#define HEADER_CHANGESKILLDIALOG
 
-#include <QTableWidget>
-#include <QTableWidgetItem>
-#include <QMouseEvent>
-#include <QMenu>
-#include "ChangeSkillDialog.h"
-#include "SkillList.h"
-#include "CharacterList.h"
+#include "ui_ChangeSkillDialog.h"
 
-class QCustomTableWidget: public QTableWidget
+class ChangeSkillDialog: public QDialog, private Ui::changeSkillDialog
 {
     Q_OBJECT
 
-    private:
-        QMenu *menuColumn;
-        QAction *actionNone, *actionAddColumn, *actionRemoveColumn, *actionAddRow, *actionRemoveRow, *actionEditRow, *actionEditColumn;
-        ChangeSkillDialog *pChangeSkillDial;
-        SkillList *pSkills;
-        CharacterList *pCharacters;
-
     protected:
-        void mousePressEvent(QMouseEvent *e);
-        void keyReleaseEvent(QKeyEvent *e);
-
+        void showEvent(QShowEvent *e);
     public:
         // constructor
-        QCustomTableWidget(QWidget *parent=NULL);
-        // destructor
-        ~QCustomTableWidget();
-        // associating a skill list and a character list to the widget
-        void setLists(SkillList *skills, CharacterList *chars);
+        ChangeSkillDialog(QWidget *parent=NULL);
+        // accessors
+        QString text() const;
+    public slots:
+        void on_pushEdit_clicked();
 };
 
 #endif

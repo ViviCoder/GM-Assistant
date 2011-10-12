@@ -54,7 +54,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/ &quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;www.boost.org/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;boost-threads&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;www.boost.org/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;boost-thread&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -63,7 +63,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/ &quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; et &lt;/span&gt;&lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;www.boost.org/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;boost-threads&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;www.boost.org/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;boost-thread&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -306,24 +306,61 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Créer un nouvel item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeHeaderDialog.ui" line="17"/>
         <source>Change the name</source>
-        <translation>Changer le nom</translation>
+        <translation type="obsolete">Changer le nom</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeHeaderDialog.ui" line="29"/>
         <source>New name:</source>
-        <translation>Nouveau nom :</translation>
+        <translation type="obsolete">Nouveau nom :</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeHeaderDialog.ui" line="41"/>
+        <source>&amp;Edit</source>
+        <translation type="obsolete">&amp;Éditer</translation>
+    </message>
+    <message>
+        <source>&amp;Cancel</source>
+        <translation type="obsolete">A&amp;nnuler</translation>
+    </message>
+</context>
+<context>
+    <name>changeSkillDialog</name>
+    <message>
+        <source>Change the name</source>
+        <translation type="obsolete">Changer le nom</translation>
+    </message>
+    <message>
+        <source>New name:</source>
+        <translation type="obsolete">Nouveau nom :</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeSkillDialog.ui" line="17"/>
+        <source>New name</source>
+        <translation>Nouveau nom</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeSkillDialog.ui" line="29"/>
+        <source>Name of the skill:</source>
+        <translation>Nom de la compétence :</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeSkillDialog.ui" line="41"/>
         <source>&amp;Edit</source>
         <translation>&amp;Éditer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeHeaderDialog.ui" line="52"/>
+        <location filename="../sources/windows/ChangeSkillDialog.ui" line="52"/>
         <source>&amp;Cancel</source>
         <translation>A&amp;nnuler</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeSkillDialog.cpp" line="41"/>
+        <source>Uncomplete data</source>
+        <translation>Données incomplètes</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeSkillDialog.cpp" line="41"/>
+        <source>You must fill the content before validating.</source>
+        <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>
 </context>
 <context>
@@ -386,32 +423,32 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">S&amp;upprimer la ligne</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="9"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="27"/>
         <source>&amp;Add a skill</source>
         <translation>&amp;Ajouter une compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="11"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="29"/>
         <source>&amp;Remove the skill</source>
         <translation>&amp;Supprimer la compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="16"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="34"/>
         <source>A&amp;dd a character</source>
         <translation>A&amp;jouter un personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="18"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="36"/>
         <source>R&amp;emove the character</source>
         <translation>S&amp;upprimer le personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="20"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="38"/>
         <source>Change &amp;character&apos;s name</source>
         <translation>Changer le nom du &amp;personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="13"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="31"/>
         <source>Change &amp;skill&apos;s name</source>
         <translation>Changer le nom de la &amp;compétence</translation>
     </message>

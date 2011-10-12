@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>changeHeaderDialog</class>
- <widget class="QDialog" name="changeHeaderDialog">
+ <class>changeSkillDialog</class>
+ <widget class="QDialog" name="changeSkillDialog">
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Change the name</string>
+   <string>New name</string>
   </property>
   <property name="modal">
    <bool>true</bool>
@@ -26,7 +26,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>New name:</string>
+      <string>Name of the skill:</string>
      </property>
     </widget>
    </item>
@@ -66,25 +66,9 @@
  </resources>
  <connections>
   <connection>
-   <sender>pushEdit</sender>
-   <signal>clicked()</signal>
-   <receiver>changeHeaderDialog</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>59</x>
-     <y>96</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>0</x>
-     <y>46</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>pushCancel</sender>
    <signal>clicked()</signal>
-   <receiver>changeHeaderDialog</receiver>
+   <receiver>changeSkillDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

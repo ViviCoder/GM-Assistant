@@ -1,8 +1,26 @@
+/*************************************************************************
+* Copyright © 2011 Vincent Prat & Simon Nicolas
+*
+* This program is free software; you can redistribute it and/or modify
+* it under the terms of the GNU General Public License as published by
+* the Free Software Foundation; either version 3 of the License, or
+* (at your option) any later version.
+*
+* This program is distributed in the hope that it will be useful,
+* but WITHOUT ANY WARRANTY; without even the implied warranty of
+* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+* GNU General Public License for more details.
+*
+* You should have received a copy of the GNU General Public License along
+* with this program; if not, write to the Free Software Foundation, Inc.,
+* 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+*************************************************************************/
+
 #include "QCustomTableWidget.h"
-#include "ChangeHeaderDialog.h"
+#include "ChangeSkillDialog.h"
 #include <QApplication>
 
-QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menuColumn(new QMenu(this)), pChangeHeaderDial(new ChangeHeaderDialog(this)), pSkills(NULL), pCharacters(NULL)
+QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menuColumn(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pSkills(NULL), pCharacters(NULL)
 {
     //popup menu
     //actionNone = menuColumn->addAction(QApplication::translate("custom","&None",0));
@@ -75,16 +93,16 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                             QTableWidgetItem *col1 = new QTableWidgetItem( "0" );
                                             setItem(i,columnPosition+1,col1);
                                         }
-                                        if(pChangeHeaderDial->exec()==QDialog::Accepted)
+                                        if(pChangeSkillDial->exec()==QDialog::Accepted)
                                         {
                                             QTableWidgetItem *columnHeaderItem = horizontalHeaderItem ( columnPosition+1 );
                                             if (columnHeaderItem != NULL)
                                             {
-                                                columnHeaderItem->setText(pChangeHeaderDial->text());
+                                                columnHeaderItem->setText(pChangeSkillDial->text());
                                             }
                                             else
                                             {
-                                                columnHeaderItem = new QTableWidgetItem(pChangeHeaderDial->text());
+                                                columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
                                                 setHorizontalHeaderItem(columnPosition+1, columnHeaderItem);
                                             }
                                         }
@@ -108,16 +126,16 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                             QTableWidgetItem *row1 = new QTableWidgetItem( "0" );
                                             setItem(rowPosition+1,i,row1);
                                         }
-                                            if(pChangeHeaderDial->exec()==QDialog::Accepted)
+                                            if(pChangeSkillDial->exec()==QDialog::Accepted)
                                             {
                                                 QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( rowPosition+1 );
                                                 if (rowHeaderItem != NULL)
                                                 {
-                                                    rowHeaderItem->setText(pChangeHeaderDial->text());
+                                                    rowHeaderItem->setText(pChangeSkillDial->text());
                                                 }
                                                 else
                                                 {
-                                                    rowHeaderItem = new QTableWidgetItem(pChangeHeaderDial->text());
+                                                    rowHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
                                                     setVerticalHeaderItem(rowPosition+1, rowHeaderItem);
                                                 }
                                             }
@@ -134,16 +152,16 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     {
                                         if (qtwitem != NULL)
                                         {
-                                            if(pChangeHeaderDial->exec()==QDialog::Accepted)
+                                            if(pChangeSkillDial->exec()==QDialog::Accepted)
                                             {
                                                 QTableWidgetItem *columnHeaderItem = horizontalHeaderItem ( columnPosition );
                                                 if (columnHeaderItem != NULL)
                                                 {
-                                                    columnHeaderItem->setText(pChangeHeaderDial->text());
+                                                    columnHeaderItem->setText(pChangeSkillDial->text());
                                                 }
                                                 else
                                                 {
-                                                    columnHeaderItem = new QTableWidgetItem(pChangeHeaderDial->text());
+                                                    columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
                                                     setHorizontalHeaderItem(columnPosition, columnHeaderItem);
                                                 }
                                             }
@@ -154,16 +172,16 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     {
                                         if (qtwitem != NULL)
                                         {
-                                            if(pChangeHeaderDial->exec()==QDialog::Accepted)
+                                            if(pChangeSkillDial->exec()==QDialog::Accepted)
                                             {
                                                 QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( rowPosition );
                                                 if (rowHeaderItem != NULL)
                                                 {
-                                                    rowHeaderItem->setText(pChangeHeaderDial->text());
+                                                    rowHeaderItem->setText(pChangeSkillDial->text());
                                                 }
                                                 else
                                                 {
-                                                    rowHeaderItem = new QTableWidgetItem(pChangeHeaderDial->text());
+                                                    rowHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
                                                     setVerticalHeaderItem(rowPosition, rowHeaderItem);
                                                 }
                                             }
@@ -184,11 +202,7 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
     {
         switch (e->key())
         {
-            case Qt::Key_F2:    item->setFlags(item->flags() | Qt::ItemIsEditable);
-                                editItem(item);
-                                item->setFlags(item->flags() & ~Qt::ItemIsEditable);
-                                break;
-            case Qt::Key_Delete: item->setText("0");
+            case Qt::Key_Delete: item->setText("0"); break;
             default: break; 
         }
     }
