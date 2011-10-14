@@ -85,16 +85,16 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     QAction* action = menuColumn->exec(e->globalPos());
                                     if (action == actionAddColumn)
                                     {
-                                        insertColumn(columnPosition+1);
-                                        int row_nb;
-                                        row_nb = rowCount();
-                                        for (int i = 0; i <= row_nb; i++)
-                                        {
-                                            QTableWidgetItem *col1 = new QTableWidgetItem( "0" );
-                                            setItem(i,columnPosition+1,col1);
-                                        }
                                         if(pChangeSkillDial->exec()==QDialog::Accepted)
                                         {
+                                            insertColumn(columnPosition+1);
+                                            int row_nb;
+                                            row_nb = rowCount();
+                                            for (int i = 0; i <= row_nb; i++)
+                                            {
+                                                QTableWidgetItem *col1 = new QTableWidgetItem( "0" );
+                                                setItem(i,columnPosition+1,col1);
+                                            }
                                             QTableWidgetItem *columnHeaderItem = horizontalHeaderItem ( columnPosition+1 );
                                             if (columnHeaderItem != NULL)
                                             {
@@ -117,16 +117,16 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     }
                                     if (action == actionAddRow)
                                     {
-                                        insertRow(rowPosition+1);
-                                        int column_nb;
-                                        column_nb = columnCount();
-                                        for (int i = 0; i <= column_nb; i++)
-                                        {
-                                            QTableWidgetItem *row1 = new QTableWidgetItem( "0" );
-                                            setItem(rowPosition+1,i,row1);
-                                        }
                                         if(pChangeCharacterDial->exec()==QDialog::Accepted)
                                         {
+                                            insertRow(rowPosition+1);
+                                            int column_nb;
+                                            column_nb = columnCount();
+                                            for (int i = 0; i <= column_nb; i++)
+                                            {
+                                                QTableWidgetItem *row1 = new QTableWidgetItem( "0" );
+                                                setItem(rowPosition+1,i,row1);
+                                            }
                                             QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( rowPosition+1 );
                                             if (rowHeaderItem != NULL)
                                             {
