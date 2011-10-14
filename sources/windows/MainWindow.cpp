@@ -214,5 +214,4 @@ void MainWindow::on_sliderMusic_sliderReleased()
     }
     // updating the timer count
     iTimerCount = floor(TICK*position);
-    timer->start();
 }

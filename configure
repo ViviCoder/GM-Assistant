@@ -23,7 +23,40 @@ debug="false"
 
 # Find the OS
 OS=$(uname)
+echo "******************************"
+echo "* Detecting operating system *"
+echo "******************************"
+echo
 echo Operating system: $OS
+
+echo
+echo "*************************"
+echo "* Checking softwares... *"
+echo "*************************" 
+echo
+
+# Needed softwares
+softs="getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed"
+if [ $OS = "Linux" ]
+then
+	softs=$softs" moc-qt4"
+elif [ $OS = "Darwin" ]
+then
+	softs=" moc"
+fi
+
+for soft in $softs
+do
+    path=$(which $soft)
+    if [ $? = 1 ]
+    then
+        echo $soft missing !
+        exit
+    else
+        echo $soft: $path        
+    fi
+done
+echo 
 
 # Reading options
 supported_short_options="gh"
@@ -45,32 +78,6 @@ do
         --) break;;
     esac
 done
-
-echo "*************************"
-echo "* Checking softwares... *"
-echo "*************************" 
-
-# Needed softwares
-if [ $OS = "Linux" ]
-then
-	softs="pkg-config g++ moc-qt4 qmake lupdate lrelease make"
-elif [ $OS = "Darwin" ]
-then
-	softs="pkg-config g++ moc qmake lupdate lrelease make"
-fi
-
-for soft in $softs
-do
-    path=$(which $soft)
-    if [ $? = 1 ]
-    then
-        echo $soft missing !
-        exit
-    else
-        echo $soft: $path        
-    fi
-done
-echo 
 
 echo "*********************************"
 echo "* Checking development files... *"
@@ -141,6 +148,7 @@ echo
 echo "********************************"
 echo "* Preparing the compilation... *"
 echo "********************************"
+echo
 
 qmake -project
 lupdate GM-Assistant.pro
@@ -172,4 +180,5 @@ echo
 echo "********************"
 echo "* Ready to compile *"
 echo "********************"
+echo
 echo To compile, type make
