@@ -44,7 +44,6 @@ QCustomTableWidget::~QCustomTableWidget()
     delete menuColumn;
 }
 
-
 void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
 {
     int rowPosition, columnPosition;
@@ -87,6 +86,18 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     {
                                         if(pChangeSkillDial->exec()==QDialog::Accepted)
                                         {
+                                            // modifying the skill/character Lists
+                                            pSkills->add(pChangeSkillDial->text().toStdString(),columnPosition+1);
+                                            for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
+                                            {
+                                                if ((unsigned int)columnPosition+1 < it->skillNumber())
+                                                {
+                                                    // adding a skill
+                                                    it->addSkill("0",columnPosition+1);
+                                                }
+                                            } 
+
+                                            // updating the display
                                             insertColumn(columnPosition+1);
                                             int row_nb;
                                             row_nb = rowCount();

@@ -59,9 +59,17 @@ void SkillList::clear()
     vSkills.clear();
 }
 
-void SkillList::add(const std::string &skill)
+void SkillList::add(const std::string &skill, int position)
 {
-    vSkills.push_back(skill);
+    // if position is equal to -1 or greater than the size of the list, just push_back
+    if (position<0 || (unsigned int)position>vSkills.size())
+    {
+        vSkills.push_back(skill);
+    }
+    else
+    {
+        vSkills.insert(vSkills.begin()+position,skill);
+    }
 }
 
 void SkillList::remove(int index) throw(out_of_range)

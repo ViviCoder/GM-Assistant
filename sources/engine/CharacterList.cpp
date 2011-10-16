@@ -92,18 +92,32 @@ Character& CharacterList::operator[](int index) throw(out_of_range)
     return vCharacters[index];
 }
 
-CharacterList::iterator CharacterList::begin() const
+CharacterList::const_iterator CharacterList::begin() const
+{
+    return const_iterator(vCharacters.begin());
+}
+
+CharacterList::const_iterator CharacterList::end() const
+{
+    return const_iterator(vCharacters.end());
+}
+
+CharacterList::iterator CharacterList::begin()
 {
     return iterator(vCharacters.begin());
 }
 
-CharacterList::iterator CharacterList::end() const
+CharacterList::iterator CharacterList::end()
 {
     return iterator(vCharacters.end());
 }
 
-// iterator's method
+// iterators' methods
 
-CharacterList::iterator::iterator(const vector<Character>::const_iterator &it): vector<Character>::const_iterator(it)
+CharacterList::iterator::iterator(const vector<Character>::iterator &it): vector<Character>::iterator(it)
+{
+}
+
+CharacterList::const_iterator::const_iterator(const vector<Character>::const_iterator &it): vector<Character>::const_iterator(it)
 {
 }

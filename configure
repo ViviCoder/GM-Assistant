@@ -164,6 +164,8 @@ fi
 
 # cleaning previous compilation
 make -s clean
+rm -f *.o
+rm -f ui_*.h
 
 echo
 echo "************************"

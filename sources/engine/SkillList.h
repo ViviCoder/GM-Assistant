@@ -44,7 +44,7 @@ class SkillList
         // accessor
         std::string& operator[](int index) throw(std::out_of_range);
         // populating
-        void add(const std::string &skill);
+        void add(const std::string &skill, int position=-1);
         void remove(int index) throw(std::out_of_range);
         void clear();
         // iterators

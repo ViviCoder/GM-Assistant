@@ -49,8 +49,9 @@ class Character
         std::string playerName() const;
         bool isPlaying() const;
         std::string& skill(int index) throw(std::out_of_range);
+        unsigned int skillNumber() const;
         // populating
-        void addSkill(const std::string &skill);
+        void addSkill(const std::string &skill, int position=-1);
         void removeSkill(int index) throw(std::out_of_range);
         void clearSkills();
         // iterators

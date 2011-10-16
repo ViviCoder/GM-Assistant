@@ -29,12 +29,19 @@ class CharacterList
     private:
         std::vector<Character> vCharacters;
     public:
-        // iterator
-        class iterator: public std::vector<Character>::const_iterator
+        // iterators
+        class const_iterator: public std::vector<Character>::const_iterator
         {
             public:
                 // constructor
-                iterator(const std::vector<Character>::const_iterator &it);
+                const_iterator(const std::vector<Character>::const_iterator &it);
+        };
+        class iterator: public std::vector<Character>::iterator
+        {
+            public:
+                // constructor
+                iterator(const std::vector<Character>::iterator &it);
+                iterator(const const_iterator &it);
         };
         // constructor
         CharacterList();
@@ -48,8 +55,10 @@ class CharacterList
         void remove(int index) throw(std::out_of_range);
         void clear();
         // iterators
-        iterator begin() const;
-        iterator end() const;
+        const_iterator begin() const;
+        const_iterator end() const;
+        iterator begin();
+        iterator end();
 };
 
 #endif

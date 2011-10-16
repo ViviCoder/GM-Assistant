@@ -56,6 +56,11 @@ std::string& Character::skill(int index) throw(out_of_range)
     return vSkills[index];
 }
 
+unsigned int Character::skillNumber() const
+{
+    return vSkills.size();
+}
+
 // methods
 
 void Character::toXML(xmlpp::Element &root) const
@@ -88,9 +93,17 @@ void Character::fromXML(const xmlpp::Element &root)
     }
 }
 
-void Character::addSkill(const std::string &skill)
+void Character::addSkill(const std::string &skill, int position)
 {
-    vSkills.push_back(skill);
+    // if position is negative or greater than the size of the vector, just push_back
+    if (position<0 || (unsigned int)position>vSkills.size())
+    {
+        vSkills.push_back(skill);
+    }
+    else
+    {
+        vSkills.insert(vSkills.begin()+position,skill);
+    }
 }
 
 void Character::removeSkill(int index) throw(out_of_range)
