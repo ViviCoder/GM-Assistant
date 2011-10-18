@@ -87,21 +87,27 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                         if(pChangeSkillDial->exec()==QDialog::Accepted)
                                         {
                                             // modifying the skill/character Lists
-                                            pSkills->add(pChangeSkillDial->text().toStdString(),columnPosition+1);
-                                            for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
+                                            if (pSkills != NULL)
                                             {
-                                                if ((unsigned int)columnPosition+1 < it->skillNumber())
+                                                pSkills->add(pChangeSkillDial->text().toStdString(),columnPosition+1);
+                                            }
+                                            if (pCharacters != NULL)
+                                            {
+                                                for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
                                                 {
-                                                    // adding a skill
-                                                    it->addSkill("0",columnPosition+1);
-                                                }
-                                            } 
+                                                    if ((unsigned int)columnPosition+1 < it->skillNumber())
+                                                    {
+                                                        // adding a skill
+                                                        it->addSkill("0",columnPosition+1);
+                                                    }
+                                                } 
+                                            }
 
                                             // updating the display
                                             insertColumn(columnPosition+1);
                                             int row_nb;
                                             row_nb = rowCount();
-                                            for (int i = 0; i <= row_nb; i++)
+                                            for (int i = 0; i < row_nb; i++)
                                             {
                                                 QTableWidgetItem *col1 = new QTableWidgetItem( "0" );
                                                 setItem(i,columnPosition+1,col1);
@@ -124,16 +130,39 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                         if (qtwitem != NULL)
                                         {
                                             removeColumn(columnPosition);
+                                            // updating the she skill/character Lists
+                                            if (pSkills != NULL)
+                                            {
+                                                pSkills->remove(columnPosition);
+                                            }
+                                            if (pCharacters != NULL)
+                                            {
+                                                for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
+                                                {
+                                                    if ((unsigned int)columnPosition < it->skillNumber())
+                                                    {
+                                                        it->removeSkill(columnPosition);
+                                                    }
+                                                } 
+                                            }
                                         }
                                     }
                                     if (action == actionAddRow)
                                     {
                                         if(pChangeCharacterDial->exec()==QDialog::Accepted)
                                         {
+                                            // updating the CharacterList
+                                            if (pCharacters != NULL)
+                                            {
+                                                Character character(pChangeCharacterDial->name().toStdString(),pChangeCharacterDial->playerName().toStdString());
+                                                pCharacters->add(character,rowPosition+1);
+                                            }
+
+                                            // updating the display
                                             insertRow(rowPosition+1);
                                             int column_nb;
                                             column_nb = columnCount();
-                                            for (int i = 0; i <= column_nb; i++)
+                                            for (int i = 0; i < column_nb; i++)
                                             {
                                                 QTableWidgetItem *row1 = new QTableWidgetItem( "0" );
                                                 setItem(rowPosition+1,i,row1);
@@ -141,11 +170,11 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                             QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( rowPosition+1 );
                                             if (rowHeaderItem != NULL)
                                             {
-                                                rowHeaderItem->setText(pChangeCharacterDial->text());
+                                                rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
                                             }
                                             else
                                             {
-                                                rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->text());
+                                                rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
                                                 setVerticalHeaderItem(rowPosition+1, rowHeaderItem);
                                             }
                                         }
@@ -155,6 +184,11 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                         if (qtwitem != NULL)
                                         {
                                             removeRow(rowPosition);
+                                            // updating the CharacterList
+                                            if (pCharacters != NULL)
+                                            {
+                                                pCharacters->remove(rowPosition);
+                                            }
                                         }
                                     }
                                     if (action == actionEditColumn)
@@ -185,11 +219,11 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                                 QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( rowPosition );
                                                 if (rowHeaderItem != NULL)
                                                 {
-                                                    rowHeaderItem->setText(pChangeCharacterDial->text());
+                                                    rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
                                                 }
                                                 else
                                                 {
-                                                    rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->text());
+                                                    rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
                                                     setVerticalHeaderItem(rowPosition, rowHeaderItem);
                                                 }
                                             }

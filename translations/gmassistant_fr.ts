@@ -331,12 +331,12 @@ p, li { white-space: pre-wrap; }
         <translation>A&amp;nnuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="41"/>
+        <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="46"/>
         <source>Uncomplete data</source>
         <translation>Données incomplètes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="41"/>
+        <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="46"/>
         <source>You must fill the content before validating.</source>
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>

@@ -69,9 +69,17 @@ void CharacterList::clear()
     vCharacters.clear();
 }
 
-void CharacterList::add(const std::string &character)
+void CharacterList::add(const Character &character, int position)
 {
-    vCharacters.push_back(character);
+    // if out if bounds, just push_back
+    if (position<0 || (unsigned int)position > vCharacters.size())
+    {
+        vCharacters.push_back(character);
+    }
+    else
+    {
+        vCharacters.insert(vCharacters.begin()+position,character);
+    }
 }
 
 void CharacterList::remove(int index) throw(out_of_range)

@@ -25,9 +25,14 @@ ChangeCharacterDialog::ChangeCharacterDialog(QWidget *parent): QDialog(parent)
     setupUi(this);
 }
 
-QString ChangeCharacterDialog::text() const
+QString ChangeCharacterDialog::name() const
 {
-    return editName->text()+"\n"+editPlayer->text();
+    return editName->text();
+}
+
+QString ChangeCharacterDialog::playerName() const
+{
+    return editPlayer->text();
 }
 
 void ChangeCharacterDialog::on_pushEdit_clicked()

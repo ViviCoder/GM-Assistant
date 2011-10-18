@@ -51,7 +51,7 @@ class CharacterList
         // accessor
         Character& operator[](int index) throw(std::out_of_range);
         // populating
-        void add(const std::string &character);
+        void add(const Character &character, int position=-1);
         void remove(int index) throw(std::out_of_range);
         void clear();
         // iterators

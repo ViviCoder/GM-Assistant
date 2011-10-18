@@ -31,7 +31,8 @@ class ChangeCharacterDialog: public QDialog, private Ui::changeCharacterDialog
         // constructor
         ChangeCharacterDialog(QWidget *parent=NULL);
         // accessors
-        QString text() const;
+        QString name() const;
+        QString playerName() const;
     public slots:
         void on_pushEdit_clicked();
 };
