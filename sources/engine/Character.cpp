@@ -37,9 +37,19 @@ string Character::name() const
     return sName;
 }
 
+void Character::setName(const string &name)
+{
+    sName = name;
+}
+
 string Character::playerName() const
 {
     return sPlayerName;
+}
+
+void Character::setPlayerName(const string &playerName)
+{
+    sPlayerName = playerName;
 }
 
 bool Character::isPlaying() const

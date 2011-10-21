@@ -44,6 +44,9 @@ class QCustomTableWidget: public QTableWidget
         void mousePressEvent(QMouseEvent *e);
         void keyReleaseEvent(QKeyEvent *e);
 
+    protected slots:
+        void onCellChanged(int row, int column);
+
     public:
         // constructor
         QCustomTableWidget(QWidget *parent=NULL);

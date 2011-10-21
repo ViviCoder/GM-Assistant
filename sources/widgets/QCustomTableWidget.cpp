@@ -37,6 +37,9 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     actionRemoveRow->setIconVisibleInMenu(true);
     actionEditRow = menuColumn->addAction(QIcon(":/data/images/son.png"),QApplication::translate("custom","Change &character's name",0));
     actionEditRow->setIconVisibleInMenu(true);
+
+    // connection of signals
+    connect(this,SIGNAL(cellChanged(int,int)),this,SLOT(onCellChanged(int,int)));
 }
 
 QCustomTableWidget::~QCustomTableWidget()
@@ -207,6 +210,11 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                                     columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
                                                     setHorizontalHeaderItem(columnPosition, columnHeaderItem);
                                                 }
+                                                // updating the SkillList
+                                                if (pSkills != NULL)
+                                                {
+                                                    (*pSkills)[columnPosition] = pChangeSkillDial->text().toStdString();
+                                                }
                                             }
                                         }
                                     }
@@ -225,6 +233,13 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                                 {
                                                     rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
                                                     setVerticalHeaderItem(rowPosition, rowHeaderItem);
+                                                }
+                                                // updating the CharacterList
+                                                if (pCharacters != NULL)
+                                                {
+                                                    Character &charact = (*pCharacters)[rowPosition];
+                                                    charact.setName(pChangeCharacterDial->name().toStdString());
+                                                    charact.setPlayerName(pChangeCharacterDial->playerName().toStdString());
                                                 }
                                             }
                                         }
@@ -271,17 +286,33 @@ void QCustomTableWidget::setLists(SkillList *skills, CharacterList *chars)
         // creating items
         for (k=0;k<i;k++)
         {
-            setItem(j,k,new QTableWidgetItem("0"));
         }
         // setting values
         k = 0;
         for (Character::SkillIterator itSkill = (*it).begin(); itSkill != (*it).end() && k<i; itSkill++)
         {
-            item(j,k)->setText((*itSkill).c_str());
+            setItem(j,k,new QTableWidgetItem((*itSkill).c_str()));
             k++;
         } 
+        for (;k<i;k++)
+        {
+            setItem(j,k,new QTableWidgetItem("0"));
+        }
         j++;
     }
     resizeRowsToContents();
     resizeColumnsToContents();
+}
+
+void QCustomTableWidget::onCellChanged(int row, int column)
+{
+    if (pCharacters != NULL)
+    {
+        Character &charact = (*pCharacters)[row];
+        for (int i=charact.skillNumber(); i<column+1; i++)
+        {
+            charact.addSkill("0");
+        }
+        charact.skill(column) = item(row,column)->text().toStdString();
+    }
 }

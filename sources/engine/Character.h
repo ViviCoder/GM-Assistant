@@ -46,7 +46,9 @@ class Character
         void fromXML(const xmlpp::Element &root);
         // accessors
         std::string name() const;
+        void setName(const std::string &name);
         std::string playerName() const;
+        void setPlayerName(const std::string &playerName);
         bool isPlaying() const;
         std::string& skill(int index) throw(std::out_of_range);
         unsigned int skillNumber() const;
