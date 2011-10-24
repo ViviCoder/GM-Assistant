@@ -20,6 +20,7 @@
 
 # Initializing some options
 debug="false"
+prefix="$HOME/GM-Assistant"
 
 # Find the OS
 OS=$(uname)
@@ -60,23 +61,32 @@ echo
 
 # Reading options
 supported_short_options="gh"
-supported_long_options="help,debug"
+supported_long_options="help,debug,prefix:"
 
 options=$(getopt -s sh -l $supported_long_options $supported_short_options $@)
-if [ $? = 1 ]   # unsupported options
+if [ $? -eq 1 ]   # unsupported options
 then
     echo "Try the --help option for more information"
     exit 1
 fi
 
+# initialization
+arg=0
 for opt in $options
 do
-    case $opt in
-        -g | --debug)   debug="true";;
-        -h | --help)    echo "Usage: configure [options]\n\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide"
-            exit 0;;
-        --) break;;
-    esac
+    if [ $arg -eq 0 -o "$opt" = "--" ]
+    then
+        case $opt in
+            -g | --debug)   debug="true";;
+            -h | --help)    echo "Usage: configure [options]\n\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide"
+                exit 0;;
+            --prefix)       arg=1;;
+            --) break;;
+        esac
+    else
+        prefix=$opt
+        arg=0
+    fi
 done
 
 echo "*********************************"
@@ -153,7 +163,6 @@ echo
 qmake -project
 lupdate GM-Assistant.pro
 lrelease GM-Assistant.pro
-mv translations/*.qm .
 qmake
 
 # adding the -g flag if the debug option is enabled
@@ -161,11 +170,6 @@ if [ $debug = "true" ]
 then
     sed -i  "s#-pipe#-pipe -g#" Makefile
 fi
-
-# cleaning previous compilation
-make -s clean
-rm -f *.o
-rm -f ui_*.h
 
 echo
 echo "************************"
@@ -178,9 +182,19 @@ sed -i  "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --c
 # adding libxml++ and SDL binaries
 sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound -lboost_thread#" Makefile
 
+# cleaning previous compilation
+make -s clean
+rm -f *.o
+rm -f ui_*.h
+
 echo
 echo "********************"
 echo "* Ready to compile *"
 echo "********************"
 echo
 echo To compile, type make
+
+# preparing the installation
+prefix=$(echo $prefix | sed "s#\~#$HOME#")
+sed -i  "s#^install:.*#install:\n\t\@\.\/install.sh $prefix#" Makefile
+sed -i  "s#^uninstall:.*#uninstall:\n\t\@echo \"Uninstalling GM-Assistant...\"\n\t\@rm -rf $prefix\n\t\@echo \"Done\"#" Makefile

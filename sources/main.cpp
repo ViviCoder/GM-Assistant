@@ -41,7 +41,7 @@ int main(int argc, char* argv[])
     QString locale = QLocale::system().name().section('_',0,0);
     QTranslator translator,translatorSys;
     // Translation of the software
-    translator.load(QString("gmassistant_") + locale);
+    translator.load(QString("translations/gmassistant_") + locale);
     app.installTranslator(&translator);
     // Translation of predefined Qt strings
     translatorSys.load("qt_" + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
