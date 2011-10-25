@@ -22,6 +22,36 @@
 debug="false"
 prefix="$HOME/GM-Assistant"
 
+# Reading options
+supported_short_options="gh"
+supported_long_options="help,debug,prefix:"
+
+options=$(getopt -s sh -l $supported_long_options $supported_short_options $@)
+if [ $? -eq 1 ]   # unsupported options
+then
+    echo "Try the --help option for more information"
+    exit 1
+fi
+
+# initialization
+arg=0
+for opt in $options
+do
+    if [ $arg -eq 0 -o "$opt" = "--" ]
+    then
+        case $opt in
+            -g | --debug)   debug="true";;
+            -h | --help)    echo -e "Usage: configure [options]\n\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n --prefix=dir\t'make install' will install this software in dir"
+                exit 0;;
+            --prefix)       arg=1;;
+            --) break;;
+        esac
+    else
+        prefix=$opt
+        arg=0
+    fi
+done
+
 # Find the OS
 OS=$(uname)
 echo "******************************"
@@ -37,7 +67,7 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed"
+softs="uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed mkdir cp"
 if [ $OS = "Linux" ]
 then
 	softs=$softs" moc-qt4"
@@ -58,36 +88,6 @@ do
     fi
 done
 echo 
-
-# Reading options
-supported_short_options="gh"
-supported_long_options="help,debug,prefix:"
-
-options=$(getopt -s sh -l $supported_long_options $supported_short_options $@)
-if [ $? -eq 1 ]   # unsupported options
-then
-    echo "Try the --help option for more information"
-    exit 1
-fi
-
-# initialization
-arg=0
-for opt in $options
-do
-    if [ $arg -eq 0 -o "$opt" = "--" ]
-    then
-        case $opt in
-            -g | --debug)   debug="true";;
-            -h | --help)    echo "Usage: configure [options]\n\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide"
-                exit 0;;
-            --prefix)       arg=1;;
-            --) break;;
-        esac
-    else
-        prefix=$opt
-        arg=0
-    fi
-done
 
 echo "*********************************"
 echo "* Checking development files... *"

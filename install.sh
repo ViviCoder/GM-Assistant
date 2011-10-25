@@ -44,5 +44,7 @@ fi
 cp translations/*.qm $1/translations
 echo "Copying executable..."
 cp GM-Assistant $1
+echo "Copying license..."
+cp LICENSE $1
 echo
 echo "Installation done"
