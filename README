@@ -16,12 +16,10 @@ See the LICENSE file for more information about this license
 **********************
 
 To compile, you need:
-- g++
-- C++ standard library (with development files)
+- g++ and the C++ standard library (with development files)
 - Qt4 library (with development files)
 - XML++ library (with development files)
 - SDL-mixer and SDL-sound libraries (with development files)
-- Boost-thread library (with development files)
 
 **********************
 *    INSTRUCTIONS    *
