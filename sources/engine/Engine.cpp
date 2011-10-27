@@ -17,8 +17,7 @@
 *************************************************************************/
 
 #include "Engine.h"
-
-#define VERSION "1.0"
+#include "version.h"
 
 using namespace std;
 
@@ -107,7 +106,7 @@ void Engine::toFile(const string &fileName) const
 
     Document document;
     Element *root = document.create_root_node("game");
-    root->set_attribute("version",VERSION);
+    root->set_attribute("version",SHORT_VERSION);
     Element *tmp = root->add_child("scenario");
     tScenario.toXML(*tmp);
     tmp = root->add_child("notes");

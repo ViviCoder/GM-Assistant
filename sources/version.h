@@ -16,17 +16,19 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "AboutDialog.h"
-#include "version.h"
-#include <QMessageBox>
+#ifndef HEADER_VERSION
+#define HEADER_VERSION
 
-AboutDialog::AboutDialog(QWidget *parent): QDialog(parent)
-{
-    setupUi(this);
-    labelVersionNumber->setText(FULL_VERSION);
-}
+#define MAJOR_VERSION   1
+#define MINOR_VERSION   0
+#define RELEASE_VERSION 0
 
-void AboutDialog::on_pushClose_clicked()
-{
-    close();
-}
+// some stringification macros
+#define xstr(s) str(s)
+#define str(s)  #s
+
+// version string
+#define SHORT_VERSION   xstr(MAJOR_VERSION)"."xstr(MINOR_VERSION)
+#define FULL_VERSION    SHORT_VERSION"."xstr(RELEASE_VERSION)
+
+#endif
