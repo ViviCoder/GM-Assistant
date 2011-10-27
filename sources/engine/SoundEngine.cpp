@@ -48,10 +48,9 @@ SoundEngine::~SoundEngine()
         Mix_HaltChannel(0);
         Sound_FreeSample(ssSample);
     }
-    if (pThread != NULL)
-    {
-        delete pThread;
-    }
+    // terminating the thread
+    bThreadFinished = true;
+
     Sound_Quit();
     Mix_CloseAudio();
 }
@@ -80,11 +79,6 @@ int SoundEngine::bufferSize() const
 
 double SoundEngine::duration()
 {
-    if (bThreadFinished)
-    {
-        delete pThread;
-        pThread = NULL;
-    }
     return dDuration;
 }
 
@@ -133,11 +127,8 @@ void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
         Mix_FreeMusic(mmMusic);
         mmMusic = NULL;
     }
-    if (pThread != NULL)
-    {
-        delete pThread;
-        pThread = NULL;
-    }
+    // terminating the thread if still running
+    bThreadFinished = true;
     mmMusic = Mix_LoadMUS(fileName.c_str());
     if (mmMusic == NULL)
     {
@@ -147,7 +138,7 @@ void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
     {
         Mix_PlayMusic(mmMusic,0);
     }
-    pThread = new boost::thread(computeDuration,fileName,iBufferSize,&dDuration,&bThreadFinished); 
+    pThread = new QCustomThread(fileName,iBufferSize,&dDuration,&bThreadFinished); 
 }
 
 void SoundEngine::onStopSound(int channel)
@@ -168,28 +159,6 @@ void SoundEngine::resumeMusic()
 bool SoundEngine::isPlayingMusic() const
 {
     return Mix_PlayingMusic();
-}
-
-void SoundEngine::computeDuration(const string &fileName, int bufferSize, double *result, bool *finished) throw(runtime_error)
-{
-    // the thread is still running
-    *finished = false;
-    // decoding
-    Sound_Sample *sample = Sound_NewSampleFromFile(fileName.c_str(),NULL,bufferSize);
-    if (sample == NULL)
-    {
-        throw runtime_error("Unable to load the file");
-    }
-    int totalSize=0;
-    int size = Sound_Decode(sample);
-    while (size==bufferSize)
-    {
-        size = Sound_Decode(sample);
-        totalSize += size;
-        *result = 8192*(double)(totalSize) / (sample->actual.rate*sample->actual.format); 
-    }
-    *finished = true;
-    Sound_FreeSample(sample);
 }
 
 void SoundEngine::move(double step)

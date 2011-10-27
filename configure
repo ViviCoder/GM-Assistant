@@ -137,23 +137,6 @@ do
     fi
 done
 
-#Boost
-echo
-echo Boost:
-boost_devs="thread"
-boost_dev_path=$inc_path"boost"
-
-for dev in $boost_devs
-do
-    if [ -e "$boost_dev_path/$dev.hpp" ]
-    then
-        echo $boost_dev_path/$dev.hpp: OK
-    else
-        echo $dev.hpp missing !
-        exit
-    fi
-done
-
 echo
 echo "********************************"
 echo "* Preparing the compilation... *"
@@ -180,7 +163,7 @@ echo "************************"
 sed -i  "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --cflags-only-I)#" Makefile
 
 # adding libxml++ and SDL binaries
-sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound -lboost_thread#" Makefile
+sed -i  "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
 
 # cleaning previous compilation
 make -s clean

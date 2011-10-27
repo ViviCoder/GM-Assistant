@@ -23,7 +23,7 @@
 #include <stdexcept>
 #include <SDL_mixer.h>
 #include <SDL_sound.h>
-#include <boost/thread.hpp>
+#include "QCustomThread.h"
 
 class SoundEngine
 {
@@ -39,7 +39,7 @@ class SoundEngine
         // computed duration of the music
         double dDuration;
         // thread used to compute duration
-        boost::thread *pThread;
+        QCustomThread *pThread;
         // flag to know wether the thread has finished or not
         bool bThreadFinished;
 	public:

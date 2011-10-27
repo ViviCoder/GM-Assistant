@@ -21,7 +21,7 @@
 #include <QMessageBox>
 #include "QCustomTreeWidgetItem.h"
 #include "ItemFactory.h"
-#include <cstdlib>
+#include <cmath>
 
 MainWindow::MainWindow(): QMainWindow(),eGame("examples/game.xml"), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0)
 {
