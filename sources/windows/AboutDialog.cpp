@@ -25,8 +25,3 @@ AboutDialog::AboutDialog(QWidget *parent): QDialog(parent)
     setupUi(this);
     labelVersionNumber->setText(FULL_VERSION);
 }
-
-void AboutDialog::on_pushClose_clicked()
-{
-    close();
-}
