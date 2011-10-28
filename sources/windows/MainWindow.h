@@ -51,8 +51,6 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void on_action_Save_triggered();
         void on_actionS_ave_as_triggered();
         void on_action_New_triggered();
-        // textNotes
-        void on_textNotes_textChanged();
         // button
         void on_buttonMusic_clicked();
         // timer
@@ -61,7 +59,6 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void updateDisplay();
         // slider
         void on_sliderMusic_sliderReleased();
-    public slots:
         // play music and sound
         void playMusic(const std::string &fileName);
         void playSound(const std::string &fileName);

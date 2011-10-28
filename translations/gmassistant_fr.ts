@@ -267,16 +267,12 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>action</name>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="50"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="100"/>
         <source>Confirmation</source>
-        <translation>Confirmation</translation>
+        <translation type="obsolete">Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="50"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="100"/>
         <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
-        <translation>Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
+        <translation type="obsolete">Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="52"/>
@@ -473,8 +469,8 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="183"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="198"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="176"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="191"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -714,7 +710,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="225"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="163"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="156"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
@@ -817,13 +813,13 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="133"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="186"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="126"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="179"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="139"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="132"/>
         <source>&amp;Resume</source>
         <translation>&amp;Reprise</translation>
     </message>
