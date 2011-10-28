@@ -151,7 +151,7 @@ qmake
 # adding the -g flag if the debug option is enabled
 if [ $debug = "true" ]
 then
-    sed -i  "s#-pipe#-pipe -g#" Makefile
+    sed -i"" "s#-pipe#-pipe -g#" Makefile
 fi
 
 echo
@@ -159,21 +159,11 @@ echo "************************"
 echo "* Adding librairies... *"
 echo "************************"
 
-if [ $OS = "Linux" ]
-then
-	# adding libxml++ and SDL includes in the Makefile
-	sed -i "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --cflags-only-I)#" Makefile
+# adding libxml++ and SDL includes in the Makefile
+sed -i"" "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --cflags-only-I)#" Makefile
 
-	# adding libxml++ and SDL binaries
-	sed -i "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
-elif [ $OS = "Darwin" ]
-then
-	# adding libxml++ and SDL includes in the Makefile
-	sed -i "" "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --cflags-only-I)#" Makefile
-
-	# adding libxml++ and SDL binaries
-	sed -i "" "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
-fi
+# adding libxml++ and SDL binaries
+sed -i"" "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
 
 # cleaning previous compilation
 make -s clean
@@ -189,13 +179,5 @@ echo To compile, type make
 
 # preparing the installation
 prefix=$(echo $prefix | sed "s#\~#$HOME#")
-if [ $OS = "Linux" ]
-then
-	sed -i "s#^install:.*#install:\n\t\@\.\/install.sh $prefix#" Makefile
-	sed -i "s#^uninstall:.*#uninstall:\n\t\@echo \"Uninstalling GM-Assistant...\"\n\t\@rm -rf $prefix\n\t\@echo \"Done\"#" Makefile
-elif [ $OS = "Darwin" ]
-then
-	sed -i "" "s#^install:.*#install:\n\t\@\.\/install.sh $prefix#" Makefile
-	sed -i "" "s#^uninstall:.*#uninstall:\n\t\@echo \"Uninstalling GM-Assistant...\"\n\t\@rm -rf $prefix\n\t\@echo \"Done\"#" Makefile
-fi
-
+sed -i"" "s#^install:.*#install:\n\t\@\.\/install.sh $prefix#" Makefile
+sed -i"" "s#^uninstall:.*#uninstall:\n\t\@echo \"Uninstalling GM-Assistant...\"\n\t\@rm -rf $prefix\n\t\@echo \"Done\"#" Makefile
