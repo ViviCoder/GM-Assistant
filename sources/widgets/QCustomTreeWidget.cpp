@@ -155,7 +155,11 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     pItemDial->exec();
                                     if (pItemDial->result()==QDialog::Accepted)
                                     {
-                                        Item *newItem = ItemFactory::createItem(Item::tBasic,pItemDial->text().toStdString(),pItemDial->state());
+                                        Item *newItem = ItemFactory::createItem(pItemDial->type(),pItemDial->text().toStdString(),pItemDial->state());
+                                        if (newItem->type()==Item::tSound)
+                                        {
+                                            dynamic_cast<SoundItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
+                                        }
                                         QCustomTreeWidgetItem *newQItem = NULL;
                                         Branch *newBranch = pTree->add(newItem);
                                         newQItem = new QCustomTreeWidgetItem(this,newBranch);
