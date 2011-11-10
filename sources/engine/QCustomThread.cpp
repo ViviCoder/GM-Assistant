@@ -17,7 +17,7 @@
 *************************************************************************/
 
 #include "QCustomThread.h"
-#include <SDL/SDL_sound.h>
+#include <SDL_sound.h>
 
 using namespace std;
 
