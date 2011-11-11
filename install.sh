@@ -46,5 +46,7 @@ echo "Copying executable..."
 cp GM-Assistant $1
 echo "Copying license..."
 cp LICENSE $1
+echo "Copying changelog..."
+cp changelog $1
 echo
 echo "Installation done"

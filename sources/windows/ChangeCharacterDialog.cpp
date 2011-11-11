@@ -37,7 +37,7 @@ QString ChangeCharacterDialog::playerName() const
 
 void ChangeCharacterDialog::on_pushEdit_clicked()
 {
-    if (editName->text()!="" && editPlayer->text()!="")
+    if (editName->text()!="")
     {
         accept();
     }

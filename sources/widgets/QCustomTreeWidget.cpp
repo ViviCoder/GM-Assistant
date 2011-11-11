@@ -24,7 +24,7 @@
 #include <QMessageBox>
 #include <exception>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this))
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false)
 {
     // popup menu
     actionNone = menuIcons->addAction(QApplication::translate("custom","&None",0));
@@ -74,17 +74,13 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
     QTreeWidgetItem *item = itemAt(e->pos());
     switch (e->button())
     {
-        case Qt::LeftButton:    if (item == NULL || item->isSelected())
-                                {
-                                    setCurrentItem(NULL);
-                                }
-                                else
-                                {
-                                    QTreeWidget::mousePressEvent(e);
-                                }
+        case Qt::LeftButton:    bNewlySelected = !item->isSelected();
+                                // the item will be selected (and not be unselected by mouseReleaseEvent)
+                                QTreeWidget::mousePressEvent(e);
                                 break;
         case Qt::RightButton:   if (item != NULL)
                                 {
+                                    setCurrentItem(item);
                                     QCustomTreeWidgetItem *qItem = dynamic_cast<QCustomTreeWidgetItem*>(item);
                                     Item *treeItem = qItem->branch()->item();
                                     QAction* action = menuIcons->exec(e->globalPos());
@@ -169,6 +165,14 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                 }
                                 break;
         default:    break;
+    }
+}
+
+void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *e)
+{
+    if (!bNewlySelected)
+    {
+        setCurrentItem(NULL);
     }
 }
 
@@ -279,15 +283,51 @@ QIcon QCustomTreeWidget::icon(Item::State state)
 
 void QCustomTreeWidget::dragEnterEvent(QDragEnterEvent *e)
 {
-    dragSource = itemAt(e->pos());
-    QTreeWidget::dragEnterEvent(e);
+    pDragSource = itemAt(e->pos());
+    if (pDragSource != NULL)
+    {
+        e->acceptProposedAction();
+    }
 }
+
+using namespace std;
 
 void QCustomTreeWidget::dropEvent(QDropEvent *e)
 {
-    if (e->proposedAction()==Qt::MoveAction)
+    QPoint pos = e->pos();
+    QModelIndex index;
+    // we test if we point inside an item
+    if (e->source() == this && viewport()->rect().contains(pos),true)
     {
-        pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(dragSource)->branch()),pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(itemAt(e->pos()))->branch()));
+        index = indexAt(pos);
+        if (!index.isValid())
+        {
+            return;
+        }
+        QTreeWidgetItem *item = itemAt(pos);
+        // now we have an item, we check whether we are above, below or on it
+        QRect rect = visualRect(index);
+        const int margin = 2;
+        if (pos.y() - rect.top() < margin)
+        {
+            // we are above it
+            pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()),pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()));
+        }
+        else if (rect.bottom() - pos.y() < margin)
+        {
+            // we are below it
+            pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()),pTree->indicesOfNext(dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()));
+        }
+        else if (rect.contains(pos, true))
+        {
+            // we are on it : new child
+            stringstream buf(stringstream::in|stringstream::out);
+            Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
+            buf << pTree->indicesOf(branch);
+            // we want to add it as the last child
+            buf << "_" << branch->tree().numberOfChildren();
+            pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()), buf.str());
+        }
     }
     QTreeWidget::dropEvent(e);
 }
