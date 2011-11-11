@@ -86,6 +86,7 @@ class Tree
         // accessors
         Item* operator[](const std::string &indices) throw(std::out_of_range);
         Branch* parent() const;
+        unsigned int numberOfChildren() const;
         // populating the list
         Branch* insert(int index, Item *item) throw(std::out_of_range);
         Branch* insert(const std::string &indices, Item *item);
@@ -101,6 +102,7 @@ class Tree
         // get the index of a branch
         int indexOf(Branch *branch) const;
         std::string indicesOf(Branch *branch) const;
+        std::string indicesOfNext(Branch *branch) const;
 };
 
 #include "Branch.h"

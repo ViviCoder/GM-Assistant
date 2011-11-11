@@ -234,6 +234,11 @@ Branch* Tree::parent() const
     return pParent;
 }
 
+unsigned int Tree::numberOfChildren() const
+{
+    return vChildren.size();
+}
+
 Branch* Tree::branch(const string &indices) throw(out_of_range)
 {
     string sub(indices);
@@ -384,24 +389,38 @@ void Tree::move(const string &currentIndices, const string &newIndices)
     insert(newIndices,branch(currentIndices));
     // we now determine if there is need to modify newIndices for the suppression
     string subNew(newIndices), subCurrent(currentIndices);
-    int nNew = extractIndex(subNew);
-    int nCurrent = extractIndex(subCurrent);
+    int nNew, nCurrent;
     stringstream buf(stringstream::in | stringstream::out);
-    while (subNew!="" && subCurrent!="")
+    // we iterate over the indices
+    bool firstTime = true;
+    do
     {
-        if (nNew != nCurrent)
+        nNew = extractIndex(subNew);
+        nCurrent = extractIndex(subCurrent);
+        
+        if (!firstTime)
         {
-            break;
+            buf << "_";
         }
-        buf << nCurrent << "_";
+
+        if (subNew=="" && nNew <= nCurrent)
+        {
+            // we modify the indices of the item to remove
+            buf << (nCurrent+1);
+        }
+        else
+        {
+            // we do not modify the indices of the item to remove
+            buf << nCurrent;
+        }
+        firstTime = false;
     }
-    if (subNew=="" && nNew <= nCurrent)
+    while (subNew!="" && subCurrent!="" && nNew != nCurrent);
+
+    // we add the following indices (they are unchanged)
+    if (subCurrent!="")
     {
-        buf << (nCurrent+1) << "_" << subCurrent;
-    }
-    else
-    {
-        buf << nCurrent << "_" << subCurrent;
+        buf << "_" << subCurrent;
     }
     remove(buf.str(),false);    
 }
@@ -445,6 +464,28 @@ string Tree::indicesOf(Branch *branch) const
     else
     {
         buf << n;
+    }
+    return buf.str();
+}
+
+string Tree::indicesOfNext(Branch *branch) const
+{
+    stringstream buf(stringstream::in | stringstream::out);
+    int n = indexOf(branch);
+    if (n == -1)
+    {
+        if (branch->parent()==NULL)
+        {
+            return "0";
+        }
+        else
+        {
+            buf << indicesOf(branch->parent()) << "_" << (branch->parent()->tree().indexOf(branch)+1);
+        }
+    }
+    else
+    {
+        buf << (n+1);
     }
     return buf.str();
 }
