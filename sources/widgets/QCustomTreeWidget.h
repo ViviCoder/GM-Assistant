@@ -35,11 +35,13 @@ class QCustomTreeWidget: public QTreeWidget
         QAction *actionNone, *actionProgress, *actionFailure, *actionSuccess, *actionAdd, *actionDelete;
         Tree *pTree;
         ItemDialog *pItemDial;
-        QTreeWidgetItem *dragSource;
+        QTreeWidgetItem *pDragSource;
+        bool bNewlySelected;
     protected:
         // overriden methods
         void mouseDoubleClickEvent(QMouseEvent *e);
         void mousePressEvent(QMouseEvent *e);
+        void mouseReleaseEvent(QMouseEvent *e);
         void keyReleaseEvent(QKeyEvent *e);
         void dragEnterEvent(QDragEnterEvent *e);
         void dropEvent(QDropEvent *e);

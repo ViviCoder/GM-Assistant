@@ -1,0 +1,8 @@
+Changes in version 1.0.1:
+
+* Trees:
+	- drag & drop bug fixed
+	- selected items can now be dragged
+	- right-clicking an item selects it
+* Others:
+	- non-player characters can be added in the table
