@@ -816,12 +816,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="303"/>
         <source>&amp;Save</source>
-        <translation>&amp;Sauvegarder</translation>
+        <translation>&amp;Enregistrer</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="306"/>
         <source>Save the current game</source>
-        <translation>Sauvegarde le jeu en cours</translation>
+        <translation>Enregistre le jeu en cours</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="309"/>
@@ -831,12 +831,12 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="314"/>
         <source>S&amp;ave as</source>
-        <translation>S&amp;auvegarder sous</translation>
+        <translation>Enregistrer &amp;sous</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="317"/>
         <source>Save the current game in a new file</source>
-        <translation>Sauvegarde le jeu en cours dans un nouveau fichier</translation>
+        <translation>Enregistre le jeu en cours dans un nouveau fichier</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="320"/>
