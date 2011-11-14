@@ -74,8 +74,11 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
     QTreeWidgetItem *item = itemAt(e->pos());
     switch (e->button())
     {
-        case Qt::LeftButton:    bNewlySelected = !item->isSelected();
-                                // the item will be selected (and not be unselected by mouseReleaseEvent)
+        case Qt::LeftButton:    if (item !=NULL)
+                                {
+                                    bNewlySelected = !item->isSelected();
+                                    // the item will be selected (and not be unselected by mouseReleaseEvent)
+                                }
                                 QTreeWidget::mousePressEvent(e);
                                 break;
         case Qt::RightButton:   if (item != NULL)

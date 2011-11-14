@@ -6,3 +6,7 @@ Changes in version 1.0.1:
 	- right-clicking an item selects it
 * Others:
 	- non-player characters can be added in the table
+
+Changes in version 1.0.2:
+
+- crash when clicking an empty tree fixed
