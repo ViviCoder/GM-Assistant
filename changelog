@@ -10,3 +10,7 @@ Changes in version 1.0.1:
 Changes in version 1.0.2:
 
 - crash when clicking an empty tree fixed
+
+Changes in version 1.0.3:
+
+- crash when moving an item in a following branch fixed

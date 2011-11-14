@@ -415,7 +415,7 @@ void Tree::move(const string &currentIndices, const string &newIndices)
         }
         firstTime = false;
     }
-    while (subNew!="" && subCurrent!="" && nNew != nCurrent);
+    while (subNew!="" && subCurrent!="" && nNew == nCurrent);
 
     // we add the following indices (they are unchanged)
     if (subCurrent!="")
