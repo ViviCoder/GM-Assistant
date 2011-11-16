@@ -59,6 +59,18 @@ echo "* Detecting operating system *"
 echo "******************************"
 echo
 echo Operating system: $OS
+# OS-dependent variables
+if [ $OS = "Linux" ]
+then
+	softs="moc-qt4"
+	inc_path="/usr/include/"
+    sed_i="-i"
+elif [ $OS = "Darwin" ]
+then
+	softs="moc"
+	inc_path="/opt/local/include/"
+    sed_i='-i ""'
+fi
 
 echo
 echo "*************************"
@@ -67,14 +79,7 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed mkdir cp rmdir sort"
-if [ $OS = "Linux" ]
-then
-	softs=$softs" moc-qt4"
-elif [ $OS = "Darwin" ]
-then
-	softs=" moc"
-fi
+softs="$softs uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed mkdir cp rmdir sort"
 
 for soft in $softs
 do
@@ -94,14 +99,6 @@ echo "* Checking development files... *"
 echo "*********************************"
 
 # Needed headers
-
-if [ $OS = "Linux" ]
-then
-	inc_path="/usr/include/"
-elif [ $OS = "Darwin" ]
-then
-	inc_path="/opt/local/include/"
-fi
 
 # libXML++
 echo
@@ -151,7 +148,7 @@ qmake
 # adding the -g flag if the debug option is enabled
 if [ $debug = "true" ]
 then
-    sed -i"" "s#-pipe#-pipe -g#" Makefile
+    sed $sed_i "s#-pipe#-pipe -g#" Makefile
 fi
 
 echo
@@ -165,23 +162,12 @@ echo SDL
 echo SDL_mixer
 echo SDL_sound
 
-if [ $OS = "Linux" ]
-then
 # adding libxml++ and SDL includes in the Makefile
-	sed -i "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --cflags-only-I)#" Makefile
+sed $sed_i "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --cflags-only-I)#" Makefile
 
 # adding libxml++ and SDL binaries
-	sed -i "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
+sed $sed_i "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
 
-elif [ $OS = "Darwin" ]
-then
-# adding libxml++ and SDL includes in the Makefile
-	sed -i "" "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --cflags-only-I)#" Makefile
-
-# adding libxml++ and SDL binaries
-	sed -i "" "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
-
-fi
 # cleaning previous compilation
 make -s clean
 rm -f *.o
@@ -196,12 +182,5 @@ echo To compile, type make
 
 # preparing the installation
 prefix=$(echo $prefix | sed "s#\~#$HOME#")
-if [ $OS = "Linux" ]
-then
-sed -i "s#^install:.*#install:\n\t\@\.\/install.sh $prefix#" Makefile
-sed -i "s#^uninstall:.*#uninstall:\n\t\@\.\/uninstall.sh#" Makefile
-elif [ $OS = "Darwin" ]
-then
-sed -i "" "s#^install:.*#install:\n\t\@\.\/install.sh $prefix#" Makefile
-sed -i "" "s#^uninstall:.*#uninstall:\n\t\@\.\/uninstall.sh#" Makefile
-fi
+sed $sed_i "s#^install:.*#install:\n\t\@\.\/install.sh $prefix#" Makefile
+sed $sed_i "s#^uninstall:.*#uninstall:\n\t\@\.\/uninstall.sh#" Makefile
