@@ -67,7 +67,7 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed mkdir cp"
+softs="uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed mkdir cp rmdir sort"
 if [ $OS = "Linux" ]
 then
 	softs=$softs" moc-qt4"
@@ -158,7 +158,12 @@ echo
 echo "************************"
 echo "* Adding librairies... *"
 echo "************************"
+echo
 
+echo $xml_dev_path
+echo SDL
+echo SDL_mixer
+echo SDL_sound
 # adding libxml++ and SDL includes in the Makefile
 sed -i"" "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --cflags-only-I)#" Makefile
 
@@ -180,4 +185,4 @@ echo To compile, type make
 # preparing the installation
 prefix=$(echo $prefix | sed "s#\~#$HOME#")
 sed -i"" "s#^install:.*#install:\n\t\@\.\/install.sh $prefix#" Makefile
-sed -i"" "s#^uninstall:.*#uninstall:\n\t\@echo \"Uninstalling GM-Assistant...\"\n\t\@rm -rf $prefix\n\t\@echo \"Done\"#" Makefile
+sed -i"" "s#^uninstall:.*#uninstall:\n\t\@\.\/uninstall.sh#" Makefile
