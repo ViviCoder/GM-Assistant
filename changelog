@@ -25,3 +25,7 @@ Changes in version 1.0.4:
 	instead of a raw 'rm -r *'
 * Others:
 	- the configure script displays the list of linked libraries
+
+Changes in version 1.0.5:
+
+- crash when typing 'Del' while editing an item fixed

@@ -24,7 +24,7 @@
 #include <QMessageBox>
 #include <exception>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false)
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false)
 {
     // popup menu
     actionNone = menuIcons->addAction(QApplication::translate("custom","&None",0));
@@ -43,6 +43,7 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     connect(this, SIGNAL(itemChanged(QTreeWidgetItem *,int)), SLOT(on_itemChanged(QTreeWidgetItem*, int)));
     connect(this, SIGNAL(itemCollapsed(QTreeWidgetItem *)), SLOT(on_itemCollapsed()));
     connect(this, SIGNAL(itemExpanded(QTreeWidgetItem *)), SLOT(on_itemExpanded()));
+    connect(this, SIGNAL(itemSelectionChanged()), SLOT(on_itemSelectionChanged()));
 }
 
 QCustomTreeWidget::~QCustomTreeWidget()
@@ -188,9 +189,14 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
         {
             case Qt::Key_F2:    item->setFlags(item->flags() | Qt::ItemIsEditable);
                                 editItem(item);
+                                bEditing = true;
                                 item->setFlags(item->flags() & ~Qt::ItemIsEditable);
                                 break;
-            case Qt::Key_Delete:    deleteItem(item);
+            case Qt::Key_Delete:    QTreeWidget::keyReleaseEvent(e);
+                                    if (!bEditing)
+                                    {
+                                        deleteItem(item);
+                                    }
                                     break;
             default: break; 
         }
@@ -333,4 +339,9 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
         }
     }
     QTreeWidget::dropEvent(e);
+}
+
+void QCustomTreeWidget::on_itemSelectionChanged()
+{
+    bEditing = false;
 }
