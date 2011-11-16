@@ -37,6 +37,7 @@ class QCustomTreeWidget: public QTreeWidget
         ItemDialog *pItemDial;
         QTreeWidgetItem *pDragSource;
         bool bNewlySelected;
+        bool bEditing;
     protected:
         // overriden methods
         void mouseDoubleClickEvent(QMouseEvent *e);
@@ -50,6 +51,7 @@ class QCustomTreeWidget: public QTreeWidget
         void on_itemCollapsed();
         void on_itemExpanded();
         void deleteItem(QTreeWidgetItem* item);
+        void on_itemSelectionChanged();
     public:
         QCustomTreeWidget(QWidget *parent=NULL);
         ~QCustomTreeWidget();
