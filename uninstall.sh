@@ -19,43 +19,32 @@
 #!/bin/sh
 
 install_log="install.log"
-cp_flags="-f"
 
-echo "Installing GM-Assistant:"
-echo
+echo "Uninstalling GM-Assistant..."
 
-if [ -z $1 ]
-then
-    echo "No install directory given"
-    exit
-fi
+dirs="" # directories to be deleted
+log=$(cat $install_log | tr " " "@")
 
-# emptying the log file
-> $install_log
+# handling install log
+for line in $log
+do
+    file=$(echo $line | sed "s#.*@->@##" | sed "s/« //" | sed "s/ »//")
+    if [ -d $file ]
+    then
+        dirs="$dirs $file"
+    else
+        rm -v $file
+        # directory
+        dirs=$dirs" $(echo $file | sed 's#\/[^\/]\{1,\}$##')"
+    fi
+done
 
-# creating the target directory if it does not exist
-if [ ! -d $1 ]
-then
-    mkdir -p $1
-fi
+# empty directories
+dirs=$(echo $dirs | tr " " "\n" | sort -ur)
 
-# copying files
-echo "Copying data..."
-cp -rv $cp_flags data $1 >> $install_log
-echo "Copying examples..."
-cp -rv $cp_flags examples $1 >> $install_log
-echo "Copying translations..."
-if [ ! -d $1/translations ]
-then
-    mkdir -p $1/translations
-fi
-cp -v $cp_flags translations/*.qm $1/translations >> $install_log
-echo "Copying executable..."
-cp -v $cp_flags GM-Assistant $1 >> $install_log
-echo "Copying license..."
-cp -v $cp_flags LICENSE $1 >> $install_log
-echo "Copying changelog..."
-cp -v $cp_flags changelog $1 >> $install_log
-echo
-echo "Installation done"
-echo "To uninstall, type 'make uninstall'"
+for dir in $dirs
+do
+    rmdir -v $dir
+done
+
+echo "Done"

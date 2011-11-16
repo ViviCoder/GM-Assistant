@@ -15,3 +15,13 @@ Changes in version 1.0.3:
 
 - crash when moving an item in a following branch fixed
 - minor modifications of the french translation
+
+Changes in version 1.0.4:
+
+* Uninstallation:
+	- 'make install' creates a log file which contains the list of the files
+	to remove during uninstallation
+	- 'make uninstall' removes only those files and the empty directories
+	instead of a raw 'rm -r *'
+* Others:
+	- the configure script displays the list of linked libraries

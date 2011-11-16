@@ -7,3 +7,4 @@ GM-Assistant
 *.o
 moc_*
 *.qm
+*.log
