@@ -62,7 +62,7 @@ class Tree
                 Item* operator*();
                 // information about the position of the iterator
                 int depth() const;
-                Branch* parent() const;
+                Tree* parent() const;
                 Branch* branch() const;
         };
         // constructors

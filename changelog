@@ -29,3 +29,8 @@ Changes in version 1.0.4:
 Changes in version 1.0.5:
 
 - crash when typing 'Del' while editing an item fixed
+
+Changes in version 1.0.6:
+
+* Trees:
+	- crash when moving an item into a previously moved one fixed

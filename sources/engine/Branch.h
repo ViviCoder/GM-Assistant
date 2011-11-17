@@ -26,19 +26,20 @@ class Branch
     private:
         Item *pItem;
         Tree tTree;
-        Branch *pParent;
+        Tree *pParent;
     public:
         // constructors
-        Branch(const Branch &branch, Branch *parent=NULL);
-        Branch(Item* item, Branch *parent=NULL);
-        Branch(Item* item, const Tree &tree, Branch *parent=NULL);
-        Branch(Item* item, const xmlpp::Element &root, Branch* parent=NULL);
+        Branch(const Branch &branch, Tree *parent=NULL);
+        Branch(Item* item, Tree *parent=NULL);
+        Branch(Item* item, const Tree &tree, Tree *parent=NULL);
+        Branch(Item* item, const xmlpp::Element &root, Tree *parent=NULL);
         // destructor
         ~Branch();
         //accessors
         Item* item() const;
         Tree& tree();
-        Branch* parent() const;
+        Tree* parent() const;
+        void setParent(Tree *parent);
         // copy operator
         Branch& operator=(const Branch &branch);
 };
