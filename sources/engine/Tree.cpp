@@ -446,7 +446,7 @@ int Tree::indexOf(Branch *branch) const
     }
 }
 
-string Tree::indicesOf(Branch *branch) const
+string Tree::indicesOf(Branch *branch) const throw(out_of_range)
 {
     stringstream buf(stringstream::in | stringstream::out);
     int n = indexOf(branch);
@@ -454,7 +454,7 @@ string Tree::indicesOf(Branch *branch) const
     {
         if (branch->parent()==NULL)
         {
-            return "";
+            throw out_of_range("No such a branch in the tree");
         }
         else
         {
