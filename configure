@@ -79,7 +79,7 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="$softs uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed mkdir cp rmdir sort"
+softs="$softs uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed mkdir cp rmdir sort pwd"
 
 for soft in $softs
 do

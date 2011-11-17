@@ -55,7 +55,7 @@ Tree& Tree::operator=(const Tree &tree)
     clear();
     for (vector<Branch*>::const_iterator it=tree.vChildren.begin(); it != tree.vChildren.end(); it++)
     {
-        Branch *branch = new Branch(**it,pParent);
+        Branch *branch = new Branch(**it,this);
         vChildren.push_back(branch);
     }
     pParent = NULL;
@@ -108,7 +108,7 @@ void Tree::fromXML(const xmlpp::Element &root)
         }
         Item *item = ItemFactory::createItem(type,content,state);
         item->fromXML(*elem);
-        Branch *branch = new Branch(item,*elem,pParent);
+        Branch *branch = new Branch(item,*elem,this);
         vChildren.push_back(branch);
     }
 }
@@ -293,7 +293,7 @@ void Tree::insert(const string &indices, Branch *branch) throw(out_of_range)
     if (sub=="")
     {
         vChildren.insert(vChildren.begin()+n,branch);
-        branch->tree().pParent = pParent;
+        branch->setParent(this);
     }
     else
     {
@@ -446,19 +446,20 @@ int Tree::indexOf(Branch *branch) const
     }
 }
 
-string Tree::indicesOf(Branch *branch) const
+string Tree::indicesOf(Branch *branch) const throw(out_of_range)
 {
     stringstream buf(stringstream::in | stringstream::out);
     int n = indexOf(branch);
     if (n == -1)
     {
-        if (branch->parent()==NULL)
+        Tree *parent = branch->parent();
+        if (parent==NULL || parent->pParent == NULL)
         {
-            return "";
+            throw out_of_range("No such a branch in the tree");
         }
         else
         {
-            buf << indicesOf(branch->parent()) << "_" << branch->parent()->tree().indexOf(branch);
+            buf << indicesOf(parent->pParent) << "_" << parent->indexOf(branch);
         }
     }
     else
@@ -474,13 +475,14 @@ string Tree::indicesOfNext(Branch *branch) const
     int n = indexOf(branch);
     if (n == -1)
     {
-        if (branch->parent()==NULL)
+        Tree *parent = branch->parent();
+        if (parent==NULL || parent->pParent==NULL)
         {
             return "0";
         }
         else
         {
-            buf << indicesOf(branch->parent()) << "_" << (branch->parent()->tree().indexOf(branch)+1);
+            buf << indicesOf(parent->pParent) << "_" << (parent->indexOf(branch)+1);
         }
     }
     else
@@ -594,7 +596,7 @@ int Tree::iterator::depth() const
     return qIts.size()-1;
 }
 
-Branch* Tree::iterator::parent() const
+Tree* Tree::iterator::parent() const
 {
     try
     {

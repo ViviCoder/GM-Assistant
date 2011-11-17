@@ -126,7 +126,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                             switch (pItemDial->selectionResult())
                                             {
                                                 case ItemDialog::rBrother:  {
-                                                                                Branch *branch = qItem->branch()->parent();
+                                                                                Branch *branch = qItem->branch()->parent()->parent();
                                                                                 if (branch==NULL)
                                                                                 {
                                                                                     Branch *newBranch = pTree->insert(pTree->indexOf(qItem->branch())+1,newItem);
@@ -262,7 +262,7 @@ void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
 {
     Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
     // delete item
-    Branch *parent = branch->parent();
+    Tree *parent = branch->parent();
     if (parent==NULL)
     {
         if (pTree != NULL)
@@ -272,7 +272,7 @@ void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
     }
     else
     {
-        parent->tree().remove(parent->tree().indexOf(branch));
+        parent->remove(parent->indexOf(branch));
     }
     // delete widgetItem
     delete item;
@@ -339,6 +339,7 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
         }
     }
     QTreeWidget::dropEvent(e);
+    resizeColumnToContents(0);
 }
 
 void QCustomTreeWidget::on_itemSelectionChanged()
