@@ -23,7 +23,7 @@
 #include "ItemFactory.h"
 #include <cmath>
 
-MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0)
+MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0)
 {
     setupUi(this);
     updateDisplay();
@@ -33,6 +33,11 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimer_timeout()));
     connect(treeMusic,SIGNAL(fileToPlay(std::string)),this,SLOT(playMusic(std::string)));
     connect(treeFX,SIGNAL(fileToPlay(std::string)),this,SLOT(playSound(std::string)));
+
+    if (sDir!="")
+    {
+        sDir += '/';
+    }
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -49,7 +54,7 @@ void MainWindow::on_action_Load_triggered()
 {
 /*    if (!bModified || (QMessageBox::question(this,QApplication::translate("action","Confirmation",0),QApplication::translate("action","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
     {*/
-        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("action","Select the file to open",0),"examples",QApplication::translate("action","XML files (*.xml)",0)); 
+        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("action","Select the file to open",0),sDir+"examples",QApplication::translate("action","XML files (*.xml)",0)); 
         if (!file.isNull())
         {
             sFileName = file;
@@ -85,7 +90,7 @@ void MainWindow::on_action_Save_triggered()
 void MainWindow::on_actionS_ave_as_triggered()
 {
     eGame.notes() = textNotes->toPlainText().toStdString();
-    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("action","Select the file to save",0),"examples",QApplication::translate("action","XML files (*.xml)",0));
+    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("action","Select the file to save",0),sDir+"examples",QApplication::translate("action","XML files (*.xml)",0));
     if (!file.isNull())
     {
         sFileName = file;

@@ -33,14 +33,14 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
     private:
         Engine eGame;
         SoundEngine soundEngine;
-        QString sFileName;
+        QString sFileName,sDir;
         bool bModified;
         AboutDialog *pAboutDial;
         QTimer *timer;
         int iTimerCount;
     public:
         // constructor
-        MainWindow();
+        MainWindow(const QString &dir);
 
     Q_OBJECT
     private slots:

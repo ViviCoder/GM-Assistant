@@ -39,6 +39,14 @@ then
     mkdir -p $1
 fi
 
+# getting install directory's full path
+current_dir=$(pwd)
+cd $1
+install_dir=$(pwd)
+cd $current_dir
+# storing it into a configuration file
+echo $install_dir > ~/.GM-Assistant
+
 # copying files
 echo "Copying data..."
 cp -rv $cp_flags data $1 >> $install_log

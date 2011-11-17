@@ -339,6 +339,7 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
         }
     }
     QTreeWidget::dropEvent(e);
+    resizeColumnToContents(0);
 }
 
 void QCustomTreeWidget::on_itemSelectionChanged()
