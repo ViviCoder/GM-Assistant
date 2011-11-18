@@ -40,5 +40,6 @@ Changes in version 1.0.6:
 	
 Changes in version 1.0.7:
 
-* Trees:
-    - crash when moving an item created with child (or into one)
+- crash when moving an item created with child (or into one) fixed
+- default widgets get automatically the focus in dialog windows
+- default work directory set to the executable's directory

@@ -712,12 +712,12 @@ p, li { white-space: pre-wrap; }
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="131"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="132"/>
         <source>Select the sound file to associate to the item</source>
         <translation>Sélectionnez le fichier son à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="131"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="132"/>
         <source>Audio files (*.mp3 *.wav *.ogg)</source>
         <translation>Fichiers audio (*.mp3 *.wav *.ogg)</translation>
     </message>

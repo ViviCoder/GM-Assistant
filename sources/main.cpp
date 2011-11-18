@@ -58,12 +58,13 @@ int main(int argc, char* argv[])
         }
         file.getline(buf,MAX_LENGTH);
         file.close();
+        install_dir = buf;
     }
     catch (...)
     {
         cerr << "Unable to read the configuration file" << endl;
+        install_dir = "";
     }
-    install_dir = buf;
 #endif
 
     QString locale = QLocale::system().name().section('_',0,0);
