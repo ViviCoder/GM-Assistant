@@ -91,8 +91,6 @@ class Tree
         Branch* insert(int index, Item *item) throw(std::out_of_range);
         Branch* insert(const std::string &indices, Item *item);
         Branch* add(Item *item);
-        Branch* add(int depth, Item *item) throw(std::out_of_range);
-        Branch* addChild(Item *item);
         void remove(int index, bool toDelete=true) throw(std::out_of_range);
         void remove(const std::string &indices, bool toDelete=true);
         void move(const std::string &currentIndices, const std::string &newIndices);

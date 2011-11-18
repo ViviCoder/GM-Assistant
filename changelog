@@ -37,3 +37,9 @@ Changes in version 1.0.6:
 	- resize of the items when moved
 * Others
 	- path (translations ans examples) issue on Linux when using a launcher solved
+	
+Changes in version 1.0.7:
+
+- crash when moving an item created with child (or into one) fixed
+- default widgets get automatically the focus in dialog windows
+- default work directory set to the executable's directory

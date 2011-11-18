@@ -50,6 +50,7 @@ void ChangeCharacterDialog::on_pushEdit_clicked()
 void ChangeCharacterDialog::showEvent(QShowEvent *e)
 {
     editName->setText("");
+    editName->setFocus();
     editPlayer->setText("");
     QDialog::showEvent(e);
 }

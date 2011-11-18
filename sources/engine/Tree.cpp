@@ -309,50 +309,13 @@ Branch* Tree::add(Item *item)
 {
     if (vChildren.size()==0 || vChildren.back()->tree().vChildren.size()==0)
     {
-        Branch *branch = new Branch(item,pParent);
+        Branch *branch = new Branch(item,this);
         vChildren.push_back(branch);
         return branch;
     }
     else
     {
         return vChildren.back()->tree().add(item);
-    }
-}
-
-Branch* Tree::add(int depth, Item *item) throw(out_of_range)
-{
-    // insert at the given depth (1 is root)
-    if (depth<0)
-    {
-        throw out_of_range("Depth out of range");
-    }
-    if (depth==0)
-    {
-        Branch *branch = new Branch(item,pParent);
-        vChildren.push_back(branch);
-        return branch;
-    }
-    else
-    {
-        if (vChildren.size()==0)
-        {
-            throw out_of_range("Depth out of range");
-        }
-        return vChildren.back()->tree().add(depth-1,item);
-    }
-}
-
-Branch* Tree::addChild(Item *item)
-{
-    if (vChildren.size()==0)
-    {
-        Branch *branch = new Branch(item,pParent);
-        vChildren.push_back(branch);
-        return branch;
-    }
-    else
-    {
-        return vChildren.back()->tree().addChild(item);
     }
 }
 

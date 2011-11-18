@@ -101,6 +101,7 @@ void ItemDialog::showEvent(QShowEvent *e)
     radioBasic->setChecked(true);
     updateDisplay();
     editItem->setText("");
+    editItem->setFocus();
     editFile->setText("");
 
     QDialog::showEvent(e);

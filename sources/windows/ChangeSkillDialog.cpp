@@ -45,5 +45,6 @@ void ChangeSkillDialog::on_pushEdit_clicked()
 void ChangeSkillDialog::showEvent(QShowEvent *e)
 {
     editName->setText("");
+    editName->setFocus();
     QDialog::showEvent(e);
 }
