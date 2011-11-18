@@ -48,3 +48,7 @@ Changes in version 1.0.8:
 
 - crash when moving an item into another (due to creation with bad parent)
 fixed (I hope definitively!)
+
+Changes in version 1.0.9:
+
+- bug when adding a new item at the root of a tree fixed

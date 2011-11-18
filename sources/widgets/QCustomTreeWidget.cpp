@@ -122,26 +122,25 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                             {
                                                 dynamic_cast<SoundItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
                                             }
-                                            QCustomTreeWidgetItem *newQItem = NULL;
                                             switch (pItemDial->selectionResult())
                                             {
                                                 case ItemDialog::rBrother:  {
-                                                                                Tree *parent = qItem->branch()->parent();
+                                                                                Branch *parent = qItem->branch()->parent()->parent();
                                                                                 if (parent==NULL)
                                                                                 {
                                                                                     Branch *newBranch = pTree->insert(pTree->indexOf(qItem->branch())+1,newItem);
-                                                                                    newQItem = new QCustomTreeWidgetItem(this,newBranch,qItem);
+                                                                                    new QCustomTreeWidgetItem(this,newBranch,qItem);
                                                                                 }
                                                                                 else
                                                                                 {
-                                                                                    Branch *newBranch = parent->insert(parent->indexOf(qItem->branch())+1,newItem);
-                                                                                    newQItem = new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem->parent()),newBranch,qItem);
+                                                                                    Branch *newBranch = parent->tree().insert(parent->tree().indexOf(qItem->branch())+1,newItem);
+                                                                                    new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem->parent()),newBranch,qItem);
                                                                                 }
                                                                                 break;
                                                                             }
                                                 case ItemDialog::rChild:    {
                                                                                 Branch *newBranch = qItem->branch()->tree().add(newItem);
-                                                                                newQItem = new QCustomTreeWidgetItem(qItem,newBranch);
+                                                                                QCustomTreeWidgetItem *newQItem = new QCustomTreeWidgetItem(qItem,newBranch);
                                                                                 expandItem(newQItem->parent());
                                                                                 break;
                                                                             }
