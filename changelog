@@ -43,3 +43,8 @@ Changes in version 1.0.7:
 - crash when moving an item created with child (or into one) fixed
 - default widgets get automatically the focus in dialog windows
 - default work directory set to the executable's directory
+
+Changes in version 1.0.8:
+
+- crash when moving an item into another (due to creation with bad parent)
+fixed (I hope definitively!)

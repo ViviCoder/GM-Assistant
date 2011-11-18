@@ -263,7 +263,7 @@ Branch* Tree::insert(int index, Item *item) throw(out_of_range)
     {
         throw out_of_range("Index out of bounds");
     }
-    Branch *branch = new Branch(item,pParent);
+    Branch *branch = new Branch(item,this);
     vChildren.insert(vChildren.begin()+index,branch);
     return branch;  // returns the branch just created
 }
