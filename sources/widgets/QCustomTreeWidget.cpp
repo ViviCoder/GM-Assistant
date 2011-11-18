@@ -126,15 +126,15 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                             switch (pItemDial->selectionResult())
                                             {
                                                 case ItemDialog::rBrother:  {
-                                                                                Branch *branch = qItem->branch()->parent()->parent();
-                                                                                if (branch==NULL)
+                                                                                Tree *parent = qItem->branch()->parent();
+                                                                                if (parent==NULL)
                                                                                 {
                                                                                     Branch *newBranch = pTree->insert(pTree->indexOf(qItem->branch())+1,newItem);
                                                                                     newQItem = new QCustomTreeWidgetItem(this,newBranch,qItem);
                                                                                 }
                                                                                 else
                                                                                 {
-                                                                                    Branch *newBranch = branch->tree().insert(branch->tree().indexOf(qItem->branch())+1,newItem);
+                                                                                    Branch *newBranch = parent->insert(parent->indexOf(qItem->branch())+1,newItem);
                                                                                     newQItem = new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem->parent()),newBranch,qItem);
                                                                                 }
                                                                                 break;
