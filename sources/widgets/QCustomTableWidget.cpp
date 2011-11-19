@@ -112,164 +112,38 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     QAction* action = menu->exec(e->globalPos());
                                     if (action == actionAddColumn)
                                     {
-                                        if(pChangeSkillDial->exec()==QDialog::Accepted)
-                                        {
-                                            // modifying the skill/character Lists
-                                            if (pSkills != NULL)
-                                            {
-                                                pSkills->add(pChangeSkillDial->text().toStdString(),columnPosition+1);
-                                            }
-                                            if (pCharacters != NULL)
-                                            {
-                                                for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
-                                                {
-                                                    if ((unsigned int)columnPosition+1 < it->skillNumber())
-                                                    {
-                                                        // adding a skill
-                                                        it->addSkill("0",columnPosition+1);
-                                                    }
-                                                } 
-                                            }
-
-                                            // updating the display
-                                            insertColumn(columnPosition+1);
-                                            int row_nb;
-                                            row_nb = rowCount();
-                                            for (int i = 0; i < row_nb; i++)
-                                            {
-                                                QTableWidgetItem *col1 = new QTableWidgetItem("0");
-                                                setItem(i,columnPosition+1,col1);
-                                            }
-                                            QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(columnPosition+1);
-                                            if (columnHeaderItem != NULL)
-                                            {
-                                                columnHeaderItem->setText(pChangeSkillDial->text());
-                                            }
-                                            else
-                                            {
-                                                columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
-                                                setHorizontalHeaderItem(columnPosition+1, columnHeaderItem);
-                                            }
-                                        }
-                                        resizeColumnToContents(columnPosition+1);
+                                        addSkill(columnPosition);
                                     }
                                     else if (action == actionRemoveColumn)
                                     {
                                         if (qtwitem != NULL)
                                         {
-                                            removeColumn(columnPosition);
-                                            // updating the she skill/character Lists
-                                            if (pSkills != NULL)
-                                            {
-                                                pSkills->remove(columnPosition);
-                                            }
-                                            if (pCharacters != NULL)
-                                            {
-                                                for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
-                                                {
-                                                    if ((unsigned int)columnPosition < it->skillNumber())
-                                                    {
-                                                        it->removeSkill(columnPosition);
-                                                    }
-                                                } 
-                                            }
-                                        }
-                                    }
-                                    else if (action == actionAddRow)
-                                    {
-                                        if(pChangeCharacterDial->exec()==QDialog::Accepted)
-                                        {
-                                            // updating the CharacterList
-                                            if (pCharacters != NULL)
-                                            {
-                                                Character character(pChangeCharacterDial->name().toStdString(),pChangeCharacterDial->playerName().toStdString());
-                                                pCharacters->add(character,rowPosition+1);
-                                            }
-
-                                            // updating the display
-                                            insertRow(rowPosition+1);
-                                            int column_nb;
-                                            column_nb = columnCount();
-                                            for (int i = 0; i < column_nb; i++)
-                                            {
-                                                QTableWidgetItem *row1 = new QTableWidgetItem("0");
-                                                setItem(rowPosition+1,i,row1);
-                                            }
-                                            QTableWidgetItem *rowHeaderItem = verticalHeaderItem(rowPosition+1);
-                                            if (rowHeaderItem != NULL)
-                                            {
-                                                rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-                                            }
-                                            else
-                                            {
-                                                rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-                                                setVerticalHeaderItem(rowPosition+1, rowHeaderItem);
-                                            }
-                                            resizeRowToContents(rowPosition+1);
-                                        }
-                                    }
-                                    else if (action == actionRemoveRow)
-                                    {
-                                        if (qtwitem != NULL)
-                                        {
-                                            removeRow(rowPosition);
-                                            // updating the CharacterList
-                                            if (pCharacters != NULL)
-                                            {
-                                                pCharacters->remove(rowPosition);
-                                            }
+                                            removeSkill(columnPosition);
                                         }
                                     }
                                     else if (action == actionEditColumn)
                                     {
                                         if (qtwitem != NULL)
                                         {
-                                            if(pChangeSkillDial->exec()==QDialog::Accepted)
-                                            {
-                                                QTableWidgetItem *columnHeaderItem = horizontalHeaderItem ( columnPosition );
-                                                if (columnHeaderItem != NULL)
-                                                {
-                                                    columnHeaderItem->setText(pChangeSkillDial->text());
-                                                }
-                                                else
-                                                {
-                                                    columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
-                                                    setHorizontalHeaderItem(columnPosition, columnHeaderItem);
-                                                }
-                                                // updating the SkillList
-                                                if (pSkills != NULL)
-                                                {
-                                                    (*pSkills)[columnPosition] = pChangeSkillDial->text().toStdString();
-                                                }
-                                            }
-                                            resizeColumnToContents(columnPosition);
+                                            editSkill(columnPosition);
+                                        }
+                                    }
+                                    else if (action == actionAddRow)
+                                    {
+                                        addCharacter(rowPosition);
+                                    }
+                                    else if (action == actionRemoveRow)
+                                    {
+                                        if (qtwitem != NULL)
+                                        {
+                                            removeCharacter(rowPosition);
                                         }
                                     }
                                     else if (action == actionEditRow)
                                     {
                                         if (qtwitem != NULL)
                                         {
-                                            if(pChangeCharacterDial->exec()==QDialog::Accepted)
-                                            {
-                                                QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( rowPosition );
-                                                if (rowHeaderItem != NULL)
-                                                {
-                                                    rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-                                                }
-                                                else
-                                                {
-                                                    rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-                                                    setVerticalHeaderItem(rowPosition, rowHeaderItem);
-                                                }
-                                                // updating the CharacterList
-                                                if (pCharacters != NULL)
-                                                {
-                                                    Character &charact = (*pCharacters)[rowPosition];
-                                                    charact.setName(pChangeCharacterDial->name().toStdString());
-                                                    charact.setPlayerName(pChangeCharacterDial->playerName().toStdString());
-                                                }
-                                            }
-                                            resizeRowToContents(rowPosition);
+                                            editCharacter(rowPosition);
                                         }
                                     }
                                     break;
@@ -349,87 +223,15 @@ void QCustomTableWidget::onHHeaderClicked(int index, const QPoint &position)
     QAction *action = hMenu->exec(position);
     if (action == actionHAdd)
     {
-        if(pChangeSkillDial->exec()==QDialog::Accepted)
-        {
-            // modifying the skill/character Lists
-            if (pSkills != NULL)
-            {
-                pSkills->add(pChangeSkillDial->text().toStdString(),index+1);
-            }
-            if (pCharacters != NULL)
-            {
-                for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
-                {
-                    if ((unsigned int)index+1 < it->skillNumber())
-                    {
-                        // adding a skill
-                        it->addSkill("0",index+1);
-                    }
-                } 
-            }
-
-            // updating the display
-            insertColumn(index+1);
-            int row_nb;
-            row_nb = rowCount();
-            for (int i = 0; i < row_nb; i++)
-            {
-                QTableWidgetItem *col1 = new QTableWidgetItem("0");
-                setItem(i,index+1,col1);
-            }
-            QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index+1);
-            if (columnHeaderItem != NULL)
-            {
-                columnHeaderItem->setText(pChangeSkillDial->text());
-            }
-            else
-            {
-                columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
-                setHorizontalHeaderItem(index+1, columnHeaderItem);
-            }
-        }
-        resizeColumnToContents(index+1);
+        addSkill(index);
     }
     else if (action == actionHRemove)
     {
-        removeColumn(index);
-        // updating the she skill/character Lists
-        if (pSkills != NULL)
-        {
-            pSkills->remove(index);
-        }
-        if (pCharacters != NULL)
-        {
-            for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
-            {
-                if ((unsigned int)index < it->skillNumber())
-                {
-                    it->removeSkill(index);
-                }
-            } 
-        }
+        removeSkill(index);
     }
     else if (action == actionHEdit)
     {
-        if(pChangeSkillDial->exec()==QDialog::Accepted)
-        {
-            QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
-            if (columnHeaderItem != NULL)
-            {
-                columnHeaderItem->setText(pChangeSkillDial->text());
-            }
-            else
-            {
-                columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
-                setHorizontalHeaderItem(index, columnHeaderItem);
-            }
-            // updating the SkillList
-            if (pSkills != NULL)
-            {
-                (*pSkills)[index] = pChangeSkillDial->text().toStdString();
-            }
-        }
-        resizeColumnToContents(index);
+        editSkill(index);
     }
 }
 
@@ -438,68 +240,170 @@ void QCustomTableWidget::onVHeaderClicked(int index, const QPoint &position)
     QAction *action = vMenu->exec(position);
     if (action == actionVAdd)
     {
-        if(pChangeCharacterDial->exec()==QDialog::Accepted)
-        {
-            // updating the CharacterList
-            if (pCharacters != NULL)
-            {
-                Character character(pChangeCharacterDial->name().toStdString(),pChangeCharacterDial->playerName().toStdString());
-                pCharacters->add(character,index+1);
-            }
-
-            // updating the display
-            insertRow(index+1);
-            int column_nb;
-            column_nb = columnCount();
-            for (int i = 0; i < column_nb; i++)
-            {
-                QTableWidgetItem *row1 = new QTableWidgetItem("0");
-                setItem(index+1,i,row1);
-            }
-            QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index+1);
-            if (rowHeaderItem != NULL)
-            {
-                rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-            }
-            else
-            {
-                rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-                setVerticalHeaderItem(index+1, rowHeaderItem);
-            }
-            resizeRowToContents(index+1);
-        }
+        addCharacter(index);
     }
     else if (action == actionVRemove)
     {
-        removeRow(index);
-        // updating the CharacterList
-        if (pCharacters != NULL)
-        {
-            pCharacters->remove(index);
-        }
+        removeCharacter(index);
     }
     else if (action == actionVEdit)
     {
-        if(pChangeCharacterDial->exec()==QDialog::Accepted)
-        {
-            QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( index );
-            if (rowHeaderItem != NULL)
-            {
-                rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-            }
-            else
-            {
-                rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-                setVerticalHeaderItem(index, rowHeaderItem);
-            }
-            // updating the CharacterList
-            if (pCharacters != NULL)
-            {
-                Character &charact = (*pCharacters)[index];
-                charact.setName(pChangeCharacterDial->name().toStdString());
-                charact.setPlayerName(pChangeCharacterDial->playerName().toStdString());
-            }
-        }
-        resizeRowToContents(index);
+        editCharacter(index);
     }
+}
+
+void QCustomTableWidget::addCharacter(int index)
+{
+    if(pChangeCharacterDial->exec()==QDialog::Accepted)
+    {
+        // updating the CharacterList
+        if (pCharacters != NULL)
+        {
+            Character character(pChangeCharacterDial->name().toStdString(),pChangeCharacterDial->playerName().toStdString());
+            pCharacters->add(character,index+1);
+        }
+
+        // updating the display
+        insertRow(index+1);
+        int column_nb;
+        column_nb = columnCount();
+        for (int i = 0; i < column_nb; i++)
+        {
+            QTableWidgetItem *row1 = new QTableWidgetItem("0");
+            setItem(index+1,i,row1);
+        }
+        QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index+1);
+        if (rowHeaderItem != NULL)
+        {
+            rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
+        }
+        else
+        {
+            rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
+            setVerticalHeaderItem(index+1, rowHeaderItem);
+        }
+        resizeRowToContents(index+1);
+    }
+}
+
+void QCustomTableWidget::addSkill(int index)
+{
+    if(pChangeSkillDial->exec()==QDialog::Accepted)
+    {
+        // modifying the skill/character Lists
+        if (pSkills != NULL)
+        {
+            pSkills->add(pChangeSkillDial->text().toStdString(),index+1);
+        }
+        if (pCharacters != NULL)
+        {
+            for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
+            {
+                if ((unsigned int)index+1 < it->skillNumber())
+                {
+                    // adding a skill
+                    it->addSkill("0",index+1);
+                }
+            } 
+        }
+
+        // updating the display
+        insertColumn(index+1);
+        int row_nb;
+        row_nb = rowCount();
+        for (int i = 0; i < row_nb; i++)
+        {
+            QTableWidgetItem *col1 = new QTableWidgetItem("0");
+            setItem(i,index+1,col1);
+        }
+        QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index+1);
+        if (columnHeaderItem != NULL)
+        {
+            columnHeaderItem->setText(pChangeSkillDial->text());
+        }
+        else
+        {
+            columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
+            setHorizontalHeaderItem(index+1, columnHeaderItem);
+        }
+    }
+    resizeColumnToContents(index+1);
+}
+
+void QCustomTableWidget::removeCharacter(int index)
+{
+    removeRow(index);
+    // updating the CharacterList
+    if (pCharacters != NULL)
+    {
+        pCharacters->remove(index);
+    }
+}
+
+void QCustomTableWidget::removeSkill(int index)
+{
+    removeColumn(index);
+    // updating the she skill/character Lists
+    if (pSkills != NULL)
+    {
+        pSkills->remove(index);
+    }
+    if (pCharacters != NULL)
+    {
+        for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
+        {
+            if ((unsigned int)index < it->skillNumber())
+            {
+                it->removeSkill(index);
+            }
+        } 
+    }
+}
+
+void QCustomTableWidget::editCharacter(int index)
+{
+    if(pChangeCharacterDial->exec()==QDialog::Accepted)
+    {
+        QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( index );
+        if (rowHeaderItem != NULL)
+        {
+            rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
+        }
+        else
+        {
+            rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
+            setVerticalHeaderItem(index, rowHeaderItem);
+        }
+        // updating the CharacterList
+        if (pCharacters != NULL)
+        {
+            Character &charact = (*pCharacters)[index];
+            charact.setName(pChangeCharacterDial->name().toStdString());
+            charact.setPlayerName(pChangeCharacterDial->playerName().toStdString());
+        }
+    }
+    resizeRowToContents(index);
+}
+
+void QCustomTableWidget::editSkill(int index)
+{
+    if(pChangeSkillDial->exec()==QDialog::Accepted)
+    {
+        QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
+        if (columnHeaderItem != NULL)
+        {
+            columnHeaderItem->setText(pChangeSkillDial->text());
+        }
+        else
+        {
+            columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
+            setHorizontalHeaderItem(index, columnHeaderItem);
+        }
+        // updating the SkillList
+        if (pSkills != NULL)
+        {
+            (*pSkills)[index] = pChangeSkillDial->text().toStdString();
+        }
+    }
+    resizeColumnToContents(index);
 }

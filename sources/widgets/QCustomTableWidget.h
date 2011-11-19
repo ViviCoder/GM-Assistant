@@ -48,6 +48,12 @@ class QCustomTableWidget: public QTableWidget
         void onCellChanged(int row, int column);
         void onHHeaderClicked(int index, const QPoint &position);
         void onVHeaderClicked(int index, const QPoint &position);
+        void addSkill(int index);
+        void addCharacter(int index);
+        void removeSkill(int index);
+        void removeCharacter(int index);
+        void editSkill(int index);
+        void editCharacter(int index);
 
     public:
         // constructor
