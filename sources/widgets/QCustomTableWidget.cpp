@@ -180,6 +180,7 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                                 rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
                                                 setVerticalHeaderItem(rowPosition+1, rowHeaderItem);
                                             }
+                                            resizeRowToContents(rowPosition+1);
                                         }
                                     }
                                     if (action == actionRemoveRow)
@@ -249,7 +250,6 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
         default:    break;
     }
 }
-
 
 void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
 {
