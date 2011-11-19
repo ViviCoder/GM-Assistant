@@ -498,49 +498,40 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>custom</name>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="30"/>
         <source>&amp;None</source>
-        <translation>&amp;Aucun</translation>
+        <translation type="obsolete">&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="31"/>
         <source>In &amp;progress</source>
-        <translation>En &amp;cours</translation>
+        <translation type="obsolete">En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="33"/>
         <source>&amp;Failed</source>
-        <translation>&amp;Échoué</translation>
+        <translation type="obsolete">&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="35"/>
         <source>&amp;Succeeded</source>
-        <translation>&amp;Réussi</translation>
+        <translation type="obsolete">&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="38"/>
         <source>&amp;Add</source>
-        <translation>A&amp;jouter</translation>
+        <translation type="obsolete">A&amp;jouter</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
         <translation type="obsolete">&amp;Éditer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="40"/>
         <source>&amp;Delete</source>
-        <translation>&amp;Supprimer</translation>
+        <translation type="obsolete">&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="181"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="196"/>
         <source>Error</source>
-        <translation>Erreur</translation>
+        <translation type="obsolete">Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="56"/>
         <source>Double click to play the file</source>
-        <translation>Double-cliquez pour jouer le fichier</translation>
+        <translation type="obsolete">Double-cliquez pour jouer le fichier</translation>
     </message>
     <message>
         <source>&amp;Add a column</source>
@@ -658,6 +649,44 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="57"/>
         <source>&amp;Edit the skill</source>
         <translation>&amp;Éditer la compétence</translation>
+    </message>
+</context>
+<context>
+    <name>customTree</name>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="30"/>
+        <source>&amp;None</source>
+        <translation>&amp;Aucun</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="31"/>
+        <source>In &amp;progress</source>
+        <translation>En &amp;cours</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="33"/>
+        <source>&amp;Failed</source>
+        <translation>&amp;Échoué</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="35"/>
+        <source>&amp;Succeeded</source>
+        <translation>&amp;Réussi</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="38"/>
+        <source>&amp;Add</source>
+        <translation>A&amp;jouter</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="40"/>
+        <source>&amp;Delete</source>
+        <translation>&amp;Supprimer</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="56"/>
+        <source>Double click to play the file</source>
+        <translation>Double-cliquez pour jouer le fichier</translation>
     </message>
 </context>
 <context>
@@ -940,6 +969,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="137"/>
         <source>&amp;Resume</source>
         <translation>&amp;Reprise</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.cpp" line="181"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="196"/>
+        <source>Error</source>
+        <translation>Erreur</translation>
     </message>
 </context>
 </TS>

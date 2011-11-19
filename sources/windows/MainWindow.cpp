@@ -178,7 +178,7 @@ void MainWindow::playMusic(const std::string &fileName)
     }
     catch (std::runtime_error &e)
     {
-        QMessageBox::critical(this,QApplication::translate("custom","Error",0),e.what());
+        QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),e.what());
     }
     timer->start();
     buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
@@ -193,7 +193,7 @@ void MainWindow::playSound(const std::string &fileName)
     }
     catch (std::runtime_error &e)
     {
-        QMessageBox::critical(this,QApplication::translate("custom","Error",0),e.what());
+        QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),e.what());
     }
 }
 
