@@ -27,17 +27,17 @@
 QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false)
 {
     // popup menu
-    actionNone = menuIcons->addAction(QApplication::translate("custom","&None",0));
-    actionProgress = menuIcons->addAction(QIcon(":/data/images/uncheck.png"),QApplication::translate("custom","In &progress",0));
+    actionNone = menuIcons->addAction(QApplication::translate("customTree","&None",0));
+    actionProgress = menuIcons->addAction(QIcon(":/data/images/uncheck.png"),QApplication::translate("customTree","In &progress",0));
     actionProgress->setIconVisibleInMenu(true);
-    actionFailure = menuIcons->addAction(QIcon(":/data/images/failure.png"),QApplication::translate("custom","&Failed",0));
+    actionFailure = menuIcons->addAction(QIcon(":/data/images/failure.png"),QApplication::translate("customTree","&Failed",0));
     actionFailure->setIconVisibleInMenu(true);
-    actionSuccess = menuIcons->addAction(QIcon(":/data/images/check.png"),QApplication::translate("custom","&Succeeded",0));
+    actionSuccess = menuIcons->addAction(QIcon(":/data/images/check.png"),QApplication::translate("customTree","&Succeeded",0));
     actionSuccess->setIconVisibleInMenu(true);
     menuIcons->addSeparator();
-    actionAdd = menuIcons->addAction(QIcon(":/data/images/add.png"),QApplication::translate("custom","&Add",0));
+    actionAdd = menuIcons->addAction(QIcon(":/data/images/add.png"),QApplication::translate("customTree","&Add",0));
     actionAdd->setIconVisibleInMenu(true);
-    actionDelete = menuIcons->addAction(QIcon(":/data/images/remove.png"),QApplication::translate("custom","&Delete",0));
+    actionDelete = menuIcons->addAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTree","&Delete",0));
     actionDelete->setIconVisibleInMenu(true);
     // connecting signals
     connect(this, SIGNAL(itemChanged(QTreeWidgetItem *,int)), SLOT(on_itemChanged(QTreeWidgetItem*, int)));

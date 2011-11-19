@@ -33,8 +33,8 @@ class QCustomTableWidget: public QTableWidget
     Q_OBJECT
 
     private:
-        QMenu *menuColumn;
-        QAction *actionNone, *actionAddColumn, *actionRemoveColumn, *actionAddRow, *actionRemoveRow, *actionEditRow, *actionEditColumn;
+        QMenu *menu, *hMenu, *vMenu;
+        QAction *actionAddColumn, *actionRemoveColumn, *actionAddRow, *actionRemoveRow, *actionEditRow, *actionEditColumn, *actionHAdd, *actionHRemove, *actionHEdit, *actionVAdd, *actionVRemove, *actionVEdit;
         ChangeSkillDialog *pChangeSkillDial;
         ChangeCharacterDialog *pChangeCharacterDial;
         SkillList *pSkills;
@@ -46,6 +46,14 @@ class QCustomTableWidget: public QTableWidget
 
     protected slots:
         void onCellChanged(int row, int column);
+        void onHHeaderClicked(int index, const QPoint &position);
+        void onVHeaderClicked(int index, const QPoint &position);
+        void addSkill(int index);
+        void addCharacter(int index);
+        void removeSkill(int index);
+        void removeCharacter(int index);
+        void editSkill(int index);
+        void editCharacter(int index);
 
     public:
         // constructor

@@ -16,19 +16,18 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_VERSION
-#define HEADER_VERSION
+#include "QCustomHeaderView.h"
 
-#define MAJOR_VERSION   1
-#define MINOR_VERSION   0
-#define RELEASE_VERSION 10
+QCustomHeaderView::QCustomHeaderView(Qt::Orientation orientation, QWidget *parent): QHeaderView(orientation,parent)
+{
+}
 
-// some stringification macros
-#define xstr(s) str(s)
-#define str(s)  #s
-
-// version string
-#define SHORT_VERSION   xstr(MAJOR_VERSION)"."xstr(MINOR_VERSION)
-#define FULL_VERSION    SHORT_VERSION"."xstr(RELEASE_VERSION)
-
-#endif
+void QCustomHeaderView::mousePressEvent(QMouseEvent *e)
+{
+    int index = logicalIndexAt(e->pos());
+    if (index != -1)
+    {
+        emit rightClicked(index, e->globalPos());
+    }
+    QHeaderView::mousePressEvent(e);
+}
