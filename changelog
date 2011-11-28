@@ -1,20 +1,34 @@
-Changes in version 1.0.1:
+Changes in version 1.0.10:
+
+- resize problem for rows in the table of characters
+- reorganization of the menus of the table
+
+Changes in version 1.0.9:
+
+- bug when adding a new item at the root of a tree fixed
+
+Changes in version 1.0.8:
+
+- crash when moving an item into another (due to creation with bad parent)
+fixed (I hope definitively!)
+
+Changes in version 1.0.7:
+
+- crash when moving an item created with child (or into one) fixed
+- default widgets get automatically the focus in dialog windows
+- default work directory set to the executable's directory
+
+Changes in version 1.0.6:
 
 * Trees:
-	- drag & drop bug fixed
-	- selected items can now be dragged
-	- right-clicking an item selects it
-* Others:
-	- non-player characters can be added in the table
+	- crash when moving an item into a previously moved one fixed
+	- resize of the items when moved
+* Others
+	- path (translations ans examples) issue on Linux when using a launcher solved
+	
+Changes in version 1.0.5:
 
-Changes in version 1.0.2:
-
-- crash when clicking an empty tree fixed
-
-Changes in version 1.0.3:
-
-- crash when moving an item in a following branch fixed
-- minor modifications of the french translation
+- crash when typing 'Del' while editing an item fixed
 
 Changes in version 1.0.4:
 
@@ -26,34 +40,20 @@ Changes in version 1.0.4:
 * Others:
 	- the configure script displays the list of linked libraries
 
-Changes in version 1.0.5:
+Changes in version 1.0.3:
 
-- crash when typing 'Del' while editing an item fixed
+- crash when moving an item in a following branch fixed
+- minor modifications of the french translation
 
-Changes in version 1.0.6:
+Changes in version 1.0.2:
+
+- crash when clicking an empty tree fixed
+
+Changes in version 1.0.1:
 
 * Trees:
-	- crash when moving an item into a previously moved one fixed
-	- resize of the items when moved
-* Others
-	- path (translations ans examples) issue on Linux when using a launcher solved
-	
-Changes in version 1.0.7:
-
-- crash when moving an item created with child (or into one) fixed
-- default widgets get automatically the focus in dialog windows
-- default work directory set to the executable's directory
-
-Changes in version 1.0.8:
-
-- crash when moving an item into another (due to creation with bad parent)
-fixed (I hope definitively!)
-
-Changes in version 1.0.9:
-
-- bug when adding a new item at the root of a tree fixed
-
-Changes in version 1.0.10:
-
-- resize problem for rows in the table of characters
-- reorganization of the menus of the table
+	- drag & drop bug fixed
+	- selected items can now be dragged
+	- right-clicking an item selects it
+* Others:
+	- non-player characters can be added in the table
