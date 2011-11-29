@@ -173,14 +173,27 @@ make -s clean
 rm -f *.o
 rm -f ui_*.h
 
+# preparing the installation
+prefix=$(echo $prefix | sed "s#\~#$HOME#")
+sed $sed_i "s#^install:.*#install:\n\t\@\.\/install.sh $prefix#" Makefile
+sed $sed_i "s#^uninstall:.*#uninstall:\n\t\@\.\/uninstall.sh#" Makefile
+
 echo
 echo "********************"
 echo "* Ready to compile *"
 echo "********************"
 echo
-echo To compile, type make
 
-# preparing the installation
-prefix=$(echo $prefix | sed "s#\~#$HOME#")
-sed $sed_i "s#^install:.*#install:\n\t\@\.\/install.sh $prefix#" Makefile
-sed $sed_i "s#^uninstall:.*#uninstall:\n\t\@\.\/uninstall.sh#" Makefile
+# adding the rule for generating the documentation
+dox=$(which doxygen)
+if [ $? ]
+then
+    echo "To generate the documentation, type make doc"
+    echo -e "doc:\n\tdoxygen dox.conf" >> Makefile
+else
+    echo "In order to be able to generate the documentation, you need doxygen"
+    echo
+fi
+
+echo "To compile, type make"
+
