@@ -186,7 +186,7 @@ echo
 
 # adding the rule for generating the documentation
 dox=$(which doxygen)
-if [ $? ]
+if [ $? = 0 ]
 then
     echo "To generate the documentation, type make doc"
     echo -e "doc:\n\tdoxygen dox.conf" >> Makefile

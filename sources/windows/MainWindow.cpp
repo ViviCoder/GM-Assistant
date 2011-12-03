@@ -22,6 +22,7 @@
 #include "QCustomTreeWidgetItem.h"
 #include "ItemFactory.h"
 #include <cmath>
+#include <QSettings>
 
 MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0)
 {
@@ -38,6 +39,28 @@ MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(
     {
         sDir += '/';
     }
+
+    // saving display settings
+    QSettings settings;
+    settings.beginGroup("mainWindow");
+    resize(settings.value("size").toSize());
+    move(settings.value("position").toPoint());
+    if (settings.value("maximized").toBool())
+    {
+        setWindowState(windowState() | Qt::WindowMaximized);
+    }
+    settings.endGroup();
+}
+
+MainWindow::~MainWindow()
+{
+    // saving display settings
+    QSettings settings;
+    settings.beginGroup("mainWindow");
+    settings.setValue("size",size());
+    settings.setValue("position",pos());
+    settings.setValue("maximized",isMaximized());
+    settings.endGroup();
 }
 
 void MainWindow::on_actionAbout_triggered()

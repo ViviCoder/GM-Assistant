@@ -44,6 +44,10 @@ int main(int argc, char* argv[])
     QTextCodec::setCodecForCStrings(QTextCodec::codecForName("UTF-8"));
     QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
 
+    // initializing settings' stuff
+    QCoreApplication::setOrganizationName("GM-Assistant");
+    QCoreApplication::setApplicationName("GM-Assistant");
+
     // getting install directory (on Linux only)
     QString install_dir;
 #ifdef __linux__

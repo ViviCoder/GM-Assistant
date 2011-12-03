@@ -28,6 +28,10 @@
 // frequency of refreshing music information
 #define TICK 10
 
+/*!
+ * \class MainWindow
+ * \brief Main window of the application
+ */
 class MainWindow: public QMainWindow, private Ui::mainWindow
 {
     private:
@@ -39,8 +43,19 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         QTimer *timer;
         int iTimerCount;
     public:
-        // constructor
+        /*!
+         * \brief Constructor of the main window
+         * \param dir   working directory
+         *
+         * Initializes various things
+         */
         MainWindow(const QString &dir);
+        /*!
+         * \brief Destructor of the main window
+         *
+         * Saves window's display parameters before closing the application
+         */
+        ~MainWindow();
 
     Q_OBJECT
     private slots:
