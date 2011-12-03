@@ -43,9 +43,9 @@ MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(
     // saving display settings
     QSettings settings;
     settings.beginGroup("mainWindow");
-    resize(settings.value("size").toSize());
-    move(settings.value("position").toPoint());
-    if (settings.value("maximized").toBool())
+    resize(settings.value("size",size()).toSize());
+    move(settings.value("position",pos()).toPoint());
+    if (settings.value("maximized",false).toBool())
     {
         setWindowState(windowState() | Qt::WindowMaximized);
     }
@@ -58,8 +58,9 @@ MainWindow::~MainWindow()
     QSettings settings;
     settings.beginGroup("mainWindow");
     settings.setValue("size",size());
-    settings.setValue("position",pos());
+    settings.setValue("position",mapFromGlobal(pos()));
     settings.setValue("maximized",isMaximized());
+
     settings.endGroup();
 }
 
