@@ -251,7 +251,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
@@ -260,9 +260,13 @@
     </property>
     <addaction name="action_New"/>
     <addaction name="separator"/>
+    <addaction name="action_Reload"/>
     <addaction name="action_Load"/>
+    <addaction name="separator"/>
     <addaction name="action_Save"/>
     <addaction name="actionS_ave_as"/>
+    <addaction name="separator"/>
+    <addaction name="actionR_ecent"/>
     <addaction name="separator"/>
     <addaction name="action_Quit"/>
    </widget>
@@ -334,6 +338,25 @@
   <action name="actionAbout">
    <property name="text">
     <string>&amp;About</string>
+   </property>
+  </action>
+  <action name="action_Reload">
+   <property name="text">
+    <string>&amp;Reload</string>
+   </property>
+   <property name="statusTip">
+    <string>Reload the current game</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionR_ecent">
+   <property name="text">
+    <string>R&amp;ecent</string>
+   </property>
+   <property name="statusTip">
+    <string>Load a recently opened game</string>
    </property>
   </action>
  </widget>

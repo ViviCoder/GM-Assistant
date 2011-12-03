@@ -37,7 +37,11 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
     private:
         Engine eGame;
         SoundEngine soundEngine;
-        QString sFileName,sDir;
+        /*!
+         * \brief File name of the current game
+         */
+        QString sFileName;
+        QString sDir;
         bool bModified;
         AboutDialog *pAboutDial;
         QTimer *timer;
@@ -62,15 +66,30 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         // actions
         void on_actionAbout_triggered();
         void on_action_Quit_triggered();
+        /*!
+         * \brief Slot for the "Load" menu item
+         *
+         * Loads a file selected in a dialog window
+         */
         void on_action_Load_triggered();
         void on_action_Save_triggered();
         void on_actionS_ave_as_triggered();
         void on_action_New_triggered();
+        /*!
+         * \brief Slot for the "Reload" menu item
+         *
+         * Reloads the current game
+         */
+        void on_action_Reload_triggered();
         // button
         void on_buttonMusic_clicked();
         // timer
         void onTimer_timeout();
-        // general slots
+        /*!
+         * \brief Display update
+         *
+         * Updates the display when the current game is changed or reloaded
+         */
         void updateDisplay();
         // slider
         void on_sliderMusic_sliderReleased();

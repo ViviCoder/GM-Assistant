@@ -237,3 +237,24 @@ void MainWindow::on_sliderMusic_sliderReleased()
     // updating the timer count
     iTimerCount = floor(TICK*position);
 }
+
+void MainWindow::on_action_Reload_triggered()
+{
+    if (sFileName.isNull())
+    {
+        on_action_Load_triggered();
+    }
+    else
+    {
+        try
+        {
+            eGame.fromFile(sFileName.toStdString());
+            updateDisplay();
+            bModified = false;
+        }
+        catch (xmlpp::exception &xml)
+        {
+            QMessageBox::critical(this,QApplication::translate("action","Error",0),xml.what());
+        }
+    }
+}
