@@ -29,7 +29,6 @@
 #define TICK 10
 
 /*!
- * \class MainWindow
  * \brief Main window of the application
  */
 class MainWindow: public QMainWindow, private Ui::mainWindow
@@ -46,6 +45,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         AboutDialog *pAboutDial;
         QTimer *timer;
         int iTimerCount;
+        /*!
+         * \brief Previous size of the window before being maximized
+         */
+        QSize sUnmaximizedSize;
     public:
         /*!
          * \brief Constructor of the main window
@@ -96,6 +99,15 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         // play music and sound
         void playMusic(const std::string &fileName);
         void playSound(const std::string &fileName);
+    protected:
+        // overriden methods
+        /*!
+         * \brief ResizeEvent handler
+         * \param e Event raised
+         *
+         * Stores the old size for unmaximizing just after startup
+         */
+        void resizeEvent(QResizeEvent *e);
 };
 
 #endif

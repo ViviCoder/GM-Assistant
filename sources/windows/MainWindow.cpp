@@ -44,7 +44,6 @@ MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(
     QSettings settings;
     settings.beginGroup("mainWindow");
     resize(settings.value("size",size()).toSize());
-    move(settings.value("position",pos()).toPoint());
     if (settings.value("maximized",false).toBool())
     {
         setWindowState(windowState() | Qt::WindowMaximized);
@@ -57,8 +56,14 @@ MainWindow::~MainWindow()
     // saving display settings
     QSettings settings;
     settings.beginGroup("mainWindow");
-    settings.setValue("size",size());
-    settings.setValue("position",mapFromGlobal(pos()));
+    if (!isMaximized())
+    {
+        settings.setValue("size",size());
+    }
+    else
+    {
+        settings.setValue("size",sUnmaximizedSize);
+    }
     settings.setValue("maximized",isMaximized());
 
     settings.endGroup();
@@ -257,4 +262,10 @@ void MainWindow::on_action_Reload_triggered()
             QMessageBox::critical(this,QApplication::translate("action","Error",0),xml.what());
         }
     }
+}
+
+void MainWindow::resizeEvent(QResizeEvent *e)
+{
+    sUnmaximizedSize = e->oldSize();
+    QMainWindow::resizeEvent(e);
 }
