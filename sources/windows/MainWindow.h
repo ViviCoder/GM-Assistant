@@ -24,6 +24,7 @@
 #include "SoundEngine.h"
 #include "AboutDialog.h"
 #include <QTimer>
+#include <QSignalMapper>
 
 // frequency of refreshing music information
 #define TICK 10
@@ -55,10 +56,14 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \brief List of recently opened games
          */
         QStringList slRecent;
+        /*!
+         * \brief Signal mapper for actions related to recently opened games
+         */
+        QSignalMapper *smMapper;
     public:
         /*!
          * \brief Constructor of the main window
-         * \param dir   working directory
+         * \param dir Working directory
          *
          * Initializes various things
          */
@@ -127,6 +132,13 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Updates the list of the recently opened games
          */
         void updateRecent(const QString &fileName);
+        /*!
+         * \brief Slot for the "Recent" submenu items
+         * \param index Index of the action triggered
+         *
+         * Load the corresponding game
+         */
+        void loadRecent(int index);
     protected:
         // overriden methods
         /*!

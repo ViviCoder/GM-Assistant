@@ -24,7 +24,7 @@
 #include <cmath>
 #include <QSettings>
 
-MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0)
+MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smMapper(new QSignalMapper(this))
 {
     setupUi(this);
     updateDisplay();
@@ -34,6 +34,7 @@ MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimer_timeout()));
     connect(treeMusic,SIGNAL(fileToPlay(std::string)),this,SLOT(playMusic(std::string)));
     connect(treeFX,SIGNAL(fileToPlay(std::string)),this,SLOT(playSound(std::string)));
+    connect(smMapper,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
 
     if (sDir!="")
     {
@@ -324,8 +325,19 @@ void MainWindow::updateRecent(const QString &fileName)
     QAction *action;
     for (QStringList::iterator it=slRecent.begin(); it != slRecent.end(); it++)
     {
-        action = menu->addAction(QString("&%1: ").arg(i)+QFileInfo(*it).fileName());
+        action = menu->addAction(QString("&%1 ").arg(i)+QFileInfo(*it).fileName());
+        // mapping
+        smMapper->setMapping(action,i);
+        connect(action,SIGNAL(triggered()),smMapper,SLOT(map()));
         action->setStatusTip(*it);
         i++; 
     }
+}
+
+void MainWindow::loadRecent(int index)
+{
+    QString file(slRecent[index-1]);
+    updateRecent(file);
+    sFileName = file;
+    on_action_Reload_triggered();
 }
