@@ -334,24 +334,24 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="86"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="99"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="86"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="122"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="99"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="135"/>
         <source>XML files (*.xml)</source>
         <translation>Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="98"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="262"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="111"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="276"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="122"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="135"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
@@ -858,7 +858,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="225"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="190"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="204"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
@@ -990,19 +990,19 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="160"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="213"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="174"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="227"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="166"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="180"/>
         <source>&amp;Resume</source>
         <translation>&amp;Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="210"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="225"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="224"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="239"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>

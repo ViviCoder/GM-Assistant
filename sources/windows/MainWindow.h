@@ -27,6 +27,8 @@
 
 // frequency of refreshing music information
 #define TICK 10
+// number of recently opened games stored
+#define RECENT_NUMBER   5
 
 /*!
  * \brief Main window of the application
@@ -49,6 +51,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \brief Previous size of the window before being maximized
          */
         QSize sUnmaximizedSize;
+        /*!
+         * \brief List of recently opened games
+         */
+        QStringList slRecent;
     public:
         /*!
          * \brief Constructor of the main window
@@ -60,7 +66,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         /*!
          * \brief Destructor of the main window
          *
-         * Saves window's display parameters before closing the application
+         * Saves window's display parameters and other options before closing the application
          */
         ~MainWindow();
 
@@ -68,15 +74,30 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
     private slots:
         // actions
         void on_actionAbout_triggered();
+        /*!
+         * \brief Slot for the "Quit" menu item
+         *
+         * Closes the application
+         */
         void on_action_Quit_triggered();
         /*!
          * \brief Slot for the "Load" menu item
          *
-         * Loads a file selected in a dialog window
+         * Loads a game selected in a dialog window
          */
         void on_action_Load_triggered();
         void on_action_Save_triggered();
+        /*!
+         * \brief Slot for the "Save as" menu item
+         *
+         * Saves the game in a new file
+         */
         void on_actionS_ave_as_triggered();
+        /*!
+         * \brief Slot for the "New" menu item
+         *
+         * Opens an empty game
+         */
         void on_action_New_triggered();
         /*!
          * \brief Slot for the "Reload" menu item
@@ -99,6 +120,13 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         // play music and sound
         void playMusic(const std::string &fileName);
         void playSound(const std::string &fileName);
+        /*!
+         * \brief Recent files update
+         * \param fileName File to be opened
+         *
+         * Updates the list of the recently opened games
+         */
+        void updateRecent(const QString &fileName);
     protected:
         // overriden methods
         /*!

@@ -49,6 +49,19 @@ MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(
         setWindowState(windowState() | Qt::WindowMaximized);
     }
     settings.endGroup();
+    
+    settings.beginGroup("files");
+    slRecent = settings.value("recent").toStringList();
+    // display the recently opened games in the menu
+    actionR_ecent->setMenu(new QMenu);
+    updateRecent("");
+    sFileName = settings.value("last").toString();
+    if (!sFileName.isNull())
+    {
+        // we load the game opened when GMA was closed
+        on_action_Reload_triggered();
+    }
+    settings.endGroup();
 }
 
 MainWindow::~MainWindow()
@@ -65,7 +78,12 @@ MainWindow::~MainWindow()
         settings.setValue("size",sUnmaximizedSize);
     }
     settings.setValue("maximized",isMaximized());
+    settings.endGroup();
 
+    // updates the list of recently opened games
+    settings.beginGroup("files");
+    settings.setValue("last",sFileName);
+    settings.setValue("recent",slRecent);
     settings.endGroup();
 }
 
@@ -86,12 +104,13 @@ void MainWindow::on_action_Load_triggered()
         QString file = QFileDialog::getOpenFileName(this,QApplication::translate("action","Select the file to open",0),sDir+"examples",QApplication::translate("action","XML files (*.xml)",0)); 
         if (!file.isNull())
         {
-            sFileName = file;
             try
             {
-                eGame.fromFile(sFileName.toStdString());
+                eGame.fromFile(file.toStdString());
                 updateDisplay();
                 bModified = false;
+                updateRecent(file);
+                sFileName = file;
             }
             catch (xmlpp::exception &xml)
             {
@@ -122,10 +141,11 @@ void MainWindow::on_actionS_ave_as_triggered()
     QString file = QFileDialog::getSaveFileName(this,QApplication::translate("action","Select the file to save",0),sDir+"examples",QApplication::translate("action","XML files (*.xml)",0));
     if (!file.isNull())
     {
-        sFileName = file;
         eGame.toFile(sFileName.toStdString());
 //        action_Save->setEnabled(false);
         bModified = false;
+        updateRecent(file);
+        sFileName = file;
     }
 }
 
@@ -136,6 +156,8 @@ void MainWindow::on_action_New_triggered()
         eGame.clear();
         updateDisplay();
         bModified = false;
+        updateRecent("");
+        sFileName = "";
 //    }
 }
 
@@ -268,4 +290,42 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 {
     sUnmaximizedSize = e->oldSize();
     QMainWindow::resizeEvent(e);
+}
+
+void MainWindow::updateRecent(const QString &fileName)
+{
+    // delete the new file if already present
+    int index = slRecent.indexOf(fileName);
+    if (index != -1)
+    {
+        slRecent.removeAt(index);
+    }
+    if (!sFileName.isNull())
+    {
+        // reorder the previous file if already present, add if not
+        index = slRecent.indexOf(sFileName);
+        if (index != -1)
+        {
+            slRecent.move(index,0);
+        }
+        else
+        {
+            slRecent.insert(0,sFileName);
+            if (slRecent.size() > RECENT_NUMBER)
+            {
+                slRecent.removeLast();
+            }
+        }
+    }
+    // update the display
+    QMenu *menu = actionR_ecent->menu();
+    menu->clear();
+    int i=1;
+    QAction *action;
+    for (QStringList::iterator it=slRecent.begin(); it != slRecent.end(); it++)
+    {
+        action = menu->addAction(QString("&%1: ").arg(i)+QFileInfo(*it).fileName());
+        action->setStatusTip(*it);
+        i++; 
+    }
 }
