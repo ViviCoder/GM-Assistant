@@ -57,10 +57,11 @@ MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(
     actionR_ecent->setMenu(new QMenu);
     updateRecent("");
     sFileName = settings.value("last").toString();
-    if (!sFileName.isNull())
+    if (!sFileName.isEmpty())
     {
         // we load the game opened when GMA was closed
         on_action_Reload_triggered();
+        setWindowTitle(QString("GM-Assistant - ")+QFileInfo(sFileName).fileName());
     }
     settings.endGroup();
 }
@@ -103,7 +104,7 @@ void MainWindow::on_action_Load_triggered()
 /*    if (!bModified || (QMessageBox::question(this,QApplication::translate("action","Confirmation",0),QApplication::translate("action","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
     {*/
         QString file = QFileDialog::getOpenFileName(this,QApplication::translate("action","Select the file to open",0),sDir+"examples",QApplication::translate("action","XML files (*.xml)",0)); 
-        if (!file.isNull())
+        if (!file.isEmpty())
         {
             try
             {
@@ -123,7 +124,7 @@ void MainWindow::on_action_Load_triggered()
 
 void MainWindow::on_action_Save_triggered()
 {
-    if (sFileName.isNull())
+    if (sFileName.isEmpty())
     {
         on_actionS_ave_as_triggered();
     }
@@ -140,7 +141,7 @@ void MainWindow::on_actionS_ave_as_triggered()
 {
     eGame.notes() = textNotes->toPlainText().toStdString();
     QString file = QFileDialog::getSaveFileName(this,QApplication::translate("action","Select the file to save",0),sDir+"examples",QApplication::translate("action","XML files (*.xml)",0));
-    if (!file.isNull())
+    if (!file.isEmpty())
     {
         eGame.toFile(sFileName.toStdString());
 //        action_Save->setEnabled(false);
@@ -268,7 +269,7 @@ void MainWindow::on_sliderMusic_sliderReleased()
 
 void MainWindow::on_action_Reload_triggered()
 {
-    if (sFileName.isNull())
+    if (sFileName.isEmpty())
     {
         on_action_Load_triggered();
     }
@@ -301,7 +302,7 @@ void MainWindow::updateRecent(const QString &fileName)
     {
         slRecent.removeAt(index);
     }
-    if (!sFileName.isNull())
+    if (!sFileName.isEmpty())
     {
         // reorder the previous file if already present, add if not
         index = slRecent.indexOf(sFileName);
@@ -331,6 +332,15 @@ void MainWindow::updateRecent(const QString &fileName)
         connect(action,SIGNAL(triggered()),smMapper,SLOT(map()));
         action->setStatusTip(*it);
         i++; 
+    }
+    // update the name of the file in the window title
+    if (!fileName.isEmpty())
+    {
+        setWindowTitle(QString("GM-Assistant - ")+QFileInfo(fileName).fileName());
+    }
+    else
+    {
+        setWindowTitle(QString("GM-Assistant - ")+QApplication::translate("mainWindow","New game",0));
     }
 }
 
