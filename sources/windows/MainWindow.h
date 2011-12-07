@@ -37,6 +37,9 @@
 class MainWindow: public QMainWindow, private Ui::mainWindow
 {
     private:
+        /*!
+         * \brief Game engine
+         */
         Engine eGame;
         SoundEngine soundEngine;
         /*!
@@ -91,6 +94,11 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Loads a game selected in a dialog window
          */
         void on_action_Load_triggered();
+        /*!
+         * \brief Slot for the "Save" menu item
+         *
+         * Saves the game
+         */
         void on_action_Save_triggered();
         /*!
          * \brief Slot for the "Save as" menu item

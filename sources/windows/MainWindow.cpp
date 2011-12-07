@@ -130,10 +130,17 @@ void MainWindow::on_action_Save_triggered()
     }
     else
     {
-        eGame.notes() = textNotes->toPlainText().toStdString();
-        eGame.toFile(sFileName.toStdString());
-//        action_Save->setEnabled(false);
-        bModified = false;
+        try
+        {
+            eGame.notes() = textNotes->toPlainText().toStdString();
+            eGame.toFile(sFileName.toStdString());
+    //        action_Save->setEnabled(false);
+            bModified = false;
+        }
+        catch (xmlpp::exception &xml)
+        {
+            QMessageBox::critical(this,QApplication::translate("action","Error",0),xml.what());
+        }
     }
 }
 
@@ -143,11 +150,18 @@ void MainWindow::on_actionS_ave_as_triggered()
     QString file = QFileDialog::getSaveFileName(this,QApplication::translate("action","Select the file to save",0),sDir+"examples",QApplication::translate("action","XML files (*.xml)",0));
     if (!file.isEmpty())
     {
-        eGame.toFile(sFileName.toStdString());
-//        action_Save->setEnabled(false);
-        bModified = false;
-        updateRecent(file);
-        sFileName = file;
+        try
+        {
+            eGame.toFile(file.toStdString());
+    //        action_Save->setEnabled(false);
+            bModified = false;
+            updateRecent(file);
+            sFileName = file;
+        }
+        catch (xmlpp::exception &xml)
+        {
+            QMessageBox::critical(this,QApplication::translate("action","Error",0),xml.what());
+        }
     }
 }
 
