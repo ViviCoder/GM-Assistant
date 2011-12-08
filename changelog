@@ -1,3 +1,7 @@
+Changes in version 1.0.11
+
+- bug in finding translation files in non-linux systems fixed
+
 Changes in version 1.0.10:
 
 - resize problem for rows in the table of characters

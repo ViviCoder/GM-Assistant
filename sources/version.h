@@ -21,7 +21,7 @@
 
 #define MAJOR_VERSION   1
 #define MINOR_VERSION   0
-#define RELEASE_VERSION 10
+#define RELEASE_VERSION 11
 
 // some stringification macros
 #define xstr(s) str(s)
