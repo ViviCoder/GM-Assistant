@@ -40,7 +40,7 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     QSettings settings;
 
     settings.beginGroup("directories");
-    sDir = settings.value("work",settings.value("install",QDir::current().path()).toString()).toString();
+    sDir = settings.value("work",settings.value("install",QDir::current().path()+"/examples").toString()).toString();
     settings.endGroup();
 
     settings.beginGroup("mainWindow");
@@ -108,7 +108,7 @@ void MainWindow::on_action_Load_triggered()
 {
 /*    if (!bModified || (QMessageBox::question(this,QApplication::translate("action","Confirmation",0),QApplication::translate("action","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
     {*/
-        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("action","Select the file to open",0),sDir+"/examples",QApplication::translate("action","XML files (*.xml)",0)); 
+        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("action","Select the file to open",0),sDir,QApplication::translate("action","XML files (*.xml)",0)); 
         if (!file.isEmpty())
         {
             try
@@ -153,7 +153,7 @@ void MainWindow::on_action_Save_triggered()
 void MainWindow::on_actionS_ave_as_triggered()
 {
     eGame.notes() = textNotes->toPlainText().toStdString();
-    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("action","Select the file to save",0),sDir+"/examples",QApplication::translate("action","XML files (*.xml)",0));
+    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("action","Select the file to save",0),sDir,QApplication::translate("action","XML files (*.xml)",0));
     if (!file.isEmpty())
     {
         try
