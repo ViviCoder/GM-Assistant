@@ -19,6 +19,8 @@
 #!/bin/sh
 
 install_log="install.log"
+config_dir="$HOME/.config/GM-Assistant"
+config_file=$config_dir/"GM-Assistant.conf"
 cp_flags="-f"
 
 echo "Installing GM-Assistant:"
@@ -44,8 +46,28 @@ current_dir=$(pwd)
 cd $1
 install_dir=$(pwd)
 cd $current_dir
-# storing it into a configuration file
-echo $install_dir > ~/.GM-Assistant
+
+# storing it into the configuration file
+if [ ! -d $config_dir ]
+then
+    mkdir -p $config_dir
+fi
+if [ ! -e $config_file ]
+then
+    echo "[directories]" > $config_file
+    echo "install="$install_dir >> $config_file
+else
+    a=$(grep "\[directories\]" $config_file)
+    if [ $? -ne 0 ]
+    then
+        echo "\n[directories]" >> $config_file
+    fi
+    sed -i "s#install=.*##" $config_file
+    sed -i "s#\[directories\]#\[directories\]\ninstall=$install_dir#" $config_file
+fi
+
+# deleting empty lines in the configuration file
+sed -i '/^$/d' $config_file
 
 # copying files
 echo "Copying data..."

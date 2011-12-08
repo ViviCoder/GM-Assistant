@@ -46,6 +46,9 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \brief File name of the current game
          */
         QString sFileName;
+        /*!
+         * \brief Directory where files are loaded and saved
+         */
         QString sDir;
         bool bModified;
         AboutDialog *pAboutDial;
@@ -66,11 +69,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
     public:
         /*!
          * \brief Constructor of the main window
-         * \param dir Working directory
          *
          * Initializes various things
          */
-        MainWindow(const QString &dir);
+        MainWindow();
         /*!
          * \brief Destructor of the main window
          *

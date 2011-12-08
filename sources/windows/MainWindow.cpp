@@ -24,7 +24,7 @@
 #include <cmath>
 #include <QSettings>
 
-MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smMapper(new QSignalMapper(this))
+MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smMapper(new QSignalMapper(this))
 {
     setupUi(this);
     updateDisplay();
@@ -36,13 +36,13 @@ MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(
     connect(treeFX,SIGNAL(fileToPlay(std::string)),this,SLOT(playSound(std::string)));
     connect(smMapper,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
 
-    if (sDir!="")
-    {
-        sDir += '/';
-    }
-
-    // saving display settings
+    // loading settings
     QSettings settings;
+
+    settings.beginGroup("directories");
+    sDir = settings.value("work",settings.value("install",QDir::current().path()).toString()).toString();
+    settings.endGroup();
+
     settings.beginGroup("mainWindow");
     resize(settings.value("size",size()).toSize());
     if (settings.value("maximized",false).toBool())
@@ -68,8 +68,13 @@ MainWindow::MainWindow(const QString &dir): QMainWindow(), sDir(dir), bModified(
 
 MainWindow::~MainWindow()
 {
-    // saving display settings
+    // saving settings
     QSettings settings;
+
+    settings.beginGroup("directories");
+    settings.setValue("work",sDir);
+    settings.endGroup();
+
     settings.beginGroup("mainWindow");
     if (!isMaximized())
     {
@@ -103,7 +108,7 @@ void MainWindow::on_action_Load_triggered()
 {
 /*    if (!bModified || (QMessageBox::question(this,QApplication::translate("action","Confirmation",0),QApplication::translate("action","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
     {*/
-        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("action","Select the file to open",0),sDir+"examples",QApplication::translate("action","XML files (*.xml)",0)); 
+        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("action","Select the file to open",0),sDir+"/examples",QApplication::translate("action","XML files (*.xml)",0)); 
         if (!file.isEmpty())
         {
             try
@@ -113,6 +118,7 @@ void MainWindow::on_action_Load_triggered()
                 bModified = false;
                 updateRecent(file);
                 sFileName = file;
+                sDir = QFileInfo(sFileName).dir().path();
             }
             catch (xmlpp::exception &xml)
             {
@@ -147,7 +153,7 @@ void MainWindow::on_action_Save_triggered()
 void MainWindow::on_actionS_ave_as_triggered()
 {
     eGame.notes() = textNotes->toPlainText().toStdString();
-    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("action","Select the file to save",0),sDir+"examples",QApplication::translate("action","XML files (*.xml)",0));
+    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("action","Select the file to save",0),sDir+"/examples",QApplication::translate("action","XML files (*.xml)",0));
     if (!file.isEmpty())
     {
         try
@@ -157,6 +163,7 @@ void MainWindow::on_actionS_ave_as_triggered()
             bModified = false;
             updateRecent(file);
             sFileName = file;
+            sDir = QFileInfo(sFileName).dir().path();
         }
         catch (xmlpp::exception &xml)
         {

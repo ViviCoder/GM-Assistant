@@ -21,11 +21,7 @@
 #include <QLocale>
 #include <QTextCodec>
 #include <QLibraryInfo>
-
-#ifdef __linux__
-    #include <fstream>
-    #include <iostream>
-#endif
+#include <QSettings>
 
 #include "MainWindow.h"
 
@@ -51,37 +47,27 @@ int main(int argc, char* argv[])
     // getting install directory (on Linux only)
     QString install_dir;
 #ifdef __linux__
-    char buf[MAX_LENGTH];
-    string home_dir = getenv("HOME");
-    try
+    QSettings settings;
+    settings.beginGroup("directories");
+    install_dir = settings.value("install").toString();
+    if (!install_dir.isEmpty())
     {
-        ifstream file((home_dir+"/.GM-Assistant").c_str()); 
-        if (!file)
-        {
-            throw 0;
-        }
-        file.getline(buf,MAX_LENGTH);
-        file.close();
-        install_dir = buf;
+        install_dir += "/";
     }
-    catch (...)
-    {
-        cerr << "Unable to read the configuration file" << endl;
-        install_dir = "";
-    }
+    settings.endGroup();
 #endif
 
     QString locale = QLocale::system().name().section('_',0,0);
     QTranslator translator,translatorSys;
     // Translation of the software
-    translator.load(install_dir + "/translations/gmassistant_" + locale);
+    translator.load(install_dir + "translations/gmassistant_" + locale);
     app.installTranslator(&translator);
     // Translation of predefined Qt strings
     translatorSys.load("qt_" + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
     app.installTranslator(&translatorSys);
 
     // Display of the main window
-    MainWindow main(install_dir);
+    MainWindow main;
     main.show();
 
     return app.exec();
