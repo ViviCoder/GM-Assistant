@@ -26,13 +26,44 @@
 #include "ItemDialog.h"
 #include "SoundEngine.h"
 
+/*!
+ * \brief Custom tree widget
+ *
+ * This widget is designed to manipulate an underlying Tree
+ */
 class QCustomTreeWidget: public QTreeWidget
 {
     Q_OBJECT
 
     private:
+        /*!
+         * \brief Pop-up menu
+         */
         QMenu *menuIcons;
-        QAction *actionNone, *actionProgress, *actionFailure, *actionSuccess, *actionAdd, *actionDelete;
+        /*!
+         * \brief Untag action
+         */
+        QAction *actionNone;
+        /*!
+         * \brief "In progress" tag action
+         */
+        QAction *actionProgress;
+        /*!
+         * \brief "Failed" tag action
+         */
+        QAction *actionFailure;
+        /*!
+         * \brief "Succeeded" tag action
+         */
+        QAction *actionSuccess;
+        /*!
+         * \brief Add action
+         */
+        QAction *actionAdd;
+        /*!
+         * \brief Delete action
+         */
+        QAction *actionDelete;
         Tree *pTree;
         ItemDialog *pItemDial;
         QTreeWidgetItem *pDragSource;
@@ -53,6 +84,12 @@ class QCustomTreeWidget: public QTreeWidget
         void deleteItem(QTreeWidgetItem* item);
         void on_itemSelectionChanged();
     public:
+        /*!
+         * \brief Constructor of the widget
+         * \param parent Parent widget
+         *
+         * Creates its pop-up menu and connects various slots
+         */
         QCustomTreeWidget(QWidget *parent=NULL);
         ~QCustomTreeWidget();
         // associating a tree to the widget

@@ -26,19 +26,33 @@
 
 QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false)
 {
-    // popup menu
-    actionNone = menuIcons->addAction(QApplication::translate("customTree","&None",0));
-    actionProgress = menuIcons->addAction(QIcon(":/data/images/uncheck.png"),QApplication::translate("customTree","In &progress",0));
+    // creating actions
+    actionNone = new QAction(QIcon(":/data/images/empty.png"),QApplication::translate("customTree","&None",0),this);
+    actionNone->setIconVisibleInMenu(true);
+    actionNone->setStatusTip(QApplication::translate("customTree","Untag the item",0));
+    actionProgress = new QAction(QIcon(":/data/images/uncheck.png"),QApplication::translate("customTree","In &progress",0),this);
     actionProgress->setIconVisibleInMenu(true);
-    actionFailure = menuIcons->addAction(QIcon(":/data/images/failure.png"),QApplication::translate("customTree","&Failed",0));
+    actionProgress->setStatusTip(QApplication::translate("customTree","Tag the item as being in progress",0));
+    actionFailure = new QAction(QIcon(":/data/images/failure.png"),QApplication::translate("customTree","&Failed",0),this);
     actionFailure->setIconVisibleInMenu(true);
-    actionSuccess = menuIcons->addAction(QIcon(":/data/images/check.png"),QApplication::translate("customTree","&Succeeded",0));
+    actionFailure->setStatusTip(QApplication::translate("customTree","Tag the item as failed",0));
+    actionSuccess = new QAction(QIcon(":/data/images/check.png"),QApplication::translate("customTree","&Succeeded",0),this);
     actionSuccess->setIconVisibleInMenu(true);
-    menuIcons->addSeparator();
-    actionAdd = menuIcons->addAction(QIcon(":/data/images/add.png"),QApplication::translate("customTree","&Add",0));
+    actionSuccess->setStatusTip(QApplication::translate("customTree","Tag the item as succeeded",0));
+    actionAdd = new QAction(QIcon(":/data/images/add.png"),QApplication::translate("customTree","&Add",0),this);
     actionAdd->setIconVisibleInMenu(true);
-    actionDelete = menuIcons->addAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTree","&Delete",0));
+    actionAdd->setStatusTip(QApplication::translate("customTree","Add a new item",0));
+    actionDelete = new QAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTree","&Delete",0),this);
     actionDelete->setIconVisibleInMenu(true);
+    actionDelete->setStatusTip(QApplication::translate("customTree","Delete the item",0));
+    // populating the pop-up menu
+    menuIcons->addAction(actionNone);
+    menuIcons->addAction(actionProgress);
+    menuIcons->addAction(actionFailure);
+    menuIcons->addAction(actionSuccess);
+    menuIcons->addSeparator();
+    menuIcons->addAction(actionAdd);
+    menuIcons->addAction(actionDelete);
     // connecting signals
     connect(this, SIGNAL(itemChanged(QTreeWidgetItem *,int)), SLOT(on_itemChanged(QTreeWidgetItem*, int)));
     connect(this, SIGNAL(itemCollapsed(QTreeWidgetItem *)), SLOT(on_itemCollapsed()));
