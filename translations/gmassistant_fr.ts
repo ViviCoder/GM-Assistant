@@ -293,42 +293,42 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/EditItem.ui" line="14"/>
         <source>Create item</source>
-        <translation type="unfinished">Créer un item</translation>
+        <translation>Créer un item</translation>
     </message>
     <message>
         <location filename="../sources/EditItem.ui" line="32"/>
         <source>&amp;None</source>
-        <translation type="unfinished">&amp;Aucun</translation>
+        <translation>&amp;Aucun</translation>
     </message>
     <message>
         <location filename="../sources/EditItem.ui" line="39"/>
         <source>In &amp;progress</source>
-        <translation type="unfinished">En &amp;cours</translation>
+        <translation>En &amp;cours</translation>
     </message>
     <message>
         <location filename="../sources/EditItem.ui" line="50"/>
         <source>&amp;Failed</source>
-        <translation type="unfinished">&amp;Échoué</translation>
+        <translation>&amp;Échoué</translation>
     </message>
     <message>
         <location filename="../sources/EditItem.ui" line="61"/>
         <source>&amp;Succeeded</source>
-        <translation type="unfinished">&amp;Réussi</translation>
+        <translation>&amp;Réussi</translation>
     </message>
     <message>
         <location filename="../sources/EditItem.ui" line="74"/>
         <source>&amp;Add</source>
-        <translation type="unfinished">A&amp;jouter</translation>
+        <translation>A&amp;jouter</translation>
     </message>
     <message>
         <location filename="../sources/EditItem.ui" line="85"/>
         <source>S&amp;on</source>
-        <translation type="unfinished">&amp;Fils</translation>
+        <translation>&amp;Fils</translation>
     </message>
     <message>
         <location filename="../sources/EditItem.ui" line="96"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished">A&amp;nnuler</translation>
+        <translation>A&amp;nnuler</translation>
     </message>
 </context>
 <context>
@@ -889,7 +889,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="111"/>
         <source>Notes</source>
-        <translation type="unfinished">Notes</translation>
+        <translation>Notes</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="123"/>
@@ -915,7 +915,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="281"/>
         <source>&amp;Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Interface</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="296"/>
@@ -1020,52 +1020,52 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="381"/>
         <source>&amp;Full</source>
-        <translation type="unfinished">&amp;Complet</translation>
+        <translation>&amp;Complet</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="384"/>
         <source>Tools shown : Scenario, Note, Characters, History, Music, Sound</source>
-        <translation type="unfinished">Outils affichés : Scénario, Notes, Personnages, Historique, Musique, Bruitage</translation>
+        <translation>Outils affichés : Scénario, Notes, Personnages, Historique, Musique, Bruitages</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="389"/>
         <source>&amp;Music</source>
-        <translation type="unfinished">&amp;Musique</translation>
+        <translation>&amp;Musique</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="392"/>
         <source>Tools shown : Music, Sound</source>
-        <translation type="unfinished">Outils affichés : Musique, Bruitage</translation>
+        <translation>Outils affichés : Musique, Bruitages</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="397"/>
         <source>&amp;Simple</source>
-        <translation type="unfinished">&amp;Simple</translation>
+        <translation>&amp;Simple</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="400"/>
         <source>Tools shown : Scenario, Music and Sound</source>
-        <translation type="unfinished">Outils affichés : Scénario, Musique, Bruitage</translation>
+        <translation>Outils affichés : Scénario, Musique, Bruitages</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="405"/>
         <source>&amp;Conception</source>
-        <translation type="unfinished">&amp;Conception</translation>
+        <translation>C&amp;onception</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="408"/>
         <source>Tools shown : Scenario, Characters, Note </source>
-        <translation type="unfinished">Outils affichés : Scénario, Personnages, Notes</translation>
+        <translation>Outils affichés : Scénario, Personnages, Notes</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="413"/>
         <source>&amp;No Music</source>
-        <translation type="unfinished">&amp;Sans Son</translation>
+        <translation>S&amp;ans son</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="416"/>
         <source>Tools shown : Scenario, Note, History, Characters</source>
-        <translation type="unfinished">Outils affichés : Scénario, Notes, Historique, Personnages</translation>
+        <translation>Outils affichés : Scénario, Notes, Historique, Personnages</translation>
     </message>
     <message>
         <source>Reload the current file</source>
