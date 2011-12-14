@@ -23,6 +23,7 @@
 #include "ItemFactory.h"
 #include <cmath>
 #include <QSettings>
+#include <QStackedLayout>
 
 MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smMapper(new QSignalMapper(this))
 {
@@ -92,6 +93,86 @@ MainWindow::~MainWindow()
     settings.setValue("last",sFileName);
     settings.setValue("recent",slRecent);
     settings.endGroup();
+}
+
+void MainWindow::clearLayout()
+{
+    // Removing all the Widget from the Layout.
+    GridLayout->removeWidget(gbCharacter);
+    GridLayout->removeWidget(gbHistory);
+    GridLayout->removeWidget(gbNote);
+    GridLayout->removeWidget(gbScenario);
+    GridLayout->removeWidget(gbSound);
+    GridLayout->removeWidget(gbMusic);
+
+    // Hiding the Widgets to prevent random showing.
+    gbCharacter->hide();
+    gbHistory->hide();
+    gbMusic->hide();
+    gbNote->hide();
+    gbScenario->hide();
+    gbSound->hide();
+}
+
+void MainWindow::on_actionMusic_triggered()
+{
+    clearLayout();
+    GridLayout->addWidget(gbMusic,0,0);
+    GridLayout->addWidget(gbSound,0,1);
+    gbMusic->show();
+    gbSound->show();
+}
+
+void MainWindow::on_actionFull_triggered()
+{
+    clearLayout();
+    GridLayout->addWidget(gbScenario,0,0);
+    GridLayout->addWidget(gbNote,0,1);
+    GridLayout->addWidget(gbCharacter,0,2);
+    GridLayout->addWidget(gbHistory,1,0);
+    GridLayout->addWidget(gbMusic,1,1);
+    GridLayout->addWidget(gbSound,1,2);
+    gbScenario->show();
+    gbNote->show();
+    gbCharacter->show();
+    gbHistory->show();
+    gbMusic->show();
+    gbSound->show();
+}
+
+void MainWindow::on_actionMusic_Tree_triggered()
+{
+    clearLayout();
+    GridLayout->addWidget(gbScenario,0,0,0,1);
+    GridLayout->addWidget(gbMusic,0,1);
+    GridLayout->addWidget(gbSound,1,1);
+    gbScenario->show();
+    gbMusic->show();
+    gbSound->show();
+}
+
+void MainWindow::on_actionConception_triggered()
+{
+    clearLayout();
+    GridLayout->addWidget(gbScenario,0,0,0,1);
+    GridLayout->addWidget(gbCharacter,0,1);
+    GridLayout->addWidget(gbNote,1,1);
+    gbScenario->show();
+    gbCharacter->show();
+    gbNote->show();
+}
+
+void MainWindow::on_actionNoMusic_triggered()
+{
+    clearLayout();
+    GridLayout->addWidget(gbScenario,0,0);
+    GridLayout->addWidget(gbHistory,1,0);
+    GridLayout->addWidget(gbCharacter,0,1);
+    GridLayout->addWidget(gbNote,1,1);
+    gbScenario->show();
+    gbHistory->show();
+    gbCharacter->show();
+    gbNote->show();
 }
 
 void MainWindow::on_actionAbout_triggered()

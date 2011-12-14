@@ -83,6 +83,45 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
     Q_OBJECT
     private slots:
         // actions
+        /*!
+         * \brief Slot for cleaning the layout
+         */
+        void clearLayout();
+        /*!
+         * \brief Slot for "Music" menu item
+         * 
+         * Change the layout to Music
+         */
+        void on_actionMusic_triggered();
+
+        /*!
+         * \brief Slot for "Music + Tree" menu item
+         * 
+         * Change the layout to Music + Scenarion Tree
+         */
+        void on_actionMusic_Tree_triggered();
+
+        /*!
+         * \brief Slot for "Full" menu item
+         * 
+         * Change the layout to Full layout
+         */
+        void on_actionFull_triggered();
+
+        /*!
+         * \brief Slot for "Conception" menu item
+         * 
+         * Change the layout to Conception
+         */
+        void on_actionConception_triggered();
+
+        /*!
+         * \brief Slot for "NoMusic" menu item
+         * 
+         * Change the layout to No Music 
+         */
+        void on_actionNoMusic_triggered();
+
         void on_actionAbout_triggered();
         /*!
          * \brief Slot for the "Quit" menu item
