@@ -251,7 +251,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
@@ -372,7 +372,7 @@
   </action>
   <action name="actionFull">
    <property name="checkable">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="checked">
     <bool>false</bool>
@@ -383,6 +383,12 @@
    <property name="statusTip">
     <string>Tools shown : Scenario, Note, Characters, History, Music, Sound</string>
    </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+   <property name="softKeyRole">
+    <enum>QAction::NoSoftKey</enum>
+   </property>
   </action>
   <action name="actionMusic">
    <property name="text">
@@ -390,6 +396,9 @@
    </property>
    <property name="statusTip">
     <string>Tools shown : Music, Sound</string>
+   </property>
+   <property name="shortcut">
+    <string>F7</string>
    </property>
   </action>
   <action name="actionMusic_Tree">
@@ -399,6 +408,9 @@
    <property name="statusTip">
     <string>Tools shown : Scenario, Music and Sound</string>
    </property>
+   <property name="shortcut">
+    <string>F6</string>
+   </property>
   </action>
   <action name="actionConception">
    <property name="text">
@@ -407,6 +419,9 @@
    <property name="statusTip">
     <string>Tools shown : Scenario, Characters, Note </string>
    </property>
+   <property name="shortcut">
+    <string>F8</string>
+   </property>
   </action>
   <action name="actionNoMusic">
    <property name="text">
@@ -414,6 +429,9 @@
    </property>
    <property name="statusTip">
     <string>Tools shown : Scenario, Note, History, Characters</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
    </property>
   </action>
  </widget>
