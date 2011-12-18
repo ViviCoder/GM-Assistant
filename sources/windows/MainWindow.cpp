@@ -151,7 +151,7 @@ void MainWindow::on_actionMusic_Tree_triggered()
     gbSound->show();
 }
 
-void MainWindow::on_actionConception_triggered()
+void MainWindow::on_actionDesign_triggered()
 {
     clearLayout();
     GridLayout->addWidget(gbScenario,0,0,0,1);

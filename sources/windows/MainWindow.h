@@ -109,11 +109,11 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void on_actionFull_triggered();
 
         /*!
-         * \brief Slot for "Conception" menu item
+         * \brief Slot for "Design" menu item
          * 
-         * Change the layout to Conception
+         * Change the layout to Design
          */
-        void on_actionConception_triggered();
+        void on_actionDesign_triggered();
 
         /*!
          * \brief Slot for "NoMusic" menu item

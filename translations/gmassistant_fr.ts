@@ -1056,8 +1056,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="417"/>
-        <source>&amp;Conception</source>
+        <source>&amp;Design</source>
         <translation>C&amp;onception</translation>
+    </message>
+    <message>
+        <source>&amp;Conception</source>
+        <translation type="obsolete">C&amp;onception</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="420"/>
