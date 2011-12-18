@@ -23,19 +23,44 @@
 #include "CharacterList.h"
 #include "SkillList.h"
 
+/*!
+ * \brief Game engine
+ *
+ * Contains everything necessary for a game
+ */
 class Engine
 {
-    private:
-        Tree tScenario,tHistory,tMusic,tEffects;
-        std::string sNotes;
-        CharacterList lCharacters;
-        SkillList lSkills;
     public:
+        // types
+        /*!
+         * \brief Type of user interface used by the game
+         */
+        enum UserInterface {
+            //! Full interface
+            uiFull,
+            //! Simple interface with scenario, musics and sounds
+            uiSimple,
+            //! Interface with only musics and sounds
+            uiMusic,
+            //! Design-phase interface with scenario, characters and notes
+            uiDesign,
+            //! Interface without musics and sounds
+            uiNoMusic
+        };
         // constructors
         Engine();
         Engine(const std::string &fileName) throw(xmlpp::exception);
         // loading and saving methods
+        /*!
+         * \brief Loads a game from a file
+         * \param fileName File name of the game to load
+         * \throw xmlpp::exception Exception thrown by the XML library when the file is uncorrect
+         */
         void fromFile(const std::string &fileName) throw(xmlpp::exception);
+        /*!
+         * \brief Saves a game into a file
+         * \param fileName Name of the file to be saved
+         */
         void toFile(const std::string &fileName) const;
         // accessors
         Tree& scenario();
@@ -45,8 +70,39 @@ class Engine
         Tree& effects();
         SkillList& skills();
         CharacterList& characters();
+        /*!
+         * \brief Get the user interface
+         * \return Current user interface
+         */
+        UserInterface userInterface() const;
+        /*!
+         * \brief Set the user interface
+         * \param interface New value of the user interface
+         */
+        void setUserInterface(UserInterface interface);
         // emptying
         void clear();
+        // static methods
+        /*!
+         * \brief Convertion method from UserInterface to string
+         * \param interface User interface
+         * \return String equivalent to the interface
+         */
+        static std::string interfaceToString(UserInterface interface);
+        /*!
+         * \brief Convertion method form string to UserInterface
+         * \param interface String to convert
+         * \return User interface equivalent to the string 
+         * \throw std::invalid_argument Exception thrown when the string does not correspond to any user interface
+         */
+        static UserInterface stringToInterface(const std::string& interface) throw(std::invalid_argument);
+    private:
+        Tree tScenario,tHistory,tMusic,tEffects;
+        std::string sNotes;
+        CharacterList lCharacters;
+        SkillList lSkills;
+        //! User interface used by the game
+        UserInterface uiInterface;
 };
 
 #endif

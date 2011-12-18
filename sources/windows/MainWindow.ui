@@ -281,7 +281,7 @@
      <string>&amp;Interface</string>
     </property>
     <addaction name="actionFull"/>
-    <addaction name="actionMusic_Tree"/>
+    <addaction name="actionSimple"/>
     <addaction name="actionMusic"/>
     <addaction name="actionDesign"/>
     <addaction name="actionNoMusic"/>
@@ -401,7 +401,7 @@
     <string>F7</string>
    </property>
   </action>
-  <action name="actionMusic_Tree">
+  <action name="actionSimple">
    <property name="text">
     <string>&amp;Simple</string>
    </property>

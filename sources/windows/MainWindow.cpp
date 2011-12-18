@@ -121,6 +121,7 @@ void MainWindow::on_actionMusic_triggered()
     GridLayout->addWidget(gbSound,0,1);
     gbMusic->show();
     gbSound->show();
+    eGame.setUserInterface(Engine::uiMusic);
 }
 
 void MainWindow::on_actionFull_triggered()
@@ -138,9 +139,10 @@ void MainWindow::on_actionFull_triggered()
     gbHistory->show();
     gbMusic->show();
     gbSound->show();
+    eGame.setUserInterface(Engine::uiFull);
 }
 
-void MainWindow::on_actionMusic_Tree_triggered()
+void MainWindow::on_actionSimple_triggered()
 {
     clearLayout();
     GridLayout->addWidget(gbScenario,0,0,0,1);
@@ -149,6 +151,7 @@ void MainWindow::on_actionMusic_Tree_triggered()
     gbScenario->show();
     gbMusic->show();
     gbSound->show();
+    eGame.setUserInterface(Engine::uiSimple);
 }
 
 void MainWindow::on_actionDesign_triggered()
@@ -160,6 +163,7 @@ void MainWindow::on_actionDesign_triggered()
     gbScenario->show();
     gbCharacter->show();
     gbNote->show();
+    eGame.setUserInterface(Engine::uiDesign);
 }
 
 void MainWindow::on_actionNoMusic_triggered()
@@ -173,6 +177,7 @@ void MainWindow::on_actionNoMusic_triggered()
     gbHistory->show();
     gbCharacter->show();
     gbNote->show();
+    eGame.setUserInterface(Engine::uiNoMusic);
 }
 
 void MainWindow::on_actionAbout_triggered()
@@ -187,9 +192,9 @@ void MainWindow::on_action_Quit_triggered()
 
 void MainWindow::on_action_Load_triggered()
 {
-/*    if (!bModified || (QMessageBox::question(this,QApplication::translate("action","Confirmation",0),QApplication::translate("action","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
+/*    if (!bModified || (QMessageBox::question(this,QApplication::translate("mainWindow","Confirmation",0),QApplication::translate("mainWindow","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
     {*/
-        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("action","Select the file to open",0),sDir,QApplication::translate("action","XML files (*.xml)",0)); 
+        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),sDir,QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0)); 
         if (!file.isEmpty())
         {
             try
@@ -203,7 +208,7 @@ void MainWindow::on_action_Load_triggered()
             }
             catch (xmlpp::exception &xml)
             {
-                QMessageBox::critical(this,QApplication::translate("action","Error",0),xml.what());
+                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
             }
         }
 //    }
@@ -226,7 +231,7 @@ void MainWindow::on_action_Save_triggered()
         }
         catch (xmlpp::exception &xml)
         {
-            QMessageBox::critical(this,QApplication::translate("action","Error",0),xml.what());
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
         }
     }
 }
@@ -234,7 +239,7 @@ void MainWindow::on_action_Save_triggered()
 void MainWindow::on_actionS_ave_as_triggered()
 {
     eGame.notes() = textNotes->toPlainText().toStdString();
-    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("action","Select the file to save",0),sDir,QApplication::translate("action","XML files (*.xml)",0));
+    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("mainWindow","Select the file to save",0),sDir,QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0));
     if (!file.isEmpty())
     {
         try
@@ -248,14 +253,14 @@ void MainWindow::on_actionS_ave_as_triggered()
         }
         catch (xmlpp::exception &xml)
         {
-            QMessageBox::critical(this,QApplication::translate("action","Error",0),xml.what());
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
         }
     }
 }
 
 void MainWindow::on_action_New_triggered()
 {
-/*    if (!bModified || (QMessageBox::question(this,QApplication::translate("action","Confirmation",0),QApplication::translate("action","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
+/*    if (!bModified || (QMessageBox::question(this,QApplication::translate("mainWindow","Confirmation",0),QApplication::translate("mainWindow","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
     {*/
         eGame.clear();
         updateDisplay();
@@ -273,6 +278,19 @@ void MainWindow::updateDisplay()
     treeMusic->setTree(&eGame.music());
     treeFX->setTree(&eGame.effects());
     tableStats->setLists(&eGame.skills(),&eGame.characters());
+    switch (eGame.userInterface())
+    {
+        case Engine::uiFull:    on_actionFull_triggered();
+                                break;
+        case Engine::uiSimple:  on_actionSimple_triggered();
+                                break;
+        case Engine::uiMusic:   on_actionMusic_triggered();
+                                break;
+        case Engine::uiDesign:  on_actionDesign_triggered();
+                                break;
+        case Engine::uiNoMusic: on_actionNoMusic_triggered();
+                                break;
+    }
 }
 
 void MainWindow::on_buttonMusic_clicked()
@@ -385,7 +403,7 @@ void MainWindow::on_action_Reload_triggered()
         }
         catch (xmlpp::exception &xml)
         {
-            QMessageBox::critical(this,QApplication::translate("action","Error",0),xml.what());
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
         }
     }
 }

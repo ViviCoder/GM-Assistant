@@ -95,11 +95,11 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void on_actionMusic_triggered();
 
         /*!
-         * \brief Slot for "Music + Tree" menu item
+         * \brief Slot for "Simple" menu item
          * 
-         * Change the layout to Music + Scenarion Tree
+         * Change the layout to Simple (Music + Scenario Tree)
          */
-        void on_actionMusic_Tree_triggered();
+        void on_actionSimple_triggered();
 
         /*!
          * \brief Slot for "Full" menu item

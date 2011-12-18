@@ -54,6 +54,23 @@ void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception)
     {
         throw xmlpp::exception("Bad document content type: game expected");
     }
+    // getting the user interface
+    try
+    {
+        Attribute *attr = root->get_attribute("interface");
+        if (attr != NULL)
+        {
+            uiInterface = stringToInterface(attr->get_value());
+        }
+        else
+        {
+            uiInterface = uiFull;
+        }
+    }
+    catch (invalid_argument)
+    {
+        throw xmlpp::exception("Bad user interface");
+    }
     // now loading the different parts of the game
     Node::NodeList node = root->get_children("scenario");
     if (!node.empty())
@@ -107,6 +124,7 @@ void Engine::toFile(const string &fileName) const
     Document document;
     Element *root = document.create_root_node("game");
     root->set_attribute("version",SHORT_VERSION);
+    root->set_attribute("interface",interfaceToString(uiInterface));
     Element *tmp = root->add_child("scenario");
     tScenario.toXML(*tmp);
     tmp = root->add_child("notes");
@@ -172,4 +190,42 @@ CharacterList& Engine::characters()
 SkillList& Engine::skills()
 {
     return lSkills;
+}
+
+string Engine::interfaceToString(UserInterface interface)
+{
+    switch (interface)
+    {
+        case uiFull:    return "full";
+        case uiSimple:  return "simple";
+        case uiMusic:   return "music";
+        case uiDesign:  return "design";
+        default:        return "nomusic";
+    }
+}
+
+Engine::UserInterface Engine::stringToInterface(const std::string& interface) throw(invalid_argument)
+{
+    if (interface=="full")
+        return uiFull;
+    else if (interface=="simple")
+        return uiSimple;
+    else if (interface=="music")
+        return uiMusic;
+    else if (interface=="design")
+        return uiDesign;
+    else if (interface=="nomusic")
+        return uiNoMusic;
+    else
+        throw invalid_argument("Invalid user interface");
+}
+
+Engine::UserInterface Engine::userInterface() const
+{
+    return uiInterface;
+}
+
+void Engine::setUserInterface(Engine::UserInterface interface)
+{
+    uiInterface = interface;
 }
