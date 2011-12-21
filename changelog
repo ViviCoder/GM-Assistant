@@ -1,3 +1,9 @@
+Changes in version 1.0.12
+
+- bug when right-clicking in the table widget fixed
+- restoration of the default behaviour of the table widget header when
+right-clicking
+
 Changes in version 1.0.11
 
 - bug in finding translation files in non-linux systems fixed

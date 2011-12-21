@@ -24,10 +24,13 @@ QCustomHeaderView::QCustomHeaderView(Qt::Orientation orientation, QWidget *paren
 
 void QCustomHeaderView::mousePressEvent(QMouseEvent *e)
 {
-    int index = logicalIndexAt(e->pos());
-    if (index != -1)
+    if (e->button()==Qt::RightButton)
     {
-        emit rightClicked(index, e->globalPos());
+        int index = logicalIndexAt(e->pos());
+        if (index != -1)
+        {
+            emit rightClicked(index, e->globalPos());
+        }
     }
     QHeaderView::mousePressEvent(e);
 }
