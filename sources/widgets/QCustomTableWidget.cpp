@@ -104,6 +104,7 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     }
                                     else
                                     {
+                                        setCurrentItem(qtwitem);
                                         rowPosition = currentRow();
                                         columnPosition = currentColumn();
                                     }
