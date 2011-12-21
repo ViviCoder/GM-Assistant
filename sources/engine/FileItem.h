@@ -16,29 +16,40 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_SOUNDITEM
-#define HEADER_SOUNDITEM
+#ifndef HEADER_FILEITEM
+#define HEADER_FILEITEM
 
-#include "FileItem.h"
+#include "Item.h"
 
 /*!
- * \brief Item related to a sound file 
+ * \brief Item related to a file
  */
-class SoundItem: public FileItem
+class FileItem: public Item
 {
+    private:
+        /*!
+         * \brief Name of the file related to the item
+         */
+        std::string sFileName;
     public:
         /*!
          *  \brief Constructor
          *  \param content Content of the item
          *  \param state State of the item
-         *  \param fileName Name of the sound file of the item
+         *  \param fileName Name of the file of the item
          */
-        SoundItem(const std::string &content="", State state=sNone, const std::string &fileName="");
+        FileItem(const std::string &content="", State state=sNone, const std::string &fileName="");
+        // accessors
         /*!
          * \brief Getter for the type of the item
-         * \return Item::tSound
+         * \return tFile
          */
         Type type() const;  // overriden
+        std::string fileName() const;
+        void setFileName(const std::string &fileName);
+        // overriden XML-related methods
+        void fromXML(const xmlpp::Element &root) throw(xmlpp::exception);
+        void toXML(xmlpp::Element &root);
 };
 
 #endif

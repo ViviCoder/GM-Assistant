@@ -23,13 +23,26 @@
 #include <stdexcept>
 #include <libxml++/libxml++.h>
 
+/*!
+ * \brief Base item class
+ */
 class Item
 {
     public:
         // Different possible states for the item   
         enum State {sNone,sProgress,sSuccess,sFailure};
-        // Different possible type for the item   
-        enum Type {tBasic, tSound};
+        /*!
+         * \brief Type of item
+         */
+        enum Type
+        {
+            //! Basic item
+            tBasic,
+            //! Item related to a file
+            tFile,
+            //! Item related to a sound file
+            tSound
+        };
         // constructor
         Item(const std::string &content="", State state=sNone);
         // accessors
@@ -43,8 +56,18 @@ class Item
         virtual void toXML(xmlpp::Element &root);
         // static methods to get a link between strings and state or type
         static std::string stateToStr(State state);
+        /*!
+         * \brief Conversion method from Type to string
+         * \param type Type
+         * \return String equivalent to the type
+         */
         static std::string typeToStr(Type type);
         static State strToState(const std::string &name) throw(std::invalid_argument);
+        /*!
+         * \brief Conversion method from string to Type
+         * \param name Name of the type
+         * \return Type equivalent to the string
+         */
         static Type strToType(const std::string &name) throw(std::invalid_argument);
     private:
         State sState;

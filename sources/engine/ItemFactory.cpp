@@ -22,16 +22,20 @@ Item* ItemFactory::copyItem(Item *item)
 {
     switch (item->type())
     {
-        case Item::tBasic:    return new Item(*item);   break;
-        case Item::tSound:    return new SoundItem(*dynamic_cast<SoundItem*>(item));    break;
+        case Item::tBasic:  return new Item(*item); break;
+        case Item::tFile:   return new FileItem(*dynamic_cast<FileItem*>(item)); break;
+        case Item::tSound:  return new SoundItem(*dynamic_cast<SoundItem*>(item)); break;
     }
+    return NULL;
 }
 
 Item* ItemFactory::createItem(Item::Type type, const std::string &content, Item::State state)
 {
     switch (type)
     {
-        case Item::tBasic:    return new Item(content,state);   break;
-        case Item::tSound:    return new SoundItem(content,state);    break;
+        case Item::tBasic:  return new Item(content,state); break;
+        case Item::tFile:   return new FileItem(content,state); break;
+        case Item::tSound:  return new SoundItem(content,state); break;
     }
+    return NULL;
 }

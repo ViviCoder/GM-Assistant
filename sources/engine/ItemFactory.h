@@ -20,12 +20,34 @@
 #define HEADER_ITEMFACTORY
 
 #include "Item.h"
+#include "FileItem.h"
 #include "SoundItem.h"
 
+/*!
+ * \brief Item factory
+ *
+ * This class has only static methods designed to operate on items of different types
+ */
 class ItemFactory
 {
     public:
+        /*!
+         * \brief Copy of an item
+         * \param item Item to copy
+         * \return Copy of the item
+         *
+         * Copies an item with respect to its type
+         */
         static Item* copyItem(Item *item);
+        /*!
+         * \brief Creation of a new item
+         * \param type Type of the item to create
+         * \param content Content of the item to create
+         * \param state State of the item to create
+         * \return New item
+         *
+         * Creates a new Item with the given type and the given parameters
+         */
         static Item* createItem(Item::Type type, const std::string &content, Item::State state);
 };
 

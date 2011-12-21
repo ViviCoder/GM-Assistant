@@ -73,8 +73,10 @@ string Item::typeToStr(Type type)
     switch (type)
     {
         case tBasic:    return "basic"; break;
+        case tFile:     return "file"; break;
         case tSound:    return "sound"; break;
     }
+    return "";
 }
 
 Item::State Item::strToState(const string &name) throw(invalid_argument)
