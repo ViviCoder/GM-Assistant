@@ -375,7 +375,7 @@
     <bool>true</bool>
    </property>
    <property name="checked">
-    <bool>false</bool>
+    <bool>true</bool>
    </property>
    <property name="text">
     <string>&amp;Full</string>
@@ -391,6 +391,9 @@
    </property>
   </action>
   <action name="actionMusic">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>&amp;Music</string>
    </property>
@@ -402,6 +405,9 @@
    </property>
   </action>
   <action name="actionSimple">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>&amp;Simple</string>
    </property>
@@ -413,6 +419,9 @@
    </property>
   </action>
   <action name="actionDesign">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>&amp;Design</string>
    </property>
@@ -424,6 +433,9 @@
    </property>
   </action>
   <action name="actionNoMusic">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
    <property name="text">
     <string>&amp;No Music</string>
    </property>

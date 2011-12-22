@@ -112,6 +112,13 @@ void MainWindow::clearLayout()
     gbNote->hide();
     gbScenario->hide();
     gbSound->hide();
+
+    // Unchecking all actions
+    actionFull->setChecked(false);
+    actionMusic->setChecked(false);
+    actionSimple->setChecked(false);
+    actionNoMusic->setChecked(false);
+    actionDesign->setChecked(false);
 }
 
 void MainWindow::on_actionMusic_triggered()
@@ -122,6 +129,7 @@ void MainWindow::on_actionMusic_triggered()
     gbMusic->show();
     gbSound->show();
     eGame.setUserInterface(Engine::uiMusic);
+    actionMusic->setChecked(true);
 }
 
 void MainWindow::on_actionFull_triggered()
@@ -140,6 +148,7 @@ void MainWindow::on_actionFull_triggered()
     gbMusic->show();
     gbSound->show();
     eGame.setUserInterface(Engine::uiFull);
+    actionFull->setChecked(true);
 }
 
 void MainWindow::on_actionSimple_triggered()
@@ -152,6 +161,7 @@ void MainWindow::on_actionSimple_triggered()
     gbMusic->show();
     gbSound->show();
     eGame.setUserInterface(Engine::uiSimple);
+    actionSimple->setChecked(true);
 }
 
 void MainWindow::on_actionDesign_triggered()
@@ -164,6 +174,7 @@ void MainWindow::on_actionDesign_triggered()
     gbCharacter->show();
     gbNote->show();
     eGame.setUserInterface(Engine::uiDesign);
+    actionDesign->setChecked(true);
 }
 
 void MainWindow::on_actionNoMusic_triggered()
@@ -178,6 +189,7 @@ void MainWindow::on_actionNoMusic_triggered()
     gbCharacter->show();
     gbNote->show();
     eGame.setUserInterface(Engine::uiNoMusic);
+    actionNoMusic->setChecked(true);
 }
 
 void MainWindow::on_actionAbout_triggered()

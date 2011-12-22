@@ -882,7 +882,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="225"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="334"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="346"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
@@ -1017,37 +1017,37 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="395"/>
+        <location filename="../sources/windows/MainWindow.ui" line="398"/>
         <source>&amp;Music</source>
         <translation>&amp;Musique</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="398"/>
+        <location filename="../sources/windows/MainWindow.ui" line="401"/>
         <source>Tools shown : Music, Sound</source>
         <translation>Outils affichés : Musique, Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="401"/>
+        <location filename="../sources/windows/MainWindow.ui" line="404"/>
         <source>F7</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="406"/>
+        <location filename="../sources/windows/MainWindow.ui" line="412"/>
         <source>&amp;Simple</source>
         <translation>&amp;Simple</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="409"/>
+        <location filename="../sources/windows/MainWindow.ui" line="415"/>
         <source>Tools shown : Scenario, Music and Sound</source>
         <translation>Outils affichés : Scénario, Musique, Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="412"/>
+        <location filename="../sources/windows/MainWindow.ui" line="418"/>
         <source>F6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="417"/>
+        <location filename="../sources/windows/MainWindow.ui" line="426"/>
         <source>&amp;Design</source>
         <translation>C&amp;onception</translation>
     </message>
@@ -1056,27 +1056,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">C&amp;onception</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="420"/>
+        <location filename="../sources/windows/MainWindow.ui" line="429"/>
         <source>Tools shown : Scenario, Characters, Note </source>
         <translation>Outils affichés : Scénario, Personnages, Notes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="423"/>
+        <location filename="../sources/windows/MainWindow.ui" line="432"/>
         <source>F8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="428"/>
+        <location filename="../sources/windows/MainWindow.ui" line="440"/>
         <source>&amp;No Music</source>
         <translation>S&amp;ans son</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="431"/>
+        <location filename="../sources/windows/MainWindow.ui" line="443"/>
         <source>Tools shown : Scenario, Note, History, Characters</source>
         <translation>Outils affichés : Scénario, Notes, Historique, Personnages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="434"/>
+        <location filename="../sources/windows/MainWindow.ui" line="446"/>
         <source>F9</source>
         <translation></translation>
     </message>
@@ -1098,44 +1098,44 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="304"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="357"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="316"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="369"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="310"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="322"/>
         <source>&amp;Resume</source>
         <translation>&amp;Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="211"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="234"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="256"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="354"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="369"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="406"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="223"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="246"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="268"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="366"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="381"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="418"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="197"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="209"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="197"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="242"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="209"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="254"/>
         <source>GM-Assistant files (*.gma);;XML files (*.xml)</source>
         <translation>Fichiers GM-Assistant (*.gma);;Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="242"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="254"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="463"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="475"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>
