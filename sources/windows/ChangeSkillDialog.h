@@ -21,12 +21,13 @@
 
 #include "ui_ChangeSkillDialog.h"
 
+/*!
+ * \brief Dialog window for skills
+ */
 class ChangeSkillDialog: public QDialog, private Ui::changeSkillDialog
 {
     Q_OBJECT
 
-    protected:
-        void showEvent(QShowEvent *e);
     public:
         // constructor
         ChangeSkillDialog(QWidget *parent=NULL);
@@ -34,6 +35,13 @@ class ChangeSkillDialog: public QDialog, private Ui::changeSkillDialog
         QString text() const;
     public slots:
         void on_pushEdit_clicked();
+        /*!
+         * \brief Overriden "exec" slot
+         * \return Result code
+         *
+         * Resets the interface and shows the window
+         */
+        int exec();
 };
 
 #endif

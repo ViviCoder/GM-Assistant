@@ -42,9 +42,9 @@ void ChangeSkillDialog::on_pushEdit_clicked()
     }
 }
 
-void ChangeSkillDialog::showEvent(QShowEvent *e)
+int ChangeSkillDialog::exec()
 {
     editName->setText("");
     editName->setFocus();
-    QDialog::showEvent(e);
+    return QDialog::exec();
 }

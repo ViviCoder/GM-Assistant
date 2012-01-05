@@ -22,6 +22,9 @@
 #include "ui_ItemDialog.h"
 #include "Item.h"
 
+/*!
+ * \brief Dialog window for item creation
+ */
 class ItemDialog: public QDialog, private Ui::itemDialog
 {
     public:
@@ -35,9 +38,6 @@ class ItemDialog: public QDialog, private Ui::itemDialog
         Item::Type type() const;
         QString fileName() const;
         Result selectionResult() const;
-        void updateDisplay();
-    protected:
-        void showEvent(QShowEvent *e);
     private:
         Result rRes;
 
@@ -45,9 +45,26 @@ class ItemDialog: public QDialog, private Ui::itemDialog
     public slots:
         void on_pushChild_clicked();
         void on_pushBrother_clicked();
+        /*!
+         * \brief Slot for the "Basic" radio button
+         *
+         * Sets the type of the item to tBasic
+         */
         void on_radioBasic_clicked();
+        /*!
+         * \brief Slot for the "Sound" radio item
+         *
+         * Sets the type of the item to tSound
+         */
         void on_radioSound_clicked();
         void on_toolBrowse_clicked();
+        /*!
+         * \brief Overriden "exec" slot
+         * \return Result code
+         *
+         * Resets the interface and shows the window
+         */
+        int exec();
 };
 
 #endif

@@ -94,19 +94,6 @@ void ItemDialog::on_pushBrother_clicked()
     }
 }
 
-void ItemDialog::showEvent(QShowEvent *e)
-{
-    // reset the window
-    radioNone->setChecked(true);
-    radioBasic->setChecked(true);
-    updateDisplay();
-    editItem->setText("");
-    editItem->setFocus();
-    editFile->setText("");
-
-    QDialog::showEvent(e);
-}
-
 ItemDialog::Result ItemDialog::selectionResult() const
 {
     return rRes;
@@ -114,20 +101,30 @@ ItemDialog::Result ItemDialog::selectionResult() const
 
 void ItemDialog::on_radioBasic_clicked()
 {
-    updateDisplay();
+    toolBrowse->setEnabled(false);
 }
 
 void ItemDialog::on_radioSound_clicked()
 {
-    updateDisplay();
-}
-
-void ItemDialog::updateDisplay()
-{
-    toolBrowse->setEnabled(radioSound->isChecked());
+    toolBrowse->setEnabled(true);
 }
 
 void ItemDialog::on_toolBrowse_clicked()
 {
     editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the sound file to associate to the item",0),"",QApplication::translate("itemDialog","Audio files (*.mp3 *.wav *.ogg)",0)));    
+}
+
+int ItemDialog::exec()
+{
+    // resets the window
+    radioNone->setChecked(true);
+    radioBasic->setChecked(true);
+    toolBrowse->setEnabled(false);
+
+    editItem->setText("");
+    editItem->setFocus();
+    editFile->setText("");
+
+    // shows it
+    return QDialog::exec();
 }

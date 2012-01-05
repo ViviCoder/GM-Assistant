@@ -47,10 +47,10 @@ void ChangeCharacterDialog::on_pushEdit_clicked()
     }
 }
 
-void ChangeCharacterDialog::showEvent(QShowEvent *e)
+int ChangeCharacterDialog::exec()
 {
     editName->setText("");
     editName->setFocus();
     editPlayer->setText("");
-    QDialog::showEvent(e);
+    return QDialog::exec();
 }

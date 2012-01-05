@@ -1,3 +1,7 @@
+Changes in version 1.0.13
+
+- Dailog windows are no longer reset on minimizing/restoring
+
 Changes in version 1.0.12
 
 - bug when right-clicking in the table widget fixed
