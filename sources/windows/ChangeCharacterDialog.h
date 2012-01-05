@@ -21,12 +21,13 @@
 
 #include "ui_ChangeCharacterDialog.h"
 
+/*!
+ * \brief Dialog window for characters
+ */
 class ChangeCharacterDialog: public QDialog, private Ui::changeCharacterDialog
 {
     Q_OBJECT
 
-    protected:
-        void showEvent(QShowEvent *e);
     public:
         // constructor
         ChangeCharacterDialog(QWidget *parent=NULL);
@@ -35,6 +36,13 @@ class ChangeCharacterDialog: public QDialog, private Ui::changeCharacterDialog
         QString playerName() const;
     public slots:
         void on_pushEdit_clicked();
+        /*!
+         * \brief Overriden "exec" slot
+         * \return Result code
+         *
+         * Resets the interface and shows the window
+         */
+        int exec();
 };
 
 #endif
