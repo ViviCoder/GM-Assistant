@@ -20,12 +20,26 @@
 #define HEADER_SOUNDITEM
 
 #include "FileItem.h"
+#include "QCustomThread.h"
 
 /*!
  * \brief Item related to a sound file 
  */
 class SoundItem: public FileItem
 {
+    private:
+        /*!
+         * \brief Duration of the sound
+         */
+        double dDuration;
+        /*!
+         * \brief Boolean indicating whether the computation of the duration is finished
+         */
+        bool bThreadFinished;
+        /*!
+         * \brief Thread used to compute the duration
+         */
+        QCustomThread *pThread;
     public:
         /*!
          *  \brief Constructor
@@ -35,10 +49,30 @@ class SoundItem: public FileItem
          */
         SoundItem(const std::string &content="", State state=sNone, const std::string &fileName="");
         /*!
+         * \brief Destructor
+         */
+        ~SoundItem();
+        /*!
+         * \brief Read the item from a XML file
+         * \param root Parent XML element
+         * \throw xmlpp::exception Exception thrown when the XML file is uncorrect
+         */
+        void fromXML(const xmlpp::Element &root) throw(xmlpp::exception);
+        /*!
          * \brief Getter for the type of the item
          * \return Item::tSound
          */
         Type type() const;  // overriden
+        /*!
+         * \brief Getter for the duration of the sound
+         * \return Duration of the sound
+         */
+        double duration() const;
+        /*!
+         * \brief Setter for the file name
+         * \param fileName New file name
+         */
+        void setFileName(const std::string &fileName);
 };
 
 #endif

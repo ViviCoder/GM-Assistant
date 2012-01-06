@@ -66,6 +66,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \brief Signal mapper for actions related to recently opened games
          */
         QSignalMapper *smMapper;
+        /*!
+         * \brief Duration of the current music
+         */
+        double dDuration;
     public:
         /*!
          * \brief Constructor of the main window
@@ -172,7 +176,14 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         // slider
         void on_sliderMusic_sliderReleased();
         // play music and sound
-        void playMusic(const std::string &fileName);
+        /*!
+         * \brief Play a music file
+         * \param fileName File to play
+         * \param duration Estimated duration of the music
+         *
+         * Plays the music file given only if its duration is greater then zero
+         */
+        void playMusic(const std::string &fileName, double duration);
         void playSound(const std::string &fileName);
         /*!
          * \brief Recent files update

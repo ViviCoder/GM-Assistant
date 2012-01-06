@@ -97,7 +97,14 @@ class QCustomTreeWidget: public QTreeWidget
         // associating an icon to a state
         static QIcon icon(Item::State state);
     signals:
-        void fileToPlay(const std::string &fileName);
+        /*!
+         * \brief Signal to play a file
+         * \param fileName File to play
+         * \param duration Duration of the file
+         *
+         * This signal is send when a sound file has to be played
+         */
+        void fileToPlay(const std::string &fileName, double duration);
 };
 
 #endif

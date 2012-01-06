@@ -77,7 +77,7 @@ void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
             case Item::tSound:  {
                                     SoundItem *soundItem = dynamic_cast<SoundItem*>(item);
                                     // we send a signal to play the music (and do some other things)
-                                    emit fileToPlay(soundItem->fileName());
+                                    emit fileToPlay(soundItem->fileName(),soundItem->duration());
                                 }
             default:            break;
         }

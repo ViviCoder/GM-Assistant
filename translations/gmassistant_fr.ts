@@ -882,7 +882,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="225"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="346"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="347"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
@@ -1099,7 +1099,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="316"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="369"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="367"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
@@ -1112,9 +1112,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="223"/>
         <location filename="../sources/windows/MainWindow.cpp" line="246"/>
         <location filename="../sources/windows/MainWindow.cpp" line="268"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="366"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="381"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="418"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="373"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="386"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="423"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1135,7 +1135,7 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="475"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="480"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>

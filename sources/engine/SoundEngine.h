@@ -23,8 +23,12 @@
 #include <stdexcept>
 #include <SDL_mixer.h>
 #include <SDL_sound.h>
-#include "QCustomThread.h"
 
+#define DEFAULT_BUFFER_SIZE 1024
+
+/*!
+ * \brief Sound engine
+ */
 class SoundEngine
 {
 	private:
@@ -36,12 +40,6 @@ class SoundEngine
         Mix_Music *mmMusic;
         // sample of the sound
         Sound_Sample *ssSample;
-        // computed duration of the music
-        double dDuration;
-        // thread used to compute duration
-        QCustomThread *pThread;
-        // flag to know wether the thread has finished or not
-        bool bThreadFinished;
 	public:
 		// constructor
 		SoundEngine() throw(std::runtime_error);
@@ -54,7 +52,6 @@ class SoundEngine
         int bufferSize() const;
         bool isPlayingMusic() const;
         bool isMusicPaused() const;
-        double duration();
         // methods
 		void playSound(const std::string &fileName) throw(std::runtime_error);
 		void playMusic(const std::string &fileName) throw(std::runtime_error);
@@ -64,7 +61,6 @@ class SoundEngine
         void goTo(double position);
         // callback method
         static void onStopSound(int channel);
-        static void computeDuration(const std::string &fileName, int bufferSize, double *result, bool *finished) throw(std::runtime_error);
 };
 
 #endif

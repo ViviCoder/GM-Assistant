@@ -21,7 +21,7 @@
 using namespace std;
 
 // constructor
-SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAULT_FORMAT), iChannels(MIX_DEFAULT_CHANNELS), iBufferSize(1024), mmMusic(NULL), ssSample(NULL), dDuration(0.0), pThread(NULL), bThreadFinished(true) 
+SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAULT_FORMAT), iChannels(MIX_DEFAULT_CHANNELS), iBufferSize(DEFAULT_BUFFER_SIZE), mmMusic(NULL), ssSample(NULL) 
 {
     Sound_Init();
 
@@ -48,8 +48,6 @@ SoundEngine::~SoundEngine()
         Mix_HaltChannel(0);
         Sound_FreeSample(ssSample);
     }
-    // terminating the thread
-    bThreadFinished = true;
 
     Sound_Quit();
     Mix_CloseAudio();
@@ -75,11 +73,6 @@ int SoundEngine::audioChannels() const
 int SoundEngine::bufferSize() const
 {
     return iBufferSize;
-}
-
-double SoundEngine::duration()
-{
-    return dDuration;
 }
 
 bool SoundEngine::isMusicPaused() const
@@ -127,8 +120,6 @@ void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
         Mix_FreeMusic(mmMusic);
         mmMusic = NULL;
     }
-    // terminating the thread if still running
-    bThreadFinished = true;
     mmMusic = Mix_LoadMUS(fileName.c_str());
     if (mmMusic == NULL)
     {
@@ -138,7 +129,6 @@ void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
     {
         Mix_PlayMusic(mmMusic,0);
     }
-    pThread = new QCustomThread(fileName,iBufferSize,&dDuration,&bThreadFinished); 
 }
 
 void SoundEngine::onStopSound(int channel)

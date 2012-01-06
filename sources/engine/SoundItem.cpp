@@ -17,14 +17,50 @@
 *************************************************************************/
 
 #include "SoundItem.h"
+#include "SoundEngine.h"
 
 using namespace std;
 
-SoundItem::SoundItem(const string &content, Item::State state, const string &fileName): FileItem(content,state,fileName)
+SoundItem::SoundItem(const string &content, Item::State state, const string &fileName): FileItem(content,state,fileName), dDuration(0),pThread(NULL)
 {
+    if (fileName != "")
+    {
+        pThread = new QCustomThread(fileName,DEFAULT_BUFFER_SIZE,&dDuration,&bThreadFinished);
+    }
+}
+
+SoundItem::~SoundItem()
+{
+    // terminate the thread if still running
+    bThreadFinished = true;
 }
 
 Item::Type SoundItem::type() const
 {
     return tSound;
+}
+
+double SoundItem::duration() const
+{
+    return dDuration;
+}
+
+void SoundItem::setFileName(const string &fileName)
+{
+    FileItem::setFileName(fileName);
+    // terminate the thread if still running
+    bThreadFinished = true;
+    if (fileName != "")
+    {
+        pThread = new QCustomThread(fileName,DEFAULT_BUFFER_SIZE,&dDuration,&bThreadFinished);
+    }
+}
+
+void SoundItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception)
+{
+    FileItem::fromXML(root);
+    if (fileName() != "")
+    {
+        pThread = new QCustomThread(fileName(),DEFAULT_BUFFER_SIZE,&dDuration,&bThreadFinished);
+    }
 }

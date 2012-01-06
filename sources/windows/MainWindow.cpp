@@ -25,7 +25,7 @@
 #include <QSettings>
 #include <QStackedLayout>
 
-MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smMapper(new QSignalMapper(this))
+MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smMapper(new QSignalMapper(this)), dDuration(0.0)
 {
     setupUi(this);
     updateDisplay();
@@ -33,8 +33,8 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     timer->setInterval(100);
     timer->setSingleShot(false);
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimer_timeout()));
-    connect(treeMusic,SIGNAL(fileToPlay(std::string)),this,SLOT(playMusic(std::string)));
-    connect(treeFX,SIGNAL(fileToPlay(std::string)),this,SLOT(playSound(std::string)));
+    connect(treeMusic,SIGNAL(fileToPlay(std::string,double)),this,SLOT(playMusic(std::string,double)));
+    connect(treeFX,SIGNAL(fileToPlay(std::string,double)),this,SLOT(playSound(std::string)));
     connect(smMapper,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
 
     // loading settings
@@ -331,7 +331,8 @@ void MainWindow::on_buttonMusic_clicked()
             Item *item = dynamic_cast<QCustomTreeWidgetItem*>(qItem)->branch()->item();
             if (item->type()==Item::tSound)
             {
-                playMusic(dynamic_cast<SoundItem*>(item)->fileName());
+                SoundItem *sItem = dynamic_cast<SoundItem*>(item);
+                playMusic(sItem->fileName(),sItem->duration());
             }
         }
         timer->start();
@@ -351,23 +352,27 @@ void MainWindow::onTimer_timeout()
     if (!sliderMusic->isSliderDown())
     {
         // we move the slider only if the user is not moving it manually
-        sliderMusic->setValue(floor(TICK*iTimerCount/soundEngine.duration()));
+        sliderMusic->setValue(floor(TICK*iTimerCount/dDuration));
     }
 }
 
-void MainWindow::playMusic(const std::string &fileName)
+void MainWindow::playMusic(const std::string &fileName, double duration)
 {
-    try
+    if (duration > 0.0)
     {
-        soundEngine.playMusic(fileName);
+        try
+        {
+            soundEngine.playMusic(fileName);
+            timer->start();
+            buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
+            iTimerCount = 0;
+            dDuration = duration;
+        }
+        catch (std::runtime_error &e)
+        {
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),e.what());
+        }
     }
-    catch (std::runtime_error &e)
-    {
-        QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),e.what());
-    }
-    timer->start();
-    buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
-    iTimerCount = 0;
 }
 
 void MainWindow::playSound(const std::string &fileName)
@@ -385,7 +390,7 @@ void MainWindow::playSound(const std::string &fileName)
 void MainWindow::on_sliderMusic_sliderReleased()
 {
     // new position in the music
-    double position = (double)sliderMusic->value()/sliderMusic->maximum()*soundEngine.duration();
+    double position = (double)sliderMusic->value()/sliderMusic->maximum()*dDuration;
     double shift = position-double(iTimerCount)/TICK;
     if (shift>0)
     {
