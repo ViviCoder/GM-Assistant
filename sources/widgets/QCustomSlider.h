@@ -38,6 +38,12 @@ class QCustomSlider: public QSlider
          * Sends a corresponding signal
          */
         void wheelEvent(QWheelEvent *e);
+        /*!
+         * \brief Event raised when released (or clicked)
+         *
+         * Sends a corresponding signal
+         */
+        void mouseReleaseEvent(QMouseEvent *e);
 
     public:
         /*!
@@ -52,6 +58,10 @@ class QCustomSlider: public QSlider
          * \param positive True if wheeled forward, false otherwise
          */
         void wheeled(bool positive);
+        /*!
+         * \brief Signal sent when released (or clicked)
+         */
+        void released();
 };
 
 #endif

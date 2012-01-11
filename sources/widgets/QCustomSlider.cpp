@@ -34,3 +34,13 @@ void QCustomSlider::wheelEvent(QWheelEvent *e)
         emit wheeled(false);
     }
 }
+
+void QCustomSlider::mouseReleaseEvent(QMouseEvent *e)
+{
+    if (e->button()==Qt::LeftButton)
+    {
+        setValue(e->x()*maximum()/width());
+        emit released();
+    }
+    QSlider::mouseReleaseEvent(e);
+}

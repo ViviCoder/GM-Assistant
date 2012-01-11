@@ -197,8 +197,7 @@ void MainWindow::playSound(const std::string &fileName)
     }
 }
 
-#include <iostream>
-void MainWindow::on_sliderMusic_sliderReleased()
+void MainWindow::on_sliderMusic_released()
 {
     // new position in the music
     double position = (double)sliderMusic->value()/sliderMusic->maximum()*soundEngine.duration();
@@ -226,5 +225,5 @@ void MainWindow::on_sliderMusic_wheeled(bool positive)
     {
         sliderMusic->setValue(sliderMusic->value()-sliderMusic->pageStep());
     }
-    on_sliderMusic_sliderReleased();
+    on_sliderMusic_released();
 }

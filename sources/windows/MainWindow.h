@@ -58,7 +58,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         // general slots
         void updateDisplay();
         // slider
-        void on_sliderMusic_sliderReleased();
+        /*!
+         * \brief Slot for when the slider is released (or clicked)
+         */
+        void on_sliderMusic_released();
         /*!
          * \brief Slot for when the slider is wheeled
          * \param positive True if wheeled forward, false otherwise
