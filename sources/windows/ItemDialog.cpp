@@ -44,12 +44,12 @@ QString ItemDialog::text() const
 
 Item::Type ItemDialog::type() const
 {
-    if (radioBasic->isChecked())
-        return Item::tBasic;
-    else if (radioSound->isChecked())
+    if (radioSound->isChecked())
         return Item::tSound;
     else if (radioPicture->isChecked())
         return Item::tPicture;
+    else
+        return Item::tBasic;
 }
 
 QString ItemDialog::fileName() const

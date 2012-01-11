@@ -75,6 +75,7 @@ string Item::typeToStr(Type type)
         case tBasic:    return "basic"; break;
         case tFile:     return "file"; break;
         case tSound:    return "sound"; break;
+        case tPicture:  return "picture"; break;
     }
     return "";
 }
@@ -91,6 +92,8 @@ Item::State Item::strToState(const string &name) throw(invalid_argument)
 Item::Type Item::strToType(const string &name) throw(invalid_argument)
 {
     if (name=="basic")  return tBasic;
+    else if (name=="file") return tFile;
     else if (name=="sound") return tSound;
+    else if (name=="picture") return tPicture;
     else    throw invalid_argument("Unrecognized \""+name+"\" item type");
 }
