@@ -59,6 +59,13 @@ class ItemDialog: public QDialog, private Ui::itemDialog
         void on_radioSound_clicked();
         void on_toolBrowse_clicked();
         /*!
+         * \brief Slot for the "Picture" radio item
+         *
+         * Sets the type of the item to tPicture
+         */
+        void on_radioPicture_clicked();
+
+        /*!
          * \brief Overriden "exec" slot
          * \return Result code
          *

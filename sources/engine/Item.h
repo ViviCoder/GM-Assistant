@@ -41,7 +41,9 @@ class Item
             //! Item related to a file
             tFile,
             //! Item related to a sound file
-            tSound
+            tSound,
+            //! Item related to a picture file
+            tPicture
         };
         // constructor
         Item(const std::string &content="", State state=sNone);

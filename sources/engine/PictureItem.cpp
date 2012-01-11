@@ -16,28 +16,15 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "ItemFactory.h"
+#include "PictureItem.h"
 
-Item* ItemFactory::copyItem(Item *item)
+using namespace std;
+
+PictureItem::PictureItem(const string &content, Item::State state, const string &fileName): FileItem(content,state,fileName)
 {
-    switch (item->type())
-    {
-        case Item::tBasic:  return new Item(*item); break;
-        case Item::tFile:   return new FileItem(*dynamic_cast<FileItem*>(item)); break;
-        case Item::tSound:  return new SoundItem(*dynamic_cast<SoundItem*>(item)); break;
-        case Item::tPicture:  return new PictureItem(*dynamic_cast<PictureItem*>(item)); break;
-    }
-    return NULL;
 }
 
-Item* ItemFactory::createItem(Item::Type type, const std::string &content, Item::State state)
+Item::Type PictureItem::type() const
 {
-    switch (type)
-    {
-        case Item::tBasic:  return new Item(content,state); break;
-        case Item::tFile:   return new FileItem(content,state); break;
-        case Item::tSound:  return new SoundItem(content,state); break;
-        case Item::tPicture:  return new PictureItem(content,state); break;
-    }
-    return NULL;
+    return tPicture;
 }

@@ -22,6 +22,7 @@
 #include "Item.h"
 #include "FileItem.h"
 #include "SoundItem.h"
+#include "PictureItem.h"
 
 /*!
  * \brief Item factory

@@ -16,28 +16,29 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "ItemFactory.h"
+#ifndef HEADER_PICTUREITEM
+#define HEADER_PICTUREITEM
 
-Item* ItemFactory::copyItem(Item *item)
-{
-    switch (item->type())
-    {
-        case Item::tBasic:  return new Item(*item); break;
-        case Item::tFile:   return new FileItem(*dynamic_cast<FileItem*>(item)); break;
-        case Item::tSound:  return new SoundItem(*dynamic_cast<SoundItem*>(item)); break;
-        case Item::tPicture:  return new PictureItem(*dynamic_cast<PictureItem*>(item)); break;
-    }
-    return NULL;
-}
+#include "FileItem.h"
 
-Item* ItemFactory::createItem(Item::Type type, const std::string &content, Item::State state)
+/*!
+ * \brief Item related to a picture file 
+ */
+class PictureItem: public FileItem
 {
-    switch (type)
-    {
-        case Item::tBasic:  return new Item(content,state); break;
-        case Item::tFile:   return new FileItem(content,state); break;
-        case Item::tSound:  return new SoundItem(content,state); break;
-        case Item::tPicture:  return new PictureItem(content,state); break;
-    }
-    return NULL;
-}
+    public:
+        /*!
+         *  \brief Constructor
+         *  \param content Content of the item
+         *  \param state State of the item
+         *  \param fileName Name of the picture file of the item
+         */
+        PictureItem(const std::string &content="", State state=sNone, const std::string &fileName="");
+        /*!
+         * \brief Getter for the type of the item
+         * \return Item::tPicture
+         */
+        Type type() const;  // overriden
+};
+
+#endif

@@ -79,6 +79,16 @@ void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
                                     // we send a signal to play the music (and do some other things)
                                     emit fileToPlay(soundItem->fileName(),soundItem->duration());
                                 }
+            case Item::tPicture: {
+                                    PictureItem *pictureItem = dynamic_cast<PictureItem*>(item);
+                                    //QWidget *pictureWidget = new QWidget;
+                                    QLabel  *pictureWidget = new QLabel;
+                                    //QPixmap *pictureObject = new QPixmap(pictureItem->fileName().c_str());
+                                    pictureWidget->setPixmap(QPixmap(pictureItem->fileName().c_str()));
+                                    pictureWidget->setWindowTitle((pictureItem->content()).c_str());
+                                    //pictureWidget->addWidget( new QPixmap(item->filename()));
+                                    pictureWidget->show();
+                                 }
             default:            break;
         }
     }
@@ -136,6 +146,10 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                             {
                                                 dynamic_cast<SoundItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
                                             }
+                                            if (newItem->type()==Item::tPicture)
+                                            {
+                                                dynamic_cast<PictureItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
+                                            }
                                             switch (pItemDial->selectionResult())
                                             {
                                                 case ItemDialog::rBrother:  {
@@ -172,6 +186,10 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                         if (newItem->type()==Item::tSound)
                                         {
                                             dynamic_cast<SoundItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
+                                        }
+                                        if (newItem->type()==Item::tPicture)
+                                        {
+                                            dynamic_cast<PictureItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
                                         }
                                         QCustomTreeWidgetItem *newQItem = NULL;
                                         Branch *newBranch = pTree->add(newItem);

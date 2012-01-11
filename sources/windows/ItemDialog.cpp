@@ -46,7 +46,10 @@ Item::Type ItemDialog::type() const
 {
     if (radioBasic->isChecked())
         return Item::tBasic;
-    else return Item::tSound;
+    else if (radioSound->isChecked())
+        return Item::tSound;
+    else if (radioPicture->isChecked())
+        return Item::tPicture;
 }
 
 QString ItemDialog::fileName() const
@@ -109,9 +112,23 @@ void ItemDialog::on_radioSound_clicked()
     toolBrowse->setEnabled(true);
 }
 
+void ItemDialog::on_radioPicture_clicked()
+{
+    toolBrowse->setEnabled(true);
+}
+
 void ItemDialog::on_toolBrowse_clicked()
 {
-    editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the sound file to associate to the item",0),"",QApplication::translate("itemDialog","Audio files (*.mp3 *.wav *.ogg)",0)));    
+    switch (type())
+    {
+        case Item::tSound:  {
+                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the sound file to associate to the item",0),"",QApplication::translate("itemDialog","Audio files (*.mp3 *.wav *.ogg)",0)));    
+                            }
+        case Item::tPicture:  { 
+                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the picture file to associate to the item",0),"",QApplication::translate("itemDialog","Picture files (*.jpg *.jpeg *.png *.bmp)",0)));    
+                            }
+        default:            break;
+    }
 }
 
 int ItemDialog::exec()

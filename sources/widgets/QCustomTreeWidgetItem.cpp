@@ -55,4 +55,10 @@ void QCustomTreeWidgetItem::updateDisplay()
         setToolTip(0,dynamic_cast<SoundItem*>(item)->fileName().c_str()); 
         setStatusTip(0,QApplication::translate("customTree","Double click to play the file",0));
     }
+    else if (item->type()==Item::tPicture)
+    {
+        setIcon(0,QIcon(":/data/images/file_picture.png"));
+        setToolTip(0,dynamic_cast<PictureItem*>(item)->fileName().c_str()); 
+        setStatusTip(0,QApplication::translate("customTree","Double click to show the file",0));
+    }
 }

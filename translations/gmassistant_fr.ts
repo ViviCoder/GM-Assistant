@@ -291,36 +291,44 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>Dialog_Item</name>
     <message>
+        <location filename="../sources/EditItem.ui" line="14"/>
         <source>Create item</source>
-        <translation type="obsolete">Créer un item</translation>
+        <translation>Créer un item</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="32"/>
         <source>&amp;None</source>
-        <translation type="obsolete">&amp;Aucun</translation>
+        <translation>&amp;Aucun</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="39"/>
         <source>In &amp;progress</source>
-        <translation type="obsolete">En &amp;cours</translation>
+        <translation>En &amp;cours</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="50"/>
         <source>&amp;Failed</source>
-        <translation type="obsolete">&amp;Échoué</translation>
+        <translation>&amp;Échoué</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="61"/>
         <source>&amp;Succeeded</source>
-        <translation type="obsolete">&amp;Réussi</translation>
+        <translation>&amp;Réussi</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="74"/>
         <source>&amp;Add</source>
-        <translation type="obsolete">A&amp;jouter</translation>
+        <translation>A&amp;jouter</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="85"/>
         <source>S&amp;on</source>
-        <translation type="obsolete">&amp;Fils</translation>
+        <translation>&amp;Fils</translation>
     </message>
     <message>
+        <location filename="../sources/EditItem.ui" line="96"/>
         <source>&amp;Cancel</source>
-        <translation type="obsolete">A&amp;nnuler</translation>
+        <translation>A&amp;nnuler</translation>
     </message>
 </context>
 <context>
@@ -713,6 +721,11 @@ p, li { white-space: pre-wrap; }
         <source>Double click to play the file</source>
         <translation>Double-cliquez pour jouer le fichier</translation>
     </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="62"/>
+        <source>Double click to show the file</source>
+        <translation>Double cliquez pour afficher l&apos;image</translation>
+    </message>
 </context>
 <context>
     <name>itemDialog</name>
@@ -763,22 +776,27 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Basique</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="119"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="117"/>
         <source>S&amp;ound</source>
         <translation>&amp;Son</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="132"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="128"/>
+        <source>&amp;Picture</source>
+        <translation>&amp;Image</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.ui" line="141"/>
         <source>File:</source>
         <translation>Fichier :</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="149"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="158"/>
         <source>...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="165"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="172"/>
         <source>&amp;Add</source>
         <translation>A&amp;jouter</translation>
     </message>
@@ -791,7 +809,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Esc, Alt+N</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="176"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="183"/>
         <source>C&amp;hild</source>
         <translation>En&amp;fant</translation>
     </message>
@@ -800,39 +818,49 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&amp;Fils</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="187"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="194"/>
         <source>&amp;Cancel</source>
         <translation>A&amp;nnuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="68"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="73"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="88"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="93"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="71"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="76"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="91"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="96"/>
         <source>Uncomplete data</source>
         <translation>Données incomplètes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="68"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="88"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="71"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="91"/>
         <source>You must select a file before validating.</source>
         <translation>Vous devez sélectionner un fichier avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="73"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="93"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="76"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="96"/>
         <source>You must fill the content before validating.</source>
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="114"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="125"/>
         <source>Select the sound file to associate to the item</source>
         <translation>Sélectionnez le fichier son à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="114"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="125"/>
         <source>Audio files (*.mp3 *.wav *.ogg)</source>
         <translation>Fichiers audio (*.mp3 *.wav *.ogg)</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="128"/>
+        <source>Select the picture file to associate to the item</source>
+        <translation>Sélectionnez le fichier image à associer à l&apos;item</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="128"/>
+        <source>Picture files (*.jpg *.jpeg *.png *.bmp)</source>
+        <translation>Ficher image (*.jpg *.jpeg *.png *.bmp)</translation>
     </message>
 </context>
 <context>

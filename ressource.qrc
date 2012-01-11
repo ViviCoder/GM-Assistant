@@ -2,6 +2,8 @@
   <qresource>
     <file>data/images/GMA.png</file>
     <file>data/images/add.png</file>
+    <file>data/images/file_sound.png</file>
+    <file>data/images/file_picture.png</file>
     <file>data/images/check.png</file>
     <file>data/images/delete.png</file>
     <file>data/images/empty.png</file>

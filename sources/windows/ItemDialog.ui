@@ -112,45 +112,52 @@
        </widget>
       </item>
       <item>
-       <layout class="QVBoxLayout" name="verticalLayout_3">
+       <widget class="QRadioButton" name="radioSound">
+        <property name="text">
+         <string>S&amp;ound</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../ressource.qrc">
+          <normaloff>:/data/images/file_sound.png</normaloff>:/data/images/file_sound.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioPicture">
+        <property name="text">
+         <string>&amp;Picture</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../ressource.qrc">
+          <normaloff>:/data/images/file_picture.png</normaloff>:/data/images/file_picture.png</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <widget class="QRadioButton" name="radioSound">
+         <widget class="QLabel" name="label">
           <property name="text">
-           <string>S&amp;ound</string>
-          </property>
-          <property name="icon">
-           <iconset resource="../../ressource.qrc">
-            <normaloff>:/data/images/speaker.png</normaloff>:/data/images/speaker.png</iconset>
+           <string>File:</string>
           </property>
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QLabel" name="label">
-            <property name="text">
-             <string>File:</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="editFile">
-            <property name="readOnly">
-             <bool>true</bool>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QToolButton" name="toolBrowse">
-            <property name="enabled">
-             <bool>false</bool>
-            </property>
-            <property name="text">
-             <string>...</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QLineEdit" name="editFile">
+          <property name="readOnly">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="toolBrowse">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="text">
+           <string>...</string>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
