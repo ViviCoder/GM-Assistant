@@ -227,7 +227,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QSlider" name="sliderMusic">
+            <widget class="QCustomSlider" name="sliderMusic">
              <property name="focusPolicy">
               <enum>Qt::NoFocus</enum>
              </property>
@@ -457,6 +457,11 @@
    <class>QCustomTableWidget</class>
    <extends>QTableWidget</extends>
    <header>QCustomTableWidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QCustomSlider</class>
+   <extends>QSlider</extends>
+   <header>QCustomSlider.h</header>
   </customwidget>
  </customwidgets>
  <resources>

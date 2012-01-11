@@ -387,16 +387,16 @@ void MainWindow::playSound(const std::string &fileName)
     }
 }
 
-void MainWindow::on_sliderMusic_sliderReleased()
+void MainWindow::on_sliderMusic_released()
 {
     // new position in the music
     double position = (double)sliderMusic->value()/sliderMusic->maximum()*dDuration;
     double shift = position-double(iTimerCount)/TICK;
     if (shift>0)
     {
-        soundEngine.move(position-double(iTimerCount)/TICK);
+        soundEngine.move(shift);
     }
-    else
+    else if (position < dDuration)
     {
         soundEngine.goTo(position);
     }
@@ -487,4 +487,18 @@ void MainWindow::loadRecent(int index)
     updateRecent(file);
     sFileName = file;
     on_action_Reload_triggered();
+}
+    
+void MainWindow::on_sliderMusic_wheeled(bool positive)
+{
+    int value = sliderMusic->value();
+    if (positive && value < sliderMusic->maximum())
+    {
+        sliderMusic->setValue(sliderMusic->value()+sliderMusic->pageStep());
+    }
+    else if (!positive && value > 0)
+    {
+        sliderMusic->setValue(sliderMusic->value()-sliderMusic->pageStep());
+    }
+    on_sliderMusic_released();
 }
