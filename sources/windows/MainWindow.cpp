@@ -197,6 +197,7 @@ void MainWindow::playSound(const std::string &fileName)
     }
 }
 
+#include <iostream>
 void MainWindow::on_sliderMusic_sliderReleased()
 {
     // new position in the music
@@ -204,12 +205,26 @@ void MainWindow::on_sliderMusic_sliderReleased()
     double shift = position-double(iTimerCount)/TICK;
     if (shift>0)
     {
-        soundEngine.move(position-double(iTimerCount)/TICK);
+        soundEngine.move(shift);
     }
-    else
+    else if (position < soundEngine.duration())
     {
         soundEngine.goTo(position);
     }
     // updating the timer count
     iTimerCount = floor(TICK*position);
+}
+
+void MainWindow::on_sliderMusic_wheeled(bool positive)
+{
+    int value = sliderMusic->value();
+    if (positive && value < sliderMusic->maximum())
+    {
+        sliderMusic->setValue(sliderMusic->value()+sliderMusic->pageStep());
+    }
+    else if (!positive && value > 0)
+    {
+        sliderMusic->setValue(sliderMusic->value()-sliderMusic->pageStep());
+    }
+    on_sliderMusic_sliderReleased();
 }

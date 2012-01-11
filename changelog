@@ -1,6 +1,10 @@
+Changes in version 1.0.14
+
+- the slider now accepts wheel events 
+
 Changes in version 1.0.13
 
-- Dailog windows are no longer reset on minimizing/restoring
+- Dialog windows are no longer reset on minimizing/restoring
 
 Changes in version 1.0.12
 

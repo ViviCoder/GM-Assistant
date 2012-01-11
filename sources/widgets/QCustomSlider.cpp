@@ -16,19 +16,21 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_VERSION
-#define HEADER_VERSION
+#include "QCustomSlider.h"
 
-#define MAJOR_VERSION   1
-#define MINOR_VERSION   0
-#define RELEASE_VERSION 14
+QCustomSlider::QCustomSlider(QWidget *parent): QSlider(parent)
+{
+}
 
-// some stringification macros
-#define xstr(s) str(s)
-#define str(s)  #s
-
-// version string
-#define SHORT_VERSION   xstr(MAJOR_VERSION)"."xstr(MINOR_VERSION)
-#define FULL_VERSION    SHORT_VERSION"."xstr(RELEASE_VERSION)
-
-#endif
+void QCustomSlider::wheelEvent(QWheelEvent *e)
+{
+    int delta = e->delta();
+    if (delta > 0)
+    {
+        emit wheeled(true);
+    }
+    else if (delta < 0)
+    {
+        emit wheeled(false);
+    }
+}

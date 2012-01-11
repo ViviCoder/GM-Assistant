@@ -59,6 +59,11 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void updateDisplay();
         // slider
         void on_sliderMusic_sliderReleased();
+        /*!
+         * \brief Slot for when the slider is wheeled
+         * \param positive True if wheeled forward, false otherwise
+         */
+        void on_sliderMusic_wheeled(bool positive);
         // play music and sound
         void playMusic(const std::string &fileName);
         void playSound(const std::string &fileName);

@@ -16,19 +16,42 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_VERSION
-#define HEADER_VERSION
+#ifndef HEADER_QCUSTOMSLIDER
+#define HEADER_QCUSTOMSLIDER
 
-#define MAJOR_VERSION   1
-#define MINOR_VERSION   0
-#define RELEASE_VERSION 14
+#include <QSlider>
+#include <QMouseEvent>
 
-// some stringification macros
-#define xstr(s) str(s)
-#define str(s)  #s
+/*!
+ * \brief Custom slider
+ *
+ * Implements custom mouse (click) and wheel events
+ */
+class QCustomSlider: public QSlider
+{
+    Q_OBJECT
 
-// version string
-#define SHORT_VERSION   xstr(MAJOR_VERSION)"."xstr(MINOR_VERSION)
-#define FULL_VERSION    SHORT_VERSION"."xstr(RELEASE_VERSION)
+    protected:
+        /*!
+         * \brief Event raised when the wheel is used
+         *
+         * Sends a corresponding signal
+         */
+        void wheelEvent(QWheelEvent *e);
+
+    public:
+        /*!
+         * \brief Constructor
+         * \param parent Parent of the slider
+         */
+        QCustomSlider(QWidget *parent=NULL);
+
+    signals:
+        /*!
+         * \brief Signal sent when wheeled
+         * \param positive True if wheeled forward, false otherwise
+         */
+        void wheeled(bool positive);
+};
 
 #endif
