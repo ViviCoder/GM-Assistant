@@ -159,9 +159,8 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                         {
                                             dynamic_cast<SoundItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
                                         }
-                                        QCustomTreeWidgetItem *newQItem = NULL;
                                         Branch *newBranch = pTree->add(newItem);
-                                        newQItem = new QCustomTreeWidgetItem(this,newBranch);
+                                        new QCustomTreeWidgetItem(this,newBranch);
                                         resizeColumnToContents(0);
                                     }
                                     
