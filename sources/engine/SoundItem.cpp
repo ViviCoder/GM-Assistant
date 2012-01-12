@@ -59,8 +59,9 @@ void SoundItem::setFileName(const string &fileName)
 void SoundItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception)
 {
     FileItem::fromXML(root);
-    if (fileName() != "")
+    string name = fileName();
+    if (name != "")
     {
-        pThread = new QCustomThread(fileName(),DEFAULT_BUFFER_SIZE,&dDuration,&bThreadFinished);
+        pThread = new QCustomThread(name,DEFAULT_BUFFER_SIZE,&dDuration,&bThreadFinished);
     }
 }

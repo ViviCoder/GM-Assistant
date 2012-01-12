@@ -78,6 +78,7 @@ void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
                                     SoundItem *soundItem = dynamic_cast<SoundItem*>(item);
                                     // we send a signal to play the music (and do some other things)
                                     emit fileToPlay(soundItem->fileName(),soundItem->duration());
+                                    break;
                                 }
             case Item::tPicture: {
                                     PictureItem *pictureItem = dynamic_cast<PictureItem*>(item);
@@ -88,6 +89,7 @@ void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
                                     pictureWidget->setWindowTitle((pictureItem->content()).c_str());
                                     //pictureWidget->addWidget( new QPixmap(item->filename()));
                                     pictureWidget->show();
+                                    break;
                                  }
             default:            break;
         }
