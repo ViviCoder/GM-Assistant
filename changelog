@@ -1,6 +1,7 @@
 Changes in version 1.0.14
 
 - the slider now accepts wheel events and clicks 
+- modification of the child-adding method of trees
 
 Changes in version 1.0.13
 

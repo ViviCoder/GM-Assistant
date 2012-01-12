@@ -307,16 +307,9 @@ void Tree::insert(const string &indices, Branch *branch) throw(out_of_range)
 
 Branch* Tree::add(Item *item)
 {
-    if (vChildren.size()==0 || vChildren.back()->tree().vChildren.size()==0)
-    {
-        Branch *branch = new Branch(item,this);
-        vChildren.push_back(branch);
-        return branch;
-    }
-    else
-    {
-        return vChildren.back()->tree().add(item);
-    }
+    Branch *branch = new Branch(item,this);
+    vChildren.push_back(branch);
+    return branch;
 }
 
 void Tree::remove(int index, bool toDelete) throw(out_of_range)
