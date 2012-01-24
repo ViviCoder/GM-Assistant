@@ -1138,7 +1138,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="268"/>
         <location filename="../sources/windows/MainWindow.cpp" line="373"/>
         <location filename="../sources/windows/MainWindow.cpp" line="386"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="423"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="415"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1159,7 +1159,7 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="480"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="472"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>

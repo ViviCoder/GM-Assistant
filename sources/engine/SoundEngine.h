@@ -58,7 +58,6 @@ class SoundEngine
         void pauseMusic();
         void resumeMusic();
         void move(double step);
-        void goTo(double position);
         // callback method
         static void onStopSound(int channel);
 };
