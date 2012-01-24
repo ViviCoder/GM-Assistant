@@ -857,7 +857,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="225"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="161"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="125"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="166"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
@@ -960,19 +961,19 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="131"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="184"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="136"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="189"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="137"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="142"/>
         <source>&amp;Resume</source>
         <translation>&amp;Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="181"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="196"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="186"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="201"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>

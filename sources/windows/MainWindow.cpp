@@ -118,6 +118,11 @@ void MainWindow::updateDisplay()
     treeMusic->setTree(&eGame.music());
     treeFX->setTree(&eGame.effects());
     tableStats->setLists(&eGame.skills(),&eGame.characters());
+    timer->stop();
+    iTimerCount = 0;
+    soundEngine.stop();
+    sliderMusic->setValue(0);
+    buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
 }
 
 void MainWindow::on_buttonMusic_clicked()

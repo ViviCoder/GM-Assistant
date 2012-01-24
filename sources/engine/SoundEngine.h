@@ -61,6 +61,12 @@ class SoundEngine
         void pauseMusic();
         void resumeMusic();
         void move(double step);
+        /*!
+         * \brief Stopping method
+         *
+         * Stops playing music and sound and frees it
+         */
+        void stop();
         // callback method
         static void onStopSound(int channel);
         static void computeDuration(const std::string &fileName, int bufferSize, double *result, bool *finished) throw(std::runtime_error);
