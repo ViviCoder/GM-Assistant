@@ -1,5 +1,6 @@
 Changes in version 1.0.14
 
+- now requires SDL_mixer version >= 1.2.12
 - the slider now accepts wheel events and clicks 
 - modification of the child-adding method of trees
 
