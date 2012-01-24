@@ -363,12 +363,8 @@ void MainWindow::onTimer_timeout()
         double dPosition = (double)iTimerCount/TICK;
         sliderMusic->setValue(floor(dPosition/dDuration*sliderMusic->maximum()));
         int duration = floor(dDuration);
-        int mDuration = duration/60;
-        int sDuration = duration%60;
         int position = floor(dPosition);
-        int mPosition = position/60;
-        int sPosition = position%60;
-        labelPosition->setText(QString("%1:%2/%3:%4").arg(mPosition).arg(sPosition,2,10,QChar('0')).arg(mDuration).arg(sDuration,2,10,QChar('0')));
+        labelPosition->setText(QString("%1:%2/%3:%4").arg(position/60).arg(position%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
     }
 }
 
