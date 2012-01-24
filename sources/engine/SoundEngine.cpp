@@ -158,3 +158,19 @@ void SoundEngine::move(double step)
         Mix_SetMusicPosition(step);
     }
 }
+
+void SoundEngine::stop()
+{
+    Mix_HaltMusic();
+    Mix_HaltChannel(0);
+    if (mmMusic != NULL)
+    {
+        Mix_FreeMusic(mmMusic);
+        mmMusic = NULL;
+    }
+    if (ssSample != NULL)
+    {
+        Sound_FreeSample(ssSample);
+        ssSample = NULL;
+    }
+}

@@ -58,6 +58,12 @@ class SoundEngine
         void pauseMusic();
         void resumeMusic();
         void move(double step);
+        /*!
+         * \brief Stopping method
+         *
+         * Stops playing music and sound and frees it
+         */
+        void stop();
         // callback method
         static void onStopSound(int channel);
 };

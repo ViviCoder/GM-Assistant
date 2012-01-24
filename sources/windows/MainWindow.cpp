@@ -303,6 +303,14 @@ void MainWindow::updateDisplay()
         case Engine::uiNoMusic: on_actionNoMusic_triggered();
                                 break;
     }
+    timer->stop();
+    iTimerCount = 0;
+    soundEngine.stop();
+    dDuration = 0.0;
+    sliderMusic->setValue(0);
+    checkRepeat->setChecked(false);
+    labelPosition->setText(QApplication::translate("mainWindow","0:00/0:00",0));
+    buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
 }
 
 void MainWindow::on_buttonMusic_clicked()
