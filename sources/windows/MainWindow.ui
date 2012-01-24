@@ -218,14 +218,7 @@
           </widget>
          </item>
          <item>
-          <layout class="QHBoxLayout" name="horizontalLayout1">
-           <item>
-            <widget class="QPushButton" name="buttonMusic">
-             <property name="text">
-              <string>&amp;Play</string>
-             </property>
-            </widget>
-           </item>
+          <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
             <widget class="QCustomSlider" name="sliderMusic">
              <property name="focusPolicy">
@@ -235,6 +228,34 @@
               <enum>Qt::Horizontal</enum>
              </property>
             </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout1">
+             <item>
+              <widget class="QPushButton" name="buttonMusic">
+               <property name="text">
+                <string>&amp;Play</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="labelPosition">
+               <property name="text">
+                <string>0:00/0:00</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkRepeat">
+               <property name="text">
+                <string>&amp;Loop</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </item>
@@ -251,7 +272,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">

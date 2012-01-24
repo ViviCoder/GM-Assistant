@@ -52,7 +52,14 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         QString sDir;
         bool bModified;
         AboutDialog *pAboutDial;
+        /*!
+         * \brief Timer used by the window
+         */
         QTimer *timer;
+        /*!
+         * \brief Number of timer ticks
+         *
+         */
         int iTimerCount;
         /*!
          * \brief Previous size of the window before being maximized
@@ -70,6 +77,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \brief Duration of the current music
          */
         double dDuration;
+        /*!
+         * \brief File name of the current music
+         */
+        std::string sCurrentMusic;
     public:
         /*!
          * \brief Constructor of the main window
@@ -165,7 +176,9 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void on_action_Reload_triggered();
         // button
         void on_buttonMusic_clicked();
-        // timer
+        /*!
+         * \brief Slot for when the timer ticks
+         */
         void onTimer_timeout();
         /*!
          * \brief Display update

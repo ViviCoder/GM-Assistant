@@ -51,7 +51,7 @@ Celle-ci aussi, et sans bug !</notes>
     <item state="progress" type="basic" content="deuxième (en fait troisième)"/>
     <item state="success" type="basic" content="n'importe quoi"/>
     <item state="none" type="picture" content="Image">
-      <file name="/home/vincent/progs/GM-Assistant/data/images/GMA.png"/>
+      <file name="data/images/GMA.png"/>
     </item>
   </history>
   <music>

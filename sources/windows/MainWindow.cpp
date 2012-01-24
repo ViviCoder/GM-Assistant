@@ -343,16 +343,32 @@ void MainWindow::onTimer_timeout()
 {
     if (!soundEngine.isPlayingMusic())
     {
-        sliderMusic->setValue(sliderMusic->maximum());
-        buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
-        timer->stop();
+        if (checkRepeat->isChecked())
+        {
+            playMusic(sCurrentMusic,dDuration);
+        }
+        else
+        {
+            sliderMusic->setValue(sliderMusic->maximum());
+            labelPosition->setText(QApplication::translate("mainWindow","0:00/0:00",0));
+            buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
+            timer->stop();
+        }
     }
     // calculate the percentage of the music played
     iTimerCount++;
     if (!sliderMusic->isSliderDown())
     {
         // we move the slider only if the user is not moving it manually
-        sliderMusic->setValue(floor(TICK*iTimerCount/dDuration));
+        double dPosition = (double)iTimerCount/TICK;
+        sliderMusic->setValue(floor(dPosition/dDuration*sliderMusic->maximum()));
+        int duration = floor(dDuration);
+        int mDuration = duration/60;
+        int sDuration = duration%60;
+        int position = floor(dPosition);
+        int mPosition = position/60;
+        int sPosition = position%60;
+        labelPosition->setText(QString("%1:%2/%3:%4").arg(mPosition).arg(sPosition,2,10,QChar('0')).arg(mDuration).arg(sDuration,2,10,QChar('0')));
     }
 }
 
@@ -363,6 +379,7 @@ void MainWindow::playMusic(const std::string &fileName, double duration)
         try
         {
             soundEngine.playMusic(fileName);
+            sCurrentMusic = fileName;
             timer->start();
             buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
             iTimerCount = 0;
