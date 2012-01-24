@@ -28,6 +28,11 @@
 #include "SkillList.h"
 #include "CharacterList.h"
 
+/*!
+ * \brief Custom table widget
+ *
+ * This widget is designed to manipulate underlying CharacterList and SkillList
+ */
 class QCustomTableWidget: public QTableWidget
 {
     Q_OBJECT
@@ -41,6 +46,10 @@ class QCustomTableWidget: public QTableWidget
         CharacterList *pCharacters;
 
     protected:
+        /*!
+         * \brief Event raised when the table is clicked
+         * \param e Mouse event
+         */
         void mousePressEvent(QMouseEvent *e);
         void keyReleaseEvent(QKeyEvent *e);
 
@@ -56,7 +65,10 @@ class QCustomTableWidget: public QTableWidget
         void editCharacter(int index);
 
     public:
-        // constructor
+        /*!
+         * \brief Constructor of the widget
+         * \param parent Parent widget
+         */
         QCustomTableWidget(QWidget *parent=NULL);
         // destructor
         ~QCustomTableWidget();

@@ -594,56 +594,92 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="29"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="37"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="43"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="57"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="71"/>
         <source>&amp;Add</source>
         <translation>&amp;Ajouter</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="31"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="39"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="73"/>
+        <source>Add a new skill</source>
+        <translation>Ajouter une nouvelle compétence</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="32"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="46"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="60"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="74"/>
         <source>&amp;Remove</source>
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="33"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="41"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="34"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="76"/>
+        <source>Remove the skill</source>
+        <translation>Supprimer la compétence</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="35"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="49"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="63"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="77"/>
         <source>&amp;Edit</source>
         <translation>&amp;Éditer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="36"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="37"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="79"/>
+        <source>Edit the skill</source>
+        <translation>Éditer la compétence</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="42"/>
         <source>&amp;Character</source>
         <translation>&amp;Personnage</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="45"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="59"/>
+        <source>Add a new character</source>
+        <translation>Ajouter un nouveau personnage</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="48"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="62"/>
+        <source>Remove the character</source>
+        <translation>Supprimer le personnage</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="51"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="65"/>
+        <source>Edit the character</source>
+        <translation>Éditer le personnage</translation>
+    </message>
+    <message>
         <source>&amp;Add a character</source>
-        <translation>&amp;Ajouter un personnage</translation>
+        <translation type="obsolete">&amp;Ajouter un personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="47"/>
         <source>&amp;Remove the character</source>
-        <translation>&amp;Supprimer le personnage</translation>
+        <translation type="obsolete">&amp;Supprimer le personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="49"/>
         <source>&amp;Edit the character</source>
-        <translation>&amp;Éditer le personnage</translation>
+        <translation type="obsolete">&amp;Éditer le personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="53"/>
         <source>&amp;Add a skill</source>
-        <translation>&amp;Ajouter une compétence</translation>
+        <translation type="obsolete">&amp;Ajouter une compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="55"/>
         <source>&amp;Remove the skill</source>
-        <translation>&amp;Supprimer la compétence</translation>
+        <translation type="obsolete">&amp;Supprimer la compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="57"/>
         <source>&amp;Edit the skill</source>
-        <translation>&amp;Éditer la compétence</translation>
+        <translation type="obsolete">&amp;Éditer la compétence</translation>
     </message>
 </context>
 <context>
@@ -1134,7 +1170,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="316"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="384"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="380"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
@@ -1147,9 +1183,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="223"/>
         <location filename="../sources/windows/MainWindow.cpp" line="246"/>
         <location filename="../sources/windows/MainWindow.cpp" line="268"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="390"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="403"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="432"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="386"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="399"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="428"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1170,7 +1206,7 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="489"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="485"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>

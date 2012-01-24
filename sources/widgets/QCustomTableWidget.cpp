@@ -26,36 +26,60 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     // popup menu
     // skills
     QMenu *menuColumn = menu->addMenu(QApplication::translate("customTable","&Skill",0));
-    actionAddColumn = menuColumn->addAction(QIcon(":/data/images/add.png"),QApplication::translate("customTable","&Add",0));
+    actionAddColumn = new QAction(QIcon(":/data/images/add.png"),QApplication::translate("customTable","&Add",0),this);
     actionAddColumn->setIconVisibleInMenu(true);
-    actionRemoveColumn = menuColumn->addAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTable","&Remove",0));
+    actionAddColumn->setStatusTip(QApplication::translate("customTable","Add a new skill",0));
+    actionRemoveColumn = new QAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTable","&Remove",0),this);
     actionRemoveColumn->setIconVisibleInMenu(true);
-    actionEditColumn = menuColumn->addAction(QIcon(":/data/images/son.png"),QApplication::translate("customTable","&Edit",0));
+    actionRemoveColumn->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
+    actionEditColumn = new QAction(QIcon(":/data/images/son.png"),QApplication::translate("customTable","&Edit",0),this);
     actionEditColumn->setIconVisibleInMenu(true);
+    actionEditColumn->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
+    menuColumn->addAction(actionAddColumn);
+    menuColumn->addAction(actionRemoveColumn);
+    menuColumn->addAction(actionEditColumn);
     // characters
     QMenu *menuRow = menu->addMenu(QApplication::translate("customTable","&Character",0));
-    actionAddRow = menuRow->addAction(QIcon(":/data/images/add.png"),QApplication::translate("customTable","&Add",0));
+    actionAddRow = new QAction(QIcon(":/data/images/add.png"),QApplication::translate("customTable","&Add",0),this);
     actionAddRow->setIconVisibleInMenu(true);
-    actionRemoveRow = menuRow->addAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTable","&Remove",0));
+    actionAddRow->setStatusTip(QApplication::translate("customTable","Add a new character",0));
+    actionRemoveRow = new QAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTable","&Remove",0),this);
     actionRemoveRow->setIconVisibleInMenu(true);
-    actionEditRow = menuRow->addAction(QIcon(":/data/images/son.png"),QApplication::translate("customTable","&Edit",0));
+    actionRemoveRow->setStatusTip(QApplication::translate("customTable","Remove the character",0));
+    actionEditRow = new QAction(QIcon(":/data/images/son.png"),QApplication::translate("customTable","&Edit",0),this);
     actionEditRow->setIconVisibleInMenu(true);
+    actionEditRow->setStatusTip(QApplication::translate("customTable","Edit the character",0));
+    menuRow->addAction(actionAddRow);
+    menuRow->addAction(actionRemoveRow);
+    menuRow->addAction(actionEditRow);
 
     // popup menu for vertical header
-    actionVAdd = vMenu->addAction(QIcon(":/data/images/add.png"),QApplication::translate("customTable","&Add a character",0));
+    actionVAdd = new QAction(QIcon(":/data/images/add.png"),QApplication::translate("customTable","&Add",0),this);
     actionVAdd->setIconVisibleInMenu(true);
-    actionVRemove = vMenu->addAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTable","&Remove the character",0));
+    actionVAdd->setStatusTip(QApplication::translate("customTable","Add a new character",0));
+    actionVRemove = new QAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTable","&Remove",0),this);
     actionVRemove->setIconVisibleInMenu(true);
-    actionVEdit = vMenu->addAction(QIcon(":/data/images/son.png"),QApplication::translate("customTable","&Edit the character",0));
+    actionVRemove->setStatusTip(QApplication::translate("customTable","Remove the character",0));
+    actionVEdit = new QAction(QIcon(":/data/images/son.png"),QApplication::translate("customTable","&Edit",0),this);
     actionVEdit->setIconVisibleInMenu(true);
+    actionVEdit->setStatusTip(QApplication::translate("customTable","Edit the character",0));
+    vMenu->addAction(actionVAdd);
+    vMenu->addAction(actionVRemove);
+    vMenu->addAction(actionVEdit);
 
     // popup menu for horizontal header
-    actionHAdd = hMenu->addAction(QIcon(":/data/images/add.png"),QApplication::translate("customTable","&Add a skill",0));
+    actionHAdd = new QAction(QIcon(":/data/images/add.png"),QApplication::translate("customTable","&Add",0),this);
     actionHAdd->setIconVisibleInMenu(true);
-    actionHRemove = hMenu->addAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTable","&Remove the skill",0));
+    actionHAdd->setStatusTip(QApplication::translate("customTable","Add a new skill",0));
+    actionHRemove = new QAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTable","&Remove",0),this);
     actionHRemove->setIconVisibleInMenu(true);
-    actionHEdit = hMenu->addAction(QIcon(":/data/images/son.png"),QApplication::translate("customTable","&Edit the skill",0));
+    actionHRemove->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
+    actionHEdit = new QAction(QIcon(":/data/images/son.png"),QApplication::translate("customTable","&Edit",0),this);
     actionHEdit->setIconVisibleInMenu(true);
+    actionHEdit->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
+    hMenu->addAction(actionHAdd);
+    hMenu->addAction(actionHRemove);
+    hMenu->addAction(actionHEdit);
 
     // headers
     setHorizontalHeader(new QCustomHeaderView(Qt::Horizontal,this));
@@ -110,6 +134,11 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     }
                                     QTableWidget::mousePressEvent(e);
                                         
+                                    bool null = (qtwitem!=NULL);
+                                    actionRemoveColumn->setVisible(null);
+                                    actionEditColumn->setVisible(null);
+                                    actionRemoveRow->setVisible(null);
+                                    actionEditRow->setVisible(null);
                                     QAction* action = menu->exec(e->globalPos());
                                     if (action == actionAddColumn)
                                     {
