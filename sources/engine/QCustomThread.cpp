@@ -37,19 +37,17 @@ void QCustomThread::run()
 {
     // decoding
     Sound_Sample *sample = Sound_NewSampleFromFile(sFileName.c_str(),NULL,iBufferSize);
-    if (sample == NULL)
+    if (sample != NULL)
     {
-        // unable to load the file
-        terminate();
+        int totalSize=0,size;
+        do
+        {
+            size = Sound_Decode(sample);
+            totalSize += size;
+            *dResult = 8192*(double)(totalSize) / (sample->actual.rate*sample->actual.format); 
+        }
+        while (size==iBufferSize && !*bFinished);
+        Sound_FreeSample(sample);
     }
-    int totalSize=0,size;
-    do
-    {
-        size = Sound_Decode(sample);
-        totalSize += size;
-        *dResult = 8192*(double)(totalSize) / (sample->actual.rate*sample->actual.format); 
-    }
-    while (size==iBufferSize && !*bFinished);
     *bFinished = true;
-    Sound_FreeSample(sample);
 }

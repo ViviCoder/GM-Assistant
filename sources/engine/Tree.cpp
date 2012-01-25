@@ -79,7 +79,7 @@ void Tree::toXML(xmlpp::Element &root) const
     }
 }
 
-void Tree::fromXML(const xmlpp::Element &root)
+void Tree::fromXML(const xmlpp::Element &root) throw(invalid_argument)
 {
     clear();
     using namespace xmlpp;

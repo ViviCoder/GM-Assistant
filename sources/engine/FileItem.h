@@ -46,9 +46,20 @@ class FileItem: public Item
          */
         Type type() const;  // overriden
         std::string fileName() const;
-        void setFileName(const std::string &fileName);
+        /*!
+         * \brief Setter for the name of the file of the item
+         * \param fileName New file name
+         * \throw std::invalid_argument Thrown when the file is not readable
+         */
+        void setFileName(const std::string &fileName) throw(std::invalid_argument);
         // overriden XML-related methods
-        void fromXML(const xmlpp::Element &root) throw(xmlpp::exception);
+        /*!
+         * \brief Loads the item from a XML tree
+         * \param root Position of the item in the XML tree
+         * \throw xmlpp::exception Thrown when there is an error in the XML tree
+         * \throw std::invalid_argument Thrown when a file is not readable 
+         */
+        void fromXML(const xmlpp::Element &root) throw(xmlpp::exception, std::invalid_argument);
         void toXML(xmlpp::Element &root);
 };
 

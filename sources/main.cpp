@@ -52,6 +52,7 @@ int main(int argc, char* argv[])
     install_dir = settings.value("install").toString();
     if (!install_dir.isEmpty())
     {
+        chdir(install_dir.toStdString().c_str());
         install_dir += "/";
     }
     settings.endGroup();

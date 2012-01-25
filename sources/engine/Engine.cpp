@@ -42,7 +42,7 @@ Engine::Engine(const string &fileName) throw(xmlpp::exception)
 
 // XML methods
 
-void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception)
+void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception, invalid_argument)
 {
     using namespace xmlpp;
 

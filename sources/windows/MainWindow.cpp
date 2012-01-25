@@ -222,6 +222,10 @@ void MainWindow::on_action_Load_triggered()
             {
                 QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
             }
+            catch (std::invalid_argument &e)
+            {
+                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QString(e.what()) + "\nThe game cannot be loaded.");
+            }
         }
 //    }
 }
@@ -434,6 +438,10 @@ void MainWindow::on_action_Reload_triggered()
         catch (xmlpp::exception &xml)
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+        }
+        catch (std::invalid_argument &e)
+        {
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QString(e.what()) + "\nThe game cannot be loaded.");
         }
     }
 }

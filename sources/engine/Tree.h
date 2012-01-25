@@ -25,6 +25,9 @@
 
 class Branch;
 
+/*!
+ * \brief Tree
+ */
 class Tree
 {
     private:
@@ -75,7 +78,12 @@ class Tree
         Tree& operator=(const Tree &tree);
         // XML-related methods
         void toXML(xmlpp::Element &root) const;
-        void fromXML(const xmlpp::Element &root);
+        /*!
+         * \brief XML loader
+         * \param root Position of the tree in the XML tree
+         * \throw std::invalid_argument Thrown when an item has not been loaded correctly
+         */
+        void fromXML(const xmlpp::Element &root) throw(std::invalid_argument);
         // iterator-related methods
         iterator begin() const;
         iterator beginUnchecked() const;

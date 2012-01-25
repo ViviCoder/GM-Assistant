@@ -57,6 +57,11 @@ class ItemDialog: public QDialog, private Ui::itemDialog
          * Sets the type of the item to tSound
          */
         void on_radioSound_clicked();
+        /*!
+         * \brief Slot for the "Browse" tool button
+         *
+         * Opens a dialog window to select a file
+         */ 
         void on_toolBrowse_clicked();
         /*!
          * \brief Slot for the "Picture" radio item

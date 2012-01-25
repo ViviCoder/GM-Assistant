@@ -17,11 +17,16 @@
 *************************************************************************/
 
 #include "FileItem.h"
+#include <fstream>
 
 using namespace std;
 
 FileItem::FileItem(const string &content, State state, const string &fileName): Item(content,state), sFileName(fileName)
 {
+    if (fileName != "")
+    {
+        setFileName(fileName);
+    }
 }
 
 Item::Type FileItem::type() const
@@ -34,16 +39,22 @@ string FileItem::fileName() const
     return sFileName;
 }
 
-void FileItem::setFileName(const string &fileName)
+void FileItem::setFileName(const string &fileName) throw(invalid_argument)
 {
     sFileName = fileName;
+    ifstream fichier(fileName.c_str()); 
+    if (fichier.fail())
+    {
+        throw invalid_argument("Unable to read the file "+fileName);
+    }
 }
 
-void FileItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception)
+void FileItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception, invalid_argument)
 {
     using namespace xmlpp;
     
     Node::NodeList list = root.get_children("file");
+    string name = "";
     if (list.size()==0)
     {
         throw xmlpp::exception("Missing file name");
@@ -51,13 +62,13 @@ void FileItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception)
     else
     {
         Element *tmp = dynamic_cast<Element*>(list.front());
-        sFileName = "";
         Attribute *attr = tmp->get_attribute("name");
         if (attr!=NULL)
         {
-            sFileName = attr->get_value();
+            name = attr->get_value();
         }
     }
+    setFileName(name);
 }
 
 void FileItem::toXML(xmlpp::Element &root)
