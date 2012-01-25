@@ -20,6 +20,7 @@
 #include "QCustomTreeWidgetItem.h"
 #include "ItemFactory.h"
 #include "SoundEngine.h"
+#include "PictureWindow.h"
 #include <QApplication>
 #include <QMessageBox>
 #include <exception>
@@ -82,13 +83,8 @@ void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
                                 }
             case Item::tPicture: {
                                     PictureItem *pictureItem = dynamic_cast<PictureItem*>(item);
-                                    //QWidget *pictureWidget = new QWidget;
-                                    QLabel  *pictureWidget = new QLabel;
-                                    //QPixmap *pictureObject = new QPixmap(pictureItem->fileName().c_str());
-                                    pictureWidget->setPixmap(QPixmap(pictureItem->fileName().c_str()));
-                                    pictureWidget->setWindowTitle((pictureItem->content()).c_str());
-                                    //pictureWidget->addWidget( new QPixmap(item->filename()));
-                                    pictureWidget->show();
+                                    PictureWindow *pictureWindow = new PictureWindow(pictureItem->fileName());
+                                    pictureWindow->show();
                                     break;
                                  }
             default:            break;
