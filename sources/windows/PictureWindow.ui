@@ -10,22 +10,9 @@
     <height>189</height>
    </rect>
   </property>
-  <property name="windowTitle">
-   <string extracomment="Click for FullScreen">Picture</string>
-  </property>
-  <property name="toolTip">
-   <string extracomment="Click for FullScreen"/>
-  </property>
-  <property name="statusTip">
-   <string extracomment="Click for FullScreen"/>
-  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
-    <widget class="QLabel" name="QLabelPicture">
-     <property name="text">
-      <string>TextLabel</string>
-     </property>
-    </widget>
+    <widget class="QLabel" name="QLabelPicture"/>
    </item>
   </layout>
  </widget>

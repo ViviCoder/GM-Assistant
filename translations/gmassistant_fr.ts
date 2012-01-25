@@ -324,20 +324,6 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>PictureWindow</name>
-    <message>
-        <location filename="../sources/windows/PictureWindow.ui" line="14"/>
-        <source>Picture</source>
-        <extracomment>Click for FullScreen</extracomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/PictureWindow.ui" line="26"/>
-        <source>TextLabel</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>action</name>
     <message>
         <source>Confirmation</source>
