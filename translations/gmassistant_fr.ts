@@ -736,13 +736,23 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="46"/>
+        <source>+</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="47"/>
         <source>&amp;Delete</source>
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="48"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="49"/>
         <source>Delete the item</source>
         <translation>Supprime l&apos;item</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="50"/>
+        <source>Del</source>
+        <translation>Suppr</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="56"/>

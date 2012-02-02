@@ -26,6 +26,7 @@
 #include "ItemDialog.h"
 #include "SoundEngine.h"
 
+class QCustomTreeWidgetItem;
 /*!
  * \brief Custom tree widget
  *
@@ -72,8 +73,16 @@ class QCustomTreeWidget: public QTreeWidget
     protected:
         // overriden methods
         void mouseDoubleClickEvent(QMouseEvent *e);
+        /*!
+         * \brief Event raised when a mouse button is pressed
+         * \param e Mouse event
+         */
         void mousePressEvent(QMouseEvent *e);
         void mouseReleaseEvent(QMouseEvent *e);
+        /*!
+         * \brief Event raised when a key is released
+         * \param e Key event
+         */
         void keyReleaseEvent(QKeyEvent *e);
         void dragEnterEvent(QDragEnterEvent *e);
         void dropEvent(QDropEvent *e);
@@ -83,6 +92,13 @@ class QCustomTreeWidget: public QTreeWidget
         void on_itemExpanded();
         void deleteItem(QTreeWidgetItem* item);
         void on_itemSelectionChanged();
+        /*!
+         * \brief Slot for "Add" menu action
+         * \param item Current item from which the new one will be added
+         * 
+         * Opens the item dialog window and adds the newly created item
+         */
+        void addItem(QCustomTreeWidgetItem* item);
     public:
         /*!
          * \brief Constructor of the widget

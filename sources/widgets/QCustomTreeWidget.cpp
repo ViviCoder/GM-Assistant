@@ -43,9 +43,11 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     actionAdd = new QAction(QIcon(":/data/images/add.png"),QApplication::translate("customTree","&Add",0),this);
     actionAdd->setIconVisibleInMenu(true);
     actionAdd->setStatusTip(QApplication::translate("customTree","Add a new item",0));
+    actionAdd->setShortcut(QApplication::translate("customTree","+",0));
     actionDelete = new QAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTree","&Delete",0),this);
     actionDelete->setIconVisibleInMenu(true);
     actionDelete->setStatusTip(QApplication::translate("customTree","Delete the item",0));
+    actionDelete->setShortcut(QApplication::translate("customTree","Del",0));
     // populating the pop-up menu
     menuIcons->addAction(actionNone);
     menuIcons->addAction(actionProgress);
@@ -136,43 +138,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     }
                                     else if (action == actionAdd)
                                     {
-                                        pItemDial->exec();
-                                        if (pItemDial->result()==QDialog::Accepted)
-                                        {
-                                            Item *newItem = ItemFactory::createItem(pItemDial->type(),pItemDial->text().toStdString(),pItemDial->state());
-                                            if (newItem->type()==Item::tSound)
-                                            {
-                                                dynamic_cast<SoundItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
-                                            }
-                                            if (newItem->type()==Item::tPicture)
-                                            {
-                                                dynamic_cast<PictureItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
-                                            }
-                                            switch (pItemDial->selectionResult())
-                                            {
-                                                case ItemDialog::rBrother:  {
-                                                                                Branch *parent = qItem->branch()->parent()->parent();
-                                                                                if (parent==NULL)
-                                                                                {
-                                                                                    Branch *newBranch = pTree->insert(pTree->indexOf(qItem->branch())+1,newItem);
-                                                                                    new QCustomTreeWidgetItem(this,newBranch,qItem);
-                                                                                }
-                                                                                else
-                                                                                {
-                                                                                    Branch *newBranch = parent->tree().insert(parent->tree().indexOf(qItem->branch())+1,newItem);
-                                                                                    new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem->parent()),newBranch,qItem);
-                                                                                }
-                                                                                break;
-                                                                            }
-                                                case ItemDialog::rChild:    {
-                                                                                Branch *newBranch = qItem->branch()->tree().add(newItem);
-                                                                                QCustomTreeWidgetItem *newQItem = new QCustomTreeWidgetItem(qItem,newBranch);
-                                                                                expandItem(newQItem->parent());
-                                                                                break;
-                                                                            }
-                                            }
-                                            resizeColumnToContents(0);
-                                        }
+                                        addItem(qItem);
                                     }
                                 }
                                 else if (topLevelItemCount()==0)
@@ -226,6 +192,12 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
                                         deleteItem(item);
                                     }
                                     break;
+            case Qt::Key_Plus:  QTreeWidget::keyReleaseEvent(e);
+                                if (!bEditing)
+                                {
+                                    addItem(dynamic_cast<QCustomTreeWidgetItem*>(item));
+                                }
+                                break;
             default: break; 
         }
     }
@@ -373,4 +345,45 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
 void QCustomTreeWidget::on_itemSelectionChanged()
 {
     bEditing = false;
+}
+
+void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
+{
+    pItemDial->exec();
+    if (pItemDial->result()==QDialog::Accepted)
+    {
+        Item *newItem = ItemFactory::createItem(pItemDial->type(),pItemDial->text().toStdString(),pItemDial->state());
+        if (newItem->type()==Item::tSound)
+        {
+            dynamic_cast<SoundItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
+        }
+        if (newItem->type()==Item::tPicture)
+        {
+            dynamic_cast<PictureItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
+        }
+        switch (pItemDial->selectionResult())
+        {
+            case ItemDialog::rBrother:  {
+                                            Branch *parent = item->branch()->parent()->parent();
+                                            if (parent==NULL)
+                                            {
+                                                Branch *newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
+                                                new QCustomTreeWidgetItem(this,newBranch,item);
+                                            }
+                                            else
+                                            {
+                                                Branch *newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
+                                                new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
+                                            }
+                                            break;
+                                        }
+            case ItemDialog::rChild:    {
+                                            Branch *newBranch = item->branch()->tree().add(newItem);
+                                            QCustomTreeWidgetItem *newQItem = new QCustomTreeWidgetItem(item,newBranch);
+                                            expandItem(newQItem->parent());
+                                            break;
+                                        }
+        }
+        resizeColumnToContents(0);
+    }
 }
