@@ -246,6 +246,7 @@ void QCustomTableWidget::onCellChanged(int row, int column)
         }
         charact.skill(column) = item(row,column)->text().toStdString();
     }
+    resizeColumnToContents(column);
 }
 
 void QCustomTableWidget::onHHeaderClicked(int index, const QPoint &position)
@@ -312,7 +313,7 @@ void QCustomTableWidget::addCharacter(int index)
             rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
             setVerticalHeaderItem(index+1, rowHeaderItem);
         }
-        resizeRowToContents(index+1);
+        resizeRowsToContents();
     }
 }
 
@@ -357,7 +358,7 @@ void QCustomTableWidget::addSkill(int index)
             setHorizontalHeaderItem(index+1, columnHeaderItem);
         }
     }
-    resizeColumnToContents(index+1);
+    resizeColumnsToContents();
 }
 
 void QCustomTableWidget::removeCharacter(int index)

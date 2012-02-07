@@ -1,3 +1,7 @@
+Changes in version 1.0.15
+
+- resizing bug in table widget fixed
+
 Changes in version 1.0.14
 
 - the slider now accepts wheel events and clicks 
