@@ -1182,7 +1182,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="328"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="392"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="389"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
@@ -1196,10 +1196,10 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="227"/>
         <location filename="../sources/windows/MainWindow.cpp" line="250"/>
         <location filename="../sources/windows/MainWindow.cpp" line="272"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="398"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="411"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="440"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="444"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="395"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="408"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="445"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="449"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1220,7 +1220,7 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="501"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="506"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>

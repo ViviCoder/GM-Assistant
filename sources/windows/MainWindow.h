@@ -196,6 +196,11 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \param positive True if wheeled forward, false otherwise
          */
         void on_sliderMusic_wheeled(bool positive);
+        /*!
+         * \brief Slot for when the value of the slider has changed
+         * \param value New value of the slider
+         */
+        void on_sliderMusic_valueChanged(int value);
         // play music and sound
         /*!
          * \brief Play a music file
