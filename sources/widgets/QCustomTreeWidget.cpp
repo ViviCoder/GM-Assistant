@@ -70,27 +70,31 @@ QCustomTreeWidget::~QCustomTreeWidget()
 
 void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
 {
-    QTreeWidgetItem *qtwitem = itemAt(e->pos());
-    if (qtwitem != NULL)
+    QTreeWidgetItem *qtwItem = itemAt(e->pos());
+    if (qtwItem != NULL)
     {
-        QCustomTreeWidgetItem *qctwitem = dynamic_cast<QCustomTreeWidgetItem*>(qtwitem);
-        Item *item = qctwitem->branch()->item();
-        switch (item->type())
-        {
-            case Item::tSound:  {
-                                    SoundItem *soundItem = dynamic_cast<SoundItem*>(item);
-                                    // we send a signal to play the music (and do some other things)
-                                    emit fileToPlay(soundItem->fileName(),soundItem->duration());
-                                    break;
-                                }
-            case Item::tPicture: {
-                                    PictureItem *pictureItem = dynamic_cast<PictureItem*>(item);
-                                    PictureWindow *pictureWindow = new PictureWindow(pictureItem->fileName());
-                                    pictureWindow->show();
-                                    break;
-                                 }
-            default:            break;
-        }
+        launchItem(qtwItem);
+    }
+}
+
+void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
+{
+    Item *item = dynamic_cast<QCustomTreeWidgetItem*>(qItem)->branch()->item();
+    switch (item->type())
+    {
+        case Item::tSound:  {
+                                SoundItem *soundItem = dynamic_cast<SoundItem*>(item);
+                                // we send a signal to play the music (and do some other things)
+                                emit fileToPlay(soundItem->fileName(),soundItem->duration());
+                                break;
+                            }
+        case Item::tPicture: {
+                                PictureItem *pictureItem = dynamic_cast<PictureItem*>(item);
+                                PictureWindow *pictureWindow = new PictureWindow(pictureItem->fileName());
+                                pictureWindow->show();
+                                break;
+                             }
+        default:            break;
     }
 }
 
@@ -176,29 +180,36 @@ void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *e)
 
 void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
 {
-    QTreeWidgetItem *item = currentItem();
-    if (item != NULL)
+    QTreeWidgetItem *qItem = currentItem();
+    if (qItem != NULL)
     {
         switch (e->key())
         {
-            case Qt::Key_F2:    item->setFlags(item->flags() | Qt::ItemIsEditable);
-                                editItem(item);
+            case Qt::Key_F2:    qItem->setFlags(qItem->flags() | Qt::ItemIsEditable);
+                                editItem(qItem);
                                 bEditing = true;
-                                item->setFlags(item->flags() & ~Qt::ItemIsEditable);
+                                qItem->setFlags(qItem->flags() & ~Qt::ItemIsEditable);
                                 break;
-            case Qt::Key_Delete:    QTreeWidget::keyReleaseEvent(e);
-                                    if (!bEditing)
+            case Qt::Key_Delete:    if (!bEditing)
                                     {
-                                        deleteItem(item);
+                                        deleteItem(qItem);
                                     }
                                     break;
-            case Qt::Key_Plus:  QTreeWidget::keyReleaseEvent(e);
-                                if (!bEditing)
+            case Qt::Key_Plus:  if (!bEditing)
                                 {
-                                    addItem(dynamic_cast<QCustomTreeWidgetItem*>(item));
+                                    addItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem));
                                 }
                                 break;
-            default: break; 
+            case Qt::Key_Space: if (!bEditing)
+                                {
+                                    launchItem(qItem);
+                                }
+                                break;
+            case Qt::Key_Return:
+            case Qt::Key_Enter:
+            case Qt::Key_Escape:    bEditing = false;
+                                    break;
+            default:            QTreeWidget::keyReleaseEvent(e); break; 
         }
     }
 }

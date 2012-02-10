@@ -72,6 +72,10 @@ class QCustomTreeWidget: public QTreeWidget
         bool bEditing;
     protected:
         // overriden methods
+        /*!
+         * \brief DoubleClickEvent handler
+         * \param e Mouse event
+         */
         void mouseDoubleClickEvent(QMouseEvent *e);
         /*!
          * \brief Event raised when a mouse button is pressed
@@ -99,6 +103,13 @@ class QCustomTreeWidget: public QTreeWidget
          * Opens the item dialog window and adds the newly created item
          */
         void addItem(QCustomTreeWidgetItem* item);
+        /*!
+         * \brief Slot for double click and space key pressed
+         * \param qItem Current item which will be "launched"
+         *
+         * Executes the action associated with the type of the item
+         */
+        void launchItem(QTreeWidgetItem* qItem);
     public:
         /*!
          * \brief Constructor of the widget
