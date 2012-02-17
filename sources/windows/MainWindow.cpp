@@ -211,6 +211,7 @@ void MainWindow::on_action_Load_triggered()
         {
             try
             {
+                chdir(QFileInfo(file).dir().path().toStdString().c_str());
                 eGame.fromFile(file.toStdString());
                 updateDisplay();
                 bModified = false;
@@ -434,6 +435,7 @@ void MainWindow::on_action_Reload_triggered()
     }
     else
     {
+        chdir(QFileInfo(sFileName).dir().path().toStdString().c_str());
         try
         {
             eGame.fromFile(sFileName.toStdString());
