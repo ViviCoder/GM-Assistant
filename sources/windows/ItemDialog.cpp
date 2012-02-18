@@ -54,7 +54,14 @@ Item::Type ItemDialog::type() const
 
 QString ItemDialog::fileName() const
 {
-    return editFile->text();
+    QString result(editFile->text()); // file selected
+    QString directory(QDir::current().path()); // current directory
+    if (result.startsWith(directory))
+    {
+        return result.replace(0,directory.length()+1,"");
+    }
+
+    return result;
 }
 
 void ItemDialog::on_pushChild_clicked()

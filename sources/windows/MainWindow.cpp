@@ -41,7 +41,7 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     QSettings settings;
 
     settings.beginGroup("directories");
-    sDir = settings.value("work",settings.value("install",QDir::current().path()+"/examples").toString()).toString();
+    QDir::setCurrent(settings.value("work",settings.value("install",QDir::current().path()+"/examples").toString()).toString());
     settings.endGroup();
 
     settings.beginGroup("mainWindow");
@@ -73,7 +73,7 @@ MainWindow::~MainWindow()
     QSettings settings;
 
     settings.beginGroup("directories");
-    settings.setValue("work",sDir);
+    settings.setValue("work",QDir::current().path());
     settings.endGroup();
 
     settings.beginGroup("mainWindow");
@@ -206,18 +206,18 @@ void MainWindow::on_action_Load_triggered()
 {
 /*    if (!bModified || (QMessageBox::question(this,QApplication::translate("mainWindow","Confirmation",0),QApplication::translate("mainWindow","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
     {*/
-        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),sDir,QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0)); 
+        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0)); 
         if (!file.isEmpty())
         {
             try
             {
-                chdir(QFileInfo(file).dir().path().toStdString().c_str());
+                // changing current directory
+                QDir::setCurrent(QFileInfo(file).dir().path());
                 eGame.fromFile(file.toStdString());
                 updateDisplay();
                 bModified = false;
                 updateRecent(file);
                 sFileName = file;
-                sDir = QFileInfo(sFileName).dir().path();
             }
             catch (xmlpp::exception &xml)
             {
@@ -256,7 +256,7 @@ void MainWindow::on_action_Save_triggered()
 void MainWindow::on_actionS_ave_as_triggered()
 {
     eGame.notes() = textNotes->toPlainText().toStdString();
-    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("mainWindow","Select the file to save",0),sDir,QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0));
+    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0));
     if (!file.isEmpty())
     {
         try
@@ -266,7 +266,7 @@ void MainWindow::on_actionS_ave_as_triggered()
             bModified = false;
             updateRecent(file);
             sFileName = file;
-            sDir = QFileInfo(sFileName).dir().path();
+            QDir::setCurrent(QFileInfo(sFileName).dir().path());
         }
         catch (xmlpp::exception &xml)
         {
@@ -435,7 +435,8 @@ void MainWindow::on_action_Reload_triggered()
     }
     else
     {
-        chdir(QFileInfo(sFileName).dir().path().toStdString().c_str());
+        // changing current directory
+        QDir::setCurrent(QFileInfo(sFileName).dir().path());
         try
         {
             eGame.fromFile(sFileName.toStdString());

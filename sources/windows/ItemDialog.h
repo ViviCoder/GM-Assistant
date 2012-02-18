@@ -36,6 +36,11 @@ class ItemDialog: public QDialog, private Ui::itemDialog
         Item::State state() const;
         QString text() const;
         Item::Type type() const;
+        /*!
+         * \brief Getter for the name of the file
+         *
+         * If the file is within the current directory, returns the relative path
+         */
         QString fileName() const;
         Result selectionResult() const;
     private:

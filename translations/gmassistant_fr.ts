@@ -865,42 +865,42 @@ p, li { white-space: pre-wrap; }
         <translation>A&amp;nnuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="71"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="76"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="91"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="96"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="78"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="83"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="98"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="103"/>
         <source>Uncomplete data</source>
         <translation>Données incomplètes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="71"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="91"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="78"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="98"/>
         <source>You must select a file before validating.</source>
         <translation>Vous devez sélectionner un fichier avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="76"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="96"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="83"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="103"/>
         <source>You must fill the content before validating.</source>
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="125"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="132"/>
         <source>Select the sound file to associate to the item</source>
         <translation>Sélectionnez le fichier son à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="125"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="132"/>
         <source>Audio files (*.mp3 *.wav *.ogg)</source>
         <translation>Fichiers audio (*.mp3 *.wav *.ogg)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="129"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="136"/>
         <source>Select the picture file to associate to the item</source>
         <translation>Sélectionnez le fichier image à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="129"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="136"/>
         <source>Picture files (*.jpg *.jpeg *.png *.bmp)</source>
         <translation>Ficher image (*.jpg *.jpeg *.png *.bmp)</translation>
     </message>
@@ -1198,8 +1198,8 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="273"/>
         <location filename="../sources/windows/MainWindow.cpp" line="396"/>
         <location filename="../sources/windows/MainWindow.cpp" line="409"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="447"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="451"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="448"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="452"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1220,7 +1220,7 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="508"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="509"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>
