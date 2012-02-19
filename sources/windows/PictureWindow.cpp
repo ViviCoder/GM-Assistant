@@ -18,16 +18,18 @@
 
 #include "PictureWindow.h"
 
-PictureWindow::PictureWindow(std::string pictureFileName):pictureToShow(new QPixmap)//: QWidget(parent)
+PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent): QLabel(parent)
 {
-    setupUi(this);
-    //QPixmap *pictureToShow = new QPixmap(pictureFileName.c_str());
-    pictureToShow->load(pictureFileName.c_str());
-    QLabelPicture->setPixmap(*pictureToShow);
-    //QLabelPicture->setPixmap(QPixmap(pictureFileName.c_str()));
+    setAlignment(Qt::AlignCenter);
+    setWindowFlags(windowFlags()|Qt::Window);
+    // setting backgournd color to black
+    QPalette newPalette(palette());
+    newPalette.setColor(QPalette::Window,QColor("black"));
+    setPalette(newPalette);
+    // displaying the picture
+    QPixmap pix(pictureFileName.c_str());
+    setPixmap(pix);
     showNormal();
-    //setWindowTitle((pictureItem->content()).c_str());
-
 }
 
 void PictureWindow::mouseReleaseEvent(QMouseEvent *e)
@@ -35,7 +37,6 @@ void PictureWindow::mouseReleaseEvent(QMouseEvent *e)
     if (!isFullScreen())
     {
         showFullScreen();
-        QLabelPicture->setScaledContents(true);
     }
     else
     {    
@@ -51,4 +52,12 @@ void PictureWindow::keyReleaseEvent(QKeyEvent *e)
                                 break;
         default: break;
     }
+}
+
+void PictureWindow::resizeEvent(QResizeEvent *e)
+{
+    // overriden event handler 
+    QLabel::resizeEvent(e);
+    // replacing the pixmap
+    setPixmap(pixmap()->scaled(e->size(),Qt::KeepAspectRatio));
 }

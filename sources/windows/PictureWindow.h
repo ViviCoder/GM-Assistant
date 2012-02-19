@@ -19,29 +19,44 @@
 #ifndef HEADER_PICTUREWINDOW
 #define HEADER_PICTUREWINDOW
 
-#include "ui_PictureWindow.h"
-#include "PictureItem.h" 
+#include <QLabel>
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <string>
 
 
 /*!
- * \brief Dialog window for characters
+ * \brief Window used to display a picture
  */
-class PictureWindow: public QWidget, private Ui::PictureWindow
+class PictureWindow: public QLabel
 {
     //Q_OBJECT
 
     public:
-        // constructor
-        PictureWindow(std::string pictureItem);
-        // accessors
+        /*!
+         * \brief Constructor of the window
+         * \param pictureFileName Name of the file containing the picture to show
+         * \param parent Parent widget
+         */
+        PictureWindow(const std::string &pictureFileName, QWidget *parent=NULL);
     protected:
+        /*!
+         * \brief Mouse ReleaseEvent handler
+         * \param e Mouse event raised
+         *
+         * Switches between full screen and normal
+         */
         void mouseReleaseEvent(QMouseEvent *e);
+        /*!
+         * \brief Key ReleaseEvent handler
+         * \param e Key event raised
+         */
         void keyReleaseEvent(QKeyEvent *e);
-    private:
-        QPixmap *pictureToShow;
+        /*!
+         * \brief Resize event handler
+         * \param e Resize event raised
+         */
+        void resizeEvent(QResizeEvent *e);
 };
 
 #endif

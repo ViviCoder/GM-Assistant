@@ -90,8 +90,7 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
                             }
         case Item::tPicture: {
                                 PictureItem *pictureItem = dynamic_cast<PictureItem*>(item);
-                                PictureWindow *pictureWindow = new PictureWindow(pictureItem->fileName());
-                                pictureWindow->show();
+                                new PictureWindow(pictureItem->fileName(),this);
                                 break;
                              }
         default:            break;
