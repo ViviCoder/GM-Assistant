@@ -17,7 +17,7 @@
 *************************************************************************/
 
 #include "FileItem.h"
-#include <fstream>
+#include <QFileInfo>
 
 using namespace std;
 
@@ -42,8 +42,7 @@ string FileItem::fileName() const
 void FileItem::setFileName(const string &fileName) throw(invalid_argument)
 {
     sFileName = fileName;
-    ifstream fichier(fileName.c_str()); 
-    if (fichier.fail())
+    if (!QFileInfo(fileName.c_str()).exists())
     {
         throw invalid_argument("Unable to read the file "+fileName);
     }

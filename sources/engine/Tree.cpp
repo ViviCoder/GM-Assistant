@@ -19,8 +19,6 @@
 #include "Tree.h"
 #include <sstream>
 #include "ItemFactory.h"
-// for debugging
-//#include <iostream>
 
 using namespace std;
 
