@@ -31,6 +31,13 @@ class FileItem: public Item
          * \brief Name of the file related to the item
          */
         std::string sFileName;
+    protected:
+        /*!
+         * \brief Setter for the name of the file of the item
+         * \param fileName New file name
+         * \throw std::invalid_argument Thrown when the file is not readable
+         */
+        void setFileName(const std::string &fileName) throw(std::invalid_argument);
     public:
         /*!
          *  \brief Constructor
@@ -46,12 +53,6 @@ class FileItem: public Item
          */
         Type type() const;  // overriden
         std::string fileName() const;
-        /*!
-         * \brief Setter for the name of the file of the item
-         * \param fileName New file name
-         * \throw std::invalid_argument Thrown when the file is not readable
-         */
-        void setFileName(const std::string &fileName) throw(std::invalid_argument);
         // overriden XML-related methods
         /*!
          * \brief Loads the item from a XML tree

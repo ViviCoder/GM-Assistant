@@ -40,6 +40,12 @@ class SoundItem: public FileItem
          * \brief Thread used to compute the duration
          */
         QCustomThread *pThread;
+    protected:
+        /*!
+         * \brief Setter for the file name
+         * \param fileName New file name
+         */
+        void setFileName(const std::string &fileName);
     public:
         /*!
          *  \brief Constructor
@@ -68,11 +74,6 @@ class SoundItem: public FileItem
          * \return Duration of the sound
          */
         double duration() const;
-        /*!
-         * \brief Setter for the file name
-         * \param fileName New file name
-         */
-        void setFileName(const std::string &fileName);
 };
 
 #endif

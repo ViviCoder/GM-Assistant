@@ -65,7 +65,13 @@ class QCustomTreeWidget: public QTreeWidget
          * \brief Delete action
          */
         QAction *actionDelete;
+        /*!
+         * \brief Underlying tree
+         */
         Tree *pTree;
+        /*!
+         * \brief Dialog window used to create items
+         */
         ItemDialog *pItemDial;
         QTreeWidgetItem *pDragSource;
         bool bNewlySelected;

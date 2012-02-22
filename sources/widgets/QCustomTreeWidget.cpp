@@ -146,23 +146,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                 }
                                 else if (topLevelItemCount()==0)
                                 {
-                                    pItemDial->exec();
-                                    if (pItemDial->result()==QDialog::Accepted)
-                                    {
-                                        Item *newItem = ItemFactory::createItem(pItemDial->type(),pItemDial->text().toStdString(),pItemDial->state());
-                                        if (newItem->type()==Item::tSound)
-                                        {
-                                            dynamic_cast<SoundItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
-                                        }
-                                        if (newItem->type()==Item::tPicture)
-                                        {
-                                            dynamic_cast<PictureItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
-                                        }
-                                        Branch *newBranch = pTree->add(newItem);
-                                        new QCustomTreeWidgetItem(this,newBranch);
-                                        resizeColumnToContents(0);
-                                    }
-                                    
+                                    addItem(NULL);
                                 }
                                 break;
         default:    break;
@@ -293,10 +277,10 @@ QIcon QCustomTreeWidget::icon(Item::State state)
 {
     switch (state)
     {
-        case Item::sProgress: return QIcon(":/data/images/uncheck.png");    break;
-        case Item::sFailure:  return QIcon(":/data/images/failure.png");    break;
-        case Item::sSuccess:  return QIcon(":/data/images/check.png");      break;
-        default:    return QIcon(); break;
+        case Item::sProgress:   return QIcon(":/data/images/uncheck.png");  break;
+        case Item::sFailure:    return QIcon(":/data/images/failure.png");  break;
+        case Item::sSuccess:    return QIcon(":/data/images/check.png");    break;
+        default:                return QIcon(":/data/images/empty.png");     break;
     }
 }
 
@@ -362,37 +346,50 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
     pItemDial->exec();
     if (pItemDial->result()==QDialog::Accepted)
     {
-        Item *newItem = ItemFactory::createItem(pItemDial->type(),pItemDial->text().toStdString(),pItemDial->state());
-        if (newItem->type()==Item::tSound)
+        // creation of the new item
+        Item *newItem;
+        switch (pItemDial->type())
         {
-            dynamic_cast<SoundItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
+            case Item::tSound:      newItem = new SoundItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString());
+                                    break;
+            case Item::tPicture:    newItem = new PictureItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString());
+                                    break;
+            default:                newItem = new Item(pItemDial->text().toStdString(),pItemDial->state());
+                                    break;
         }
-        if (newItem->type()==Item::tPicture)
+        if (item == NULL)
         {
-            dynamic_cast<PictureItem*>(newItem)->setFileName(pItemDial->fileName().toStdString());
+            // There is no item in the tree
+            Branch *newBranch = pTree->add(newItem);
+            new QCustomTreeWidgetItem(this,newBranch);
         }
-        switch (pItemDial->selectionResult())
+        else
         {
-            case ItemDialog::rBrother:  {
-                                            Branch *parent = item->branch()->parent()->parent();
-                                            if (parent==NULL)
-                                            {
-                                                Branch *newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
-                                                new QCustomTreeWidgetItem(this,newBranch,item);
+            switch (pItemDial->selectionResult())
+            {
+                case ItemDialog::rBrother:  {
+                                                // we want to insert it after the given item
+                                                Branch *parent = item->branch()->parent()->parent();
+                                                if (parent==NULL)
+                                                {
+                                                    Branch *newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
+                                                    new QCustomTreeWidgetItem(this,newBranch,item);
+                                                }
+                                                else
+                                                {
+                                                    Branch *newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
+                                                    new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
+                                                }
+                                                break;
                                             }
-                                            else
-                                            {
-                                                Branch *newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
-                                                new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
+                case ItemDialog::rChild:    {
+                                                // we want to insert it inside the given item
+                                                Branch *newBranch = item->branch()->tree().add(newItem);
+                                                QCustomTreeWidgetItem *newQItem = new QCustomTreeWidgetItem(item,newBranch);
+                                                expandItem(newQItem->parent());
+                                                break;
                                             }
-                                            break;
-                                        }
-            case ItemDialog::rChild:    {
-                                            Branch *newBranch = item->branch()->tree().add(newItem);
-                                            QCustomTreeWidgetItem *newQItem = new QCustomTreeWidgetItem(item,newBranch);
-                                            expandItem(newQItem->parent());
-                                            break;
-                                        }
+            }
         }
         resizeColumnToContents(0);
     }
