@@ -117,11 +117,13 @@ void ItemDialog::on_radioBasic_clicked()
 void ItemDialog::on_radioSound_clicked()
 {
     toolBrowse->setEnabled(true);
+    editFile->setText("");
 }
 
 void ItemDialog::on_radioPicture_clicked()
 {
     toolBrowse->setEnabled(true);
+    editFile->setText("");
 }
 
 void ItemDialog::on_toolBrowse_clicked()

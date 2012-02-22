@@ -56,7 +56,7 @@ void SoundItem::setFileName(const string &fileName)
     }
 }
 
-void SoundItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception)
+void SoundItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception, invalid_argument)
 {
     FileItem::fromXML(root);
     string name = fileName();

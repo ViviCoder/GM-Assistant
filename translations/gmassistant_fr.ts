@@ -885,22 +885,22 @@ p, li { white-space: pre-wrap; }
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="132"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="134"/>
         <source>Select the sound file to associate to the item</source>
         <translation>Sélectionnez le fichier son à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="132"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="134"/>
         <source>Audio files (*.mp3 *.wav *.ogg)</source>
         <translation>Fichiers audio (*.mp3 *.wav *.ogg)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="136"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
         <source>Select the picture file to associate to the item</source>
         <translation>Sélectionnez le fichier image à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="136"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
         <source>Picture files (*.jpg *.jpeg *.png *.bmp)</source>
         <translation>Ficher image (*.jpg *.jpeg *.png *.bmp)</translation>
     </message>
@@ -1192,6 +1192,7 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Reprise</translation>
     </message>
     <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="365"/>
         <location filename="../sources/windows/MainWindow.cpp" line="224"/>
         <location filename="../sources/windows/MainWindow.cpp" line="228"/>
         <location filename="../sources/windows/MainWindow.cpp" line="251"/>

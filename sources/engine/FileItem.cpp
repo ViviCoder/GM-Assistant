@@ -44,7 +44,7 @@ void FileItem::setFileName(const string &fileName) throw(invalid_argument)
     sFileName = fileName;
     if (!QFileInfo(fileName.c_str()).exists())
     {
-        throw invalid_argument("Unable to read the file "+fileName);
+        throw invalid_argument("The file "+fileName+" does not exist.");
     }
 }
 

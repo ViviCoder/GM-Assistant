@@ -348,14 +348,23 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
     {
         // creation of the new item
         Item *newItem;
-        switch (pItemDial->type())
+        try
         {
-            case Item::tSound:      newItem = new SoundItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString());
-                                    break;
-            case Item::tPicture:    newItem = new PictureItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString());
-                                    break;
-            default:                newItem = new Item(pItemDial->text().toStdString(),pItemDial->state());
-                                    break;
+            switch (pItemDial->type())
+            {
+                case Item::tSound:      newItem = new SoundItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString());
+                                        break;
+                case Item::tPicture:    newItem = new PictureItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString());
+                                        break;
+                default:                newItem = new Item(pItemDial->text().toStdString(),pItemDial->state());
+                                        break;
+            }
+        }
+        catch (std::invalid_argument &ia)
+        {
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),ia.what());
+            delete newItem;
+            return;
         }
         if (item == NULL)
         {

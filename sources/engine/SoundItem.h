@@ -62,8 +62,9 @@ class SoundItem: public FileItem
          * \brief Read the item from a XML file
          * \param root Parent XML element
          * \throw xmlpp::exception Exception thrown when the XML file is uncorrect
+         * \throw std::invalid_argument Exception thrown when the sound file does not exist
          */
-        void fromXML(const xmlpp::Element &root) throw(xmlpp::exception);
+        void fromXML(const xmlpp::Element &root) throw(xmlpp::exception, std::invalid_argument);
         /*!
          * \brief Getter for the type of the item
          * \return Item::tSound
