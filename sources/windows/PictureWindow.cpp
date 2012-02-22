@@ -18,7 +18,7 @@
 
 #include "PictureWindow.h"
 
-PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent): QLabel(parent)
+PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent): QLabel(parent), bError(false)
 {
     setAlignment(Qt::AlignCenter);
     setWindowFlags(windowFlags()|Qt::Window);
@@ -28,19 +28,40 @@ PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent
     setPalette(newPalette);
     // displaying the picture
     QPixmap pix(pictureFileName.c_str());
-    setPixmap(pix);
+    if (pix.isNull())
+    {
+        // the image cannot be loaded
+        bError = true;
+        setPixmap(QPixmap(":/data/images/stop.png"));
+    }
+    else
+    {
+        setPixmap(pix);
+    }
     showNormal();
+    if (bError)
+    {
+        setFixedSize(size());
+    }
 }
 
 void PictureWindow::mouseReleaseEvent(QMouseEvent *e)
 {
-    if (!isFullScreen())
+    if (bError)
     {
-        showFullScreen();
+        close();
+        deleteLater();
     }
     else
-    {    
-        showNormal();
+    {
+        if (!isFullScreen())
+        {
+            showFullScreen();
+        }
+        else
+        {    
+            showNormal();
+        }
     }
 }
 

@@ -30,15 +30,11 @@
  */
 class PictureWindow: public QLabel
 {
-    //Q_OBJECT
-
-    public:
+    private:
         /*!
-         * \brief Constructor of the window
-         * \param pictureFileName Name of the file containing the picture to show
-         * \param parent Parent widget
+         * Flag active if the image cannot be loaded
          */
-        PictureWindow(const std::string &pictureFileName, QWidget *parent=NULL);
+        bool bError;
     protected:
         /*!
          * \brief Mouse ReleaseEvent handler
@@ -57,6 +53,13 @@ class PictureWindow: public QLabel
          * \param e Resize event raised
          */
         void resizeEvent(QResizeEvent *e);
+    public:
+        /*!
+         * \brief Constructor of the window
+         * \param pictureFileName Name of the file containing the picture to show
+         * \param parent Parent widget
+         */
+        PictureWindow(const std::string &pictureFileName, QWidget *parent=NULL);
 };
 
 #endif
