@@ -76,6 +76,10 @@ class QCustomTreeWidget: public QTreeWidget
         QTreeWidgetItem *pDragSource;
         bool bNewlySelected;
         bool bEditing;
+        /*!
+         * \brief Boolean indicating if the size of the items is limited
+         */
+        bool bLimitedSize;
     protected:
         // overriden methods
         /*!
@@ -129,6 +133,11 @@ class QCustomTreeWidget: public QTreeWidget
         void setTree(Tree *tree);
         // associating an icon to a state
         static QIcon icon(Item::State state);
+        /*!
+         * \brief Setter for the flag limitedSize
+         * \param limitedSize Indicates if the size of the items is limited
+         */
+        void setLimitedSize(bool limitedSize);
     signals:
         /*!
          * \brief Signal to play a file

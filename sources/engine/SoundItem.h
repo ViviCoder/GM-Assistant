@@ -22,6 +22,8 @@
 #include "FileItem.h"
 #include "QCustomThread.h"
 
+#define SOUND_SIZE_LIMIT    1024
+
 /*!
  * \brief Item related to a sound file 
  */
@@ -33,7 +35,7 @@ class SoundItem: public FileItem
          */
         double dDuration;
         /*!
-         * \brief Boolean indicating whether the computation of the duration is finished
+         * \brief Boolean indicating if the computation of the duration is finished
          */
         bool bThreadFinished;
         /*!
@@ -42,18 +44,28 @@ class SoundItem: public FileItem
         QCustomThread *pThread;
     protected:
         /*!
+         * \brief Getter for the limit size
+         * \return Limit size
+         */
+        virtual int limitSize() const;
+        /*!
          * \brief Setter for the file name
          * \param fileName New file name
+         * \throw std::invalid_argument Thrown when the file is not readable
+         * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
+         *
+         * Calculates the duration of the sound file
          */
-        void setFileName(const std::string &fileName);
+        virtual void setFileName(const std::string &fileName) throw(std::invalid_argument, std::overflow_error);
     public:
         /*!
          *  \brief Constructor
          *  \param content Content of the item
          *  \param state State of the item
          *  \param fileName Name of the sound file of the item
+         *  \param limitedSize Indicates wether or not the size of the file is limited
          */
-        SoundItem(const std::string &content="", State state=sNone, const std::string &fileName="");
+        SoundItem(const std::string &content="", State state=sNone, const std::string &fileName="", bool limitedSize=false);
         /*!
          * \brief Destructor
          */

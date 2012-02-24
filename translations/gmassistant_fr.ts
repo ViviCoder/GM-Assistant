@@ -952,15 +952,15 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="237"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="318"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="367"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="320"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="369"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="244"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="317"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="366"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="319"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="368"/>
         <source>0:00/0:00</source>
         <translation></translation>
     </message>
@@ -1181,47 +1181,47 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="329"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="390"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="331"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="392"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="335"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="337"/>
         <source>&amp;Resume</source>
         <translation>&amp;Reprise</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="365"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="224"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="228"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="251"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="273"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="396"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="409"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="448"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="452"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="226"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="230"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="253"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="275"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="398"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="411"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="450"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="454"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="209"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="211"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="209"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="259"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="211"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="261"/>
         <source>GM-Assistant files (*.gma);;XML files (*.xml)</source>
         <translation>Fichiers GM-Assistant (*.gma);;Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="259"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="261"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="509"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="511"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>

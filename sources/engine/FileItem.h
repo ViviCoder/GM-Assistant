@@ -21,6 +21,8 @@
 
 #include "Item.h"
 
+#define SIZE_LIMIT    20480
+
 /*!
  * \brief Item related to a file
  */
@@ -33,19 +35,30 @@ class FileItem: public Item
         std::string sFileName;
     protected:
         /*!
+         * \brief Boolean indicating if the size of the sound file is limited
+         */
+        bool bLimitedSize;
+        /*!
+         * \brief Getter for the limit size
+         * \return Limit size
+         */
+        virtual int limitSize() const;
+        /*!
          * \brief Setter for the name of the file of the item
          * \param fileName New file name
          * \throw std::invalid_argument Thrown when the file is not readable
+         * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
          */
-        void setFileName(const std::string &fileName) throw(std::invalid_argument);
+        virtual void setFileName(const std::string &fileName) throw(std::invalid_argument, std::overflow_error);
     public:
         /*!
          *  \brief Constructor
          *  \param content Content of the item
          *  \param state State of the item
          *  \param fileName Name of the file of the item
+         *  \param limitedSize Indicates wether or not the size of the file is limited
          */
-        FileItem(const std::string &content="", State state=sNone, const std::string &fileName="");
+        FileItem(const std::string &content="", State state=sNone, const std::string &fileName="", bool limitedSize = false);
         // accessors
         /*!
          * \brief Getter for the type of the item

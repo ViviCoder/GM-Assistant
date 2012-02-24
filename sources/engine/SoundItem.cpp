@@ -21,12 +21,8 @@
 
 using namespace std;
 
-SoundItem::SoundItem(const string &content, Item::State state, const string &fileName): FileItem(content,state,fileName), dDuration(0),pThread(NULL)
+SoundItem::SoundItem(const string &content, Item::State state, const string &fileName, bool limitedSize): FileItem(content,state,fileName, limitedSize), dDuration(0),pThread(NULL)
 {
-    if (fileName != "")
-    {
-        pThread = new QCustomThread(fileName,DEFAULT_BUFFER_SIZE,&dDuration,&bThreadFinished);
-    }
 }
 
 SoundItem::~SoundItem()
@@ -45,10 +41,12 @@ double SoundItem::duration() const
     return dDuration;
 }
 
-void SoundItem::setFileName(const string &fileName)
+void SoundItem::setFileName(const string &fileName) throw(invalid_argument, overflow_error)
 {
     FileItem::setFileName(fileName);
+
     // terminate the thread if still running
+    dDuration = 0;
     bThreadFinished = true;
     if (fileName != "")
     {
@@ -63,5 +61,17 @@ void SoundItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception, inva
     if (name != "")
     {
         pThread = new QCustomThread(name,DEFAULT_BUFFER_SIZE,&dDuration,&bThreadFinished);
+    }
+}
+
+int SoundItem::limitSize() const
+{
+    if (bLimitedSize)
+    {
+        return SOUND_SIZE_LIMIT;
+    }
+    else
+    {
+        return SIZE_LIMIT;
     }
 }

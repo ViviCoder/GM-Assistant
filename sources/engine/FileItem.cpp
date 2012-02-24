@@ -21,7 +21,7 @@
 
 using namespace std;
 
-FileItem::FileItem(const string &content, State state, const string &fileName): Item(content,state), sFileName(fileName)
+FileItem::FileItem(const string &content, State state, const string &fileName, bool limitedSize): Item(content,state), sFileName(fileName), bLimitedSize(limitedSize)
 {
     if (fileName != "")
     {
@@ -39,12 +39,17 @@ string FileItem::fileName() const
     return sFileName;
 }
 
-void FileItem::setFileName(const string &fileName) throw(invalid_argument)
+void FileItem::setFileName(const string &fileName) throw(invalid_argument, overflow_error)
 {
     sFileName = fileName;
-    if (!QFileInfo(fileName.c_str()).exists())
+    QFileInfo file(fileName.c_str());
+    if (!file.exists())
     {
         throw invalid_argument("The file "+fileName+" does not exist.");
+    }
+    if (bLimitedSize && file.size()/1024 > limitSize())
+    {
+        throw overflow_error((QString("The file ") + fileName.c_str() + " exceeds the size limit of %1MB.").arg(limitSize()/1024).toStdString());
     }
 }
 
@@ -76,4 +81,9 @@ void FileItem::toXML(xmlpp::Element &root)
 
     Element *tmp = root.add_child("file");
     tmp->set_attribute("name",sFileName);
+}
+
+int FileItem::limitSize() const
+{
+    return SIZE_LIMIT;
 }

@@ -36,6 +36,8 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     connect(treeMusic,SIGNAL(fileToPlay(std::string,double)),this,SLOT(playMusic(std::string,double)));
     connect(treeFX,SIGNAL(fileToPlay(std::string,double)),this,SLOT(playSound(std::string)));
     connect(smMapper,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
+    // setting widgets
+    treeFX->setLimitedSize(true);
 
     // loading settings
     QSettings settings;

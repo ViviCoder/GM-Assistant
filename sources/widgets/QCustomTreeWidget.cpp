@@ -25,7 +25,7 @@
 #include <QMessageBox>
 #include <exception>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false)
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false), bLimitedSize(false)
 {
     // creating actions
     actionNone = new QAction(QIcon(":/data/images/empty.png"),QApplication::translate("customTree","&None",0),this);
@@ -347,12 +347,12 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
     if (pItemDial->result()==QDialog::Accepted)
     {
         // creation of the new item
-        Item *newItem;
+        Item *newItem = NULL;
         try
         {
             switch (pItemDial->type())
             {
-                case Item::tSound:      newItem = new SoundItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString());
+                case Item::tSound:      newItem = new SoundItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString(),bLimitedSize);
                                         break;
                 case Item::tPicture:    newItem = new PictureItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString());
                                         break;
@@ -360,10 +360,13 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
                                         break;
             }
         }
-        catch (std::invalid_argument &ia)
+        catch (exception &e)
         {
-            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),ia.what());
-            delete newItem;
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),e.what());
+            if (newItem != NULL)
+            {
+                delete newItem;
+            }
             return;
         }
         if (item == NULL)
@@ -402,4 +405,9 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
         }
         resizeColumnToContents(0);
     }
+}
+
+void QCustomTreeWidget::setLimitedSize(bool limitedSize)
+{
+    bLimitedSize = limitedSize;
 }
