@@ -37,12 +37,11 @@ class FileItem: public Item
         /*!
          * \brief Boolean indicating if the size of the sound file is limited
          */
-        bool bLimitedSize;
+        bool bSizeLimited;
         /*!
-         * \brief Getter for the limit size
-         * \return Limit size
+         * \brief Limit size
          */
-        virtual int limitSize() const;
+        int iLimitSize;
         /*!
          * \brief Setter for the name of the file of the item
          * \param fileName New file name
@@ -56,9 +55,9 @@ class FileItem: public Item
          *  \param content Content of the item
          *  \param state State of the item
          *  \param fileName Name of the file of the item
-         *  \param limitedSize Indicates wether or not the size of the file is limited
+         *  \param sizeLimited Indicates wether or not the size of the file is limited
          */
-        FileItem(const std::string &content="", State state=sNone, const std::string &fileName="", bool limitedSize = false);
+        FileItem(const std::string &content="", State state=sNone, const std::string &fileName="", bool sizeLimited = false, int limitSize = SIZE_LIMIT);
         // accessors
         /*!
          * \brief Getter for the type of the item
@@ -72,8 +71,9 @@ class FileItem: public Item
          * \param root Position of the item in the XML tree
          * \throw xmlpp::exception Thrown when there is an error in the XML tree
          * \throw std::invalid_argument Thrown when a file is not readable 
+         * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
          */
-        void fromXML(const xmlpp::Element &root) throw(xmlpp::exception, std::invalid_argument);
+        void fromXML(const xmlpp::Element &root) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
         void toXML(xmlpp::Element &root);
 };
 

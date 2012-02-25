@@ -37,7 +37,7 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     connect(treeFX,SIGNAL(fileToPlay(std::string,double)),this,SLOT(playSound(std::string)));
     connect(smMapper,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
     // setting widgets
-    treeFX->setLimitedSize(true);
+    treeFX->setSizeLimited(true);
 
     // loading settings
     QSettings settings;
@@ -225,7 +225,7 @@ void MainWindow::on_action_Load_triggered()
             {
                 QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
             }
-            catch (std::invalid_argument &e)
+            catch (std::exception &e)
             {
                 QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QString(e.what()) + "\nThe game cannot be loaded.");
             }
@@ -449,7 +449,7 @@ void MainWindow::on_action_Reload_triggered()
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
         }
-        catch (std::invalid_argument &e)
+        catch (std::exception &e)
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QString(e.what()) + "\nThe game cannot be loaded.");
         }

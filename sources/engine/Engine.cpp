@@ -42,7 +42,7 @@ Engine::Engine(const string &fileName) throw(xmlpp::exception)
 
 // XML methods
 
-void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception, invalid_argument)
+void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception, invalid_argument, overflow_error)
 {
     using namespace xmlpp;
 
@@ -113,7 +113,7 @@ void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception, inval
     node = root->get_children("effects");
     if (!node.empty())
     {
-        tEffects.fromXML(*dynamic_cast<Element*>(node.front()));
+        tEffects.fromXML(*dynamic_cast<Element*>(node.front()),true);
     }
 }
 

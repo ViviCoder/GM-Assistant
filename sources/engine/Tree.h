@@ -81,9 +81,12 @@ class Tree
         /*!
          * \brief XML loader
          * \param root Position of the tree in the XML tree
-         * \throw std::invalid_argument Thrown when an item has not been loaded correctly
+         * \param limitedSize Indicates if the size of the items is limited
+         * \throw std::invalid_argument Thrown when an item has not been loaded correctly        
+         * \throw std::overflow_error Thrown when the size of a file exceeds the limit (if limited)
+
          */
-        void fromXML(const xmlpp::Element &root) throw(std::invalid_argument);
+        void fromXML(const xmlpp::Element &root, bool limitedSize = false) throw(std::invalid_argument, std::overflow_error);
         // iterator-related methods
         iterator begin() const;
         iterator beginUnchecked() const;

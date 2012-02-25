@@ -44,11 +44,6 @@ class SoundItem: public FileItem
         QCustomThread *pThread;
     protected:
         /*!
-         * \brief Getter for the limit size
-         * \return Limit size
-         */
-        virtual int limitSize() const;
-        /*!
          * \brief Setter for the file name
          * \param fileName New file name
          * \throw std::invalid_argument Thrown when the file is not readable
@@ -56,16 +51,16 @@ class SoundItem: public FileItem
          *
          * Calculates the duration of the sound file
          */
-        virtual void setFileName(const std::string &fileName) throw(std::invalid_argument, std::overflow_error);
+        void setFileName(const std::string &fileName) throw(std::invalid_argument, std::overflow_error);
     public:
         /*!
          *  \brief Constructor
          *  \param content Content of the item
          *  \param state State of the item
          *  \param fileName Name of the sound file of the item
-         *  \param limitedSize Indicates wether or not the size of the file is limited
+         *  \param sizeLimited Indicates wether or not the size of the file is limited
          */
-        SoundItem(const std::string &content="", State state=sNone, const std::string &fileName="", bool limitedSize=false);
+        SoundItem(const std::string &content="", State state=sNone, const std::string &fileName="", bool sizeLimited = false);
         /*!
          * \brief Destructor
          */
@@ -75,8 +70,9 @@ class SoundItem: public FileItem
          * \param root Parent XML element
          * \throw xmlpp::exception Exception thrown when the XML file is uncorrect
          * \throw std::invalid_argument Exception thrown when the sound file does not exist
+         * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
          */
-        void fromXML(const xmlpp::Element &root) throw(xmlpp::exception, std::invalid_argument);
+        void fromXML(const xmlpp::Element &root) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
         /*!
          * \brief Getter for the type of the item
          * \return Item::tSound

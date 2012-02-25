@@ -30,13 +30,13 @@ Item* ItemFactory::copyItem(Item *item)
     return NULL;
 }
 
-Item* ItemFactory::createItem(Item::Type type, const std::string &content, Item::State state)
+Item* ItemFactory::createItem(Item::Type type, const std::string &content, Item::State state, bool sizeLimited)
 {
     switch (type)
     {
         case Item::tBasic:  return new Item(content,state); break;
         case Item::tFile:   return new FileItem(content,state); break;
-        case Item::tSound:  return new SoundItem(content,state); break;
+        case Item::tSound:  return new SoundItem(content,state,"",sizeLimited); break;
         case Item::tPicture:  return new PictureItem(content,state); break;
     }
     return NULL;

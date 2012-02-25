@@ -56,8 +56,9 @@ class Engine
          * \param fileName File name of the game to load
          * \throw xmlpp::exception Exception thrown by the XML library when the file is uncorrect
          * \throw std::invalid_argument Thrown when an item has not been loaded correctly
+         * \throw std::overflow_error Thrown when the size of a file exceeds the limit (if limited)
          */
-        void fromFile(const std::string &fileName) throw(xmlpp::exception, std::invalid_argument);
+        void fromFile(const std::string &fileName) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
         /*!
          * \brief Saves a game into a file
          * \param fileName Name of the file to be saved

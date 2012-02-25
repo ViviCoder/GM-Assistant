@@ -77,7 +77,7 @@ void Tree::toXML(xmlpp::Element &root) const
     }
 }
 
-void Tree::fromXML(const xmlpp::Element &root) throw(invalid_argument)
+void Tree::fromXML(const xmlpp::Element &root, bool limitedSize) throw(invalid_argument, overflow_error)
 {
     clear();
     using namespace xmlpp;
@@ -104,7 +104,7 @@ void Tree::fromXML(const xmlpp::Element &root) throw(invalid_argument)
         {
             content = attr->get_value();
         }
-        Item *item = ItemFactory::createItem(type,content,state);
+        Item *item = ItemFactory::createItem(type,content,state,limitedSize);
         item->fromXML(*elem);
         Branch *branch = new Branch(item,*elem,this);
         vChildren.push_back(branch);

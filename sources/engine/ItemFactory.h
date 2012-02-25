@@ -45,11 +45,12 @@ class ItemFactory
          * \param type Type of the item to create
          * \param content Content of the item to create
          * \param state State of the item to create
+         * \param sizeLimited Indicates if the size of the item (for SoundItems) is limited
          * \return New item
          *
          * Creates a new Item with the given type and the given parameters
          */
-        static Item* createItem(Item::Type type, const std::string &content, Item::State state);
+        static Item* createItem(Item::Type type, const std::string &content, Item::State state, bool sizeLimited = false);
 };
 
 #endif

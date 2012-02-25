@@ -21,7 +21,7 @@
 
 using namespace std;
 
-FileItem::FileItem(const string &content, State state, const string &fileName, bool limitedSize): Item(content,state), sFileName(fileName), bLimitedSize(limitedSize)
+FileItem::FileItem(const string &content, State state, const string &fileName, bool sizeLimited, int limitSize): Item(content,state), sFileName(fileName), bSizeLimited(sizeLimited), iLimitSize(limitSize)
 {
     if (fileName != "")
     {
@@ -47,13 +47,13 @@ void FileItem::setFileName(const string &fileName) throw(invalid_argument, overf
     {
         throw invalid_argument("The file "+fileName+" does not exist.");
     }
-    if (bLimitedSize && file.size()/1024 > limitSize())
+    if (bSizeLimited && file.size()/1024 > iLimitSize)
     {
-        throw overflow_error((QString("The file ") + fileName.c_str() + " exceeds the size limit of %1MB.").arg(limitSize()/1024).toStdString());
+        throw overflow_error((QString("The file ") + fileName.c_str() + " exceeds the size limit of %1MB.").arg(iLimitSize/1024).toStdString());
     }
 }
 
-void FileItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception, invalid_argument)
+void FileItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception, invalid_argument, overflow_error)
 {
     using namespace xmlpp;
     
@@ -81,9 +81,4 @@ void FileItem::toXML(xmlpp::Element &root)
 
     Element *tmp = root.add_child("file");
     tmp->set_attribute("name",sFileName);
-}
-
-int FileItem::limitSize() const
-{
-    return SIZE_LIMIT;
 }

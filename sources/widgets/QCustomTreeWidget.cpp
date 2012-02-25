@@ -25,7 +25,7 @@
 #include <QMessageBox>
 #include <exception>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false), bLimitedSize(false)
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false)
 {
     // creating actions
     actionNone = new QAction(QIcon(":/data/images/empty.png"),QApplication::translate("customTree","&None",0),this);
@@ -352,7 +352,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
         {
             switch (pItemDial->type())
             {
-                case Item::tSound:      newItem = new SoundItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString(),bLimitedSize);
+                case Item::tSound:      newItem = new SoundItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString(),bSizeLimited);
                                         break;
                 case Item::tPicture:    newItem = new PictureItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString());
                                         break;
@@ -407,7 +407,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
     }
 }
 
-void QCustomTreeWidget::setLimitedSize(bool limitedSize)
+void QCustomTreeWidget::setSizeLimited(bool sizeLimited)
 {
-    bLimitedSize = limitedSize;
+    bSizeLimited = sizeLimited;
 }
