@@ -47,7 +47,14 @@ double SoundItem::duration() const
 
 void SoundItem::setFileName(const string &fileName) throw(invalid_argument, overflow_error)
 {
-    FileItem::setFileName(fileName);
+    try
+    {
+        FileItem::setFileName(fileName);
+    }
+    catch (overflow_error &e)
+    {
+        throw overflow_error(string(e.what()) + " Use music instead.");
+    }
 
     // terminate the thread if still running
     dDuration = 0;

@@ -56,6 +56,7 @@ class FileItem: public Item
          *  \param state State of the item
          *  \param fileName Name of the file of the item
          *  \param sizeLimited Indicates wether or not the size of the file is limited
+         *  \param limitSize Limit size
          */
         FileItem(const std::string &content="", State state=sNone, const std::string &fileName="", bool sizeLimited = false, int limitSize = SIZE_LIMIT);
         // accessors

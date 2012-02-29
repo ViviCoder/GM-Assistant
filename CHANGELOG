@@ -1,3 +1,13 @@
+Changes in version 1.1.0
+
+- new menu to choose displayed widgets
+- basic settings support, with recently opened files, etc.
+- save files extension changed to .gma
+- new type of item to display pictures (with full-screen support)
+- new button to enable music looping
+- size of files limited to 1MB for sound effects, 20MB for others
+- new keyboard shortcuts and status tips
+
 Changes in version 1.0.15
 
 - resizing bug in table widget fixed
