@@ -85,7 +85,9 @@ cp -v $cp_flags GM-Assistant $1 >> $install_log
 echo "Copying license..."
 cp -v $cp_flags LICENSE $1 >> $install_log
 echo "Copying changelog..."
-cp -v $cp_flags changelog $1 >> $install_log
+cp -v $cp_flags CHANGELOG $1 >> $install_log
+echo "Copying readme..."
+cp -v $cp_flags README $1 >> $install_log
 echo
 echo "Installation done"
 echo "To uninstall, type 'make uninstall'"
