@@ -58,7 +58,7 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     slRecent = settings.value("recent").toStringList();
     // display the recently opened games in the menu
     actionR_ecent->setMenu(new QMenu);
-    updateRecent("");
+    addRecent("");
     sFileName = settings.value("last").toString();
     if (!sFileName.isEmpty())
     {
@@ -67,6 +67,9 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
         setWindowTitle(QString("GM-Assistant - ")+QFileInfo(sFileName).fileName());
     }
     settings.endGroup();
+    
+    // recently opened files update
+    connect(actionR_ecent->menu(),SIGNAL(aboutToShow()),this,SLOT(updateRecent()));
 }
 
 MainWindow::~MainWindow()
@@ -218,7 +221,7 @@ void MainWindow::on_action_Load_triggered()
                 eGame.fromFile(file.toStdString());
                 updateDisplay();
                 bModified = false;
-                updateRecent(file);
+                addRecent(file);
                 sFileName = file;
             }
             catch (xmlpp::exception &xml)
@@ -266,7 +269,7 @@ void MainWindow::on_actionS_ave_as_triggered()
             eGame.toFile(file.toStdString());
     //        action_Save->setEnabled(false);
             bModified = false;
-            updateRecent(file);
+            addRecent(file);
             sFileName = file;
             QDir::setCurrent(QFileInfo(sFileName).dir().path());
         }
@@ -284,7 +287,7 @@ void MainWindow::on_action_New_triggered()
         eGame.clear();
         updateDisplay();
         bModified = false;
-        updateRecent("");
+        addRecent("");
         sFileName = "";
 //    }
 }
@@ -462,7 +465,7 @@ void MainWindow::resizeEvent(QResizeEvent *e)
     QMainWindow::resizeEvent(e);
 }
 
-void MainWindow::updateRecent(const QString &fileName)
+void MainWindow::addRecent(const QString &fileName)
 {
     // delete the new file if already present
     int index = slRecent.indexOf(fileName);
@@ -481,26 +484,9 @@ void MainWindow::updateRecent(const QString &fileName)
         else
         {
             slRecent.insert(0,sFileName);
-            if (slRecent.size() > RECENT_NUMBER)
-            {
-                slRecent.removeLast();
-            }
         }
     }
-    // update the display
-    QMenu *menu = actionR_ecent->menu();
-    menu->clear();
-    int i=1;
-    QAction *action;
-    for (QStringList::iterator it=slRecent.begin(); it != slRecent.end(); it++)
-    {
-        action = menu->addAction(QString("&%1 ").arg(i)+QFileInfo(*it).fileName());
-        // mapping
-        smMapper->setMapping(action,i);
-        connect(action,SIGNAL(triggered()),smMapper,SLOT(map()));
-        action->setStatusTip(*it);
-        i++; 
-    }
+
     // update the name of the file in the window title
     if (!fileName.isEmpty())
     {
@@ -512,10 +498,46 @@ void MainWindow::updateRecent(const QString &fileName)
     }
 }
 
+void MainWindow::updateRecent()
+{
+    // update the display
+    QMenu *menu = actionR_ecent->menu();
+    menu->clear();
+    int i=1;
+    QAction *action;
+    for (QStringList::iterator it=slRecent.begin(); it != slRecent.end(); it++)
+    {
+        QFileInfo file(*it);
+        if (file.exists())
+        {
+            // file exists, so we add it into the menu
+            action = menu->addAction(QString("&%1 ").arg(i)+file.fileName());
+            // mapping
+            smMapper->setMapping(action,i);
+            connect(action,SIGNAL(triggered()),smMapper,SLOT(map()));
+            action->setStatusTip(*it);
+            i++; 
+            if (i == RECENT_NUMBER)
+            {
+                // deletes all remaining files in the list
+                slRecent.erase(it,slRecent.end());
+                break;
+            }
+        }
+        else
+        {
+            // mark the list item to be deleted
+            (*it) = "";
+        }
+    }
+    // delete empty items from the list
+    slRecent = slRecent.filter(QRegExp(".+"));
+}
+
 void MainWindow::loadRecent(int index)
 {
     QString file(slRecent[index-1]);
-    updateRecent(file);
+    addRecent(file);
     sFileName = file;
     on_action_Reload_triggered();
 }

@@ -208,12 +208,18 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void playMusic(const std::string &fileName, double duration);
         void playSound(const std::string &fileName);
         /*!
-         * \brief Recent files update
+         * \brief Recent files update when opening a new file
          * \param fileName File to be opened
          *
-         * Updates the list of the recently opened games
+         * Adds the file to the list of the recently opened games
          */
-        void updateRecent(const QString &fileName);
+        void addRecent(const QString &fileName);
+        /*!
+         * \brief Recent files list update
+         *
+         * Deletes non-existent files in the list of recently opened files and limits their number
+         */
+        void updateRecent();
         /*!
          * \brief Slot for the "Recent" submenu items
          * \param index Index of the action triggered
