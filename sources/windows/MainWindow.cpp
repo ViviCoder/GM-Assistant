@@ -440,6 +440,13 @@ void MainWindow::on_action_Reload_triggered()
     }
     else
     {
+        QFileInfo file(sFileName);
+        // test of the existence
+        if (!file.exists())
+        {
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QApplication::translate("mainWindow","The file \"%1\" does not exist.",0).arg(sFileName));
+            return;
+        }
         // changing current directory
         QDir::setCurrent(QFileInfo(sFileName).dir().path());
         try

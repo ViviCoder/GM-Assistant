@@ -1199,8 +1199,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="278"/>
         <location filename="../sources/windows/MainWindow.cpp" line="401"/>
         <location filename="../sources/windows/MainWindow.cpp" line="414"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="453"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="457"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="447"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="460"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="464"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1221,7 +1222,16 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="497"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="447"/>
+        <source>The file &quot;%1&quot; does not exist.</source>
+        <translation>Le fichier &quot;%1&quot; n&apos;existe pas.</translation>
+    </message>
+    <message>
+        <source>The file %1 does not exist.</source>
+        <translation type="obsolete">Le fichier %1 n&apos;existe pas.</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.cpp" line="504"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>
