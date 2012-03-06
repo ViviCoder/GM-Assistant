@@ -20,8 +20,8 @@
 #define HEADER_VERSION
 
 #define MAJOR_VERSION   1
-#define MINOR_VERSION   1
-#define RELEASE_VERSION 1
+#define MINOR_VERSION   2
+#define RELEASE_VERSION 0
 
 // some stringification macros
 #define xstr(s) str(s)
