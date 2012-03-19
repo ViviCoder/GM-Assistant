@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -16,9 +16,9 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "PictureWindow.h"
+#include "ImageWindow.h"
 
-PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent): QLabel(parent), bError(false)
+ImageWindow::ImageWindow(const std::string &imageFileName, QWidget *parent): QLabel(parent), bError(false)
 {
     setAlignment(Qt::AlignCenter);
     setWindowFlags(windowFlags()|Qt::Window);
@@ -26,8 +26,8 @@ PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent
     QPalette newPalette(palette());
     newPalette.setColor(QPalette::Window,QColor("black"));
     setPalette(newPalette);
-    // displaying the picture
-    QPixmap pix(pictureFileName.c_str());
+    // displaying the image
+    QPixmap pix(imageFileName.c_str());
     if (pix.isNull())
     {
         // the image cannot be loaded
@@ -45,7 +45,7 @@ PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent
     }
 }
 
-void PictureWindow::mouseReleaseEvent(QMouseEvent *e)
+void ImageWindow::mouseReleaseEvent(QMouseEvent *e)
 {
     if (bError)
     {
@@ -65,7 +65,7 @@ void PictureWindow::mouseReleaseEvent(QMouseEvent *e)
     }
 }
 
-void PictureWindow::keyReleaseEvent(QKeyEvent *e)
+void ImageWindow::keyReleaseEvent(QKeyEvent *e)
 {
     switch (e->key())
     {
@@ -75,7 +75,7 @@ void PictureWindow::keyReleaseEvent(QKeyEvent *e)
     }
 }
 
-void PictureWindow::resizeEvent(QResizeEvent *e)
+void ImageWindow::resizeEvent(QResizeEvent *e)
 {
     // overriden event handler 
     QLabel::resizeEvent(e);

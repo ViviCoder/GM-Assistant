@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #include "QCustomTreeWidgetItem.h"
 #include "ItemFactory.h"
 #include "SoundEngine.h"
-#include "PictureWindow.h"
+#include "ImageWindow.h"
 #include <QApplication>
 #include <QMessageBox>
 #include <exception>
@@ -88,9 +88,9 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
                                 emit fileToPlay(soundItem->fileName(),soundItem->duration());
                                 break;
                             }
-        case Item::tPicture: {
-                                PictureItem *pictureItem = dynamic_cast<PictureItem*>(item);
-                                new PictureWindow(pictureItem->fileName(),this);
+        case Item::tImage: {
+                                ImageItem *imageItem = dynamic_cast<ImageItem*>(item);
+                                new ImageWindow(imageItem->fileName(),this);
                                 break;
                              }
         default:            break;
@@ -354,7 +354,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
             {
                 case Item::tSound:      newItem = new SoundItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString(),bSizeLimited);
                                         break;
-                case Item::tPicture:    newItem = new PictureItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString());
+                case Item::tImage:    newItem = new ImageItem(pItemDial->text().toStdString(),pItemDial->state(),pItemDial->fileName().toStdString());
                                         break;
                 default:                newItem = new Item(pItemDial->text().toStdString(),pItemDial->state());
                                         break;

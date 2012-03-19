@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -26,9 +26,9 @@
 
 
 /*!
- * \brief Window used to display a picture
+ * \brief Window used to display an image
  */
-class PictureWindow: public QLabel
+class ImageWindow: public QLabel
 {
     private:
         /*!
@@ -56,10 +56,10 @@ class PictureWindow: public QLabel
     public:
         /*!
          * \brief Constructor of the window
-         * \param pictureFileName Name of the file containing the picture to show
+         * \param imageFileName Name of the file containing the image to show
          * \param parent Parent widget
          */
-        PictureWindow(const std::string &pictureFileName, QWidget *parent=NULL);
+        ImageWindow(const std::string &imageFileName, QWidget *parent=NULL);
 };
 
 #endif

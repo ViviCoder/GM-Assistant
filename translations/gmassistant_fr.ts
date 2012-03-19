@@ -866,8 +866,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="128"/>
-        <source>&amp;Picture</source>
+        <source>I&amp;mage</source>
         <translation>&amp;Image</translation>
+    </message>
+    <message>
+        <source>&amp;Picture</source>
+        <translation type="obsolete">&amp;Image</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="141"/>
@@ -938,13 +942,21 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
-        <source>Select the picture file to associate to the item</source>
+        <source>Select the image file to associate to the item</source>
         <translation>Sélectionnez le fichier image à associer à l&apos;item</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
+        <source>Image files (*.jpg *.jpeg *.png *.bmp)</source>
+        <translation>Fichiers image (*.jpg *.jpeg *.png *.bmp)</translation>
+    </message>
+    <message>
+        <source>Select the picture file to associate to the item</source>
+        <translation type="obsolete">Sélectionnez le fichier image à associer à l&apos;item</translation>
+    </message>
+    <message>
         <source>Picture files (*.jpg *.jpeg *.png *.bmp)</source>
-        <translation>Ficher image (*.jpg *.jpeg *.png *.bmp)</translation>
+        <translation type="obsolete">Ficher image (*.jpg *.jpeg *.png *.bmp)</translation>
     </message>
 </context>
 <context>

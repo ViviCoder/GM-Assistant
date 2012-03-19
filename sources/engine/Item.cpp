@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -75,7 +75,7 @@ string Item::typeToStr(Type type)
         case tBasic:    return "basic"; break;
         case tFile:     return "file"; break;
         case tSound:    return "sound"; break;
-        case tPicture:  return "picture"; break;
+        case tImage:    return "picture"; break;
     }
     return "";
 }
@@ -94,6 +94,6 @@ Item::Type Item::strToType(const string &name) throw(invalid_argument)
     if (name=="basic")  return tBasic;
     else if (name=="file") return tFile;
     else if (name=="sound") return tSound;
-    else if (name=="picture") return tPicture;
+    else if (name=="picture") return tImage;
     else    throw invalid_argument("Unrecognized \""+name+"\" item type");
 }

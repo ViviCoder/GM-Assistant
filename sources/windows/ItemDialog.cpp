@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -46,8 +46,8 @@ Item::Type ItemDialog::type() const
 {
     if (radioSound->isChecked())
         return Item::tSound;
-    else if (radioPicture->isChecked())
-        return Item::tPicture;
+    else if (radioImage->isChecked())
+        return Item::tImage;
     else
         return Item::tBasic;
 }
@@ -120,7 +120,7 @@ void ItemDialog::on_radioSound_clicked()
     editFile->setText("");
 }
 
-void ItemDialog::on_radioPicture_clicked()
+void ItemDialog::on_radioImage_clicked()
 {
     toolBrowse->setEnabled(true);
     editFile->setText("");
@@ -134,8 +134,8 @@ void ItemDialog::on_toolBrowse_clicked()
                                 editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the sound file to associate to the item",0),"",QApplication::translate("itemDialog","Audio files (*.mp3 *.wav *.ogg)",0)));    
                                 break;
                             }
-        case Item::tPicture:  { 
-                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the picture file to associate to the item",0),"",QApplication::translate("itemDialog","Picture files (*.jpg *.jpeg *.png *.bmp)",0)));    
+        case Item::tImage:  { 
+                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the image file to associate to the item",0),"",QApplication::translate("itemDialog","Image files (*.jpg *.jpeg *.png *.bmp)",0)));    
                                 break;
                             }
         default:            break;

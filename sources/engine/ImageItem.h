@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -22,21 +22,21 @@
 #include "FileItem.h"
 
 /*!
- * \brief Item related to a picture file 
+ * \brief Item related to an image file 
  */
-class PictureItem: public FileItem
+class ImageItem: public FileItem
 {
     public:
         /*!
          *  \brief Constructor
          *  \param content Content of the item
          *  \param state State of the item
-         *  \param fileName Name of the picture file of the item
+         *  \param fileName Name of the image file of the item
          */
-        PictureItem(const std::string &content="", State state=sNone, const std::string &fileName="");
+        ImageItem(const std::string &content="", State state=sNone, const std::string &fileName="");
         /*!
          * \brief Getter for the type of the item
-         * \return Item::tPicture
+         * \return Item::tImage
          */
         Type type() const;  // overriden
 };

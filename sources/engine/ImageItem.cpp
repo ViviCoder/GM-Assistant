@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -16,15 +16,15 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "PictureItem.h"
+#include "ImageItem.h"
 
 using namespace std;
 
-PictureItem::PictureItem(const string &content, Item::State state, const string &fileName): FileItem(content,state,fileName)
+ImageItem::ImageItem(const string &content, Item::State state, const string &fileName): FileItem(content,state,fileName)
 {
 }
 
-Item::Type PictureItem::type() const
+Item::Type ImageItem::type() const
 {
-    return tPicture;
+    return tImage;
 }

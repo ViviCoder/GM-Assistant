@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -42,8 +42,8 @@ class Item
             tFile,
             //! Item related to a sound file
             tSound,
-            //! Item related to a picture file
-            tPicture
+            //! Item related to an image file
+            tImage
         };
         // constructor
         Item(const std::string &content="", State state=sNone);

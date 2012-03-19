@@ -123,9 +123,9 @@
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="radioPicture">
+       <widget class="QRadioButton" name="radioImage">
         <property name="text">
-         <string>&amp;Picture</string>
+         <string>I&amp;mage</string>
         </property>
         <property name="icon">
          <iconset resource="../../ressource.qrc">

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -69,11 +69,11 @@ class ItemDialog: public QDialog, private Ui::itemDialog
          */ 
         void on_toolBrowse_clicked();
         /*!
-         * \brief Slot for the "Picture" radio item
+         * \brief Slot for the "Image" radio item
          *
-         * Sets the type of the item to tPicture
+         * Sets the type of the item to tImage
          */
-        void on_radioPicture_clicked();
+        void on_radioImage_clicked();
 
         /*!
          * \brief Overriden "exec" slot
