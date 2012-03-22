@@ -51,26 +51,26 @@ Celle-ci aussi, et sans bug !</notes>
     <item state="progress" type="basic" content="deuxième (en fait troisième)"/>
     <item state="success" type="basic" content="n'importe quoi"/>
     <item state="none" type="picture" content="Image">
-      <file name="../data/images/GMA.png"/>
+      <file name="images/GMA.png"/>
     </item>
   </history>
   <music>
     <item state="none" type="sound" content="Bataille">
-      <file name="../data/sounds/ak47.mp3"/>
+      <file name="sounds/ak47.mp3"/>
     </item>
     <item state="none" type="sound" content="Pluie">
-      <file name="../data/sounds/pluie.mp3"/>
+      <file name="sounds/pluie.mp3"/>
     </item>
   </music>
   <effects>
     <item state="none" type="sound" content="grincement de porte">
-      <file name="../data/sounds/grince.mp3"/>
+      <file name="sounds/grince.mp3"/>
     </item>
     <item state="none" type="sound" content="Cri">
-      <file name="../data/sounds/cri.mp3"/>
+      <file name="sounds/cri.mp3"/>
     </item>
     <item state="none" type="sound" content="Coup de feu">
-      <file name="../data/sounds/pan.mp3"/>
+      <file name="sounds/pan.mp3"/>
     </item>
   </effects>
 </game>

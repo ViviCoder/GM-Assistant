@@ -56,7 +56,7 @@ p, li { white-space: pre-wrap; }
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../ressource.qrc">:/data/images/GMA.png</pixmap>
+      <pixmap resource="../../ressource.qrc">:/data/images/GMA.svg</pixmap>
      </property>
      <property name="scaledContents">
       <bool>false</bool>
