@@ -72,8 +72,6 @@ sed -i '/^$/d' $config_file
 # copying files
 echo "Copying data..."
 cp -rv $cp_flags data $1 >> $install_log
-echo "Copying examples..."
-cp -rv $cp_flags examples $1 >> $install_log
 echo "Copying translations..."
 if [ ! -d $1/translations ]
 then

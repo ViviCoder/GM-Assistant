@@ -43,7 +43,7 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     QSettings settings;
 
     settings.beginGroup("directories");
-    QDir::setCurrent(settings.value("work",settings.value("install",QDir::current().path()+"/examples").toString()).toString());
+    QDir::setCurrent(settings.value("work").toString());
     settings.endGroup();
 
     settings.beginGroup("mainWindow");
