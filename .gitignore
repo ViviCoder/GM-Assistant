@@ -1,9 +1,9 @@
-GM-Assistant.pro
+gm-assistant
+gm-assistant.pro
 Makefile
 ui_*
 qrc_*
 .*
-GM-Assistant
 *.o
 moc_*
 *.qm

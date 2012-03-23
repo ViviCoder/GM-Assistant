@@ -1,5 +1,5 @@
 ##########################################################################
-# Copyright © 2011 Vincent Prat & Simon Nicolas
+# Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 # Initializing some options
 debug="false"
-prefix="$HOME/GM-Assistant"
+prefix="$HOME/gm-assistant"
 
 # Reading options
 supported_short_options="gh"
@@ -79,7 +79,7 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="$softs uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed mkdir cp rmdir sort pwd"
+softs="$softs uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed install"
 
 for soft in $softs
 do
@@ -87,7 +87,7 @@ do
     if [ $? = 1 ]
     then
         echo $soft missing !
-        exit
+        exit 1
     else
         echo $soft: $path        
     fi
@@ -104,7 +104,7 @@ echo "*********************************"
 echo
 echo libXML++:
 xml_devs="libxml++"
-xml_dev_path=$(ls -l $inc_path | grep -o -e "libxml++-[0-9]\{1,\}\.[0-9]\{1,\}" | head -n 1)
+xml_dev_path=$(ls -l $inc_path | grep -o -e "libxml++-2\.[0-9]\{1,\}" | head -n 1)
 
 for dev in $xml_devs
 do
@@ -140,10 +140,13 @@ echo "* Preparing the compilation... *"
 echo "********************************"
 echo
 
-qmake -project
-lupdate GM-Assistant.pro
-lrelease GM-Assistant.pro
-qmake
+target="gm-assistant"
+pro_file=$target.pro
+
+qmake -project -o $pro_file
+lupdate $pro_file
+lrelease $pro_file
+qmake $pro_file
 
 # adding the -g flag if the debug option is enabled
 if [ $debug = "true" ]
@@ -173,10 +176,14 @@ make -s clean
 rm -f *.o
 rm -f ui_*.h
 
+# add files to clean
+sed $sed_i 's#DEL_FILE) Makefile#DEL_FILE) Makefile\n\t-$(DEL_FILE) translations/*.qm\n\t-$(DEL_FILE) '$pro_file'#' Makefile
+
 # preparing the installation
 prefix=$(echo $prefix | sed "s#\~#$HOME#")
-sed $sed_i "s#^install:.*#install:\n\t\@\.\/install.sh $prefix#" Makefile
-sed $sed_i "s#^uninstall:.*#uninstall:\n\t\@\.\/uninstall.sh#" Makefile
+sed $sed_i "s#DESTDIR.*=.*#DESTDIR\t= $prefix#" Makefile
+
+sed $sed_i 's#^install:.*#BINS=$(DESTDIR)/bin\nSHARE=$(DESTDIR)/share\nTRANSLATIONS=$(SHARE)/translations\n\ninstall:\n\t\install -d $(DESTDIR) $(BINS) $(TRANSLATIONS)\n\t$(INSTALL_PROGRAM) ./gm-assistant $(BINS)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)#' Makefile
 
 echo
 echo "********************"
