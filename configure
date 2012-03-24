@@ -21,10 +21,13 @@
 # Initializing some options
 debug="false"
 prefix="$HOME/gm-assistant"
+config_path="/etc/xdg/gm-assistant"
+conf_file="gm-assistant.conf"
+system_install="true"
 
 # Reading options
 supported_short_options="gh"
-supported_long_options="help,debug,prefix:"
+supported_long_options="help,debug,prefix:,user"
 
 options=$(getopt -s sh -l $supported_long_options $supported_short_options $@)
 if [ $? -eq 1 ]   # unsupported options
@@ -41,9 +44,11 @@ do
     then
         case $opt in
             -g | --debug)   debug="true";;
-            -h | --help)    echo -e "Usage: configure [options]\n\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n --prefix=dir\t'make install' will install this software in dir"
+            -h | --help)    echo -e "Usage: configure [options]\n\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n --prefix=dir\t'make install' will install this software in dir\n --user\t\t'make install' will install this software in a user scope"
                 exit 0;;
             --prefix)       arg=1;;
+            --user)         system_install="false"
+                            config_path="$HOME/.config/gm-assistant";;
             --) break;;
         esac
     else
@@ -62,12 +67,10 @@ echo Operating system: $OS
 # OS-dependent variables
 if [ $OS = "Linux" ]
 then
-	softs="moc-qt4"
 	inc_path="/usr/include/"
     sed_i="-i"
 elif [ $OS = "Darwin" ]
 then
-	softs="moc"
 	inc_path="/opt/local/include/"
     sed_i='-i ""'
 fi
@@ -79,7 +82,7 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="$softs uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed install"
+softs="uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed install"
 
 for soft in $softs
 do
@@ -177,13 +180,22 @@ rm -f *.o
 rm -f ui_*.h
 
 # add files to clean
-sed $sed_i 's#DEL_FILE) Makefile#DEL_FILE) Makefile\n\t-$(DEL_FILE) translations/*.qm\n\t-$(DEL_FILE) '$pro_file'#' Makefile
+sed $sed_i 's#DEL_FILE) Makefile#DEL_FILE) Makefile\n\t-$(DEL_FILE) translations/*.qm\n\t-$(DEL_FILE) '$pro_file'\n\t-$(DEL_FILE) '$conf_file'#' Makefile
+
+# preparing conf file
+echo "[directories]" > $conf_file
+echo "install=$prefix/share" >> $conf_file
 
 # preparing the installation
 prefix=$(echo $prefix | sed "s#\~#$HOME#")
 sed $sed_i "s#DESTDIR.*=.*#DESTDIR\t= $prefix#" Makefile
 
-sed $sed_i 's#^install:.*#BINS=$(DESTDIR)/bin\nSHARE=$(DESTDIR)/share\nTRANSLATIONS=$(SHARE)/translations\n\ninstall:\n\t\install -d $(DESTDIR) $(BINS) $(TRANSLATIONS)\n\t$(INSTALL_PROGRAM) ./gm-assistant $(BINS)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)#' Makefile
+if [ $system_install = "true" ]
+then
+    sed $sed_i 's#-o main.o#-DSYSTEM_INSTALL -o main.o#' Makefile
+fi
+
+sed $sed_i 's#^install:.*#BINS=$(DESTDIR)/bin\nSHARE=$(DESTDIR)/share\nTRANSLATIONS=$(SHARE)/translations\nCONF='$config_path'\n\ninstall:\n\t\install -d $(DESTDIR) $(BINS) $(TRANSLATIONS) $(CONF)\n\t$(INSTALL_PROGRAM) ./gm-assistant $(BINS)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
 
 echo
 echo "********************"

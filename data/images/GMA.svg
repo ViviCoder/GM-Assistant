@@ -9,8 +9,8 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="560.18164"
-   height="527.11792"
+   width="378.98557"
+   height="356.61658"
    id="svg2"
    version="1.1"
    inkscape:version="0.47 r22583"
@@ -263,7 +263,7 @@
      inkscape:pageshadow="2"
      inkscape:zoom="0.22627417"
      inkscape:cx="-1861.4212"
-     inkscape:cy="242.26103"
+     inkscape:cy="242.26102"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -296,19 +296,20 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Calque"
-     transform="translate(-2.2094937,12.568726)" />
+     transform="translate(-2.2094937,-157.9326)" />
   <g
      inkscape:groupmode="layer"
      id="layer4"
      inkscape:label="Calque#1"
-     transform="translate(-2.2094937,12.568726)" />
+     transform="translate(-2.2094937,-157.9326)" />
   <g
      inkscape:label="Calque 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-2.2094937,12.568726)">
+     transform="translate(-2.2094937,-157.9326)">
     <g
-       id="g5413">
+       id="g5413"
+       transform="matrix(0.67654045,0,0,0.67654045,0.71468185,166.43585)">
       <g
          transform="translate(-94.842517,-271.53543)"
          id="g3912">

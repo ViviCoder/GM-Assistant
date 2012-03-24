@@ -26,6 +26,7 @@
 #include "MainWindow.h"
 
 #define MAX_LENGTH  256
+#define APPLICATION_NAME    "gm-assistant"
 
 #undef main
 
@@ -41,13 +42,17 @@ int main(int argc, char* argv[])
     QTextCodec::setCodecForTr(QTextCodec::codecForName("UTF-8"));
 
     // initializing settings' stuff
-    QCoreApplication::setOrganizationName("GM-Assistant");
-    QCoreApplication::setApplicationName("GM-Assistant");
+    QCoreApplication::setOrganizationName(APPLICATION_NAME);
+    QCoreApplication::setApplicationName(APPLICATION_NAME);
 
     // getting install directory (on Linux only)
     QString install_dir;
 #ifdef __linux__
+    #ifdef SYSTEM_INSTALL
+    QSettings settings(QSettings::SystemScope,APPLICATION_NAME,APPLICATION_NAME);
+    #else
     QSettings settings;
+    #endif
     settings.beginGroup("directories");
     install_dir = settings.value("install").toString();
     if (!install_dir.isEmpty())
