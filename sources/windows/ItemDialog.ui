@@ -48,7 +48,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../ressource.qrc">
-          <normaloff>:/data/images/empty.png</normaloff>:/data/images/empty.png</iconset>
+          <normaloff>:/data/images/empty.svg</normaloff>:/data/images/empty.svg</iconset>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -62,7 +62,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../ressource.qrc">
-          <normaloff>:/data/images/uncheck.png</normaloff>:/data/images/uncheck.png</iconset>
+          <normaloff>:/data/images/uncheck.svg</normaloff>:/data/images/uncheck.svg</iconset>
         </property>
        </widget>
       </item>
@@ -73,7 +73,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../ressource.qrc">
-          <normaloff>:/data/images/failure.png</normaloff>:/data/images/failure.png</iconset>
+          <normaloff>:/data/images/failure.svg</normaloff>:/data/images/failure.svg</iconset>
         </property>
        </widget>
       </item>
@@ -84,7 +84,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../ressource.qrc">
-          <normaloff>:/data/images/check.png</normaloff>:/data/images/check.png</iconset>
+          <normaloff>:/data/images/check.svg</normaloff>:/data/images/check.svg</iconset>
         </property>
        </widget>
       </item>
@@ -104,7 +104,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../ressource.qrc">
-          <normaloff>:/data/images/empty.png</normaloff>:/data/images/empty.png</iconset>
+          <normaloff>:/data/images/empty.svg</normaloff>:/data/images/empty.svg</iconset>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -118,7 +118,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../ressource.qrc">
-          <normaloff>:/data/images/file_sound.png</normaloff>:/data/images/file_sound.png</iconset>
+          <normaloff>:/data/images/speaker.svg</normaloff>:/data/images/speaker.svg</iconset>
         </property>
        </widget>
       </item>
@@ -129,7 +129,7 @@
         </property>
         <property name="icon">
          <iconset resource="../../ressource.qrc">
-          <normaloff>:/data/images/file_picture.png</normaloff>:/data/images/file_picture.png</iconset>
+          <normaloff>:/data/images/image.svg</normaloff>:/data/images/image.svg</iconset>
         </property>
        </widget>
       </item>
@@ -173,7 +173,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../ressource.qrc">
-         <normaloff>:/data/images/add.png</normaloff>:/data/images/add.png</iconset>
+         <normaloff>:/data/images/add.svg</normaloff>:/data/images/add.svg</iconset>
        </property>
       </widget>
      </item>
@@ -184,7 +184,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../ressource.qrc">
-         <normaloff>:/data/images/son.png</normaloff>:/data/images/son.png</iconset>
+         <normaloff>:/data/images/son.svg</normaloff>:/data/images/son.svg</iconset>
        </property>
       </widget>
      </item>
@@ -195,7 +195,7 @@
        </property>
        <property name="icon">
         <iconset resource="../../ressource.qrc">
-         <normaloff>:/data/images/delete.png</normaloff>:/data/images/delete.png</iconset>
+         <normaloff>:/data/images/stop.svg</normaloff>:/data/images/stop.svg</iconset>
        </property>
       </widget>
      </item>

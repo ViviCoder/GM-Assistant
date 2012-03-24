@@ -51,13 +51,13 @@ void QCustomTreeWidgetItem::updateDisplay()
     setIcon(1,QCustomTreeWidget::icon(item->state()));
     if (item->type()==Item::tSound)
     {
-        setIcon(0,QIcon(":/data/images/speaker.png"));
+        setIcon(0,QIcon(":/data/images/speaker.svg"));
         setToolTip(0,dynamic_cast<SoundItem*>(item)->fileName().c_str()); 
         setStatusTip(0,QApplication::translate("customTree","Double click to play the file",0));
     }
     else if (item->type()==Item::tPicture)
     {
-        setIcon(0,QIcon(":/data/images/file_picture.png"));
+        setIcon(0,QIcon(":/data/images/image.svg"));
         setToolTip(0,dynamic_cast<PictureItem*>(item)->fileName().c_str()); 
         setStatusTip(0,QApplication::translate("customTree","Double click to show the file",0));
     }

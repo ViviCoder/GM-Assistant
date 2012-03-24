@@ -26,13 +26,13 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     // popup menu
     // skills
     QMenu *menuColumn = menu->addMenu(QApplication::translate("customTable","&Skill",0));
-    actionAddColumn = new QAction(QIcon(":/data/images/add.png"),QApplication::translate("customTable","&Add",0),this);
+    actionAddColumn = new QAction(QIcon(":/data/images/add.svg"),QApplication::translate("customTable","&Add",0),this);
     actionAddColumn->setIconVisibleInMenu(true);
     actionAddColumn->setStatusTip(QApplication::translate("customTable","Add a new skill",0));
-    actionRemoveColumn = new QAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTable","&Remove",0),this);
+    actionRemoveColumn = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
     actionRemoveColumn->setIconVisibleInMenu(true);
     actionRemoveColumn->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
-    actionEditColumn = new QAction(QIcon(":/data/images/son.png"),QApplication::translate("customTable","&Edit",0),this);
+    actionEditColumn = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTable","&Edit",0),this);
     actionEditColumn->setIconVisibleInMenu(true);
     actionEditColumn->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
     menuColumn->addAction(actionAddColumn);
@@ -40,13 +40,13 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     menuColumn->addAction(actionEditColumn);
     // characters
     QMenu *menuRow = menu->addMenu(QApplication::translate("customTable","&Character",0));
-    actionAddRow = new QAction(QIcon(":/data/images/add.png"),QApplication::translate("customTable","&Add",0),this);
+    actionAddRow = new QAction(QIcon(":/data/images/add.svg"),QApplication::translate("customTable","&Add",0),this);
     actionAddRow->setIconVisibleInMenu(true);
     actionAddRow->setStatusTip(QApplication::translate("customTable","Add a new character",0));
-    actionRemoveRow = new QAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTable","&Remove",0),this);
+    actionRemoveRow = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
     actionRemoveRow->setIconVisibleInMenu(true);
     actionRemoveRow->setStatusTip(QApplication::translate("customTable","Remove the character",0));
-    actionEditRow = new QAction(QIcon(":/data/images/son.png"),QApplication::translate("customTable","&Edit",0),this);
+    actionEditRow = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTable","&Edit",0),this);
     actionEditRow->setIconVisibleInMenu(true);
     actionEditRow->setStatusTip(QApplication::translate("customTable","Edit the character",0));
     menuRow->addAction(actionAddRow);
@@ -54,13 +54,13 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     menuRow->addAction(actionEditRow);
 
     // popup menu for vertical header
-    actionVAdd = new QAction(QIcon(":/data/images/add.png"),QApplication::translate("customTable","&Add",0),this);
+    actionVAdd = new QAction(QIcon(":/data/images/add.svg"),QApplication::translate("customTable","&Add",0),this);
     actionVAdd->setIconVisibleInMenu(true);
     actionVAdd->setStatusTip(QApplication::translate("customTable","Add a new character",0));
-    actionVRemove = new QAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTable","&Remove",0),this);
+    actionVRemove = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
     actionVRemove->setIconVisibleInMenu(true);
     actionVRemove->setStatusTip(QApplication::translate("customTable","Remove the character",0));
-    actionVEdit = new QAction(QIcon(":/data/images/son.png"),QApplication::translate("customTable","&Edit",0),this);
+    actionVEdit = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTable","&Edit",0),this);
     actionVEdit->setIconVisibleInMenu(true);
     actionVEdit->setStatusTip(QApplication::translate("customTable","Edit the character",0));
     vMenu->addAction(actionVAdd);
@@ -68,13 +68,13 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     vMenu->addAction(actionVEdit);
 
     // popup menu for horizontal header
-    actionHAdd = new QAction(QIcon(":/data/images/add.png"),QApplication::translate("customTable","&Add",0),this);
+    actionHAdd = new QAction(QIcon(":/data/images/add.svg"),QApplication::translate("customTable","&Add",0),this);
     actionHAdd->setIconVisibleInMenu(true);
     actionHAdd->setStatusTip(QApplication::translate("customTable","Add a new skill",0));
-    actionHRemove = new QAction(QIcon(":/data/images/remove.png"),QApplication::translate("customTable","&Remove",0),this);
+    actionHRemove = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
     actionHRemove->setIconVisibleInMenu(true);
     actionHRemove->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
-    actionHEdit = new QAction(QIcon(":/data/images/son.png"),QApplication::translate("customTable","&Edit",0),this);
+    actionHEdit = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTable","&Edit",0),this);
     actionHEdit->setIconVisibleInMenu(true);
     actionHEdit->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
     hMenu->addAction(actionHAdd);

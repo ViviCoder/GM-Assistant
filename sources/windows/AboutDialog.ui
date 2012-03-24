@@ -56,10 +56,7 @@ p, li { white-space: pre-wrap; }
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="../../ressource.qrc">:/data/images/GMA.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>false</bool>
+      <pixmap resource="../../ressource.qrc">:/data/images/GMA.svg</pixmap>
      </property>
     </widget>
    </item>
@@ -70,7 +67,10 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline&quot;&gt;Developed and maintained by:&lt;/p&gt;
 &lt;p&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;br /&gt;
-&lt;a href=&quot;https://github.com/ViviCoder/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/ViviCoder/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;a href=&quot;http://vivicoder.github.com/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://vivicoder.github.com/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -83,6 +83,9 @@ p, li { white-space: pre-wrap; }
 &lt;p&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/ &quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
      </property>
     </widget>
    </item>
@@ -119,7 +122,7 @@ during a role playing game&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
  </widget>
  <resources>
   <include location="../../ressource.qrc"/>
-  <include location="../../../../ressource.qrc"/>
+  <include location="../../ressource.qrc"/>
  </resources>
  <connections>
   <connection>

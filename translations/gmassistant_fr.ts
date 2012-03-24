@@ -27,13 +27,25 @@ p, li { white-space: pre-wrap; }
 &lt;p&gt;Version :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="69"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="66"/>
+        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;body&gt;
+&lt;p style=&quot;text-decoration: underline&quot;&gt;Developed and maintained by:&lt;/p&gt;
+&lt;p&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;br /&gt;
+&lt;a href=&quot;http://vivicoder.github.com/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://vivicoder.github.com/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;body&gt;
+&lt;p style=&quot;text-decoration: underline&quot;&gt;Développé et maintenu par:&lt;/p&gt;
+&lt;p&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;br /&gt;
+&lt;a href=&quot;http://vivicoder.github.com/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://vivicoder.github.com/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline&quot;&gt;Developed and maintained by:&lt;/p&gt;
 &lt;p&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;br /&gt;
 &lt;a href=&quot;https://github.com/ViviCoder/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/ViviCoder/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//FR&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//FR&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline&quot;&gt;Développé et maintenu par :&lt;/p&gt;
 &lt;p&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;br /&gt;
@@ -55,7 +67,7 @@ p, li { white-space: pre-wrap; }
 &lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="99"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="102"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline;&quot;&gt;Description:&lt;/p&gt;
@@ -70,7 +82,7 @@ conçu pour assister le Maître du Jeu&lt;br /&gt;
 lors d&apos;une partie de jeu de rôles&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="111"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="114"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot; text-decoration: underline;&quot;&gt;License:&lt;/p&gt;
@@ -220,7 +232,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">GM-Assistant est un logiciel libre conçu pour assister le Maître du Jeu lors d&apos;une partie de jeu de rôle</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="92"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="95"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
@@ -901,8 +913,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
+        <source>Picture files (*.jpg *.jpeg *.png *.bmp *.svg)</source>
+        <translation>Fichers image (*.jpg *.jpeg *.png *.bmp *.svg)</translation>
+    </message>
+    <message>
         <source>Picture files (*.jpg *.jpeg *.png *.bmp)</source>
-        <translation>Ficher image (*.jpg *.jpeg *.png *.bmp)</translation>
+        <translation type="obsolete">Ficher image (*.jpg *.jpeg *.png *.bmp)</translation>
     </message>
 </context>
 <context>

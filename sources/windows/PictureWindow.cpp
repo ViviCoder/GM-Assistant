@@ -32,7 +32,7 @@ PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent
     {
         // the image cannot be loaded
         bError = true;
-        setPixmap(QPixmap(":/data/images/stop.png"));
+        setPixmap(QPixmap(":/data/images/stop.svg"));
     }
     else
     {

@@ -267,10 +267,10 @@
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1918"
-     inkscape:window-height="1099"
+     inkscape:window-width="1678"
+     inkscape:window-height="974"
      inkscape:window-x="0"
-     inkscape:window-y="34"
+     inkscape:window-y="26"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
@@ -282,7 +282,7 @@
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
         <dc:title>GM-Assistant logo</dc:title>
         <cc:license
-           rdf:resource="http://creativecommons.org/licenses/by-nc-sa/3.0/" />
+           rdf:resource="http://www.gnu.org/licenses/gpl-3.0.html" />
         <dc:creator>
           <cc:Agent>
             <dc:title>Vincent Prat</dc:title>
@@ -290,23 +290,6 @@
         </dc:creator>
         <dc:date>2nd October 2011</dc:date>
       </cc:Work>
-      <cc:License
-         rdf:about="http://creativecommons.org/licenses/by-nc-sa/3.0/">
-        <cc:permits
-           rdf:resource="http://creativecommons.org/ns#Reproduction" />
-        <cc:permits
-           rdf:resource="http://creativecommons.org/ns#Distribution" />
-        <cc:requires
-           rdf:resource="http://creativecommons.org/ns#Notice" />
-        <cc:requires
-           rdf:resource="http://creativecommons.org/ns#Attribution" />
-        <cc:prohibits
-           rdf:resource="http://creativecommons.org/ns#CommercialUse" />
-        <cc:permits
-           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
-        <cc:requires
-           rdf:resource="http://creativecommons.org/ns#ShareAlike" />
-      </cc:License>
     </rdf:RDF>
   </metadata>
   <g

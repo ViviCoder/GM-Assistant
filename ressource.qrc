@@ -1,18 +1,15 @@
 <RCC>
   <qresource>
-    <file>data/images/GMA.png</file>
-    <file>data/images/add.png</file>
-    <file>data/images/file_sound.png</file>
-    <file>data/images/file_picture.png</file>
-    <file>data/images/check.png</file>
-    <file>data/images/delete.png</file>
-    <file>data/images/empty.png</file>
-    <file>data/images/stop.png</file>
-    <file>data/images/failure.png</file>
-    <file>data/images/music.png</file>
-    <file>data/images/remove.png</file>
-    <file>data/images/son.png</file>
-    <file>data/images/speaker.png</file>
-    <file>data/images/uncheck.png</file>
+    <file>data/images/GMA.svg</file>
+    <file>data/images/add.svg</file>
+    <file>data/images/image.svg</file>
+    <file>data/images/check.svg</file>
+    <file>data/images/empty.svg</file>
+    <file>data/images/stop.svg</file>
+    <file>data/images/failure.svg</file>
+    <file>data/images/remove.svg</file>
+    <file>data/images/son.svg</file>
+    <file>data/images/speaker.svg</file>
+    <file>data/images/uncheck.svg</file>
   </qresource>
 </RCC>
