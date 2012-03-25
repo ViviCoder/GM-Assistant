@@ -15,6 +15,8 @@
    width="32"
    height="32"
    sodipodi:docname="empty.svg">
+  <title
+     id="title2811">Empty</title>
   <metadata
      id="metadata8">
     <rdf:RDF>
@@ -23,9 +25,15 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title>Empty</dc:title>
         <cc:license
            rdf:resource="http://creativecommons.org/licenses/publicdomain/" />
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Vincent Prat</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:date>Mar. 24th, 2012</dc:date>
       </cc:Work>
       <cc:License
          rdf:about="http://creativecommons.org/licenses/publicdomain/">
@@ -62,7 +70,7 @@
      id="namedview4"
      showgrid="false"
      inkscape:zoom="7.375"
-     inkscape:cx="16"
+     inkscape:cx="-27.932203"
      inkscape:cy="16"
      inkscape:window-x="0"
      inkscape:window-y="26"
