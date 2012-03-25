@@ -21,13 +21,12 @@
 # Initializing some options
 debug="false"
 prefix="$HOME/gm-assistant"
-config_path="/etc/xdg/gm-assistant"
-conf_file="gm-assistant.conf"
 system_install="true"
+sysconfdir="/etc"
 
 # Reading options
 supported_short_options="gh"
-supported_long_options="help,debug,prefix:,user"
+supported_long_options="help,debug,prefix:,user,build:,includedir:,mandir:,infodir:,sysconfdir:,localstatedir:,libexecdir:,disable-maintainer-mode,disable-dependency-tracking"
 
 options=$(getopt -s sh -l $supported_long_options $supported_short_options $@)
 if [ $? -eq 1 ]   # unsupported options
@@ -49,13 +48,24 @@ do
             --prefix)       arg=1;;
             --user)         system_install="false"
                             config_path="$HOME/.config/gm-assistant";;
+            --sysconfdir)   arg=2;;
             --) break;;
         esac
-    else
-        prefix=$opt
+    elif [ $arg -eq 1 ]
+    then
+        prefix=$(echo $opt | tr -d "'")
+        arg=0
+    elif [ $arg -eq 2 ]
+    then
+        sysconfdir=$(echo $opt | tr -d "'")
         arg=0
     fi
 done
+
+# Setting configuration path
+config_path="$sysconfdir/xdg/gm-assistant"
+conf_file="gm-assistant.conf"
+
 
 # Find the OS
 OS=$(uname)
@@ -82,7 +92,7 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed install"
+softs="uname echo getopt ls grep head pkg-config qmake lupdate lrelease make sed install tr"
 
 for soft in $softs
 do
@@ -188,6 +198,7 @@ echo "install=$prefix/share" >> $conf_file
 
 # preparing the installation
 prefix=$(echo $prefix | sed "s#\~#$HOME#")
+config_path=$(echo $config_path | sed "s#\~#$HOME#")
 sed $sed_i "s#DESTDIR.*=.*#DESTDIR\t= $prefix#" Makefile
 
 if [ $system_install = "true" ]
@@ -195,7 +206,7 @@ then
     sed $sed_i 's#-o main.o#-DSYSTEM_INSTALL -o main.o#' Makefile
 fi
 
-sed $sed_i 's#^install:.*#BINS=$(DESTDIR)/bin\nSHARE=$(DESTDIR)/share\nTRANSLATIONS=$(SHARE)/translations\nCONF='$config_path'\n\ninstall:\n\t\install -d $(DESTDIR) $(BINS) $(TRANSLATIONS) $(CONF)\n\t$(INSTALL_PROGRAM) ./gm-assistant $(BINS)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
+sed $sed_i 's#^install:.*#BINS=$(DESTDIR)/bin\nSHARE=$(DESTDIR)/share\nTRANSLATIONS=$(SHARE)/translations\nCONF='$config_path'\n\ninstall:\n\t\install -d $(DESTDIR) $(BINS) $(TRANSLATIONS) $(CONF)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
 
 echo
 echo "********************"
