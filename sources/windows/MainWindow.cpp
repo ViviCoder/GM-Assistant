@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -43,7 +43,7 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     QSettings settings;
 
     settings.beginGroup("directories");
-    QDir::setCurrent(settings.value("work",settings.value("install",QDir::current().path()+"/examples").toString()).toString());
+    QDir::setCurrent(settings.value("work").toString());
     settings.endGroup();
 
     settings.beginGroup("mainWindow");

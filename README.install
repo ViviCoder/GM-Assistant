@@ -25,11 +25,12 @@ To compile, you need:
 *    INSTRUCTIONS    *
 **********************
 
-To compile GM-Assistant, execute the following commands:
+To install GM-Assistant, execute the following commands:
 
-./configure
+./configure --prefix=<where you want to install>
 make
+make install
 
-Then, to launch GM-Assistant, just type:
+Then, to launch GM-Assistant, just type from the install directory:
 
-./GM-Assistant
+./gm-assistant

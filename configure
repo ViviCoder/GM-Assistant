@@ -1,5 +1,5 @@
 ##########################################################################
-# Copyright © 2011 Vincent Prat & Simon Nicolas
+# Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,11 +20,13 @@
 
 # Initializing some options
 debug="false"
-prefix="$HOME/GM-Assistant"
+prefix="$HOME/gm-assistant"
+system_install="true"
+sysconfdir="/etc"
 
 # Reading options
 supported_short_options="gh"
-supported_long_options="help,debug,prefix:"
+supported_long_options="help,debug,prefix:,user,build:,includedir:,mandir:,infodir:,sysconfdir:,localstatedir:,libexecdir:,disable-maintainer-mode,disable-dependency-tracking"
 
 options=$(getopt -s sh -l $supported_long_options $supported_short_options $@)
 if [ $? -eq 1 ]   # unsupported options
@@ -41,16 +43,29 @@ do
     then
         case $opt in
             -g | --debug)   debug="true";;
-            -h | --help)    echo -e "Usage: configure [options]\n\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n --prefix=dir\t'make install' will install this software in dir"
+            -h | --help)    echo -e "Usage: configure [options]\n\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n --prefix=dir\t'make install' will install this software in dir\n --user\t\t'make install' will install this software in a user scope"
                 exit 0;;
             --prefix)       arg=1;;
+            --user)         system_install="false"
+                            config_path="$HOME/.config/gm-assistant";;
+            --sysconfdir)   arg=2;;
             --) break;;
         esac
-    else
-        prefix=$opt
+    elif [ $arg -eq 1 ]
+    then
+        prefix=$(echo $opt | tr -d "'")
+        arg=0
+    elif [ $arg -eq 2 ]
+    then
+        sysconfdir=$(echo $opt | tr -d "'")
         arg=0
     fi
 done
+
+# Setting configuration path
+config_path="$sysconfdir/xdg/gm-assistant"
+conf_file="gm-assistant.conf"
+
 
 # Find the OS
 OS=$(uname)
@@ -62,12 +77,10 @@ echo Operating system: $OS
 # OS-dependent variables
 if [ $OS = "Linux" ]
 then
-	softs="moc-qt4"
 	inc_path="/usr/include/"
     sed_i="-i"
 elif [ $OS = "Darwin" ]
 then
-	softs="moc"
 	inc_path="/opt/local/include/"
     sed_i='-i ""'
 fi
@@ -79,7 +92,7 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="$softs uname echo getopt ls grep head pkg-config g++ qmake lupdate lrelease make mv sed mkdir cp rmdir sort pwd"
+softs="uname echo getopt ls grep head pkg-config qmake lupdate lrelease make sed install tr"
 
 for soft in $softs
 do
@@ -87,7 +100,7 @@ do
     if [ $? = 1 ]
     then
         echo $soft missing !
-        exit
+        exit 1
     else
         echo $soft: $path        
     fi
@@ -104,7 +117,7 @@ echo "*********************************"
 echo
 echo libXML++:
 xml_devs="libxml++"
-xml_dev_path=$(ls -l $inc_path | grep -o -e "libxml++-[0-9]\{1,\}\.[0-9]\{1,\}" | head -n 1)
+xml_dev_path=$(ls -l $inc_path | grep -o -e "libxml++-2\.[0-9]\{1,\}" | head -n 1)
 
 for dev in $xml_devs
 do
@@ -140,10 +153,13 @@ echo "* Preparing the compilation... *"
 echo "********************************"
 echo
 
-qmake -project
-lupdate GM-Assistant.pro
-lrelease GM-Assistant.pro
-qmake
+target="gm-assistant"
+pro_file=$target.pro
+
+qmake -project -o $pro_file
+lupdate $pro_file
+lrelease $pro_file
+qmake $pro_file
 
 # adding the -g flag if the debug option is enabled
 if [ $debug = "true" ]
@@ -173,10 +189,24 @@ make -s clean
 rm -f *.o
 rm -f ui_*.h
 
+# add files to clean
+sed $sed_i 's#DEL_FILE) Makefile#DEL_FILE) Makefile\n\t-$(DEL_FILE) translations/*.qm\n\t-$(DEL_FILE) '$pro_file'\n\t-$(DEL_FILE) '$conf_file'#' Makefile
+
+# preparing conf file
+echo "[directories]" > $conf_file
+echo "install=$prefix/share" >> $conf_file
+
 # preparing the installation
 prefix=$(echo $prefix | sed "s#\~#$HOME#")
-sed $sed_i "s#^install:.*#install:\n\t\@\.\/install.sh $prefix#" Makefile
-sed $sed_i "s#^uninstall:.*#uninstall:\n\t\@\.\/uninstall.sh#" Makefile
+config_path=$(echo $config_path | sed "s#\~#$HOME#")
+sed $sed_i "s#DESTDIR.*=.*#DESTDIR\t= $prefix#" Makefile
+
+if [ $system_install = "true" ]
+then
+    sed $sed_i 's#-o main.o#-DSYSTEM_INSTALL -o main.o#' Makefile
+fi
+
+sed $sed_i 's#^install:.*#BINS=$(DESTDIR)/bin\nSHARE=$(DESTDIR)/share\nTRANSLATIONS=$(SHARE)/translations\nCONF='$config_path'\n\ninstall:\n\t\install -d $(DESTDIR) $(BINS) $(TRANSLATIONS) $(CONF)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
 
 echo
 echo "********************"

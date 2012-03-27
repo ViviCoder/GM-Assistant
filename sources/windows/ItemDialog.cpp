@@ -135,7 +135,7 @@ void ItemDialog::on_toolBrowse_clicked()
                                 break;
                             }
         case Item::tImage:  { 
-                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the image file to associate to the item",0),"",QApplication::translate("itemDialog","Image files (*.jpg *.jpeg *.png *.bmp)",0)));    
+                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the picture file to associate to the item",0),"",QApplication::translate("itemDialog","Image files (*.jpg *.jpeg *.png *.bmp *.svg)",0)));    
                                 break;
                             }
         default:            break;
