@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game version="1.1" interface="full">
+  <scenario>
+    <item state="none" type="basic" content="Intro">
+      <item state="none" type="basic" content="Embarquement"/>
+      <item state="none" type="basic" content="6 cabines: Stephen blackwell et Youri Ivanov">
+        <item state="none" type="basic" content="1 / PJ"/>
+        <item state="none" type="picture" content="Stephen Blackwell + Mike Dorlan menotté">
+          <file name="/Users/simonnicolas/Downloads/horreur romantique transatlantique/stephen blackwell.png"/>
+        </item>
+        <item state="none" type="picture" content="Youri Yvanov + Serguei Yvanov">
+          <file name="/Users/simonnicolas/Downloads/horreur romantique transatlantique/youri.jpg"/>
+        </item>
+      </item>
+    </item>
+    <item state="none" type="basic" content="1er soir">
+      <item state="none" type="basic" content="Stephen fait du repérage, vigilance parano pour le repérer"/>
+      <item state="none" type="basic" content="plus tard il pose des rûnes sur le pont">
+        <item state="none" type="basic" content="TOC -&gt; tâches du sang de Mike"/>
+      </item>
+      <item state="none" type="basic" content="Au cour du repas le russe s'installe avec Stephen"/>
+    </item>
+    <item state="none" type="basic" content="1ère nuit">
+      <item state="none" type="basic" content="Stephen continue de poser des rûnes"/>
+      <item state="none" type="basic" content="écouter -&gt; on entend des bruits de lutte venant d'une des chambres"/>
+    </item>
+    <item state="none" type="basic" content="2nd jour">
+      <item state="none" type="basic" content="petit dej' : Youri blessé, Stephen fatigué"/>
+      <item state="none" type="basic" content="youri emmerde seriéusement Stephen"/>
+      <item state="none" type="basic" content="youri reste dans le couloir et tente de convaincre que Stephen est maléfique"/>
+    </item>
+    <item state="none" type="basic" content="2nd soir">
+      <item state="none" type="basic" content="Youri emmène les PJ pour interrompre le Rituel"/>
+      <item state="none" type="basic" content="lors de l'interruption le sortilège dérape et zombifie la moitié du bateau"/>
+      <item state="none" type="basic" content="pendant la nuit les gens meurent et se relèvent zombi"/>
+    </item>
+    <item state="none" type="basic" content="Youri tente de forcer Stephen à s'occuper du disque"/>
+    <item state="none" type="basic" content="pendant la nuit les Mi-go tentent d'entrer dans la chambre"/>
+    <item state="none" type="basic" content="3ème jour">
+      <item state="none" type="basic" content="pas de petit dej"/>
+      <item state="none" type="basic" content="beaucoup moins de monde"/>
+      <item state="none" type="basic" content="Midi -&gt; les machines s'arrêtent"/>
+      <item state="none" type="basic" content="les zombis commencent à envahir le bateaux"/>
+      <item state="none" type="basic" content="les morts du Titanic sortent de l'eau"/>
+      <item state="none" type="basic" content="Youri est mort dans sa chambre">
+        <item state="none" type="basic" content="Serguei Zombi"/>
+        <item state="none" type="basic" content="Signe des anciens"/>
+        <item state="none" type="basic" content="Porte extérieur de la chambre gratté, griffé"/>
+        <item state="none" type="basic" content="Disque"/>
+      </item>
+    </item>
+    <item state="none" type="basic" content="Solutions">
+      <item state="none" type="basic" content="Canot de sauvetage"/>
+      <item state="none" type="basic" content="Récupéré par le yatch de Norman D. Winworth"/>
+    </item>
+    <item state="none" type="basic" content="Introduction">
+      <item state="none" type="basic" content="PJ à la conférence"/>
+      <item state="none" type="basic" content="début de soirée, hivers, froid, humide"/>
+    </item>
+    <item state="none" type="basic" content="Partie 1">
+      <item state="none" type="basic" content="au milieu de la conf les profonds arrivient">
+        <item state="none" type="basic" content="test vigilance pour les repérer"/>
+        <item state="none" type="basic" content="au bout de 1/4h une femme hurle"/>
+      </item>
+      <item state="none" type="basic" content="Arrivée des profonds"/>
+      <item state="none" type="basic" content="Fuite de Kate Elver"/>
+    </item>
+    <item state="none" type="basic" content="Partie 2">
+      <item state="none" type="basic" content="Si les PJ suivent Kate">
+        <item state="none" type="basic" content="Négociation, elle est folle"/>
+      </item>
+      <item state="none" type="basic" content="Si les PJ fuient">
+        <item state="none" type="basic" content="une nuée de profond les assaille"/>
+      </item>
+      <item state="none" type="basic" content="Dans tout les cas les PJ meurent !"/>
+    </item>
+  </scenario>
+  <notes>PV profonds:
+SAN  (santé mentale perdue) : 1D100+50
+
+profond 1 : 10
+profond 2 : 10
+
+Ne pas oublier de faire tourner Kate Elver</notes>
+  <skills>
+    <skill name="Toc"/>
+    <skill name="Combat"/>
+    <skill name="Sensoriel"/>
+    <skill name="Att"/>
+    <skill name="Dmg"/>
+    <skill name="PV"/>
+    <skill name="Per"/>
+  </skills>
+  <characters>
+    <character name="Kate Elver" playername="sorcière">
+      <skill value="75%"/>
+      <skill value="15%"/>
+      <skill value="50%"/>
+    </character>
+    <character name="Profonds" playername="guerrier">
+      <skill value="25%"/>
+      <skill value="60%"/>
+      <skill value="35%"/>
+    </character>
+    <character name="Jed Steed" playername="Sim">
+      <skill value="50%"/>
+      <skill value="12%"/>
+      <skill value="95%"/>
+    </character>
+    <character name="Pedro Ramirez" playername="Vivi">
+      <skill value="10%"/>
+      <skill value="75%"/>
+      <skill value="46%"/>
+    </character>
+    <character name="Marcel Catala" playername="dédé">
+      <skill value="45%"/>
+      <skill value="49%"/>
+      <skill value="73%"/>
+    </character>
+    <character name="Bob dupuis" playername="lolo">
+      <skill value="13%"/>
+      <skill value="94%"/>
+      <skill value="93%"/>
+    </character>
+    <character name="Stephen Blackwell" playername="">
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+    </character>
+    <character name="Yvan" playername="Nicholovich">
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+    </character>
+    <character name="Mi-go" playername="scientific">
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="8"/>
+      <skill value="0"/>
+    </character>
+    <character name="Mi-go" playername="guerrier">
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="30%"/>
+      <skill value="1D6"/>
+      <skill value="12"/>
+      <skill value="0"/>
+    </character>
+    <character name="Zombie" playername="">
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="25%"/>
+      <skill value="1D3"/>
+      <skill value="14"/>
+      <skill value="0"/>
+    </character>
+    <character name="Alice Lidle" playername="Jérémi">
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+    </character>
+    <character name="Torbion Molsen" playername="Romain">
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+      <skill value="0"/>
+    </character>
+  </characters>
+  <history>
+    <item state="none" type="basic" content="Mattéo Profond ?"/>
+    <item state="none" type="basic" content="Vincent Phobie de l'orage"/>
+    <item state="none" type="basic" content="Jed Steed est obsessionnel"/>
+    <item state="none" type="basic" content="Pedro est paranoïaque"/>
+    <item state="none" type="basic" content="Marcel est encore troublé par la perte de sa femme"/>
+  </history>
+  <music>
+    <item state="none" type="sound" content="pluie">
+      <file name="/Users/simonnicolas/jeux de rôle/Cthulhu/bcd/pluie_interieur.MP3"/>
+    </item>
+    <item state="none" type="sound" content="Pluie entendue depuis l'intérieur">
+      <file name="/Users/simonnicolas/GM-Assistant/data/sound/pluie.mp3"/>
+    </item>
+  </music>
+  <effects>
+    <item state="none" type="sound" content="zombie 1">
+      <file name="/Users/simonnicolas/Downloads/horreur romantique transatlantique/zombi 1.mp3"/>
+    </item>
+    <item state="none" type="sound" content="zombie 2">
+      <file name="/Users/simonnicolas/Downloads/horreur romantique transatlantique/zombi 2.mp3"/>
+    </item>
+    <item state="none" type="sound" content="zombie 3">
+      <file name="/Users/simonnicolas/Downloads/horreur romantique transatlantique/zombi 3.mp3"/>
+    </item>
+    <item state="none" type="sound" content="zombie 4">
+      <file name="/Users/simonnicolas/Downloads/horreur romantique transatlantique/zombi 4.mp3"/>
+    </item>
+    <item state="none" type="sound" content="Mi-go">
+      <file name="/Users/simonnicolas/Downloads/horreur romantique transatlantique/migo.MP3"/>
+    </item>
+    <item state="none" type="sound" content="corne de brûme">
+      <file name="/Users/simonnicolas/Downloads/horreur romantique transatlantique/corne de brûme.mp3"/>
+    </item>
+    <item state="none" type="sound" content="Grognement profond">
+      <file name="/Users/simonnicolas/GM-Assistant/data/sound/cri.mp3"/>
+    </item>
+    <item state="none" type="sound" content="grincement de porte">
+      <file name="/Users/simonnicolas/GM-Assistant/data/sound/grince.mp3"/>
+    </item>
+  </effects>
+</game>
