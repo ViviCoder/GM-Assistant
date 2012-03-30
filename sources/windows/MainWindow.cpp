@@ -133,7 +133,7 @@ void MainWindow::on_actionMusic_triggered()
     GridLayout->addWidget(gbSound,0,1);
     gbMusic->show();
     gbSound->show();
-    eGame.setUserInterface(Engine::uiMusic);
+    eGame.setUserInterface(Scenario::uiMusic);
     actionMusic->setChecked(true);
 }
 
@@ -152,7 +152,7 @@ void MainWindow::on_actionFull_triggered()
     gbHistory->show();
     gbMusic->show();
     gbSound->show();
-    eGame.setUserInterface(Engine::uiFull);
+    eGame.setUserInterface(Scenario::uiFull);
     actionFull->setChecked(true);
 }
 
@@ -165,7 +165,7 @@ void MainWindow::on_actionSimple_triggered()
     gbScenario->show();
     gbMusic->show();
     gbSound->show();
-    eGame.setUserInterface(Engine::uiSimple);
+    eGame.setUserInterface(Scenario::uiSimple);
     actionSimple->setChecked(true);
 }
 
@@ -178,7 +178,7 @@ void MainWindow::on_actionDesign_triggered()
     gbScenario->show();
     gbCharacter->show();
     gbNote->show();
-    eGame.setUserInterface(Engine::uiDesign);
+    eGame.setUserInterface(Scenario::uiDesign);
     actionDesign->setChecked(true);
 }
 
@@ -193,7 +193,7 @@ void MainWindow::on_actionNoMusic_triggered()
     gbHistory->show();
     gbCharacter->show();
     gbNote->show();
-    eGame.setUserInterface(Engine::uiNoMusic);
+    eGame.setUserInterface(Scenario::uiNoMusic);
     actionNoMusic->setChecked(true);
 }
 
@@ -302,15 +302,15 @@ void MainWindow::updateDisplay()
     tableStats->setLists(&eGame.skills(),&eGame.characters());
     switch (eGame.userInterface())
     {
-        case Engine::uiFull:    on_actionFull_triggered();
+        case Scenario::uiFull:    on_actionFull_triggered();
                                 break;
-        case Engine::uiSimple:  on_actionSimple_triggered();
+        case Scenario::uiSimple:  on_actionSimple_triggered();
                                 break;
-        case Engine::uiMusic:   on_actionMusic_triggered();
+        case Scenario::uiMusic:   on_actionMusic_triggered();
                                 break;
-        case Engine::uiDesign:  on_actionDesign_triggered();
+        case Scenario::uiDesign:  on_actionDesign_triggered();
                                 break;
-        case Engine::uiNoMusic: on_actionNoMusic_triggered();
+        case Scenario::uiNoMusic: on_actionNoMusic_triggered();
                                 break;
     }
     timer->stop();

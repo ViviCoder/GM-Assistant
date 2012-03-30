@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -16,19 +16,19 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_ENGINE
-#define HEADER_ENGINE
+#ifndef HEADER_SCENARIO
+#define HEADER_SCENARIO
 
 #include "Tree.h"
 #include "CharacterList.h"
 #include "SkillList.h"
 
 /*!
- * \brief Game engine
+ * \brief Game scenario
  *
  * Contains everything necessary for a game
  */
-class Engine
+class Scenario
 {
     public:
         // types
@@ -48,8 +48,8 @@ class Engine
             uiNoMusic
         };
         // constructors
-        Engine();
-        Engine(const std::string &fileName) throw(xmlpp::exception);
+        Scenario();
+        Scenario(const std::string &fileName) throw(xmlpp::exception);
         // loading and saving methods
         /*!
          * \brief Loads a game from a file

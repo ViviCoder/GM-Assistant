@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -16,18 +16,18 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "Engine.h"
+#include "Scenario.h"
 #include "version.h"
 
 using namespace std;
 
 // constructors
 
-Engine::Engine()
+Scenario::Scenario()
 {
 }
 
-Engine::Engine(const string &fileName) throw(xmlpp::exception)
+Scenario::Scenario(const string &fileName) throw(xmlpp::exception)
 {
     try
     {
@@ -42,7 +42,7 @@ Engine::Engine(const string &fileName) throw(xmlpp::exception)
 
 // XML methods
 
-void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception, invalid_argument, overflow_error)
+void Scenario::fromFile(const std::string &fileName) throw(xmlpp::exception, invalid_argument, overflow_error)
 {
     using namespace xmlpp;
 
@@ -117,7 +117,7 @@ void Engine::fromFile(const std::string &fileName) throw(xmlpp::exception, inval
     }
 }
 
-void Engine::toFile(const string &fileName) const
+void Scenario::toFile(const string &fileName) const
 {
     using namespace xmlpp;
 
@@ -144,34 +144,34 @@ void Engine::toFile(const string &fileName) const
 
 // accessors
 
-Tree& Engine::scenario()
+Tree& Scenario::scenario()
 {
     return tScenario;
 }
 
-string& Engine::notes()
+string& Scenario::notes()
 {
     return sNotes;
 }
 
-Tree& Engine::history()
+Tree& Scenario::history()
 {
     return tHistory;
 }
 
-Tree& Engine::music()
+Tree& Scenario::music()
 {
     return tMusic;
 }
 
-Tree& Engine::effects()
+Tree& Scenario::effects()
 {
     return tEffects;
 }
 
 // methods
 
-void Engine::clear()
+void Scenario::clear()
 {
     tScenario.clear();
     sNotes = "";
@@ -182,17 +182,17 @@ void Engine::clear()
     lCharacters.clear();
 }
 
-CharacterList& Engine::characters()
+CharacterList& Scenario::characters()
 {
     return lCharacters;
 }
 
-SkillList& Engine::skills()
+SkillList& Scenario::skills()
 {
     return lSkills;
 }
 
-string Engine::interfaceToString(UserInterface interface)
+string Scenario::interfaceToString(UserInterface interface)
 {
     switch (interface)
     {
@@ -204,7 +204,7 @@ string Engine::interfaceToString(UserInterface interface)
     }
 }
 
-Engine::UserInterface Engine::stringToInterface(const std::string& interface) throw(invalid_argument)
+Scenario::UserInterface Scenario::stringToInterface(const std::string& interface) throw(invalid_argument)
 {
     if (interface=="full")
         return uiFull;
@@ -220,12 +220,12 @@ Engine::UserInterface Engine::stringToInterface(const std::string& interface) th
         throw invalid_argument("Invalid user interface");
 }
 
-Engine::UserInterface Engine::userInterface() const
+Scenario::UserInterface Scenario::userInterface() const
 {
     return uiInterface;
 }
 
-void Engine::setUserInterface(Engine::UserInterface interface)
+void Scenario::setUserInterface(Scenario::UserInterface interface)
 {
     uiInterface = interface;
 }

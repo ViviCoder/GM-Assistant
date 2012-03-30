@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #define HEADER_MAINWINDOW
 
 #include "ui_MainWindow.h"
-#include "Engine.h"
+#include "Scenario.h"
 #include "SoundEngine.h"
 #include "AboutDialog.h"
 #include <QTimer>
@@ -38,9 +38,9 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
 {
     private:
         /*!
-         * \brief Game engine
+         * \brief Scenario
          */
-        Engine eGame;
+        Scenario eGame;
         SoundEngine soundEngine;
         /*!
          * \brief File name of the current game
