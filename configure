@@ -20,7 +20,7 @@
 
 # Initializing some options
 debug="false"
-prefix="$HOME/gm-assistant"
+prefix="/usr"
 system_install="true"
 sysconfdir="/etc"
 
@@ -49,23 +49,27 @@ do
             --user)         system_install="false"
                             config_path="$HOME/.config/gm-assistant";;
             --sysconfdir)   arg=2;;
+            --mandir)       arg=3;;
             --) break;;
         esac
-    elif [ $arg -eq 1 ]
-    then
-        prefix=$(echo $opt | tr -d "'")
-        arg=0
-    elif [ $arg -eq 2 ]
-    then
-        sysconfdir=$(echo $opt | tr -d "'")
+    else
+        case $arg in
+            1)  prefix=$(echo $opt | tr -d "'");;
+            2)  sysconfdir=$(echo $opt | tr -d "'");;
+            3)  mandir=$(echo $opt | tr -d "'");;
+        esac
         arg=0
     fi
 done
 
-# Setting configuration path
-config_path="$sysconfdir/xdg/gm-assistant"
-conf_file="gm-assistant.conf"
+# Setting paths
+mandir=$prefix"/share/man"
+if [ $system_install = "true" ]
+then
+    config_path="$sysconfdir/xdg/gm-assistant"
+fi
 
+conf_file="gm-assistant.conf"
 
 # Find the OS
 OS=$(uname)
@@ -194,19 +198,15 @@ sed $sed_i 's#DEL_FILE) Makefile#DEL_FILE) Makefile\n\t-$(DEL_FILE) translations
 
 # preparing conf file
 echo "[directories]" > $conf_file
-echo "install=$prefix/share" >> $conf_file
+echo "install=$prefix/share/gm-assistant" >> $conf_file
 
 # preparing the installation
-prefix=$(echo $prefix | sed "s#\~#$HOME#")
-config_path=$(echo $config_path | sed "s#\~#$HOME#")
-sed $sed_i "s#DESTDIR.*=.*#DESTDIR\t= $prefix#" Makefile
-
 if [ $system_install = "true" ]
 then
     sed $sed_i 's#-o main.o#-DSYSTEM_INSTALL -o main.o#' Makefile
 fi
 
-sed $sed_i 's#^install:.*#BINS=$(DESTDIR)/bin\nSHARE=$(DESTDIR)/share\nTRANSLATIONS=$(SHARE)/translations\nCONF='$config_path'\n\ninstall:\n\t\install -d $(DESTDIR) $(BINS) $(TRANSLATIONS) $(CONF)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
+sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINS=$(BASEDIR)/games\nSHARE=$(BASEDIR)/share/gm-assistant\nTRANSLATIONS=$(SHARE)/translations\nMANDIR=$(DESTDIR)'$mandir/man6'\nCONF=$(DESTDIR)'$config_path'\n\ninstall:\n\t\install -d $(BASEDIR) $(BINS) $(TRANSLATIONS) $(MANDIR) $(CONF)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/gm-assistant.6 $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
 
 echo
 echo "********************"
