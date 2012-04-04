@@ -208,6 +208,9 @@ fi
 
 sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINS=$(BASEDIR)/games\nSHARE=$(BASEDIR)/share/gm-assistant\nTRANSLATIONS=$(SHARE)/translations\nMANDIR=$(DESTDIR)'$mandir/man6'\nCONF=$(DESTDIR)'$config_path'\n\ninstall:\n\t\install -d $(BASEDIR) $(BINS) $(TRANSLATIONS) $(MANDIR) $(CONF)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/gm-assistant.6 $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
 
+# preparing the uninstallation
+sed $sed_i 's#^uninstall:.*#uninstall:\n\t$(DEL_FILE) $(BINS)/gm-assistant\n\t$(DEL_FILE) $(TRANSLATIONS)/*\n\t$(DEL_DIR) $(TRANSLATIONS)\n\t$(DEL_FILE) $(SHARE)/*\n\t$(DEL_DIR) $(SHARE)\n\t$(DEL_FILE) $(MANDIR)/gm-assistant.6\n\t$(DEL_FILE) $(CONF)/*\n\t$(DEL_DIR) $(CONF)#' Makefile
+
 echo
 echo "********************"
 echo "* Ready to compile *"
