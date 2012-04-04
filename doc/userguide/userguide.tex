@@ -1,3 +1,21 @@
+%*************************************************************************
+%* Copyright © 2012 Vincent Prat & Simon Nicolas
+%*
+%* This program is free document; you can redistribute it and/or modify
+%* it under the terms of the GNU General Public License as published by
+%* the Free Software Foundation; either version 3 of the License, or
+%* (at your option) any later version.
+%*
+%* This program is distributed in the hope that it will be useful,
+%* but WITHOUT ANY WARRANTY; without even the implied warranty of
+%* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+%* GNU General Public License for more details.
+%*
+%* You should have received a copy of the GNU General Public License along
+%* with this program; if not, write to the Free Software Foundation, Inc.,
+%* 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+%*************************************************************************
+
 \documentclass[12pt]{article}
 %\documentclass[12pt,twoside,french]{report}
 %\documentclass[12pt]{proc}
@@ -6,8 +24,8 @@
 
 \usepackage[frenchb]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage{amsmath}
+\usepackage{amsmath, graphicx}
+\usepackage{hyperref}
 
 
 \title{GM-Assistant, guide de l'utilisateur}
@@ -37,6 +55,22 @@ La solution est GM-Assistant
 GM-Assistant (pour Game-Master Assistant) est un logiciel d'assistant MJ. Son objectif est de simplifier la vie de MJ pendant les parties en mettant à sa disposition les informations et outils dont il peut avoir besoin pendant la partie.
 Grâce à une interface claire, épurée, et efficace GMA met à la disposition du MJ tout ce dont il peut avoir besoin pendant une partie sans avoir besoin de chercher.
 
+\section{Présentation des menus}\label{menu}
+Dans la fenètre principale de GMA vous avez accès comme dans la plupat des logiciel à la barre des menus. Voici ce qu'ils contiennent:
+\begin{itemize}
+    \item \emph{Jeu :} permettant de gérer les fichiers de sauvegarde
+    \begin{itemize}
+        \item \emph{Nouveau :} Crée une nouvelle fiche scénario
+        \item \emph{Recharger :} Restaure une fiche scénario telle qu'elle était lors de son dernier enregistrement
+        \item \emph{Charger :} Charge une fiche scénario sctocker sur l'ordinateur
+        \item \emph{Enregistrer :} Sauvegarde la fiche scénario en cours d'édition sur le disque
+        \item \emph{Enregistrer sous :} Sauvegarde la fiche scénario en cours d'édition dans un nouveau fichier
+        \item \emph{Récents :} Ouvre une listes des fiches scénario récemment ouvertes.
+    \end{itemize} 
+    \item \emph{Interface :} Ouvre la liste des arrangements de modules disponible. chaque interface propose un appariement différent de module à l'écran.
+    \item \emph{?} Ouvre les informations générale sur le logiciel et ses licences.
+\end{itemize}
+
 \section{Présentation des modules}\label{modules}
 GMA est organisé en module. Chaque module est indépendant et dédié à une fonctionnalité. Voici la liste des modules présent (en augmentation) au jour de \date{\today} :
 \begin{itemize}
@@ -49,8 +83,8 @@ GMA est organisé en module. Chaque module est indépendant et dédié à une fo
     \item \emph{Bruitages :} un lecteur de musique encore plus simple pensé pour déclencher au besoin des bruitage court
 \end{itemize}
 Tout ces modules sont rassemblées dans l'interface principale du logiciel :
-\begin{figure}
-    \includegraphics[scale=0.15]{screen_scenar_exemple}
+\begin{figure}[h]
+    \includegraphics[width=0.9\textwidth]{screen_scenar_exemple}
     \caption{Voici une capture de l'écran principale avec une partie en cours.
     ATTENTION il pourrait être mieux de faire une capture windows avec la barre des menus}
 \end{figure}
@@ -67,11 +101,12 @@ Les modules qui utilisent les items sont : Scénario, Historique, Musique et Bru
 \begin{itemize}
     \item\emph{Clic droit dans le cadre vide du module} fait apparaitre la fenêtre "créer un item" (s'il n'y a aucun item)
     \item\emph{Clic droit sur un item} fait apparaitre le menu item contenant les 4 états disponible pour un item : \emph{Aucun}, \emph{En cours}, \emph{Echoué}, \emph{Réussi}, puis les 2 actions \emph{Ajouter} et \emph{Supprimer}
-
 \end{itemize}
+L'état d'un item permet de prendre note rapidement du succès ou de l'échec de certains points clefs du scénario, et d'en avoir une vision rapide.\\
+
 \emph{Ajouter} nous permet d'accéder à la fenêtre de création d'item :
-\begin{figure}
-    \includegraphics[scale=0.4]{screen_add_item}
+\begin{figure}[h]
+    \includegraphics[width=0.5\textwidth]{screen_add_item}
     \caption{fenêtre d'ajout d'item}
 \end{figure}
 \begin{itemize}
@@ -89,8 +124,8 @@ Il est important de bien saisir la différence entre les 2 boutons \emph{Ajouter
 \subsection{L'arbe de Scénario}\label{scenario}
 L'arbre de scénario est dans la majorité des cas le cœur de GMA. En effet dedans il y a le plan détaillé et ordonné du scénario, de manière à ne jamais être perdu entre 2 scènes ni oublier un élément.
 Voici un aperçu de ce que nous ce qu'il est possible de faire
-\begin{figure}
-    \includegraphics[scale=0.5]{scenario_type}
+\begin{figure}[h]
+    \includegraphics[width=0.6\textwidth]{scenario_type}
     \caption{Plan schématique d'un scénario}
 \end{figure}
 Donc comment faire ?
@@ -113,8 +148,8 @@ Ensuite une fois qu'on a créé au moins un personnage et une compétence alors 
 \\\emph{Nota bene :} il est possible d'entrer du texte ou d'autre caractère comme le "\%"
 
 Nous allons commencer par ajouter un personnage : Gros Bill, PJ joué par Pilou
-\begin{figure}
-    \includegraphics[scale=0.6]{add_character}
+\begin{figure}[h]
+    \includegraphics[width=0.5\textwidth]{add_character}
     \caption{fenêtre d'ajout de personnage}
 \end{figure}
 FIXME Ensuite j'ai besoin de me rappeler en permanence de sa Force et de sa vigilance, je vais donc ajouter ces 2 caractéristiques.
@@ -158,16 +193,16 @@ Les PJ sont à l'inauguration du labo de pharma de la fac de médecine allée ju
 En même temps un des convives est un sorcier qui veut utiliser ce squelette pour en extraire de la puissance. Il profitera de la cohue des convives lors de l'assaut profond pour aller dans le labo, et commencer son rituel. La suite dépend des PJ. Si le rituel va au bout une onde de choc jette tout le monde à terre et les profonds fou de rage d'avoir perdu leur chaman définitivement assassinent tout le monde, sinon ils repartent tranquillement avec leur chaman (squelette)
 \\
 Aperçu de l'assistant créé pour :
-\begin{figure}
-    \includegraphics[scale=0.20]{screen_scenar_exemple}
+\begin{figure}[h]
+    \includegraphics[width=0.9\textwidth]{screen_scenar_exemple}
     \caption{La partie est prête}
 \end{figure}
 
 \section{Participer}\label{participer}
 GMA c'est trop cool, vous n'envisagez plus de jouer sans et vous voulez participer au projets ?
 Très bonne idée, nous sommes preneur de toute aide.
-Le logiciel est placé sous license LGPL2 (je crois :p ) et le projet est hébergé sur github à cette adresse :
-\underline{http://vivicoder.github.com}
+Le logiciel est placé sous license GPL3 et le projet est hébergé sur GitHub à cette adresse :
+\href{http://vivicoder.github.com/GM-Assistant}{http://vivicoder.github.com/GM-Assistant}
 %\url{http://vivicoder.github.com} ou un truc du genre 
 
 \section{Conclusions}\label{conclusions}
@@ -177,8 +212,8 @@ Home made, no inspiration expect 2 brilliant brain.
 \section*{Nous contacter}
 Pour les commentaires constructifs 2 autres adresses :
 \begin{itemize}
-    \item dramac.nicolas@gmail.com
-    \item vinceprat@free.fr
+    \item \href{mailto:dramac.nicolas@gmail.com}{dramac.nicolas@gmail.com}
+    \item \href{mailto:vinceprat@free.fr}{vinceprat@free.fr}
 \end{itemize}
 
 \end{document}
