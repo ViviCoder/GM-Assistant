@@ -25,7 +25,7 @@ system_install="true"
 sysconfdir="/etc"
 
 # Reading options
-supported_short_options="gh"
+supported_short_options="ghu"
 supported_long_options="help,debug,prefix:,user,build:,includedir:,mandir:,infodir:,sysconfdir:,localstatedir:,libexecdir:,disable-maintainer-mode,disable-dependency-tracking"
 
 options=$(getopt -s sh -l $supported_long_options $supported_short_options $@)
@@ -43,11 +43,11 @@ do
     then
         case $opt in
             -g | --debug)   debug="true";;
-            -h | --help)    echo -e "Usage: configure [options]\n\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n --prefix=dir\t'make install' will install this software in dir\n --user\t\t'make install' will install this software in a user scope"
+            -h | --help)    echo -e "Usage: configure [options]\n\nGeneral options:\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n -u, --user\tInstall in a user scope\n\nDirectory options:\n --prefix=[/usr]\t\tInstallation directory\n --mandir=[<prefix>/share/man]\tManual directory\n --sysconfdir=[/etc]\t\tSystem configuration directory"
                 exit 0;;
-            --prefix)       arg=1;;
-            --user)         system_install="false"
+            -u | --user)    system_install="false"
                             config_path="$HOME/.config/gm-assistant";;
+            --prefix)       arg=1;;
             --sysconfdir)   arg=2;;
             --mandir)       arg=3;;
             --) break;;
