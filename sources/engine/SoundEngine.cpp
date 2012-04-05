@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -131,7 +131,7 @@ void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
     }
 }
 
-void SoundEngine::onStopSound(int channel)
+void SoundEngine::onStopSound(int)
 {
     Mix_VolumeMusic(MIX_MAX_VOLUME);
 }

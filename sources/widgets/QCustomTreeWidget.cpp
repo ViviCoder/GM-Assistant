@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -153,7 +153,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
     }
 }
 
-void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *e)
+void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *)
 {
     if (!bNewlySelected)
     {
