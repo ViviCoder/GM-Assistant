@@ -1,15 +1,4 @@
-Vincent Prat (ViviCoder)
-Simon Nicolas (Dramac)
-20/09/2011
-
-This software is designed to be the perfect assistant for the game master in a role playing game
-
-*****************
-*    LICENSE    *
-*****************
-
-This software is under the GNU General Public License v3 or later
-See the LICENSE file for more information about this license
+How to install GM-Assistant ?
 
 **********************
 *    REQUIREMENTS    *
@@ -18,6 +7,7 @@ See the LICENSE file for more information about this license
 To compile, you need:
 - g++ and the C++ standard library (with development files)
 - Qt4 library (with development files)
+- Qt4 linguist
 - XML++ library (with development files)
 - SDL-mixer (>= 1.2.12) and SDL-sound libraries (with development files)
 
@@ -27,9 +17,9 @@ To compile, you need:
 
 To install GM-Assistant, execute the following commands:
 
-./configure --prefix=<where you want to install>
+./configure (type './configure --help' for a summary of supported options)
 make
-make install
+make install (may require super-user rights)
 
 Then, to launch GM-Assistant, just type from the install directory:
 
