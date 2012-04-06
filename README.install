@@ -7,9 +7,11 @@ How to install GM-Assistant ?
 To compile, you need:
 - g++ and the C++ standard library (with development files)
 - Qt4 library (with development files)
-- Qt4 linguist
+- Qt4 linguist and qmake
 - XML++ library (with development files)
 - SDL-mixer (>= 1.2.12) and SDL-sound libraries (with development files)
+- ImageMagick
+- RSVG tools
 
 **********************
 *    INSTRUCTIONS    *

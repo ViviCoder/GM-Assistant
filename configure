@@ -26,7 +26,7 @@ sysconfdir="/etc"
 
 # Reading options
 supported_short_options="ghu"
-supported_long_options="help,debug,prefix:,user,build:,includedir:,mandir:,infodir:,sysconfdir:,localstatedir:,libexecdir:,disable-maintainer-mode,disable-dependency-tracking"
+supported_long_options="help,debug,prefix:,user,build:,includedir:,mandir:,libdir:,infodir:,sysconfdir:,localstatedir:,libexecdir:,disable-maintainer-mode,disable-dependency-tracking"
 
 options=$(getopt -s sh -l $supported_long_options $supported_short_options $@)
 if [ $? -eq 1 ]   # unsupported options
@@ -96,7 +96,7 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="uname echo getopt ls grep head pkg-config qmake lupdate lrelease make sed install tr"
+softs="uname echo getopt ls grep head pkg-config qmake lupdate lrelease make sed install tr rsvg-convert convert"
 
 for soft in $softs
 do
@@ -194,6 +194,7 @@ rm -f *.o
 rm -f ui_*.h
 
 # add files to clean
+sed $sed_i 's#DEL_FILE) $(OBJECTS)#DEL_FILE) $(OBJECTS)\n\t-$(DEL_FILE) GMA.*#' Makefile
 sed $sed_i 's#DEL_FILE) Makefile#DEL_FILE) Makefile\n\t-$(DEL_FILE) translations/*.qm\n\t-$(DEL_FILE) '$pro_file'\n\t-$(DEL_FILE) '$conf_file'#' Makefile
 
 # preparing conf file
@@ -206,7 +207,10 @@ then
     sed $sed_i 's#-o main.o#-DSYSTEM_INSTALL -o main.o#' Makefile
 fi
 
-sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINS=$(BASEDIR)/games\nSHARE=$(BASEDIR)/share/gm-assistant\nTRANSLATIONS=$(SHARE)/translations\nMANDIR=$(DESTDIR)'$mandir/man6'\nCONF=$(DESTDIR)'$config_path'\n\ninstall:\n\t\install -d $(BASEDIR) $(BINS) $(TRANSLATIONS) $(MANDIR) $(CONF)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/gm-assistant.6 $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
+# preparing the icon
+sed $sed_i 's#Makefile $(TARGET)#Makefile $(TARGET) GMA.xpm\n\nGMA.xpm: GMA.png\n\tconvert -resize 32x32 $< $@\n\nGMA.png: data/images/GMA.svg\n\trsvg-convert $< -o $@#' Makefile
+
+sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINS=$(BASEDIR)/games\nSHARE=$(BASEDIR)/share/gm-assistant\nTRANSLATIONS=$(SHARE)/translations\nMANDIR=$(DESTDIR)'$mandir/man6'\nCONF=$(DESTDIR)'$config_path'\n\ninstall:\n\t\install -d $(BASEDIR) $(BINS) $(TRANSLATIONS) $(MANDIR) $(CONF)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n\t$(INSTALL_FILE) GMA.xpm $(SHARE)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/gm-assistant.6 $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
 
 # preparing the uninstallation
 sed $sed_i 's#^uninstall:.*#uninstall:\n\t$(DEL_FILE) $(BINS)/gm-assistant\n\t$(DEL_FILE) $(TRANSLATIONS)/*\n\t$(DEL_DIR) $(TRANSLATIONS)\n\t$(DEL_FILE) $(SHARE)/*\n\t$(DEL_DIR) $(SHARE)\n\t$(DEL_FILE) $(MANDIR)/gm-assistant.6\n\t$(DEL_FILE) $(CONF)/*\n\t$(DEL_DIR) $(CONF)#' Makefile
