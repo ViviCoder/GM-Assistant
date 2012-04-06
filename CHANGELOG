@@ -1,3 +1,10 @@
+Changes in version 1.1.3
+
+- installation process made more generic
+- README file splitted into README and README.install
+- compilation warnings eliminated
+- icon built during compilation
+
 Changes in version 1.1.2
 
 - deletion or replacement of non-DFSG-compatible content
