@@ -45,7 +45,7 @@ ImageWindow::ImageWindow(const std::string &imageFileName, QWidget *parent): QLa
     }
 }
 
-void ImageWindow::mouseReleaseEvent(QMouseEvent *e)
+void ImageWindow::mouseReleaseEvent(QMouseEvent *)
 {
     if (bError)
     {

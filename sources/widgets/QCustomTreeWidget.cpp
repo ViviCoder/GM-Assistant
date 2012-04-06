@@ -153,7 +153,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
     }
 }
 
-void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *e)
+void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *)
 {
     if (!bNewlySelected)
     {

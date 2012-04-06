@@ -519,7 +519,7 @@ Tree::iterator& Tree::iterator::operator++() throw(out_of_range)
     return *this;
 }
 
-Tree::iterator Tree::iterator::operator++(int i)
+Tree::iterator Tree::iterator::operator++(int)
 {
     iterator it = *this;
     operator++();

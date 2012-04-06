@@ -49,11 +49,11 @@ Item::Type Item::type() const
     return tBasic;
 }
 
-void Item::fromXML(const xmlpp::Element &root)
+void Item::fromXML(const xmlpp::Element &)
 {
 }
 
-void Item::toXML(xmlpp::Element &root)
+void Item::toXML(xmlpp::Element &)
 {
 }
 
@@ -66,6 +66,7 @@ string Item::stateToStr(State state)
         case sFailure:  return "failure";   break;
         case sSuccess:  return "success";   break;
     }
+    return "";
 } 
 
 string Item::typeToStr(Type type)
