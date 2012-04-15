@@ -161,6 +161,7 @@ target="gm-assistant"
 pro_file=$target.pro
 
 qmake -project -o $pro_file
+echo "QT += svg" >> $pro_file
 lupdate $pro_file
 lrelease $pro_file
 qmake $pro_file
@@ -226,7 +227,7 @@ dox=$(which doxygen)
 if [ $? = 0 ]
 then
     echo "To generate the documentation, type make doc"
-    echo -e "doc:\n\tdoxygen dox.conf" >> Makefile
+    echo -e 'doc: $(filter sources/%,$(SOURCES))\n\tdoxygen dox.conf' >> Makefile
 else
     echo "In order to be able to generate the documentation, you need doxygen"
     echo

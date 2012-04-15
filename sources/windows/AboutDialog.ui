@@ -5,14 +5,6 @@
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>318</width>
-    <height>654</height>
-   </rect>
-  </property>
   <property name="windowTitle">
    <string>About GM-Assistant</string>
   </property>
@@ -47,16 +39,6 @@ p, li { white-space: pre-wrap; }
     <widget class="QLabel" name="labelVersionNumber">
      <property name="text">
       <string>1.0</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0" colspan="2">
-    <widget class="QLabel" name="labelLogo">
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="../../ressource.qrc">:/data/images/GMA.svg</pixmap>
      </property>
     </widget>
    </item>
@@ -118,8 +100,19 @@ during a role playing game&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </item>
+   <item row="2" column="0" colspan="2">
+    <widget class="QSvgWidget" name="labelLogo" native="true"/>
+   </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>QSvgWidget</class>
+   <extends>QWidget</extends>
+   <header>QSvgWidget</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../../ressource.qrc"/>
   <include location="../../ressource.qrc"/>

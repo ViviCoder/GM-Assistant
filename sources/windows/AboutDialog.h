@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,10 +21,27 @@
 
 #include "ui_AboutDialog.h"
 
+/*!
+ * \brief Dialog window for information
+ */
 class AboutDialog: public QDialog, private Ui::AboutDialog
 {
     public:
+        /*!
+         * \brief Constructor of the dialog window
+         * \param parent Parent window
+         *
+         * Fills the version number and the logo
+         */
         AboutDialog(QWidget *parent=NULL);
+    protected:
+        /*!
+         * \brief Event handler called when shown
+         * \param e ShowEvent raised
+         *
+         * Fixes the size of the window
+         */
+        void showEvent(QShowEvent *e);
 };
 
 #endif
