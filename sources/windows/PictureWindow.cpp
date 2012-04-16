@@ -17,8 +17,9 @@
 *************************************************************************/
 
 #include "PictureWindow.h"
+#include <QPainter>
 
-PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent): QLabel(parent), bError(false)
+PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent): QLabel(parent), bError(false), sImageFileName(pictureFileName), bSvg(true), renderer(NULL) 
 {
     setAlignment(Qt::AlignCenter);
     setWindowFlags(windowFlags()|Qt::Window);
@@ -27,22 +28,39 @@ PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent
     newPalette.setColor(QPalette::Window,QColor("black"));
     setPalette(newPalette);
     // displaying the picture
-    QPixmap pix(pictureFileName.c_str());
-    if (pix.isNull())
+    if (sImageFileName.substr(sImageFileName.length()-3,3) != "svg")
     {
-        // the image cannot be loaded
-        bError = true;
-        setPixmap(QPixmap(":/data/images/stop.svg"));
+        bSvg = false;
+        QPixmap pix(sImageFileName.c_str());
+        if (pix.isNull())
+        {
+            // the image cannot be loaded
+            bError = true;
+            sImageFileName = ":/data/images/stop.svg";
+            bSvg = true;
+        }
+        else
+        {
+            setPixmap(pix);
+        }
     }
-    else
+    if (bSvg)
     {
-        setPixmap(pix);
+        renderer = new QSvgRenderer(this);
+        if (!renderer->load(QString(sImageFileName.c_str())))
+        {
+            // unable to load the image
+            renderer->load(QString(":/data/images/stop.svg"));
+            bError = true;
+        }
+        resize(renderer->defaultSize());
+        // the size is fixed when the image does not exist
+        if (bError)
+        {
+            setFixedSize(size());
+        }
     }
     showNormal();
-    if (bError)
-    {
-        setFixedSize(size());
-    }
 }
 
 void PictureWindow::mouseReleaseEvent(QMouseEvent *)
@@ -80,5 +98,22 @@ void PictureWindow::resizeEvent(QResizeEvent *e)
     // overriden event handler 
     QLabel::resizeEvent(e);
     // replacing the pixmap
-    setPixmap(pixmap()->scaled(e->size(),Qt::KeepAspectRatio));
+    if (pixmap() != NULL)
+    {
+        setPixmap(pixmap()->scaled(e->size(),Qt::KeepAspectRatio));
+    }
+}
+
+void PictureWindow::paintEvent(QPaintEvent *e)
+{
+    // special treatment for svg images
+    if (bSvg)
+    {
+        QPainter painter(this);
+        renderer->render(&painter);
+    }
+    else
+    {
+        QLabel::paintEvent(e);
+    }
 }

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,7 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <string>
-
+#include <QSvgRenderer>
 
 /*!
  * \brief Window used to display a picture
@@ -35,6 +35,18 @@ class PictureWindow: public QLabel
          * Flag active if the image cannot be loaded
          */
         bool bError;
+        /*!
+         * Image file name
+         */
+        std::string sImageFileName;
+        /*!
+         * Flag active if the image is in the SVG format
+         */
+        bool bSvg;
+        /*!
+         * Svg Renderer
+         */
+        QSvgRenderer *renderer;
     protected:
         /*!
          * \brief Mouse ReleaseEvent handler
@@ -53,6 +65,11 @@ class PictureWindow: public QLabel
          * \param e Resize event raised
          */
         void resizeEvent(QResizeEvent *e);
+        /*!
+         * \brief Paint event handler
+         * \param e Paint event raised
+         */
+        void paintEvent(QPaintEvent *e);
     public:
         /*!
          * \brief Constructor of the window
