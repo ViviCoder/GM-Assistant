@@ -59,6 +59,11 @@ PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent
         {
             setFixedSize(size());
         }
+        else
+        {
+            QRectF rect = renderer->viewBoxF();
+            dAspectRatio = rect.width()/rect.height();
+        }
     }
     showNormal();
 }
@@ -98,22 +103,24 @@ void PictureWindow::resizeEvent(QResizeEvent *e)
     // overriden event handler 
     QLabel::resizeEvent(e);
     // replacing the pixmap
-    if (pixmap() != NULL)
-    {
-        setPixmap(pixmap()->scaled(e->size(),Qt::KeepAspectRatio));
-    }
-}
-
-void PictureWindow::paintEvent(QPaintEvent *e)
-{
-    // special treatment for svg images
     if (bSvg)
     {
-        QPainter painter(this);
+        // scaling
+        int w = width();
+        int h = w / dAspectRatio;
+        if (h > height())
+        {
+            h = height();
+            w = h * dAspectRatio;
+        }
+        QImage image(w, h, QImage::Format_ARGB32);
+        image.fill(QPalette::Window);
+        QPainter painter(&image);
         renderer->render(&painter);
+        setPixmap(QPixmap::fromImage(image));
     }
     else
     {
-        QLabel::paintEvent(e);
+        setPixmap(pixmap()->scaled(e->size(),Qt::KeepAspectRatio));
     }
 }

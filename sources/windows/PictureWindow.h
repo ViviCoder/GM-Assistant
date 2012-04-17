@@ -47,6 +47,10 @@ class PictureWindow: public QLabel
          * Svg Renderer
          */
         QSvgRenderer *renderer;
+        /*!
+         * Aspect ratio of the image
+         */
+        double dAspectRatio;
     protected:
         /*!
          * \brief Mouse ReleaseEvent handler
@@ -65,11 +69,6 @@ class PictureWindow: public QLabel
          * \param e Resize event raised
          */
         void resizeEvent(QResizeEvent *e);
-        /*!
-         * \brief Paint event handler
-         * \param e Paint event raised
-         */
-        void paintEvent(QPaintEvent *e);
     public:
         /*!
          * \brief Constructor of the window
