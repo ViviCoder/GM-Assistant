@@ -19,9 +19,12 @@
 #!/bin/sh
 
 # Initializing some options
-debug="false"
+debug=0
+system_install=1
+build_icon=0
+
+# default paths
 prefix="/usr"
-system_install="true"
 sysconfdir="/etc"
 
 # Reading options
@@ -42,11 +45,12 @@ do
     if [ $arg -eq 0 -o "$opt" = "--" ]
     then
         case $opt in
-            -g | --debug)   debug="true";;
+            -g | --debug)   debug=1;;
             -h | --help)    echo -e "Usage: configure [options]\n\nGeneral options:\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n -u, --user\tInstall in a user scope\n\nDirectory options:\n --prefix=[/usr]\t\tInstallation directory\n --mandir=[<prefix>/share/man]\tManual directory\n --sysconfdir=[/etc]\t\tSystem configuration directory"
                 exit 0;;
-            -u | --user)    system_install="false"
+            -u | --user)    system_install=0
                             config_path="$HOME/.config/gm-assistant";;
+            --build)        build_icon=1;;
             --prefix)       arg=1;;
             --sysconfdir)   arg=2;;
             --mandir)       arg=3;;
@@ -64,7 +68,7 @@ done
 
 # Setting paths
 mandir=$prefix"/share/man"
-if [ $system_install = "true" ]
+if [ $system_install -ne 0 ]
 then
     config_path="$sysconfdir/xdg/gm-assistant"
 fi
@@ -96,7 +100,11 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="uname echo getopt ls grep head pkg-config qmake lupdate lrelease make sed install tr rsvg-convert convert"
+softs="uname echo getopt ls grep head pkg-config qmake lupdate lrelease make sed install tr"
+if [ $build_icon -ne 0 ]
+then
+    softs=$softs" rsvg-convert convert"
+fi
 
 for soft in $softs
 do
@@ -167,7 +175,7 @@ lrelease $pro_file
 qmake $pro_file
 
 # adding the -g flag if the debug option is enabled
-if [ $debug = "true" ]
+if [ $debug -ne 0 ]
 then
     sed $sed_i "s#-pipe#-pipe -g#" Makefile
 fi
@@ -203,15 +211,19 @@ echo "[directories]" > $conf_file
 echo "install=$prefix/share/gm-assistant" >> $conf_file
 
 # preparing the installation
-if [ $system_install = "true" ]
+if [ $system_install -ne 0 ]
 then
     sed $sed_i 's#-o main.o#-DSYSTEM_INSTALL -o main.o#' Makefile
 fi
 
-# preparing the icon
-sed $sed_i 's#Makefile $(TARGET)#Makefile $(TARGET) GMA.xpm\n\nGMA.xpm: GMA.png\n\tconvert -resize 32x32 $< $@\n\nGMA.png: data/images/GMA.svg\n\trsvg-convert $< -o $@#' Makefile
+if [ $build_icon -ne 0 ]
+then
+    # preparing the icon
+    sed $sed_i 's#Makefile $(TARGET)#Makefile $(TARGET) GMA.xpm\n\nGMA.xpm: GMA.png\n\tconvert -resize 32x32 $< $@\n\nGMA.png: data/images/GMA.svg\n\trsvg-convert $< -o $@#' Makefile
+    install_icon='\t$(INSTALL_FILE) GMA.xpm $(SHARE)\n'
+fi
 
-sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINS=$(BASEDIR)/games\nSHARE=$(BASEDIR)/share/gm-assistant\nTRANSLATIONS=$(SHARE)/translations\nMANDIR=$(DESTDIR)'$mandir/man6'\nCONF=$(DESTDIR)'$config_path'\n\ninstall:\n\t\install -d $(BASEDIR) $(BINS) $(TRANSLATIONS) $(MANDIR) $(CONF)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n\t$(INSTALL_FILE) GMA.xpm $(SHARE)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/gm-assistant.6 $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
+sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINS=$(BASEDIR)/games\nSHARE=$(BASEDIR)/share/gm-assistant\nTRANSLATIONS=$(SHARE)/translations\nMANDIR=$(DESTDIR)'$mandir/man6'\nCONF=$(DESTDIR)'$config_path'\n\ninstall:\n\t\install -d $(BASEDIR) $(BINS) $(TRANSLATIONS) $(MANDIR) $(CONF)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n'"$install_icon"'\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/gm-assistant.6 $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
 
 # preparing the uninstallation
 sed $sed_i 's#^uninstall:.*#uninstall:\n\t$(DEL_FILE) $(BINS)/gm-assistant\n\t$(DEL_FILE) $(TRANSLATIONS)/*\n\t$(DEL_DIR) $(TRANSLATIONS)\n\t$(DEL_FILE) $(SHARE)/*\n\t$(DEL_DIR) $(SHARE)\n\t$(DEL_FILE) $(MANDIR)/gm-assistant.6\n\t$(DEL_FILE) $(CONF)/*\n\t$(DEL_DIR) $(CONF)#' Makefile

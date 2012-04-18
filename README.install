@@ -10,6 +10,7 @@ To compile, you need:
 - Qt4 linguist and qmake
 - XML++ library (with development files)
 - SDL-mixer (>= 1.2.12) and SDL-sound libraries (with development files)
+and optionally:
 - ImageMagick
 - RSVG tools
 
