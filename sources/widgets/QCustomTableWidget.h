@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -44,6 +44,10 @@ class QCustomTableWidget: public QTableWidget
         ChangeCharacterDialog *pChangeCharacterDial;
         SkillList *pSkills;
         CharacterList *pCharacters;
+        /*!
+         * \brief Flag indicating if an item is currently beeing edited
+         */
+        bool bEditing;
 
     protected:
         /*!
@@ -51,9 +55,23 @@ class QCustomTableWidget: public QTableWidget
          * \param e Mouse event
          */
         void mousePressEvent(QMouseEvent *e);
+        /*!
+         * \brief KeyReleaseEvent handler
+         * \param e Key event
+         */
         void keyReleaseEvent(QKeyEvent *e);
+        /*!
+         * \brief DoubleClickEvent handler
+         * \param e Mouse event
+         */
+        void mouseDoubleClickEvent(QMouseEvent *e);
 
     protected slots:
+        /*!
+         * \brief Slot for when a cell changes 
+         * \param row Row of the cell
+         * \param column Column of the cell
+         */
         void onCellChanged(int row, int column);
         void onHHeaderClicked(int index, const QPoint &position);
         void onVHeaderClicked(int index, const QPoint &position);
@@ -63,6 +81,10 @@ class QCustomTableWidget: public QTableWidget
         void removeCharacter(int index);
         void editSkill(int index);
         void editCharacter(int index);
+        /*!
+         * \brief Slot for when the selection changes 
+         */
+        void on_itemSelectionChanged();
 
     public:
         /*!

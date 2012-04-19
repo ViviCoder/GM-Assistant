@@ -1208,7 +1208,7 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="365"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="368"/>
         <location filename="../sources/windows/MainWindow.cpp" line="229"/>
         <location filename="../sources/windows/MainWindow.cpp" line="233"/>
         <location filename="../sources/windows/MainWindow.cpp" line="256"/>
