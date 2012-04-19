@@ -441,20 +441,28 @@ void MainWindow::on_action_Reload_triggered()
     else
     {
         // changing current directory
-        QDir::setCurrent(QFileInfo(sFileName).dir().path());
-        try
+        QFileInfo file(sFileName);
+        QDir::setCurrent(file.dir().path());
+        if (file.exists())
         {
-            eGame.fromFile(sFileName.toStdString());
-            updateDisplay();
-            bModified = false;
+            try
+            {
+                eGame.fromFile(sFileName.toStdString());
+                updateDisplay();
+                bModified = false;
+            }
+            catch (xmlpp::exception &xml)
+            {
+                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+            }
+            catch (std::exception &e)
+            {
+                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QString(e.what()) + "\nThe game cannot be loaded.");
+            }
         }
-        catch (xmlpp::exception &xml)
+        else
         {
-            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
-        }
-        catch (std::exception &e)
-        {
-            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QString(e.what()) + "\nThe game cannot be loaded.");
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QApplication::translate("mainWindow","The file does not exist.",0));
         }
     }
 }

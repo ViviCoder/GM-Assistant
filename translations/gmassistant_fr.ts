@@ -1215,8 +1215,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="278"/>
         <location filename="../sources/windows/MainWindow.cpp" line="401"/>
         <location filename="../sources/windows/MainWindow.cpp" line="414"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="453"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="457"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="456"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="460"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="465"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1237,7 +1238,12 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="497"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="465"/>
+        <source>The file does not exist.</source>
+        <translation>Le fichier n&apos;existe pas.</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.cpp" line="505"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>
