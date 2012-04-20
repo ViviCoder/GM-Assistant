@@ -1,3 +1,9 @@
+Changes in version 1.1.4
+- dependency on (rsvg-)convert made optional
+- SVG images display issue on Windows solved
+- behaviour of the Del key in the character table modified
+- Bug on start-up when the last opened file does not exist (Windows) fixed
+
 Changes in version 1.1.3
 
 - installation process made more generic
