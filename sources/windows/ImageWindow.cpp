@@ -17,8 +17,9 @@
 *************************************************************************/
 
 #include "ImageWindow.h"
+#include <QPainter>
 
-ImageWindow::ImageWindow(const std::string &imageFileName, QWidget *parent): QLabel(parent), bError(false)
+ImageWindow::ImageWindow(const std::string &pictureFileName, QWidget *parent): QLabel(parent), bError(false), sImageFileName(pictureFileName), bSvg(true), renderer(NULL) 
 {
     setAlignment(Qt::AlignCenter);
     setWindowFlags(windowFlags()|Qt::Window);
@@ -26,23 +27,45 @@ ImageWindow::ImageWindow(const std::string &imageFileName, QWidget *parent): QLa
     QPalette newPalette(palette());
     newPalette.setColor(QPalette::Window,QColor("black"));
     setPalette(newPalette);
-    // displaying the image
-    QPixmap pix(imageFileName.c_str());
-    if (pix.isNull())
+    // displaying the picture
+    if (sImageFileName.substr(sImageFileName.length()-3,3) != "svg")
     {
-        // the image cannot be loaded
-        bError = true;
-        setPixmap(QPixmap(":/data/images/stop.svg"));
+        bSvg = false;
+        QPixmap pix(sImageFileName.c_str());
+        if (pix.isNull())
+        {
+            // the image cannot be loaded
+            bError = true;
+            sImageFileName = ":/data/images/stop.svg";
+            bSvg = true;
+        }
+        else
+        {
+            setPixmap(pix);
+        }
     }
-    else
+    if (bSvg)
     {
-        setPixmap(pix);
+        renderer = new QSvgRenderer(this);
+        if (!renderer->load(QString(sImageFileName.c_str())))
+        {
+            // unable to load the image
+            renderer->load(QString(":/data/images/stop.svg"));
+            bError = true;
+        }
+        resize(renderer->defaultSize());
+        // the size is fixed when the image does not exist
+        if (bError)
+        {
+            setFixedSize(size());
+        }
+        else
+        {
+            QRectF rect = renderer->viewBoxF();
+            dAspectRatio = rect.width()/rect.height();
+        }
     }
     showNormal();
-    if (bError)
-    {
-        setFixedSize(size());
-    }
 }
 
 void ImageWindow::mouseReleaseEvent(QMouseEvent *)
@@ -80,5 +103,24 @@ void ImageWindow::resizeEvent(QResizeEvent *e)
     // overriden event handler 
     QLabel::resizeEvent(e);
     // replacing the pixmap
-    setPixmap(pixmap()->scaled(e->size(),Qt::KeepAspectRatio));
+    if (bSvg)
+    {
+        // scaling
+        int w = width();
+        int h = w / dAspectRatio;
+        if (h > height())
+        {
+            h = height();
+            w = h * dAspectRatio;
+        }
+        QImage image(w, h, QImage::Format_ARGB32);
+        image.fill(QPalette::Window);
+        QPainter painter(&image);
+        renderer->render(&painter);
+        setPixmap(QPixmap::fromImage(image));
+    }
+    else
+    {
+        setPixmap(pixmap()->scaled(e->size(),Qt::KeepAspectRatio));
+    }
 }

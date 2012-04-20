@@ -4,12 +4,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="17"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="9"/>
         <source>About GM-Assistant</source>
         <translation>À propos de GM-Assistant</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="23"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="15"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -18,7 +18,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="37"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="29"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p&gt;Version:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -27,7 +27,7 @@ p, li { white-space: pre-wrap; }
 &lt;p&gt;Version :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="69"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="48"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline&quot;&gt;Developed and maintained by:&lt;/p&gt;
@@ -54,7 +54,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dramac (Simon Nicolas)&lt;br /&gt;ViviCoder (Vincent Prat)&lt;br /&gt;&lt;a href=&quot;http://vivicoder.github.com/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://vivicoder.github.com/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="83"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="62"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline&quot;&gt;Using:&lt;/p&gt;
@@ -109,7 +109,7 @@ p, li { white-space: pre-wrap; }
 &lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="105"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="84"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline;&quot;&gt;Description:&lt;/p&gt;
@@ -124,7 +124,7 @@ conçu pour assister le Maître du Jeu&lt;br /&gt;
 lors d&apos;une partie de jeu de rôles&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="117"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="96"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot; text-decoration: underline;&quot;&gt;License:&lt;/p&gt;
@@ -147,7 +147,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Version :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="49"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="41"/>
         <source>1.0</source>
         <translation></translation>
     </message>
@@ -274,7 +274,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">GM-Assistant est un logiciel libre conçu pour assister le Maître du Jeu lors d&apos;une partie de jeu de rôle</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="98"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="77"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
@@ -1258,7 +1258,7 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="365"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="368"/>
         <location filename="../sources/windows/MainWindow.cpp" line="229"/>
         <location filename="../sources/windows/MainWindow.cpp" line="233"/>
         <location filename="../sources/windows/MainWindow.cpp" line="256"/>
@@ -1295,6 +1295,10 @@ p, li { white-space: pre-wrap; }
     <message>
         <source>The file %1 does not exist.</source>
         <translation type="obsolete">Le fichier %1 n&apos;existe pas.</translation>
+    </message>
+    <message>
+        <source>The file does not exist.</source>
+        <translation type="obsolete">Le fichier n&apos;existe pas.</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="504"/>

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 #include "ChangeSkillDialog.h"
 #include <QApplication>
 
-QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(NULL), pCharacters(NULL)
+QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(NULL), pCharacters(NULL), bEditing(false)
 {
     // popup menu
     // skills
@@ -89,6 +89,7 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     connect(this,SIGNAL(cellChanged(int,int)),this,SLOT(onCellChanged(int,int)));
     connect(dynamic_cast<QCustomHeaderView*>(horizontalHeader()),SIGNAL(rightClicked(int, const QPoint&)),this,SLOT(onHHeaderClicked(int, const QPoint&)));
     connect(dynamic_cast<QCustomHeaderView*>(verticalHeader()),SIGNAL(rightClicked(int, const QPoint&)),this,SLOT(onVHeaderClicked(int, const QPoint&)));
+    connect(this, SIGNAL(itemSelectionChanged()), this, SLOT(on_itemSelectionChanged()));
 }
 
 QCustomTableWidget::~QCustomTableWidget()
@@ -189,8 +190,21 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
     {
         switch (e->key())
         {
-            case Qt::Key_Delete: item->setText("0"); break;
-            default: break; 
+            case Qt::Key_F2:    if (!bEditing)
+                                {
+                                    bEditing = true;
+                                }
+                                break;
+            case Qt::Key_Delete:    if (!bEditing)
+                                    {
+                                        item->setText("0");
+                                    }
+                                    break;
+            case Qt::Key_Return:
+            case Qt::Key_Enter:
+            case Qt::Key_Escape:    bEditing = false;
+                                    break;
+            default:    QTableWidget::keyReleaseEvent(e); break; 
         }
     }
 }
@@ -437,4 +451,19 @@ void QCustomTableWidget::editSkill(int index)
         }
     }
     resizeColumnToContents(index);
+}
+
+void QCustomTableWidget::on_itemSelectionChanged()
+{
+    bEditing = false;
+}
+
+void QCustomTableWidget::mouseDoubleClickEvent(QMouseEvent *)
+{
+    QTableWidgetItem *item = currentItem();
+    if (item != NULL)
+    {
+        editItem(item);
+        bEditing = true;
+    }
 }

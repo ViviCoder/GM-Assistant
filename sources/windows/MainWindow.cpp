@@ -448,7 +448,7 @@ void MainWindow::on_action_Reload_triggered()
             return;
         }
         // changing current directory
-        QDir::setCurrent(QFileInfo(sFileName).dir().path());
+        QDir::setCurrent(file.dir().path());
         try
         {
             eGame.fromFile(sFileName.toStdString());

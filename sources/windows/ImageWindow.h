@@ -23,7 +23,7 @@
 #include <QMouseEvent>
 #include <QKeyEvent>
 #include <string>
-
+#include <QSvgRenderer>
 
 /*!
  * \brief Window used to display an image
@@ -35,6 +35,22 @@ class ImageWindow: public QLabel
          * Flag active if the image cannot be loaded
          */
         bool bError;
+        /*!
+         * Image file name
+         */
+        std::string sImageFileName;
+        /*!
+         * Flag active if the image is in the SVG format
+         */
+        bool bSvg;
+        /*!
+         * Svg Renderer
+         */
+        QSvgRenderer *renderer;
+        /*!
+         * Aspect ratio of the image
+         */
+        double dAspectRatio;
     protected:
         /*!
          * \brief Mouse ReleaseEvent handler

@@ -168,10 +168,13 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
     {
         switch (e->key())
         {
-            case Qt::Key_F2:    qItem->setFlags(qItem->flags() | Qt::ItemIsEditable);
-                                editItem(qItem);
-                                bEditing = true;
-                                qItem->setFlags(qItem->flags() & ~Qt::ItemIsEditable);
+            case Qt::Key_F2:    if (!bEditing)
+                                {
+                                    qItem->setFlags(qItem->flags() | Qt::ItemIsEditable);
+                                    editItem(qItem);
+                                    bEditing = true;
+                                    qItem->setFlags(qItem->flags() & ~Qt::ItemIsEditable);
+                                }
                                 break;
             case Qt::Key_Delete:    if (!bEditing)
                                     {
