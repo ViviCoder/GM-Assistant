@@ -17,7 +17,7 @@
 *************************************************************************/
 
 #include "Scenario.h"
-#include "version.h"
+#include "Version.h"
 
 using namespace std;
 

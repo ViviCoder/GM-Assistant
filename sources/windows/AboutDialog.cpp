@@ -17,7 +17,7 @@
 *************************************************************************/
 
 #include "AboutDialog.h"
-#include "version.h"
+#include "Version.h"
 #include <QMessageBox>
 
 AboutDialog::AboutDialog(QWidget *parent): QDialog(parent)
