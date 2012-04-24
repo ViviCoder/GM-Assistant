@@ -23,13 +23,7 @@
 #define MINOR_VERSION   2
 #define RELEASE_VERSION 0
 
-// some stringification macros
-#define xstr(s) str(s)
-#define str(s)  #s
-
-// version string
-#define SHORT_VERSION   xstr(MAJOR_VERSION)"."xstr(MINOR_VERSION)
-#define FULL_VERSION    SHORT_VERSION"."xstr(RELEASE_VERSION)
+#include <string>
 
 /*!
  * \brief Class containing version information
@@ -56,6 +50,20 @@ class Version
          * \return Current version
          */
         static Version currentVersion();
+        /*!
+         * \brief Short version
+         * \return String containing the short version
+         *
+         * The short version is in the form of MAJOR.MINOR
+         */
+        std::string shortVersion();
+        /*!
+         * \brief Full version
+         * \return String containing the full version
+         *
+         * The full version is in the form of MAJOR.MINOR.RELEASE
+         */
+        std::string fullVersion();
 };
 
 #endif

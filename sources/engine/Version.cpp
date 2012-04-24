@@ -17,6 +17,9 @@
 *************************************************************************/
 
 #include "Version.h"
+#include <sstream>
+
+using namespace std;
 
 Version::Version(int major, int minor, int release): iMajor(major), iMinor(minor), iRelease(release)
 {
@@ -25,4 +28,18 @@ Version::Version(int major, int minor, int release): iMajor(major), iMinor(minor
 Version Version::currentVersion()
 {
     return Version(MAJOR_VERSION, MINOR_VERSION, RELEASE_VERSION);
+}
+
+string Version::shortVersion()
+{
+    ostringstream buf;
+    buf << iMajor << "." << iMinor;
+    return buf.str();
+}
+
+string Version::fullVersion()
+{
+    ostringstream buf;
+    buf << iMajor << "." << iMinor << "." << iRelease;
+    return buf.str();
 }

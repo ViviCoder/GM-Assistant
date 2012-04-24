@@ -344,7 +344,7 @@ void Tree::move(const string &currentIndices, const string &newIndices)
     // we now determine if there is need to modify newIndices for the suppression
     string subNew(newIndices), subCurrent(currentIndices);
     int nNew, nCurrent;
-    stringstream buf(stringstream::in | stringstream::out);
+    ostringstream buf;
     // we iterate over the indices
     bool firstTime = true;
     do
@@ -402,7 +402,7 @@ int Tree::indexOf(Branch *branch) const
 
 string Tree::indicesOf(Branch *branch) const throw(out_of_range)
 {
-    stringstream buf(stringstream::in | stringstream::out);
+    ostringstream buf;
     int n = indexOf(branch);
     if (n == -1)
     {
@@ -425,7 +425,7 @@ string Tree::indicesOf(Branch *branch) const throw(out_of_range)
 
 string Tree::indicesOfNext(Branch *branch) const
 {
-    stringstream buf(stringstream::in | stringstream::out);
+    ostringstream buf;
     int n = indexOf(branch);
     if (n == -1)
     {

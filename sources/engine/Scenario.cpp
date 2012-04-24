@@ -123,7 +123,7 @@ void Scenario::toFile(const string &fileName) const
 
     Document document;
     Element *root = document.create_root_node("game");
-    root->set_attribute("version",SHORT_VERSION);
+    root->set_attribute("version",Version::currentVersion().shortVersion());
     root->set_attribute("interface",interfaceToString(uiInterface));
     Element *tmp = root->add_child("scenario");
     tScenario.toXML(*tmp);
