@@ -64,6 +64,22 @@ class Version
          * The full version is in the form of MAJOR.MINOR.RELEASE
          */
         std::string fullVersion();
+        /*!
+         * \brief Comparison operator (lower than)
+         * \param version Version to compare with the object
+         * \return True if the object is lower than the given version, false otherwise
+         *
+         * Compares only short versions
+         */
+        bool operator<(const Version &version);
+        /*!
+         * \brief Comparison operator (greater than)
+         * \param version Version to compare with the object
+         * \return True if the object is greater than the given version, false otherwise
+         *
+         * Compares only short versions
+         */
+        bool operator>(const Version &version);
 };
 
 #endif

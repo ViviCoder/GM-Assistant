@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -42,4 +42,38 @@ string Version::fullVersion()
     ostringstream buf;
     buf << iMajor << "." << iMinor << "." << iRelease;
     return buf.str();
+}
+
+bool Version::operator<(const Version &version)
+{
+    if (iMajor < version.iMajor)
+    {
+        return true;
+    }
+    if (iMajor > version.iMajor)
+    {
+        return false;
+    }
+    if (iMinor < version.iMinor)
+    {
+        return true;
+    }
+    return false;
+}
+
+bool Version::operator>(const Version &version)
+{
+    if (iMajor > version.iMajor)
+    {
+        return true;
+    }
+    if (iMajor < version.iMajor)
+    {
+        return false;
+    }
+    if (iMinor > version.iMinor)
+    {
+        return true;
+    }
+    return false;
 }
