@@ -45,10 +45,11 @@ class FileItem: public Item
         /*!
          * \brief Setter for the name of the file of the item
          * \param fileName New file name
+         * \param checkFile Indicates if the existence of the file is checked
          * \throw std::invalid_argument Thrown when the file is not readable
          * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
          */
-        virtual void setFileName(const std::string &fileName) throw(std::invalid_argument, std::overflow_error);
+        virtual void setFileName(const std::string &fileName, bool checkFile = true) throw(std::invalid_argument, std::overflow_error);
     public:
         /*!
          *  \brief Constructor
@@ -70,11 +71,12 @@ class FileItem: public Item
         /*!
          * \brief Loads the item from a XML tree
          * \param root Position of the item in the XML tree
+         * \param checkFile Indicates if the existence of the file is checked
          * \throw xmlpp::exception Thrown when there is an error in the XML tree
          * \throw std::invalid_argument Thrown when a file is not readable 
          * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
          */
-        void fromXML(const xmlpp::Element &root) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
+        void fromXML(const xmlpp::Element &root, bool checkFile = true) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
         void toXML(xmlpp::Element &root);
 };
 

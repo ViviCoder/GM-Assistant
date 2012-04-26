@@ -71,6 +71,19 @@ class Item
          * \return Type equivalent to the string
          */
         static Type strToType(const std::string &name) throw(std::invalid_argument);
+        /*!
+         * \brief Subclass hierarchy test method
+         * \param type Type to test
+         * \param isType Mother class type to test
+         * \return True if type is a subclass of isType, false otherwise
+         */
+        static bool is(Type type, Type isType);
+        /*!
+         * \brief Method for getting the parent type of a given type
+         * \param type Son type
+         * \return Parent type
+         */
+        static Type parentType(Type type);
     private:
         State sState;
         std::string sContent;

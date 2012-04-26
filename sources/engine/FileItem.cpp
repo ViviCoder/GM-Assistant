@@ -39,11 +39,11 @@ string FileItem::fileName() const
     return sFileName;
 }
 
-void FileItem::setFileName(const string &fileName) throw(invalid_argument, overflow_error)
+void FileItem::setFileName(const string &fileName, bool checkFile) throw(invalid_argument, overflow_error)
 {
     sFileName = fileName;
     QFileInfo file(fileName.c_str());
-    if (!file.exists())
+    if (checkFile && !file.exists())
     {
         throw invalid_argument("The file "+fileName+" does not exist.");
     }
@@ -53,7 +53,7 @@ void FileItem::setFileName(const string &fileName) throw(invalid_argument, overf
     }
 }
 
-void FileItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception, invalid_argument, overflow_error)
+void FileItem::fromXML(const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, invalid_argument, overflow_error)
 {
     using namespace xmlpp;
     
@@ -72,7 +72,7 @@ void FileItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception, inval
             name = attr->get_value();
         }
     }
-    setFileName(name);
+    setFileName(name, checkFile);
 }
 
 void FileItem::toXML(xmlpp::Element &root)

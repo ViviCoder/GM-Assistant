@@ -34,9 +34,9 @@ Tree::Tree(const Tree &tree, Branch* parent)
     pParent = parent;
 }
 
-Tree::Tree(const xmlpp::Element &root, Branch* parent): pParent(parent)
+Tree::Tree(const xmlpp::Element &root, bool checkFiles, Branch* parent): pParent(parent)
 {
-    fromXML(root);
+    fromXML(root, checkFiles);
 }
 
 // destructor
@@ -77,7 +77,7 @@ void Tree::toXML(xmlpp::Element &root) const
     }
 }
 
-void Tree::fromXML(const xmlpp::Element &root, bool limitedSize) throw(invalid_argument, overflow_error)
+void Tree::fromXML(const xmlpp::Element &root, bool checkFiles, bool limitedSize) throw(invalid_argument, overflow_error)
 {
     clear();
     using namespace xmlpp;
@@ -105,7 +105,15 @@ void Tree::fromXML(const xmlpp::Element &root, bool limitedSize) throw(invalid_a
             content = attr->get_value();
         }
         Item *item = ItemFactory::createItem(type,content,state,limitedSize);
-        item->fromXML(*elem);
+        if (!checkFiles && Item::is(type, Item::tFile))
+        {
+            // special treatment for FileItems
+            dynamic_cast<FileItem*>(item)->fromXML(*elem, false);
+        }
+        else
+        {
+            item->fromXML(*elem);
+        }
         Branch *branch = new Branch(item,*elem,this);
         vChildren.push_back(branch);
     }

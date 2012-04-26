@@ -98,3 +98,34 @@ Item::Type Item::strToType(const string &name) throw(invalid_argument)
     else if (name=="picture") return tImage;
     else    throw invalid_argument("Unrecognized \""+name+"\" item type");
 }
+
+bool Item::is(Type type, Type isType)
+{
+    if (isType == tBasic)
+    {
+        // tBasic is the base type
+        return true;
+    }
+    if (type == tBasic)
+    {
+        return false;
+    }
+    if (type == isType)
+    {
+        // types are the same
+        return true;
+    }
+    // recursively
+    return is(parentType(type), isType);
+}
+
+Item::Type Item::parentType(Type type)
+{
+    switch (type)
+    {
+        case tFile:     return tBasic;  break;
+        case tSound:    return tFile;   break;
+        case tImage:    return tFile;   break;
+        default:        return tBasic;
+    }    
+}

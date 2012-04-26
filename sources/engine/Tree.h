@@ -71,7 +71,13 @@ class Tree
         // constructors
         Tree(Branch* parent=NULL);
         Tree(const Tree &tree, Branch* parent=NULL);
-        Tree(const xmlpp::Element &root, Branch* parent=NULL);
+        /*!
+         * \brief Constructor which read directly in a XML tree
+         * \param root Root of the XML tree
+         * \param checkFiles Indicates if the existence of files associated with FileItems is checked
+         * \param parent Pointer to the parent branch of the tree
+         */
+        Tree(const xmlpp::Element &root, bool checkFiles, Branch* parent=NULL);
         // destructor
         ~Tree();
         // copy operator
@@ -81,12 +87,13 @@ class Tree
         /*!
          * \brief XML loader
          * \param root Position of the tree in the XML tree
+         * \param checkFiles Indicates if the existence of files associated with FileItems is checked
          * \param limitedSize Indicates if the size of the items is limited
          * \throw std::invalid_argument Thrown when an item has not been loaded correctly        
          * \throw std::overflow_error Thrown when the size of a file exceeds the limit (if limited)
 
          */
-        void fromXML(const xmlpp::Element &root, bool limitedSize = false) throw(std::invalid_argument, std::overflow_error);
+        void fromXML(const xmlpp::Element &root, bool checkFiles, bool limitedSize = false) throw(std::invalid_argument, std::overflow_error);
         // iterator-related methods
         iterator begin() const;
         iterator beginUnchecked() const;

@@ -49,16 +49,23 @@ class Scenario
         };
         // constructors
         Scenario();
-        Scenario(const std::string &fileName) throw(xmlpp::exception);
+        /*!
+         * \brief Constructor which loads directly a scenario from a file
+         * \param fileName File name of the scenario to load
+         * \param checkFiles Indicates if the existence of files associated with FileItems is checked
+         * \throw xmlpp::exception Exception thrown by the XML library when the file is uncorrect
+         */
+        Scenario(const std::string &fileName, bool checkFiles = true) throw(xmlpp::exception);
         // loading and saving methods
         /*!
-         * \brief Loads a game from a file
-         * \param fileName File name of the game to load
+         * \brief Loads a scenario from a file
+         * \param fileName File name of the scenario to load
+         * \param checkFiles Indicates if the existence of files associated with FileItems is checked
          * \throw xmlpp::exception Exception thrown by the XML library when the file is uncorrect
          * \throw std::invalid_argument Thrown when an item has not been loaded correctly
          * \throw std::overflow_error Thrown when the size of a file exceeds the limit (if limited)
          */
-        void fromFile(const std::string &fileName) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
+        void fromFile(const std::string &fileName, bool checkFiles = true) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
         /*!
          * \brief Saves a game into a file
          * \param fileName Name of the file to be saved

@@ -27,11 +27,11 @@ Scenario::Scenario()
 {
 }
 
-Scenario::Scenario(const string &fileName) throw(xmlpp::exception)
+Scenario::Scenario(const string &fileName, bool checkFiles) throw(xmlpp::exception)
 {
     try
     {
-        fromFile(fileName);
+        fromFile(fileName, checkFiles);
     }
     catch (xmlpp::exception)
     {
@@ -42,7 +42,7 @@ Scenario::Scenario(const string &fileName) throw(xmlpp::exception)
 
 // XML methods
 
-void Scenario::fromFile(const std::string &fileName) throw(xmlpp::exception, invalid_argument, overflow_error)
+void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlpp::exception, invalid_argument, overflow_error)
 {
     using namespace xmlpp;
 
@@ -75,7 +75,7 @@ void Scenario::fromFile(const std::string &fileName) throw(xmlpp::exception, inv
     Node::NodeList node = root->get_children("scenario");
     if (!node.empty())
     {
-        tScenario.fromXML(*dynamic_cast<Element*>(node.front()));
+        tScenario.fromXML(*dynamic_cast<Element*>(node.front()), checkFiles);
     }
     node = root->get_children("notes");
     if (!node.empty())
@@ -103,17 +103,17 @@ void Scenario::fromFile(const std::string &fileName) throw(xmlpp::exception, inv
     node = root->get_children("history");
     if (!node.empty())
     {
-        tHistory.fromXML(*dynamic_cast<Element*>(node.front()));
+        tHistory.fromXML(*dynamic_cast<Element*>(node.front()), checkFiles);
     }
     node = root->get_children("music");
     if (!node.empty())
     {
-        tMusic.fromXML(*dynamic_cast<Element*>(node.front()));
+        tMusic.fromXML(*dynamic_cast<Element*>(node.front()), checkFiles);
     }
     node = root->get_children("effects");
     if (!node.empty())
     {
-        tEffects.fromXML(*dynamic_cast<Element*>(node.front()),true);
+        tEffects.fromXML(*dynamic_cast<Element*>(node.front()), checkFiles, true);
     }
 }
 
