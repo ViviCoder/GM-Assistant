@@ -214,15 +214,11 @@ void MainWindow::on_action_Load_triggered()
         QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0)); 
         if (!file.isEmpty())
         {
+            // changing current directory
+            QDir::setCurrent(QFileInfo(file).dir().path());
             try
             {
-                // changing current directory
-                QDir::setCurrent(QFileInfo(file).dir().path());
                 eGame.fromFile(file.toStdString());
-                updateDisplay();
-                bModified = false;
-                addRecent(file);
-                sFileName = file;
             }
             catch (xmlpp::exception &xml)
             {
@@ -232,6 +228,10 @@ void MainWindow::on_action_Load_triggered()
             {
                 QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QString(e.what()) + "\nThe game cannot be loaded.");
             }
+            updateDisplay();
+            bModified = false;
+            addRecent(file);
+            sFileName = file;
         }
 //    }
 }
@@ -448,8 +448,6 @@ void MainWindow::on_action_Reload_triggered()
             try
             {
                 eGame.fromFile(sFileName.toStdString());
-                updateDisplay();
-                bModified = false;
             }
             catch (xmlpp::exception &xml)
             {
@@ -459,6 +457,8 @@ void MainWindow::on_action_Reload_triggered()
             {
                 QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QString(e.what()) + "\nThe game cannot be loaded.");
             }
+            updateDisplay();
+            bModified = false;
         }
         else
         {
