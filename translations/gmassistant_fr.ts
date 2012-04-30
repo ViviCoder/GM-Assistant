@@ -1209,14 +1209,14 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="368"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="225"/>
         <location filename="../sources/windows/MainWindow.cpp" line="229"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="233"/>
         <location filename="../sources/windows/MainWindow.cpp" line="256"/>
         <location filename="../sources/windows/MainWindow.cpp" line="278"/>
         <location filename="../sources/windows/MainWindow.cpp" line="401"/>
         <location filename="../sources/windows/MainWindow.cpp" line="414"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="456"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="460"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="454"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="458"/>
         <location filename="../sources/windows/MainWindow.cpp" line="465"/>
         <source>Error</source>
         <translation>Erreur</translation>
