@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -65,9 +65,9 @@ void SoundItem::setFileName(const string &fileName, bool checkFile) throw(invali
     }
 }
 
-void SoundItem::fromXML(const xmlpp::Element &root) throw(xmlpp::exception, invalid_argument, overflow_error)
+void SoundItem::fromXML(const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, invalid_argument, overflow_error)
 {
-    FileItem::fromXML(root);
+    FileItem::fromXML(root, checkFile);
     string name = fileName();
     if (name != "")
     {

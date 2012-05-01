@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -69,11 +69,12 @@ class SoundItem: public FileItem
         /*!
          * \brief Read the item from a XML file
          * \param root Parent XML element
+         * \param checkFile Indicates if the existence of the file is checked
          * \throw xmlpp::exception Exception thrown when the XML file is uncorrect
          * \throw std::invalid_argument Exception thrown when the sound file does not exist
          * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
          */
-        void fromXML(const xmlpp::Element &root) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
+        void fromXML(const xmlpp::Element &root, bool checkFile = true) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
         /*!
          * \brief Getter for the type of the item
          * \return Item::tSound
