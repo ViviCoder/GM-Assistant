@@ -46,12 +46,13 @@ class SoundItem: public FileItem
         /*!
          * \brief Setter for the file name
          * \param fileName New file name
+         * \param checkFile Indicates if the existence of the file is checked
          * \throw std::invalid_argument Thrown when the file is not readable
          * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
          *
          * Calculates the duration of the sound file
          */
-        void setFileName(const std::string &fileName) throw(std::invalid_argument, std::overflow_error);
+        void setFileName(const std::string &fileName, bool checkFile = true) throw(std::invalid_argument, std::overflow_error);
     public:
         /*!
          *  \brief Constructor

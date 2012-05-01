@@ -45,11 +45,11 @@ double SoundItem::duration() const
     return dDuration;
 }
 
-void SoundItem::setFileName(const string &fileName) throw(invalid_argument, overflow_error)
+void SoundItem::setFileName(const string &fileName, bool checkFile) throw(invalid_argument, overflow_error)
 {
     try
     {
-        FileItem::setFileName(fileName);
+        FileItem::setFileName(fileName, checkFile);
     }
     catch (overflow_error &e)
     {
