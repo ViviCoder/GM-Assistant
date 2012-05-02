@@ -49,7 +49,7 @@ class FileItem: public Item
          * \throw std::invalid_argument Thrown when the file is not readable
          * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
          */
-        virtual void setFileName(const std::string &fileName, bool checkFile = true) throw(std::invalid_argument, std::overflow_error);
+        virtual void setFileName(const std::string &fileName, bool checkFile) throw(std::invalid_argument, std::overflow_error);
     public:
         /*!
          *  \brief Constructor
@@ -76,7 +76,7 @@ class FileItem: public Item
          * \throw std::invalid_argument Thrown when a file is not readable 
          * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
          */
-        void fromXML(const xmlpp::Element &root, bool checkFile = true) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
+        void fromXML(const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
         void toXML(xmlpp::Element &root);
 };
 

@@ -54,7 +54,12 @@ class Item
         void setState(State state);
         virtual Type type() const;
         // XML-related methods
-        virtual void fromXML(const xmlpp::Element &root);
+        /*!
+         * \brief XML loader
+         * \param root Root of the tree
+         * \param checkFile Indicates if the existence of potential files is checked
+         */
+        virtual void fromXML(const xmlpp::Element &root, bool checkFiles);
         virtual void toXML(xmlpp::Element &root);
         // static methods to get a link between strings and state or type
         static std::string stateToStr(State state);

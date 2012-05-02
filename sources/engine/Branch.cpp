@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,7 @@ Branch::Branch(Item* item, const Tree &tree, Tree* parent): pItem(item), tTree(t
 {
 }
 
-Branch::Branch(Item* item, const xmlpp::Element &root, Tree* parent): pItem(item), tTree(root,this), pParent(parent)
+Branch::Branch(Item* item, const xmlpp::Element &root, bool checkFiles, Tree* parent): pItem(item), tTree(root,checkFiles,this), pParent(parent)
 {
 }
 

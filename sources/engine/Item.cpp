@@ -49,7 +49,7 @@ Item::Type Item::type() const
     return tBasic;
 }
 
-void Item::fromXML(const xmlpp::Element &)
+void Item::fromXML(const xmlpp::Element &, bool)
 {
 }
 

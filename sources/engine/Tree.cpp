@@ -105,16 +105,8 @@ void Tree::fromXML(const xmlpp::Element &root, bool checkFiles, bool limitedSize
             content = attr->get_value();
         }
         Item *item = ItemFactory::createItem(type,content,state,limitedSize);
-        if (!checkFiles && Item::is(type, Item::tFile))
-        {
-            // special treatment for FileItems
-            dynamic_cast<FileItem*>(item)->fromXML(*elem, false);
-        }
-        else
-        {
-            item->fromXML(*elem);
-        }
-        Branch *branch = new Branch(item,*elem,this);
+        item->fromXML(*elem, checkFiles);
+        Branch *branch = new Branch(item,*elem,checkFiles,this);
         vChildren.push_back(branch);
     }
 }

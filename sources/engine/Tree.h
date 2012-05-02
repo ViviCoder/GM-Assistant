@@ -77,7 +77,7 @@ class Tree
          * \param checkFiles Indicates if the existence of files associated with FileItems is checked
          * \param parent Pointer to the parent branch of the tree
          */
-        Tree(const xmlpp::Element &root, bool checkFiles, Branch* parent=NULL);
+        Tree(const xmlpp::Element &root, bool checkFiles, Branch* parent);
         // destructor
         ~Tree();
         // copy operator

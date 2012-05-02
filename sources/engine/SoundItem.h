@@ -52,7 +52,7 @@ class SoundItem: public FileItem
          *
          * Calculates the duration of the sound file
          */
-        void setFileName(const std::string &fileName, bool checkFile = true) throw(std::invalid_argument, std::overflow_error);
+        void setFileName(const std::string &fileName, bool checkFile) throw(std::invalid_argument, std::overflow_error);
     public:
         /*!
          *  \brief Constructor
@@ -74,7 +74,7 @@ class SoundItem: public FileItem
          * \throw std::invalid_argument Exception thrown when the sound file does not exist
          * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
          */
-        void fromXML(const xmlpp::Element &root, bool checkFile = true) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
+        void fromXML(const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
         /*!
          * \brief Getter for the type of the item
          * \return Item::tSound

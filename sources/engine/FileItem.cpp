@@ -25,7 +25,7 @@ FileItem::FileItem(const string &content, State state, const string &fileName, b
 {
     if (fileName != "")
     {
-        setFileName(fileName);
+        setFileName(fileName,true);
     }
 }
 
