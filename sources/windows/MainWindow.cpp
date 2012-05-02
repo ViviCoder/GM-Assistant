@@ -226,7 +226,7 @@ void MainWindow::on_action_Load_triggered()
             }
             catch (std::exception &e)
             {
-                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QString(e.what()) + "\nThe game cannot be loaded.");
+                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QString(e.what()) + "\n\n" + QApplication::translate("mainWindow","Be careful, the game may have been loaded PARTIALLY.",0));
             }
             updateDisplay();
             bModified = false;
@@ -455,7 +455,7 @@ void MainWindow::on_action_Reload_triggered()
             }
             catch (std::exception &e)
             {
-                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QString(e.what()) + "\nThe game cannot be loaded.");
+                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QString(e.what()) + "\n\n" + QApplication::translate("mainWindow","Be careful, the game may have been loaded PARTIALLY.",0));
             }
             updateDisplay();
             bModified = false;

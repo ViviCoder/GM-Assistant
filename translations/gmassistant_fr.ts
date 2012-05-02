@@ -1233,6 +1233,12 @@ p, li { white-space: pre-wrap; }
         <translation>Fichiers GM-Assistant (*.gma);;Fichiers XML (*.xml)</translation>
     </message>
     <message>
+        <location filename="../sources/windows/MainWindow.cpp" line="229"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="458"/>
+        <source>Be careful, the game may have been loaded PARTIALLY.</source>
+        <translation>Attention, le jeu peut avoir été chargé PARTIELLEMENT.</translation>
+    </message>
+    <message>
         <location filename="../sources/windows/MainWindow.cpp" line="264"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
