@@ -23,11 +23,16 @@ ImageWindow::ImageWindow(const std::string &pictureFileName, QWidget *parent): Q
 {
     setAlignment(Qt::AlignCenter);
     setWindowFlags(windowFlags()|Qt::Window);
-    // setting backgournd color to black
+    // setting background color to black
     QPalette newPalette(palette());
     newPalette.setColor(QPalette::Window,QColor("black"));
     setPalette(newPalette);
-    // displaying the picture
+    // displaying (or not) the picture
+    if (sImageFileName.length() < 3)
+    {
+        deleteLater();
+        return;
+    }
     if (sImageFileName.substr(sImageFileName.length()-3,3) != "svg")
     {
         bSvg = false;

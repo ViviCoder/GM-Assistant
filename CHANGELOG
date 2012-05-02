@@ -1,3 +1,7 @@
+Changes in version 1.1.5
+- bug with image filenames of less than 3 characters fixed
+- fusion bug of games with missing files fixed
+
 Changes in version 1.1.4
 - dependency on (rsvg-)convert made optional
 - SVG images display issue on Windows solved
