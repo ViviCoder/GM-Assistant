@@ -1214,10 +1214,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="256"/>
         <location filename="../sources/windows/MainWindow.cpp" line="278"/>
         <location filename="../sources/windows/MainWindow.cpp" line="401"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="414"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="454"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="406"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="418"/>
         <location filename="../sources/windows/MainWindow.cpp" line="458"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="465"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="462"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="469"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1234,7 +1235,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="229"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="458"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="462"/>
         <source>Be careful, the game may have been loaded PARTIALLY.</source>
         <translation>Attention, le jeu peut avoir été chargé PARTIELLEMENT.</translation>
     </message>
@@ -1244,12 +1245,17 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="465"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="406"/>
+        <source>Unable to play the file</source>
+        <translation>Impossible de jouer le fichier</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.cpp" line="469"/>
         <source>The file does not exist.</source>
         <translation>Le fichier n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="505"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="509"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>
