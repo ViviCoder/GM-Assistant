@@ -767,6 +767,11 @@ p, li { white-space: pre-wrap; }
         <translation>Suppr</translation>
     </message>
     <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="96"/>
+        <source>Unable to display the file</source>
+        <translation>Impossible d&apos;afficher le fichier</translation>
+    </message>
+    <message>
         <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="56"/>
         <source>Double click to play the file</source>
         <translation>Double-cliquez pour jouer le fichier</translation>
@@ -1208,7 +1213,8 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="368"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="96"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="373"/>
         <location filename="../sources/windows/MainWindow.cpp" line="225"/>
         <location filename="../sources/windows/MainWindow.cpp" line="229"/>
         <location filename="../sources/windows/MainWindow.cpp" line="256"/>

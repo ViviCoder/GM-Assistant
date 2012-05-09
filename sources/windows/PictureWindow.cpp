@@ -18,6 +18,7 @@
 
 #include "PictureWindow.h"
 #include <QPainter>
+#include <QFileInfo>
 
 PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent): QLabel(parent), bError(false), sImageFileName(pictureFileName), bSvg(true), renderer(NULL) 
 {
@@ -28,9 +29,9 @@ PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent
     newPalette.setColor(QPalette::Window,QColor("black"));
     setPalette(newPalette);
     // displaying (or not) the picture
-    if (sImageFileName.length() < 3)
+    if (sImageFileName.length() < 3 || !QFileInfo(sImageFileName.c_str()).exists())
     {
-        deleteLater();
+        bError = true;
         return;
     }
     if (sImageFileName.substr(sImageFileName.length()-3,3) != "svg")
@@ -41,8 +42,7 @@ PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent
         {
             // the image cannot be loaded
             bError = true;
-            sImageFileName = ":/data/images/stop.svg";
-            bSvg = true;
+            return;
         }
         else
         {
@@ -55,41 +55,26 @@ PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent
         if (!renderer->load(QString(sImageFileName.c_str())))
         {
             // unable to load the image
-            renderer->load(QString(":/data/images/stop.svg"));
             bError = true;
+            return;
         }
         resize(renderer->defaultSize());
         // the size is fixed when the image does not exist
-        if (bError)
-        {
-            setFixedSize(size());
-        }
-        else
-        {
-            QRectF rect = renderer->viewBoxF();
-            dAspectRatio = rect.width()/rect.height();
-        }
+        QRectF rect = renderer->viewBoxF();
+        dAspectRatio = rect.width()/rect.height();
     }
     showNormal();
 }
 
 void PictureWindow::mouseReleaseEvent(QMouseEvent *)
 {
-    if (bError)
+    if (!isFullScreen())
     {
-        close();
-        deleteLater();
+        showFullScreen();
     }
     else
-    {
-        if (!isFullScreen())
-        {
-            showFullScreen();
-        }
-        else
-        {    
-            showNormal();
-        }
+    {    
+        showNormal();
     }
 }
 
@@ -128,4 +113,9 @@ void PictureWindow::resizeEvent(QResizeEvent *e)
     {
         setPixmap(pixmap()->scaled(e->size(),Qt::KeepAspectRatio));
     }
+}
+
+bool PictureWindow::error() const
+{
+    return bError;
 }

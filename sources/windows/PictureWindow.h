@@ -76,6 +76,11 @@ class PictureWindow: public QLabel
          * \param parent Parent widget
          */
         PictureWindow(const std::string &pictureFileName, QWidget *parent=NULL);
+        /*!
+         * \brief Getter for the error flag
+         * \return True if the image was not loaded correctly
+         */
+        bool error() const;
 };
 
 #endif
