@@ -1,3 +1,9 @@
+Changes in version 1.1.6
+- depencies modified to work on Fedora
+- error message added when a music file cannot be read
+- display of a default image when an image file cannot be read replaced by an error message
+- useless source files deleted
+
 Changes in version 1.1.5
 - bug with image filenames of less than 3 characters fixed
 - fusion bug of games with missing files fixed
