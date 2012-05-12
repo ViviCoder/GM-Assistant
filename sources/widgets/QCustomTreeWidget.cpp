@@ -90,7 +90,12 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
                             }
         case Item::tImage: {
                                 ImageItem *imageItem = dynamic_cast<ImageItem*>(item);
-                                new ImageWindow(imageItem->fileName(),this);
+                                ImageWindow *image = new ImageWindow(imageItem->fileName(),this);
+                                if (image->error())
+                                {
+                                    QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0), QApplication::translate("customTree","Unable to display the file",0));
+                                    delete image;
+                                }
                                 break;
                              }
         default:            break;

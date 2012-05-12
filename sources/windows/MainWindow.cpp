@@ -402,6 +402,10 @@ void MainWindow::playMusic(const std::string &fileName, double duration)
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),e.what());
         }
     }
+    else
+    {
+        QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0), QApplication::translate("mainWindow","Unable to play the file",0));
+    }
 }
 
 void MainWindow::playSound(const std::string &fileName)

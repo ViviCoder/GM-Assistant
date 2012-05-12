@@ -809,6 +809,11 @@ p, li { white-space: pre-wrap; }
         <translation>Suppr</translation>
     </message>
     <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="96"/>
+        <source>Unable to display the file</source>
+        <translation>Impossible d&apos;afficher le fichier</translation>
+    </message>
+    <message>
         <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="56"/>
         <source>Double click to play the file</source>
         <translation>Double-cliquez pour jouer le fichier</translation>
@@ -1258,16 +1263,18 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="368"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="96"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="373"/>
         <location filename="../sources/windows/MainWindow.cpp" line="225"/>
         <location filename="../sources/windows/MainWindow.cpp" line="229"/>
         <location filename="../sources/windows/MainWindow.cpp" line="257"/>
         <location filename="../sources/windows/MainWindow.cpp" line="279"/>
         <location filename="../sources/windows/MainWindow.cpp" line="402"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="415"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="448"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="459"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="407"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="419"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="452"/>
         <location filename="../sources/windows/MainWindow.cpp" line="463"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="467"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1284,13 +1291,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="229"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="463"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="467"/>
         <source>The game will be loaded anyway, but some features might not work properly.</source>
         <translation>Le jeu va tout de même être chargé, mais certaines fonctionnalités peuvent ne pas fonctionner normalement.</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="229"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="463"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="467"/>
         <source>The game cannot be loaded correctly for the following reason: </source>
         <translation>Le jeu n&apos;a pas pu être chargé pour la raison suivante :</translation>
     </message>
@@ -1300,7 +1307,12 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="448"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="407"/>
+        <source>Unable to play the file</source>
+        <translation>Impossible de jouer le fichier</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.cpp" line="452"/>
         <source>The file &quot;%1&quot; does not exist.</source>
         <translation>Le fichier &quot;%1&quot; n&apos;existe pas.</translation>
     </message>
@@ -1313,7 +1325,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Le fichier n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="506"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="510"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>

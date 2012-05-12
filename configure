@@ -23,6 +23,12 @@ debug=0
 system_install=1
 build_icon=0
 
+# Error returns
+err_bad_option=1
+err_bad_os=2
+err_missing_soft=3
+err_missing_header=4
+
 # default paths
 prefix="/usr"
 sysconfdir="/etc"
@@ -35,7 +41,7 @@ options=$(getopt -s sh -l $supported_long_options $supported_short_options $@)
 if [ $? -eq 1 ]   # unsupported options
 then
     echo "Try the --help option for more information"
-    exit 1
+    exit $err_bad_option
 fi
 
 # initialization
@@ -87,10 +93,19 @@ if [ $OS = "Linux" ]
 then
 	inc_path="/usr/include/"
     sed_i="-i"
+    qmake="qmake-qt4"
+    lrelease="lrelease-qt4"
+    lupdate="lupdate-qt4"
 elif [ $OS = "Darwin" ]
 then
 	inc_path="/opt/local/include/"
     sed_i='-i ""'
+    qmake="qmake"
+    lrelease="lrelease"
+    lupdate="lupdate"
+else
+    echo "Operating system not supported."
+    exit $err_bad_os
 fi
 
 echo
@@ -100,7 +115,7 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="uname echo getopt ls grep head pkg-config qmake lupdate lrelease make sed install tr"
+softs="uname echo getopt ls grep head pkg-config make sed install tr "$qmake" "$lrelease" "$lupdate
 if [ $build_icon -ne 0 ]
 then
     softs=$softs" rsvg-convert convert"
@@ -112,7 +127,7 @@ do
     if [ $? = 1 ]
     then
         echo $soft missing !
-        exit 1
+        exit $err_missing_soft
     else
         echo $soft: $path        
     fi
@@ -138,7 +153,7 @@ do
         echo $inc_path$xml_dev_path/libxml++/$dev.h: OK
     else
         echo $dev.h missing !
-        exit
+        exit $err_missing_header
     fi
 done
 
@@ -155,7 +170,7 @@ do
         echo $sdl_dev_path/$dev.h: OK
     else
         echo $dev.h missing !
-        exit
+        exit $err_missing_header
     fi
 done
 
@@ -168,11 +183,11 @@ echo
 target="gm-assistant"
 pro_file=$target.pro
 
-qmake -project -o $pro_file
+$qmake -project -o $pro_file
 echo "QT += svg" >> $pro_file
-lupdate $pro_file
-lrelease $pro_file
-qmake $pro_file
+$lupdate $pro_file
+$lrelease $pro_file
+$qmake $pro_file
 
 # adding the -g flag if the debug option is enabled
 if [ $debug -ne 0 ]
