@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<game version="1.2" interface="design">
+  <scenario>
+    <item state="none" type="basic" content="Introduction">
+      <item state="none" type="basic" content="PJ à la conférence"/>
+      <item state="none" type="basic" content="début de soirée, hivers, froid, humide"/>
+    </item>
+    <item state="none" type="basic" content="Partie 1">
+      <item state="none" type="basic" content="Au milieu de la conf les profonds arrivent">
+        <item state="none" type="basic" content="test de vigilance pour les repérer"/>
+      </item>
+      <item state="none" type="basic" content="Arrivée des profonds"/>
+      <item state="none" type="basic" content="Fuite de Kate Elver"/>
+      <item state="none" type="basic" content="au bout de 1/4h une femme hurle"/>
+    </item>
+    <item state="none" type="basic" content="Partie 2">
+      <item state="none" type="basic" content="Si les PJ suivent Kate">
+        <item state="none" type="basic" content="Négociation, elle est folle"/>
+        <item state="none" type="basic" content="début du rituel &quot;Kate Elver, fais tourner fais tourner fais tourner&quot;"/>
+      </item>
+      <item state="none" type="basic" content="Si les PJ fuient">
+        <item state="none" type="basic" content="une marée de profonds les assaille"/>
+      </item>
+      <item state="none" type="basic" content="Dans tout les cas les PJ meurent"/>
+    </item>
+  </scenario>
+  <notes>SAN (santé mentale perdue) : 1D100+50
+
+PV profonds :
+Guerrier profond : 10
+Shaman profond : 8</notes>
+  <skills>
+    <skill name="TOC"/>
+    <skill name="Combat"/>
+  </skills>
+  <characters>
+    <character name="Kate Elver" playername="Sorcière">
+      <skill value="95%"/>
+      <skill value="50%"/>
+    </character>
+    <character name="Profond" playername="guerrier">
+      <skill value="50%"/>
+      <skill value="60%"/>
+    </character>
+    <character name="Profond" playername="Shaman">
+      <skill value="50%"/>
+      <skill value="35%"/>
+    </character>
+    <character name="Jed Steed" playername="Sylvain">
+      <skill value="134%"/>
+      <skill value="56%"/>
+    </character>
+    <character name="Caleb de la muerta" playername="Marc">
+      <skill value="3%"/>
+      <skill value="258%"/>
+    </character>
+    <character name="Connard Arden" playername="Japhel">
+      <skill value="49%"/>
+      <skill value="56%"/>
+    </character>
+  </characters>
+  <history/>
+  <music/>
+  <effects/>
+</game>
