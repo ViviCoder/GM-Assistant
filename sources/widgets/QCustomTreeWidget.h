@@ -66,6 +66,10 @@ class QCustomTreeWidget: public QTreeWidget
          */
         QAction *actionDelete;
         /*!
+         * \brief Edit action
+         */
+        QAction *actionEdit;
+        /*!
          * \brief Underlying tree
          */
         Tree *pTree;

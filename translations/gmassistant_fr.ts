@@ -767,7 +767,22 @@ p, li { white-space: pre-wrap; }
         <translation>Suppr</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="96"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="51"/>
+        <source>&amp;Edit</source>
+        <translation>&amp;Éditer</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="53"/>
+        <source>Edit the item</source>
+        <translation>Éditer l&apos;item</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="54"/>
+        <source>F2</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="101"/>
         <source>Unable to display the file</source>
         <translation>Impossible d&apos;afficher le fichier</translation>
     </message>
@@ -1213,8 +1228,8 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="96"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="373"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="101"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="384"/>
         <location filename="../sources/windows/MainWindow.cpp" line="225"/>
         <location filename="../sources/windows/MainWindow.cpp" line="229"/>
         <location filename="../sources/windows/MainWindow.cpp" line="256"/>

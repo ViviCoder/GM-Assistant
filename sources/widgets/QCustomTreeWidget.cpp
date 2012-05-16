@@ -48,6 +48,10 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     actionDelete->setIconVisibleInMenu(true);
     actionDelete->setStatusTip(QApplication::translate("customTree","Delete the item",0));
     actionDelete->setShortcut(QApplication::translate("customTree","Del",0));
+    actionEdit = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTree","&Edit",0),this);
+    actionEdit->setIconVisibleInMenu(true);
+    actionEdit->setStatusTip(QApplication::translate("customTree","Edit the item",0));
+    actionEdit->setShortcut(QApplication::translate("customTree","F2",0));
     // populating the pop-up menu
     menuIcons->addAction(actionNone);
     menuIcons->addAction(actionProgress);
@@ -56,6 +60,7 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     menuIcons->addSeparator();
     menuIcons->addAction(actionAdd);
     menuIcons->addAction(actionDelete);
+    menuIcons->addAction(actionEdit);
     // connecting signals
     connect(this, SIGNAL(itemChanged(QTreeWidgetItem *,int)), SLOT(on_itemChanged(QTreeWidgetItem*, int)));
     connect(this, SIGNAL(itemCollapsed(QTreeWidgetItem *)), SLOT(on_itemCollapsed()));
@@ -147,6 +152,12 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     else if (action == actionAdd)
                                     {
                                         addItem(qItem);
+                                    }
+                                    else if (action == actionEdit)
+                                    {
+                                        QKeyEvent *event = new QKeyEvent(QEvent::KeyRelease, Qt::Key_F2, Qt::NoModifier);
+                                        keyReleaseEvent(event);
+                                        delete event;
                                     }
                                 }
                                 else if (topLevelItemCount()==0)
