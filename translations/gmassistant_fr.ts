@@ -769,7 +769,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="51"/>
         <source>&amp;Edit</source>
-        <translation>&amp;Éditer</translation>
+        <translation>É&amp;diter</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="53"/>

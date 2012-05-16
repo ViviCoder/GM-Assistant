@@ -117,15 +117,8 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
         case Qt::RightButton:   {
                                     if (qtwitem == NULL)
                                     {
-                                        if (rowCount()!=0 && columnCount()!=0)
-                                        {
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            rowPosition = rowCount()-1;
-                                            columnPosition = columnCount()-1;
-                                        }
+                                        rowPosition = rowCount()-1;
+                                        columnPosition = columnCount()-1;
                                     }
                                     else
                                     {

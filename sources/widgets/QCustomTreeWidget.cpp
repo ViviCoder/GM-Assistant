@@ -160,7 +160,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                         delete event;
                                     }
                                 }
-                                else if (topLevelItemCount()==0)
+                                else
                                 {
                                     addItem(NULL);
                                 }
