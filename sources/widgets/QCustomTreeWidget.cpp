@@ -52,6 +52,9 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     actionEdit->setIconVisibleInMenu(true);
     actionEdit->setStatusTip(QApplication::translate("customTree","Edit the item",0));
     actionEdit->setShortcut(QApplication::translate("customTree","F2",0));
+    actionLaunch = new QAction(QIcon(),"",this);
+    actionLaunch->setIconVisibleInMenu(true);
+    actionLaunch->setShortcut(QApplication::translate("customTree","Space",0));
     // populating the pop-up menu
     menuIcons->addAction(actionNone);
     menuIcons->addAction(actionProgress);
@@ -61,6 +64,8 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     menuIcons->addAction(actionAdd);
     menuIcons->addAction(actionDelete);
     menuIcons->addAction(actionEdit);
+    menuIcons->addSeparator();
+    menuIcons->addAction(actionLaunch);
     // connecting signals
     connect(this, SIGNAL(itemChanged(QTreeWidgetItem *,int)), SLOT(on_itemChanged(QTreeWidgetItem*, int)));
     connect(this, SIGNAL(itemCollapsed(QTreeWidgetItem *)), SLOT(on_itemCollapsed()));
@@ -124,6 +129,21 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     setCurrentItem(item);
                                     QCustomTreeWidgetItem *qItem = dynamic_cast<QCustomTreeWidgetItem*>(item);
                                     Item *treeItem = qItem->branch()->item();
+                                    switch (treeItem->type())
+                                    {
+                                        case Item::tSound:  actionLaunch->setIcon(QIcon(":/data/images/speaker.svg"));
+                                                            actionLaunch->setStatusTip(QApplication::translate("customTree","Play the sound",0));
+                                                            actionLaunch->setText(QApplication::translate("customTree","P&lay",0));
+                                                            actionLaunch->setVisible(true);
+                                                            break;
+                                        case Item::tPicture:    actionLaunch->setIcon(QIcon(":/data/images/image.svg"));
+                                                                actionLaunch->setStatusTip(QApplication::translate("customTree","Display the image",0));
+                                                                actionLaunch->setText(QApplication::translate("customTree","Disp&lay",0));
+                                                                actionLaunch->setVisible(true);
+                                                                break;
+                                        default:    actionLaunch->setVisible(false);
+                                                    break;
+                                    }
                                     QAction* action = menuIcons->exec(e->globalPos());
                                     if (action == actionNone)
                                     {
@@ -158,6 +178,10 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                         QKeyEvent *event = new QKeyEvent(QEvent::KeyRelease, Qt::Key_F2, Qt::NoModifier);
                                         keyReleaseEvent(event);
                                         delete event;
+                                    }
+                                    else if (action == actionLaunch)
+                                    {
+                                        launchItem(item);
                                     }
                                 }
                                 else

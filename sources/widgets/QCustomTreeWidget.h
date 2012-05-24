@@ -70,6 +70,10 @@ class QCustomTreeWidget: public QTreeWidget
          */
         QAction *actionEdit;
         /*!
+         * \brief Launch action
+         */
+        QAction *actionLaunch;
+        /*!
          * \brief Underlying tree
          */
         Tree *pTree;
