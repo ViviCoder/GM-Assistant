@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -29,19 +29,29 @@ class ChangeSkillDialog: public QDialog, private Ui::changeSkillDialog
     Q_OBJECT
 
     public:
-        // constructor
+        /*!
+         * \brief Constructor
+         * \param parent Parent widget
+         */
         ChangeSkillDialog(QWidget *parent=NULL);
-        // accessors
+        /*!
+         * \brief Getter for the text
+         * \return Text of the QLineEdit
+         */
         QString text() const;
     public slots:
+        /*!
+         * \brief Slot for when the button is pressed
+         */ 
         void on_pushEdit_clicked();
         /*!
          * \brief Overriden "exec" slot
+         * \param text Pre-filled text
          * \return Result code
          *
          * Resets the interface and shows the window
          */
-        int exec();
+        int exec(QString text="");
 };
 
 #endif

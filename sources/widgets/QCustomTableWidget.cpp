@@ -425,18 +425,11 @@ void QCustomTableWidget::editCharacter(int index)
 
 void QCustomTableWidget::editSkill(int index)
 {
-    if(pChangeSkillDial->exec()==QDialog::Accepted)
+    QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
+    if(pChangeSkillDial->exec(columnHeaderItem->text())==QDialog::Accepted)
     {
         QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
-        if (columnHeaderItem != NULL)
-        {
-            columnHeaderItem->setText(pChangeSkillDial->text());
-        }
-        else
-        {
-            columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
-            setHorizontalHeaderItem(index, columnHeaderItem);
-        }
+        columnHeaderItem->setText(pChangeSkillDial->text());
         // updating the SkillList
         if (pSkills != NULL)
         {
