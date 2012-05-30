@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -47,10 +47,16 @@ void ChangeCharacterDialog::on_pushEdit_clicked()
     }
 }
 
-int ChangeCharacterDialog::exec()
+int ChangeCharacterDialog::exec(Character *character)
 {
-    editName->setText("");
+    QString name, player;
+    if (character != NULL)
+    {
+        name = character->name().c_str();
+        player = character->playerName().c_str();
+    }
+    editName->setText(name);
     editName->setFocus();
-    editPlayer->setText("");
+    editPlayer->setText(player);
     return QDialog::exec();
 }

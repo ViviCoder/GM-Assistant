@@ -400,18 +400,11 @@ void QCustomTableWidget::removeSkill(int index)
 
 void QCustomTableWidget::editCharacter(int index)
 {
-    if(pChangeCharacterDial->exec()==QDialog::Accepted)
+    Character *character = &(*pCharacters)[index];
+    if(pChangeCharacterDial->exec(character)==QDialog::Accepted)
     {
-        QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( index );
-        if (rowHeaderItem != NULL)
-        {
-            rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-        }
-        else
-        {
-            rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-            setVerticalHeaderItem(index, rowHeaderItem);
-        }
+        QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index);
+        rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
         // updating the CharacterList
         if (pCharacters != NULL)
         {
