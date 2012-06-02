@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -142,16 +142,39 @@ void ItemDialog::on_toolBrowse_clicked()
     }
 }
 
-int ItemDialog::exec()
+int ItemDialog::exec(Item *item)
 {
-    // resets the window
-    radioNone->setChecked(true);
-    radioBasic->setChecked(true);
-    toolBrowse->setEnabled(false);
+    // initialization
+    QString content, file;
+    Item::Type itemType = Item::tBasic;
+    Item::State itemState = Item::sNone;
+    if (item != NULL)
+    {
+        content = item->content().c_str();
+        itemType = item->type();
+        itemState = item->state();
+        if (itemType != Item::tBasic)
+        {
+            file = dynamic_cast<FileItem*>(item)->fileName().c_str();
+        }
+    }
 
-    editItem->setText("");
+    // resets the window
+    // state
+    radioNone->setChecked(itemState == Item::sNone);
+    radioProgress->setChecked(itemState == Item::sProgress);
+    radioSuccess->setChecked(itemState == Item::sSuccess);
+    radioFailure->setChecked(itemState == Item::sFailure);
+    // type
+    radioBasic->setChecked(itemType == Item::tBasic);
+    radioSound->setChecked(itemType == Item::tSound);
+    radioPicture->setChecked(itemType == Item::tPicture);
+    // everuthing else
+    toolBrowse->setEnabled(itemType != Item::tBasic);
+
+    editItem->setText(content);
     editItem->setFocus();
-    editFile->setText("");
+    editFile->setText(file);
 
     // shows it
     return QDialog::exec();

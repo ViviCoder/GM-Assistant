@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #define HEADER_ITEMDIALOG
 
 #include "ui_ItemDialog.h"
-#include "Item.h"
+#include "ItemFactory.h"
 
 /*!
  * \brief Dialog window for item creation
@@ -77,11 +77,12 @@ class ItemDialog: public QDialog, private Ui::itemDialog
 
         /*!
          * \brief Overriden "exec" slot
+         * \param item Item to be edited for pre-filling
          * \return Result code
          *
          * Resets the interface and shows the window
          */
-        int exec();
+        int exec(Item *item = NULL);
 };
 
 #endif
