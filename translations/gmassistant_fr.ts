@@ -778,7 +778,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="54"/>
-        <source>F2</source>
+        <source>Ctrl+F2</source>
         <translation></translation>
     </message>
     <message>
@@ -792,22 +792,22 @@ p, li { white-space: pre-wrap; }
         <translation>Impossible d&apos;afficher le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="135"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="144"/>
         <source>Play the sound</source>
         <translation>Jouer le son</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="136"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="145"/>
         <source>P&amp;lay</source>
         <translation>J&amp;ouer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="140"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="149"/>
         <source>Display the image</source>
         <translation>Afficher l&apos;image</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="141"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="150"/>
         <source>Disp&amp;lay</source>
         <translation>A&amp;fficher</translation>
     </message>
@@ -1254,7 +1254,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="106"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="408"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="422"/>
         <location filename="../sources/windows/MainWindow.cpp" line="225"/>
         <location filename="../sources/windows/MainWindow.cpp" line="229"/>
         <location filename="../sources/windows/MainWindow.cpp" line="256"/>

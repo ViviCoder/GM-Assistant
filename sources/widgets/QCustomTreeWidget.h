@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -128,6 +128,13 @@ class QCustomTreeWidget: public QTreeWidget
          * Executes the action associated with the type of the item
          */
         void launchItem(QTreeWidgetItem* qItem);
+        /*!
+         * \brief Slot for Ctrl+F2 = editing an item
+         * \param qItem Current item which will be edited
+         *
+         * Opens the item dialog window
+         */
+        void editItem(QTreeWidgetItem *qItem);
     public:
         /*!
          * \brief Constructor of the widget

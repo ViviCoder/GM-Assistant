@@ -51,7 +51,7 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     actionEdit = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTree","&Edit",0),this);
     actionEdit->setIconVisibleInMenu(true);
     actionEdit->setStatusTip(QApplication::translate("customTree","Edit the item",0));
-    actionEdit->setShortcut(QApplication::translate("customTree","F2",0));
+    actionEdit->setShortcut(QApplication::translate("customTree","Ctrl+F2",0));
     actionLaunch = new QAction(QIcon(),"",this);
     actionLaunch->setIconVisibleInMenu(true);
     actionLaunch->setShortcut(QApplication::translate("customTree","Space",0));
@@ -109,6 +109,15 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
                                 break;
                              }
         default:            break;
+    }
+}
+
+void QCustomTreeWidget::editItem(QTreeWidgetItem *qItem)
+{
+    Item *item = dynamic_cast<QCustomTreeWidgetItem*>(qItem)->branch()->item();
+    if (pItemDial->exec(item))
+    {
+        QMessageBox::information(this,"Youpi","Coucou",0);
     }
 }
 
@@ -175,9 +184,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     }
                                     else if (action == actionEdit)
                                     {
-                                        QKeyEvent *event = new QKeyEvent(QEvent::KeyRelease, Qt::Key_F2, Qt::NoModifier);
-                                        keyReleaseEvent(event);
-                                        delete event;
+                                        editItem(item);
                                     }
                                     else if (action == actionLaunch)
                                     {
@@ -208,12 +215,19 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
     {
         switch (e->key())
         {
-            case Qt::Key_F2:    if (!bEditing)
+            case Qt::Key_F2:    switch (e->modifiers())
                                 {
-                                    qItem->setFlags(qItem->flags() | Qt::ItemIsEditable);
-                                    editItem(qItem);
-                                    bEditing = true;
-                                    qItem->setFlags(qItem->flags() & ~Qt::ItemIsEditable);
+                                    case Qt::ControlModifier:   editItem(qItem);
+                                                                break;
+                                    case Qt::NoModifier:    if (!bEditing)
+                                                            {
+                                                                qItem->setFlags(qItem->flags() | Qt::ItemIsEditable);
+                                                                editItem(qItem);
+                                                                bEditing = true;
+                                                                qItem->setFlags(qItem->flags() & ~Qt::ItemIsEditable);
+                                                            }
+                                                            break;
+                                    default:    QTreeWidget::keyReleaseEvent(e); break;
                                 }
                                 break;
             case Qt::Key_Delete:    if (!bEditing)
