@@ -112,15 +112,6 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
     }
 }
 
-void QCustomTreeWidget::editItem(QTreeWidgetItem *qItem)
-{
-    Item *item = dynamic_cast<QCustomTreeWidgetItem*>(qItem)->branch()->item();
-    if (pItemDial->exec(item))
-    {
-        QMessageBox::information(this,"Youpi","Coucou",0);
-    }
-}
-
 void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
 {
     QTreeWidgetItem *item = itemAt(e->pos());
@@ -184,7 +175,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     }
                                     else if (action == actionEdit)
                                     {
-                                        editItem(item);
+                                        addItem(qItem, true);
                                     }
                                     else if (action == actionLaunch)
                                     {
@@ -217,7 +208,7 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
         {
             case Qt::Key_F2:    switch (e->modifiers())
                                 {
-                                    case Qt::ControlModifier:   editItem(qItem);
+                                    case Qt::ControlModifier:   addItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem), true);
                                                                 break;
                                     case Qt::NoModifier:    if (!bEditing)
                                                             {
@@ -398,9 +389,16 @@ void QCustomTreeWidget::on_itemSelectionChanged()
     bEditing = false;
 }
 
-void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
+void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
 {
-    pItemDial->exec();
+    if (edition)
+    {
+        pItemDial->exec(item->branch()->item());
+    }
+    else
+    {
+        pItemDial->exec();
+    }
     if (pItemDial->result()==QDialog::Accepted)
     {
         // creation of the new item
@@ -434,30 +432,37 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
         }
         else
         {
-            switch (pItemDial->selectionResult())
+            if (edition)
             {
-                case ItemDialog::rBrother:  {
-                                                // we want to insert it after the given item
-                                                Branch *parent = item->branch()->parent()->parent();
-                                                if (parent==NULL)
-                                                {
-                                                    Branch *newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
-                                                    new QCustomTreeWidgetItem(this,newBranch,item);
+                item->branch()->setItem(newItem);
+            }
+            else
+            {    
+                switch (pItemDial->selectionResult())
+                {
+                    case ItemDialog::rBrother:  {
+                                                    // we want to insert it after the given item
+                                                    Branch *parent = item->branch()->parent()->parent();
+                                                    if (parent==NULL)
+                                                    {
+                                                        Branch *newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
+                                                        new QCustomTreeWidgetItem(this,newBranch,item);
+                                                    }
+                                                    else
+                                                    {
+                                                        Branch *newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
+                                                        new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
+                                                    }
+                                                    break;
                                                 }
-                                                else
-                                                {
-                                                    Branch *newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
-                                                    new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
+                    case ItemDialog::rChild:    {
+                                                    // we want to insert it inside the given item
+                                                    Branch *newBranch = item->branch()->tree().add(newItem);
+                                                    QCustomTreeWidgetItem *newQItem = new QCustomTreeWidgetItem(item,newBranch);
+                                                    expandItem(newQItem->parent());
+                                                    break;
                                                 }
-                                                break;
-                                            }
-                case ItemDialog::rChild:    {
-                                                // we want to insert it inside the given item
-                                                Branch *newBranch = item->branch()->tree().add(newItem);
-                                                QCustomTreeWidgetItem *newQItem = new QCustomTreeWidgetItem(item,newBranch);
-                                                expandItem(newQItem->parent());
-                                                break;
-                                            }
+                }
             }
         }
         resizeColumnToContents(0);

@@ -116,11 +116,12 @@ class QCustomTreeWidget: public QTreeWidget
         void on_itemSelectionChanged();
         /*!
          * \brief Slot for "Add" menu action
-         * \param item Current item from which the new one will be added
+         * \param item Current item from which the new one will be added (or the one which will be edited
+         * \param edition Indicates if it is an edition (true) or not
          * 
          * Opens the item dialog window and adds the newly created item
          */
-        void addItem(QCustomTreeWidgetItem* item);
+        void addItem(QCustomTreeWidgetItem* item, bool edition = false);
         /*!
          * \brief Slot for double click and space key pressed
          * \param qItem Current item which will be "launched"
@@ -128,13 +129,6 @@ class QCustomTreeWidget: public QTreeWidget
          * Executes the action associated with the type of the item
          */
         void launchItem(QTreeWidgetItem* qItem);
-        /*!
-         * \brief Slot for Ctrl+F2 = editing an item
-         * \param qItem Current item which will be edited
-         *
-         * Opens the item dialog window
-         */
-        void editItem(QTreeWidgetItem *qItem);
     public:
         /*!
          * \brief Constructor of the widget
