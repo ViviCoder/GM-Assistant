@@ -826,6 +826,7 @@ p, li { white-space: pre-wrap; }
     <name>itemDialog</name>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="17"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="153"/>
         <source>Create a new item</source>
         <translation>Créer un nouvel item</translation>
     </message>
@@ -909,6 +910,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="183"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="155"/>
         <source>C&amp;hild</source>
         <translation>En&amp;fant</translation>
     </message>
@@ -960,6 +962,16 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
         <source>Picture files (*.jpg *.jpeg *.png *.bmp *.svg)</source>
         <translation>Fichers image (*.jpg *.jpeg *.png *.bmp *.svg)</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="159"/>
+        <source>Edit the item</source>
+        <translation>Éditer l&apos;item</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="161"/>
+        <source>&amp;Edit</source>
+        <translation>É&amp;diter</translation>
     </message>
     <message>
         <source>Picture files (*.jpg *.jpeg *.png *.bmp)</source>

@@ -148,8 +148,18 @@ int ItemDialog::exec(Item *item)
     QString content, file;
     Item::Type itemType = Item::tBasic;
     Item::State itemState = Item::sNone;
-    if (item != NULL)
+    if (item == NULL)
     {
+        setWindowTitle(QApplication::translate("itemDialog", "Create a new item", 0));
+        pushBrother->setVisible(true);
+        pushChild->setText(QApplication::translate("itemDialog", "C&hild", 0));
+    }
+    else
+    {
+        setWindowTitle(QApplication::translate("itemDialog", "Edit the item", 0));
+        pushBrother->setVisible(false);
+        pushChild->setText(QApplication::translate("itemDialog", "&Edit", 0));
+        // pre-filling
         content = item->content().c_str();
         itemType = item->type();
         itemState = item->state();
