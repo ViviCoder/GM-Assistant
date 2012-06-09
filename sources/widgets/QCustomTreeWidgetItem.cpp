@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -53,7 +53,10 @@ void QCustomTreeWidgetItem::updateDisplay()
     {
         setIcon(0,QIcon(":/data/images/speaker.svg"));
         setToolTip(0,dynamic_cast<SoundItem*>(item)->fileName().c_str()); 
-        setStatusTip(0,QApplication::translate("customTree","Double click to play the file",0));
+        if (dynamic_cast<QCustomTreeWidget*>(treeWidget())->playingMethod() != QCustomTreeWidget::pmNone)
+        {
+            setStatusTip(0,QApplication::translate("customTree","Double click to play the file",0));
+        }
     }
     else if (item->type()==Item::tPicture)
     {

@@ -787,37 +787,46 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="106"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="99"/>
+        <source>Audio files can be played only in the Music and Sound effects modules.</source>
+        <translation>Les fichiers audios ne peuvent être joués que dans les modules Musique et Bruitages.</translation>
+    </message>
+    <message>
+        <source>Audio files can be played only in the Music and Sound effects modules</source>
+        <translation type="obsolete">Les fichiers audio ne peuvent être joués que dans les modules Musique et Bruitages</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="113"/>
         <source>Unable to display the file</source>
         <translation>Impossible d&apos;afficher le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="135"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="148"/>
         <source>Play the sound</source>
         <translation>Jouer le son</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="136"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="149"/>
         <source>P&amp;lay</source>
         <translation>J&amp;ouer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="140"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="154"/>
         <source>Display the image</source>
         <translation>Afficher l&apos;image</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="141"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="155"/>
         <source>Disp&amp;lay</source>
         <translation>A&amp;fficher</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="56"/>
+        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="58"/>
         <source>Double click to play the file</source>
         <translation>Double-cliquez pour jouer le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="62"/>
+        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="65"/>
         <source>Double click to show the file</source>
         <translation>Double-cliquez pour afficher l&apos;image</translation>
     </message>
@@ -1265,8 +1274,9 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="106"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="420"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="99"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="113"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="434"/>
         <location filename="../sources/windows/MainWindow.cpp" line="225"/>
         <location filename="../sources/windows/MainWindow.cpp" line="229"/>
         <location filename="../sources/windows/MainWindow.cpp" line="256"/>

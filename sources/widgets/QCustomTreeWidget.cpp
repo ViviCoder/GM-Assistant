@@ -25,7 +25,7 @@
 #include <QMessageBox>
 #include <exception>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false)
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false), bSizeLimited(false), pmMethod(pmNone)
 {
     // creating actions
     actionNone = new QAction(QIcon(":/data/images/empty.svg"),QApplication::translate("customTree","&None",0),this);
@@ -94,8 +94,15 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
     {
         case Item::tSound:  {
                                 SoundItem *soundItem = dynamic_cast<SoundItem*>(item);
-                                // we send a signal to play the music (and do some other things)
-                                emit fileToPlay(soundItem->fileName(),soundItem->duration());
+                                if (pmMethod == pmNone)
+                                {
+                                    QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0), QApplication::translate("customTree","Audio files can be played only in the Music and Sound effects modules.",0));
+                                }
+                                else
+                                {
+                                    // we send a signal to play the music (and do some other things)
+                                    emit fileToPlay(soundItem->fileName(),soundItem->duration());
+                                }
                                 break;
                             }
         case Item::tPicture: {
@@ -131,10 +138,17 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     Item *treeItem = qItem->branch()->item();
                                     switch (treeItem->type())
                                     {
-                                        case Item::tSound:  actionLaunch->setIcon(QIcon(":/data/images/speaker.svg"));
-                                                            actionLaunch->setStatusTip(QApplication::translate("customTree","Play the sound",0));
-                                                            actionLaunch->setText(QApplication::translate("customTree","P&lay",0));
-                                                            actionLaunch->setVisible(true);
+                                        case Item::tSound:  if (pmMethod == pmNone)
+                                                            {
+                                                                actionLaunch->setVisible(false);
+                                                            }
+                                                            else
+                                                            {
+                                                                actionLaunch->setIcon(QIcon(":/data/images/speaker.svg"));
+                                                                actionLaunch->setStatusTip(QApplication::translate("customTree","Play the sound",0));
+                                                                actionLaunch->setText(QApplication::translate("customTree","P&lay",0));
+                                                                actionLaunch->setVisible(true);
+                                                            }
                                                             break;
                                         case Item::tPicture:    actionLaunch->setIcon(QIcon(":/data/images/image.svg"));
                                                                 actionLaunch->setStatusTip(QApplication::translate("customTree","Display the image",0));
@@ -435,6 +449,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
             if (edition)
             {
                 item->branch()->setItem(newItem);
+                item->updateDisplay(); 
             }
             else
             {    
@@ -472,4 +487,24 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
 void QCustomTreeWidget::setSizeLimited(bool sizeLimited)
 {
     bSizeLimited = sizeLimited;
+}
+
+void QCustomTreeWidget::setPlayingMethod(QWidget *player, PlayingMethod playingMethod)
+{
+    pmMethod = playingMethod;
+    disconnect(SIGNAL(fileToPlay(std::string, double)), player, SLOT(playMusic(std::string, double)));
+    disconnect(SIGNAL(fileToPlay(std::string, double)), player, SLOT(playSound(std::string)));
+    switch (playingMethod)
+    {
+        case pmSound:   connect(this, SIGNAL(fileToPlay(std::string, double)), player, SLOT(playSound(std::string)));
+                        break;
+        case pmMusic:   connect(this, SIGNAL(fileToPlay(std::string, double)), player, SLOT(playMusic(std::string, double)));
+                        break;
+        default:        break;                        
+    }
+}
+
+QCustomTreeWidget::PlayingMethod QCustomTreeWidget::playingMethod() const
+{
+    return pmMethod;
 }

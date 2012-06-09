@@ -33,11 +33,11 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     timer->setInterval(100);
     timer->setSingleShot(false);
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimer_timeout()));
-    connect(treeMusic,SIGNAL(fileToPlay(std::string,double)),this,SLOT(playMusic(std::string,double)));
-    connect(treeFX,SIGNAL(fileToPlay(std::string,double)),this,SLOT(playSound(std::string)));
     connect(smMapper,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
-    // setting widgets
+    // setting audio options
     treeFX->setSizeLimited(true);
+    treeMusic->setPlayingMethod(this, QCustomTreeWidget::pmMusic);
+    treeFX->setPlayingMethod(this, QCustomTreeWidget::pmSound);
 
     // loading settings
     QSettings settings;
