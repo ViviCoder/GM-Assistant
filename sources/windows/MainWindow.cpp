@@ -261,9 +261,17 @@ void MainWindow::on_action_Save_triggered()
 void MainWindow::on_actionS_ave_as_triggered()
 {
     eGame.notes() = textNotes->toPlainText().toStdString();
-    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0));
-    if (!file.isEmpty())
+    QFileDialog *dial = new QFileDialog(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0));
+    dial->setAcceptMode(QFileDialog::AcceptSave);
+    if (dial->exec() == QFileDialog::Accepted)
     {
+        QString file = dial->selectedFiles()[0]; 
+        // adding the suffix if not present
+        QString suffix = dial->selectedNameFilter().right(5).left(4);
+        if (!file.endsWith(suffix))
+        {
+            file.append(suffix);
+        }
         try
         {
             eGame.toFile(file.toStdString());
@@ -278,6 +286,7 @@ void MainWindow::on_actionS_ave_as_triggered()
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
         }
     }
+    delete dial;
 }
 
 void MainWindow::on_action_New_triggered()
