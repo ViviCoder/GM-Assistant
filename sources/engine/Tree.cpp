@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -338,8 +338,12 @@ void Tree::remove(const string &indices, bool toDelete)
     }
 }
 
-void Tree::move(const string &currentIndices, const string &newIndices)
+bool Tree::move(const string &currentIndices, const string &newIndices)
 {
+    if (newIndices.find(currentIndices) == 0)
+    {
+        return false;
+    }
     insert(newIndices,branch(currentIndices));
     // we now determine if there is need to modify newIndices for the suppression
     string subNew(newIndices), subCurrent(currentIndices);
@@ -376,7 +380,8 @@ void Tree::move(const string &currentIndices, const string &newIndices)
     {
         buf << "_" << subCurrent;
     }
-    remove(buf.str(),false);    
+    remove(buf.str(),false);
+    return true;
 }
 
 int Tree::indexOf(Branch *branch) const

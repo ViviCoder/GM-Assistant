@@ -205,12 +205,18 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
     }
 }
 
-void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *)
+void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *e)
 {
+    QTreeWidgetItem *item = itemAt(e->pos());
     if (!bNewlySelected)
     {
         setCurrentItem(NULL);
     }
+    else
+    {
+        setCurrentItem(item);
+    }
+    QTreeWidget::mouseReleaseEvent(e);
 }
 
 void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
@@ -353,12 +359,14 @@ void QCustomTreeWidget::dragEnterEvent(QDragEnterEvent *e)
     {
         e->acceptProposedAction();
     }
+    QTreeWidget::dragEnterEvent(e);
 }
 
 using namespace std;
 
 void QCustomTreeWidget::dropEvent(QDropEvent *e)
 {
+    bool valid = false;
     QPoint pos = e->pos();
     QModelIndex index;
     // we test if we point inside an item
@@ -373,15 +381,17 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
         // now we have an item, we check whether we are above, below or on it
         QRect rect = visualRect(index);
         const int margin = 2;
+        
+        // different positions
         if (pos.y() - rect.top() < margin)
         {
             // we are above it
-            pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()),pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()));
+            valid = pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()),pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()));
         }
         else if (rect.bottom() - pos.y() < margin)
         {
             // we are below it
-            pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()),pTree->indicesOfNext(dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()));
+            valid = pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()),pTree->indicesOfNext(dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()));
         }
         else if (rect.contains(pos, true))
         {
@@ -391,8 +401,12 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
             buf << pTree->indicesOf(branch);
             // we want to add it as the last child
             buf << "_" << branch->tree().numberOfChildren();
-            pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()), buf.str());
+            valid = pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()), buf.str());
         }
+    }
+    if (!valid)
+    {
+        e->setDropAction(Qt::IgnoreAction);
     }
     QTreeWidget::dropEvent(e);
     resizeColumnToContents(0);
