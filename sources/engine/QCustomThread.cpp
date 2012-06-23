@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ void QCustomThread::run()
 {
     // decoding
     Sound_Sample *sample = Sound_NewSampleFromFile(sFileName.c_str(),NULL,iBufferSize);
-    if (sample != NULL)
+    if (sample != NULL && sample->flags != SOUND_SAMPLEFLAG_NONE)
     {
         int totalSize=0,size;
         do

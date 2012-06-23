@@ -84,8 +84,6 @@ bool SoundEngine::isMusicPaused() const
 
 void SoundEngine::playSound(const string &fileName) throw(runtime_error)
 {
-    // change the volume of the music
-    Mix_VolumeMusic(MIX_MAX_VOLUME/2);
     if (ssSample != NULL)
     {
         Mix_HaltChannel(0);
@@ -93,7 +91,7 @@ void SoundEngine::playSound(const string &fileName) throw(runtime_error)
         ssSample = NULL;
     }
     ssSample = Sound_NewSampleFromFile(fileName.c_str(),NULL,iBufferSize);
-    if (ssSample == NULL)
+    if (ssSample == NULL || ssSample->flags == SOUND_SAMPLEFLAG_NONE)
     {
         throw runtime_error("Unable to load the file");
     }
@@ -103,9 +101,15 @@ void SoundEngine::playSound(const string &fileName) throw(runtime_error)
     {
         throw runtime_error("Unable to convert the file");
     }
+    
+    // changes the volume of the music
+    Mix_VolumeMusic(MIX_MAX_VOLUME/2);
+    // plays the the sound
     int channel = Mix_PlayChannel(0,mcSound,0);
     if (channel < 0)
     {
+        // changes back the volume of the music
+        Mix_VolumeMusic(MIX_MAX_VOLUME);
         throw runtime_error("Unable to play the file");
     }
     // callback when finished
