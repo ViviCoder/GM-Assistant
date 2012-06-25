@@ -362,6 +362,7 @@ void MainWindow::on_buttonMusic_clicked()
                 playMusic(sItem->fileName(),sItem->duration());
             }
         }
+        updateTimeDisplay();
         timer->start();
     }
 }
@@ -386,10 +387,19 @@ void MainWindow::onTimer_timeout()
     iTimerCount++;
     if (!sliderMusic->isSliderDown())
     {
-        // we move the slider only if the user is not moving it manually
-        double dPosition = (double)iTimerCount/TICK;
-        sliderMusic->setValue(floor(dPosition/dDuration*sliderMusic->maximum()));
+        updateTimeDisplay();
     }
+}
+
+void MainWindow::updateTimeDisplay()
+{
+    // we move the slider only if the user is not moving it manually
+    double dPosition = (double)iTimerCount/TICK;
+    sliderMusic->setValue(floor(dPosition/dDuration*sliderMusic->maximum()));
+    // update of the position display
+    int position = floor(dPosition);
+    int duration = floor(dDuration);
+    labelPosition->setText(QString("%1:%2/%3:%4").arg(position/60).arg(position%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
 }
 
 void MainWindow::playMusic(const std::string &fileName, double duration)
@@ -435,14 +445,7 @@ void MainWindow::on_sliderMusic_released()
     soundEngine.move(position);
     // updating the timer count
     iTimerCount = floor(TICK*position);
-}
-
-void MainWindow::on_sliderMusic_valueChanged(int value)
-{
-    double dPosition = (double)value/sliderMusic->maximum()*dDuration;
-    int duration = floor(dDuration);
-    int position = floor(dPosition);
-    labelPosition->setText(QString("%1:%2/%3:%4").arg(position/60).arg(position%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
+    updateTimeDisplay();
 }
 
 void MainWindow::on_action_Reload_triggered()

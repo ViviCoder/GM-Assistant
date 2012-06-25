@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -177,6 +177,12 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          */
         void onTimer_timeout();
         /*!
+         * \brief Time display update
+         *
+         * Updates the display of the position in the music file
+         */
+        void updateTimeDisplay();
+        /*!
          * \brief Display update
          *
          * Updates the display when the current game is changed or reloaded
@@ -192,11 +198,6 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \param positive True if wheeled forward, false otherwise
          */
         void on_sliderMusic_wheeled(bool positive);
-        /*!
-         * \brief Slot for when the value of the slider has changed
-         * \param value New value of the slider
-         */
-        void on_sliderMusic_valueChanged(int value);
         // play music and sound
         /*!
          * \brief Play a music file
