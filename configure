@@ -89,20 +89,30 @@ echo "******************************"
 echo
 echo Operating system: $OS
 # OS-dependent variables
+if [ -n $(which qmake) ]
+then
+    qmake="qmake"
+    lrelease="lrelease"
+    lupdate="lupdate"
+elif [ -n $(which qmake-qt4) ]
+then
+    qmake="qmake-qt4"
+    lrelease="lrelease-qt4"
+    lupdate="lupdate-qt4"
+else
+    echo Both qmake and qmake-qt4 missing !
+    exit $err_missing_soft
+fi
+
+
 if [ $OS = "Linux" ]
 then
 	inc_path="/usr/include/"
     sed_i="-i"
-    qmake="qmake-qt4"
-    lrelease="lrelease-qt4"
-    lupdate="lupdate-qt4"
 elif [ $OS = "Darwin" ]
 then
 	inc_path="/opt/local/include/"
     sed_i='-i ""'
-    qmake="qmake"
-    lrelease="lrelease"
-    lupdate="lupdate"
 else
     echo "Operating system not supported."
     exit $err_bad_os
