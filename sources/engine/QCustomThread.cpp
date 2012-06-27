@@ -37,7 +37,11 @@ void QCustomThread::run()
 {
     // decoding
     Sound_Sample *sample = Sound_NewSampleFromFile(sFileName.c_str(),NULL,iBufferSize);
+#ifdef _WIN32
+    if (sample != NULL)
+#else
     if (sample != NULL && sample->flags != SOUND_SAMPLEFLAG_NONE)
+#endif
     {
         int totalSize=0,size;
         do
