@@ -192,6 +192,7 @@ echo
 
 target="gm-assistant"
 pro_file=$target.pro
+desk_file=$target.desktop
 
 $qmake -project -o $pro_file
 echo "QT += svg" >> $pro_file
@@ -229,7 +230,7 @@ rm -f ui_*.h
 
 # add files to clean
 sed $sed_i 's#DEL_FILE) $(OBJECTS)#DEL_FILE) $(OBJECTS)\n\t-$(DEL_FILE) GMA.*#' Makefile
-sed $sed_i 's#DEL_FILE) Makefile#DEL_FILE) Makefile\n\t-$(DEL_FILE) translations/*.qm\n\t-$(DEL_FILE) '$pro_file'\n\t-$(DEL_FILE) '$conf_file'#' Makefile
+sed $sed_i 's#DEL_FILE) Makefile#DEL_FILE) Makefile\n\t-$(DEL_FILE) translations/*.qm\n\t-$(DEL_FILE) '$pro_file'\n\t-$(DEL_FILE) '$conf_file'\n\t-$(DEL_FILE) '$desk_file'#' Makefile
 
 # preparing conf file
 echo "[directories]" > $conf_file
@@ -248,10 +249,14 @@ then
     install_icon='\t$(INSTALL_FILE) GMA.xpm $(SHARE)\n'
 fi
 
-sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINS=$(BASEDIR)/games\nSHARE=$(BASEDIR)/share/gm-assistant\nTRANSLATIONS=$(SHARE)/translations\nMANDIR=$(DESTDIR)'$mandir/man6'\nCONF=$(DESTDIR)'$config_path'\n\ninstall:\n\t\install -d $(BASEDIR) $(BINS) $(TRANSLATIONS) $(MANDIR) $(CONF)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n'"$install_icon"'\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/gm-assistant.6 $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
+# preparing the desktop file
+sed "s#<bin_path>#$prefix/games#" $desk_file.src > $desk_file 
+sed $sed_i "s#<icon_path>#$prefix/share/gm-assistant#" $desk_file
+
+sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINS=$(BASEDIR)/games\nSHARE=$(BASEDIR)/share/gm-assistant\nTRANSLATIONS=$(SHARE)/translations\nMANDIR=$(DESTDIR)'$mandir/man6'\nCONF=$(DESTDIR)'$config_path'\nAPPS=$(BASEDIR)/share/applications\ninstall:\n\t\install -d $(BASEDIR) $(BINS) $(TRANSLATIONS) $(MANDIR) $(CONF) $(APPS)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n'"$install_icon"'\t$(INSTALL_FILE) data/images/GMA.svg $(SHARE)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/gm-assistant.6 $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)\n\t$(INSTALL_FILE) '$desk_file' $(APPS)#' Makefile
 
 # preparing the uninstallation
-sed $sed_i 's#^uninstall:.*#uninstall:\n\t$(DEL_FILE) $(BINS)/gm-assistant\n\t$(DEL_FILE) $(TRANSLATIONS)/*\n\t$(DEL_DIR) $(TRANSLATIONS)\n\t$(DEL_FILE) $(SHARE)/*\n\t$(DEL_DIR) $(SHARE)\n\t$(DEL_FILE) $(MANDIR)/gm-assistant.6\n\t$(DEL_FILE) $(CONF)/*\n\t$(DEL_DIR) $(CONF)#' Makefile
+sed $sed_i 's#^uninstall:.*#uninstall:\n\t$(DEL_FILE) $(BINS)/gm-assistant\n\t$(DEL_FILE) $(TRANSLATIONS)/*\n\t$(DEL_DIR) $(TRANSLATIONS)\n\t$(DEL_FILE) $(SHARE)/*\n\t$(DEL_DIR) $(SHARE)\n\t$(DEL_FILE) $(MANDIR)/gm-assistant.6\n\t$(DEL_FILE) $(CONF)/*\n\t$(DEL_DIR) $(CONF)\n\t$(DEL_FILE) $(APPS)/'$desk_file'#' Makefile
 
 echo
 echo "********************"
