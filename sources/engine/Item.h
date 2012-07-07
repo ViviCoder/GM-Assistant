@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -47,6 +47,10 @@ class Item
         };
         // constructor
         Item(const std::string &content="", State state=sNone);
+        /*!
+         * \brief Default destructor
+         */
+        virtual ~Item();
         // accessors
         std::string content() const;
         void setContent(const std::string &content);
