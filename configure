@@ -52,7 +52,7 @@ do
     then
         case $opt in
             -g | --debug)   debug=1;;
-            -h | --help)    echo -e "Usage: configure [options]\n\nGeneral options:\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n -u, --user\tInstall in a user scope\n\nDirectory options:\n --prefix=[/usr]\t\tInstallation directory\n --mandir=[<prefix>/share/man]\tManual directory\n --sysconfdir=[/etc]\t\tSystem configuration directory"
+            -h | --help)    echo -e "Usage: configure [options]\n\nGeneral options:\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n -u, --user\tInstall in a user scope\n\nDirectory options:\n --prefix=[/usr]\t\tInstallation directory\n --mandir=[<prefix>/share/man]\tManual directory\n --sysconfdir=[/etc]\t\tSystem configuration directory\n\nEnvironment variables:\n CFLAGS:\tC compilation flags\n CXXFLAGS:\tC++ compilation flags\n CPPFLAGS:\tC/C++ pre-processor flags\n LDFLAGS:\tlinking flags"
                 exit 0;;
             -u | --user)    system_install=0
                             config_path="$HOME/.config/gm-assistant";;
@@ -227,6 +227,11 @@ sed $sed_i "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -
 make -s clean
 rm -f *.o
 rm -f ui_*.h
+
+# add compilation and link flags from environment variables
+sed $sed_i 's#CFLAGS.*=\(.*\)$(DEFINES)#CFLAGS += \1$(DEFINES) $(CPPFLAGS)#' Makefile
+sed $sed_i 's#CXXFLAGS.*=\(.*\)$(DEFINES)#CXXFLAGS += \1$(DEFINES) $(CPPFLAGS)#' Makefile
+sed $sed_i 's#LFLAGS.*=\(.*\)#LFLAGS = \1 $(LDFLAGS)#' Makefile
 
 # add files to clean
 sed $sed_i 's#DEL_FILE) $(OBJECTS)#DEL_FILE) $(OBJECTS)\n\t-$(DEL_FILE) GMA.*#' Makefile
