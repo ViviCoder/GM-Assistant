@@ -101,7 +101,7 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
                                 else
                                 {
                                     // we send a signal to play the music (and do some other things)
-                                    emit fileToPlay(soundItem->fileName(),soundItem->duration());
+                                    emit fileToPlay(soundItem->fileName(), soundItem->duration());
                                 }
                                 break;
                             }
@@ -506,13 +506,13 @@ void QCustomTreeWidget::setSizeLimited(bool sizeLimited)
 void QCustomTreeWidget::setPlayingMethod(QWidget *player, PlayingMethod playingMethod)
 {
     pmMethod = playingMethod;
-    disconnect(SIGNAL(fileToPlay(std::string, double)), player, SLOT(playMusic(std::string, double)));
-    disconnect(SIGNAL(fileToPlay(std::string, double)), player, SLOT(playSound(std::string)));
+    disconnect(SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playMusic(std::string, const double*)));
+    disconnect(SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playSound(std::string)));
     switch (playingMethod)
     {
-        case pmSound:   connect(this, SIGNAL(fileToPlay(std::string, double)), player, SLOT(playSound(std::string)));
+        case pmSound:   connect(this, SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playSound(std::string)));
                         break;
-        case pmMusic:   connect(this, SIGNAL(fileToPlay(std::string, double)), player, SLOT(playMusic(std::string, double)));
+        case pmMusic:   connect(this, SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playMusic(std::string, const double*)));
                         break;
         default:        break;                        
     }

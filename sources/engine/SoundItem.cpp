@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -40,9 +40,9 @@ Item::Type SoundItem::type() const
     return tSound;
 }
 
-double SoundItem::duration() const
+const double* SoundItem::duration() const
 {
-    return dDuration;
+    return &dDuration;
 }
 
 void SoundItem::setFileName(const string &fileName) throw(invalid_argument, overflow_error)

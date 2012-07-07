@@ -177,11 +177,11 @@ class QCustomTreeWidget: public QTreeWidget
         /*!
          * \brief Signal to play a file
          * \param fileName File to play
-         * \param duration Duration of the file
+         * \param duration Pointer to the duration of the file
          *
          * This signal is send when a sound file has to be played
          */
-        void fileToPlay(const std::string &fileName, double duration);
+        void fileToPlay(const std::string &fileName, const double *duration);
 };
 
 #endif

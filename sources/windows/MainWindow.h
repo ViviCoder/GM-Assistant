@@ -70,9 +70,9 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          */
         QSignalMapper *smMapper;
         /*!
-         * \brief Duration of the current music
+         * \brief Pointer to the duration of the current music
          */
-        double dDuration;
+        const double *pDuration;
         /*!
          * \brief File name of the current music
          */
@@ -206,7 +206,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          *
          * Plays the music file given only if its duration is greater then zero
          */
-        void playMusic(const std::string &fileName, double duration);
+        void playMusic(const std::string &fileName, const double *duration);
         void playSound(const std::string &fileName);
         /*!
          * \brief Recent files update when opening a new file
