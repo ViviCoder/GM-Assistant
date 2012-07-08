@@ -142,16 +142,49 @@ void ItemDialog::on_toolBrowse_clicked()
     }
 }
 
-int ItemDialog::exec()
+int ItemDialog::exec(Item *item)
 {
-    // resets the window
-    radioNone->setChecked(true);
-    radioBasic->setChecked(true);
-    toolBrowse->setEnabled(false);
+    // initialization
+    QString content, file;
+    Item::Type itemType = Item::tBasic;
+    Item::State itemState = Item::sNone;
+    if (item == NULL)
+    {
+        setWindowTitle(QApplication::translate("itemDialog", "Create a new item", 0));
+        pushBrother->setVisible(true);
+        pushChild->setText(QApplication::translate("itemDialog", "C&hild", 0));
+    }
+    else
+    {
+        setWindowTitle(QApplication::translate("itemDialog", "Edit the item", 0));
+        pushBrother->setVisible(false);
+        pushChild->setText(QApplication::translate("itemDialog", "&Edit", 0));
+        // pre-filling
+        content = item->content().c_str();
+        itemType = item->type();
+        itemState = item->state();
+        if (itemType != Item::tBasic)
+        {
+            file = dynamic_cast<FileItem*>(item)->fileName().c_str();
+        }
+    }
 
-    editItem->setText("");
+    // resets the window
+    // state
+    radioNone->setChecked(itemState == Item::sNone);
+    radioProgress->setChecked(itemState == Item::sProgress);
+    radioSuccess->setChecked(itemState == Item::sSuccess);
+    radioFailure->setChecked(itemState == Item::sFailure);
+    // type
+    radioBasic->setChecked(itemType == Item::tBasic);
+    radioSound->setChecked(itemType == Item::tSound);
+    radioImage->setChecked(itemType == Item::tImage);
+    // everuthing else
+    toolBrowse->setEnabled(itemType != Item::tBasic);
+
+    editItem->setText(content);
     editItem->setFocus();
-    editFile->setText("");
+    editFile->setText(file);
 
     // shows it
     return QDialog::exec();

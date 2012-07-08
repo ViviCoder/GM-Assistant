@@ -70,9 +70,9 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          */
         QSignalMapper *smMapper;
         /*!
-         * \brief Duration of the current music
+         * \brief Pointer to the duration of the current music
          */
-        double dDuration;
+        const double *pDuration;
         /*!
          * \brief File name of the current music
          */
@@ -177,6 +177,12 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          */
         void onTimer_timeout();
         /*!
+         * \brief Time display update
+         *
+         * Updates the display of the position in the music file
+         */
+        void updateTimeDisplay();
+        /*!
          * \brief Display update
          *
          * Updates the display when the current game is changed or reloaded
@@ -192,11 +198,6 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \param positive True if wheeled forward, false otherwise
          */
         void on_sliderMusic_wheeled(bool positive);
-        /*!
-         * \brief Slot for when the value of the slider has changed
-         * \param value New value of the slider
-         */
-        void on_sliderMusic_valueChanged(int value);
         // play music and sound
         /*!
          * \brief Play a music file
@@ -205,7 +206,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          *
          * Plays the music file given only if its duration is greater then zero
          */
-        void playMusic(const std::string &fileName, double duration);
+        void playMusic(const std::string &fileName, const double *duration);
         void playSound(const std::string &fileName);
         /*!
          * \brief Recent files update when opening a new file

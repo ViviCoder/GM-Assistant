@@ -117,15 +117,8 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
         case Qt::RightButton:   {
                                     if (qtwitem == NULL)
                                     {
-                                        if (rowCount()!=0 && columnCount()!=0)
-                                        {
-                                            break;
-                                        }
-                                        else
-                                        {
-                                            rowPosition = rowCount()-1;
-                                            columnPosition = columnCount()-1;
-                                        }
+                                        rowPosition = rowCount()-1;
+                                        columnPosition = columnCount()-1;
                                     }
                                     else
                                     {
@@ -407,18 +400,11 @@ void QCustomTableWidget::removeSkill(int index)
 
 void QCustomTableWidget::editCharacter(int index)
 {
-    if(pChangeCharacterDial->exec()==QDialog::Accepted)
+    Character *character = &(*pCharacters)[index];
+    if(pChangeCharacterDial->exec(character)==QDialog::Accepted)
     {
-        QTableWidgetItem *rowHeaderItem = verticalHeaderItem ( index );
-        if (rowHeaderItem != NULL)
-        {
-            rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-        }
-        else
-        {
-            rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-            setVerticalHeaderItem(index, rowHeaderItem);
-        }
+        QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index);
+        rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
         // updating the CharacterList
         if (pCharacters != NULL)
         {
@@ -432,18 +418,11 @@ void QCustomTableWidget::editCharacter(int index)
 
 void QCustomTableWidget::editSkill(int index)
 {
-    if(pChangeSkillDial->exec()==QDialog::Accepted)
+    QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
+    if(pChangeSkillDial->exec(columnHeaderItem->text())==QDialog::Accepted)
     {
         QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
-        if (columnHeaderItem != NULL)
-        {
-            columnHeaderItem->setText(pChangeSkillDial->text());
-        }
-        else
-        {
-            columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
-            setHorizontalHeaderItem(index, columnHeaderItem);
-        }
+        columnHeaderItem->setText(pChangeSkillDial->text());
         // updating the SkillList
         if (pSkills != NULL)
         {

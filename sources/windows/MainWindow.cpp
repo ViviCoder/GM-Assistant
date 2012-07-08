@@ -25,19 +25,19 @@
 #include <QSettings>
 #include <QStackedLayout>
 
-MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smMapper(new QSignalMapper(this)), dDuration(0.0)
+MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smMapper(new QSignalMapper(this)), pDuration(NULL)
 {
     setupUi(this);
     updateDisplay();
 
-    timer->setInterval(100);
+    timer->setInterval(1000/TICK);
     timer->setSingleShot(false);
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimer_timeout()));
-    connect(treeMusic,SIGNAL(fileToPlay(std::string,double)),this,SLOT(playMusic(std::string,double)));
-    connect(treeFX,SIGNAL(fileToPlay(std::string,double)),this,SLOT(playSound(std::string)));
     connect(smMapper,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
-    // setting widgets
+    // setting audio options
     treeFX->setSizeLimited(true);
+    treeMusic->setPlayingMethod(this, QCustomTreeWidget::pmMusic);
+    treeFX->setPlayingMethod(this, QCustomTreeWidget::pmSound);
 
     // loading settings
     QSettings settings;
@@ -262,9 +262,17 @@ void MainWindow::on_action_Save_triggered()
 void MainWindow::on_actionS_ave_as_triggered()
 {
     eGame.notes() = textNotes->toPlainText().toStdString();
-    QString file = QFileDialog::getSaveFileName(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0));
-    if (!file.isEmpty())
+    QFileDialog *dial = new QFileDialog(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0));
+    dial->setAcceptMode(QFileDialog::AcceptSave);
+    if (dial->exec() == QFileDialog::Accepted)
     {
+        QString file = dial->selectedFiles()[0]; 
+        // adding the suffix if not present
+        QString suffix = dial->selectedNameFilter().right(5).left(4);
+        if (!file.endsWith(suffix))
+        {
+            file.append(suffix);
+        }
         try
         {
             eGame.toFile(file.toStdString());
@@ -279,6 +287,7 @@ void MainWindow::on_actionS_ave_as_triggered()
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
         }
     }
+    delete dial;
 }
 
 void MainWindow::on_action_New_triggered()
@@ -317,7 +326,6 @@ void MainWindow::updateDisplay()
     timer->stop();
     iTimerCount = 0;
     soundEngine.stop();
-    dDuration = 0.0;
     sliderMusic->setValue(0);
     checkRepeat->setChecked(false);
     labelPosition->setText(QApplication::translate("mainWindow","0:00/0:00",0));
@@ -354,6 +362,7 @@ void MainWindow::on_buttonMusic_clicked()
                 playMusic(sItem->fileName(),sItem->duration());
             }
         }
+        updateTimeDisplay();
         timer->start();
     }
 }
@@ -364,7 +373,7 @@ void MainWindow::onTimer_timeout()
     {
         if (checkRepeat->isChecked())
         {
-            playMusic(sCurrentMusic,dDuration);
+            playMusic(sCurrentMusic, pDuration);
         }
         else
         {
@@ -378,15 +387,24 @@ void MainWindow::onTimer_timeout()
     iTimerCount++;
     if (!sliderMusic->isSliderDown())
     {
-        // we move the slider only if the user is not moving it manually
-        double dPosition = (double)iTimerCount/TICK;
-        sliderMusic->setValue(floor(dPosition/dDuration*sliderMusic->maximum()));
+        updateTimeDisplay();
     }
 }
 
-void MainWindow::playMusic(const std::string &fileName, double duration)
+void MainWindow::updateTimeDisplay()
 {
-    if (duration > 0.0)
+    // we move the slider only if the user is not moving it manually
+    double dPosition = (double)iTimerCount/TICK;
+    sliderMusic->setValue(floor(dPosition/(*pDuration)*sliderMusic->maximum()));
+    // update of the position display
+    int position = floor(dPosition);
+    int duration = floor(*pDuration);
+    labelPosition->setText(QString("%1:%2/%3:%4").arg(position/60).arg(position%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
+}
+
+void MainWindow::playMusic(const std::string &fileName, const double *duration)
+{
+    if (*duration > 0.0)
     {
         try
         {
@@ -395,7 +413,7 @@ void MainWindow::playMusic(const std::string &fileName, double duration)
             timer->start();
             buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
             iTimerCount = 0;
-            dDuration = duration;
+            pDuration = duration;
         }
         catch (std::runtime_error &e)
         {
@@ -423,18 +441,11 @@ void MainWindow::playSound(const std::string &fileName)
 void MainWindow::on_sliderMusic_released()
 {
     // new position in the music
-    double position = (double)sliderMusic->value()/sliderMusic->maximum()*dDuration;
+    double position = (double)sliderMusic->value()/sliderMusic->maximum()*(*pDuration);
     soundEngine.move(position);
     // updating the timer count
     iTimerCount = floor(TICK*position);
-}
-
-void MainWindow::on_sliderMusic_valueChanged(int value)
-{
-    double dPosition = (double)value/sliderMusic->maximum()*dDuration;
-    int duration = floor(dDuration);
-    int position = floor(dPosition);
-    labelPosition->setText(QString("%1:%2/%3:%4").arg(position/60).arg(position%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
+    updateTimeDisplay();
 }
 
 void MainWindow::on_action_Reload_triggered()

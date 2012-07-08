@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 #define HEADER_CHANGECHARACTERDIALOG
 
 #include "ui_ChangeCharacterDialog.h"
+#include "Character.h"
 
 /*!
  * \brief Dialog window for characters
@@ -29,20 +30,34 @@ class ChangeCharacterDialog: public QDialog, private Ui::changeCharacterDialog
     Q_OBJECT
 
     public:
-        // constructor
+        /*!
+         * \brief Constructor
+         * \param parent Parent widget
+         */
         ChangeCharacterDialog(QWidget *parent=NULL);
-        // accessors
+        /*!
+         * \brief Getter for the character's name
+         * \return Character's name
+         */
         QString name() const;
+        /*!
+         * \brief Getter for the player's name
+         * \return Player's name
+         */
         QString playerName() const;
     public slots:
+        /*!
+         * \brief Slot for when the button is pressed
+         */ 
         void on_pushEdit_clicked();
         /*!
          * \brief Overriden "exec" slot
+         * \param character Character (used for pre-filling)
          * \return Result code
          *
          * Resets the interface and shows the window
          */
-        int exec();
+        int exec(Character *character = NULL);
 };
 
 #endif

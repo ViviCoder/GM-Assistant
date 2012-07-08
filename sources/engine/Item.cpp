@@ -24,6 +24,10 @@ Item::Item(const string &content, State state): sState(state), sContent(content)
 {
 }
 
+Item::~Item()
+{
+}
+
 string Item::content() const
 {
     return sContent;

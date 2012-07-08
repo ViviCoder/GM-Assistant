@@ -52,7 +52,7 @@ do
     then
         case $opt in
             -g | --debug)   debug=1;;
-            -h | --help)    echo -e "Usage: configure [options]\n\nGeneral options:\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n -u, --user\tInstall in a user scope\n\nDirectory options:\n --prefix=[/usr]\t\tInstallation directory\n --mandir=[<prefix>/share/man]\tManual directory\n --sysconfdir=[/etc]\t\tSystem configuration directory"
+            -h | --help)    echo -e "Usage: configure [options]\n\nGeneral options:\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n -u, --user\tInstall in a user scope\n\nDirectory options:\n --prefix=[/usr]\t\tInstallation directory\n --mandir=[<prefix>/share/man]\tManual directory\n --sysconfdir=[/etc]\t\tSystem configuration directory\n\nEnvironment variables:\n CFLAGS:\tC compilation flags\n CXXFLAGS:\tC++ compilation flags\n CPPFLAGS:\tC/C++ pre-processor flags\n LDFLAGS:\tlinking flags"
                 exit 0;;
             -u | --user)    system_install=0
                             config_path="$HOME/.config/gm-assistant";;
@@ -89,20 +89,30 @@ echo "******************************"
 echo
 echo Operating system: $OS
 # OS-dependent variables
+if [ -n $(which qmake) ]
+then
+    qmake="qmake"
+    lrelease="lrelease"
+    lupdate="lupdate"
+elif [ -n $(which qmake-qt4) ]
+then
+    qmake="qmake-qt4"
+    lrelease="lrelease-qt4"
+    lupdate="lupdate-qt4"
+else
+    echo Both qmake and qmake-qt4 missing !
+    exit $err_missing_soft
+fi
+
+
 if [ $OS = "Linux" ]
 then
 	inc_path="/usr/include/"
     sed_i="-i"
-    qmake="qmake-qt4"
-    lrelease="lrelease-qt4"
-    lupdate="lupdate-qt4"
 elif [ $OS = "Darwin" ]
 then
 	inc_path="/opt/local/include/"
     sed_i='-i ""'
-    qmake="qmake"
-    lrelease="lrelease"
-    lupdate="lupdate"
 else
     echo "Operating system not supported."
     exit $err_bad_os
@@ -182,6 +192,7 @@ echo
 
 target="gm-assistant"
 pro_file=$target.pro
+desk_file=$target.desktop
 
 $qmake -project -o $pro_file
 echo "QT += svg" >> $pro_file
@@ -217,9 +228,14 @@ make -s clean
 rm -f *.o
 rm -f ui_*.h
 
+# add compilation and link flags from environment variables
+sed $sed_i 's#CFLAGS.*=\(.*\)$(DEFINES)#CFLAGS += \1$(DEFINES) $(CPPFLAGS)#' Makefile
+sed $sed_i 's#CXXFLAGS.*=\(.*\)$(DEFINES)#CXXFLAGS += \1$(DEFINES) $(CPPFLAGS)#' Makefile
+sed $sed_i 's#LFLAGS.*=\(.*\)#LFLAGS = \1 $(LDFLAGS)#' Makefile
+
 # add files to clean
 sed $sed_i 's#DEL_FILE) $(OBJECTS)#DEL_FILE) $(OBJECTS)\n\t-$(DEL_FILE) GMA.*#' Makefile
-sed $sed_i 's#DEL_FILE) Makefile#DEL_FILE) Makefile\n\t-$(DEL_FILE) translations/*.qm\n\t-$(DEL_FILE) '$pro_file'\n\t-$(DEL_FILE) '$conf_file'#' Makefile
+sed $sed_i 's#DEL_FILE) Makefile#DEL_FILE) Makefile\n\t-$(DEL_FILE) translations/*.qm\n\t-$(DEL_FILE) '$pro_file'\n\t-$(DEL_FILE) '$conf_file'\n\t-$(DEL_FILE) '$desk_file'#' Makefile
 
 # preparing conf file
 echo "[directories]" > $conf_file
@@ -238,10 +254,14 @@ then
     install_icon='\t$(INSTALL_FILE) GMA.xpm $(SHARE)\n'
 fi
 
-sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINS=$(BASEDIR)/games\nSHARE=$(BASEDIR)/share/gm-assistant\nTRANSLATIONS=$(SHARE)/translations\nMANDIR=$(DESTDIR)'$mandir/man6'\nCONF=$(DESTDIR)'$config_path'\n\ninstall:\n\t\install -d $(BASEDIR) $(BINS) $(TRANSLATIONS) $(MANDIR) $(CONF)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n'"$install_icon"'\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/gm-assistant.6 $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)#' Makefile
+# preparing the desktop file
+sed "s#<bin_path>#$prefix/games#" $desk_file.src > $desk_file 
+sed $sed_i "s#<icon_path>#$prefix/share/gm-assistant#" $desk_file
+
+sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINS=$(BASEDIR)/games\nSHARE=$(BASEDIR)/share/gm-assistant\nTRANSLATIONS=$(SHARE)/translations\nMANDIR=$(DESTDIR)'$mandir/man6'\nCONF=$(DESTDIR)'$config_path'\nAPPS=$(BASEDIR)/share/applications\ninstall:\n\t\install -d $(BASEDIR) $(BINS) $(TRANSLATIONS) $(MANDIR) $(CONF) $(APPS)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n'"$install_icon"'\t$(INSTALL_FILE) data/images/GMA.svg $(SHARE)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/gm-assistant.6 $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)\n\t$(INSTALL_FILE) '$desk_file' $(APPS)#' Makefile
 
 # preparing the uninstallation
-sed $sed_i 's#^uninstall:.*#uninstall:\n\t$(DEL_FILE) $(BINS)/gm-assistant\n\t$(DEL_FILE) $(TRANSLATIONS)/*\n\t$(DEL_DIR) $(TRANSLATIONS)\n\t$(DEL_FILE) $(SHARE)/*\n\t$(DEL_DIR) $(SHARE)\n\t$(DEL_FILE) $(MANDIR)/gm-assistant.6\n\t$(DEL_FILE) $(CONF)/*\n\t$(DEL_DIR) $(CONF)#' Makefile
+sed $sed_i 's#^uninstall:.*#uninstall:\n\t$(DEL_FILE) $(BINS)/gm-assistant\n\t$(DEL_FILE) $(TRANSLATIONS)/*\n\t$(DEL_DIR) $(TRANSLATIONS)\n\t$(DEL_FILE) $(SHARE)/*\n\t$(DEL_DIR) $(SHARE)\n\t$(DEL_FILE) $(MANDIR)/gm-assistant.6\n\t$(DEL_FILE) $(CONF)/*\n\t$(DEL_DIR) $(CONF)\n\t$(DEL_FILE) $(APPS)/'$desk_file'#' Makefile
 
 echo
 echo "********************"

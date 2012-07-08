@@ -49,6 +49,13 @@ class Branch
         void setParent(Tree *parent);
         // copy operator
         Branch& operator=(const Branch &branch);
+        /*!
+         * \brief Setter for the item
+         * \param item New item
+         *
+         * Replaces the old item by the new one and deletes it
+         */
+        void setItem(Item *item);
 };
 
 #endif

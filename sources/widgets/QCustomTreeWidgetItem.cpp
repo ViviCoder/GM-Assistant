@@ -53,7 +53,10 @@ void QCustomTreeWidgetItem::updateDisplay()
     {
         setIcon(0,QIcon(":/data/images/speaker.svg"));
         setToolTip(0,dynamic_cast<SoundItem*>(item)->fileName().c_str()); 
-        setStatusTip(0,QApplication::translate("customTree","Double click to play the file",0));
+        if (dynamic_cast<QCustomTreeWidget*>(treeWidget())->playingMethod() != QCustomTreeWidget::pmNone)
+        {
+            setStatusTip(0,QApplication::translate("customTree","Double click to play the file",0));
+        }
     }
     else if (item->type()==Item::tImage)
     {

@@ -40,9 +40,9 @@ Item::Type SoundItem::type() const
     return tSound;
 }
 
-double SoundItem::duration() const
+const double* SoundItem::duration() const
 {
-    return dDuration;
+    return &dDuration;
 }
 
 void SoundItem::setFileName(const string &fileName, bool checkFile) throw(invalid_argument, overflow_error)

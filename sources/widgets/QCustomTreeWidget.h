@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -36,6 +36,87 @@ class QCustomTreeWidget: public QTreeWidget
 {
     Q_OBJECT
 
+    public:
+        /*!
+         * \brief Method to play audio files
+         */
+        enum PlayingMethod
+        {
+            //! Audio files will not be played 
+            pmNone, 
+            //! Audio files will be played like sounds
+            pmSound,
+            //! Audio files will be played like songs
+            pmMusic
+        };
+        /*!
+         * \brief Constructor of the widget
+         * \param parent Parent widget
+         *
+         * Creates its pop-up menu and connects various slots
+         */
+        QCustomTreeWidget(QWidget *parent=NULL);
+        ~QCustomTreeWidget();
+        // associating a tree to the widget
+        void setTree(Tree *tree);
+        // associating an icon to a state
+        static QIcon icon(Item::State state);
+        /*!
+         * \brief Setter for the flag sizeLimited
+         * \param sizeLimited Indicates if the size of the items is limited
+         */
+        void setSizeLimited(bool sizeLimited);
+        /*!
+         * \brief Setter for the playing method
+         * \param playingMethod New playing method
+         */
+        void setPlayingMethod(QWidget *player, PlayingMethod playingMethod);
+        /*!
+         * \brief Getter for the playing method
+         * \return Playing method
+         */
+        PlayingMethod playingMethod() const;
+    public slots:
+        void on_itemChanged(QTreeWidgetItem* item,int column);
+        void on_itemCollapsed();
+        void on_itemExpanded();
+        void deleteItem(QTreeWidgetItem* item);
+        void on_itemSelectionChanged();
+        /*!
+         * \brief Slot for "Add" menu action
+         * \param item Current item from which the new one will be added (or the one which will be edited
+         * \param edition Indicates if it is an edition (true) or not
+         * 
+         * Opens the item dialog window and adds the newly created item
+         */
+        void addItem(QCustomTreeWidgetItem* item, bool edition = false);
+        /*!
+         * \brief Slot for double click and space key pressed
+         * \param qItem Current item which will be "launched"
+         *
+         * Executes the action associated with the type of the item
+         */
+        void launchItem(QTreeWidgetItem* qItem);
+    protected:
+        // overriden methods
+        /*!
+         * \brief DoubleClickEvent handler
+         * \param e Mouse event
+         */
+        void mouseDoubleClickEvent(QMouseEvent *e);
+        /*!
+         * \brief Event raised when a mouse button is pressed
+         * \param e Mouse event
+         */
+        void mousePressEvent(QMouseEvent *e);
+        void mouseReleaseEvent(QMouseEvent *e);
+        /*!
+         * \brief Event raised when a key is released
+         * \param e Key event
+         */
+        void keyReleaseEvent(QKeyEvent *e);
+        void dragEnterEvent(QDragEnterEvent *e);
+        void dropEvent(QDropEvent *e);
     private:
         /*!
          * \brief Pop-up menu
@@ -66,6 +147,14 @@ class QCustomTreeWidget: public QTreeWidget
          */
         QAction *actionDelete;
         /*!
+         * \brief Edit action
+         */
+        QAction *actionEdit;
+        /*!
+         * \brief Launch action
+         */
+        QAction *actionLaunch;
+        /*!
          * \brief Underlying tree
          */
         Tree *pTree;
@@ -80,73 +169,19 @@ class QCustomTreeWidget: public QTreeWidget
          * \brief Boolean indicating if the size of the items is limited
          */
         bool bSizeLimited;
-    protected:
-        // overriden methods
         /*!
-         * \brief DoubleClickEvent handler
-         * \param e Mouse event
+         * \brief Playing method
          */
-        void mouseDoubleClickEvent(QMouseEvent *e);
-        /*!
-         * \brief Event raised when a mouse button is pressed
-         * \param e Mouse event
-         */
-        void mousePressEvent(QMouseEvent *e);
-        void mouseReleaseEvent(QMouseEvent *e);
-        /*!
-         * \brief Event raised when a key is released
-         * \param e Key event
-         */
-        void keyReleaseEvent(QKeyEvent *e);
-        void dragEnterEvent(QDragEnterEvent *e);
-        void dropEvent(QDropEvent *e);
-    public slots:
-        void on_itemChanged(QTreeWidgetItem* item,int column);
-        void on_itemCollapsed();
-        void on_itemExpanded();
-        void deleteItem(QTreeWidgetItem* item);
-        void on_itemSelectionChanged();
-        /*!
-         * \brief Slot for "Add" menu action
-         * \param item Current item from which the new one will be added
-         * 
-         * Opens the item dialog window and adds the newly created item
-         */
-        void addItem(QCustomTreeWidgetItem* item);
-        /*!
-         * \brief Slot for double click and space key pressed
-         * \param qItem Current item which will be "launched"
-         *
-         * Executes the action associated with the type of the item
-         */
-        void launchItem(QTreeWidgetItem* qItem);
-    public:
-        /*!
-         * \brief Constructor of the widget
-         * \param parent Parent widget
-         *
-         * Creates its pop-up menu and connects various slots
-         */
-        QCustomTreeWidget(QWidget *parent=NULL);
-        ~QCustomTreeWidget();
-        // associating a tree to the widget
-        void setTree(Tree *tree);
-        // associating an icon to a state
-        static QIcon icon(Item::State state);
-        /*!
-         * \brief Setter for the flag sizeLimited
-         * \param sizeLimited Indicates if the size of the items is limited
-         */
-        void setSizeLimited(bool sizeLimited);
+        PlayingMethod pmMethod;
     signals:
         /*!
          * \brief Signal to play a file
          * \param fileName File to play
-         * \param duration Duration of the file
+         * \param duration Pointer to the duration of the file
          *
          * This signal is send when a sound file has to be played
          */
-        void fileToPlay(const std::string &fileName, double duration);
+        void fileToPlay(const std::string &fileName, const double *duration);
 };
 
 #endif

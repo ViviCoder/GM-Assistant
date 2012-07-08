@@ -47,6 +47,10 @@ class Item
         };
         // constructor
         Item(const std::string &content="", State state=sNone);
+        /*!
+         * \brief Default destructor
+         */
+        virtual ~Item();
         // accessors
         std::string content() const;
         void setContent(const std::string &content);

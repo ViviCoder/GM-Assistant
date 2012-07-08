@@ -19,12 +19,15 @@
 #include "AboutDialog.h"
 #include "Version.h"
 #include <QMessageBox>
+#include <QSvgRenderer>
 
 AboutDialog::AboutDialog(QWidget *parent): QDialog(parent)
 {
     setupUi(this);
     labelVersionNumber->setText(Version::currentVersion().fullVersion().c_str());
-    labelLogo->load(QString(":data/images/GMA.svg"));
+    QSvgRenderer *renderer = labelLogo->renderer();
+    renderer->load(QString(":data/images/GMA.svg"));
+    labelLogo->setFixedSize(labelLogo->renderer()->defaultSize());
 }
 
 void AboutDialog::showEvent(QShowEvent *e)

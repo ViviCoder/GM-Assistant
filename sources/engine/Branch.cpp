@@ -76,3 +76,10 @@ Branch& Branch::operator=(const Branch &branch)
 
     return *this;
 }
+
+void Branch::setItem(Item *item)
+{
+    Item *tmp = pItem;
+    pItem = item;
+    delete tmp;
+}

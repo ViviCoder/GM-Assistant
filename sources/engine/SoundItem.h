@@ -82,9 +82,9 @@ class SoundItem: public FileItem
         Type type() const;  // overriden
         /*!
          * \brief Getter for the duration of the sound
-         * \return Duration of the sound
+         * \return Pointer to the duration of the sound
          */
-        double duration() const;
+        const double* duration() const;
 };
 
 #endif

@@ -25,7 +25,7 @@
 #include <QMessageBox>
 #include <exception>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false)
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false), bSizeLimited(false), pmMethod(pmNone)
 {
     // creating actions
     actionNone = new QAction(QIcon(":/data/images/empty.svg"),QApplication::translate("customTree","&None",0),this);
@@ -48,6 +48,13 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     actionDelete->setIconVisibleInMenu(true);
     actionDelete->setStatusTip(QApplication::translate("customTree","Delete the item",0));
     actionDelete->setShortcut(QApplication::translate("customTree","Del",0));
+    actionEdit = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTree","&Edit",0),this);
+    actionEdit->setIconVisibleInMenu(true);
+    actionEdit->setStatusTip(QApplication::translate("customTree","Edit the item",0));
+    actionEdit->setShortcut(QApplication::translate("customTree","Ctrl+F2",0));
+    actionLaunch = new QAction(QIcon(),"",this);
+    actionLaunch->setIconVisibleInMenu(true);
+    actionLaunch->setShortcut(QApplication::translate("customTree","Space",0));
     // populating the pop-up menu
     menuIcons->addAction(actionNone);
     menuIcons->addAction(actionProgress);
@@ -56,6 +63,9 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     menuIcons->addSeparator();
     menuIcons->addAction(actionAdd);
     menuIcons->addAction(actionDelete);
+    menuIcons->addAction(actionEdit);
+    menuIcons->addSeparator();
+    menuIcons->addAction(actionLaunch);
     // connecting signals
     connect(this, SIGNAL(itemChanged(QTreeWidgetItem *,int)), SLOT(on_itemChanged(QTreeWidgetItem*, int)));
     connect(this, SIGNAL(itemCollapsed(QTreeWidgetItem *)), SLOT(on_itemCollapsed()));
@@ -84,8 +94,15 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
     {
         case Item::tSound:  {
                                 SoundItem *soundItem = dynamic_cast<SoundItem*>(item);
-                                // we send a signal to play the music (and do some other things)
-                                emit fileToPlay(soundItem->fileName(),soundItem->duration());
+                                if (pmMethod == pmNone)
+                                {
+                                    QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0), QApplication::translate("customTree","Audio files can be played only in the Music and Sound effects modules.",0));
+                                }
+                                else
+                                {
+                                    // we send a signal to play the music (and do some other things)
+                                    emit fileToPlay(soundItem->fileName(), soundItem->duration());
+                                }
                                 break;
                             }
         case Item::tImage: {
@@ -119,6 +136,28 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     setCurrentItem(item);
                                     QCustomTreeWidgetItem *qItem = dynamic_cast<QCustomTreeWidgetItem*>(item);
                                     Item *treeItem = qItem->branch()->item();
+                                    switch (treeItem->type())
+                                    {
+                                        case Item::tSound:  if (pmMethod == pmNone)
+                                                            {
+                                                                actionLaunch->setVisible(false);
+                                                            }
+                                                            else
+                                                            {
+                                                                actionLaunch->setIcon(QIcon(":/data/images/speaker.svg"));
+                                                                actionLaunch->setStatusTip(QApplication::translate("customTree","Play the sound",0));
+                                                                actionLaunch->setText(QApplication::translate("customTree","P&lay",0));
+                                                                actionLaunch->setVisible(true);
+                                                            }
+                                                            break;
+                                        case Item::tImage:      actionLaunch->setIcon(QIcon(":/data/images/image.svg"));
+                                                                actionLaunch->setStatusTip(QApplication::translate("customTree","Display the image",0));
+                                                                actionLaunch->setText(QApplication::translate("customTree","Disp&lay",0));
+                                                                actionLaunch->setVisible(true);
+                                                                break;
+                                        default:    actionLaunch->setVisible(false);
+                                                    break;
+                                    }
                                     QAction* action = menuIcons->exec(e->globalPos());
                                     if (action == actionNone)
                                     {
@@ -148,8 +187,16 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     {
                                         addItem(qItem);
                                     }
+                                    else if (action == actionEdit)
+                                    {
+                                        addItem(qItem, true);
+                                    }
+                                    else if (action == actionLaunch)
+                                    {
+                                        launchItem(item);
+                                    }
                                 }
-                                else if (topLevelItemCount()==0)
+                                else
                                 {
                                     addItem(NULL);
                                 }
@@ -158,12 +205,18 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
     }
 }
 
-void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *)
+void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *e)
 {
+    QTreeWidgetItem *item = itemAt(e->pos());
     if (!bNewlySelected)
     {
         setCurrentItem(NULL);
     }
+    else
+    {
+        setCurrentItem(item);
+    }
+    QTreeWidget::mouseReleaseEvent(e);
 }
 
 void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
@@ -173,12 +226,19 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
     {
         switch (e->key())
         {
-            case Qt::Key_F2:    if (!bEditing)
+            case Qt::Key_F2:    switch (e->modifiers())
                                 {
-                                    qItem->setFlags(qItem->flags() | Qt::ItemIsEditable);
-                                    editItem(qItem);
-                                    bEditing = true;
-                                    qItem->setFlags(qItem->flags() & ~Qt::ItemIsEditable);
+                                    case Qt::ControlModifier:   addItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem), true);
+                                                                break;
+                                    case Qt::NoModifier:    if (!bEditing)
+                                                            {
+                                                                qItem->setFlags(qItem->flags() | Qt::ItemIsEditable);
+                                                                editItem(qItem);
+                                                                bEditing = true;
+                                                                qItem->setFlags(qItem->flags() & ~Qt::ItemIsEditable);
+                                                            }
+                                                            break;
+                                    default:    QTreeWidget::keyReleaseEvent(e); break;
                                 }
                                 break;
             case Qt::Key_Delete:    if (!bEditing)
@@ -299,12 +359,14 @@ void QCustomTreeWidget::dragEnterEvent(QDragEnterEvent *e)
     {
         e->acceptProposedAction();
     }
+    QTreeWidget::dragEnterEvent(e);
 }
 
 using namespace std;
 
 void QCustomTreeWidget::dropEvent(QDropEvent *e)
 {
+    bool valid = false;
     QPoint pos = e->pos();
     QModelIndex index;
     // we test if we point inside an item
@@ -319,15 +381,17 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
         // now we have an item, we check whether we are above, below or on it
         QRect rect = visualRect(index);
         const int margin = 2;
+        
+        // different positions
         if (pos.y() - rect.top() < margin)
         {
             // we are above it
-            pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()),pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()));
+            valid = pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()),pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()));
         }
         else if (rect.bottom() - pos.y() < margin)
         {
             // we are below it
-            pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()),pTree->indicesOfNext(dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()));
+            valid = pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()),pTree->indicesOfNext(dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()));
         }
         else if (rect.contains(pos, true))
         {
@@ -337,8 +401,12 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
             buf << pTree->indicesOf(branch);
             // we want to add it as the last child
             buf << "_" << branch->tree().numberOfChildren();
-            pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()), buf.str());
+            valid = pTree->move(pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()), buf.str());
         }
+    }
+    if (!valid)
+    {
+        e->setDropAction(Qt::IgnoreAction);
     }
     QTreeWidget::dropEvent(e);
     resizeColumnToContents(0);
@@ -349,9 +417,16 @@ void QCustomTreeWidget::on_itemSelectionChanged()
     bEditing = false;
 }
 
-void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
+void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
 {
-    pItemDial->exec();
+    if (edition)
+    {
+        pItemDial->exec(item->branch()->item());
+    }
+    else
+    {
+        pItemDial->exec();
+    }
     if (pItemDial->result()==QDialog::Accepted)
     {
         // creation of the new item
@@ -385,30 +460,38 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
         }
         else
         {
-            switch (pItemDial->selectionResult())
+            if (edition)
             {
-                case ItemDialog::rBrother:  {
-                                                // we want to insert it after the given item
-                                                Branch *parent = item->branch()->parent()->parent();
-                                                if (parent==NULL)
-                                                {
-                                                    Branch *newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
-                                                    new QCustomTreeWidgetItem(this,newBranch,item);
+                item->branch()->setItem(newItem);
+                item->updateDisplay(); 
+            }
+            else
+            {    
+                switch (pItemDial->selectionResult())
+                {
+                    case ItemDialog::rBrother:  {
+                                                    // we want to insert it after the given item
+                                                    Branch *parent = item->branch()->parent()->parent();
+                                                    if (parent==NULL)
+                                                    {
+                                                        Branch *newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
+                                                        new QCustomTreeWidgetItem(this,newBranch,item);
+                                                    }
+                                                    else
+                                                    {
+                                                        Branch *newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
+                                                        new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
+                                                    }
+                                                    break;
                                                 }
-                                                else
-                                                {
-                                                    Branch *newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
-                                                    new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
+                    case ItemDialog::rChild:    {
+                                                    // we want to insert it inside the given item
+                                                    Branch *newBranch = item->branch()->tree().add(newItem);
+                                                    QCustomTreeWidgetItem *newQItem = new QCustomTreeWidgetItem(item,newBranch);
+                                                    expandItem(newQItem->parent());
+                                                    break;
                                                 }
-                                                break;
-                                            }
-                case ItemDialog::rChild:    {
-                                                // we want to insert it inside the given item
-                                                Branch *newBranch = item->branch()->tree().add(newItem);
-                                                QCustomTreeWidgetItem *newQItem = new QCustomTreeWidgetItem(item,newBranch);
-                                                expandItem(newQItem->parent());
-                                                break;
-                                            }
+                }
             }
         }
         resizeColumnToContents(0);
@@ -418,4 +501,24 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item)
 void QCustomTreeWidget::setSizeLimited(bool sizeLimited)
 {
     bSizeLimited = sizeLimited;
+}
+
+void QCustomTreeWidget::setPlayingMethod(QWidget *player, PlayingMethod playingMethod)
+{
+    pmMethod = playingMethod;
+    disconnect(SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playMusic(std::string, const double*)));
+    disconnect(SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playSound(std::string)));
+    switch (playingMethod)
+    {
+        case pmSound:   connect(this, SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playSound(std::string)));
+                        break;
+        case pmMusic:   connect(this, SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playMusic(std::string, const double*)));
+                        break;
+        default:        break;                        
+    }
+}
+
+QCustomTreeWidget::PlayingMethod QCustomTreeWidget::playingMethod() const
+{
+    return pmMethod;
 }

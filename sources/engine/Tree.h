@@ -26,7 +26,7 @@
 class Branch;
 
 /*!
- * \brief Tree
+ * \brief Tree of items
  */
 class Tree
 {
@@ -111,7 +111,13 @@ class Tree
         Branch* add(Item *item);
         void remove(int index, bool toDelete=true) throw(std::out_of_range);
         void remove(const std::string &indices, bool toDelete=true);
-        void move(const std::string &currentIndices, const std::string &newIndices);
+        /*!
+         * \brief Moves an item
+         * \param currentIndices Indices of the item to move
+         * \param newIndices Indices of the future emplacement of the item
+         * \return True if succeeded, false otherwise
+         */
+        bool move(const std::string &currentIndices, const std::string &newIndices);
         void clear();
         // index extractor
         static int extractIndex(std::string &indices);
