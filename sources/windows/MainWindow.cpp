@@ -30,7 +30,7 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     setupUi(this);
     updateDisplay();
 
-    timer->setInterval(100);
+    timer->setInterval(1000/TICK);
     timer->setSingleShot(false);
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimer_timeout()));
     connect(smMapper,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
