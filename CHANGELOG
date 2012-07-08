@@ -1,3 +1,17 @@
+Changes in version 1.1.7
+- menu entries (with shortcuts) added
+- behaviour of tree widgets more coherent
+- pre-filling for the edition of items, skills or characters
+- full edition of items
+- bug with the display of the logo fixed
+- file extension automatically added when saving
+- better handling of sound errors
+- corrected and improved display of the slider and the position in the music
+- dependencies adapted to work on Debian, Fedora and ArchLinux
+- desktop file added
+- use of the GNU make standard environment variables C/CPP/CXX/LDFLAGS
+- various bug fixed
+
 Changes in version 1.1.6
 - depencies modified to work on Fedora
 - error message added when a music file cannot be read
