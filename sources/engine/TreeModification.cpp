@@ -16,17 +16,19 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "Modification.h"
+#include "TreeModification.h"
 
-Modification::Modification(Action action): aAction(action)
+using namespace std;
+
+TreeModification::TreeModification(Action action, const string &indices, Tree &tree, Branch &branch, const string &newIndices): Modification(action), sIndices(indices), sNewIndices(newIndices), rTree(tree), rBranch(branch)
 {
 }
 
-Modification::~Modification()
+TreeModification::~TreeModification()
 {
 }
 
-Modification::Action Modification::action() const
+Modification::Type TreeModification::type() const
 {
-    return aAction;
+    return tTree;
 }

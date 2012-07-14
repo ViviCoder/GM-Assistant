@@ -16,65 +16,41 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_MODIFICATION
-#define HEADER_MODIFICATION
+#ifndef HEADER_TREEMODIFICATION
+#define HEADER_TREEMODIFICATION
+
+#include "Modification.h"
+#include "Tree.h"
 
 /*!
- * \brief Modification of a scenario
+ * \brief Modification of a tree
  */
-class Modification
+class TreeModification: public Modification
 {
     public:
         /*!
-         * \brief Action
-         */
-        enum Action
-        {
-            //! Addition
-            aAddition,
-            //! Edition
-            aEdition,
-            //! Deletion
-            aDeletion,
-            //! Movement
-            aMovement
-        };
-        /*!
-         * \brief Type of modification
-         */
-        enum Type
-        {
-            //! Metadata
-            tMetadata,
-            //! Tree
-            tTree,
-            //! Character
-            tCharacter,
-            //! Note
-            tNote
-        };
-        /*!
-         *  \brief Default constructor
+         *  \brief Constructor
          *  \param action Action
          */
-        Modification(Action action);
+        TreeModification(Action action, const std::string &indices, Tree &tree, Branch &branch, const std::string &newIndices = "");
         /*!
-         * \brief Default destructor
+         * \brief Destructor
          */
-        virtual ~Modification();
-        /*!
-         * \brief Getter of the action
-         * \return Action
-         */
-        Action action() const;
+        virtual ~TreeModification();
         /*!
          * \brief Getter for the type
          * \return Type of the modification
          */
-        virtual Type type() const = 0;
+        Type type() const;
     private:
-        //! \brief Action
-        Action aAction;
+        //! Indices of the modification
+        std::string sIndices;
+        //! Indices of the destination
+        std::string sNewIndices;
+        //! Tree modified
+        Tree &rTree;
+        //! Content of the modification
+        Branch &rBranch;
 };
 
 #endif
