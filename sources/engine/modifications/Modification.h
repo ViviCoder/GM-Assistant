@@ -72,6 +72,14 @@ class Modification
          * \return Type of the modification
          */
         virtual Type type() const = 0;
+        /*!
+         * \brief Undoing
+         */
+        virtual void undo() = 0;
+        /*!
+         * \brief Redoing
+         */
+        virtual void redo() = 0;
     private:
         //! \brief Action
         Action aAction;

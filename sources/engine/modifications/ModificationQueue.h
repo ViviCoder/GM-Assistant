@@ -19,7 +19,7 @@
 #ifndef HEADER_MODIFICATIONQUEUE
 #define HEADER_MODIFICATIONQUEUE
 
-#include <deque>
+#include <vector>
 #include "Modification.h"
 
 /*!
@@ -49,11 +49,23 @@ class ModificationQueue
          * Deletes undone modifications and adds the new
          */
         void add(Modification &newModification);
+        /*!
+         * \brief Undoing
+         *
+         * Undoes the last (done or redone) modification
+         */
+        void undo();
+        /*!
+         * \brief Redoing
+         *
+         * Redoes the last undone modification
+         */
+        void redo();
     private:
         //! Container for the modifications
-        std::deque<Modification*> dModifs;
+        std::vector<Modification*> vModifs;
         //! Iterator pointing to the last modification
-        std::deque<Modification*>::iterator iCurrent;
+        std::vector<Modification*>::reverse_iterator iCurrent;
 };
 
 #endif

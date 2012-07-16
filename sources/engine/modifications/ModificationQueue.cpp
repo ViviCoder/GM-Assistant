@@ -20,7 +20,7 @@
 
 using namespace std;
 
-ModificationQueue::ModificationQueue(): dModifs(), iCurrent(dModifs.end())
+ModificationQueue::ModificationQueue(): vModifs(), iCurrent(vModifs.end())
 {
 }
 
@@ -31,22 +31,44 @@ ModificationQueue::~ModificationQueue()
 
 void ModificationQueue::clear()
 {
-    for (deque<Modification*>::iterator it = dModifs.begin(); it != dModifs.end(); it++)
+    for (vector<Modification*>::iterator it = vModifs.begin(); it != vModifs.end(); it++)
     {
         delete *it;
     }
-    dModifs.clear();
+    vModifs.clear();
 }
 
 void ModificationQueue::add(Modification &newModification)
 {
+    int i=0;
     // deletes undone modifications
-    for (deque<Modification*>::iterator it = iCurrent+1; it != dModifs.end(); it++)
+    for (vector<Modification*>::reverse_iterator it = vModifs.rbegin(); it != iCurrent; it++)
     {
         delete *it;
+        i++;
     }
-    dModifs.erase(iCurrent+1, dModifs.end());
+    vModifs.resize(vModifs.size() - i);
     // adds the new modification
-    dModifs.push_back(&newModification);
+    vModifs.push_back(&newModification);
     iCurrent++;
+}
+
+void ModificationQueue::undo()
+{
+    if (iCurrent != vModifs.rend())
+    {
+        // there is a modification to undo
+        (*iCurrent)->undo();
+        iCurrent++;
+    }
+}
+
+void ModificationQueue::redo()
+{
+    if (&(*(iCurrent - 1)) != &(*vModifs.end()))
+    {
+        // there is a modification to redo
+        iCurrent--;
+        (*iCurrent)->redo();
+    }
 }
