@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>878</width>
-    <height>564</height>
+    <height>598</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -112,7 +112,11 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout4">
          <item>
-          <widget class="QTextEdit" name="textNotes"/>
+          <widget class="QTextEdit" name="textNotes">
+           <property name="contextMenuPolicy">
+            <enum>Qt::NoContextMenu</enum>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -310,7 +314,15 @@
     <addaction name="actionDesign"/>
     <addaction name="actionNoMusic"/>
    </widget>
+   <widget class="QMenu" name="menu_Edit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="action_Undo"/>
+    <addaction name="action_Redo"/>
+   </widget>
    <addaction name="menuGame"/>
+   <addaction name="menu_Edit"/>
    <addaction name="menuInterface"/>
    <addaction name="menu"/>
   </widget>
@@ -468,6 +480,28 @@
    </property>
    <property name="shortcut">
     <string>F9</string>
+   </property>
+  </action>
+  <action name="action_Undo">
+   <property name="text">
+    <string>&amp;Undo</string>
+   </property>
+   <property name="statusTip">
+    <string>Undo the last modification</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="action_Redo">
+   <property name="text">
+    <string>&amp;Redo</string>
+   </property>
+   <property name="statusTip">
+    <string>Redo the last undone modification</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+Z</string>
    </property>
   </action>
  </widget>
