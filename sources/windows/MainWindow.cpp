@@ -230,6 +230,7 @@ void MainWindow::on_action_Load_triggered()
                 eGame.fromFile(file.toStdString(), false);
             }
             updateDisplay();
+            mqQueue.clear();
             bModified = false;
             addRecent(file);
             sFileName = file;
@@ -296,6 +297,7 @@ void MainWindow::on_action_New_triggered()
     {*/
         eGame.clear();
         updateDisplay();
+        mqQueue.clear();
         bModified = false;
         addRecent("");
         sFileName = "";
@@ -479,6 +481,7 @@ void MainWindow::on_action_Reload_triggered()
             eGame.fromFile(sFileName.toStdString(), false);
         }
         updateDisplay();
+        mqQueue.clear();
         bModified = false;
     }
 }
@@ -578,4 +581,14 @@ void MainWindow::on_sliderMusic_wheeled(bool positive)
         sliderMusic->setValue(sliderMusic->value()-sliderMusic->pageStep());
     }
     on_sliderMusic_released();
+}
+
+void MainWindow::on_action_Undo_triggered()
+{
+    mqQueue.undo();
+}
+
+void MainWindow::on_action_Redo_triggered()
+{
+    mqQueue.redo();
 }

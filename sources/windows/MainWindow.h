@@ -25,6 +25,7 @@
 #include "AboutDialog.h"
 #include <QTimer>
 #include <QSignalMapper>
+#include "ModificationQueue.h"
 
 // frequency of refreshing music information
 #define TICK 10
@@ -77,6 +78,8 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \brief File name of the current music
          */
         std::string sCurrentMusic;
+        //! Queue of modifications
+        ModificationQueue mqQueue;
     public:
         /*!
          * \brief Constructor of the main window
@@ -225,9 +228,21 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \brief Slot for the "Recent" submenu items
          * \param index Index of the action triggered
          *
-         * Load the corresponding game
+         * Loads the corresponding game
          */
         void loadRecent(int index);
+        /*!
+         * \brief Slot for the Undo menu item
+         *
+         * Undoes the last modification
+         */
+        void on_action_Undo_triggered();
+        /*!
+         * \brief Slot for the Redo menu item
+         *
+         * Redoes the last undone modification
+         */
+        void on_action_Redo_triggered();
     protected:
         // overriden methods
         /*!
