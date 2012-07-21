@@ -32,7 +32,7 @@ class TreeModification: public Modification
          *  \brief Constructor
          *  \param action Action
          */
-        TreeModification(Action action, const std::string &indices, Tree &tree, Branch &branch, const std::string &newIndices = "");
+        TreeModification(Action action, const std::string &indices, Tree &tree, Branch branch, const std::string &newIndices = "");
         /*!
          * \brief Destructor
          */
@@ -42,6 +42,14 @@ class TreeModification: public Modification
          * \return Type of the modification
          */
         Type type() const;
+        // inherited pure virtual methods
+        void undo();
+        void redo();
+        /*!
+         * \brief Getter for the indices
+         * \return Indices of the modification
+         */
+        std::string indices() const;
     private:
         //! Indices of the modification
         std::string sIndices;
@@ -50,7 +58,7 @@ class TreeModification: public Modification
         //! Tree modified
         Tree &rTree;
         //! Content of the modification
-        Branch &rBranch;
+        Branch bBranch;
 };
 
 #endif

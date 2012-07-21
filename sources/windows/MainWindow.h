@@ -69,7 +69,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         /*!
          * \brief Signal mapper for actions related to recently opened games
          */
-        QSignalMapper *smMapper;
+        QSignalMapper *smRecent;
         /*!
          * \brief Pointer to the duration of the current music
          */
@@ -243,6 +243,13 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Redoes the last undone modification
          */
         void on_action_Redo_triggered();
+        /*!
+         * \brief Slot for new modifications
+         * \param modification Modification to register
+         *
+         * Pushes the new modification into the queue
+         */
+        void registerModification(Modification *modification);
     protected:
         // overriden methods
         /*!

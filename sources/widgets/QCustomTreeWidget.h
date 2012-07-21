@@ -25,6 +25,7 @@
 #include "Tree.h"
 #include "ItemDialog.h"
 #include "SoundEngine.h"
+#include "TreeModification.h"
 
 class QCustomTreeWidgetItem;
 /*!
@@ -179,9 +180,16 @@ class QCustomTreeWidget: public QTreeWidget
          * \param fileName File to play
          * \param duration Pointer to the duration of the file
          *
-         * This signal is send when a sound file has to be played
+         * This signal is sent when a sound file has to be played
          */
         void fileToPlay(const std::string &fileName, const double *duration);
+        /*!
+         * \brief Signal to register a modification
+         * \param modification Modification to register
+         *
+         * This signal is sent when the tree is modified
+         */
+        void modificationDone(Modification *modification);
 };
 
 #endif

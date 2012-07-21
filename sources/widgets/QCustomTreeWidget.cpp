@@ -452,10 +452,11 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
             }
             return;
         }
+        Branch *newBranch;
         if (item == NULL)
         {
             // There is no item in the tree
-            Branch *newBranch = pTree->add(newItem);
+            newBranch = pTree->add(newItem);
             new QCustomTreeWidgetItem(this,newBranch);
         }
         else
@@ -466,7 +467,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                 item->updateDisplay(); 
             }
             else
-            {    
+            {   
                 switch (pItemDial->selectionResult())
                 {
                     case ItemDialog::rBrother:  {
@@ -474,25 +475,34 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                                     Branch *parent = item->branch()->parent()->parent();
                                                     if (parent==NULL)
                                                     {
-                                                        Branch *newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
+                                                        newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
                                                         new QCustomTreeWidgetItem(this,newBranch,item);
                                                     }
                                                     else
                                                     {
-                                                        Branch *newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
+                                                        newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
                                                         new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
                                                     }
                                                     break;
                                                 }
                     case ItemDialog::rChild:    {
                                                     // we want to insert it inside the given item
-                                                    Branch *newBranch = item->branch()->tree().add(newItem);
+                                                    newBranch = item->branch()->tree().add(newItem);
                                                     QCustomTreeWidgetItem *newQItem = new QCustomTreeWidgetItem(item,newBranch);
                                                     expandItem(newQItem->parent());
                                                     break;
                                                 }
                 }
             }
+        }
+        // creating the modification
+        if (edition)
+        {
+            //to do
+        }
+        else
+        {
+            emit modificationDone(new TreeModification(Modification::aAddition, pTree->indicesOf(newBranch), *pTree, *newBranch));
         }
         resizeColumnToContents(0);
     }

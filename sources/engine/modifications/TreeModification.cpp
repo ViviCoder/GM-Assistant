@@ -20,7 +20,7 @@
 
 using namespace std;
 
-TreeModification::TreeModification(Action action, const string &indices, Tree &tree, Branch &branch, const string &newIndices): Modification(action), sIndices(indices), sNewIndices(newIndices), rTree(tree), rBranch(branch)
+TreeModification::TreeModification(Action action, const string &indices, Tree &tree, Branch branch, const string &newIndices): Modification(action), sIndices(indices), sNewIndices(newIndices), rTree(tree), bBranch(branch)
 {
 }
 
@@ -31,4 +31,19 @@ TreeModification::~TreeModification()
 Modification::Type TreeModification::type() const
 {
     return tTree;
+}
+
+void TreeModification::undo()
+{
+    rTree.remove(sIndices);
+}
+
+void TreeModification::redo()
+{
+    rTree.insert(sIndices, new Branch(bBranch));
+}
+
+string TreeModification::indices() const
+{
+    return sIndices;
 }

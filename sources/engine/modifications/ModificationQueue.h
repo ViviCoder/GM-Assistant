@@ -48,7 +48,7 @@ class ModificationQueue
          *
          * Deletes undone modifications and adds the new
          */
-        void add(Modification &newModification);
+        void add(Modification *newModification);
         /*!
          * \brief Undoing
          *

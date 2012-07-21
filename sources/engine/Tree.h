@@ -36,8 +36,6 @@ class Tree
         Branch* pParent;
         // branch accessor
         Branch* branch(const std::string &indices) throw(std::out_of_range);
-        // branch inserter
-        void insert(const std::string &indices, Branch *branch) throw(std::out_of_range);
     public:
         // different possible types of iterating over the items of the model
         enum IterationType {itNormal,itUnchecked,itState};
@@ -91,7 +89,6 @@ class Tree
          * \param limitedSize Indicates if the size of the items is limited
          * \throw std::invalid_argument Thrown when an item has not been loaded correctly        
          * \throw std::overflow_error Thrown when the size of a file exceeds the limit (if limited)
-
          */
         void fromXML(const xmlpp::Element &root, bool checkFiles, bool limitedSize = false) throw(std::invalid_argument, std::overflow_error);
         // iterator-related methods
@@ -106,6 +103,12 @@ class Tree
         Branch* parent() const;
         unsigned int numberOfChildren() const;
         // populating the list
+        /*!
+         * \brief Branch insertion
+         * \param indices Indices of where to insert the branch
+         * \param branch Branch to insert
+         */
+        void insert(const std::string &indices, Branch *branch) throw(std::out_of_range);
         Branch* insert(int index, Item *item) throw(std::out_of_range);
         Branch* insert(const std::string &indices, Item *item);
         Branch* add(Item *item);

@@ -25,15 +25,20 @@
 #include <QSettings>
 #include <QStackedLayout>
 
-MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smMapper(new QSignalMapper(this)), pDuration(NULL)
+MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), pDuration(NULL)
 {
     setupUi(this);
     updateDisplay();
 
     timer->setInterval(1000/TICK);
     timer->setSingleShot(false);
+    // connections
     connect(timer,SIGNAL(timeout()),this,SLOT(onTimer_timeout()));
-    connect(smMapper,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
+    connect(smRecent,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
+    connect(treeScenario, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    connect(treeHistory, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    connect(treeMusic, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    connect(treeFX, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     // setting audio options
     treeFX->setSizeLimited(true);
     treeMusic->setPlayingMethod(this, QCustomTreeWidget::pmMusic);
@@ -540,8 +545,8 @@ void MainWindow::updateRecent()
             // file exists, so we add it into the menu
             action = menu->addAction(QString("&%1 ").arg(i)+file.fileName());
             // mapping
-            smMapper->setMapping(action,i);
-            connect(action,SIGNAL(triggered()),smMapper,SLOT(map()));
+            smRecent->setMapping(action,i);
+            connect(action,SIGNAL(triggered()),smRecent,SLOT(map()));
             action->setStatusTip(*it);
             i++; 
             if (i == RECENT_NUMBER)
@@ -591,4 +596,9 @@ void MainWindow::on_action_Undo_triggered()
 void MainWindow::on_action_Redo_triggered()
 {
     mqQueue.redo();
+}
+
+void MainWindow::registerModification(Modification *modification)
+{
+    mqQueue.add(modification);
 }
