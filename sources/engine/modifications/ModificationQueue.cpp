@@ -73,3 +73,13 @@ void ModificationQueue::redo()
         (*iCurrent)->redo();
     }
 }
+
+bool ModificationQueue::undoable() const
+{
+    return (iCurrent != vModifs.rend()); 
+}
+
+bool ModificationQueue::redoable() const
+{
+    return (&(*(iCurrent - 1)) != &(*vModifs.end())); 
+}

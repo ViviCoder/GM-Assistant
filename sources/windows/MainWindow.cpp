@@ -73,8 +73,9 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     }
     settings.endGroup();
     
-    // recently opened files update
+    // menu updates
     connect(actionR_ecent->menu(),SIGNAL(aboutToShow()),this,SLOT(updateRecent()));
+    connect(menu_Edit, SIGNAL(aboutToShow()), this, SLOT(updateUndoRedo()));
 }
 
 MainWindow::~MainWindow()
@@ -601,4 +602,10 @@ void MainWindow::on_action_Redo_triggered()
 void MainWindow::registerModification(Modification *modification)
 {
     mqQueue.add(modification);
+}
+
+void MainWindow::updateUndoRedo()
+{
+    action_Undo->setEnabled(mqQueue.undoable());
+    action_Redo->setEnabled(mqQueue.redoable());
 }

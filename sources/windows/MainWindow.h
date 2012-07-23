@@ -250,6 +250,12 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Pushes the new modification into the queue
          */
         void registerModification(Modification *modification);
+        /*!
+         * \brief Slot for the update of undo/redo actions
+         *
+         * Enables or disables undo/redo actions
+         */
+        void updateUndoRedo();
     protected:
         // overriden methods
         /*!

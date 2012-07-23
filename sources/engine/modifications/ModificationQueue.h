@@ -61,6 +61,16 @@ class ModificationQueue
          * Redoes the last undone modification
          */
         void redo();
+        /*!
+         * \brief Test of undo-ability
+         * \return True if there is something to undo, false otherwise
+         */
+        bool undoable() const;
+        /*!
+         * \brief Test of redo-ability
+         * \return True if there is something to redo, false otherwise
+         */
+        bool redoable() const;
     private:
         //! Container for the modifications
         std::vector<Modification*> vModifs;
