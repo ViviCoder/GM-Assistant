@@ -68,8 +68,8 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     menuIcons->addAction(actionLaunch);
     // connecting signals
     connect(this, SIGNAL(itemChanged(QTreeWidgetItem *,int)), SLOT(on_itemChanged(QTreeWidgetItem*, int)));
-    connect(this, SIGNAL(itemCollapsed(QTreeWidgetItem *)), SLOT(on_itemCollapsed()));
-    connect(this, SIGNAL(itemExpanded(QTreeWidgetItem *)), SLOT(on_itemExpanded()));
+    connect(this, SIGNAL(itemCollapsed(QTreeWidgetItem *)), SLOT(onItemCollapsed(QTreeWidgetItem *)));
+    connect(this, SIGNAL(itemExpanded(QTreeWidgetItem *)), SLOT(onItemExpanded(QTreeWidgetItem *)));
     connect(this, SIGNAL(itemSelectionChanged()), SLOT(on_itemSelectionChanged()));
 }
 
@@ -274,28 +274,23 @@ void QCustomTreeWidget::on_itemChanged(QTreeWidgetItem* item, int column)
     }
 }
 
-void QCustomTreeWidget::on_itemCollapsed()
-{
-    resizeColumnToContents(0);
-}
-
-void QCustomTreeWidget::on_itemExpanded()
-{
-    resizeColumnToContents(0);
-}
-
 void QCustomTreeWidget::setTree(Tree *tree)
 {
     pTree = tree;
+    updateDisplay();
+}
+
+void QCustomTreeWidget::updateDisplay()
+{
     clear();
     setColumnCount(2);
-    if (tree != NULL)
+    if (pTree != NULL)
     {
         std::vector<QCustomTreeWidgetItem*> items;
         QCustomTreeWidgetItem* item;
         int depth=0;        
         // iterating the tree to populate the widget
-        for (Tree::iterator it=tree->begin(); it != tree->end(); it++)
+        for (Tree::iterator it = pTree->begin(); it != pTree->end(); it++)
         {
             depth = it.depth();
             if (depth==0)
@@ -313,6 +308,11 @@ void QCustomTreeWidget::setTree(Tree *tree)
             else
             {
                 items.push_back(item);
+            }
+            // expand the item if needed
+            if (it.branch()->item()->expanded())
+            {
+                expandItem(item);
             }
         }
     }
@@ -531,4 +531,16 @@ void QCustomTreeWidget::setPlayingMethod(QWidget *player, PlayingMethod playingM
 QCustomTreeWidget::PlayingMethod QCustomTreeWidget::playingMethod() const
 {
     return pmMethod;
+}
+
+void QCustomTreeWidget::onItemExpanded(QTreeWidgetItem *item)
+{
+    dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()->item()->setExpanded(true);
+    resizeColumnToContents(0);
+}
+
+void QCustomTreeWidget::onItemCollapsed(QTreeWidgetItem *item)
+{
+    dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()->item()->setExpanded(false);
+    resizeColumnToContents(0);
 }

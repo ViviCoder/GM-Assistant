@@ -58,7 +58,12 @@ class QCustomTreeWidget: public QTreeWidget
          */
         QCustomTreeWidget(QWidget *parent=NULL);
         ~QCustomTreeWidget();
-        // associating a tree to the widget
+        /*! 
+         * \brief Setter for the tree of the widget
+         * \param tree Pointer to the new tree
+         *
+         * Associates the tree to the widget and updates its display
+         */
         void setTree(Tree *tree);
         // associating an icon to a state
         static QIcon icon(Item::State state);
@@ -79,8 +84,6 @@ class QCustomTreeWidget: public QTreeWidget
         PlayingMethod playingMethod() const;
     public slots:
         void on_itemChanged(QTreeWidgetItem* item,int column);
-        void on_itemCollapsed();
-        void on_itemExpanded();
         void deleteItem(QTreeWidgetItem* item);
         void on_itemSelectionChanged();
         /*!
@@ -98,6 +101,10 @@ class QCustomTreeWidget: public QTreeWidget
          * Executes the action associated with the type of the item
          */
         void launchItem(QTreeWidgetItem* qItem);
+        /*!
+         * \brief Update of the display
+         */
+        void updateDisplay();
     protected:
         // overriden methods
         /*!
@@ -118,6 +125,21 @@ class QCustomTreeWidget: public QTreeWidget
         void keyReleaseEvent(QKeyEvent *e);
         void dragEnterEvent(QDragEnterEvent *e);
         void dropEvent(QDropEvent *e);
+    protected slots:
+        /*!
+         * \brief Slot for when an item is expanded
+         * \param item Newly expanded item
+         *
+         * Modifies the underlying item to remember it is expanded
+         */
+        void onItemExpanded(QTreeWidgetItem *item);
+        /*!
+         * \brief Slot for when an item is collapsed
+         * \param item Newly collapsed item
+         *
+         * Modifies the underlying item to remember it is collapsed
+         */
+        void onItemCollapsed(QTreeWidgetItem *item);
     private:
         /*!
          * \brief Pop-up menu
