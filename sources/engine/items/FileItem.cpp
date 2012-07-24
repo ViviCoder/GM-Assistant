@@ -21,7 +21,7 @@
 
 using namespace std;
 
-FileItem::FileItem(const string &content, State state, const string &fileName, bool sizeLimited, int limitSize): Item(content,state), sFileName(fileName), bSizeLimited(sizeLimited), iLimitSize(limitSize)
+FileItem::FileItem(const string &content, State state, bool expanded, const string &fileName, bool sizeLimited, int limitSize): Item(content,state,expanded), sFileName(fileName), bSizeLimited(sizeLimited), iLimitSize(limitSize)
 {
     if (fileName != "")
     {

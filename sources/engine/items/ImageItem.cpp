@@ -20,7 +20,7 @@
 
 using namespace std;
 
-ImageItem::ImageItem(const string &content, Item::State state, const string &fileName): FileItem(content,state,fileName)
+ImageItem::ImageItem(const string &content, Item::State state, bool expanded, const string &fileName): FileItem(content,state,expanded,fileName)
 {
 }
 

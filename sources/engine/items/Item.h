@@ -45,8 +45,13 @@ class Item
             //! Item related to an image file
             tImage
         };
-        // constructor
-        Item(const std::string &content="", State state=sNone);
+        /*!
+         * \brief Constructor
+         * \param content Content of the item
+         * \param state State of the item
+         * \param expanded Expanded/collapsed state of the item
+         */
+        Item(const std::string &content="", State state=sNone, bool expanded=false);
         /*!
          * \brief Default destructor
          */
@@ -57,6 +62,16 @@ class Item
         State state() const;
         void setState(State state);
         virtual Type type() const;
+        /*!
+         * \brief Getter for the expanded property
+         * \return True if the item is expanded, false otherwise
+         */
+        bool expanded() const;
+        /*!
+         * \brief Setter for the expanded property
+         * \param expanded True to expand the item, false otherwise
+         */
+        void setExpanded(bool expanded);
         // XML-related methods
         /*!
          * \brief XML loader
@@ -93,9 +108,22 @@ class Item
          * \return Parent type
          */
         static Type parentType(Type type);
+        /*!
+         * \brief Conversion method from boolean to string
+         * \param value Boolean to convert
+         * \return String equivalent to the boolean
+         */
+        static std::string boolToStr(bool value);
+        /*!
+         * \brief Conversion method from string to boolean
+         * \param name String to convert
+         * \return Boolean equivalent to the string
+         */
+        static bool strToBool(const std::string &name) throw(std::invalid_argument);
     private:
         State sState;
         std::string sContent;
+        bool bExpanded;
 };
 
 #endif

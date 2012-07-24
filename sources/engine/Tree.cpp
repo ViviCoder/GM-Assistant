@@ -72,6 +72,7 @@ void Tree::toXML(xmlpp::Element &root) const
         tmp->set_attribute("state",Item::stateToStr((*it)->item()->state()));
         tmp->set_attribute("type",Item::typeToStr((*it)->item()->type()));
         tmp->set_attribute("content",(*it)->item()->content());
+        tmp->set_attribute("expanded",Item::boolToStr((*it)->item()->expanded()));
         (*it)->item()->toXML(*tmp);
         (*it)->tree().toXML(*tmp);
     }
@@ -104,7 +105,13 @@ void Tree::fromXML(const xmlpp::Element &root, bool checkFiles, bool limitedSize
         {
             content = attr->get_value();
         }
-        Item *item = ItemFactory::createItem(type,content,state,limitedSize);
+        attr = elem->get_attribute("expanded");
+        bool expanded = false;
+        if (attr != NULL)
+        {
+            expanded = Item::strToBool(attr->get_value());
+        }
+        Item *item = ItemFactory::createItem(type,content,state,expanded,limitedSize);
         item->fromXML(*elem, checkFiles);
         Branch *branch = new Branch(item,*elem,checkFiles,this);
         vChildren.push_back(branch);

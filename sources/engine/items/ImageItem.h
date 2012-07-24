@@ -16,8 +16,8 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_PICTUREITEM
-#define HEADER_PICTUREITEM
+#ifndef HEADER_IMAGEITEM
+#define HEADER_IMAGEITEM
 
 #include "FileItem.h"
 
@@ -31,9 +31,10 @@ class ImageItem: public FileItem
          *  \brief Constructor
          *  \param content Content of the item
          *  \param state State of the item
+         *  \param expanded Expanded/collapsed state of the item
          *  \param fileName Name of the image file of the item
          */
-        ImageItem(const std::string &content="", State state=sNone, const std::string &fileName="");
+        ImageItem(const std::string &content="", State state=sNone, bool expanded=false, const std::string &fileName="");
         /*!
          * \brief Getter for the type of the item
          * \return Item::tImage

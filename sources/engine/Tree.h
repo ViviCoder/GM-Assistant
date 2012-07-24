@@ -81,6 +81,10 @@ class Tree
         // copy operator
         Tree& operator=(const Tree &tree);
         // XML-related methods
+        /*!
+         * \brief XML saver
+         * \param root Root of the XML tree
+         */
         void toXML(xmlpp::Element &root) const;
         /*!
          * \brief XML loader

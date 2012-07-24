@@ -20,7 +20,7 @@
 
 using namespace std;
 
-Item::Item(const string &content, State state): sState(state), sContent(content)
+Item::Item(const string &content, State state, bool expanded): sState(state), sContent(content), bExpanded(expanded)
 {
 }
 
@@ -132,4 +132,33 @@ Item::Type Item::parentType(Type type)
         case tImage:    return tFile;   break;
         default:        return tBasic;
     }    
+}
+
+bool Item::expanded() const
+{
+    return bExpanded;
+}
+
+void Item::setExpanded(bool expanded)
+{
+    bExpanded = expanded;
+}
+
+std::string Item::boolToStr(bool value)
+{
+    if (value)
+    {
+        return "true";
+    }
+    else
+    {
+        return "false";
+    }
+}
+
+bool Item::strToBool(const string &name) throw(invalid_argument)
+{
+    if (name == "true") return true;
+    if (name == "false") return false;
+    else    throw invalid_argument("Unrecognized \""+name+"\" boolean");
 }
