@@ -256,6 +256,13 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Enables or disables undo/redo actions
          */
         void updateUndoRedo();
+        /*!
+         * \brief Slot for the update after a modification
+         * \param modification Modification which has just been made
+         *
+         * Updates the display of the right widget
+         */
+        void updateModification(Modification *modification);
     protected:
         // overriden methods
         /*!

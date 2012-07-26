@@ -591,16 +591,33 @@ void MainWindow::on_sliderMusic_wheeled(bool positive)
 
 void MainWindow::on_action_Undo_triggered()
 {
-    Modification *modif = mqQueue.undo();
-    if (modif == NULL) return;
-    switch (modif->type())
+    updateModification(mqQueue.undo());
+}
+
+void MainWindow::updateModification(Modification *modification)
+{
+    if (modification == NULL) return;
+    switch (modification->type())
     {
         case Modification::tTree:   
             {
-                TreeModification* treeModif = dynamic_cast<TreeModification*>(modif);
-                if (&treeModif->tree() == &eGame.scenario())
+                TreeModification* treeModif = dynamic_cast<TreeModification*>(modification);
+                Tree *adr = &treeModif->tree();
+                if (adr == &eGame.scenario())
                 {
                     treeScenario->updateDisplay();
+                }
+                else if (adr == &eGame.history())
+                {
+                    treeHistory->updateDisplay();
+                }
+                else if (adr == &eGame.music())
+                {
+                    treeMusic->updateDisplay();
+                }
+                else if (adr == &eGame.effects())
+                {
+                    treeFX->updateDisplay();
                 }
                 break;
             }
@@ -610,7 +627,7 @@ void MainWindow::on_action_Undo_triggered()
 
 void MainWindow::on_action_Redo_triggered()
 {
-    mqQueue.redo();
+    updateModification(mqQueue.redo());
 }
 
 void MainWindow::registerModification(Modification *modification)
