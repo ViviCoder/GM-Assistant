@@ -502,7 +502,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
         }
         else
         {
-            emit modificationDone(new TreeModification(Modification::aAddition, pTree->indicesOf(newBranch), *pTree, *newBranch));
+            emit modificationDone(new TreeModification(Modification::aAddition, *pTree, *newBranch, pTree->indicesOf(newBranch)));
         }
         resizeColumnToContents(0);
     }

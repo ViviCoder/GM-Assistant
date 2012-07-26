@@ -54,24 +54,29 @@ void ModificationQueue::add(Modification *newModification)
     iCurrent = vModifs.rbegin();
 }
 
-void ModificationQueue::undo()
+Modification* ModificationQueue::undo()
 {
     if (iCurrent != vModifs.rend())
     {
         // there is a modification to undo
-        (*iCurrent)->undo();
+        Modification *modif = *iCurrent;
+        modif->undo();
         iCurrent++;
+        return modif;
     }
+    return NULL;
 }
 
-void ModificationQueue::redo()
+Modification* ModificationQueue::redo()
 {
     if (&(*(iCurrent - 1)) != &(*vModifs.end()))
     {
         // there is a modification to redo
         iCurrent--;
         (*iCurrent)->redo();
+        return *iCurrent;
     }
+    return NULL;
 }
 
 bool ModificationQueue::undoable() const

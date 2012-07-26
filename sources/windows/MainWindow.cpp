@@ -591,7 +591,21 @@ void MainWindow::on_sliderMusic_wheeled(bool positive)
 
 void MainWindow::on_action_Undo_triggered()
 {
-    mqQueue.undo();
+    Modification *modif = mqQueue.undo();
+    if (modif == NULL) return;
+    switch (modif->type())
+    {
+        case Modification::tTree:   
+            {
+                TreeModification* treeModif = dynamic_cast<TreeModification*>(modif);
+                if (&treeModif->tree() == &eGame.scenario())
+                {
+                    treeScenario->updateDisplay();
+                }
+                break;
+            }
+        default : break;
+    }
 }
 
 void MainWindow::on_action_Redo_triggered()
