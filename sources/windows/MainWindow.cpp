@@ -29,6 +29,7 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
 {
     setupUi(this);
     updateDisplay();
+    updateUndoRedo();
 
     timer->setInterval(1000/TICK);
     timer->setSingleShot(false);
@@ -75,7 +76,6 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     
     // menu updates
     connect(actionR_ecent->menu(),SIGNAL(aboutToShow()),this,SLOT(updateRecent()));
-    connect(menu_Edit, SIGNAL(aboutToShow()), this, SLOT(updateUndoRedo()));
 }
 
 MainWindow::~MainWindow()
@@ -237,6 +237,7 @@ void MainWindow::on_action_Load_triggered()
             }
             updateDisplay();
             mqQueue.clear();
+            updateUndoRedo();
             bModified = false;
             addRecent(file);
             sFileName = file;
@@ -304,6 +305,7 @@ void MainWindow::on_action_New_triggered()
         eGame.clear();
         updateDisplay();
         mqQueue.clear();
+        updateUndoRedo();
         bModified = false;
         addRecent("");
         sFileName = "";
@@ -488,6 +490,7 @@ void MainWindow::on_action_Reload_triggered()
         }
         updateDisplay();
         mqQueue.clear();
+        updateUndoRedo();
         bModified = false;
     }
 }
@@ -592,6 +595,7 @@ void MainWindow::on_sliderMusic_wheeled(bool positive)
 void MainWindow::on_action_Undo_triggered()
 {
     updateModification(mqQueue.undo());
+    updateUndoRedo();
 }
 
 void MainWindow::updateModification(Modification *modification)
@@ -628,11 +632,13 @@ void MainWindow::updateModification(Modification *modification)
 void MainWindow::on_action_Redo_triggered()
 {
     updateModification(mqQueue.redo());
+    updateUndoRedo();
 }
 
 void MainWindow::registerModification(Modification *modification)
 {
     mqQueue.add(modification);
+    updateUndoRedo();
 }
 
 void MainWindow::updateUndoRedo()
