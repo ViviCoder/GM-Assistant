@@ -324,17 +324,11 @@ void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
 {
     Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
     // delete item
-    Tree *parent = branch->parent();
-    if (parent==NULL)
+    if (pTree != NULL)
     {
-        if (pTree != NULL)
-        {
-            pTree->remove(pTree->indexOf(branch));
-        }
-    }
-    else
-    {
-        parent->remove(parent->indexOf(branch));
+        std::string indices = pTree->indicesOf(branch);
+        emit modificationDone(new TreeModification(Modification::aDeletion, *pTree, *branch, indices));
+        pTree->remove(indices);
     }
     // delete widgetItem
     delete item;

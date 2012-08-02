@@ -35,12 +35,26 @@ Modification::Type TreeModification::type() const
 
 void TreeModification::undo()
 {
-    rTree.remove(sIndices);
+    switch (action())
+    {
+        case aAddition: rTree.remove(sIndices);
+                        break;
+        case aDeletion: rTree.insert(sIndices, new Branch(bBranch));
+                        break;
+        default:    break;
+    }
 }
 
 void TreeModification::redo()
 {
-    rTree.insert(sIndices, new Branch(bBranch));
+    switch (action())
+    {
+        case aAddition: rTree.insert(sIndices, new Branch(bBranch));
+                        break;
+        case aDeletion: rTree.remove(sIndices);
+                        break;
+        default:    break;
+    }
 }
 
 string TreeModification::indices() const
