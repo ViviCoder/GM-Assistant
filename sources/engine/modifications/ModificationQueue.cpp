@@ -39,7 +39,7 @@ void ModificationQueue::clear()
     iCurrent = vModifs.rend();
 }
 
-void ModificationQueue::add(Modification *newModification)
+void ModificationQueue::add(Modification *modification)
 {
     int i=0;
     // deletes undone modifications
@@ -50,7 +50,7 @@ void ModificationQueue::add(Modification *newModification)
     }
     vModifs.resize(vModifs.size() - i);
     // adds the new modification
-    vModifs.push_back(newModification);
+    vModifs.push_back(modification);
     iCurrent = vModifs.rbegin();
 }
 

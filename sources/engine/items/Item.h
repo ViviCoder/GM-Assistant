@@ -76,7 +76,7 @@ class Item
         /*!
          * \brief XML loader
          * \param root Root of the tree
-         * \param checkFile Indicates if the existence of potential files is checked
+         * \param checkFiles Indicates if the existence of potential files is checked
          */
         virtual void fromXML(const xmlpp::Element &root, bool checkFiles);
         virtual void toXML(xmlpp::Element &root);

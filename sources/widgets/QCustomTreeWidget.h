@@ -74,6 +74,7 @@ class QCustomTreeWidget: public QTreeWidget
         void setSizeLimited(bool sizeLimited);
         /*!
          * \brief Setter for the playing method
+         * \param player Widget in charge of playing
          * \param playingMethod New playing method
          */
         void setPlayingMethod(QWidget *player, PlayingMethod playingMethod);

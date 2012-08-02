@@ -31,6 +31,10 @@ class TreeModification: public Modification
         /*!
          *  \brief Constructor
          *  \param action Action
+         *  \param tree Modified tree
+         *  \param branch Modified branch
+         *  \param indices Indices of the modification
+         *  \param newIndices New indices for moves
          */
         TreeModification(Action action, Tree &tree, Branch branch, const std::string &indices, const std::string &newIndices = "");
         /*!
