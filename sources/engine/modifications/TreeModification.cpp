@@ -20,12 +20,16 @@
 
 using namespace std;
 
-TreeModification::TreeModification(Action action, Tree &tree, Branch branch, const string &indices, const string &newIndices): Modification(action), sIndices(indices), sNewIndices(newIndices), rTree(tree), bBranch(branch)
+TreeModification::TreeModification(Action action, Tree &tree, Branch *branch, const string &indices, const string &newIndices): Modification(action), sIndices(indices), sNewIndices(newIndices), rTree(tree), pBranch(branch)
 {
 }
 
 TreeModification::~TreeModification()
 {
+    if (pBranch != NULL)
+    {
+        delete pBranch;
+    }
 }
 
 Modification::Type TreeModification::type() const
@@ -39,8 +43,10 @@ void TreeModification::undo()
     {
         case aAddition: rTree.remove(sIndices);
                         break;
-        case aDeletion: rTree.insert(sIndices, new Branch(bBranch));
+        case aDeletion: rTree.insert(sIndices, new Branch(*pBranch));
                         break;
+        case aMovement: rTree.move(sNewIndices, sIndices);
+                        break; 
         default:    break;
     }
 }
@@ -49,9 +55,11 @@ void TreeModification::redo()
 {
     switch (action())
     {
-        case aAddition: rTree.insert(sIndices, new Branch(bBranch));
+        case aAddition: rTree.insert(sIndices, new Branch(*pBranch));
                         break;
         case aDeletion: rTree.remove(sIndices);
+                        break;
+        case aMovement: rTree.move(sIndices, sNewIndices);
                         break;
         default:    break;
     }

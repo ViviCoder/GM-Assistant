@@ -36,7 +36,7 @@ class TreeModification: public Modification
          *  \param indices Indices of the modification
          *  \param newIndices New indices for moves
          */
-        TreeModification(Action action, Tree &tree, Branch branch, const std::string &indices, const std::string &newIndices = "");
+        TreeModification(Action action, Tree &tree, Branch *branch, const std::string &indices, const std::string &newIndices = "");
         /*!
          * \brief Destructor
          */
@@ -67,7 +67,7 @@ class TreeModification: public Modification
         //! Tree modified
         Tree &rTree;
         //! Content of the modification
-        Branch bBranch;
+        Branch *pBranch;
 };
 
 #endif
