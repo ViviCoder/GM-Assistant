@@ -352,7 +352,7 @@ bool Tree::move(const string &currentIndices, const string &newIndices)
         return false;
     }
     insert(newIndices,branch(currentIndices));
-    // we now determine if there is need to modify newIndices for the suppression
+    // we now determine if there is need to modify the current indices for the suppression
     string subNew(newIndices), subCurrent(currentIndices);
     int nNew, nCurrent;
     ostringstream buf;
@@ -585,4 +585,9 @@ Branch* Tree::iterator::branch() const
         return NULL;
     }
     
+}
+
+void Tree::setItem(string &indices, Item *item) throw(out_of_range)
+{
+    branch(indices)->setItem(item);
 }

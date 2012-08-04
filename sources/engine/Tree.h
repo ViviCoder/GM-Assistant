@@ -34,7 +34,12 @@ class Tree
         std::vector<Branch*> vChildren;
         // pointer to its parent branch
         Branch* pParent;
-        // branch accessor
+        /*!
+         * \brief Getter for branches
+         * \param indices Indices of the branch
+         * \return Branch at the given indices
+         * \throw std::out_of_range Thrown when there is no branch at the given indices
+         */
         Branch* branch(const std::string &indices) throw(std::out_of_range);
     public:
         // different possible types of iterating over the items of the model
@@ -111,10 +116,18 @@ class Tree
          * \brief Branch insertion
          * \param indices Indices of where to insert the branch
          * \param branch Branch to insert
+         * \throw std::out_of_range Thrown when it is impossible to insert the branch at the given indices
          */
         void insert(const std::string &indices, Branch *branch) throw(std::out_of_range);
         Branch* insert(int index, Item *item) throw(std::out_of_range);
         Branch* insert(const std::string &indices, Item *item);
+        /*!
+         * \brief Setter for items
+         * \param indices Indices of the item to modify
+         * \param newItem New item
+         * \throw std::out_of_range Thrown when there is no item at the given indices
+         */
+        void setItem(std::string &indices, Item *item) throw(std::out_of_range);
         Branch* add(Item *item);
         void remove(int index, bool toDelete=true) throw(std::out_of_range);
         void remove(const std::string &indices, bool toDelete=true);

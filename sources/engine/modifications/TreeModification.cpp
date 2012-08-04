@@ -17,10 +17,23 @@
 *************************************************************************/
 
 #include "TreeModification.h"
+#include "ItemFactory.h"
 
 using namespace std;
 
-TreeModification::TreeModification(Action action, Tree &tree, Branch *branch, const string &indices, const string &newIndices): Modification(action), sIndices(indices), sNewIndices(newIndices), rTree(tree), pBranch(branch)
+TreeModification::TreeModification(Tree &tree, Item *newItem, const string &indices): Modification(aAddition), sIndices(indices), sNewIndices(""), rTree(tree), pBranch(NULL), pItem(NULL), pNewItem(newItem)
+{
+}
+
+TreeModification::TreeModification(Tree &tree, Branch *branch, const string &indices): Modification(aDeletion), sIndices(indices), sNewIndices(""), rTree(tree), pBranch(branch), pItem(NULL), pNewItem(NULL)
+{
+}
+
+TreeModification::TreeModification(Tree &tree, Item *item, Item *newItem, const string &indices): Modification(aEdition), sIndices(indices), sNewIndices(""), rTree(tree), pBranch(NULL), pItem(item), pNewItem(newItem)
+{
+}
+
+TreeModification::TreeModification(Tree &tree, const string &indices, const string &newIndices): Modification(aMovement), sIndices(indices), sNewIndices(newIndices), rTree(tree), pBranch(NULL), pItem(NULL), pNewItem(NULL)
 {
 }
 
@@ -29,6 +42,14 @@ TreeModification::~TreeModification()
     if (pBranch != NULL)
     {
         delete pBranch;
+    }
+    if (pItem != NULL)
+    {
+        delete pItem;
+    }
+    if (pNewItem != NULL)
+    {
+        delete pNewItem;
     }
 }
 
@@ -45,7 +66,9 @@ void TreeModification::undo()
                         break;
         case aDeletion: rTree.insert(sIndices, new Branch(*pBranch));
                         break;
-        case aMovement: rTree.move(sNewIndices, sIndices);
+        case aEdition:  rTree.setItem(sIndices, ItemFactory::copyItem(pItem));
+                        break;
+        case aMovement: rTree.move(modifiedIndices(), sIndices);
                         break; 
         default:    break;
     }
@@ -55,9 +78,11 @@ void TreeModification::redo()
 {
     switch (action())
     {
-        case aAddition: rTree.insert(sIndices, new Branch(*pBranch));
+        case aAddition: rTree.insert(sIndices, new Branch(ItemFactory::copyItem(pNewItem)));
                         break;
         case aDeletion: rTree.remove(sIndices);
+                        break;
+        case aEdition:  rTree.setItem(sIndices, ItemFactory::copyItem(pNewItem));
                         break;
         case aMovement: rTree.move(sIndices, sNewIndices);
                         break;
@@ -73,4 +98,44 @@ string TreeModification::indices() const
 Tree& TreeModification::tree()
 {
     return rTree;
+}
+
+string TreeModification::modifiedIndices() const
+{
+    // we now determine if there is need to modify newIndices for the undoing
+    string subNew(sNewIndices), subCurrent(sIndices);
+    int nNew, nCurrent;
+    ostringstream buf;
+    // we iterate over the indices
+    bool firstTime = true;
+    do
+    {
+        nNew = Tree::extractIndex(subNew);
+        nCurrent = Tree::extractIndex(subCurrent);
+        
+        if (!firstTime)
+        {
+            buf << "_";
+        }
+
+        if (subCurrent=="" && nCurrent <= nNew)
+        {
+            // we modify the new indices
+            buf << (nNew-1);
+        }
+        else
+        {
+            // we do not modify the indices of the item to remove
+            buf << nNew;
+        }
+        firstTime = false;
+    }
+    while (subNew!="" && subCurrent!="" && nNew == nCurrent);
+
+    // we add the following indices (they are unchanged)
+    if (subNew!="")
+    {
+        buf << "_" << subNew;
+    }
+    return buf.str();
 }

@@ -327,7 +327,7 @@ void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
     if (pTree != NULL)
     {
         std::string indices = pTree->indicesOf(branch);
-        emit modificationDone(new TreeModification(Modification::aDeletion, *pTree, new Branch(*branch), indices));
+        emit modificationDone(new TreeModification(*pTree, new Branch(*branch), indices));
         pTree->remove(indices);
     }
     // delete widgetItem
@@ -404,7 +404,7 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
         // modification
         if (valid)
         {
-            emit modificationDone(new TreeModification(Modification::aMovement, *pTree, NULL, indices, newIndices));
+            emit modificationDone(new TreeModification(*pTree, indices, newIndices));
         }
     }
     if (!valid)
@@ -466,6 +466,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
         {
             if (edition)
             {
+                emit modificationDone(new TreeModification(*pTree, ItemFactory::copyItem(item->branch()->item()), ItemFactory::copyItem(newItem), pTree->indicesOf(item->branch())));
                 item->branch()->setItem(newItem);
                 item->updateDisplay(); 
             }
@@ -499,13 +500,9 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
             }
         }
         // creating the modification
-        if (edition)
+        if (!edition)
         {
-            //to do
-        }
-        else
-        {
-            emit modificationDone(new TreeModification(Modification::aAddition, *pTree, new Branch(*newBranch), pTree->indicesOf(newBranch)));
+            emit modificationDone(new TreeModification(*pTree, ItemFactory::copyItem(newItem), pTree->indicesOf(newBranch)));
         }
         resizeColumnToContents(0);
     }

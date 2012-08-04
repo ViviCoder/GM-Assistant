@@ -29,14 +29,34 @@ class TreeModification: public Modification
 {
     public:
         /*!
-         *  \brief Constructor
-         *  \param action Action
+         *  \brief Constructor for additions
          *  \param tree Modified tree
-         *  \param branch Modified branch
-         *  \param indices Indices of the modification
-         *  \param newIndices New indices for moves
+         *  \param newItem Copy of the new item
+         *  \param indices Indices of the item
          */
-        TreeModification(Action action, Tree &tree, Branch *branch, const std::string &indices, const std::string &newIndices = "");
+        TreeModification(Tree &tree, Item *newItem, const std::string &indices);
+        /*!
+         *  \brief Constructor for deletions
+         *  \param tree Modified tree
+         *  \param branch Copy of the deleted branch
+         *  \param indices Indices of the branch
+         */
+        TreeModification(Tree &tree, Branch *branch, const std::string &indices);
+        /*!
+         *  \brief Constructor for editions
+         *  \param tree Modified tree
+         *  \param item Copy of the previous item
+         *  \param newItem Copy of the new item
+         *  \param indices Indices of the item
+         */
+        TreeModification(Tree &tree, Item *item, Item *newItem, const std::string &indices);
+        /*!
+         *  \brief Constructor for movements
+         *  \param tree Modified tree
+         *  \param indices Indices of the moved branch
+         *  \param newIndices New indices of the branch
+         */
+        TreeModification(Tree &tree, const std::string &indices, const std::string &newIndices);
         /*!
          * \brief Destructor
          */
@@ -66,8 +86,17 @@ class TreeModification: public Modification
         std::string sNewIndices;
         //! Tree modified
         Tree &rTree;
-        //! Content of the modification
+        //! Copy of the deleted branch
         Branch *pBranch;
+        //! Copy of the modified item
+        Item *pItem;
+        //! Copy of the new item
+        Item *pNewItem;
+        /*!
+         * \brief Modified indices for undoing a movement
+         * \return New indices of the moved branch after the movement
+         */
+        std::string modifiedIndices() const;
 };
 
 #endif
