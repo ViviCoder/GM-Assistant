@@ -127,7 +127,7 @@ class Tree
          * \param newItem New item
          * \throw std::out_of_range Thrown when there is no item at the given indices
          */
-        void setItem(std::string &indices, Item *item) throw(std::out_of_range);
+        void setItem(std::string &indices, Item *newItem) throw(std::out_of_range);
         Branch* add(Item *item);
         void remove(int index, bool toDelete=true) throw(std::out_of_range);
         void remove(const std::string &indices, bool toDelete=true);

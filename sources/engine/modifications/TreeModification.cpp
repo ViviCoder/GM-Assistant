@@ -21,15 +21,23 @@
 
 using namespace std;
 
-TreeModification::TreeModification(Tree &tree, Item *newItem, const string &indices): Modification(aAddition), sIndices(indices), sNewIndices(""), rTree(tree), pBranch(NULL), pItem(NULL), pNewItem(newItem)
+TreeModification::TreeModification(Tree &tree, Item *newItem, const string &indices): Modification(aAddition), sIndices(indices), rTree(tree), pBranch(NULL), pItem(NULL), pNewItem(newItem)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, Branch *branch, const string &indices): Modification(aDeletion), sIndices(indices), sNewIndices(""), rTree(tree), pBranch(branch), pItem(NULL), pNewItem(NULL)
+TreeModification::TreeModification(Tree &tree, Branch *branch, const string &indices): Modification(aDeletion), sIndices(indices), rTree(tree), pBranch(branch), pItem(NULL), pNewItem(NULL)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, Item *item, Item *newItem, const string &indices): Modification(aEdition), sIndices(indices), sNewIndices(""), rTree(tree), pBranch(NULL), pItem(item), pNewItem(newItem)
+TreeModification::TreeModification(Tree &tree, Item *item, Item *newItem, const string &indices): Modification(aEdition), etEditType(etFull), sIndices(indices), rTree(tree), pBranch(NULL), pItem(item), pNewItem(newItem)
+{
+}
+
+TreeModification::TreeModification(Tree &tree, const string &content, const string &newContent, const string &indices): Modification(aEdition), etEditType(etContent), sIndices(indices), rTree(tree), pBranch(NULL), pItem(NULL), pNewItem(NULL), sContent(content), sNewContent(newContent)
+{
+}
+
+TreeModification::TreeModification(Tree &tree, Item::State state, Item::State newState, const string &indices): Modification(aEdition), etEditType(etState), sIndices(indices), rTree(tree), pBranch(NULL), pItem(NULL), pNewItem(NULL), sState(state), sNewState(newState)
 {
 }
 
@@ -66,7 +74,15 @@ void TreeModification::undo()
                         break;
         case aDeletion: rTree.insert(sIndices, new Branch(*pBranch));
                         break;
-        case aEdition:  rTree.setItem(sIndices, ItemFactory::copyItem(pItem));
+        case aEdition:  switch (etEditType)
+                        {
+                            case etFull:    rTree.setItem(sIndices, ItemFactory::copyItem(pItem));
+                                            break;
+                            case etContent: rTree[sIndices]->setContent(sContent);
+                                            break;
+                            case etState:   rTree[sIndices]->setState(sState);
+                                            break;
+                        }
                         break;
         case aMovement: rTree.move(modifiedIndices(), sIndices);
                         break; 
@@ -82,7 +98,15 @@ void TreeModification::redo()
                         break;
         case aDeletion: rTree.remove(sIndices);
                         break;
-        case aEdition:  rTree.setItem(sIndices, ItemFactory::copyItem(pNewItem));
+        case aEdition:  switch (etEditType)
+                        {
+                            case etFull:    rTree.setItem(sIndices, ItemFactory::copyItem(pNewItem));
+                                            break;
+                            case etContent: rTree[sIndices]->setContent(sNewContent);
+                                            break;
+                            case etState:   rTree[sIndices]->setState(sNewState);
+                                            break;
+                        }
                         break;
         case aMovement: rTree.move(sIndices, sNewIndices);
                         break;

@@ -162,21 +162,25 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     if (action == actionNone)
                                     {
                                         item->setIcon(1,QIcon());
+                                        emit modificationDone(new TreeModification(*pTree, treeItem->state(), Item::sNone, pTree->indicesOf(qItem->branch())));
                                         treeItem->setState(Item::sNone);
                                     }
                                     else if (action == actionProgress)
                                     {
                                         item->setIcon(1,action->icon());
+                                        emit modificationDone(new TreeModification(*pTree, treeItem->state(), Item::sProgress, pTree->indicesOf(qItem->branch())));
                                         treeItem->setState(Item::sProgress);
                                     }
                                     else if (action == actionFailure)
                                     {
                                         item->setIcon(1,action->icon());
+                                        emit modificationDone(new TreeModification(*pTree, treeItem->state(), Item::sFailure, pTree->indicesOf(qItem->branch())));
                                         treeItem->setState(Item::sFailure);
                                     }
                                     else if (action == actionSuccess)
                                     {
                                         item->setIcon(1,action->icon());
+                                        emit modificationDone(new TreeModification(*pTree, treeItem->state(), Item::sSuccess, pTree->indicesOf(qItem->branch())));
                                         treeItem->setState(Item::sSuccess);
                                     }
                                     else if (action == actionDelete)
@@ -267,9 +271,15 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
 
 void QCustomTreeWidget::on_itemChanged(QTreeWidgetItem* item, int column)
 {
-    if (item != NULL && column == 0)
+    if (pTree != NULL && item != NULL && column == 0)
     {
-        dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()->item()->setContent(item->text(0).toStdString());
+        Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
+        if (bEditing && branch->item()->content() != item->text(0).toStdString())
+        {
+            std::string content = branch->item()->content();
+            emit modificationDone(new TreeModification(*pTree, content, item->text(0).toStdString(), pTree->indicesOf(branch)));
+            branch->item()->setContent(item->text(0).toStdString());
+        }
         resizeColumnToContents(0);
     }
 }

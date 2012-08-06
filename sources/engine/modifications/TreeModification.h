@@ -28,6 +28,18 @@
 class TreeModification: public Modification
 {
     public:
+        /*! 
+         * \brief Type of edition
+         */
+        enum EditionType
+        {
+            //! Full edition
+            etFull,
+            //! Content-only edition
+            etContent,
+            //! State-only edition
+            etState
+        };
         /*!
          *  \brief Constructor for additions
          *  \param tree Modified tree
@@ -43,13 +55,29 @@ class TreeModification: public Modification
          */
         TreeModification(Tree &tree, Branch *branch, const std::string &indices);
         /*!
-         *  \brief Constructor for editions
+         *  \brief Constructor for full editions
          *  \param tree Modified tree
          *  \param item Copy of the previous item
          *  \param newItem Copy of the new item
          *  \param indices Indices of the item
          */
         TreeModification(Tree &tree, Item *item, Item *newItem, const std::string &indices);
+        /*!
+         *  \brief Constructor for content-only editions
+         *  \param tree Modified tree
+         *  \param content Previous content
+         *  \param newContent New content
+         *  \param indices Indices of the item
+         */
+        TreeModification(Tree &tree, const std::string &content, const std::string &newContent, const std::string &indices);
+        /*!
+         *  \brief Constructor for state-only editions
+         *  \param tree Modified tree
+         *  \param state Previous state
+         *  \param newState New state
+         *  \param indices Indices of the item
+         */
+        TreeModification(Tree &tree, Item::State state, Item::State newState, const std::string &indices);
         /*!
          *  \brief Constructor for movements
          *  \param tree Modified tree
@@ -80,6 +108,8 @@ class TreeModification: public Modification
          */
         std::string indices() const;
     private:
+        //! Type of edition (if this is the case)
+        EditionType etEditType;
         //! Indices of the modification
         std::string sIndices;
         //! Indices of the destination
@@ -97,6 +127,14 @@ class TreeModification: public Modification
          * \return New indices of the moved branch after the movement
          */
         std::string modifiedIndices() const;
+        //! Previous content
+        std::string sContent;
+        //! New content
+        std::string sNewContent;
+        //! Previous state
+        Item::State sState;
+        //! New state
+        Item::State sNewState;
 };
 
 #endif
