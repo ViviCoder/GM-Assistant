@@ -826,7 +826,7 @@ p, li { white-space: pre-wrap; }
         <translation>Double-cliquez pour jouer le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="65"/>
+        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="63"/>
         <source>Double click to show the file</source>
         <translation>Double-cliquez pour afficher l&apos;image</translation>
     </message>
