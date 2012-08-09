@@ -275,7 +275,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>25</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
@@ -300,9 +300,9 @@
     </property>
     <addaction name="actionAbout"/>
    </widget>
-   <widget class="QMenu" name="menuInterface">
+   <widget class="QMenu" name="menuView">
     <property name="title">
-     <string>&amp;Interface</string>
+     <string>&amp;View</string>
     </property>
     <addaction name="actionFull"/>
     <addaction name="actionSimple"/>
@@ -311,7 +311,7 @@
     <addaction name="actionNoMusic"/>
    </widget>
    <addaction name="menuGame"/>
-   <addaction name="menuInterface"/>
+   <addaction name="menuView"/>
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>

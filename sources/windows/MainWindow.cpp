@@ -294,6 +294,7 @@ void MainWindow::on_action_New_triggered()
 /*    if (!bModified || (QMessageBox::question(this,QApplication::translate("mainWindow","Confirmation",0),QApplication::translate("mainWindow","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
     {*/
         eGame.clear();
+        eGame.setUserInterface(Engine::uiFull);
         updateDisplay();
         bModified = false;
         addRecent("");

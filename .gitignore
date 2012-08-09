@@ -1,5 +1,7 @@
 gm-assistant
-gm-assistant.pro
+*.pro
+*.conf
+*.desktop
 Makefile
 ui_*
 qrc_*
