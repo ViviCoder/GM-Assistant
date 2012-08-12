@@ -43,7 +43,7 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     actionAdd = new QAction(QIcon(":/data/images/add.svg"),QApplication::translate("customTree","&Add",0),this);
     actionAdd->setIconVisibleInMenu(true);
     actionAdd->setStatusTip(QApplication::translate("customTree","Add a new item",0));
-    actionAdd->setShortcut(QApplication::translate("customTree","+",0));
+    actionAdd->setShortcut(QApplication::translate("customTree","Ins",0));
     actionDelete = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTree","&Delete",0),this);
     actionDelete->setIconVisibleInMenu(true);
     actionDelete->setStatusTip(QApplication::translate("customTree","Delete the item",0));
@@ -246,11 +246,11 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
                                         deleteItem(qItem);
                                     }
                                     break;
-            case Qt::Key_Plus:  if (!bEditing)
-                                {
-                                    addItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem));
-                                }
-                                break;
+            case Qt::Key_Insert:    if (!bEditing)
+                                    {
+                                        addItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem));
+                                    }
+                                    break;
             case Qt::Key_Space: if (!bEditing)
                                 {
                                     launchItem(qItem);

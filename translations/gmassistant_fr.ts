@@ -748,7 +748,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="46"/>
-        <source>+</source>
+        <source>Ins</source>
         <translation></translation>
     </message>
     <message>
