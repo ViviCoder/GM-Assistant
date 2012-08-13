@@ -25,7 +25,7 @@
 #include <QSettings>
 #include <QStackedLayout>
 
-MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), pDuration(NULL)
+MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), pDuration(0)
 {
     setupUi(this);
     updateDisplay();
@@ -363,7 +363,7 @@ void MainWindow::on_buttonMusic_clicked()
     {
         // we play the selected song (if it is a sound item)
         QTreeWidgetItem *qItem = treeMusic->currentItem();
-        if (qItem != NULL)
+        if (qItem)
         {
             Item *item = dynamic_cast<QCustomTreeWidgetItem*>(qItem)->branch()->item();
             if (item->type()==Item::tSound)
@@ -600,7 +600,7 @@ void MainWindow::on_action_Undo_triggered()
 
 void MainWindow::updateModification(Modification *modification)
 {
-    if (modification == NULL) return;
+    if (!modification) return;
     switch (modification->type())
     {
         case Modification::tTree:   

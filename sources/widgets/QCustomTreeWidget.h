@@ -56,7 +56,7 @@ class QCustomTreeWidget: public QTreeWidget
          *
          * Creates its pop-up menu and connects various slots
          */
-        QCustomTreeWidget(QWidget *parent=NULL);
+        QCustomTreeWidget(QWidget *parent=0);
         ~QCustomTreeWidget();
         /*! 
          * \brief Setter for the tree of the widget

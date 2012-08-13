@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -31,7 +31,7 @@ class QCustomHeaderView: public QHeaderView
 
     public:
         // constructor
-        QCustomHeaderView(Qt::Orientation orientation, QWidget *parent=NULL);
+        QCustomHeaderView(Qt::Orientation orientation, QWidget *parent=0);
 
     signals:
         void rightClicked(int index, const QPoint &position);

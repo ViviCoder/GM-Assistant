@@ -33,7 +33,7 @@ class ChangeSkillDialog: public QDialog, private Ui::changeSkillDialog
          * \brief Constructor
          * \param parent Parent widget
          */
-        ChangeSkillDialog(QWidget *parent=NULL);
+        ChangeSkillDialog(QWidget *parent=0);
         /*!
          * \brief Getter for the text
          * \return Text of the QLineEdit

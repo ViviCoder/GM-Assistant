@@ -50,7 +50,7 @@ void ChangeCharacterDialog::on_pushEdit_clicked()
 int ChangeCharacterDialog::exec(Character *character)
 {
     QString name, player;
-    if (character != NULL)
+    if (character)
     {
         name = character->name().c_str();
         player = character->playerName().c_str();

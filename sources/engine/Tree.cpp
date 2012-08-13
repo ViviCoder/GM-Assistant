@@ -56,7 +56,7 @@ Tree& Tree::operator=(const Tree &tree)
         Branch *branch = new Branch(**it,this);
         vChildren.push_back(branch);
     }
-    pParent = NULL;
+    pParent = 0;
     return *this;
 }
 
@@ -89,25 +89,25 @@ void Tree::fromXML(const xmlpp::Element &root, bool checkFiles, bool limitedSize
         Element *elem = dynamic_cast<Element*>(*it);
         Attribute *attr = elem->get_attribute("state");
         Item::State state =  Item::sNone;
-        if (attr!=NULL)
+        if (attr)
         {
             state = Item::strToState(attr->get_value());
         }
         attr = elem->get_attribute("type");
         Item::Type type = Item::tBasic;
-        if (attr!=NULL)
+        if (attr)
         {
             type = Item::strToType(attr->get_value());
         }
         attr = elem->get_attribute("content");
         string content="";
-        if (attr!=NULL)
+        if (attr)
         {
             content = attr->get_value();
         }
         attr = elem->get_attribute("expanded");
         bool expanded = false;
-        if (attr != NULL)
+        if (attr)
         {
             expanded = Item::strToBool(attr->get_value());
         }
@@ -419,13 +419,13 @@ string Tree::indicesOf(Branch *branch) const throw(out_of_range)
     if (n == -1)
     {
         Tree *parent = branch->parent();
-        if (parent==NULL || parent->pParent == NULL)
+        if (parent && parent->pParent)
         {
-            throw out_of_range("No such a branch in the tree");
+            buf << indicesOf(parent->pParent) << "_" << parent->indexOf(branch);
         }
         else
         {
-            buf << indicesOf(parent->pParent) << "_" << parent->indexOf(branch);
+            throw out_of_range("No such a branch in the tree");
         }
     }
     else
@@ -442,13 +442,13 @@ string Tree::indicesOfNext(Branch *branch) const
     if (n == -1)
     {
         Tree *parent = branch->parent();
-        if (parent==NULL || parent->pParent==NULL)
+        if (parent && parent->pParent)
         {
-            return "0";
+            buf << indicesOf(parent->pParent) << "_" << (parent->indexOf(branch)+1);
         }
         else
         {
-            buf << indicesOf(parent->pParent) << "_" << (parent->indexOf(branch)+1);
+            return "0";
         }
     }
     else
@@ -570,7 +570,7 @@ Tree* Tree::iterator::parent() const
     }
     catch(exception e)
     {
-        return NULL;
+        return 0;
     }
 }
 
@@ -582,7 +582,7 @@ Branch* Tree::iterator::branch() const
     }
     catch(exception e)
     {
-        return NULL;
+        return 0;
     }
     
 }

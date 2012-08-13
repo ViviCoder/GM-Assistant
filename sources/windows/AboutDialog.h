@@ -33,7 +33,7 @@ class AboutDialog: public QDialog, private Ui::AboutDialog
          *
          * Fills the version number and the logo
          */
-        AboutDialog(QWidget *parent=NULL);
+        AboutDialog(QWidget *parent=0);
     protected:
         /*!
          * \brief Event handler called when shown

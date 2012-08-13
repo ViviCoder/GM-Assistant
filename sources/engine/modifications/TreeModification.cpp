@@ -21,41 +21,41 @@
 
 using namespace std;
 
-TreeModification::TreeModification(Tree &tree, Item *newItem, const string &indices): Modification(aAddition), sIndices(indices), rTree(tree), pBranch(NULL), pItem(NULL), pNewItem(newItem)
+TreeModification::TreeModification(Tree &tree, Item *newItem, const string &indices): Modification(aAddition), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pNewItem(newItem)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, Branch *branch, const string &indices): Modification(aDeletion), sIndices(indices), rTree(tree), pBranch(branch), pItem(NULL), pNewItem(NULL)
+TreeModification::TreeModification(Tree &tree, Branch *branch, const string &indices): Modification(aDeletion), sIndices(indices), rTree(tree), pBranch(branch), pItem(0), pNewItem(0)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, Item *item, Item *newItem, const string &indices): Modification(aEdition), etEditType(etFull), sIndices(indices), rTree(tree), pBranch(NULL), pItem(item), pNewItem(newItem)
+TreeModification::TreeModification(Tree &tree, Item *item, Item *newItem, const string &indices): Modification(aEdition), etEditType(etFull), sIndices(indices), rTree(tree), pBranch(0), pItem(item), pNewItem(newItem)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, const string &content, const string &newContent, const string &indices): Modification(aEdition), etEditType(etContent), sIndices(indices), rTree(tree), pBranch(NULL), pItem(NULL), pNewItem(NULL), sContent(content), sNewContent(newContent)
+TreeModification::TreeModification(Tree &tree, const string &content, const string &newContent, const string &indices): Modification(aEdition), etEditType(etContent), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pNewItem(0), sContent(content), sNewContent(newContent)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, Item::State state, Item::State newState, const string &indices): Modification(aEdition), etEditType(etState), sIndices(indices), rTree(tree), pBranch(NULL), pItem(NULL), pNewItem(NULL), sState(state), sNewState(newState)
+TreeModification::TreeModification(Tree &tree, Item::State state, Item::State newState, const string &indices): Modification(aEdition), etEditType(etState), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pNewItem(0), sState(state), sNewState(newState)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, const string &indices, const string &newIndices): Modification(aMovement), sIndices(indices), sNewIndices(newIndices), rTree(tree), pBranch(NULL), pItem(NULL), pNewItem(NULL)
+TreeModification::TreeModification(Tree &tree, const string &indices, const string &newIndices): Modification(aMovement), sIndices(indices), sNewIndices(newIndices), rTree(tree), pBranch(0), pItem(0), pNewItem(0)
 {
 }
 
 TreeModification::~TreeModification()
 {
-    if (pBranch != NULL)
+    if (pBranch)
     {
         delete pBranch;
     }
-    if (pItem != NULL)
+    if (pItem)
     {
         delete pItem;
     }
-    if (pNewItem != NULL)
+    if (pNewItem)
     {
         delete pNewItem;
     }

@@ -64,7 +64,7 @@ Modification* ModificationQueue::undo()
         iCurrent++;
         return modif;
     }
-    return NULL;
+    return 0;
 }
 
 Modification* ModificationQueue::redo()
@@ -76,7 +76,7 @@ Modification* ModificationQueue::redo()
         (*iCurrent)->redo();
         return *iCurrent;
     }
-    return NULL;
+    return 0;
 }
 
 bool ModificationQueue::undoable() const

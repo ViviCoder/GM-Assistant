@@ -27,7 +27,7 @@ Item* ItemFactory::copyItem(Item *item)
         case Item::tSound:  return new SoundItem(*dynamic_cast<SoundItem*>(item)); break;
         case Item::tImage:  return new ImageItem(*dynamic_cast<ImageItem*>(item)); break;
     }
-    return NULL;
+    return 0;
 }
 
 Item* ItemFactory::createItem(Item::Type type, const std::string &content, Item::State state, bool expanded, bool sizeLimited)
@@ -39,5 +39,5 @@ Item* ItemFactory::createItem(Item::Type type, const std::string &content, Item:
         case Item::tSound:  return new SoundItem(content,state,expanded,"",sizeLimited); break;
         case Item::tImage:  return new ImageItem(content,state,expanded); break;
     }
-    return NULL;
+    return 0;
 }

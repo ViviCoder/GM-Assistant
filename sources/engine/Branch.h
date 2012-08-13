@@ -29,9 +29,9 @@ class Branch
         Tree *pParent;
     public:
         // constructors
-        Branch(const Branch &branch, Tree *parent=NULL);
-        Branch(Item* item, Tree *parent=NULL);
-        Branch(Item* item, const Tree &tree, Tree *parent=NULL);
+        Branch(const Branch &branch, Tree *parent=0);
+        Branch(Item* item, Tree *parent=0);
+        Branch(Item* item, const Tree &tree, Tree *parent=0);
         /*!
          * \brief Constructor from an XML tree
          * \param item Root item of the branch

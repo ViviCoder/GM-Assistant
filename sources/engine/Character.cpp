@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -95,7 +95,7 @@ void Character::fromXML(const xmlpp::Element &root)
         Element *elem = dynamic_cast<Element *>(*it);
         string value;
         Attribute *attr = elem->get_attribute("value");
-        if (attr != NULL)
+        if (attr)
         {
             value = attr->get_value();
         }

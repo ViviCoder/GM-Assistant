@@ -67,7 +67,7 @@ void FileItem::fromXML(const xmlpp::Element &root, bool checkFile) throw(xmlpp::
     {
         Element *tmp = dynamic_cast<Element*>(list.front());
         Attribute *attr = tmp->get_attribute("name");
-        if (attr!=NULL)
+        if (attr)
         {
             name = attr->get_value();
         }

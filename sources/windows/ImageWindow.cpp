@@ -20,7 +20,7 @@
 #include <QPainter>
 #include <QFileInfo>
 
-ImageWindow::ImageWindow(const std::string &pictureFileName, QWidget *parent): QLabel(parent), bError(false), sImageFileName(pictureFileName), bSvg(true), renderer(NULL) 
+ImageWindow::ImageWindow(const std::string &pictureFileName, QWidget *parent): QLabel(parent), bError(false), sImageFileName(pictureFileName), bSvg(true), renderer(0) 
 {
     setAlignment(Qt::AlignCenter);
     setWindowFlags(windowFlags()|Qt::Window);

@@ -91,7 +91,7 @@ class QCustomTableWidget: public QTableWidget
          * \brief Constructor of the widget
          * \param parent Parent widget
          */
-        QCustomTableWidget(QWidget *parent=NULL);
+        QCustomTableWidget(QWidget *parent=0);
         // destructor
         ~QCustomTableWidget();
         // associating a skill list and a character list to the widget

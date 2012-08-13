@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -50,7 +50,7 @@ class QCustomSlider: public QSlider
          * \brief Constructor
          * \param parent Parent of the slider
          */
-        QCustomSlider(QWidget *parent=NULL);
+        QCustomSlider(QWidget *parent=0);
 
     signals:
         /*!

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -46,7 +46,7 @@ void SkillList::fromXML(const xmlpp::Element &root)
         Element *elem = dynamic_cast<Element*>(*it);
         string name;
         Attribute *attr = elem->get_attribute("name");
-        if (attr != NULL)
+        if (attr)
         {
             name = attr->get_value();
         }

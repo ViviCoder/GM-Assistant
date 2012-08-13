@@ -148,13 +148,7 @@ int ItemDialog::exec(Item *item)
     QString content, file;
     Item::Type itemType = Item::tBasic;
     Item::State itemState = Item::sNone;
-    if (item == NULL)
-    {
-        setWindowTitle(QApplication::translate("itemDialog", "Create a new item", 0));
-        pushBrother->setVisible(true);
-        pushChild->setText(QApplication::translate("itemDialog", "C&hild", 0));
-    }
-    else
+    if (item)
     {
         setWindowTitle(QApplication::translate("itemDialog", "Edit the item", 0));
         pushBrother->setVisible(false);
@@ -167,6 +161,12 @@ int ItemDialog::exec(Item *item)
         {
             file = dynamic_cast<FileItem*>(item)->fileName().c_str();
         }
+    }
+    else
+    {
+        setWindowTitle(QApplication::translate("itemDialog", "Create a new item", 0));
+        pushBrother->setVisible(true);
+        pushChild->setText(QApplication::translate("itemDialog", "C&hild", 0));
     }
 
     // resets the window

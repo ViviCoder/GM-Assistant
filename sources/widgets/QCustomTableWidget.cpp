@@ -21,7 +21,7 @@
 #include "ChangeSkillDialog.h"
 #include <QApplication>
 
-QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(NULL), pCharacters(NULL), bEditing(false)
+QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(0), pCharacters(0), bEditing(false)
 {
     // popup menu
     // skills
@@ -104,31 +104,31 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
     switch (e->button())
     {
         case Qt::LeftButton:    {
-                                    if (qtwitem == NULL || qtwitem->isSelected())
+                                    if (qtwitem && !qtwitem->isSelected())
                                     {
-                                        setCurrentItem(NULL);
+                                        QTableWidget::mousePressEvent(e);
                                     }
                                     else
                                     {
-                                        QTableWidget::mousePressEvent(e);
+                                        setCurrentItem(0);
                                     }
                                     break;
                                 }
         case Qt::RightButton:   {
-                                    if (qtwitem == NULL)
-                                    {
-                                        rowPosition = rowCount()-1;
-                                        columnPosition = columnCount()-1;
-                                    }
-                                    else
+                                    if (qtwitem)
                                     {
                                         setCurrentItem(qtwitem);
                                         rowPosition = currentRow();
                                         columnPosition = currentColumn();
                                     }
+                                    else
+                                    {
+                                        rowPosition = rowCount()-1;
+                                        columnPosition = columnCount()-1;
+                                    }
                                     QTableWidget::mousePressEvent(e);
                                         
-                                    bool null = (qtwitem!=NULL);
+                                    bool null = (qtwitem != 0);
                                     actionRemoveColumn->setVisible(null);
                                     actionEditColumn->setVisible(null);
                                     actionRemoveRow->setVisible(null);
@@ -140,14 +140,14 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     }
                                     else if (action == actionRemoveColumn)
                                     {
-                                        if (qtwitem != NULL)
+                                        if (qtwitem)
                                         {
                                             removeSkill(columnPosition);
                                         }
                                     }
                                     else if (action == actionEditColumn)
                                     {
-                                        if (qtwitem != NULL)
+                                        if (qtwitem)
                                         {
                                             editSkill(columnPosition);
                                         }
@@ -158,14 +158,14 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     }
                                     else if (action == actionRemoveRow)
                                     {
-                                        if (qtwitem != NULL)
+                                        if (qtwitem)
                                         {
                                             removeCharacter(rowPosition);
                                         }
                                     }
                                     else if (action == actionEditRow)
                                     {
-                                        if (qtwitem != NULL)
+                                        if (qtwitem)
                                         {
                                             editCharacter(rowPosition);
                                         }
@@ -179,7 +179,7 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
 void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
 {
     QTableWidgetItem *item = currentItem();
-    if (item != NULL)
+    if (item)
     {
         switch (e->key())
         {
@@ -244,7 +244,7 @@ void QCustomTableWidget::setLists(SkillList *skills, CharacterList *chars)
 
 void QCustomTableWidget::onCellChanged(int row, int column)
 {
-    if (pCharacters != NULL)
+    if (pCharacters)
     {
         Character &charact = (*pCharacters)[row];
         for (int i=charact.skillNumber(); i<column+1; i++)
@@ -295,7 +295,7 @@ void QCustomTableWidget::addCharacter(int index)
     if(pChangeCharacterDial->exec()==QDialog::Accepted)
     {
         // updating the CharacterList
-        if (pCharacters != NULL)
+        if (pCharacters)
         {
             Character character(pChangeCharacterDial->name().toStdString(),pChangeCharacterDial->playerName().toStdString());
             pCharacters->add(character,index+1);
@@ -311,7 +311,7 @@ void QCustomTableWidget::addCharacter(int index)
             setItem(index+1,i,row1);
         }
         QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index+1);
-        if (rowHeaderItem != NULL)
+        if (rowHeaderItem)
         {
             rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
         }
@@ -329,11 +329,11 @@ void QCustomTableWidget::addSkill(int index)
     if(pChangeSkillDial->exec()==QDialog::Accepted)
     {
         // modifying the skill/character Lists
-        if (pSkills != NULL)
+        if (pSkills)
         {
             pSkills->add(pChangeSkillDial->text().toStdString(),index+1);
         }
-        if (pCharacters != NULL)
+        if (pCharacters)
         {
             for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
             {
@@ -355,7 +355,7 @@ void QCustomTableWidget::addSkill(int index)
             setItem(i,index+1,col1);
         }
         QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index+1);
-        if (columnHeaderItem != NULL)
+        if (columnHeaderItem)
         {
             columnHeaderItem->setText(pChangeSkillDial->text());
         }
@@ -372,7 +372,7 @@ void QCustomTableWidget::removeCharacter(int index)
 {
     removeRow(index);
     // updating the CharacterList
-    if (pCharacters != NULL)
+    if (pCharacters)
     {
         pCharacters->remove(index);
     }
@@ -382,11 +382,11 @@ void QCustomTableWidget::removeSkill(int index)
 {
     removeColumn(index);
     // updating the she skill/character Lists
-    if (pSkills != NULL)
+    if (pSkills)
     {
         pSkills->remove(index);
     }
-    if (pCharacters != NULL)
+    if (pCharacters)
     {
         for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
         {
@@ -406,7 +406,7 @@ void QCustomTableWidget::editCharacter(int index)
         QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index);
         rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
         // updating the CharacterList
-        if (pCharacters != NULL)
+        if (pCharacters)
         {
             Character &charact = (*pCharacters)[index];
             charact.setName(pChangeCharacterDial->name().toStdString());
@@ -424,7 +424,7 @@ void QCustomTableWidget::editSkill(int index)
         QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
         columnHeaderItem->setText(pChangeSkillDial->text());
         // updating the SkillList
-        if (pSkills != NULL)
+        if (pSkills)
         {
             (*pSkills)[index] = pChangeSkillDial->text().toStdString();
         }
@@ -440,7 +440,7 @@ void QCustomTableWidget::on_itemSelectionChanged()
 void QCustomTableWidget::mouseDoubleClickEvent(QMouseEvent *)
 {
     QTableWidgetItem *item = currentItem();
-    if (item != NULL)
+    if (item)
     {
         editItem(item);
         bEditing = true;

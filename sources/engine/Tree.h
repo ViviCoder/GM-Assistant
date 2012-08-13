@@ -72,8 +72,8 @@ class Tree
                 Branch* branch() const;
         };
         // constructors
-        Tree(Branch* parent=NULL);
-        Tree(const Tree &tree, Branch* parent=NULL);
+        Tree(Branch* parent=0);
+        Tree(const Tree &tree, Branch* parent=0);
         /*!
          * \brief Constructor which read directly in a XML tree
          * \param root Root of the XML tree

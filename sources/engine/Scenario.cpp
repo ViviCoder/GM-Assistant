@@ -58,7 +58,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     try
     {
         Attribute *attr = root->get_attribute("interface");
-        if (attr != NULL)
+        if (attr)
         {
             uiInterface = stringToInterface(attr->get_value());
         }

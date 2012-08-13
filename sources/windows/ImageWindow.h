@@ -75,7 +75,7 @@ class ImageWindow: public QLabel
          * \param imageFileName Name of the file containing the image to show
          * \param parent Parent widget
          */
-        ImageWindow(const std::string &imageFileName, QWidget *parent=NULL);
+        ImageWindow(const std::string &imageFileName, QWidget *parent=0);
         /*!
          * \brief Getter for the error flag
          * \return True if the image was not loaded correctly

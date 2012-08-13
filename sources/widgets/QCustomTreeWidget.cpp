@@ -25,7 +25,7 @@
 #include <QMessageBox>
 #include <exception>
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false), bSizeLimited(false), pmMethod(pmNone)
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(0), pItemDial(new ItemDialog(this)), pDragSource(0), bNewlySelected(false), bEditing(false), bSizeLimited(false), pmMethod(pmNone)
 {
     // creating actions
     actionNone = new QAction(QIcon(":/data/images/empty.svg"),QApplication::translate("customTree","&None",0),this);
@@ -81,7 +81,7 @@ QCustomTreeWidget::~QCustomTreeWidget()
 void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
 {
     QTreeWidgetItem *qtwItem = itemAt(e->pos());
-    if (qtwItem != NULL)
+    if (qtwItem)
     {
         launchItem(qtwItem);
     }
@@ -124,14 +124,14 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
     QTreeWidgetItem *item = itemAt(e->pos());
     switch (e->button())
     {
-        case Qt::LeftButton:    if (item !=NULL)
+        case Qt::LeftButton:    if (item)
                                 {
                                     bNewlySelected = !item->isSelected();
                                     // the item will be selected (and not be unselected by mouseReleaseEvent)
                                 }
                                 QTreeWidget::mousePressEvent(e);
                                 break;
-        case Qt::RightButton:   if (item != NULL)
+        case Qt::RightButton:   if (item)
                                 {
                                     setCurrentItem(item);
                                     QCustomTreeWidgetItem *qItem = dynamic_cast<QCustomTreeWidgetItem*>(item);
@@ -202,7 +202,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                 }
                                 else
                                 {
-                                    addItem(NULL);
+                                    addItem(0);
                                 }
                                 break;
         default:    break;
@@ -214,7 +214,7 @@ void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *e)
     QTreeWidgetItem *item = itemAt(e->pos());
     if (!bNewlySelected)
     {
-        setCurrentItem(NULL);
+        setCurrentItem(0);
     }
     else
     {
@@ -226,7 +226,7 @@ void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *e)
 void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
 {
     QTreeWidgetItem *qItem = currentItem();
-    if (qItem != NULL)
+    if (qItem)
     {
         switch (e->key())
         {
@@ -271,7 +271,7 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
 
 void QCustomTreeWidget::on_itemChanged(QTreeWidgetItem* item, int column)
 {
-    if (pTree != NULL && item != NULL && column == 0)
+    if (pTree && item && column == 0)
     {
         Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
         if (bEditing && branch->item()->content() != item->text(0).toStdString())
@@ -294,7 +294,7 @@ void QCustomTreeWidget::updateDisplay()
 {
     clear();
     setColumnCount(2);
-    if (pTree != NULL)
+    if (pTree)
     {
         std::vector<QCustomTreeWidgetItem*> items;
         QCustomTreeWidgetItem* item;
@@ -334,7 +334,7 @@ void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
 {
     Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
     // delete item
-    if (pTree != NULL)
+    if (pTree)
     {
         std::string indices = pTree->indicesOf(branch);
         emit modificationDone(new TreeModification(*pTree, new Branch(*branch), indices));
@@ -359,7 +359,7 @@ QIcon QCustomTreeWidget::icon(Item::State state)
 void QCustomTreeWidget::dragEnterEvent(QDragEnterEvent *e)
 {
     pDragSource = itemAt(e->pos());
-    if (pDragSource != NULL)
+    if (pDragSource)
     {
         e->acceptProposedAction();
     }
@@ -374,7 +374,7 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
     QPoint pos = e->pos();
     QModelIndex index;
     // we test if we point inside an item
-    if (pTree != NULL && e->source() == this && viewport()->rect().contains(pos))
+    if (pTree && e->source() == this && viewport()->rect().contains(pos))
     {
         index = indexAt(pos);
         if (!index.isValid())
@@ -443,7 +443,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
     if (pItemDial->result()==QDialog::Accepted)
     {
         // creation of the new item
-        Item *newItem = NULL;
+        Item *newItem = 0;
         try
         {
             switch (pItemDial->type())
@@ -459,21 +459,16 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
         catch (exception &e)
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),e.what());
-            if (newItem != NULL)
+            if (newItem)
             {
                 delete newItem;
             }
             return;
         }
-        Branch *newBranch;
-        if (item == NULL)
+        Branch *newBranch = 0;
+        if (item)
         {
-            // There is no item in the tree
-            newBranch = pTree->add(newItem);
-            new QCustomTreeWidgetItem(this,newBranch);
-        }
-        else
-        {
+            // an item is selected
             if (edition)
             {
                 emit modificationDone(new TreeModification(*pTree, ItemFactory::copyItem(item->branch()->item()), ItemFactory::copyItem(newItem), pTree->indicesOf(item->branch())));
@@ -487,15 +482,15 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                     case ItemDialog::rBrother:  {
                                                     // we want to insert it after the given item
                                                     Branch *parent = item->branch()->parent()->parent();
-                                                    if (parent==NULL)
-                                                    {
-                                                        newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
-                                                        new QCustomTreeWidgetItem(this,newBranch,item);
-                                                    }
-                                                    else
+                                                    if (parent)
                                                     {
                                                         newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
                                                         new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
+                                                    }
+                                                    else
+                                                    {
+                                                        newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
+                                                        new QCustomTreeWidgetItem(this,newBranch,item);
                                                     }
                                                     break;
                                                 }
@@ -508,6 +503,12 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                                 }
                 }
             }
+        }
+        else
+        {
+            // There is no item in the tree
+            newBranch = pTree->add(newItem);
+            new QCustomTreeWidgetItem(this,newBranch);
         }
         // creating the modification
         if (!edition)

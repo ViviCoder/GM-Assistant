@@ -51,14 +51,14 @@ class ModificationQueue
         void add(Modification *modification);
         /*!
          * \brief Undoing
-         * \return Just undone modification (NULL if none)
+         * \return Just undone modification (0 if none)
          *
          * Undoes the last (done or redone) modification
          */
         Modification* undo();
         /*!
          * \brief Redoing
-         * \return Just redone modification (NULL if none)
+         * \return Just redone modification (0 if none)
          *
          * Redoes the last undone modification
          */

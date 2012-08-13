@@ -21,7 +21,7 @@
 using namespace std;
 
 // constructor
-SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAULT_FORMAT), iChannels(MIX_DEFAULT_CHANNELS), iBufferSize(DEFAULT_BUFFER_SIZE), mmMusic(NULL), ssSample(NULL) 
+SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAULT_FORMAT), iChannels(MIX_DEFAULT_CHANNELS), iBufferSize(DEFAULT_BUFFER_SIZE), mmMusic(0), ssSample(0) 
 {
     Sound_Init();
 
@@ -38,17 +38,7 @@ SoundEngine::SoundEngine() throw(runtime_error): iRate(44100), uFormat(MIX_DEFAU
 
 SoundEngine::~SoundEngine()
 {
-    if (mmMusic != NULL)
-    {
-        Mix_HaltMusic();
-        Mix_FreeMusic(mmMusic);
-    }
-    if (ssSample != NULL)
-    {
-        Mix_HaltChannel(0);
-        Sound_FreeSample(ssSample);
-    }
-
+    stop();
     Sound_Quit();
     Mix_CloseAudio();
 }
@@ -84,20 +74,20 @@ bool SoundEngine::isMusicPaused() const
 
 void SoundEngine::playSound(const string &fileName) throw(runtime_error)
 {
-    if (ssSample != NULL)
+    if (ssSample)
     {
         Mix_HaltChannel(0);
         Sound_FreeSample(ssSample);
-        ssSample = NULL;
+        ssSample = 0;
     }
-    ssSample = Sound_NewSampleFromFile(fileName.c_str(),NULL,iBufferSize);
-    if (ssSample == NULL || ssSample->flags == SOUND_SAMPLEFLAG_NONE)
+    ssSample = Sound_NewSampleFromFile(fileName.c_str(),0,iBufferSize);
+    if (!ssSample || ssSample->flags == SOUND_SAMPLEFLAG_NONE)
     {
         throw runtime_error("Unable to load the file");
     }
     int size = Sound_DecodeAll(ssSample);
     Mix_Chunk *mcSound = Mix_QuickLoad_RAW((Uint8 *)ssSample->buffer,size);
-    if (mcSound == NULL)
+    if (!mcSound)
     {
         throw runtime_error("Unable to convert the file");
     }
@@ -118,14 +108,14 @@ void SoundEngine::playSound(const string &fileName) throw(runtime_error)
 
 void SoundEngine::playMusic(const string &fileName) throw(runtime_error)
 {
-    if (mmMusic != NULL)
+    if (mmMusic)
     {
         Mix_HaltMusic();
         Mix_FreeMusic(mmMusic);
-        mmMusic = NULL;
+        mmMusic = 0;
     }
     mmMusic = Mix_LoadMUS(fileName.c_str());
-    if (mmMusic == NULL)
+    if (!mmMusic)
     {
         throw runtime_error("Unable to load the file");
     }
@@ -157,7 +147,7 @@ bool SoundEngine::isPlayingMusic() const
 
 void SoundEngine::move(double step)
 {
-    if (mmMusic != NULL)
+    if (mmMusic)
     {
         Mix_SetMusicPosition(step);
     }
@@ -167,14 +157,14 @@ void SoundEngine::stop()
 {
     Mix_HaltMusic();
     Mix_HaltChannel(0);
-    if (mmMusic != NULL)
+    if (mmMusic)
     {
         Mix_FreeMusic(mmMusic);
-        mmMusic = NULL;
+        mmMusic = 0;
     }
-    if (ssSample != NULL)
+    if (ssSample)
     {
         Sound_FreeSample(ssSample);
-        ssSample = NULL;
+        ssSample = 0;
     }
 }

@@ -31,7 +31,7 @@ class ItemDialog: public QDialog, private Ui::itemDialog
         // result type
         enum Result {rBrother,rChild};
         // constructor
-        ItemDialog(QWidget *parent=NULL);
+        ItemDialog(QWidget *parent=0);
         // accessors
         Item::State state() const;
         QString text() const;
@@ -82,7 +82,7 @@ class ItemDialog: public QDialog, private Ui::itemDialog
          *
          * Resets the interface and shows the window
          */
-        int exec(Item *item = NULL);
+        int exec(Item *item = 0);
 };
 
 #endif

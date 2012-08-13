@@ -34,7 +34,7 @@ class ChangeCharacterDialog: public QDialog, private Ui::changeCharacterDialog
          * \brief Constructor
          * \param parent Parent widget
          */
-        ChangeCharacterDialog(QWidget *parent=NULL);
+        ChangeCharacterDialog(QWidget *parent=0);
         /*!
          * \brief Getter for the character's name
          * \return Character's name
@@ -57,7 +57,7 @@ class ChangeCharacterDialog: public QDialog, private Ui::changeCharacterDialog
          *
          * Resets the interface and shows the window
          */
-        int exec(Character *character = NULL);
+        int exec(Character *character = 0);
 };
 
 #endif

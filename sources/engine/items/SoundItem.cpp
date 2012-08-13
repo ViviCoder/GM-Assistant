@@ -21,7 +21,7 @@
 
 using namespace std;
 
-SoundItem::SoundItem(const string &content, Item::State state, bool expanded, const string &fileName, bool sizeLimited): FileItem(content,state,expanded,fileName, sizeLimited, sizeLimited?SOUND_SIZE_LIMIT:SIZE_LIMIT), dDuration(0), bThreadFinished(true), pThread(NULL)
+SoundItem::SoundItem(const string &content, Item::State state, bool expanded, const string &fileName, bool sizeLimited): FileItem(content,state,expanded,fileName, sizeLimited, sizeLimited?SOUND_SIZE_LIMIT:SIZE_LIMIT), dDuration(0), bThreadFinished(true), pThread(0)
 {
     if (fileName != "")
     {
