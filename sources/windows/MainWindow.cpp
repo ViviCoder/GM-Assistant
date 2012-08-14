@@ -304,12 +304,6 @@ void MainWindow::on_action_New_triggered()
 
 void MainWindow::updateDisplay()
 {
-    treeScenario->setTree(&eGame.scenario());
-    textNotes->setText(eGame.notes().c_str());
-    treeHistory->setTree(&eGame.history());
-    treeMusic->setTree(&eGame.music());
-    treeFX->setTree(&eGame.effects());
-    tableStats->setLists(&eGame.skills(),&eGame.characters());
     switch (eGame.userInterface())
     {
         case Engine::uiFull:    on_actionFull_triggered();
@@ -323,6 +317,12 @@ void MainWindow::updateDisplay()
         case Engine::uiNoMusic: on_actionNoMusic_triggered();
                                 break;
     }
+    treeScenario->setTree(&eGame.scenario());
+    textNotes->setText(eGame.notes().c_str());
+    treeHistory->setTree(&eGame.history());
+    treeMusic->setTree(&eGame.music());
+    treeFX->setTree(&eGame.effects());
+    tableStats->setLists(&eGame.skills(),&eGame.characters());
     timer->stop();
     iTimerCount = 0;
     soundEngine.stop();
