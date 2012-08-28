@@ -1,3 +1,9 @@
+Changes in version 1.1.8
+- Interface menu renamed View
+- ambiguous shortcut to add an item modified (now Ins)
+- crash when trying to play music or move the slider without a selected file fixed
+- various interface bugs fixed
+
 Changes in version 1.1.7
 - menu entries (with shortcuts) added
 - behaviour of tree widgets more coherent
