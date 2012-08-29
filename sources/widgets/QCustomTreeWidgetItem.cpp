@@ -49,19 +49,22 @@ void QCustomTreeWidgetItem::updateDisplay()
     Item *item = pBranch->item();
     setText(0,item->content().c_str());
     setIcon(1,QCustomTreeWidget::icon(item->state()));
-    if (item->type()==Item::tSound)
+    switch (item->type())
     {
-        setIcon(0,QIcon(":/data/images/speaker.svg"));
-        setToolTip(0,dynamic_cast<SoundItem*>(item)->fileName().c_str()); 
-        if (dynamic_cast<QCustomTreeWidget*>(treeWidget())->playingMethod() != QCustomTreeWidget::pmNone)
-        {
-            setStatusTip(0,QApplication::translate("customTree","Double click to play the file",0));
-        }
-    }
-    else if (item->type()==Item::tImage)
-    {
-        setIcon(0,QIcon(":/data/images/image.svg"));
-        setToolTip(0,dynamic_cast<ImageItem*>(item)->fileName().c_str()); 
-        setStatusTip(0,QApplication::translate("customTree","Double click to show the file",0));
+        case Item::tSound:  setIcon(0,QIcon(":/data/images/speaker.svg"));
+                            setToolTip(0,dynamic_cast<SoundItem*>(item)->fileName().c_str()); 
+                            if (dynamic_cast<QCustomTreeWidget*>(treeWidget())->playingMethod() != QCustomTreeWidget::pmNone)
+                            {
+                                setStatusTip(0,QApplication::translate("customTree","Double click to play the file",0));
+                            }
+                            break;
+        case Item::tImage:  setIcon(0,QIcon(":/data/images/image.svg"));
+                            setToolTip(0,dynamic_cast<ImageItem*>(item)->fileName().c_str()); 
+                            setStatusTip(0,QApplication::translate("customTree","Double click to show the file",0));
+                            break;
+        default:    setIcon(0, QIcon());
+                    setToolTip(0, "");
+                    setStatusTip(0, "");
+                    break;
     }
 }

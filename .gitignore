@@ -1,7 +1,8 @@
 gm-assistant
-gm-assistant.pro
-gm-assistant.conf
-gm-assistant.entitlements
+*.pro
+*.conf
+*.desktop
+*.entitlements
 Makefile
 ui_*
 qrc_*

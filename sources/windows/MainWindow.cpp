@@ -303,6 +303,7 @@ void MainWindow::on_action_New_triggered()
 /*    if (!bModified || (QMessageBox::question(this,QApplication::translate("mainWindow","Confirmation",0),QApplication::translate("mainWindow","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
     {*/
         eGame.clear();
+        eGame.setUserInterface(Scenario::uiFull);
         updateDisplay();
         mqQueue.clear();
         updateUndoRedo();
@@ -314,12 +315,6 @@ void MainWindow::on_action_New_triggered()
 
 void MainWindow::updateDisplay()
 {
-    treeScenario->setTree(&eGame.scenario());
-    textNotes->setText(eGame.notes().c_str());
-    treeHistory->setTree(&eGame.history());
-    treeMusic->setTree(&eGame.music());
-    treeFX->setTree(&eGame.effects());
-    tableStats->setLists(&eGame.skills(),&eGame.characters());
     switch (eGame.userInterface())
     {
         case Scenario::uiFull:    on_actionFull_triggered();
@@ -333,13 +328,18 @@ void MainWindow::updateDisplay()
         case Scenario::uiNoMusic: on_actionNoMusic_triggered();
                                 break;
     }
+    treeScenario->setTree(&eGame.scenario());
+    textNotes->setText(eGame.notes().c_str());
+    treeHistory->setTree(&eGame.history());
+    treeMusic->setTree(&eGame.music());
+    treeFX->setTree(&eGame.effects());
+    tableStats->setLists(&eGame.skills(),&eGame.characters());
     timer->stop();
     iTimerCount = 0;
     soundEngine.stop();
-    sliderMusic->setValue(0);
+    pDuration = 0;
     checkRepeat->setChecked(false);
-    labelPosition->setText(QApplication::translate("mainWindow","0:00/0:00",0));
-    buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
+    updateTimeDisplay();
 }
 
 void MainWindow::on_buttonMusic_clicked()
@@ -371,9 +371,9 @@ void MainWindow::on_buttonMusic_clicked()
                 SoundItem *sItem = dynamic_cast<SoundItem*>(item);
                 playMusic(sItem->fileName(),sItem->duration());
             }
+            updateTimeDisplay();
+            timer->start();
         }
-        updateTimeDisplay();
-        timer->start();
     }
 }
 
@@ -381,16 +381,15 @@ void MainWindow::onTimer_timeout()
 {
     if (!soundEngine.isPlayingMusic())
     {
-        if (checkRepeat->isChecked())
+        if (pDuration && *pDuration > 0 && checkRepeat->isChecked())
         {
             playMusic(sCurrentMusic, pDuration);
         }
         else
         {
-            sliderMusic->setValue(sliderMusic->maximum());
-            labelPosition->setText(QApplication::translate("mainWindow","0:00/0:00",0));
-            buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
             timer->stop();
+            buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
+            sliderMusic->setEnabled(false);
         }
     }
     // calculate the percentage of the music played
@@ -403,24 +402,36 @@ void MainWindow::onTimer_timeout()
 
 void MainWindow::updateTimeDisplay()
 {
-    // we move the slider only if the user is not moving it manually
-    double dPosition = (double)iTimerCount/TICK;
-    sliderMusic->setValue(floor(dPosition/(*pDuration)*sliderMusic->maximum()));
-    // update of the position display
-    int position = floor(dPosition);
-    int duration = floor(*pDuration);
-    labelPosition->setText(QString("%1:%2/%3:%4").arg(position/60).arg(position%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
+    if (pDuration)
+    {
+        // we move the slider only if the user is not moving it manually
+        double dPosition = (double)iTimerCount/TICK;
+        sliderMusic->setValue(floor(dPosition/(*pDuration)*sliderMusic->maximum()));
+        // update of the position display
+        int position = floor(dPosition);
+        int duration = floor(*pDuration);
+        labelPosition->setText(QString("%1:%2/%3:%4").arg(position/60).arg(position%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
+    }
+    else
+    {
+        // resets the display
+        sliderMusic->setValue(0);
+        labelPosition->setText("0:00/0:00");
+        buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
+        sliderMusic->setEnabled(false);
+    }
 }
 
 void MainWindow::playMusic(const std::string &fileName, const double *duration)
 {
-    if (*duration > 0.0)
+    if (duration && *duration > 0.0)
     {
         try
         {
             soundEngine.playMusic(fileName);
             sCurrentMusic = fileName;
             timer->start();
+            sliderMusic->setEnabled(true);
             buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
             iTimerCount = 0;
             pDuration = duration;
