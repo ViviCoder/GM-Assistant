@@ -24,6 +24,7 @@
 #include <cmath>
 #include <QSettings>
 #include <QStackedLayout>
+#include "NoteModification.h"
 
 MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), pDuration(0)
 {
@@ -40,6 +41,7 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     connect(treeHistory, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(treeMusic, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(treeFX, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    connect(textNotes, SIGNAL(undoAvailable(bool)), this, SLOT(createNoteModification(bool)));
     // setting audio options
     treeFX->setSizeLimited(true);
     treeMusic->setPlayingMethod(this, QCustomTreeWidget::pmMusic);
@@ -605,11 +607,11 @@ void MainWindow::on_sliderMusic_wheeled(bool positive)
 
 void MainWindow::on_action_Undo_triggered()
 {
-    updateModification(mqQueue.undo());
+    updateModification(mqQueue.undo(), true);
     updateUndoRedo();
 }
 
-void MainWindow::updateModification(Modification *modification)
+void MainWindow::updateModification(Modification *modification, bool undo)
 {
     if (!modification) return;
     switch (modification->type())
@@ -636,13 +638,22 @@ void MainWindow::updateModification(Modification *modification)
                 }
                 break;
             }
+        case Modification::tNote:   if (undo)
+                                    {
+                                        textNotes->undo();
+                                    }
+                                    else
+                                    {
+                                        textNotes->redo();
+                                    }
+                                    break;
         default : break;
     }
 }
 
 void MainWindow::on_action_Redo_triggered()
 {
-    updateModification(mqQueue.redo());
+    updateModification(mqQueue.redo(), false);
     updateUndoRedo();
 }
 
@@ -656,4 +667,12 @@ void MainWindow::updateUndoRedo()
 {
     action_Undo->setEnabled(mqQueue.undoable());
     action_Redo->setEnabled(mqQueue.redoable());
+}
+
+void MainWindow::createNoteModification(bool undoable)
+{
+    if (undoable)
+    {
+        registerModification(new NoteModification());
+    }
 }

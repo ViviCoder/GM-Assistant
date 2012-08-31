@@ -89,10 +89,7 @@ class TreeModification: public Modification
          * \brief Destructor
          */
         virtual ~TreeModification();
-        /*!
-         * \brief Getter for the type
-         * \return Type of the modification
-         */
+        // inherited pure virtual getter
         Type type() const;
         /*!
          * \brief Getter for the tree
