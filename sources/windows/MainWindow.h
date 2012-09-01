@@ -259,18 +259,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         /*!
          * \brief Slot for the update after a modification
          * \param modification Modification which has just been made
-         * \param undo Indicates if the modification is an undoing (true) or a redoing (false)
          *
          * Updates the display of the right widget
          */
-        void updateModification(Modification *modification, bool undo);
-        /*!
-         * \brief Slot for when the notes are modified
-         * \param undoable Indicates if undoing is available
-         *
-         * If undoable is true, creates a NoteModification and adds it to the queue
-         */
-        void createNoteModification(bool undoable);
+        void updateModification(Modification *modification);
     protected:
         // overriden methods
         /*!

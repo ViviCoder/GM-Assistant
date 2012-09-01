@@ -41,7 +41,7 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     connect(treeHistory, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(treeMusic, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(treeFX, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
-    connect(textNotes, SIGNAL(undoAvailable(bool)), this, SLOT(createNoteModification(bool)));
+    connect(textNotes, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     // setting audio options
     treeFX->setSizeLimited(true);
     treeMusic->setPlayingMethod(this, QCustomTreeWidget::pmMusic);
@@ -257,7 +257,6 @@ void MainWindow::on_action_Save_triggered()
     {
         try
         {
-            eGame.notes() = textNotes->toPlainText().toStdString();
             eGame.toFile(sFileName.toStdString());
     //        action_Save->setEnabled(false);
             bModified = false;
@@ -271,7 +270,6 @@ void MainWindow::on_action_Save_triggered()
 
 void MainWindow::on_actionS_ave_as_triggered()
 {
-    eGame.notes() = textNotes->toPlainText().toStdString();
     QFileDialog *dial = new QFileDialog(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0));
     dial->setAcceptMode(QFileDialog::AcceptSave);
     if (dial->exec() == QFileDialog::Accepted)
@@ -331,7 +329,7 @@ void MainWindow::updateDisplay()
                                 break;
     }
     treeScenario->setTree(&eGame.scenario());
-    textNotes->setText(eGame.notes().c_str());
+    textNotes->setNotes(&eGame.notes());
     treeHistory->setTree(&eGame.history());
     treeMusic->setTree(&eGame.music());
     treeFX->setTree(&eGame.effects());
@@ -607,11 +605,12 @@ void MainWindow::on_sliderMusic_wheeled(bool positive)
 
 void MainWindow::on_action_Undo_triggered()
 {
-    updateModification(mqQueue.undo(), true);
+    setFocus();
+    updateModification(mqQueue.undo());
     updateUndoRedo();
 }
 
-void MainWindow::updateModification(Modification *modification, bool undo)
+void MainWindow::updateModification(Modification *modification)
 {
     if (!modification) return;
     switch (modification->type())
@@ -638,14 +637,7 @@ void MainWindow::updateModification(Modification *modification, bool undo)
                 }
                 break;
             }
-        case Modification::tNote:   if (undo)
-                                    {
-                                        textNotes->undo();
-                                    }
-                                    else
-                                    {
-                                        textNotes->redo();
-                                    }
+        case Modification::tNote:   textNotes->updateDisplay();
                                     break;
         default : break;
     }
@@ -653,7 +645,8 @@ void MainWindow::updateModification(Modification *modification, bool undo)
 
 void MainWindow::on_action_Redo_triggered()
 {
-    updateModification(mqQueue.redo(), false);
+    setFocus();
+    updateModification(mqQueue.redo());
     updateUndoRedo();
 }
 
@@ -667,12 +660,4 @@ void MainWindow::updateUndoRedo()
 {
     action_Undo->setEnabled(mqQueue.undoable());
     action_Redo->setEnabled(mqQueue.redoable());
-}
-
-void MainWindow::createNoteModification(bool undoable)
-{
-    if (undoable)
-    {
-        registerModification(new NoteModification());
-    }
 }

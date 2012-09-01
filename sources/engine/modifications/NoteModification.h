@@ -20,6 +20,7 @@
 #define HEADER_NOTEMODIFICATION
 
 #include "Modification.h"
+#include <string>
 
 /*!
  * \brief Modification of the notes
@@ -28,9 +29,12 @@ class NoteModification: public Modification
 {
     public:
         /*!
-         *  \brief Constructor
+         * \brief Constructor
+         * \param note Modified note 
+         * \param content Previous content
+         * \param newContent Modified content
          */
-        NoteModification();
+        NoteModification(std::string &note, const std::string &content, const std::string &newContent);
         /*!
          * \brief Destructor
          */
@@ -39,6 +43,13 @@ class NoteModification: public Modification
         Type type() const;
         void undo();
         void redo();
+    private:
+        //! Modified note
+        std::string &rNote;
+        //! Previous content
+        std::string sContent;
+        //! Modified content
+        std::string sNewContent;
 };
 
 #endif

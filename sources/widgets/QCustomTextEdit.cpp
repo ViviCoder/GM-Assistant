@@ -16,29 +16,49 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "NoteModification.h"
+#include "QCustomTextEdit.h"
 
 using namespace std;
 
-NoteModification::NoteModification(string &note, const string &content, const string &newContent): Modification(aEdition), rNote(note), sContent(content), sNewContent(newContent)
+QCustomTextEdit::QCustomTextEdit(QWidget *parent): QTextEdit(parent)
 {
 }
 
-NoteModification::~NoteModification()
+void QCustomTextEdit::setNotes(string *text)
 {
+    pNotes = text;
+    updateDisplay();
 }
 
-Modification::Type NoteModification::type() const
+void QCustomTextEdit::updateDisplay()
 {
-    return tNote;
+    if (pNotes)
+    {
+        setText(pNotes->c_str());
+    }
 }
 
-void NoteModification::undo()
+void QCustomTextEdit::changeEvent(QEvent *e)
 {
-    rNote = sContent;
+    if (pNotes)
+    {
+        *pNotes = toPlainText().toStdString();
+    }
+    QTextEdit::changeEvent(e);
 }
 
-void NoteModification::redo()
+void QCustomTextEdit::focusInEvent(QFocusEvent *e)
 {
-    rNote = sNewContent;
+    sRef = toPlainText();
+    QTextEdit::focusOutEvent(e);
+}
+
+void QCustomTextEdit::focusOutEvent(QFocusEvent *e)
+{
+    QString sText = toPlainText();
+    if (pNotes && sRef != sText)
+    {
+        emit modificationDone(new NoteModification(*pNotes, sRef.toStdString(), sText.toStdString()));
+    }
+    QTextEdit::focusOutEvent(e);
 }

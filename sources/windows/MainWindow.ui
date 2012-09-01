@@ -112,9 +112,12 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout4">
          <item>
-          <widget class="QTextEdit" name="textNotes">
+          <widget class="QCustomTextEdit" name="textNotes">
            <property name="contextMenuPolicy">
             <enum>Qt::NoContextMenu</enum>
+           </property>
+           <property name="undoRedoEnabled">
+            <bool>false</bool>
            </property>
           </widget>
          </item>
@@ -279,7 +282,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>27</height>
+     <height>25</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
@@ -520,6 +523,11 @@
    <class>QCustomSlider</class>
    <extends>QSlider</extends>
    <header>QCustomSlider.h</header>
+  </customwidget>
+  <customwidget>
+   <class>QCustomTextEdit</class>
+   <extends>QTextEdit</extends>
+   <header>QCustomTextEdit.h</header>
   </customwidget>
  </customwidgets>
  <resources>
