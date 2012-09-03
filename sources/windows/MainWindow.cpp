@@ -42,6 +42,7 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     connect(treeMusic, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(treeFX, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(textNotes, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    textNotes->installEventFilter(this);
     // setting audio options
     treeFX->setSizeLimited(true);
     treeMusic->setPlayingMethod(this, QCustomTreeWidget::pmMusic);
@@ -660,4 +661,24 @@ void MainWindow::updateUndoRedo()
 {
     action_Undo->setEnabled(mqQueue.undoable());
     action_Redo->setEnabled(mqQueue.redoable());
+}
+
+bool MainWindow::eventFilter(QObject *source, QEvent *e)
+{
+    if (e->type() == QEvent::KeyRelease)
+    {
+        QKeyEvent *event = dynamic_cast<QKeyEvent*>(e);
+        if (event->key() == Qt::Key_Z)
+        {
+           switch (event->modifiers())
+           {
+               case Qt::ControlModifier:    on_action_Undo_triggered();
+                                            break;
+               case Qt::ControlModifier & Qt::ShiftModifier:    on_action_Redo_triggered();
+                                                                break;
+               default: break;
+           }
+        }
+    }
+    return QMainWindow::eventFilter(source, e);
 }

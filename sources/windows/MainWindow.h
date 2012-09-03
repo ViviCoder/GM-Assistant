@@ -80,6 +80,23 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         std::string sCurrentMusic;
         //! Queue of modifications
         ModificationQueue mqQueue;
+    protected:
+        // overriden methods
+        /*!
+         * \brief ResizeEvent handler
+         * \param e Event raised
+         *
+         * Stores the old size for unmaximizing just after startup
+         */
+        void resizeEvent(QResizeEvent *e);
+        /*!
+         * \brief Event filter
+         * \param source Source of the event
+         * \param e Event
+         *
+         * Intercepts locally handled events related to global shortcuts
+         */
+        bool eventFilter(QObject *source, QEvent *e);
     public:
         /*!
          * \brief Constructor of the main window
@@ -263,15 +280,6 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Updates the display of the right widget
          */
         void updateModification(Modification *modification);
-    protected:
-        // overriden methods
-        /*!
-         * \brief ResizeEvent handler
-         * \param e Event raised
-         *
-         * Stores the old size for unmaximizing just after startup
-         */
-        void resizeEvent(QResizeEvent *e);
 };
 
 #endif
