@@ -670,14 +670,15 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
         QKeyEvent *event = dynamic_cast<QKeyEvent*>(e);
         if (event->key() == Qt::Key_Z)
         {
-           switch (event->modifiers())
-           {
-               case Qt::ControlModifier:    on_action_Undo_triggered();
-                                            break;
-               case Qt::ControlModifier & Qt::ShiftModifier:    on_action_Redo_triggered();
-                                                                break;
-               default: break;
-           }
+            Qt::KeyboardModifiers modifiers = event->modifiers();
+            if (modifiers == Qt::ControlModifier)
+            {
+                on_action_Undo_triggered();
+            }
+            else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier))
+            {
+                on_action_Redo_triggered();
+            }
         }
     }
     return QMainWindow::eventFilter(source, e);
