@@ -47,13 +47,6 @@ class QCustomTextEdit: public QTextEdit
         void updateDisplay();
     protected:
         /*!
-         * \brief Change event handler
-         * \param e Event to handle
-         *
-         * Updates the underlying notes
-         */
-        void changeEvent(QEvent *e);
-        /*!
          * \brief FocusIn event handler
          * \param e Event to handle
          *
@@ -67,6 +60,13 @@ class QCustomTextEdit: public QTextEdit
          * Checks if the text has been modified and send the corresponding signal if it is the case
          */
         void focusOutEvent(QFocusEvent *e);
+    protected slots:
+        /*!
+         * \brief Slot for when the text has changed
+         *
+         * Updates the underlying notes
+         */
+        void onTextChanged();
     private:
         //! Reference text
         QString sRef;

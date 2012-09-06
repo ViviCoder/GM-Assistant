@@ -250,6 +250,7 @@ void MainWindow::on_action_Load_triggered()
 
 void MainWindow::on_action_Save_triggered()
 {
+    setFocus();
     if (sFileName.isEmpty())
     {
         on_actionS_ave_as_triggered();

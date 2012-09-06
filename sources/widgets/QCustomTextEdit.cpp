@@ -22,6 +22,7 @@ using namespace std;
 
 QCustomTextEdit::QCustomTextEdit(QWidget *parent): QTextEdit(parent)
 {
+    connect(this, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
 }
 
 void QCustomTextEdit::setNotes(string *text)
@@ -38,19 +39,18 @@ void QCustomTextEdit::updateDisplay()
     }
 }
 
-void QCustomTextEdit::changeEvent(QEvent *e)
+void QCustomTextEdit::onTextChanged()
 {
     if (pNotes)
     {
         *pNotes = toPlainText().toStdString();
     }
-    QTextEdit::changeEvent(e);
 }
 
 void QCustomTextEdit::focusInEvent(QFocusEvent *e)
 {
     sRef = toPlainText();
-    QTextEdit::focusOutEvent(e);
+    QTextEdit::focusInEvent(e);
 }
 
 void QCustomTextEdit::focusOutEvent(QFocusEvent *e)
