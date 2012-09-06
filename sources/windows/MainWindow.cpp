@@ -672,11 +672,11 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
         if (event->key() == Qt::Key_Z)
         {
             Qt::KeyboardModifiers modifiers = event->modifiers();
-            if (modifiers == Qt::ControlModifier)
+            if (modifiers == Qt::ControlModifier && mqQueue.undoable())
             {
                 on_action_Undo_triggered();
             }
-            else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier))
+            else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier) && mqQueue.redoable())
             {
                 on_action_Redo_triggered();
             }
