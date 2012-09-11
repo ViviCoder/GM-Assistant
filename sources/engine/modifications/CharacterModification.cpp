@@ -18,7 +18,13 @@
 
 #include "CharacterModification.h"
 
-CharacterModification::CharacterModification(CharacterList &list, Character *character, int index, bool isAddition): Modification(isAddition?(Modification::aAddition):(Modification::aDeletion)), etEditType(etCharacter), iIndex(index), rList(list), pCharacter(character)
+using namespace std;
+
+CharacterModification::CharacterModification(CharacterList *list, Character *character, int index, bool isAddition): Modification(isAddition?(Modification::aAddition):(Modification::aDeletion)), etEditType(etCharacter), iIndex(index), pCharacterList(list), pSkillList(0), pCharacter(character)
+{
+}
+
+CharacterModification::CharacterModification(SkillList *list, const string &skill, int index, bool isAddition): Modification(isAddition?(Modification::aAddition):(Modification::aDeletion)), etEditType(etSkill), iIndex(index), pCharacterList(0), pSkillList(list), pCharacter(0), sSkill(skill)
 {
 }
 
@@ -37,8 +43,64 @@ Modification::Type CharacterModification::type() const
 
 void CharacterModification::undo()
 {
+    switch (etEditType)
+    {
+        case etCharacter:   if (pCharacterList)
+                            {
+                                switch (action())
+                                {
+                                    case aAddition: pCharacterList->remove(iIndex);
+                                                    break;
+                                    case aDeletion: pCharacterList->add(*pCharacter, iIndex);
+                                                    break;
+                                    default:    break;
+                                }
+                            }
+                            break;
+        case etSkill:   if (pSkillList)
+                        {
+                            switch (action())
+                            {
+                                case aAddition: pSkillList->remove(iIndex);
+                                                break;
+                                case aDeletion: pSkillList->add(sSkill, iIndex);
+                                                break;
+                                default:    break;
+                            }
+                            break;
+                        }
+        default:    break;
+    }
 }
 
 void CharacterModification::redo()
 {
+    switch (etEditType)
+    {
+        case etCharacter:   if (pCharacterList)
+                            {
+                                switch (action())
+                                {
+                                    case aAddition: pCharacterList->add(*pCharacter, iIndex);
+                                                    break;
+                                    case aDeletion: pCharacterList->remove(iIndex);
+                                                    break;
+                                    default:    break;
+                                }
+                            }
+                            break;
+        case etSkill:   if (pSkillList)
+                        {
+                            switch (action())
+                            {
+                                case aAddition: pSkillList->add(sSkill, iIndex);
+                                                break;
+                                case aDeletion: pSkillList->remove(iIndex);
+                                                break;
+                                default:    break;
+                            }
+                            break;
+                        }
+        default:    break;
+    }
 }

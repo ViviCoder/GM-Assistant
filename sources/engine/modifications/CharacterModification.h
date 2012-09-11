@@ -48,7 +48,15 @@ class CharacterModification: public Modification
          *  \param index Index of the character
          *  \param isAddition Indicates if the modification is an addition (true) or a deletion (false)
          */
-        CharacterModification(CharacterList &list, Character *character, int index, bool isAddition);
+        CharacterModification(CharacterList *list, Character *character, int index, bool isAddition);
+        /*!
+         *  \brief Constructor for additions/deletions of a skill
+         *  \param list List of skills
+         *  \param skill Skill added or deleted
+         *  \param index Index of the skill
+         *  \param isAddition Indicates if the modification is an addition (true) or a deletion (false)
+         */
+        CharacterModification(SkillList *list, const std::string &skill, int index, bool isAddition);
         /*!
          * \brief Destructor
          */
@@ -63,10 +71,14 @@ class CharacterModification: public Modification
         EditionType etEditType;
         //! First (or unique) index of the modification
         int iIndex;
-        //! List modified
-        CharacterList &rList;
+        //! Character list modified
+        CharacterList *pCharacterList;
+        //! Skill list modified
+        SkillList *pSkillList;
         //! Copy of the character
         Character *pCharacter;
+        //! Copy of the skill
+        std::string sSkill;
 };
 
 #endif
