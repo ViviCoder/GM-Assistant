@@ -20,6 +20,7 @@
 #include "QCustomHeaderView.h"
 #include "ChangeSkillDialog.h"
 #include <QApplication>
+#include "CharacterModification.h"
 
 QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(0), pCharacters(0), bEditing(false)
 {
@@ -202,22 +203,27 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
     }
 }
 
-void QCustomTableWidget::setLists(SkillList *skills, CharacterList *chars)
+void QCustomTableWidget::setLists(SkillList *skills, CharacterList *characters)
 {
     pSkills = skills;
-    pCharacters = chars;
+    pCharacters = characters;
+    updateDisplay();
+}
+
+void QCustomTableWidget::updateDisplay()
+{
     clear();
     setColumnCount(0);
     setRowCount(0);
     int i=0;
-    for (SkillList::iterator it = skills->begin(); it != skills->end(); it++)
+    for (SkillList::iterator it = pSkills->begin(); it != pSkills->end(); it++)
     {
         insertColumn(i);
         setHorizontalHeaderItem(i,new QTableWidgetItem((*it).c_str()));
         i++;
     }
     int j=0,k;
-    for (CharacterList::iterator it = chars->begin(); it != chars->end(); it++)
+    for (CharacterList::iterator it = pCharacters->begin(); it != pCharacters->end(); it++)
     {
         insertRow(j);
         setVerticalHeaderItem(j,new QTableWidgetItem(((*it).name()+"\n"+(*it).playerName()).c_str()));
@@ -299,6 +305,7 @@ void QCustomTableWidget::addCharacter(int index)
         {
             Character character(pChangeCharacterDial->name().toStdString(),pChangeCharacterDial->playerName().toStdString());
             pCharacters->add(character,index+1);
+            emit modificationDone(new CharacterModification(pCharacters, new Character(character), index+1, true));
         }
 
         // updating the display
@@ -331,7 +338,9 @@ void QCustomTableWidget::addSkill(int index)
         // modifying the skill/character Lists
         if (pSkills)
         {
-            pSkills->add(pChangeSkillDial->text().toStdString(),index+1);
+            std::string skill = pChangeSkillDial->text().toStdString();
+            pSkills->add(skill, index+1);
+            emit modificationDone(new CharacterModification(pSkills, skill, index+1));
         }
         if (pCharacters)
         {
@@ -374,6 +383,7 @@ void QCustomTableWidget::removeCharacter(int index)
     // updating the CharacterList
     if (pCharacters)
     {
+        emit modificationDone(new CharacterModification(pCharacters, new Character((*pCharacters)[index]), index, false));
         pCharacters->remove(index);
     }
 }
@@ -382,19 +392,25 @@ void QCustomTableWidget::removeSkill(int index)
 {
     removeColumn(index);
     // updating the she skill/character Lists
-    if (pSkills)
-    {
-        pSkills->remove(index);
-    }
+    std::vector<std::string> values;
     if (pCharacters)
     {
-        for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
+        for (CharacterList::iterator it = pCharacters->begin(); it != pCharacters->end(); it++)
         {
             if ((unsigned int)index < it->skillNumber())
             {
+                values.push_back(it->skill(index));
                 it->removeSkill(index);
             }
         } 
+    }
+    if (pSkills)
+    {
+        if (pCharacters)
+        {
+            emit modificationDone(new CharacterModification(pSkills, (*pSkills)[index], pCharacters, values, index));
+        }
+        pSkills->remove(index);
     }
 }
 

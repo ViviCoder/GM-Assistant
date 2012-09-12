@@ -50,13 +50,21 @@ class CharacterModification: public Modification
          */
         CharacterModification(CharacterList *list, Character *character, int index, bool isAddition);
         /*!
-         *  \brief Constructor for additions/deletions of a skill
+         *  \brief Constructor for additions of a skill
          *  \param list List of skills
-         *  \param skill Skill added or deleted
+         *  \param skill Skill added
          *  \param index Index of the skill
-         *  \param isAddition Indicates if the modification is an addition (true) or a deletion (false)
          */
-        CharacterModification(SkillList *list, const std::string &skill, int index, bool isAddition);
+        CharacterModification(SkillList *list, const std::string &skill, int index);
+        /*!
+         *  \brief Constructor for deletions of a skill
+         *  \param skillList List of skills
+         *  \param skill Skill deleted
+         *  \param characterList List of characters
+         *  \param values Values of the skill
+         *  \param index Index of the skill
+         */
+        CharacterModification(SkillList *skillList, const std::string &skill, CharacterList *characterList, const std::vector<std::string> &values, int index);
         /*!
          * \brief Destructor
          */
@@ -79,6 +87,8 @@ class CharacterModification: public Modification
         Character *pCharacter;
         //! Copy of the skill
         std::string sSkill;
+        //! Copy of the values of a skill
+        std::vector<std::string> vValues;
 };
 
 #endif

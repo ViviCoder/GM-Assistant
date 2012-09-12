@@ -24,7 +24,11 @@ CharacterModification::CharacterModification(CharacterList *list, Character *cha
 {
 }
 
-CharacterModification::CharacterModification(SkillList *list, const string &skill, int index, bool isAddition): Modification(isAddition?(Modification::aAddition):(Modification::aDeletion)), etEditType(etSkill), iIndex(index), pCharacterList(0), pSkillList(list), pCharacter(0), sSkill(skill)
+CharacterModification::CharacterModification(SkillList *list, const string &skill, int index): Modification(Modification::aAddition), etEditType(etSkill), iIndex(index), pCharacterList(0), pSkillList(list), pCharacter(0), sSkill(skill)
+{
+}
+
+CharacterModification::CharacterModification(SkillList *skillList, const string &skill, CharacterList *characterList, const vector<string> &values, int index): Modification(Modification::aDeletion), etEditType(etSkill), iIndex(index), pCharacterList(characterList), pSkillList(skillList), pCharacter(0), sSkill(skill), vValues(values)
 {
 }
 
@@ -63,7 +67,16 @@ void CharacterModification::undo()
                             {
                                 case aAddition: pSkillList->remove(iIndex);
                                                 break;
-                                case aDeletion: pSkillList->add(sSkill, iIndex);
+                                case aDeletion: if (pCharacterList)
+                                                {
+                                                    pSkillList->add(sSkill, iIndex);
+                                                    int i = 0;
+                                                    for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
+                                                    {
+                                                        it->addSkill(vValues[i], iIndex);
+                                                        i++;
+                                                    }
+                                                }
                                                 break;
                                 default:    break;
                             }
@@ -95,7 +108,14 @@ void CharacterModification::redo()
                             {
                                 case aAddition: pSkillList->add(sSkill, iIndex);
                                                 break;
-                                case aDeletion: pSkillList->remove(iIndex);
+                                case aDeletion: if (pCharacterList)
+                                                {
+                                                    pSkillList->remove(iIndex);
+                                                    for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
+                                                    {
+                                                        it->removeSkill(iIndex);
+                                                    }
+                                                }
                                                 break;
                                 default:    break;
                             }

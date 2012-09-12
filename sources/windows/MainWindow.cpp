@@ -43,6 +43,7 @@ MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutD
     connect(treeFX, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(textNotes, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     textNotes->installEventFilter(this);
+    connect(tableStats, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     // setting audio options
     treeFX->setSizeLimited(true);
     treeMusic->setPlayingMethod(this, QCustomTreeWidget::pmMusic);
@@ -641,6 +642,8 @@ void MainWindow::updateModification(Modification *modification)
             }
         case Modification::tNote:   textNotes->updateDisplay();
                                     break;
+        case Modification::tCharacter:  tableStats->updateDisplay();
+                                        break;
         default : break;
     }
 }

@@ -27,6 +27,7 @@
 #include "ChangeCharacterDialog.h"
 #include "SkillList.h"
 #include "CharacterList.h"
+#include "Modification.h"
 
 /*!
  * \brief Custom table widget
@@ -45,10 +46,9 @@ class QCustomTableWidget: public QTableWidget
         SkillList *pSkills;
         CharacterList *pCharacters;
         /*!
-         * \brief Flag indicating if an item is currently beeing edited
+         * \brief Flag indicating if an item is currently being edited
          */
         bool bEditing;
-
     protected:
         /*!
          * \brief Event raised when the table is clicked
@@ -65,7 +65,12 @@ class QCustomTableWidget: public QTableWidget
          * \param e Mouse event
          */
         void mouseDoubleClickEvent(QMouseEvent *e);
-
+        void addSkill(int index);
+        void addCharacter(int index);
+        void removeSkill(int index);
+        void removeCharacter(int index);
+        void editSkill(int index);
+        void editCharacter(int index);
     protected slots:
         /*!
          * \brief Slot for when a cell changes 
@@ -75,17 +80,10 @@ class QCustomTableWidget: public QTableWidget
         void onCellChanged(int row, int column);
         void onHHeaderClicked(int index, const QPoint &position);
         void onVHeaderClicked(int index, const QPoint &position);
-        void addSkill(int index);
-        void addCharacter(int index);
-        void removeSkill(int index);
-        void removeCharacter(int index);
-        void editSkill(int index);
-        void editCharacter(int index);
         /*!
          * \brief Slot for when the selection changes 
          */
         void on_itemSelectionChanged();
-
     public:
         /*!
          * \brief Constructor of the widget
@@ -94,8 +92,26 @@ class QCustomTableWidget: public QTableWidget
         QCustomTableWidget(QWidget *parent=0);
         // destructor
         ~QCustomTableWidget();
-        // associating a skill list and a character list to the widget
-        void setLists(SkillList *skills, CharacterList *chars);
+        /*!
+         * \brief Setter for the underlying skill and character lists
+         * \param skills Skill list
+         * \param characters Character list
+         *
+         * Updates the display after the modification
+         */
+        void setLists(SkillList *skills, CharacterList *characters);
+        /*!
+         * \brief Update of the display
+         */
+        void updateDisplay();
+    signals:
+        /*!
+         * \brief Signal to register a modification
+         * \param modification Modification to register
+         *
+         * This signal is sent when the tree is modified
+         */
+        void modificationDone(Modification *modification);
 };
 
 #endif
