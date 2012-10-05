@@ -442,7 +442,9 @@ void QCustomTableWidget::editSkill(int index)
         // updating the SkillList
         if (pSkills)
         {
-            (*pSkills)[index] = pChangeSkillDial->text().toStdString();
+            std::string newSkill = pChangeSkillDial->text().toStdString();
+            emit modificationDone(new CharacterModification(pSkills, (*pSkills)[index], newSkill, index));
+            (*pSkills)[index] = newSkill;
         }
     }
     resizeColumnToContents(index);

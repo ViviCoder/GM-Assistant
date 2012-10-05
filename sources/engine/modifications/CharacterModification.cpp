@@ -32,6 +32,10 @@ CharacterModification::CharacterModification(SkillList *skillList, const string 
 {
 }
 
+CharacterModification::CharacterModification(SkillList *skillList, const string &skill, const string &newSkill, int index): Modification(Modification::aEdition), etEditType(etSkill), iIndex(index), pCharacterList(0), pSkillList(skillList), pCharacter(0), sSkill(skill), sNewSkill(newSkill)
+{
+}
+
 CharacterModification::~CharacterModification()
 {
     if (pCharacter)
@@ -89,6 +93,11 @@ void CharacterModification::undo()
                                                 }
                                             }
                                             break;
+                            case aEdition:  if (pSkillList)
+                                            {
+                                                (*pSkillList)[iIndex] = sSkill;
+                                            }
+                                            break;
                             default:    break;
                         }
                         break;
@@ -136,6 +145,11 @@ void CharacterModification::redo()
                                                 {
                                                     it->removeSkill(iIndex);
                                                 }
+                                            }
+                                            break;
+                            case aEdition:  if (pSkillList)
+                                            {
+                                                (*pSkillList)[iIndex] = sNewSkill;
                                             }
                                             break;
                             default:    break;

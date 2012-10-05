@@ -67,6 +67,14 @@ class CharacterModification: public Modification
          */
         CharacterModification(SkillList *skillList, const std::string &skill, CharacterList *characterList, const std::vector<std::string> &values, int index);
         /*!
+         * \brief Constructor for editions of a skill
+         * \param skillList List of skills
+         * \param skill Modified skill
+         * \param newSkill New skill
+         * \param index Index of the skill
+         */
+        CharacterModification(SkillList *skillList, const std::string &skill, const std::string &newSkill, int index);
+        /*!
          * \brief Destructor
          */
         virtual ~CharacterModification();
@@ -88,6 +96,8 @@ class CharacterModification: public Modification
         Character *pCharacter;
         //! Copy of the skill
         std::string sSkill;
+        //! Copy of the new skill
+        std::string sNewSkill;
         //! Copy of the values of a skill
         std::vector<std::string> vValues;
 };
