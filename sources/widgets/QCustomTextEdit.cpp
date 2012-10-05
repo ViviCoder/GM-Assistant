@@ -47,6 +47,15 @@ void QCustomTextEdit::onTextChanged()
     }
 }
 
+void QCustomTextEdit::checkModification()
+{
+    QString sText = toPlainText();
+    if (pNotes && sRef != sText)
+    {
+        emit modificationDone(new NoteModification(*pNotes, sRef.toStdString(), sText.toStdString()));
+    }
+}
+
 void QCustomTextEdit::focusInEvent(QFocusEvent *e)
 {
     sRef = toPlainText();
@@ -55,10 +64,6 @@ void QCustomTextEdit::focusInEvent(QFocusEvent *e)
 
 void QCustomTextEdit::focusOutEvent(QFocusEvent *e)
 {
-    QString sText = toPlainText();
-    if (pNotes && sRef != sText)
-    {
-        emit modificationDone(new NoteModification(*pNotes, sRef.toStdString(), sText.toStdString()));
-    }
+    checkModification();
     QTextEdit::focusOutEvent(e);
 }

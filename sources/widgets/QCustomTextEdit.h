@@ -45,6 +45,12 @@ class QCustomTextEdit: public QTextEdit
          * \brief Update of the display
          */
         void updateDisplay();
+        /*!
+         * \brief Modification checking
+         *
+         * Checks if the text has been modified and send the corresponding signal if it is the case
+         */
+        void checkModification();
     protected:
         /*!
          * \brief FocusIn event handler
@@ -57,7 +63,7 @@ class QCustomTextEdit: public QTextEdit
          * \brief FocusOut event handler
          * \param e Event to handle
          *
-         * Checks if the text has been modified and send the corresponding signal if it is the case
+         * Checks if the text has been modified before releasing focus
          */
         void focusOutEvent(QFocusEvent *e);
     protected slots:

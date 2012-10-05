@@ -251,7 +251,6 @@ void MainWindow::on_action_Load_triggered()
 
 void MainWindow::on_action_Save_triggered()
 {
-    setFocus();
     if (sFileName.isEmpty())
     {
         on_actionS_ave_as_triggered();
@@ -608,7 +607,6 @@ void MainWindow::on_sliderMusic_wheeled(bool positive)
 
 void MainWindow::on_action_Undo_triggered()
 {
-    setFocus();
     updateModification(mqQueue.undo());
     updateUndoRedo();
 }
@@ -650,7 +648,6 @@ void MainWindow::updateModification(Modification *modification)
 
 void MainWindow::on_action_Redo_triggered()
 {
-    setFocus();
     updateModification(mqQueue.redo());
     updateUndoRedo();
 }
@@ -675,13 +672,21 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
         if (event->key() == Qt::Key_Z)
         {
             Qt::KeyboardModifiers modifiers = event->modifiers();
-            if (modifiers == Qt::ControlModifier && mqQueue.undoable())
+            if (modifiers == Qt::ControlModifier)
             {
-                on_action_Undo_triggered();
+                textNotes->checkModification();
+                if (mqQueue.undoable())
+                {
+                    on_action_Undo_triggered();
+                }
             }
-            else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier) && mqQueue.redoable())
+            else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier))
             {
-                on_action_Redo_triggered();
+                textNotes->checkModification();
+                if (mqQueue.redoable())
+                {
+                    on_action_Redo_triggered();
+                }
             }
         }
     }
