@@ -340,7 +340,7 @@ void QCustomTableWidget::addSkill(int index)
         {
             std::string skill = pChangeSkillDial->text().toStdString();
             pSkills->add(skill, index+1);
-            emit modificationDone(new CharacterModification(pSkills, skill, index+1));
+            emit modificationDone(new CharacterModification(pSkills, skill, pCharacters, index+1));
         }
         if (pCharacters)
         {

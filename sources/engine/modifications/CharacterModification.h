@@ -53,9 +53,10 @@ class CharacterModification: public Modification
          *  \brief Constructor for additions of a skill
          *  \param list List of skills
          *  \param skill Skill added
+         *  \param characterList List of characters
          *  \param index Index of the skill
          */
-        CharacterModification(SkillList *list, const std::string &skill, int index);
+        CharacterModification(SkillList *list, const std::string &skill, CharacterList *characterList, int index);
         /*!
          *  \brief Constructor for deletions of a skill
          *  \param skillList List of skills
