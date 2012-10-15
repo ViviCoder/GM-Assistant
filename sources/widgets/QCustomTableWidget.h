@@ -70,6 +70,10 @@ class QCustomTableWidget: public QTableWidget
         void removeSkill(int index);
         void removeCharacter(int index);
         void editSkill(int index);
+        /*!
+         * \brief Edition of a character
+         * \param index Index of the character to be edited
+         */
         void editCharacter(int index);
     protected slots:
         /*!

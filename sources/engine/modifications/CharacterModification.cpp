@@ -36,6 +36,10 @@ CharacterModification::CharacterModification(SkillList *skillList, const string 
 {
 }
 
+CharacterModification::CharacterModification(CharacterList *characterList, const string &name, const string &playerName, const string &newName, const string &newPlayerName, int index): Modification(Modification::aEdition), etEditType(etCharacter), iIndex(index), pCharacterList(characterList), pSkillList(0), pCharacter(0), sSkill(playerName), sNewSkill(newPlayerName), sName(name), sNewName(newName)
+{
+}
+
 CharacterModification::~CharacterModification()
 {
     if (pCharacter)
@@ -61,6 +65,12 @@ void CharacterModification::undo()
                                                     break;
                                     case aDeletion: pCharacterList->add(*pCharacter, iIndex);
                                                     break;
+                                    case aEdition:  {
+                                                        Character &character = (*pCharacterList)[iIndex];
+                                                        character.setName(sName);
+                                                        character.setPlayerName(sSkill);
+                                                        break;
+                                                    }
                                     default:    break;
                                 }
                             }
@@ -117,6 +127,12 @@ void CharacterModification::redo()
                                                     break;
                                     case aDeletion: pCharacterList->remove(iIndex);
                                                     break;
+                                    case aEdition:  {
+                                                        Character &character = (*pCharacterList)[iIndex];
+                                                        character.setName(sNewName);
+                                                        character.setPlayerName(sNewSkill);
+                                                        break;
+                                                    }
                                     default:    break;
                                 }
                             }

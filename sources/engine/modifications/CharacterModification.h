@@ -42,7 +42,7 @@ class CharacterModification: public Modification
             etValue
         };
         /*!
-         *  \brief Constructor for additions/deletions of a character
+         *  \brief Constructor for additions/deletions of characters
          *  \param list List of characters
          *  \param character Character added or deleted
          *  \param index Index of the character
@@ -50,7 +50,7 @@ class CharacterModification: public Modification
          */
         CharacterModification(CharacterList *list, Character *character, int index, bool isAddition);
         /*!
-         *  \brief Constructor for additions of a skill
+         *  \brief Constructor for additions of skills
          *  \param list List of skills
          *  \param skill Skill added
          *  \param characterList List of characters
@@ -58,7 +58,7 @@ class CharacterModification: public Modification
          */
         CharacterModification(SkillList *list, const std::string &skill, CharacterList *characterList, int index);
         /*!
-         *  \brief Constructor for deletions of a skill
+         *  \brief Constructor for deletions of skills
          *  \param skillList List of skills
          *  \param skill Skill deleted
          *  \param characterList List of characters
@@ -67,13 +67,23 @@ class CharacterModification: public Modification
          */
         CharacterModification(SkillList *skillList, const std::string &skill, CharacterList *characterList, const std::vector<std::string> &values, int index);
         /*!
-         * \brief Constructor for editions of a skill
+         * \brief Constructor for editions of skills
          * \param skillList List of skills
          * \param skill Modified skill
          * \param newSkill New skill
          * \param index Index of the skill
          */
         CharacterModification(SkillList *skillList, const std::string &skill, const std::string &newSkill, int index);
+        /*!
+         * \brief Constructor for editions of characters
+         * \param characterList List of characters
+         * \param name Modified name
+         * \param playerName Modified player's name
+         * \param newName New name
+         * \param newPlayerName New player's name
+         * \param index Index of the character
+         */
+        CharacterModification(CharacterList *characterList, const std::string &name, const std::string &playerName, const std::string &newName, const std::string &newPlayerName, int index);
         /*!
          * \brief Destructor
          */
@@ -94,10 +104,14 @@ class CharacterModification: public Modification
         SkillList *pSkillList;
         //! Copy of the character
         Character *pCharacter;
-        //! Copy of the skill
+        //! Copy of the skill (or player name)
         std::string sSkill;
-        //! Copy of the new skill
+        //! Copy of the new skill (or player name)
         std::string sNewSkill;
+        //! Copy of the name
+        std::string sName;
+        //! Copy of the new name
+        std::string sNewName;
         //! Copy of the values of a skill
         std::vector<std::string> vValues;
 };

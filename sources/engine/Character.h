@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 #include <libxml++/libxml++.h>
 #include <stdexcept>
 
+//! Character (PC or NPC)
 class Character
 {
     private:
@@ -44,10 +45,25 @@ class Character
         // XML-related methods
         void toXML(xmlpp::Element &root) const;
         void fromXML(const xmlpp::Element &root);
-        // accessors
+        /*!
+         * \brief Getter of the name
+         * \return Character's name
+         */
         std::string name() const;
+        /*!
+         * \brief Setter of the name
+         * \param name New name
+         */
         void setName(const std::string &name);
+        /*!
+         * \brief Getter of the player's name
+         * \return Player's name
+         */
         std::string playerName() const;
+        /*!
+         * \brief Setter of the player's name
+         * \param playerName New player's name
+         */
         void setPlayerName(const std::string &playerName);
         bool isPlaying() const;
         std::string& skill(int index) throw(std::out_of_range);

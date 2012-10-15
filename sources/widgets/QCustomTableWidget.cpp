@@ -416,17 +416,19 @@ void QCustomTableWidget::removeSkill(int index)
 
 void QCustomTableWidget::editCharacter(int index)
 {
-    Character *character = &(*pCharacters)[index];
-    if(pChangeCharacterDial->exec(character)==QDialog::Accepted)
+    if (pCharacters)
     {
-        QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index);
-        rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
-        // updating the CharacterList
-        if (pCharacters)
+        Character &character = (*pCharacters)[index];
+        if(pChangeCharacterDial->exec(&character)==QDialog::Accepted)
         {
-            Character &charact = (*pCharacters)[index];
-            charact.setName(pChangeCharacterDial->name().toStdString());
-            charact.setPlayerName(pChangeCharacterDial->playerName().toStdString());
+            QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index);
+            rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
+            // updating the CharacterList
+            std::string name = character.name();
+            std::string playerName = character.playerName();
+            character.setName(pChangeCharacterDial->name().toStdString());
+            character.setPlayerName(pChangeCharacterDial->playerName().toStdString());
+            emit modificationDone(new CharacterModification(pCharacters, name, playerName, character.name(), character.playerName(), index));
         }
     }
     resizeRowToContents(index);

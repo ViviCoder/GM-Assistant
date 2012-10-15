@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 #include <vector>
 #include <libxml++/libxml++.h>
 
+//! List of characters
 class CharacterList
 {
     private:
@@ -48,7 +49,12 @@ class CharacterList
         // XML-related methods
         void toXML(xmlpp::Element &root) const;
         void fromXML(const xmlpp::Element &root);
-        // accessor
+        /*!
+         * \brief Getter of the characters
+         * \param index Index of the character
+         * \return Reference to the character at the given index
+         * \throw std::out_of_range Thrown when the index does not correspond to any character
+         */
         Character& operator[](int index) throw(std::out_of_range);
         // populating
         void add(const Character &character, int position=-1);
