@@ -40,6 +40,10 @@ CharacterModification::CharacterModification(CharacterList *characterList, const
 {
 }
 
+CharacterModification::CharacterModification(CharacterList *characterList, const string &value, const string &newValue, int character, int skill): Modification(Modification::aEdition), etEditType(etValue), iIndex(character), iNewIndex(skill), pCharacterList(characterList), pSkillList(0), pCharacter(0), sSkill(value), sNewSkill(newValue)
+{
+}
+
 CharacterModification::~CharacterModification()
 {
     if (pCharacter)
@@ -111,6 +115,11 @@ void CharacterModification::undo()
                             default:    break;
                         }
                         break;
+        case etValue:   if (pCharacterList)
+                        {
+                            (*pCharacterList)[iIndex].skill(iNewIndex) = sSkill;
+                        }
+                        break;
         default:    break;
     }
 }
@@ -169,6 +178,11 @@ void CharacterModification::redo()
                                             }
                                             break;
                             default:    break;
+                        }
+                        break;
+        case etValue:   if (pCharacterList)
+                        {
+                            (*pCharacterList)[iIndex].skill(iNewIndex) = sNewSkill;
                         }
                         break;
         default:    break;

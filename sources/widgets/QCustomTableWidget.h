@@ -43,12 +43,14 @@ class QCustomTableWidget: public QTableWidget
         QAction *actionAddColumn, *actionRemoveColumn, *actionAddRow, *actionRemoveRow, *actionEditRow, *actionEditColumn, *actionHAdd, *actionHRemove, *actionHEdit, *actionVAdd, *actionVRemove, *actionVEdit;
         ChangeSkillDialog *pChangeSkillDial;
         ChangeCharacterDialog *pChangeCharacterDial;
+        //! Underlying list of skills
         SkillList *pSkills;
+        //! Underlying list of characters
         CharacterList *pCharacters;
-        /*!
-         * \brief Flag indicating if an item is currently being edited
-         */
+        //! Flag indicating if an item is currently being edited
         bool bEditing;
+        //! Flag indicating if the widget is currently updating
+        bool bUpdate;
     protected:
         /*!
          * \brief Event raised when the table is clicked
@@ -65,10 +67,30 @@ class QCustomTableWidget: public QTableWidget
          * \param e Mouse event
          */
         void mouseDoubleClickEvent(QMouseEvent *e);
+        /*!
+         * \brief Addition of a skill
+         * \param index Index where to add the skill
+         */
         void addSkill(int index);
+        /*!
+         * \brief Addition of a character
+         * \param index Index where to add the character
+         */
         void addCharacter(int index);
+        /*!
+         * \brief Removal of a skill
+         * \param index Index of the skill to be removed
+         */
         void removeSkill(int index);
+        /*!
+         * \brief Removal of a character
+         * \param index Index of the character to be removed
+         */
         void removeCharacter(int index);
+        /*!
+         * \brief Edition of a skill
+         * \param index Index of the skill to be edited
+         */
         void editSkill(int index);
         /*!
          * \brief Edition of a character

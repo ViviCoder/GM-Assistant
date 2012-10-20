@@ -66,6 +66,12 @@ class Character
          */
         void setPlayerName(const std::string &playerName);
         bool isPlaying() const;
+        /*!
+         * \brief Getter/setter of the skills
+         * \param index Index of the skill
+         * \return skill at the given index
+         * \throw std::out_of_range Thrown when the given index does not correspond to any skill
+         */
         std::string& skill(int index) throw(std::out_of_range);
         unsigned int skillNumber() const;
         // populating

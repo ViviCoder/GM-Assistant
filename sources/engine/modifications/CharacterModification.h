@@ -85,6 +85,15 @@ class CharacterModification: public Modification
          */
         CharacterModification(CharacterList *characterList, const std::string &name, const std::string &playerName, const std::string &newName, const std::string &newPlayerName, int index);
         /*!
+         *  \brief Constructor for editions of values
+         *  \param characterList List of characters
+         *  \param value Modified value
+         *  \param newValue New value
+         *  \param character Index of the character
+         *  \param skill Index of the skill
+         */
+        CharacterModification(CharacterList *characterList, const std::string &value, const std::string &newValue, int character, int skill);
+        /*!
          * \brief Destructor
          */
         virtual ~CharacterModification();
@@ -98,15 +107,17 @@ class CharacterModification: public Modification
         EditionType etEditType;
         //! First (or unique) index of the modification
         int iIndex;
+        //! Second or new index of the modification
+        int iNewIndex;
         //! Character list modified
         CharacterList *pCharacterList;
         //! Skill list modified
         SkillList *pSkillList;
         //! Copy of the character
         Character *pCharacter;
-        //! Copy of the skill (or player name)
+        //! Copy of the skill (or player name or value)
         std::string sSkill;
-        //! Copy of the new skill (or player name)
+        //! Copy of the new skill (or player name or value)
         std::string sNewSkill;
         //! Copy of the name
         std::string sName;

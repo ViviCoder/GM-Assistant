@@ -22,7 +22,7 @@
 #include <QApplication>
 #include "CharacterModification.h"
 
-QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(0), pCharacters(0), bEditing(false)
+QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(0), pCharacters(0), bEditing(false), bUpdate(false)
 {
     // popup menu
     // skills
@@ -212,6 +212,7 @@ void QCustomTableWidget::setLists(SkillList *skills, CharacterList *characters)
 
 void QCustomTableWidget::updateDisplay()
 {
+    bUpdate = true;
     clear();
     setColumnCount(0);
     setRowCount(0);
@@ -244,6 +245,7 @@ void QCustomTableWidget::updateDisplay()
         }
         j++;
     }
+    bUpdate = false;
     resizeRowsToContents();
     resizeColumnsToContents();
 }
@@ -257,7 +259,14 @@ void QCustomTableWidget::onCellChanged(int row, int column)
         {
             charact.addSkill("0");
         }
-        charact.skill(column) = item(row,column)->text().toStdString();
+        std::string value = charact.skill(column);
+        std::string newValue = item(row, column)->text().toStdString();
+        charact.skill(column) = newValue;
+        if (!bUpdate)
+        {
+            // if it is a real modification, we register it
+            emit modificationDone(new CharacterModification(pCharacters, value, newValue, row, column));
+        }
     }
     resizeColumnToContents(column);
 }
