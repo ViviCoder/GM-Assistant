@@ -84,7 +84,7 @@ void TreeModification::undo()
                                             break;
                         }
                         break;
-        case aMovement: rTree.move(modifiedIndices(), sIndices);
+        case aMovement: rTree.move(modifiedNewIndices(), modifiedIndices());
                         break; 
         default:    break;
     }
@@ -126,7 +126,47 @@ Tree& TreeModification::tree()
 
 string TreeModification::modifiedIndices() const
 {
-    // we now determine if there is need to modify newIndices for the undoing
+    // we now determine if there is need to modify sIndices for the undoing
+    string subNew(sNewIndices), subCurrent(sIndices);
+    int nNew, nCurrent;
+    ostringstream buf;
+    // we iterate over the indices
+    bool firstTime = true;
+    do
+    {
+        nNew = Tree::extractIndex(subNew);
+        nCurrent = Tree::extractIndex(subCurrent);
+        
+        if (!firstTime)
+        {
+            buf << "_";
+        }
+
+        if (subNew=="" && nNew <= nCurrent)
+        {
+            // we modify the indices
+            buf << (nCurrent+1);
+        }
+        else
+        {
+            // we do not modify the indices of the item to remove
+            buf << nCurrent;
+        }
+        firstTime = false;
+    }
+    while (subNew!="" && subCurrent!="" && nNew == nCurrent);
+
+    // we add the following indices (they are unchanged)
+    if (subCurrent != "")
+    {
+        buf << "_" << subCurrent;
+    }
+    return buf.str();
+}
+
+string TreeModification::modifiedNewIndices() const
+{
+    // we now determine if there is need to modify sNewIndices for the undoing
     string subNew(sNewIndices), subCurrent(sIndices);
     int nNew, nCurrent;
     ostringstream buf;

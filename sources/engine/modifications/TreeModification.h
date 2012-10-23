@@ -121,9 +121,14 @@ class TreeModification: public Modification
         Item *pNewItem;
         /*!
          * \brief Modified indices for undoing a movement
-         * \return New indices of the moved branch after the movement
+         * \return Indices where to put back the moved branch
          */
         std::string modifiedIndices() const;
+        /*!
+         * \brief Modified new indices for undoing a movement
+         * \return Indices of the moved branch after the movement
+         */
+        std::string modifiedNewIndices() const;
         //! Previous content
         std::string sContent;
         //! New content
