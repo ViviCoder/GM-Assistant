@@ -51,6 +51,8 @@ class QCustomTableWidget: public QTableWidget
         bool bEditing;
         //! Flag indicating if the widget is currently updating
         bool bUpdate;
+        //! Number of recently created cells
+        int iCreatedCells;
     protected:
         /*!
          * \brief Event raised when the table is clicked

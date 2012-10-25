@@ -22,7 +22,7 @@
 #include <QApplication>
 #include "CharacterModification.h"
 
-QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(0), pCharacters(0), bEditing(false), bUpdate(false)
+QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0)
 {
     // popup menu
     // skills
@@ -262,7 +262,12 @@ void QCustomTableWidget::onCellChanged(int row, int column)
         std::string value = charact.skill(column);
         std::string newValue = item(row, column)->text().toStdString();
         charact.skill(column) = newValue;
-        if (!bUpdate)
+        if (iCreatedCells)
+        {
+            // we ignore the newly created cells
+            iCreatedCells--;
+        }
+        else if (!bUpdate)
         {
             // if it is a real modification, we register it
             emit modificationDone(new CharacterModification(pCharacters, value, newValue, row, column));
@@ -318,9 +323,10 @@ void QCustomTableWidget::addCharacter(int index)
         }
 
         // updating the display
+        int column_nb = columnCount();
+        // created cells
+        iCreatedCells = column_nb;
         insertRow(index+1);
-        int column_nb;
-        column_nb = columnCount();
         for (int i = 0; i < column_nb; i++)
         {
             QTableWidgetItem *row1 = new QTableWidgetItem("0");
@@ -364,9 +370,10 @@ void QCustomTableWidget::addSkill(int index)
         }
 
         // updating the display
+        int row_nb = rowCount();
+        // created cells
+        iCreatedCells = row_nb;
         insertColumn(index+1);
-        int row_nb;
-        row_nb = rowCount();
         for (int i = 0; i < row_nb; i++)
         {
             QTableWidgetItem *col1 = new QTableWidgetItem("0");
