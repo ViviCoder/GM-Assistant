@@ -22,18 +22,34 @@
 #include <QHeaderView>
 #include <QMouseEvent>
 
+//! Header for the custom table widget
 class QCustomHeaderView: public QHeaderView
 {
     Q_OBJECT
 
     protected:
+        /*!
+         * \brief MousePress event handler
+         * \param e Event to handle
+         *
+         * Detect right clicks and send the rightClicked signal
+         */
         void mousePressEvent(QMouseEvent *e);
 
     public:
-        // constructor
+        /*!
+         * \brief Constructor
+         * \param orientation Orientation (horizontal or vertical) of the header
+         * \param parent Parent widget
+         */
         QCustomHeaderView(Qt::Orientation orientation, QWidget *parent=0);
 
     signals:
+        /*!
+         * \brief Signal emitted when the header is right clicked
+         * \param index Row or column index of the click
+         * \param position Global position of the click (used for showing a popup menu)
+         */
         void rightClicked(int index, const QPoint &position);
 };
 

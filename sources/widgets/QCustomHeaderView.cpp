@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,8 @@
 
 QCustomHeaderView::QCustomHeaderView(Qt::Orientation orientation, QWidget *parent): QHeaderView(orientation,parent)
 {
+    // enabling drag & drop
+    setMovable(true);
 }
 
 void QCustomHeaderView::mousePressEvent(QMouseEvent *e)
