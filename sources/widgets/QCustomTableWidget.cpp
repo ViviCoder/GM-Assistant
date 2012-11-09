@@ -87,10 +87,14 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     setVerticalHeader(new QCustomHeaderView(Qt::Vertical,this));
 
     // connection of signals
-    connect(this,SIGNAL(cellChanged(int,int)),this,SLOT(onCellChanged(int,int)));
-    connect(dynamic_cast<QCustomHeaderView*>(horizontalHeader()),SIGNAL(rightClicked(int, const QPoint&)),this,SLOT(onHHeaderClicked(int, const QPoint&)));
-    connect(dynamic_cast<QCustomHeaderView*>(verticalHeader()),SIGNAL(rightClicked(int, const QPoint&)),this,SLOT(onVHeaderClicked(int, const QPoint&)));
+    QCustomHeaderView *header = dynamic_cast<QCustomHeaderView*>(horizontalHeader());
+    connect(header, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onHHeaderClicked(int, const QPoint&)));
+    connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onHHeaderMoved(int, int, int)));
+    header = dynamic_cast<QCustomHeaderView*>(verticalHeader());
+    connect(header, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onVHeaderClicked(int, const QPoint&)));
+    connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onVHeaderMoved(int, int, int)));
     connect(this, SIGNAL(itemSelectionChanged()), this, SLOT(on_itemSelectionChanged()));
+    connect(this, SIGNAL(cellChanged(int,int)), this, SLOT(onCellChanged(int,int)));
 }
 
 QCustomTableWidget::~QCustomTableWidget()
@@ -250,8 +254,11 @@ void QCustomTableWidget::updateDisplay()
     resizeColumnsToContents();
 }
 
-void QCustomTableWidget::onCellChanged(int row, int column)
+void QCustomTableWidget::onCellChanged(int logicalRow, int logicalColumn)
 {
+    // visual indices
+    int row = visualRow(logicalRow);
+    int column = visualColumn(logicalColumn);
     if (pCharacters)
     {
         Character &charact = (*pCharacters)[row];
@@ -260,7 +267,7 @@ void QCustomTableWidget::onCellChanged(int row, int column)
             charact.addSkill("0");
         }
         std::string value = charact.skill(column);
-        std::string newValue = item(row, column)->text().toStdString();
+        std::string newValue = item(logicalRow, logicalColumn)->text().toStdString();
         charact.skill(column) = newValue;
         if (iCreatedCells)
         {
@@ -273,7 +280,7 @@ void QCustomTableWidget::onCellChanged(int row, int column)
             emit modificationDone(new CharacterModification(pCharacters, value, newValue, row, column));
         }
     }
-    resizeColumnToContents(column);
+    resizeColumnsToContents();
 }
 
 void QCustomTableWidget::onHHeaderClicked(int index, const QPoint &position)
@@ -395,7 +402,7 @@ void QCustomTableWidget::addSkill(int index)
 
 void QCustomTableWidget::removeCharacter(int index)
 {
-    removeRow(index);
+    removeRow(logicalRow(index));
     // updating the CharacterList
     if (pCharacters)
     {
@@ -406,7 +413,7 @@ void QCustomTableWidget::removeCharacter(int index)
 
 void QCustomTableWidget::removeSkill(int index)
 {
-    removeColumn(index);
+    removeColumn(logicalColumn(index));
     // updating the she skill/character Lists
     std::vector<std::string> values;
     if (pCharacters)
@@ -437,17 +444,18 @@ void QCustomTableWidget::editCharacter(int index)
         Character &character = (*pCharacters)[index];
         if(pChangeCharacterDial->exec(&character)==QDialog::Accepted)
         {
-            QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index);
-            rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
             // updating the CharacterList
             std::string name = character.name();
             std::string playerName = character.playerName();
             character.setName(pChangeCharacterDial->name().toStdString());
             character.setPlayerName(pChangeCharacterDial->playerName().toStdString());
             emit modificationDone(new CharacterModification(pCharacters, name, playerName, character.name(), character.playerName(), index));
+            index = logicalRow(index);
+            QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index);
+            rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
         }
     }
-    resizeRowToContents(index);
+    resizeRowsToContents();
 }
 
 void QCustomTableWidget::editSkill(int index)
@@ -455,8 +463,6 @@ void QCustomTableWidget::editSkill(int index)
     QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
     if(pChangeSkillDial->exec(columnHeaderItem->text())==QDialog::Accepted)
     {
-        QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
-        columnHeaderItem->setText(pChangeSkillDial->text());
         // updating the SkillList
         if (pSkills)
         {
@@ -464,8 +470,11 @@ void QCustomTableWidget::editSkill(int index)
             emit modificationDone(new CharacterModification(pSkills, (*pSkills)[index], newSkill, index));
             (*pSkills)[index] = newSkill;
         }
+        index = logicalColumn(index);
+        QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
+        columnHeaderItem->setText(pChangeSkillDial->text());
     }
-    resizeColumnToContents(index);
+    resizeColumnsToContents();
 }
 
 void QCustomTableWidget::on_itemSelectionChanged()
@@ -481,4 +490,37 @@ void QCustomTableWidget::mouseDoubleClickEvent(QMouseEvent *)
         editItem(item);
         bEditing = true;
     }
+}
+
+void QCustomTableWidget::onHHeaderMoved(int, int oldColumn, int newColumn)
+{
+    if (pSkills)
+    {
+        pSkills->move(oldColumn, newColumn);   
+    }
+    if (pCharacters)
+    {
+        for (CharacterList::iterator it = pCharacters->begin(); it != pCharacters->end(); it++)
+        {
+            it->moveSkill(oldColumn, newColumn);
+        }
+    }
+}
+
+void QCustomTableWidget::onVHeaderMoved(int, int oldRow, int newRow)
+{
+    if (pCharacters)
+    {
+        pCharacters->move(oldRow, newRow);
+    }
+}
+
+int QCustomTableWidget::logicalRow(int visualRow)
+{
+    return verticalHeader()->logicalIndex(visualRow);
+}
+
+int QCustomTableWidget::logicalColumn(int visualColumn)
+{
+    return horizontalHeader()->logicalIndex(visualColumn);
 }

@@ -28,6 +28,7 @@
 class CharacterList
 {
     private:
+        //! Underlying character vector
         std::vector<Character> vCharacters;
     public:
         // iterators
@@ -59,6 +60,14 @@ class CharacterList
         // populating
         void add(const Character &character, int position=-1);
         void remove(int index) throw(std::out_of_range);
+        /*!
+         * \brief Move of a character
+         * \param source Index of the character to be moved
+         * \param destination Index where to move the character
+         * \return True if the move has been made, false otherwise
+         * \throw std::out_of_range Thrown when one of the indices is invalid
+         */
+        bool move(int source, int destination) throw (std::out_of_range);
         void clear();
         // iterators
         const_iterator begin() const;

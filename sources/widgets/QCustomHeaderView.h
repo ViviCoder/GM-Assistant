@@ -47,7 +47,7 @@ class QCustomHeaderView: public QHeaderView
     signals:
         /*!
          * \brief Signal emitted when the header is right clicked
-         * \param index Row or column index of the click
+         * \param index Visual index of the click
          * \param position Global position of the click (used for showing a popup menu)
          */
         void rightClicked(int index, const QPoint &position);

@@ -29,7 +29,7 @@ class Character
     private:
         std::string sName;
         std::string sPlayerName;
-        //std::vector<Skill> vSkills;
+        //! Underlying vector
         std::vector<std::string> vSkills;
     public:
         // iterator
@@ -77,6 +77,14 @@ class Character
         // populating
         void addSkill(const std::string &skill, int position=-1);
         void removeSkill(int index) throw(std::out_of_range);
+        /*!
+         * \brief Move of a skill
+         * \param source Index of the skill to be moved
+         * \param destination Index where to move the skill
+         * \return True if the move has been made, false otherwise
+         * \throw std::out_of_range Thrown when one of the indices is invalid
+         */
+        bool moveSkill(int source, int destination) throw (std::out_of_range);
         void clearSkills();
         // iterators
         SkillIterator begin() const;

@@ -102,12 +102,34 @@ class QCustomTableWidget: public QTableWidget
     protected slots:
         /*!
          * \brief Slot for when a cell changes 
-         * \param row Row of the cell
-         * \param column Column of the cell
+         * \param logicalRow Logical row of the cell
+         * \param logicalColumn Logical column of the cell
          */
-        void onCellChanged(int row, int column);
+        void onCellChanged(int logicalRow, int logicalColumn);
+        /*!
+         * \brief Slot for when the horizontal header is right-clicked
+         * \param index Index of the clicked column
+         * \param position Global position of the click for popups
+         */
         void onHHeaderClicked(int index, const QPoint &position);
+        /*!
+         * \brief Slot for when the vertical header is right-clicked
+         * \param index Index of the clicked row
+         * \param position Global position of the click for popups
+         */
         void onVHeaderClicked(int index, const QPoint &position);
+        /*!
+         * \brief Slot for when a section of the horizontal header is moved
+         * \param oldColumn Old visual column
+         * \param newColumn New visual column
+         */
+        void onHHeaderMoved(int, int oldColumn, int newColumn);
+        /*!
+         * \brief Slot for when a section of the vertical header is moved
+         * \param oldRow Old visual row
+         * \param newRow New visual row
+         */
+        void onVHeaderMoved(int, int oldRow, int newRow);
         /*!
          * \brief Slot for when the selection changes 
          */
@@ -118,7 +140,7 @@ class QCustomTableWidget: public QTableWidget
          * \param parent Parent widget
          */
         QCustomTableWidget(QWidget *parent=0);
-        // destructor
+        //! destructor
         ~QCustomTableWidget();
         /*!
          * \brief Setter for the underlying skill and character lists
@@ -132,6 +154,18 @@ class QCustomTableWidget: public QTableWidget
          * \brief Update of the display
          */
         void updateDisplay();
+        /*!
+         * \brief Convert visual to logical row index
+         * \param visualRow Visual row
+         * \return Logical row
+         */
+        int logicalRow(int visualRow);
+        /*!
+         * \brief Convert visual to logical column index
+         * \param visualColumn Visual column
+         * \return Logical column
+         */
+        int logicalColumn(int visualColumn);
     signals:
         /*!
          * \brief Signal to register a modification

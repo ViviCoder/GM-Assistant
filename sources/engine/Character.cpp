@@ -125,6 +125,35 @@ void Character::removeSkill(int index) throw(out_of_range)
     vSkills.erase(vSkills.begin()+index);
 }
 
+bool Character::moveSkill(int source, int destination) throw(out_of_range)
+{
+    if (source < 0 || (unsigned int)source >= vSkills.size())
+    {
+        throw out_of_range("Index of source out of bounds");
+    }
+    if (destination < 0 || (unsigned int)destination >= vSkills.size())
+    {
+        throw out_of_range("Index of destination out of bounds");
+    }
+    if (source == destination)
+    {
+        return false;
+    }
+    // skill to move
+    string skill = vSkills[source];
+    if (source < destination)
+    {
+        destination++;
+    }
+    else
+    {
+        source++;
+    }
+    vSkills.insert(vSkills.begin() + destination, skill);
+    vSkills.erase(vSkills.begin() + source);
+    return true;
+}
+
 void Character::clearSkills()
 {
     vSkills.clear();

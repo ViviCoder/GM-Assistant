@@ -91,6 +91,35 @@ void CharacterList::remove(int index) throw(out_of_range)
     vCharacters.erase(vCharacters.begin()+index);
 }
 
+bool CharacterList::move(int source, int destination) throw(out_of_range)
+{
+    if (source < 0 || (unsigned int)source >= vCharacters.size())
+    {
+        throw out_of_range("Index of source out of bounds");
+    }
+    if (destination < 0 || (unsigned int)destination >= vCharacters.size())
+    {
+        throw out_of_range("Index of destination out of bounds");
+    }
+    if (source == destination)
+    {
+        return false;
+    }
+    // character to move
+    Character& character = vCharacters[source];
+    if (source < destination)
+    {
+        destination++;
+    }
+    else
+    {
+        source++;
+    }
+    vCharacters.insert(vCharacters.begin() + destination, character);
+    vCharacters.erase(vCharacters.begin() + source);
+    return true;
+}
+
 Character& CharacterList::operator[](int index) throw(out_of_range)
 {
     if (index<0 || (unsigned int)index >= vCharacters.size())

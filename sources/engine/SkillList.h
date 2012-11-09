@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -24,9 +24,11 @@
 #include <vector>
 #include <libxml++/libxml++.h>
 
+//! List of attributes/features/skills
 class SkillList
 {
     private:
+        //! Underlying skill vector
         std::vector<std::string> vSkills;
     public:
         // iterator
@@ -46,6 +48,14 @@ class SkillList
         // populating
         void add(const std::string &skill, int position=-1);
         void remove(int index) throw(std::out_of_range);
+        /*!
+         * \brief Move of a skill
+         * \param source Index of the skill to be moved
+         * \param destination Index where to move the skill
+         * \return True if the move has been made, false otherwise
+         * \throw std::out_of_range Thrown when one of the indices is invalid
+         */
+        bool move(int source, int destination) throw (std::out_of_range);
         void clear();
         // iterators
         iterator begin() const;
