@@ -94,6 +94,21 @@ class CharacterModification: public Modification
          */
         CharacterModification(CharacterList *characterList, const std::string &value, const std::string &newValue, int character, int skill);
         /*!
+         *  \brief Constructor for movements of skills
+         *  \param skillList List of skills
+         *  \param characterList List of characters
+         *  \param oldIndex Old index of the character
+         *  \param newIndex New index of the character
+         */
+        CharacterModification(SkillList *skillList, CharacterList *characterList, int oldIndex, int newIndex);
+        /*!
+         *  \brief Constructor for movements of characters
+         *  \param characterList List of characters
+         *  \param oldIndex Old index of the character
+         *  \param newIndex New index of the character
+         */
+        CharacterModification(CharacterList *characterList, int oldIndex, int newIndex);
+        /*!
          * \brief Destructor
          */
         virtual ~CharacterModification();

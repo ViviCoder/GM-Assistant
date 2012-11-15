@@ -496,7 +496,10 @@ void QCustomTableWidget::onHHeaderMoved(int, int oldColumn, int newColumn)
 {
     if (pSkills)
     {
-        pSkills->move(oldColumn, newColumn);   
+        if (pSkills->move(oldColumn, newColumn) && pCharacters)
+        {
+            emit modificationDone(new CharacterModification(pSkills, pCharacters, oldColumn, newColumn));
+        }   
     }
     if (pCharacters)
     {
@@ -511,7 +514,10 @@ void QCustomTableWidget::onVHeaderMoved(int, int oldRow, int newRow)
 {
     if (pCharacters)
     {
-        pCharacters->move(oldRow, newRow);
+        if (pCharacters->move(oldRow, newRow))
+        {
+            emit modificationDone(new CharacterModification(pCharacters, oldRow, newRow));
+        }
     }
 }
 

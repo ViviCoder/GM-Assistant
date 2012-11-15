@@ -44,11 +44,9 @@ class Modification
          */
         enum Type
         {
-            //! Metadata
-            tMetadata,
             //! Tree
             tTree,
-            //! Character
+            //! Character or skill
             tCharacter,
             //! Note
             tNote

@@ -44,6 +44,14 @@ CharacterModification::CharacterModification(CharacterList *characterList, const
 {
 }
 
+CharacterModification::CharacterModification(SkillList *skillList, CharacterList *characterList, int oldIndex, int newIndex): Modification(Modification::aMovement), etEditType(etSkill), iIndex(oldIndex), iNewIndex(newIndex), pCharacterList(characterList), pSkillList(skillList), pCharacter(0)
+{
+}
+
+CharacterModification::CharacterModification(CharacterList *characterList, int oldIndex, int newIndex): Modification(Modification::aMovement), etEditType(etCharacter), iIndex(oldIndex), iNewIndex(newIndex), pCharacterList(characterList), pSkillList(0), pCharacter(0)
+{
+}
+
 CharacterModification::~CharacterModification()
 {
     if (pCharacter)
@@ -75,6 +83,8 @@ void CharacterModification::undo()
                                                         character.setPlayerName(sSkill);
                                                         break;
                                                     }
+                                    case aMovement: pCharacterList->move(iNewIndex, iIndex);
+                                                    break;
                                     default:    break;
                                 }
                             }
@@ -112,6 +122,18 @@ void CharacterModification::undo()
                                                 (*pSkillList)[iIndex] = sSkill;
                                             }
                                             break;
+                            case aMovement: if (pSkillList)
+                                            {
+                                                pSkillList->move(iNewIndex, iIndex);
+                                            }
+                                            if (pCharacterList)
+                                            {
+                                                for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
+                                                {
+                                                    it->moveSkill(iNewIndex, iIndex);
+                                                }
+                                            }
+                                            break;
                             default:    break;
                         }
                         break;
@@ -142,6 +164,8 @@ void CharacterModification::redo()
                                                         character.setPlayerName(sNewSkill);
                                                         break;
                                                     }
+                                    case aMovement: pCharacterList->move(iIndex, iNewIndex);
+                                                    break;
                                     default:    break;
                                 }
                             }
@@ -175,6 +199,18 @@ void CharacterModification::redo()
                             case aEdition:  if (pSkillList)
                                             {
                                                 (*pSkillList)[iIndex] = sNewSkill;
+                                            }
+                                            break;
+                            case aMovement: if (pSkillList)
+                                            {
+                                                pSkillList->move(iIndex, iNewIndex);
+                                            }
+                                            if (pCharacterList)
+                                            {
+                                                for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
+                                                {
+                                                    it->moveSkill(iIndex, iNewIndex);
+                                                }
                                             }
                                             break;
                             default:    break;
