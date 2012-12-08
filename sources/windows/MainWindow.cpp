@@ -159,7 +159,7 @@ void MainWindow::on_actionFull_triggered()
 void MainWindow::on_actionSimple_triggered()
 {
     clearLayout();
-    GridLayout->addWidget(gbScenario,0,0,0,1);
+    GridLayout->addWidget(gbScenario,0,0,2,1);
     GridLayout->addWidget(gbMusic,0,1);
     GridLayout->addWidget(gbSound,1,1);
     gbScenario->show();
@@ -172,7 +172,7 @@ void MainWindow::on_actionSimple_triggered()
 void MainWindow::on_actionDesign_triggered()
 {
     clearLayout();
-    GridLayout->addWidget(gbScenario,0,0,0,1);
+    GridLayout->addWidget(gbScenario,0,0,2,1);
     GridLayout->addWidget(gbCharacter,0,1);
     GridLayout->addWidget(gbNote,1,1);
     gbScenario->show();
