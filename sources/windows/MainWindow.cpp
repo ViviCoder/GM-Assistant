@@ -501,6 +501,10 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 
 void MainWindow::addRecent(const QString &fileName)
 {
+    if (fileName == sFileName)
+    {
+        return;
+    }
     // delete the new file if already present
     int index = slRecent.indexOf(fileName);
     if (index != -1)
