@@ -20,6 +20,7 @@
 #include "QCustomHeaderView.h"
 #include "ChangeSkillDialog.h"
 #include <QApplication>
+#include <QScrollBar>
 
 QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(NULL), pCharacters(NULL), bEditing(false)
 {
@@ -321,6 +322,30 @@ void QCustomTableWidget::addCharacter(int index)
             setVerticalHeaderItem(index+1, rowHeaderItem);
         }
         resizeRowsToContents();
+        repaint();
+        int y = rowViewportPosition(index+1);
+        QScrollBar *bar = verticalScrollBar();
+        if (y < 0)
+        {
+            bar->setValue(bar->value()+y);
+        }
+        else
+        {
+            int dy = y + rowHeight(index+1) - viewport()->height();
+            if (columnViewportPosition(column_nb-1) + columnWidth(column_nb-1) > viewport()->width())
+            {
+                dy += horizontalScrollBar()->height() + 3;
+            }
+            if (dy > 0)
+            {
+                int value = bar->value() + dy;
+                if (value > bar->maximum())
+                {
+                    bar->setMaximum(value);
+                }
+                bar->setValue(value);
+            }
+        }
     }
 }
 
