@@ -96,6 +96,16 @@ class QCustomTableWidget: public QTableWidget
         ~QCustomTableWidget();
         // associating a skill list and a character list to the widget
         void setLists(SkillList *skills, CharacterList *chars);
+
+    public slots:
+        /*!
+         * \brief Scrolling
+         * \param row Row index
+         * \param column Column index
+         *
+         * Scroll to the item at the given indices. If one of the indices is equal to -1, no scrolling in this direction will be performed.
+         */
+        void scrollTo(int row, int column);
 };
 
 #endif

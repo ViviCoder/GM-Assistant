@@ -322,30 +322,7 @@ void QCustomTableWidget::addCharacter(int index)
             setVerticalHeaderItem(index+1, rowHeaderItem);
         }
         resizeRowsToContents();
-        repaint();
-        int y = rowViewportPosition(index+1);
-        QScrollBar *bar = verticalScrollBar();
-        if (y < 0)
-        {
-            bar->setValue(bar->value()+y);
-        }
-        else
-        {
-            int dy = y + rowHeight(index+1) - viewport()->height();
-            if (columnViewportPosition(column_nb-1) + columnWidth(column_nb-1) > viewport()->width())
-            {
-                dy += horizontalScrollBar()->height() + 3;
-            }
-            if (dy > 0)
-            {
-                int value = bar->value() + dy;
-                if (value > bar->maximum())
-                {
-                    bar->setMaximum(value);
-                }
-                bar->setValue(value);
-            }
-        }
+        scrollTo(index+1, -1);
     }
 }
 
@@ -389,8 +366,9 @@ void QCustomTableWidget::addSkill(int index)
             columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
             setHorizontalHeaderItem(index+1, columnHeaderItem);
         }
+        resizeColumnsToContents();
+        scrollTo(-1, index+1);
     }
-    resizeColumnsToContents();
 }
 
 void QCustomTableWidget::removeCharacter(int index)
@@ -470,4 +448,58 @@ void QCustomTableWidget::mouseDoubleClickEvent(QMouseEvent *)
         editItem(item);
         bEditing = true;
     }
+}
+
+void QCustomTableWidget::scrollTo(int row, int column)
+{
+    repaint();
+    int row_count = rowCount(), column_count = columnCount();
+    if (row > -1 && row < row_count)
+    {
+        int y = rowViewportPosition(row);
+        QScrollBar *bar = verticalScrollBar();
+        if (y < 0)
+        {
+            bar->setValue(bar->value()+y);
+        }
+        else
+        {
+            int dy = y + rowHeight(row) - viewport()->height();
+            if (columnViewportPosition(column_count-1) + columnWidth(column_count-1) > viewport()->width())
+            {
+                dy += horizontalScrollBar()->height() + 3;
+            }
+            if (dy > 0)
+            {
+                int value = bar->value() + dy;
+                if (value > bar->maximum())
+                {
+                    bar->setMaximum(value);
+                }
+                bar->setValue(value);
+            }
+        }
+    }   
+    if (column > -1 && column < column_count)
+    {
+        int x = columnViewportPosition(column);
+        QScrollBar *bar = horizontalScrollBar();
+        if (x < 0)
+        {
+            bar->setValue(bar->value()+x);
+        }
+        else
+        {
+            int dx = x + columnWidth(column) - viewport()->width();
+            if (dx > 0)
+            {
+                int value = bar->value() + dx;
+                if (value > bar->maximum())
+                {
+                    bar->setMaximum(value);
+                }
+                bar->setValue(value);
+            }
+        }
+    }   
 }
