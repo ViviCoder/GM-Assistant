@@ -97,6 +97,11 @@ class QCustomTreeWidget: public QTreeWidget
          * Executes the action associated with the type of the item
          */
         void launchItem(QTreeWidgetItem* qItem);
+        /*!
+         * \brief Scrolling
+         * \param item Item to scroll to
+         */
+        void scrollTo(QTreeWidgetItem *item);
     protected:
         // overriden methods
         /*!

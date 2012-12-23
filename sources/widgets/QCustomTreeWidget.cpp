@@ -24,6 +24,7 @@
 #include <QApplication>
 #include <QMessageBox>
 #include <exception>
+#include <QScrollBar>
 
 QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(NULL), pItemDial(new ItemDialog(this)), pDragSource(NULL), bNewlySelected(false), bEditing(false), bSizeLimited(false), pmMethod(pmNone)
 {
@@ -467,6 +468,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
             }
             else
             {    
+                QCustomTreeWidgetItem *newQItem;
                 switch (pItemDial->selectionResult())
                 {
                     case ItemDialog::rBrother:  {
@@ -475,23 +477,24 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                                     if (parent==NULL)
                                                     {
                                                         Branch *newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
-                                                        new QCustomTreeWidgetItem(this,newBranch,item);
+                                                        newQItem = new QCustomTreeWidgetItem(this,newBranch,item);
                                                     }
                                                     else
                                                     {
                                                         Branch *newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
-                                                        new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
+                                                        newQItem = new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
                                                     }
                                                     break;
                                                 }
                     case ItemDialog::rChild:    {
                                                     // we want to insert it inside the given item
                                                     Branch *newBranch = item->branch()->tree().add(newItem);
-                                                    QCustomTreeWidgetItem *newQItem = new QCustomTreeWidgetItem(item,newBranch);
+                                                    newQItem = new QCustomTreeWidgetItem(item,newBranch);
                                                     expandItem(newQItem->parent());
                                                     break;
                                                 }
                 }
+                scrollTo(newQItem);
             }
         }
         resizeColumnToContents(0);
@@ -521,4 +524,22 @@ void QCustomTreeWidget::setPlayingMethod(QWidget *player, PlayingMethod playingM
 QCustomTreeWidget::PlayingMethod QCustomTreeWidget::playingMethod() const
 {
     return pmMethod;
+}
+
+void QCustomTreeWidget::scrollTo(QTreeWidgetItem *item)
+{
+    repaint();
+    scrollToItem(item);
+
+    int column_count = columnCount();
+    if (!horizontalScrollBar()->isVisible() && visualItemRect(item).y() > viewport()->height() - 2*horizontalScrollBar()->height() && columnViewportPosition(column_count-1) + columnWidth(column_count-1) > viewport()->width())
+    {
+        QScrollBar *bar = verticalScrollBar();
+        int y = bar->value() + horizontalScrollBar()->height();
+        if (y > bar->maximum())
+        {
+            bar->setMaximum(y);
+        }
+        bar->setValue(y);
+    }
 }
