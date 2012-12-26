@@ -225,6 +225,7 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
     QTreeWidgetItem *qItem = currentItem();
     if (qItem != NULL)
     {
+        scrollTo(qItem);
         switch (e->key())
         {
             case Qt::Key_F2:    switch (e->modifiers())
@@ -465,6 +466,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
             {
                 item->branch()->setItem(newItem);
                 item->updateDisplay(); 
+                scrollTo(item);
             }
             else
             {    
