@@ -403,6 +403,7 @@ void QCustomTableWidget::removeSkill(int index)
 
 void QCustomTableWidget::editCharacter(int index)
 {
+    scrollTo(index, -1);
     Character *character = &(*pCharacters)[index];
     if(pChangeCharacterDial->exec(character)==QDialog::Accepted)
     {
@@ -415,12 +416,14 @@ void QCustomTableWidget::editCharacter(int index)
             charact.setName(pChangeCharacterDial->name().toStdString());
             charact.setPlayerName(pChangeCharacterDial->playerName().toStdString());
         }
+        resizeRowToContents(index);
+        scrollTo(index, -1);
     }
-    resizeRowToContents(index);
 }
 
 void QCustomTableWidget::editSkill(int index)
 {
+    scrollTo(-1, index);
     QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
     if(pChangeSkillDial->exec(columnHeaderItem->text())==QDialog::Accepted)
     {
@@ -431,8 +434,9 @@ void QCustomTableWidget::editSkill(int index)
         {
             (*pSkills)[index] = pChangeSkillDial->text().toStdString();
         }
+        resizeColumnToContents(index);
+        scrollTo(-1, index);
     }
-    resizeColumnToContents(index);
 }
 
 void QCustomTableWidget::on_itemSelectionChanged()

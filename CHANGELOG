@@ -1,6 +1,6 @@
 Changes in version 1.1.9
 - reorganization of the info dialog window to fit in low-resolution screens
-- auto-scrolling in table widget when adding skill or character 
+- auto-scrolling in table/tree widgets when adding/editing skill/character 
 
 Changes in version 1.1.8
 - Interface menu renamed View
