@@ -428,8 +428,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="51"/>
+        <source>&amp;Validate</source>
+        <translation>&amp;Valider</translation>
+    </message>
+    <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Éditer</translation>
+        <translation type="obsolete">&amp;Éditer</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="62"/>
@@ -492,8 +496,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ChangeSkillDialog.ui" line="41"/>
+        <source>&amp;Validate</source>
+        <translation>&amp;Valider</translation>
+    </message>
+    <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Éditer</translation>
+        <translation type="obsolete">&amp;Éditer</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangeSkillDialog.ui" line="52"/>
@@ -928,7 +936,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="183"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="155"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="156"/>
         <source>C&amp;hild</source>
         <translation>En&amp;fant</translation>
     </message>
@@ -982,14 +990,18 @@ p, li { white-space: pre-wrap; }
         <translation>Fichers image (*.jpg *.jpeg *.png *.bmp *.svg)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="159"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="160"/>
         <source>Edit the item</source>
         <translation>Éditer l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="161"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="163"/>
+        <source>&amp;Validate</source>
+        <translation>&amp;Valider</translation>
+    </message>
+    <message>
         <source>&amp;Edit</source>
-        <translation>É&amp;diter</translation>
+        <translation type="obsolete">É&amp;diter</translation>
     </message>
     <message>
         <source>Picture files (*.jpg *.jpeg *.png *.bmp)</source>
@@ -1287,7 +1299,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="100"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="114"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="449"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="450"/>
         <location filename="../sources/windows/MainWindow.cpp" line="225"/>
         <location filename="../sources/windows/MainWindow.cpp" line="229"/>
         <location filename="../sources/windows/MainWindow.cpp" line="256"/>

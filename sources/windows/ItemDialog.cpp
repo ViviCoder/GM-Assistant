@@ -152,13 +152,15 @@ int ItemDialog::exec(Item *item)
     {
         setWindowTitle(QApplication::translate("itemDialog", "Create a new item", 0));
         pushBrother->setVisible(true);
+        pushChild->setIcon(QIcon(":/data/images/son.svg"));
         pushChild->setText(QApplication::translate("itemDialog", "C&hild", 0));
     }
     else
     {
         setWindowTitle(QApplication::translate("itemDialog", "Edit the item", 0));
         pushBrother->setVisible(false);
-        pushChild->setText(QApplication::translate("itemDialog", "&Edit", 0));
+        pushChild->setIcon(QIcon(":/data/images/check.svg"));
+        pushChild->setText(QApplication::translate("itemDialog", "&Validate", 0));
         // pre-filling
         content = item->content().c_str();
         itemType = item->type();

@@ -38,7 +38,7 @@
      <item>
       <widget class="QPushButton" name="pushEdit">
        <property name="text">
-        <string>&amp;Edit</string>
+        <string>&amp;Validate</string>
        </property>
        <property name="icon">
         <iconset resource="../../ressource.qrc">
