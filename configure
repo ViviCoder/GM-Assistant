@@ -18,6 +18,15 @@
 
 #!/bin/sh
 
+# Trim function
+trim()
+{
+    echo $1 | tr -d "'"
+}
+
+# target name
+target="gm-assistant"
+
 # Initializing some options
 debug=0
 system_install=1
@@ -30,12 +39,27 @@ err_missing_soft=3
 err_missing_header=4
 
 # default paths
-prefix="/usr"
-sysconfdir="/etc"
+default_prefix="/usr"
+default_bindir="games"
+default_datadir="share/$target"
+default_desktopdir="share/applications"
+default_mandir="share/man/man6"
+default_sysconfdir="/etc/xdg/$target"
+default_usrconfdir='$HOME/.config/'$target
+
+prefix=$default_prefix
+sysconfdir=$default_sysconfdir
+usrconfdir="$HOME/.config/$target"
+
+# file names
+pro_file=$target.pro
+desk_file=$target.desktop
+conf_file=$target.conf
+man_file=$target.6
 
 # Reading options
 supported_short_options="ghu"
-supported_long_options="help,debug,prefix:,user,build:,includedir:,mandir:,libdir:,infodir:,sysconfdir:,localstatedir:,libexecdir:,disable-maintainer-mode,disable-dependency-tracking"
+supported_long_options="help,debug,prefix:,user,bindir:,datadir:,desktopdir:,build:,includedir:,mandir:,libdir:,infodir:,sysconfdir:,usrconfdir:,localstatedir:,libexecdir:,disable-maintainer-mode,disable-dependency-tracking"
 
 options=$(getopt -s sh -l $supported_long_options $supported_short_options $@)
 if [ $? -eq 1 ]   # unsupported options
@@ -52,34 +76,57 @@ do
     then
         case $opt in
             -g | --debug)   debug=1;;
-            -h | --help)    echo -e "Usage: configure [options]\n\nGeneral options:\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n -u, --user\tInstall in a user scope\n\nDirectory options:\n --prefix=[/usr]\t\tInstallation directory\n --mandir=[<prefix>/share/man]\tManual directory\n --sysconfdir=[/etc]\t\tSystem configuration directory\n\nEnvironment variables:\n CFLAGS:\tC compilation flags\n CXXFLAGS:\tC++ compilation flags\n CPPFLAGS:\tC/C++ pre-processor flags\n LDFLAGS:\tlinking flags"
+            -h | --help)    echo -e "Usage: configure [options]\n\nGeneral options:\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n -u, --user\tInstall in a user scope\n\nDirectory options:\n --prefix=[$default_prefix]\t\t\t\tInstallation prefix\n --bindir=[<prefix>/$default_bindir]\t\t\tBinary directory\n --datadir=[<prefix>/$default_datadir]\tData directory\n --desktopdir=[<prefix>/$default_desktopdir]\tDesktop file directory\n --mandir=[<prefix>/$default_mandir]\t\tManual directory\n --sysconfdir=[$default_sysconfdir]\t\tSystem configuration directory\n --usrconfdir=[$default_usrconfdir]\tUser configuration directory\n\nEnvironment variables:\n CFLAGS:\tC compilation flags\n CXXFLAGS:\tC++ compilation flags\n CPPFLAGS:\tC/C++ pre-processor flags\n LDFLAGS:\tlinking flags"
                 exit 0;;
-            -u | --user)    system_install=0
-                            config_path="$HOME/.config/gm-assistant";;
+            -u | --user)    system_install=0;;
             --build)        build_icon=1;;
             --prefix)       arg=1;;
             --sysconfdir)   arg=2;;
             --mandir)       arg=3;;
+            --bindir)       arg=4;;
+            --datadir)      arg=5;;
+            --desktopdir)   arg=6;;
+            --usrconfdir)   arg=7;;
             --) break;;
         esac
     else
         case $arg in
-            1)  prefix=$(echo $opt | tr -d "'");;
-            2)  sysconfdir=$(echo $opt | tr -d "'");;
-            3)  mandir=$(echo $opt | tr -d "'");;
+            1)  prefix=$(trim $opt);;
+            2)  sysconfdir=$(trim $opt);;
+            3)  mandir=$(trim $opt);;
+            4)  bindir=$(trim $opt);;
+            5)  datadir=$(trim $opt);;
+            6)  desktopdir=$(trim $opt);;
+            7)  usrconfdir=$(trim $opt);;
         esac
         arg=0
     fi
 done
 
 # Setting paths
-mandir=$prefix"/share/man"
+if [ -z $bindir ]
+then
+    bindir="$prefix/$default_bindir"
+fi
+if [ -z $datadir ]
+then
+    datadir="$prefix/$default_datadir"
+fi
+if [ -z $desktopdir ]
+then
+    desktopdir="$prefix/$default_desktopdir"
+fi
+if [ -z $mandir ]
+then
+    mandir="$prefix/$default_mandir"
+fi
 if [ $system_install -ne 0 ]
 then
-    config_path="$sysconfdir/xdg/gm-assistant"
+    confdir=$sysconfdir
+else
+    confdir=$usrconfdir
 fi
 
-conf_file="gm-assistant.conf"
 
 # Find the OS
 OS=$(uname)
@@ -190,10 +237,6 @@ echo "* Preparing the compilation... *"
 echo "********************************"
 echo
 
-target="gm-assistant"
-pro_file=$target.pro
-desk_file=$target.desktop
-
 $qmake -project -o $pro_file
 echo "QT += svg" >> $pro_file
 $lupdate $pro_file
@@ -239,7 +282,7 @@ sed $sed_i 's#DEL_FILE) Makefile#DEL_FILE) Makefile\n\t-$(DEL_FILE) translations
 
 # preparing conf file
 echo "[directories]" > $conf_file
-echo "install=$prefix/share/gm-assistant" >> $conf_file
+echo "install=$datadir" >> $conf_file
 
 # preparing the installation
 if [ $system_install -ne 0 ]
@@ -251,17 +294,18 @@ if [ $build_icon -ne 0 ]
 then
     # preparing the icon
     sed $sed_i 's#Makefile $(TARGET)#Makefile $(TARGET) GMA.xpm\n\nGMA.xpm: GMA.png\n\tconvert -resize 32x32 $< $@\n\nGMA.png: data/images/GMA.svg\n\trsvg-convert $< -o $@#' Makefile
-    install_icon='\t$(INSTALL_FILE) GMA.xpm $(SHARE)\n'
+    install_icon='\t$(INSTALL_FILE) GMA.xpm $(DATADIR)\n'
 fi
 
 # preparing the desktop file
-sed "s#<bin_path>#$prefix/games#" $desk_file.src > $desk_file 
-sed $sed_i "s#<icon_path>#$prefix/share/gm-assistant#" $desk_file
+sed "s#<bin_path>#$bindir#" $desk_file.src > $desk_file 
+sed $sed_i "s#<icon_path>#$datadir#" $desk_file
 
-sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINS=$(BASEDIR)/games\nSHARE=$(BASEDIR)/share/gm-assistant\nTRANSLATIONS=$(SHARE)/translations\nMANDIR=$(DESTDIR)'$mandir/man6'\nCONF=$(DESTDIR)'$config_path'\nAPPS=$(BASEDIR)/share/applications\ninstall:\n\t\install -d $(BASEDIR) $(BINS) $(TRANSLATIONS) $(MANDIR) $(CONF) $(APPS)\n\t$(INSTALL_PROGRAM) gm-assistant $(BINS)\n'"$install_icon"'\t$(INSTALL_FILE) data/images/GMA.svg $(SHARE)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/gm-assistant.6 $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONF)\n\t$(INSTALL_FILE) '$desk_file' $(APPS)#' Makefile
+sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINDIR=$(DESTDIR)'$bindir'\nDATADIR=$(DESTDIR)'$datadir'\nTRANSLATIONS=$(DATADIR)/translations\nMANDIR=$(DESTDIR)'$mandir'\nCONFDIR=$(DESTDIR)'$confdir'\nDESKTOPDIR=$(DESTDIR)'$desktopdir'\ninstall:\n\t\install -d $(BASEDIR) $(BINDIR) $(TRANSLATIONS) $(MANDIR) $(CONFDIR) $(DESKTOPDIR)\n\t$(INSTALL_PROGRAM) '$target' $(BINDIR)\n'"$install_icon"'\t$(INSTALL_FILE) data/images/GMA.svg $(DATADIR)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/'$man_file' $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONFDIR)\n\t$(INSTALL_FILE) '$desk_file' $(DESKTOPDIR)#' Makefile
 
 # preparing the uninstallation
-sed $sed_i 's#^uninstall:.*#uninstall:\n\t$(DEL_FILE) $(BINS)/gm-assistant\n\t$(DEL_FILE) $(TRANSLATIONS)/*\n\t$(DEL_DIR) $(TRANSLATIONS)\n\t$(DEL_FILE) $(SHARE)/*\n\t$(DEL_DIR) $(SHARE)\n\t$(DEL_FILE) $(MANDIR)/gm-assistant.6\n\t$(DEL_FILE) $(CONF)/*\n\t$(DEL_DIR) $(CONF)\n\t$(DEL_FILE) $(APPS)/'$desk_file'#' Makefile
+sed $sed_i 's#rmdir#rmdir --ignore-fail-on-non-empty#' Makefile
+sed $sed_i 's#^uninstall:.*#uninstall:\n\t$(DEL_FILE) $(BINDIR)/'$target'\n\t$(DEL_DIR) $(BINDIR)\n\t$(DEL_FILE) $(TRANSLATIONS)/*\n\t$(DEL_DIR) $(TRANSLATIONS)\n\t$(DEL_FILE) $(DATADIR)/GMA.*\n\t$(DEL_DIR) $(DATADIR)\n\t$(DEL_FILE) $(MANDIR)/'$man_file'\n\t$(DEL_DIR) $(MANDIR)\n\t$(DEL_FILE) $(CONFDIR)/'$conf_file'\n\t$(DEL_DIR) $(CONFDIR)\n\t$(DEL_FILE) $(DESKTOPDIR)/'$desk_file'\n\t$(DEL_DIR) $(DESKTOPDIR)#' Makefile
 
 echo
 echo "********************"
