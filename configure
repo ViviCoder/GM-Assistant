@@ -21,7 +21,7 @@
 # Trim function
 trim()
 {
-    echo $1 | tr -d "'"
+    readlink -m $(echo $1 | tr -d "'" | sed "s#^~#$HOME#")
 }
 
 # target name
@@ -172,7 +172,7 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="uname echo getopt ls grep head pkg-config make sed install tr "$qmake" "$lrelease" "$lupdate
+softs="uname echo getopt ls grep head pkg-config make sed install tr readlink "$qmake" "$lrelease" "$lupdate
 if [ $build_icon -ne 0 ]
 then
     softs=$softs" rsvg-convert convert"
