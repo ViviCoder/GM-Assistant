@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -22,6 +22,7 @@
 #include <QTextCodec>
 #include <QLibraryInfo>
 #include <QSettings>
+#include <QDir>
 
 #include "MainWindow.h"
 
@@ -60,6 +61,20 @@ int main(int argc, char* argv[])
         install_dir += "/";
     }
     settings.endGroup();
+#endif
+#ifdef _WIN32
+	QDir home = QDir::home();
+	QString dirName = "GM-Assistant";
+	if (home.exists(dirName) || home.mkdir(dirName))
+	{
+		QSettings settings;
+		settings.beginGroup("directories");
+		if (settings.value("work").toString().isEmpty())
+		{
+			settings.setValue("work", QDir::homePath() + "/" + dirName);
+		}
+		settings.endGroup();
+	}
 #endif
 
     QString locale = QLocale::system().name().section('_',0,0);
