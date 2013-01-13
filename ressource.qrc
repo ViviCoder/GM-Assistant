@@ -11,5 +11,6 @@
     <file>data/images/son.svg</file>
     <file>data/images/speaker.svg</file>
     <file>data/images/uncheck.svg</file>
+    <file>data/images/pencil.svg</file>
   </qresource>
 </RCC>

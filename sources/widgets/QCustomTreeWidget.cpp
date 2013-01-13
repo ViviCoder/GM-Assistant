@@ -49,7 +49,7 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     actionDelete->setIconVisibleInMenu(true);
     actionDelete->setStatusTip(QApplication::translate("customTree","Delete the item",0));
     actionDelete->setShortcut(QApplication::translate("customTree","Del",0));
-    actionEdit = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTree","&Edit",0),this);
+    actionEdit = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTree","&Edit",0),this);
     actionEdit->setIconVisibleInMenu(true);
     actionEdit->setStatusTip(QApplication::translate("customTree","Edit the item",0));
     actionEdit->setShortcut(QApplication::translate("customTree","Ctrl+F2",0));

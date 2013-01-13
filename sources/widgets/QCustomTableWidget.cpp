@@ -33,7 +33,7 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     actionRemoveColumn = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
     actionRemoveColumn->setIconVisibleInMenu(true);
     actionRemoveColumn->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
-    actionEditColumn = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTable","&Edit",0),this);
+    actionEditColumn = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTable","&Edit",0),this);
     actionEditColumn->setIconVisibleInMenu(true);
     actionEditColumn->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
     menuColumn->addAction(actionAddColumn);
@@ -47,7 +47,7 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     actionRemoveRow = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
     actionRemoveRow->setIconVisibleInMenu(true);
     actionRemoveRow->setStatusTip(QApplication::translate("customTable","Remove the character",0));
-    actionEditRow = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTable","&Edit",0),this);
+    actionEditRow = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTable","&Edit",0),this);
     actionEditRow->setIconVisibleInMenu(true);
     actionEditRow->setStatusTip(QApplication::translate("customTable","Edit the character",0));
     menuRow->addAction(actionAddRow);
@@ -61,7 +61,7 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     actionVRemove = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
     actionVRemove->setIconVisibleInMenu(true);
     actionVRemove->setStatusTip(QApplication::translate("customTable","Remove the character",0));
-    actionVEdit = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTable","&Edit",0),this);
+    actionVEdit = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTable","&Edit",0),this);
     actionVEdit->setIconVisibleInMenu(true);
     actionVEdit->setStatusTip(QApplication::translate("customTable","Edit the character",0));
     vMenu->addAction(actionVAdd);
@@ -75,7 +75,7 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     actionHRemove = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
     actionHRemove->setIconVisibleInMenu(true);
     actionHRemove->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
-    actionHEdit = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTable","&Edit",0),this);
+    actionHEdit = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTable","&Edit",0),this);
     actionHEdit->setIconVisibleInMenu(true);
     actionHEdit->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
     hMenu->addAction(actionHAdd);
