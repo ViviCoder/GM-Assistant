@@ -4,6 +4,8 @@ Changes in version 1.1.9
 - new options added to the configure script
 - default working directory for Windows
 - new icon for the edition in table/tree widget
+- missing status tips added
+- "sound" replaced by "audio file"
 
 Changes in version 1.1.8
 - Interface menu renamed View

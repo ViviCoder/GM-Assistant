@@ -131,7 +131,7 @@ void ItemDialog::on_toolBrowse_clicked()
     switch (type())
     {
         case Item::tSound:  {
-                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the sound file to associate to the item",0),"",QApplication::translate("itemDialog","Audio files (*.mp3 *.wav *.ogg)",0)));    
+                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the audio file to associate to the item",0),"",QApplication::translate("itemDialog","Audio files (*.mp3 *.wav *.ogg)",0)));    
                                 break;
                             }
         case Item::tPicture:  { 

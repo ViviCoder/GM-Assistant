@@ -114,7 +114,7 @@
       <item>
        <widget class="QRadioButton" name="radioSound">
         <property name="text">
-         <string>S&amp;ound</string>
+         <string>A&amp;udio</string>
         </property>
         <property name="icon">
          <iconset resource="../../ressource.qrc">

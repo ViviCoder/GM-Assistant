@@ -146,7 +146,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                                             else
                                                             {
                                                                 actionLaunch->setIcon(QIcon(":/data/images/speaker.svg"));
-                                                                actionLaunch->setStatusTip(QApplication::translate("customTree","Play the sound",0));
+                                                                actionLaunch->setStatusTip(QApplication::translate("customTree","Play the audio file",0));
                                                                 actionLaunch->setText(QApplication::translate("customTree","P&lay",0));
                                                                 actionLaunch->setVisible(true);
                                                             }
