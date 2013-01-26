@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -154,6 +154,7 @@ int ItemDialog::exec(Item *item)
         pushBrother->setVisible(true);
         pushChild->setIcon(QIcon(":/data/images/son.svg"));
         pushChild->setText(QApplication::translate("itemDialog", "C&hild", 0));
+        pushBrother->setDefault(true);
     }
     else
     {
@@ -161,6 +162,7 @@ int ItemDialog::exec(Item *item)
         pushBrother->setVisible(false);
         pushChild->setIcon(QIcon(":/data/images/check.svg"));
         pushChild->setText(QApplication::translate("itemDialog", "&Validate", 0));
+        pushChild->setDefault(true);
         // pre-filling
         content = item->content().c_str();
         itemType = item->type();
