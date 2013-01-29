@@ -141,11 +141,15 @@ then
     qmake="qmake"
     lrelease="lrelease"
     lupdate="lupdate"
+    moc="moc"
+    uic="uic"
 elif [ -n $(which qmake-qt4) ]
 then
     qmake="qmake-qt4"
     lrelease="lrelease-qt4"
     lupdate="lupdate-qt4"
+    moc="moc-qt4"
+    uic="uic-qt4"
 else
     echo Both qmake and qmake-qt4 missing !
     exit $err_missing_soft
@@ -172,7 +176,7 @@ echo "*************************"
 echo
 
 # Needed softwares
-softs="uname echo getopt ls grep head pkg-config make sed install tr readlink "$qmake" "$lrelease" "$lupdate
+softs="uname echo getopt ls grep head pkg-config make sed install tr readlink $qmake $lrelease $lupdate g++ $moc rcc $uic"
 if [ $build_icon -ne 0 ]
 then
     softs=$softs" rsvg-convert convert"
