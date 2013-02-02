@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -80,6 +80,10 @@ class QCustomTreeWidget: public QTreeWidget
         void on_itemChanged(QTreeWidgetItem* item,int column);
         void on_itemCollapsed();
         void on_itemExpanded();
+        /*!
+         * \brief Delete an item
+         * \param item Item to delete
+         */
         void deleteItem(QTreeWidgetItem* item);
         void on_itemSelectionChanged();
         /*!
@@ -181,12 +185,16 @@ class QCustomTreeWidget: public QTreeWidget
     signals:
         /*!
          * \brief Signal to play a file
-         * \param fileName File to play
-         * \param duration Pointer to the duration of the file
+         * \param item Pointer to the soundItem we want to play
          *
          * This signal is send when a sound file has to be played
          */
-        void fileToPlay(const std::string &fileName, const double *duration);
+        void fileToPlay(const SoundItem *item);
+        /*!
+         * \brief Signal to stop playing a file
+         * \param item Pointer to the soundItem we want to stop
+         */
+        void fileToStop(const SoundItem *item);
 };
 
 #endif

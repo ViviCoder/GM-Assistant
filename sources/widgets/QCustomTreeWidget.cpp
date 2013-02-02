@@ -102,7 +102,7 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
                                 else
                                 {
                                     // we send a signal to play the music (and do some other things)
-                                    emit fileToPlay(soundItem->fileName(), soundItem->duration());
+                                    emit fileToPlay(soundItem);
                                 }
                                 break;
                             }
@@ -325,6 +325,11 @@ void QCustomTreeWidget::setTree(Tree *tree)
 void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
 {
     Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
+    // stop the music if the item is a SoundItem
+    if (pmMethod == pmMusic && branch->item()->type() == Item::tSound)
+    {
+        emit fileToStop(dynamic_cast<SoundItem*>(branch->item()));
+    }
     // delete item
     Tree *parent = branch->parent();
     if (parent==NULL)
@@ -511,13 +516,16 @@ void QCustomTreeWidget::setSizeLimited(bool sizeLimited)
 void QCustomTreeWidget::setPlayingMethod(QWidget *player, PlayingMethod playingMethod)
 {
     pmMethod = playingMethod;
-    disconnect(SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playMusic(std::string, const double*)));
-    disconnect(SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playSound(std::string)));
+    disconnect(SIGNAL(fileToPlay(const SoundItem*)), player, SLOT(playMusic(const SoundItem*)));
+    disconnect(SIGNAL(fileToPlay(const SoundItem*)), player, SLOT(playSound(const SoundItem*)));
+    disconnect(SIGNAL(fileToStop(const SoundItem*)), player, SLOT(stopMusic(const SoundItem*)));
     switch (playingMethod)
     {
-        case pmSound:   connect(this, SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playSound(std::string)));
+        case pmSound:   connect(this, SIGNAL(fileToPlay(const SoundItem*)), player, SLOT(playSound(const SoundItem*)));
                         break;
-        case pmMusic:   connect(this, SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playMusic(std::string, const double*)));
+        case pmMusic:   connect(this, SIGNAL(fileToPlay(const SoundItem*)), player, SLOT(playMusic(const SoundItem*)));
+                        // connection for stopping
+                        connect(this, SIGNAL(fileToStop(const SoundItem*)), player, SLOT(stopMusic(const SoundItem*)));
                         break;
         default:        break;                        
     }
