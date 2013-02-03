@@ -441,8 +441,7 @@ void MainWindow::stopMusic(const SoundItem *item)
         siCurrentMusic = 0;
         soundEngine.stop();
         timer->stop();
-        buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
-        sliderMusic->setEnabled(false);
+        updateTimeDisplay();
     }
 }
 

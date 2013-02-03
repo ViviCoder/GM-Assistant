@@ -469,6 +469,17 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
         {
             if (edition)
             {
+                // stopping the music if necessary
+                Item *iItem = item->branch()->item();
+                if (pmMethod == pmMusic && iItem->type() == Item::tSound)
+                {
+                    SoundItem *siItem = dynamic_cast<SoundItem*>(iItem);
+                    if (newItem->type() != Item::tSound || dynamic_cast<SoundItem*>(newItem)->fileName() != siItem->fileName())
+                    {
+                        emit fileToStop(siItem);
+                    }
+                }
+                // replacement
                 item->branch()->setItem(newItem);
                 item->updateDisplay(); 
                 scrollTo(item);
