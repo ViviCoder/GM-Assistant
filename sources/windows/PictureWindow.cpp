@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ PictureWindow::PictureWindow(const std::string &pictureFileName, QWidget *parent
     if (sImageFileName.substr(sImageFileName.length()-3,3) != "svg")
     {
         bSvg = false;
-        QPixmap pix(sImageFileName.c_str());
+        pix = QPixmap(sImageFileName.c_str());
         if (pix.isNull())
         {
             // the image cannot be loaded
@@ -111,7 +111,7 @@ void PictureWindow::resizeEvent(QResizeEvent *e)
     }
     else
     {
-        setPixmap(pixmap()->scaled(e->size(),Qt::KeepAspectRatio));
+        setPixmap(pix.scaled(e->size(),Qt::KeepAspectRatio));
     }
 }
 
