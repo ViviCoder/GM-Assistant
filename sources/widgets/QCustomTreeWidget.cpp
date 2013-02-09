@@ -486,7 +486,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
             }
             else
             {    
-                QCustomTreeWidgetItem *newQItem;
+                QCustomTreeWidgetItem *newQItem = 0;
                 switch (pItemDial->selectionResult())
                 {
                     case ItemDialog::rBrother:  {

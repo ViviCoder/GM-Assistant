@@ -21,7 +21,7 @@
 # Trim function
 trim()
 {
-    readlink -m $(echo $1 | tr -d "'" | sed "s#^~#$HOME#")
+    readlink -m $(echo $1 | tr -d "'" | sed "s#^~#$HOME#" | sed "s#\${prefix}#$prefix#")
 }
 
 # target name
@@ -43,13 +43,9 @@ default_prefix="/usr"
 default_bindir="games"
 default_datadir="share/$target"
 default_desktopdir="share/applications"
-default_mandir="share/man/man6"
-default_sysconfdir="/etc/xdg/$target"
-default_usrconfdir='$HOME/.config/'$target
-
-prefix=$default_prefix
-sysconfdir=$default_sysconfdir
-usrconfdir="$HOME/.config/$target"
+default_mandir="share/man"
+default_sysconfdir="/etc"
+default_usrconfdir="$HOME"
 
 # file names
 pro_file=$target.pro
@@ -76,7 +72,7 @@ do
     then
         case $opt in
             -g | --debug)   debug=1;;
-            -h | --help)    echo -e "Usage: configure [options]\n\nGeneral options:\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n -u, --user\tInstall in a user scope\n\nDirectory options:\n --prefix=[$default_prefix]\t\t\t\tInstallation prefix\n --bindir=[<prefix>/$default_bindir]\t\t\tBinary directory\n --datadir=[<prefix>/$default_datadir]\tData directory\n --desktopdir=[<prefix>/$default_desktopdir]\tDesktop file directory\n --mandir=[<prefix>/$default_mandir]\t\tManual directory\n --sysconfdir=[$default_sysconfdir]\t\tSystem configuration directory\n --usrconfdir=[$default_usrconfdir]\tUser configuration directory\n\nEnvironment variables:\n CFLAGS:\tC compilation flags\n CXXFLAGS:\tC++ compilation flags\n CPPFLAGS:\tC/C++ pre-processor flags\n LDFLAGS:\tlinking flags"
+            -h | --help)    echo -e "Usage: configure [options]\n\nGeneral options:\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n -u, --user\tInstall in a user scope\n\nDirectory options:\n --prefix=[$default_prefix]\t\t\t\tInstallation prefix\n --bindir=[<prefix>/$default_bindir]\t\t\tBinary directory\n --datadir=[<prefix>/$default_datadir]\tData directory\n --desktopdir=[<prefix>/$default_desktopdir]\tDesktop file directory\n --mandir=[<prefix>/$default_mandir]\t\t\tManual directory\n --sysconfdir=[$default_sysconfdir]\t\t\t\tSystem configuration directory\n --usrconfdir=[$default_usrconfdir]\t\t\tUser configuration directory\n\nEnvironment variables:\n CFLAGS:\tC compilation flags\n CXXFLAGS:\tC++ compilation flags\n CPPFLAGS:\tC/C++ pre-processor flags\n LDFLAGS:\tlinking flags"
                 exit 0;;
             -u | --user)    system_install=0;;
             --build)        build_icon=1;;
@@ -104,6 +100,10 @@ do
 done
 
 # Setting paths
+if [ -z $prefix ]
+then
+    prefix="$default_prefix"
+fi
 if [ -z $bindir ]
 then
     bindir="$prefix/$default_bindir"
@@ -122,10 +122,19 @@ then
 fi
 if [ $system_install -ne 0 ]
 then
-    confdir=$sysconfdir
+    if [ -z $sysconfdir ]
+    then
+        sysconfdir="$default_sysconfdir"
+    fi
+    confdir="$sysconfdir/xdg/$target"
 else
-    confdir=$usrconfdir
+    if [ -z $usrconfdir ]
+    then
+        usrconfdir="$default_usrconfdir"
+    fi
+    confdir="$usrconfdir/.config/$target"
 fi
+mandir="$mandir/man6"
 
 
 # Find the OS
