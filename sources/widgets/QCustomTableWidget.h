@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -174,6 +174,15 @@ class QCustomTableWidget: public QTableWidget
          * This signal is sent when the tree is modified
          */
         void modificationDone(Modification *modification);
+    public slots:
+        /*!
+         * \brief Scrolling
+         * \param row Row index
+         * \param column Column index
+         *
+         * Scroll to the item at the given indices. If one of the indices is equal to -1, no scrolling in this direction will be performed.
+         */
+        void scrollTo(int row, int column);
 };
 
 #endif

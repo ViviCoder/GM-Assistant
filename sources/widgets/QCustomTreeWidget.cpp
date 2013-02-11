@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -24,6 +24,7 @@
 #include <QApplication>
 #include <QMessageBox>
 #include <exception>
+#include <QScrollBar>
 
 QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(0), pItemDial(new ItemDialog(this)), pDragSource(0), bNewlySelected(false), bEditing(false), bSizeLimited(false), pmMethod(pmNone)
 {
@@ -48,7 +49,7 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     actionDelete->setIconVisibleInMenu(true);
     actionDelete->setStatusTip(QApplication::translate("customTree","Delete the item",0));
     actionDelete->setShortcut(QApplication::translate("customTree","Del",0));
-    actionEdit = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTree","&Edit",0),this);
+    actionEdit = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTree","&Edit",0),this);
     actionEdit->setIconVisibleInMenu(true);
     actionEdit->setStatusTip(QApplication::translate("customTree","Edit the item",0));
     actionEdit->setShortcut(QApplication::translate("customTree","Ctrl+F2",0));
@@ -101,7 +102,7 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
                                 else
                                 {
                                     // we send a signal to play the music (and do some other things)
-                                    emit fileToPlay(soundItem->fileName(), soundItem->duration());
+                                    emit fileToPlay(soundItem);
                                 }
                                 break;
                             }
@@ -145,7 +146,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                                             else
                                                             {
                                                                 actionLaunch->setIcon(QIcon(":/data/images/speaker.svg"));
-                                                                actionLaunch->setStatusTip(QApplication::translate("customTree","Play the sound",0));
+                                                                actionLaunch->setStatusTip(QApplication::translate("customTree","Play the audio file",0));
                                                                 actionLaunch->setText(QApplication::translate("customTree","P&lay",0));
                                                                 actionLaunch->setVisible(true);
                                                             }
@@ -228,6 +229,7 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
     QTreeWidgetItem *qItem = currentItem();
     if (qItem)
     {
+        scrollTo(qItem);
         switch (e->key())
         {
             case Qt::Key_F2:    switch (e->modifiers())
@@ -333,6 +335,11 @@ void QCustomTreeWidget::updateDisplay()
 void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
 {
     Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
+    // stop the music if the item is a SoundItem
+    if (pmMethod == pmMusic && branch->item()->type() == Item::tSound)
+    {
+        emit fileToStop(dynamic_cast<SoundItem*>(branch->item()));
+    }
     // delete item
     if (pTree)
     {
@@ -472,11 +479,24 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
             if (edition)
             {
                 emit modificationDone(new TreeModification(*pTree, ItemFactory::copyItem(item->branch()->item()), ItemFactory::copyItem(newItem), pTree->indicesOf(item->branch())));
+                // stopping the music if necessary
+                Item *iItem = item->branch()->item();
+                if (pmMethod == pmMusic && iItem->type() == Item::tSound)
+                {
+                    SoundItem *siItem = dynamic_cast<SoundItem*>(iItem);
+                    if (newItem->type() != Item::tSound || dynamic_cast<SoundItem*>(newItem)->fileName() != siItem->fileName())
+                    {
+                        emit fileToStop(siItem);
+                    }
+                }
+                // replacement
                 item->branch()->setItem(newItem);
                 item->updateDisplay(); 
+                scrollTo(item);
             }
             else
-            {   
+            {    
+                QCustomTreeWidgetItem *newQItem = 0;
                 switch (pItemDial->selectionResult())
                 {
                     case ItemDialog::rBrother:  {
@@ -485,23 +505,24 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                                     if (parent)
                                                     {
                                                         newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
-                                                        new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
+                                                        newQItem = new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
                                                     }
                                                     else
                                                     {
                                                         newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
-                                                        new QCustomTreeWidgetItem(this,newBranch,item);
+                                                        newQItem = new QCustomTreeWidgetItem(this,newBranch,item);
                                                     }
                                                     break;
                                                 }
                     case ItemDialog::rChild:    {
                                                     // we want to insert it inside the given item
                                                     newBranch = item->branch()->tree().add(newItem);
-                                                    QCustomTreeWidgetItem *newQItem = new QCustomTreeWidgetItem(item,newBranch);
+                                                    newQItem = new QCustomTreeWidgetItem(item,newBranch);
                                                     expandItem(newQItem->parent());
                                                     break;
                                                 }
                 }
+                scrollTo(newQItem);
             }
         }
         else
@@ -527,13 +548,16 @@ void QCustomTreeWidget::setSizeLimited(bool sizeLimited)
 void QCustomTreeWidget::setPlayingMethod(QWidget *player, PlayingMethod playingMethod)
 {
     pmMethod = playingMethod;
-    disconnect(SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playMusic(std::string, const double*)));
-    disconnect(SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playSound(std::string)));
+    disconnect(SIGNAL(fileToPlay(const SoundItem*)), player, SLOT(playMusic(const SoundItem*)));
+    disconnect(SIGNAL(fileToPlay(const SoundItem*)), player, SLOT(playSound(const SoundItem*)));
+    disconnect(SIGNAL(fileToStop(const SoundItem*)), player, SLOT(stopMusic(const SoundItem*)));
     switch (playingMethod)
     {
-        case pmSound:   connect(this, SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playSound(std::string)));
+        case pmSound:   connect(this, SIGNAL(fileToPlay(const SoundItem*)), player, SLOT(playSound(const SoundItem*)));
                         break;
-        case pmMusic:   connect(this, SIGNAL(fileToPlay(std::string, const double*)), player, SLOT(playMusic(std::string, const double*)));
+        case pmMusic:   connect(this, SIGNAL(fileToPlay(const SoundItem*)), player, SLOT(playMusic(const SoundItem*)));
+                        // connection for stopping
+                        connect(this, SIGNAL(fileToStop(const SoundItem*)), player, SLOT(stopMusic(const SoundItem*)));
                         break;
         default:        break;                        
     }
@@ -554,4 +578,22 @@ void QCustomTreeWidget::onItemCollapsed(QTreeWidgetItem *item)
 {
     dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()->item()->setExpanded(false);
     resizeColumnToContents(0);
+}
+
+void QCustomTreeWidget::scrollTo(QTreeWidgetItem *item)
+{
+    repaint();
+    scrollToItem(item);
+
+    int column_count = columnCount();
+    if (!horizontalScrollBar()->isVisible() && visualItemRect(item).y() > viewport()->height() - 2*horizontalScrollBar()->height() && columnViewportPosition(column_count-1) + columnWidth(column_count-1) > viewport()->width())
+    {
+        QScrollBar *bar = verticalScrollBar();
+        int y = bar->value() + horizontalScrollBar()->height();
+        if (y > bar->maximum())
+        {
+            bar->setMaximum(y);
+        }
+        bar->setValue(y);
+    }
 }

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -131,11 +131,11 @@ void ItemDialog::on_toolBrowse_clicked()
     switch (type())
     {
         case Item::tSound:  {
-                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the sound file to associate to the item",0),"",QApplication::translate("itemDialog","Audio files (*.mp3 *.wav *.ogg)",0)));    
+                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the audio file to associate to the item",0),"",QApplication::translate("itemDialog","Audio files (*.mp3 *.wav *.ogg)",0)));    
                                 break;
                             }
         case Item::tImage:  { 
-                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the picture file to associate to the item",0),"",QApplication::translate("itemDialog","Image files (*.jpg *.jpeg *.png *.bmp *.svg)",0)));    
+                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the image file to associate to the item",0),"",QApplication::translate("itemDialog","Image files (*.jpg *.jpeg *.png *.bmp *.svg)",0)));    
                                 break;
                             }
         default:            break;
@@ -152,7 +152,9 @@ int ItemDialog::exec(Item *item)
     {
         setWindowTitle(QApplication::translate("itemDialog", "Edit the item", 0));
         pushBrother->setVisible(false);
-        pushChild->setText(QApplication::translate("itemDialog", "&Edit", 0));
+        pushChild->setIcon(QIcon(":/data/images/check.svg"));
+        pushChild->setText(QApplication::translate("itemDialog", "&Validate", 0));
+        pushChild->setDefault(true);
         // pre-filling
         content = item->content().c_str();
         itemType = item->type();
@@ -166,7 +168,9 @@ int ItemDialog::exec(Item *item)
     {
         setWindowTitle(QApplication::translate("itemDialog", "Create a new item", 0));
         pushBrother->setVisible(true);
+        pushChild->setIcon(QIcon(":/data/images/son.svg"));
         pushChild->setText(QApplication::translate("itemDialog", "C&hild", 0));
+        pushBrother->setDefault(true);
     }
 
     // resets the window

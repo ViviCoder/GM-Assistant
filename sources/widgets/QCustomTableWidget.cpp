@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 #include "ChangeSkillDialog.h"
 #include <QApplication>
 #include "CharacterModification.h"
+#include <QScrollBar>
 
 QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0)
 {
@@ -33,7 +34,7 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     actionRemoveColumn = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
     actionRemoveColumn->setIconVisibleInMenu(true);
     actionRemoveColumn->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
-    actionEditColumn = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTable","&Edit",0),this);
+    actionEditColumn = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTable","&Edit",0),this);
     actionEditColumn->setIconVisibleInMenu(true);
     actionEditColumn->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
     menuColumn->addAction(actionAddColumn);
@@ -47,7 +48,7 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     actionRemoveRow = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
     actionRemoveRow->setIconVisibleInMenu(true);
     actionRemoveRow->setStatusTip(QApplication::translate("customTable","Remove the character",0));
-    actionEditRow = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTable","&Edit",0),this);
+    actionEditRow = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTable","&Edit",0),this);
     actionEditRow->setIconVisibleInMenu(true);
     actionEditRow->setStatusTip(QApplication::translate("customTable","Edit the character",0));
     menuRow->addAction(actionAddRow);
@@ -61,7 +62,7 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     actionVRemove = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
     actionVRemove->setIconVisibleInMenu(true);
     actionVRemove->setStatusTip(QApplication::translate("customTable","Remove the character",0));
-    actionVEdit = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTable","&Edit",0),this);
+    actionVEdit = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTable","&Edit",0),this);
     actionVEdit->setIconVisibleInMenu(true);
     actionVEdit->setStatusTip(QApplication::translate("customTable","Edit the character",0));
     vMenu->addAction(actionVAdd);
@@ -75,7 +76,7 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     actionHRemove = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
     actionHRemove->setIconVisibleInMenu(true);
     actionHRemove->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
-    actionHEdit = new QAction(QIcon(":/data/images/son.svg"),QApplication::translate("customTable","&Edit",0),this);
+    actionHEdit = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTable","&Edit",0),this);
     actionHEdit->setIconVisibleInMenu(true);
     actionHEdit->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
     hMenu->addAction(actionHAdd);
@@ -350,6 +351,7 @@ void QCustomTableWidget::addCharacter(int index)
             setVerticalHeaderItem(index+1, rowHeaderItem);
         }
         resizeRowsToContents();
+        scrollTo(index+1, -1);
     }
 }
 
@@ -396,8 +398,9 @@ void QCustomTableWidget::addSkill(int index)
             columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
             setHorizontalHeaderItem(index+1, columnHeaderItem);
         }
+        resizeColumnsToContents();
+        scrollTo(-1, index+1);
     }
-    resizeColumnsToContents();
 }
 
 void QCustomTableWidget::removeCharacter(int index)
@@ -439,6 +442,7 @@ void QCustomTableWidget::removeSkill(int index)
 
 void QCustomTableWidget::editCharacter(int index)
 {
+    scrollTo(index, -1);
     if (pCharacters)
     {
         Character &character = (*pCharacters)[index];
@@ -454,12 +458,14 @@ void QCustomTableWidget::editCharacter(int index)
             QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index);
             rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
         }
+        resizeRowToContents(index);
+        scrollTo(index, -1);
     }
-    resizeRowsToContents();
 }
 
 void QCustomTableWidget::editSkill(int index)
 {
+    scrollTo(-1, index);
     QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
     if(pChangeSkillDial->exec(columnHeaderItem->text())==QDialog::Accepted)
     {
@@ -473,8 +479,9 @@ void QCustomTableWidget::editSkill(int index)
         index = logicalColumn(index);
         QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
         columnHeaderItem->setText(pChangeSkillDial->text());
+        resizeColumnToContents(index);
+        scrollTo(-1, index);
     }
-    resizeColumnsToContents();
 }
 
 void QCustomTableWidget::on_itemSelectionChanged()
@@ -529,4 +536,58 @@ int QCustomTableWidget::logicalRow(int visualRow)
 int QCustomTableWidget::logicalColumn(int visualColumn)
 {
     return horizontalHeader()->logicalIndex(visualColumn);
+}
+
+void QCustomTableWidget::scrollTo(int row, int column)
+{
+    repaint();
+    int row_count = rowCount(), column_count = columnCount();
+    if (row > -1 && row < row_count)
+    {
+        int y = rowViewportPosition(row);
+        QScrollBar *bar = verticalScrollBar();
+        if (y < 0)
+        {
+            bar->setValue(bar->value()+y);
+        }
+        else
+        {
+            int dy = y + rowHeight(row) - viewport()->height();
+            if (columnViewportPosition(column_count-1) + columnWidth(column_count-1) > viewport()->width())
+            {
+                dy += horizontalScrollBar()->height() + 3;
+            }
+            if (dy > 0)
+            {
+                int value = bar->value() + dy;
+                if (value > bar->maximum())
+                {
+                    bar->setMaximum(value);
+                }
+                bar->setValue(value);
+            }
+        }
+    }   
+    if (column > -1 && column < column_count)
+    {
+        int x = columnViewportPosition(column);
+        QScrollBar *bar = horizontalScrollBar();
+        if (x < 0)
+        {
+            bar->setValue(bar->value()+x);
+        }
+        else
+        {
+            int dx = x + columnWidth(column) - viewport()->width();
+            if (dx > 0)
+            {
+                int value = bar->value() + dx;
+                if (value > bar->maximum())
+                {
+                    bar->setMaximum(value);
+                }
+                bar->setValue(value);
+            }
+        }
+    }   
 }

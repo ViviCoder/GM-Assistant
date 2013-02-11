@@ -231,6 +231,9 @@
              <property name="focusPolicy">
               <enum>Qt::NoFocus</enum>
              </property>
+             <property name="statusTip">
+              <string>Browse the music file</string>
+             </property>
              <property name="maximum">
               <number>999</number>
              </property>
@@ -243,6 +246,9 @@
             <layout class="QHBoxLayout" name="horizontalLayout1">
              <item>
               <widget class="QPushButton" name="buttonMusic">
+               <property name="statusTip">
+                <string>Play/Pause/Resume the music</string>
+               </property>
                <property name="text">
                 <string>&amp;Play</string>
                </property>
@@ -260,6 +266,9 @@
              </item>
              <item>
               <widget class="QCheckBox" name="checkRepeat">
+               <property name="statusTip">
+                <string>Enable/Disable loop playing</string>
+               </property>
                <property name="text">
                 <string>&amp;Loop</string>
                </property>
@@ -388,6 +397,9 @@
   <action name="actionAbout">
    <property name="text">
     <string>&amp;About</string>
+   </property>
+   <property name="statusTip">
+    <string>Display information about GM-Assistant</string>
    </property>
   </action>
   <action name="action_Reload">

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -85,7 +85,7 @@ class SoundItem: public FileItem
          * \brief Getter for the duration of the sound
          * \return Pointer to the duration of the sound
          */
-        const double* duration() const;
+        double duration() const;
 };
 
 #endif

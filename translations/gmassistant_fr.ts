@@ -4,12 +4,12 @@
 <context>
     <name>AboutDialog</name>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="9"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="17"/>
         <source>About GM-Assistant</source>
         <translation>À propos de GM-Assistant</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="15"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="23"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -18,7 +18,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="29"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="39"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p&gt;Version:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -27,34 +27,35 @@ p, li { white-space: pre-wrap; }
 &lt;p&gt;Version :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="48"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="74"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline&quot;&gt;Developed and maintained by:&lt;/p&gt;
 &lt;p&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;br /&gt;
-&lt;a href=&quot;http://vivicoder.github.com/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://vivicoder.github.com/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;a href=&quot;http://gmassistant.free.fr&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://gmassistant.free.fr&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
-&lt;p style=&quot;text-decoration: underline&quot;&gt;Développé et maintenu par:&lt;/p&gt;
+&lt;p style=&quot;text-decoration: underline&quot;&gt;Developpé et maintenu par :&lt;/p&gt;
 &lt;p&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;br /&gt;
-&lt;a href=&quot;http://vivicoder.github.com/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://vivicoder.github.com/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;a href=&quot;http://gmassistant.free.fr&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://gmassistant.free.fr&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="88"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Developed and maintained by:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dramac (Simon Nicolas)&lt;br /&gt;ViviCoder (Vincent Prat)&lt;br /&gt;&lt;a href=&quot;http://vivicoder.github.com/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://vivicoder.github.com/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Description:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;GM-Assistant is a free software designed to assist the Game Master during role-playing games.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Développé et maintenu par :&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dramac (Simon Nicolas)&lt;br /&gt;ViviCoder (Vincent Prat)&lt;br /&gt;&lt;a href=&quot;http://vivicoder.github.com/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://vivicoder.github.com/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Description:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;GM-Assistant est un logiciel libre conçu pour assister le Maître du Jeu lors de jeux de rôle.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="62"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="113"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline&quot;&gt;Using:&lt;/p&gt;
@@ -67,20 +68,6 @@ p, li { white-space: pre-wrap; }
 &lt;p&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt; et &lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Developed and maintained by:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dramac (Simon Nicolas)&lt;br /&gt;ViviCoder (Vincent Prat)&lt;br /&gt;&lt;a href=&quot;https://github.com/ViviCoder/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://vivicoder.github.com/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Développé et maintenu par :&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Dramac (Simon Nicolas)&lt;br /&gt;ViviCoder (Vincent Prat)&lt;br /&gt;&lt;a href=&quot;https://github.com/ViviCoder/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://vivicoder.github.com/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
@@ -109,14 +96,13 @@ p, li { white-space: pre-wrap; }
 &lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="84"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline;&quot;&gt;Description:&lt;/p&gt;
 &lt;p&gt;GM-Assistant is a free software&lt;br /&gt;
 designed to assist the Game Master&lt;br /&gt;
 during a role playing game&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//FR&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//FR&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline;&quot;&gt;Description :&lt;/p&gt;
 &lt;p&gt;GM-Assistant est un logiciel libre&lt;br /&gt;
@@ -124,7 +110,7 @@ conçu pour assister le Maître du Jeu&lt;br /&gt;
 lors d&apos;une partie de jeu de rôles&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="96"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="103"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot; text-decoration: underline;&quot;&gt;License:&lt;/p&gt;
@@ -145,11 +131,6 @@ p, li { white-space: pre-wrap; }
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Version :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="41"/>
-        <source>1.0</source>
-        <translation></translation>
     </message>
     <message>
         <source>GM-Assistant is a free software
@@ -274,7 +255,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">GM-Assistant est un logiciel libre conçu pour assister le Maître du Jeu lors d&apos;une partie de jeu de rôle</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="77"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="63"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
@@ -461,8 +442,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="51"/>
+        <source>&amp;Validate</source>
+        <translation>&amp;Valider</translation>
+    </message>
+    <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Éditer</translation>
+        <translation type="obsolete">&amp;Éditer</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="62"/>
@@ -525,8 +510,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ChangeSkillDialog.ui" line="41"/>
+        <source>&amp;Validate</source>
+        <translation>&amp;Valider</translation>
+    </message>
+    <message>
         <source>&amp;Edit</source>
-        <translation>&amp;Éditer</translation>
+        <translation type="obsolete">&amp;Éditer</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangeSkillDialog.ui" line="52"/>
@@ -642,74 +631,74 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>customTable</name>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="29"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="30"/>
         <source>&amp;Skill</source>
         <translation>&amp;Compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="30"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="44"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="58"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="72"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="31"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="45"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="59"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="73"/>
         <source>&amp;Add</source>
         <translation>&amp;Ajouter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="32"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="74"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="33"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="75"/>
         <source>Add a new skill</source>
-        <translation>Ajouter une nouvelle compétence</translation>
+        <translation>Ajoute une nouvelle compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="33"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="47"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="61"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="75"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="34"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="48"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="62"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="76"/>
         <source>&amp;Remove</source>
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="35"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="77"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="36"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="78"/>
         <source>Remove the skill</source>
-        <translation>Supprimer la compétence</translation>
+        <translation>Supprime la compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="36"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="50"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="64"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="78"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="37"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="51"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="65"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="79"/>
         <source>&amp;Edit</source>
         <translation>&amp;Éditer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="38"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="80"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="39"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="81"/>
         <source>Edit the skill</source>
-        <translation>Éditer la compétence</translation>
+        <translation>Édite la compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="43"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="44"/>
         <source>&amp;Character</source>
         <translation>&amp;Personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="46"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="60"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="47"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="61"/>
         <source>Add a new character</source>
-        <translation>Ajouter un nouveau personnage</translation>
+        <translation>Ajoute un nouveau personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="49"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="63"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="50"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="64"/>
         <source>Remove the character</source>
-        <translation>Supprimer le personnage</translation>
+        <translation>Supprime le personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="52"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="66"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="53"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="67"/>
         <source>Edit the character</source>
-        <translation>Éditer le personnage</translation>
+        <translation>Édite le personnage</translation>
     </message>
     <message>
         <source>&amp;Add a character</source>
@@ -739,126 +728,130 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>customTree</name>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="31"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="32"/>
         <source>&amp;None</source>
         <translation>&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="33"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="34"/>
         <source>Untag the item</source>
         <translation>Retire toute étiquette de l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="34"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="35"/>
         <source>In &amp;progress</source>
         <translation>En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="36"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="37"/>
         <source>Tag the item as being in progress</source>
         <translation>Marque l&apos;item comme étant en cours</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="37"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="38"/>
         <source>&amp;Failed</source>
         <translation>&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="39"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="40"/>
         <source>Tag the item as failed</source>
         <translation>Marque l&apos;item comme échoué</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="40"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="41"/>
         <source>&amp;Succeeded</source>
         <translation>&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="42"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="43"/>
         <source>Tag the item as succeeded</source>
         <translation>Marque l&apos;item comme réussi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="43"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="44"/>
         <source>&amp;Add</source>
         <translation>A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="45"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="46"/>
         <source>Add a new item</source>
         <translation>Ajoute un nouvel item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="46"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="47"/>
         <source>Ins</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="47"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="48"/>
         <source>&amp;Delete</source>
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="49"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="50"/>
         <source>Delete the item</source>
         <translation>Supprime l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="50"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="51"/>
         <source>Del</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="51"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="52"/>
         <source>&amp;Edit</source>
         <translation>É&amp;diter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="53"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="54"/>
         <source>Edit the item</source>
-        <translation>Éditer l&apos;item</translation>
+        <translation>Édite l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="54"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="55"/>
         <source>Ctrl+F2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="57"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="58"/>
         <source>Space</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="99"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="100"/>
         <source>Audio files can be played only in the Music and Sound effects modules.</source>
         <translation>Les fichiers audios ne peuvent être joués que dans les modules Musique et Bruitages.</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="149"/>
+        <source>Play the audio file</source>
+        <translation>Joue le fichier audio</translation>
     </message>
     <message>
         <source>Audio files can be played only in the Music and Sound effects modules</source>
         <translation type="obsolete">Les fichiers audio ne peuvent être joués que dans les modules Musique et Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="113"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="114"/>
         <source>Unable to display the file</source>
         <translation>Impossible d&apos;afficher le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="148"/>
         <source>Play the sound</source>
-        <translation>Jouer le son</translation>
+        <translation type="obsolete">Joue le fichier audio</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="149"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="150"/>
         <source>P&amp;lay</source>
         <translation>J&amp;ouer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="154"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="155"/>
         <source>Display the image</source>
-        <translation>Afficher l&apos;image</translation>
+        <translation>Affiche l&apos;image</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="155"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="156"/>
         <source>Disp&amp;lay</source>
         <translation>A&amp;fficher</translation>
     </message>
@@ -877,7 +870,7 @@ p, li { white-space: pre-wrap; }
     <name>itemDialog</name>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="17"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="167"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="169"/>
         <source>Create a new item</source>
         <translation>Créer un nouvel item</translation>
     </message>
@@ -928,8 +921,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="117"/>
+        <source>A&amp;udio</source>
+        <translation>A&amp;udio</translation>
+    </message>
+    <message>
         <source>S&amp;ound</source>
-        <translation>&amp;Son</translation>
+        <translation type="obsolete">A&amp;udio</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="128"/>
@@ -965,7 +962,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="183"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="169"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="172"/>
         <source>C&amp;hild</source>
         <translation>En&amp;fant</translation>
     </message>
@@ -999,9 +996,9 @@ p, li { white-space: pre-wrap; }
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="134"/>
-        <source>Select the sound file to associate to the item</source>
-        <translation>Sélectionnez le fichier son à associer à l&apos;item</translation>
+        <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
+        <source>Select the image file to associate to the item</source>
+        <translation>Sélectionnez le fichier image à associer à l&apos;item</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="134"/>
@@ -1009,8 +1006,9 @@ p, li { white-space: pre-wrap; }
         <translation>Fichiers audio (*.mp3 *.wav *.ogg)</translation>
     </message>
     <message>
-        <source>Select the image file to associate to the item</source>
-        <translation type="obsolete">Sélectionnez le fichier image à associer à l&apos;item</translation>
+        <location filename="../sources/windows/ItemDialog.cpp" line="134"/>
+        <source>Select the audio file to associate to the item</source>
+        <translation>Sélectionnez le fichier audio à associer à l&apos;item</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
@@ -1018,19 +1016,18 @@ p, li { white-space: pre-wrap; }
         <translation>Fichiers image (*.jpg *.jpeg *.png *.bmp *.svg)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
-        <source>Select the picture file to associate to the item</source>
-        <translation>Sélectionnez le fichier image à associer à l&apos;item</translation>
-    </message>
-    <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="153"/>
         <source>Edit the item</source>
         <translation>Éditer l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="155"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="156"/>
+        <source>&amp;Validate</source>
+        <translation>&amp;Valider</translation>
+    </message>
+    <message>
         <source>&amp;Edit</source>
-        <translation>É&amp;diter</translation>
+        <translation type="obsolete">É&amp;diter</translation>
     </message>
     <message>
         <source>Picture files (*.jpg *.jpeg *.png *.bmp)</source>
@@ -1083,29 +1080,43 @@ p, li { white-space: pre-wrap; }
         <translation>Personnages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="247"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="393"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="422"/>
+        <location filename="../sources/windows/MainWindow.ui" line="235"/>
+        <source>Browse the music file</source>
+        <translation>Navigue dans le fichier musical</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.ui" line="250"/>
+        <source>Play/Pause/Resume the music</source>
+        <translation>Joue/pause/reprend la musique</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.ui" line="253"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="421"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="254"/>
+        <location filename="../sources/windows/MainWindow.ui" line="260"/>
         <source>0:00/0:00</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="264"/>
+        <location filename="../sources/windows/MainWindow.ui" line="270"/>
+        <source>Enable/Disable loop playing</source>
+        <translation>Active/désactive le jeu en boucle</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.ui" line="273"/>
         <source>&amp;Loop</source>
         <translation>&amp;Boucle</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="290"/>
+        <location filename="../sources/windows/MainWindow.ui" line="299"/>
         <source>&amp;Game</source>
         <translation>&amp;Jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="306"/>
+        <location filename="../sources/windows/MainWindow.ui" line="315"/>
         <source>&amp;?</source>
         <translation></translation>
     </message>
@@ -1114,192 +1125,197 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">&amp;Interface</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="312"/>
+        <location filename="../sources/windows/MainWindow.ui" line="321"/>
         <source>&amp;View</source>
         <translation>&amp;Affichage</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="322"/>
+        <location filename="../sources/windows/MainWindow.ui" line="331"/>
         <source>&amp;Edit</source>
         <translation>&amp;Édition</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="335"/>
+        <location filename="../sources/windows/MainWindow.ui" line="344"/>
         <source>&amp;New</source>
         <translation>&amp;Nouveau</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="338"/>
+        <location filename="../sources/windows/MainWindow.ui" line="347"/>
         <source>Create a new game</source>
         <translation>Crée un nouveau jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="341"/>
+        <location filename="../sources/windows/MainWindow.ui" line="350"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="346"/>
+        <location filename="../sources/windows/MainWindow.ui" line="355"/>
         <source>&amp;Load</source>
         <translation>&amp;Charger</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="349"/>
+        <location filename="../sources/windows/MainWindow.ui" line="358"/>
         <source>Load a game</source>
         <translation>Charge un jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="352"/>
+        <location filename="../sources/windows/MainWindow.ui" line="361"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="357"/>
+        <location filename="../sources/windows/MainWindow.ui" line="366"/>
         <source>&amp;Save</source>
         <translation>&amp;Enregistrer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="360"/>
+        <location filename="../sources/windows/MainWindow.ui" line="369"/>
         <source>Save the current game</source>
         <translation>Sauvegarde le jeu en cours</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="363"/>
+        <location filename="../sources/windows/MainWindow.ui" line="372"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="368"/>
+        <location filename="../sources/windows/MainWindow.ui" line="377"/>
         <source>S&amp;ave as</source>
         <translation>Enregistrer &amp;sous</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="371"/>
+        <location filename="../sources/windows/MainWindow.ui" line="380"/>
         <source>Save the current game in a new file</source>
         <translation>Sauvegarde le jeu en cours dans un nouveau fichier</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="374"/>
+        <location filename="../sources/windows/MainWindow.ui" line="383"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="379"/>
+        <location filename="../sources/windows/MainWindow.ui" line="388"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="382"/>
+        <location filename="../sources/windows/MainWindow.ui" line="391"/>
         <source>Exit the application</source>
         <translation>Sort de l&apos;application</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="385"/>
+        <location filename="../sources/windows/MainWindow.ui" line="394"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="390"/>
+        <location filename="../sources/windows/MainWindow.ui" line="399"/>
         <source>&amp;About</source>
         <translation>&amp;À propos</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="395"/>
+        <location filename="../sources/windows/MainWindow.ui" line="402"/>
+        <source>Display information about GM-Assistant</source>
+        <translation>Informations à propos de GM-Assistant</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.ui" line="407"/>
         <source>&amp;Reload</source>
         <translation>&amp;Recharger</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="398"/>
+        <location filename="../sources/windows/MainWindow.ui" line="410"/>
         <source>Reload the current game</source>
         <translation>Recharge le jeu en cours</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="406"/>
+        <location filename="../sources/windows/MainWindow.ui" line="418"/>
         <source>R&amp;ecent</source>
         <translation>R&amp;écents</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="409"/>
+        <location filename="../sources/windows/MainWindow.ui" line="421"/>
         <source>Load a recently opened game</source>
         <translation>Charge un jeu ouvert récemment</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="420"/>
+        <location filename="../sources/windows/MainWindow.ui" line="432"/>
         <source>&amp;Full</source>
         <translation>&amp;Complet</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="423"/>
+        <location filename="../sources/windows/MainWindow.ui" line="435"/>
         <source>Tools shown : Scenario, Note, Characters, History, Music, Sound</source>
         <translation>Outils affichés : Scénario, Notes, Personnages, Historique, Musique, Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="426"/>
+        <location filename="../sources/windows/MainWindow.ui" line="438"/>
         <source>F5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="437"/>
+        <location filename="../sources/windows/MainWindow.ui" line="449"/>
         <source>&amp;Music</source>
         <translation>&amp;Musique</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="440"/>
+        <location filename="../sources/windows/MainWindow.ui" line="452"/>
         <source>Tools shown : Music, Sound</source>
         <translation>Outils affichés : Musique, Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="443"/>
+        <location filename="../sources/windows/MainWindow.ui" line="455"/>
         <source>F7</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="451"/>
+        <location filename="../sources/windows/MainWindow.ui" line="463"/>
         <source>&amp;Simple</source>
         <translation>&amp;Simple</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="454"/>
+        <location filename="../sources/windows/MainWindow.ui" line="466"/>
         <source>Tools shown : Scenario, Music and Sound</source>
         <translation>Outils affichés : Scénario, Musique, Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="457"/>
+        <location filename="../sources/windows/MainWindow.ui" line="469"/>
         <source>F6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="465"/>
+        <location filename="../sources/windows/MainWindow.ui" line="477"/>
         <source>&amp;Design</source>
         <translation>C&amp;onception</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="490"/>
+        <location filename="../sources/windows/MainWindow.ui" line="502"/>
         <source>&amp;Undo</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="493"/>
+        <location filename="../sources/windows/MainWindow.ui" line="505"/>
         <source>Undo the last modification</source>
         <translation>Annule la dernière modification</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="496"/>
+        <location filename="../sources/windows/MainWindow.ui" line="508"/>
         <source>Ctrl+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="501"/>
+        <location filename="../sources/windows/MainWindow.ui" line="513"/>
         <source>&amp;Redo</source>
         <translation>&amp;Refaire</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="504"/>
+        <location filename="../sources/windows/MainWindow.ui" line="516"/>
         <source>Redo the last undone modification</source>
         <translation>Refait la dernière modification annulée</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="507"/>
+        <location filename="../sources/windows/MainWindow.ui" line="519"/>
         <source>Ctrl+Shift+Z</source>
         <translation></translation>
     </message>
@@ -1308,27 +1324,27 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">C&amp;onception</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="468"/>
+        <location filename="../sources/windows/MainWindow.ui" line="480"/>
         <source>Tools shown : Scenario, Characters, Note </source>
         <translation>Outils affichés : Scénario, Personnages, Notes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="471"/>
+        <location filename="../sources/windows/MainWindow.ui" line="483"/>
         <source>F8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="479"/>
+        <location filename="../sources/windows/MainWindow.ui" line="491"/>
         <source>&amp;No Music</source>
         <translation>S&amp;ans son</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="482"/>
+        <location filename="../sources/windows/MainWindow.ui" line="494"/>
         <source>Tools shown : Scenario, Note, History, Characters</source>
         <translation>Outils affichés : Scénario, Notes, Historique, Personnages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="485"/>
+        <location filename="../sources/windows/MainWindow.ui" line="497"/>
         <source>F9</source>
         <translation></translation>
     </message>
@@ -1337,7 +1353,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Recharge le jeu en cours</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="401"/>
+        <location filename="../sources/windows/MainWindow.ui" line="413"/>
         <source>Ctrl+R</source>
         <translation></translation>
     </message>
@@ -1351,7 +1367,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="355"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="437"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="436"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
@@ -1361,19 +1377,19 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="99"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="113"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="461"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="100"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="114"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="468"/>
         <location filename="../sources/windows/MainWindow.cpp" line="235"/>
         <location filename="../sources/windows/MainWindow.cpp" line="239"/>
         <location filename="../sources/windows/MainWindow.cpp" line="268"/>
         <location filename="../sources/windows/MainWindow.cpp" line="297"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="443"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="448"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="460"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="486"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="497"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="441"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="446"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="472"/>
         <location filename="../sources/windows/MainWindow.cpp" line="501"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="512"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="516"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1390,13 +1406,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="239"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="501"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="516"/>
         <source>The game will be loaded anyway, but some features might not work properly.</source>
         <translation>Le jeu va tout de même être chargé, mais certaines fonctionnalités peuvent ne pas fonctionner normalement.</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="239"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="501"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="516"/>
         <source>The game cannot be loaded correctly for the following reason: </source>
         <translation>Le jeu n&apos;a pas pu être chargé pour la raison suivante :</translation>
     </message>
@@ -1406,12 +1422,12 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="448"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="446"/>
         <source>Unable to play the file</source>
         <translation>Impossible de jouer le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="486"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="501"/>
         <source>The file &quot;%1&quot; does not exist.</source>
         <translation>Le fichier &quot;%1&quot; n&apos;existe pas.</translation>
     </message>
@@ -1424,7 +1440,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Le fichier n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="546"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="565"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -85,6 +85,10 @@ class QCustomTreeWidget: public QTreeWidget
         PlayingMethod playingMethod() const;
     public slots:
         void on_itemChanged(QTreeWidgetItem* item,int column);
+        /*!
+         * \brief Delete an item
+         * \param item Item to delete
+         */
         void deleteItem(QTreeWidgetItem* item);
         void on_itemSelectionChanged();
         /*!
@@ -106,6 +110,11 @@ class QCustomTreeWidget: public QTreeWidget
          * \brief Update of the display
          */
         void updateDisplay();
+        /*
+         * \brief Scrolling
+         * \param item Item to scroll to
+         */
+        void scrollTo(QTreeWidgetItem *item);
     protected:
         // overriden methods
         /*!
@@ -200,12 +209,11 @@ class QCustomTreeWidget: public QTreeWidget
     signals:
         /*!
          * \brief Signal to play a file
-         * \param fileName File to play
-         * \param duration Pointer to the duration of the file
+         * \param item Pointer to the soundItem we want to play
          *
          * This signal is sent when a sound file has to be played
          */
-        void fileToPlay(const std::string &fileName, const double *duration);
+        void fileToPlay(const SoundItem *item);
         /*!
          * \brief Signal to register a modification
          * \param modification Modification to register
@@ -213,6 +221,11 @@ class QCustomTreeWidget: public QTreeWidget
          * This signal is sent when the tree is modified
          */
         void modificationDone(Modification *modification);
+        /*!
+         * \brief Signal to stop playing a file
+         * \param item Pointer to the soundItem we want to stop
+         */
+        void fileToStop(const SoundItem *item);
 };
 
 #endif

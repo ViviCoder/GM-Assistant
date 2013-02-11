@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@
 #include <QStackedLayout>
 #include "NoteModification.h"
 
-MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), pDuration(0)
+MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), siCurrentMusic(0)
 {
     setupUi(this);
     updateDisplay();
@@ -169,7 +169,7 @@ void MainWindow::on_actionFull_triggered()
 void MainWindow::on_actionSimple_triggered()
 {
     clearLayout();
-    GridLayout->addWidget(gbScenario,0,0,0,1);
+    GridLayout->addWidget(gbScenario,0,0,2,1);
     GridLayout->addWidget(gbMusic,0,1);
     GridLayout->addWidget(gbSound,1,1);
     gbScenario->show();
@@ -182,7 +182,7 @@ void MainWindow::on_actionSimple_triggered()
 void MainWindow::on_actionDesign_triggered()
 {
     clearLayout();
-    GridLayout->addWidget(gbScenario,0,0,0,1);
+    GridLayout->addWidget(gbScenario,0,0,2,1);
     GridLayout->addWidget(gbCharacter,0,1);
     GridLayout->addWidget(gbNote,1,1);
     gbScenario->show();
@@ -339,7 +339,7 @@ void MainWindow::updateDisplay()
     timer->stop();
     iTimerCount = 0;
     soundEngine.stop();
-    pDuration = 0;
+    siCurrentMusic = 0;
     checkRepeat->setChecked(false);
     updateTimeDisplay();
 }
@@ -371,7 +371,7 @@ void MainWindow::on_buttonMusic_clicked()
             if (item->type()==Item::tSound)
             {
                 SoundItem *sItem = dynamic_cast<SoundItem*>(item);
-                playMusic(sItem->fileName(),sItem->duration());
+                playMusic(sItem);
             }
             updateTimeDisplay();
             timer->start();
@@ -383,15 +383,13 @@ void MainWindow::onTimer_timeout()
 {
     if (!soundEngine.isPlayingMusic())
     {
-        if (pDuration && *pDuration > 0 && checkRepeat->isChecked())
+        if (siCurrentMusic && siCurrentMusic->duration() > 0 && checkRepeat->isChecked())
         {
-            playMusic(sCurrentMusic, pDuration);
+            playMusic(siCurrentMusic);
         }
         else
         {
-            timer->stop();
-            buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
-            sliderMusic->setEnabled(false);
+            stopMusic(siCurrentMusic);
         }
     }
     // calculate the percentage of the music played
@@ -404,14 +402,15 @@ void MainWindow::onTimer_timeout()
 
 void MainWindow::updateTimeDisplay()
 {
-    if (pDuration)
+    if (siCurrentMusic)
     {
+        double dDuration = siCurrentMusic->duration(); 
         // we move the slider only if the user is not moving it manually
         double dPosition = (double)iTimerCount/TICK;
-        sliderMusic->setValue(floor(dPosition/(*pDuration)*sliderMusic->maximum()));
+        sliderMusic->setValue(floor(dPosition/dDuration*sliderMusic->maximum()));
         // update of the position display
         int position = floor(dPosition);
-        int duration = floor(*pDuration);
+        int duration = floor(dDuration);
         labelPosition->setText(QString("%1:%2/%3:%4").arg(position/60).arg(position%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
     }
     else
@@ -424,19 +423,18 @@ void MainWindow::updateTimeDisplay()
     }
 }
 
-void MainWindow::playMusic(const std::string &fileName, const double *duration)
+void MainWindow::playMusic(const SoundItem *item)
 {
-    if (duration && *duration > 0.0)
+    if (item && item->duration() > 0.0)
     {
         try
         {
-            soundEngine.playMusic(fileName);
-            sCurrentMusic = fileName;
+            soundEngine.playMusic(item->fileName());
+            siCurrentMusic = item;
             timer->start();
             sliderMusic->setEnabled(true);
             buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
             iTimerCount = 0;
-            pDuration = duration;
         }
         catch (std::runtime_error &e)
         {
@@ -449,11 +447,25 @@ void MainWindow::playMusic(const std::string &fileName, const double *duration)
     }
 }
 
-void MainWindow::playSound(const std::string &fileName)
+void MainWindow::stopMusic(const SoundItem *item)
+{
+    if (item == siCurrentMusic)
+    {
+        siCurrentMusic = 0;
+        soundEngine.stop();
+        timer->stop();
+        updateTimeDisplay();
+    }
+}
+
+void MainWindow::playSound(const SoundItem *item)
 {
     try
     {
-        soundEngine.playSound(fileName);
+        if (item)
+        {
+            soundEngine.playSound(item->fileName());
+        }
     }
     catch (std::runtime_error &e)
     {
@@ -464,10 +476,13 @@ void MainWindow::playSound(const std::string &fileName)
 void MainWindow::on_sliderMusic_released()
 {
     // new position in the music
-    double position = (double)sliderMusic->value()/sliderMusic->maximum()*(*pDuration);
-    soundEngine.move(position);
-    // updating the timer count
-    iTimerCount = floor(TICK*position);
+    if (siCurrentMusic)
+    {
+        double position = (double)sliderMusic->value()/sliderMusic->maximum()*siCurrentMusic->duration();
+        soundEngine.move(position);
+        // updating the timer count
+        iTimerCount = floor(TICK*position);
+    }
     updateTimeDisplay();
 }
 
@@ -516,6 +531,10 @@ void MainWindow::resizeEvent(QResizeEvent *e)
 
 void MainWindow::addRecent(const QString &fileName)
 {
+    if (fileName == sFileName)
+    {
+        return;
+    }
     // delete the new file if already present
     int index = slRecent.indexOf(fileName);
     if (index != -1)

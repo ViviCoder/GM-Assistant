@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -71,13 +71,9 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          */
         QSignalMapper *smRecent;
         /*!
-         * \brief Pointer to the duration of the current music
+         * \brief SoundItem of the current music
          */
-        const double *pDuration;
-        /*!
-         * \brief File name of the current music
-         */
-        std::string sCurrentMusic;
+        const SoundItem *siCurrentMusic;
         //! Queue of modifications
         ModificationQueue mqQueue;
     protected:
@@ -190,7 +186,11 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Reloads the current game
          */
         void on_action_Reload_triggered();
-        // button
+        /*!
+         * \brief Slot for when the music button is clicked
+         *
+         * Play, pause or resume the current music
+         */
         void on_buttonMusic_clicked();
         /*!
          * \brief Slot for when the timer ticks
@@ -220,14 +220,22 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void on_sliderMusic_wheeled(bool positive);
         // play music and sound
         /*!
-         * \brief Play a music file
-         * \param fileName File to play
-         * \param duration Estimated duration of the music
+         * \brief Play a music file associated with a SoundItem
+         * \param item Pointer to the soundItem
          *
-         * Plays the music file given only if its duration is greater then zero
+         * Plays the music file only if its duration is greater then zero
          */
-        void playMusic(const std::string &fileName, const double *duration);
-        void playSound(const std::string &fileName);
+        void playMusic(const SoundItem *item);
+        /*!
+         * \brief Stop the music of a soundItem
+         * \param item Pointer to the soundItem we want to stop
+         */
+        void stopMusic(const SoundItem *item);
+        /*!
+         * \brief Play a sound file associated with a SoundItem
+         * \param item Pointer to the soundItem
+         */
+        void playSound(const SoundItem *item);
         /*!
          * \brief Recent files update when opening a new file
          * \param fileName File to be opened
