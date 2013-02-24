@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 #define HEADER_QCUSTOMTEXTEDIT
 
 #include <QTextEdit>
+#include <QKeyEvent>
 #include "NoteModification.h"
 
 /*!
@@ -66,6 +67,20 @@ class QCustomTextEdit: public QTextEdit
          * Checks if the text has been modified before releasing focus
          */
         void focusOutEvent(QFocusEvent *e);
+        /*!
+         * \brief KeyPress event handler
+         * \param e Event to handle
+         *
+         * Decomposes edition in several modifications (insertion, deletion, etc.)
+         */
+        void keyPressEvent(QKeyEvent *e);
+        /*!
+         * \brief MousePress event handler
+         * \param e Event to handle
+         *
+         * Works together with keyPressEvent
+         */
+        void mousePressEvent(QMouseEvent *e);
     protected slots:
         /*!
          * \brief Slot for when the text has changed
@@ -74,10 +89,22 @@ class QCustomTextEdit: public QTextEdit
          */
         void onTextChanged();
     private:
+        //! Edition status
+        enum Status
+        {
+            //! Insertion
+            sInsertion,
+            //! Deletion
+            sDeletion,
+            //! Move
+            sMove
+        };
         //! Reference text
         QString sRef;
         //! Underlying notes
         std::string *pNotes;
+        //! Edition status
+        Status sStatus; 
     signals:
         /*!
          * \brief Signal to register a modification

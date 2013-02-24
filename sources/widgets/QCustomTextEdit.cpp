@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 using namespace std;
 
-QCustomTextEdit::QCustomTextEdit(QWidget *parent): QTextEdit(parent)
+QCustomTextEdit::QCustomTextEdit(QWidget *parent): QTextEdit(parent), pNotes(0), sStatus(sInsertion)
 {
     connect(this, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
 }
@@ -36,6 +36,7 @@ void QCustomTextEdit::updateDisplay()
     if (pNotes)
     {
         setText(pNotes->c_str());
+        sRef = toPlainText();
     }
 }
 
@@ -53,6 +54,7 @@ void QCustomTextEdit::checkModification()
     if (pNotes && sRef != sText)
     {
         emit modificationDone(new NoteModification(*pNotes, sRef.toStdString(), sText.toStdString()));
+        sRef = sText;
     }
 }
 
@@ -66,4 +68,47 @@ void QCustomTextEdit::focusOutEvent(QFocusEvent *e)
 {
     checkModification();
     QTextEdit::focusOutEvent(e);
+}
+
+void QCustomTextEdit::keyPressEvent(QKeyEvent *e)
+{
+    switch (e->key())
+    {
+        case Qt::Key_Home:
+        case Qt::Key_End:
+        case Qt::Key_Left:
+        case Qt::Key_Up:
+        case Qt::Key_Down:
+        case Qt::Key_Right:
+        case Qt::Key_PageUp:
+        case Qt::Key_PageDown:  if (sStatus != sMove)
+                                {
+                                    checkModification();
+                                    sStatus = sMove;
+                                }
+                                break;
+        case Qt::Key_Delete:
+        case Qt::Key_Backspace: if (sStatus != sDeletion)
+                                {
+                                    checkModification();
+                                    sStatus = sDeletion;
+                                }
+                                break;
+        default:    if (sStatus != sInsertion)
+                    {
+                        checkModification();
+                        sStatus = sInsertion;
+                    }
+    }
+    QTextEdit::keyPressEvent(e);
+}
+
+void QCustomTextEdit::mousePressEvent(QMouseEvent *e)
+{
+    if (sStatus != sMove)
+    {
+        checkModification();
+        sStatus = sMove;
+    }
+    QTextEdit::mousePressEvent(e);
 }
