@@ -47,7 +47,6 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \brief File name of the current game
          */
         QString sFileName;
-        bool bModified;
         AboutDialog *pAboutDial;
         /*!
          * \brief Timer used by the window
@@ -93,6 +92,13 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Intercepts locally handled events related to global shortcuts
          */
         bool eventFilter(QObject *source, QEvent *e);
+        /*!
+         * \brief CloseEvent handler
+         * \param e Event to handle
+         *
+         * Checks unsaved modifications before closing
+         */
+        void closeEvent(QCloseEvent *e);
     public:
         /*!
          * \brief Constructor of the main window
@@ -288,6 +294,13 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Updates the display of the right widget
          */
         void updateModification(Modification *modification);
+        /*!
+         * \brief Test before closing a game
+         * \return True if the user wants to close
+         *
+         * If the game has been modified since the last save, the user is asked confirmation before closing
+         */
+        bool canClose();
 };
 
 #endif

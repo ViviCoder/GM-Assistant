@@ -26,7 +26,7 @@
 #include <QStackedLayout>
 #include "NoteModification.h"
 
-MainWindow::MainWindow(): QMainWindow(), bModified(false), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), siCurrentMusic(0)
+MainWindow::MainWindow(): QMainWindow(), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), siCurrentMusic(0)
 {
     setupUi(this);
     updateDisplay();
@@ -219,8 +219,8 @@ void MainWindow::on_action_Quit_triggered()
 
 void MainWindow::on_action_Load_triggered()
 {
-/*    if (!bModified || (QMessageBox::question(this,QApplication::translate("mainWindow","Confirmation",0),QApplication::translate("mainWindow","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
-    {*/
+    if (canClose())
+    {
         QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0)); 
         if (!file.isEmpty())
         {
@@ -242,11 +242,10 @@ void MainWindow::on_action_Load_triggered()
             updateDisplay();
             mqQueue.clear();
             updateUndoRedo();
-            bModified = false;
             addRecent(file);
             sFileName = file;
         }
-//    }
+    }
 }
 
 void MainWindow::on_action_Save_triggered()
@@ -260,8 +259,8 @@ void MainWindow::on_action_Save_triggered()
         try
         {
             eGame.toFile(sFileName.toStdString());
-    //        action_Save->setEnabled(false);
-            bModified = false;
+            mqQueue.save();
+            action_Save->setEnabled(false);
         }
         catch (xmlpp::exception &xml)
         {
@@ -286,8 +285,8 @@ void MainWindow::on_actionS_ave_as_triggered()
         try
         {
             eGame.toFile(file.toStdString());
-    //        action_Save->setEnabled(false);
-            bModified = false;
+            mqQueue.save();
+            action_Save->setEnabled(false);
             addRecent(file);
             sFileName = file;
             QDir::setCurrent(QFileInfo(sFileName).dir().path());
@@ -302,17 +301,16 @@ void MainWindow::on_actionS_ave_as_triggered()
 
 void MainWindow::on_action_New_triggered()
 {
-/*    if (!bModified || (QMessageBox::question(this,QApplication::translate("mainWindow","Confirmation",0),QApplication::translate("mainWindow","The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?",0),QMessageBox::Yes|QMessageBox::No,QMessageBox::No)==QMessageBox::Yes))
-    {*/
+    if (canClose())
+    {
         eGame.clear();
         eGame.setUserInterface(Scenario::uiFull);
         updateDisplay();
         mqQueue.clear();
         updateUndoRedo();
-        bModified = false;
         addRecent("");
         sFileName = "";
-//    }
+    }
 }
 
 void MainWindow::updateDisplay()
@@ -488,6 +486,10 @@ void MainWindow::on_sliderMusic_released()
 
 void MainWindow::on_action_Reload_triggered()
 {
+    if (!canClose())
+    {
+        return;
+    }
     if (sFileName.isEmpty())
     {
         on_action_Load_triggered();
@@ -519,7 +521,6 @@ void MainWindow::on_action_Reload_triggered()
         updateDisplay();
         mqQueue.clear();
         updateUndoRedo();
-        bModified = false;
     }
 }
 
@@ -604,10 +605,15 @@ void MainWindow::updateRecent()
 
 void MainWindow::loadRecent(int index)
 {
-    QString file(slRecent[index-1]);
-    addRecent(file);
-    sFileName = file;
-    on_action_Reload_triggered();
+    if (canClose())
+    {
+        QString file(slRecent[index-1]);
+        addRecent(file);
+        sFileName = file;
+        // no more modification check needed
+        mqQueue.save();
+        on_action_Reload_triggered();
+    }
 }
     
 void MainWindow::on_sliderMusic_wheeled(bool positive)
@@ -681,6 +687,15 @@ void MainWindow::updateUndoRedo()
 {
     action_Undo->setEnabled(mqQueue.undoable());
     action_Redo->setEnabled(mqQueue.redoable());
+    bool modified = !mqQueue.isUpToDate();
+    action_Save->setEnabled(modified);
+    QString title("GM-Assistant - ");
+    title += QFileInfo(sFileName).fileName();
+    if (modified)
+    {
+        title += "*";
+    }
+    setWindowTitle(title);
 }
 
 bool MainWindow::eventFilter(QObject *source, QEvent *e)
@@ -710,4 +725,32 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
         }
     }
     return QMainWindow::eventFilter(source, e);
+}
+
+bool MainWindow::canClose()
+{
+    textNotes->clearFocus();
+    if (mqQueue.isUpToDate())
+    {
+        // no need for confirmation
+        return true;
+    }
+    switch (QMessageBox::question(this, QApplication::translate("mainWindow", "Confirmation", 0), QApplication::translate("mainWindow", "The current game has been modified since the last save. If you continue, unsaved changes will be discarded.", 0), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel))
+    {
+        case QMessageBox::Save: on_action_Save_triggered();
+        case QMessageBox::Discard:  return true;
+        default:    return false;
+    }
+}
+
+void MainWindow::closeEvent(QCloseEvent *e)
+{
+    if (canClose())
+    {
+        QMainWindow::closeEvent(e);
+    }
+    else
+    {
+        e->ignore();
+    }
 }

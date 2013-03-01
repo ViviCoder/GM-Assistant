@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 using namespace std;
 
-ModificationQueue::ModificationQueue(): vModifs(), iCurrent(vModifs.end())
+ModificationQueue::ModificationQueue(): vModifs(), iCurrent(vModifs.end()), iSaved(vModifs.end())
 {
 }
 
@@ -37,6 +37,7 @@ void ModificationQueue::clear()
     }
     vModifs.clear();
     iCurrent = vModifs.rend();
+    iSaved = iCurrent;
 }
 
 void ModificationQueue::add(Modification *modification)
@@ -87,4 +88,14 @@ bool ModificationQueue::undoable() const
 bool ModificationQueue::redoable() const
 {
     return (&(*(iCurrent - 1)) != &(*vModifs.end())); 
+}
+
+bool ModificationQueue::isUpToDate() const
+{
+    return (iCurrent == iSaved);
+}
+
+void ModificationQueue::save()
+{
+    iSaved = iCurrent;
 }

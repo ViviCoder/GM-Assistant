@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -73,11 +73,22 @@ class ModificationQueue
          * \return True if there is something to redo, false otherwise
          */
         bool redoable() const;
+        /*!
+         * \brief Test if the last modification has been saved
+         * \return True if the last modification has been saved, false otherwise
+         */
+        bool isUpToDate() const;
+        /*!
+         * \brief Save the last modification
+         */
+        void save();
     private:
         //! Container for the modifications
         std::vector<Modification*> vModifs;
         //! Iterator pointing to the last modification
         std::vector<Modification*>::reverse_iterator iCurrent;
+        //! Iterator pointing to the last saved modification
+        std::vector<Modification*>::const_reverse_iterator iSaved;
 };
 
 #endif
