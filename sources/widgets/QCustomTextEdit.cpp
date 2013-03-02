@@ -17,6 +17,7 @@
 *************************************************************************/
 
 #include "QCustomTextEdit.h"
+#include <QScrollBar>
 
 using namespace std;
 
@@ -31,12 +32,21 @@ void QCustomTextEdit::setNotes(string *text)
     updateDisplay();
 }
 
-void QCustomTextEdit::updateDisplay()
+void QCustomTextEdit::updateDisplay(bool rescroll)
 {
     if (pNotes)
     {
+        QScrollBar *hbar = horizontalScrollBar();
+        QScrollBar *vbar = verticalScrollBar();
+        int h = hbar->value();
+        int v = vbar->value();
         setText(pNotes->c_str());
         sRef = toPlainText();
+        if (rescroll)
+        {
+            hbar->setValue(h);
+            vbar->setValue(v);
+        }
     }
 }
 

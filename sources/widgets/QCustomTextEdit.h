@@ -44,8 +44,9 @@ class QCustomTextEdit: public QTextEdit
     public slots:
         /*!
          * \brief Update of the display
+         * \param rescroll Indicates if the scrolling should not be reset
          */
-        void updateDisplay();
+        void updateDisplay(bool rescroll = false);
         /*!
          * \brief Modification checking
          *

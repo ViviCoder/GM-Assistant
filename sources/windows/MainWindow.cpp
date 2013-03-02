@@ -663,7 +663,7 @@ void MainWindow::updateModification(Modification *modification)
                 }
                 break;
             }
-        case Modification::tNote:   textNotes->updateDisplay();
+        case Modification::tNote:   textNotes->updateDisplay(true);
                                     break;
         case Modification::tCharacter:  tableStats->updateDisplay();
                                         break;
@@ -700,26 +700,31 @@ void MainWindow::updateUndoRedo()
 
 bool MainWindow::eventFilter(QObject *source, QEvent *e)
 {
-    if (e->type() == QEvent::KeyRelease)
+    if (source == textNotes)
     {
-        QKeyEvent *event = dynamic_cast<QKeyEvent*>(e);
-        if (event->key() == Qt::Key_Z)
+        if (e->type() == QEvent::KeyPress)
         {
-            Qt::KeyboardModifiers modifiers = event->modifiers();
-            if (modifiers == Qt::ControlModifier)
+            QKeyEvent *event = dynamic_cast<QKeyEvent*>(e);
+            if (event->key() == Qt::Key_Z)
             {
-                textNotes->checkModification();
-                if (mqQueue.undoable())
+                Qt::KeyboardModifiers modifiers = event->modifiers();
+                if (modifiers == Qt::ControlModifier)
                 {
-                    on_action_Undo_triggered();
+                    textNotes->checkModification();
+                    if (mqQueue.undoable())
+                    {
+                        on_action_Undo_triggered();
+                    }
+                    return true;
                 }
-            }
-            else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier))
-            {
-                textNotes->checkModification();
-                if (mqQueue.redoable())
+                else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier))
                 {
-                    on_action_Redo_triggered();
+                    textNotes->checkModification();
+                    if (mqQueue.redoable())
+                    {
+                        on_action_Redo_triggered();
+                    }
+                    return true;
                 }
             }
         }
