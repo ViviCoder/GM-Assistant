@@ -42,6 +42,7 @@ void ModificationQueue::clear()
 
 void ModificationQueue::add(Modification *modification)
 {
+    bool unsaved = (iSaved == vModifs.rend());
     int i=0;
     // deletes undone modifications
     for (vector<Modification*>::reverse_iterator it = vModifs.rbegin(); it != iCurrent; it++)
@@ -53,6 +54,10 @@ void ModificationQueue::add(Modification *modification)
     // adds the new modification
     vModifs.push_back(modification);
     iCurrent = vModifs.rbegin();
+    if (unsaved)
+    {
+        iSaved = vModifs.rend();
+    }
 }
 
 Modification* ModificationQueue::undo()

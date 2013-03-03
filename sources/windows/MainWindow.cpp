@@ -74,7 +74,7 @@ MainWindow::MainWindow(): QMainWindow(), pAboutDial(new AboutDialog(this)), time
     {
         // we load the game opened when GMA was closed
         on_action_Reload_triggered();
-        setWindowTitle(QString("GM-Assistant - ")+QFileInfo(sFileName).fileName());
+        updateUndoRedo();
     }
     settings.endGroup();
     
@@ -241,9 +241,9 @@ void MainWindow::on_action_Load_triggered()
             }
             updateDisplay();
             mqQueue.clear();
-            updateUndoRedo();
             addRecent(file);
             sFileName = file;
+            updateUndoRedo();
         }
     }
 }
@@ -261,6 +261,7 @@ void MainWindow::on_action_Save_triggered()
             eGame.toFile(sFileName.toStdString());
             mqQueue.save();
             action_Save->setEnabled(false);
+            updateUndoRedo();
         }
         catch (xmlpp::exception &xml)
         {
@@ -290,6 +291,7 @@ void MainWindow::on_actionS_ave_as_triggered()
             addRecent(file);
             sFileName = file;
             QDir::setCurrent(QFileInfo(sFileName).dir().path());
+            updateUndoRedo();
         }
         catch (xmlpp::exception &xml)
         {
@@ -307,9 +309,9 @@ void MainWindow::on_action_New_triggered()
         eGame.setUserInterface(Scenario::uiFull);
         updateDisplay();
         mqQueue.clear();
-        updateUndoRedo();
         addRecent("");
         sFileName = "";
+        updateUndoRedo();
     }
 }
 
@@ -555,16 +557,6 @@ void MainWindow::addRecent(const QString &fileName)
             slRecent.insert(0,sFileName);
         }
     }
-
-    // update the name of the file in the window title
-    if (!fileName.isEmpty())
-    {
-        setWindowTitle(QString("GM-Assistant - ")+QFileInfo(fileName).fileName());
-    }
-    else
-    {
-        setWindowTitle(QString("GM-Assistant - ")+QApplication::translate("mainWindow","New game",0));
-    }
 }
 
 void MainWindow::updateRecent()
@@ -690,7 +682,14 @@ void MainWindow::updateUndoRedo()
     bool modified = !mqQueue.isUpToDate();
     action_Save->setEnabled(modified);
     QString title("GM-Assistant - ");
-    title += QFileInfo(sFileName).fileName();
+    if (sFileName.isEmpty())
+    {
+        title += QApplication::translate("mainWindow", "New game", 0);
+    }
+    else
+    {
+        title += QFileInfo(sFileName).fileName();
+    }
     if (modified)
     {
         title += "*";

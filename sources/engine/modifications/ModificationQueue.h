@@ -46,7 +46,7 @@ class ModificationQueue
          * \brief Addition method
          * \param modification New modification
          *
-         * Deletes undone modifications and adds the new
+         * Deletes undone modifications and adds the new one
          */
         void add(Modification *modification);
         /*!
