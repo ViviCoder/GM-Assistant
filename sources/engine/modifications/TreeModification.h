@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -104,6 +104,21 @@ class TreeModification: public Modification
          * \return Indices of the modification
          */
         std::string indices() const;
+        /*!
+         * \brief Modified indices for undoing a movement
+         * \return Indices where to put back the moved branch
+         */
+        std::string modifiedIndices() const;
+        /*!
+         * \brief Modified new indices for undoing a movement
+         * \return Indices of the moved branch after the movement
+         */
+        std::string modifiedNewIndices() const;
+        /*!
+         * \brief Modified indices for deletions/additions
+         * \return Indices of the nearest item to the deleted one
+         */
+        std::string deletedIndices() const;
     private:
         //! Type of edition (if this is the case)
         EditionType etEditType;
@@ -119,16 +134,6 @@ class TreeModification: public Modification
         Item *pItem;
         //! Copy of the new item
         Item *pNewItem;
-        /*!
-         * \brief Modified indices for undoing a movement
-         * \return Indices where to put back the moved branch
-         */
-        std::string modifiedIndices() const;
-        /*!
-         * \brief Modified new indices for undoing a movement
-         * \return Indices of the moved branch after the movement
-         */
-        std::string modifiedNewIndices() const;
         //! Previous content
         std::string sContent;
         //! New content

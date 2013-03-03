@@ -108,13 +108,20 @@ class QCustomTreeWidget: public QTreeWidget
         void launchItem(QTreeWidgetItem* qItem);
         /*!
          * \brief Update of the display
+         * \param indices Indices of the item to get focus
          */
-        void updateDisplay();
+        void updateDisplay(const std::string &indices = "");
         /*
          * \brief Scrolling
          * \param item Item to scroll to
          */
         void scrollTo(QTreeWidgetItem *item);
+        /*!
+         * \brief Update of the display after a modification
+         * \param modification Modification to undo or redo
+         * \param undo True to undo, false to redo
+         */
+        void updateModification(TreeModification *modification, bool undo);
     protected:
         // overriden methods
         /*!
@@ -134,6 +141,10 @@ class QCustomTreeWidget: public QTreeWidget
          */
         void keyReleaseEvent(QKeyEvent *e);
         void dragEnterEvent(QDragEnterEvent *e);
+        /*!
+         * \brief DropEvent handler
+         * \param e Event to handle
+         */
         void dropEvent(QDropEvent *e);
     protected slots:
         /*!

@@ -632,11 +632,11 @@ void MainWindow::on_sliderMusic_wheeled(bool positive)
 
 void MainWindow::on_action_Undo_triggered()
 {
-    updateModification(mqQueue.undo());
+    updateModification(mqQueue.undo(), true);
     updateUndoRedo();
 }
 
-void MainWindow::updateModification(Modification *modification)
+void MainWindow::updateModification(Modification *modification, bool undo)
 {
     if (!modification) return;
     switch (modification->type())
@@ -647,19 +647,19 @@ void MainWindow::updateModification(Modification *modification)
                 Tree *adr = &treeModif->tree();
                 if (adr == &eGame.scenario())
                 {
-                    treeScenario->updateDisplay();
+                    treeScenario->updateModification(treeModif, undo);
                 }
                 else if (adr == &eGame.history())
                 {
-                    treeHistory->updateDisplay();
+                    treeHistory->updateModification(treeModif, undo);
                 }
                 else if (adr == &eGame.music())
                 {
-                    treeMusic->updateDisplay();
+                    treeMusic->updateModification(treeModif, undo);
                 }
                 else if (adr == &eGame.effects())
                 {
-                    treeFX->updateDisplay();
+                    treeFX->updateModification(treeModif, undo);
                 }
                 break;
             }
@@ -673,7 +673,7 @@ void MainWindow::updateModification(Modification *modification)
 
 void MainWindow::on_action_Redo_triggered()
 {
-    updateModification(mqQueue.redo());
+    updateModification(mqQueue.redo(), false);
     updateUndoRedo();
 }
 

@@ -26,6 +26,8 @@
 #include <exception>
 #include <QScrollBar>
 
+using namespace std;
+
 QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(0), pItemDial(new ItemDialog(this)), pDragSource(0), bNewlySelected(false), bEditing(false), bSizeLimited(false), pmMethod(pmNone)
 {
     // creating actions
@@ -278,7 +280,7 @@ void QCustomTreeWidget::on_itemChanged(QTreeWidgetItem* item, int column)
         Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
         if (bEditing && branch->item()->content() != item->text(0).toStdString())
         {
-            std::string content = branch->item()->content();
+            string content = branch->item()->content();
             emit modificationDone(new TreeModification(*pTree, content, item->text(0).toStdString(), pTree->indicesOf(branch)));
             branch->item()->setContent(item->text(0).toStdString());
         }
@@ -292,14 +294,14 @@ void QCustomTreeWidget::setTree(Tree *tree)
     updateDisplay();
 }
 
-void QCustomTreeWidget::updateDisplay()
+void QCustomTreeWidget::updateDisplay(const string &indices)
 {
     clear();
     setColumnCount(2);
     if (pTree)
     {
-        std::vector<QCustomTreeWidgetItem*> items;
-        QCustomTreeWidgetItem* item;
+        vector<QCustomTreeWidgetItem*> items;
+        QCustomTreeWidgetItem* item, *focusItem=0;
         int depth=0;        
         // iterating the tree to populate the widget
         for (Tree::iterator it = pTree->begin(); it != pTree->end(); it++)
@@ -326,10 +328,19 @@ void QCustomTreeWidget::updateDisplay()
             {
                 expandItem(item);
             }
+            if (!focusItem && indices == it.indices())
+            {
+                focusItem = item;
+            }
+        }
+        resizeColumnToContents(0);
+        resizeColumnToContents(1);
+        if (focusItem)
+        {
+            scrollToItem(focusItem);
+            setCurrentItem(focusItem);
         }
     }
-    resizeColumnToContents(0);
-    resizeColumnToContents(1);
 }
 
 void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
@@ -343,7 +354,7 @@ void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
     // delete item
     if (pTree)
     {
-        std::string indices = pTree->indicesOf(branch);
+        string indices = pTree->indicesOf(branch);
         emit modificationDone(new TreeModification(*pTree, new Branch(*branch), indices));
         pTree->remove(indices);
     }
@@ -373,8 +384,6 @@ void QCustomTreeWidget::dragEnterEvent(QDragEnterEvent *e)
     QTreeWidget::dragEnterEvent(e);
 }
 
-using namespace std;
-
 void QCustomTreeWidget::dropEvent(QDropEvent *e)
 {
     bool valid = false;
@@ -393,8 +402,8 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
         QRect rect = visualRect(index);
         const int margin = 2;
        
-        std::string indices = pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()); 
-        std::string newIndices;
+        string indices = pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()); 
+        string newIndices;
         // different positions
         if (pos.y() - rect.top() < margin)
         {
@@ -415,6 +424,8 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
             // we want to add it as the last child
             buf << "_" << branch->tree().numberOfChildren();
             newIndices = buf.str();
+            // we expand the parent item
+            expandItem(item);
         }
         // move
         valid = pTree->move(indices, newIndices);
@@ -597,3 +608,29 @@ void QCustomTreeWidget::scrollTo(QTreeWidgetItem *item)
         bar->setValue(y);
     }
 }
+
+void QCustomTreeWidget::updateModification(TreeModification *modification, bool undo)
+{
+    string indices;
+    if (undo)
+    {
+        switch (modification->action())
+        {
+            case Modification::aAddition:   indices = modification->deletedIndices();
+                                            break;
+            default:    indices = modification->indices();
+        }
+    }
+    else
+    {
+        switch (modification->action())
+        {
+            case Modification::aDeletion:   indices = modification->deletedIndices();
+                                            break;
+            case Modification::aMovement:   indices = modification->modifiedNewIndices();
+                                            break;
+            default:    indices = modification->indices();
+        }
+    }
+    updateDisplay(indices);
+} 

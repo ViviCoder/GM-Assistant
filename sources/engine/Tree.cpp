@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -197,19 +197,35 @@ Tree::iterator Tree::endState(Item::State state) const
     return ++it2;
 }
 
-int Tree::extractIndex(string &indices)
+int Tree::extractIndex(string &indices, bool forward)
 {
     stringstream buf(stringstream::in | stringstream::out);
-    int pos = indices.find("_");
-    if (pos==-1)    // this is the last index
+    int pos;
+    if (forward)
+    {
+        pos = indices.find("_");
+    }
+    else
+    {
+        pos = indices.rfind("_");
+    }
+    if (pos==-1)    // this is the last (or first) index
     {
         buf << indices;
         indices = "";
     }
     else
     {
-        buf << indices.substr(0,pos);
-        indices = indices.substr(pos+1);
+        if (forward)
+        {
+            buf << indices.substr(0,pos);
+            indices = indices.substr(pos+1);
+        }
+        else
+        {
+            buf << indices.substr(pos+1);
+            indices = indices.substr(0, pos);
+        }
     }
     int n;
     buf >> n;
@@ -467,6 +483,7 @@ Tree::iterator::iterator(const vector<vector<Branch*>::const_iterator>& its, Ite
 Tree::iterator::iterator(const vector<Branch*>::const_iterator& it, IterationType type, Item::State state): itType(type),sState(state)
 {
 	qIts.push_back(it);
+    vIndices.push_back(0);
 }
 
 Tree::IterationType Tree::iterator::type() const
@@ -517,15 +534,19 @@ Tree::iterator& Tree::iterator::operator++() throw(out_of_range)
     if ((*(*it))->tree().vChildren.size()!=0)   // if there are children, go to the item() child
     {
         qIts.push_back((*(*it))->tree().vChildren.begin());
+        vIndices.push_back(0);
     }
     else    // otherwise, go to the next (if there is one)
     {
         (*it)++;
+        vIndices.back()++;
         while (it+1 != qIts.rend() && *it == (*(*(it+1)))->tree().vChildren.end())
         {
             qIts.pop_back();
+            vIndices.pop_back();
             it++;
             (*it)++;
+            vIndices.back()++;
         }
     }   
     return *this;
@@ -590,4 +611,18 @@ Branch* Tree::iterator::branch() const
 void Tree::setItem(string &indices, Item *item) throw(out_of_range)
 {
     branch(indices)->setItem(item);
+}
+
+string Tree::iterator::indices() const
+{
+    ostringstream buf;
+    for (vector<int>::const_iterator it = vIndices.begin(); it != vIndices.end(); it++)
+    {
+        buf << *it;
+        if (it+1 != vIndices.end())
+        {
+            buf << "_";
+        }
+    }
+    return buf.str();
 }

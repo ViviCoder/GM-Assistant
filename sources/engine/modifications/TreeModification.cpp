@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -202,4 +202,26 @@ string TreeModification::modifiedNewIndices() const
         buf << "_" << subNew;
     }
     return buf.str();
+}
+
+string TreeModification::deletedIndices() const
+{
+    string sub(sIndices);
+    int n;
+    ostringstream buf;
+    n = Tree::extractIndex(sub, false);
+    if (n == 0)
+    {
+        return sub;
+    }
+    else
+    {
+        buf << sub;
+        if (sub != "")
+        {
+            buf << "_";
+        }
+        buf << n-1;
+        return buf.str();
+    }
 }

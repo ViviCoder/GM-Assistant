@@ -290,10 +290,11 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         /*!
          * \brief Slot for the update after a modification
          * \param modification Modification which has just been made
+         * \param undo True if undoing, false if redoing
          *
          * Updates the display of the right widget
          */
-        void updateModification(Modification *modification);
+        void updateModification(Modification *modification, bool undo);
         /*!
          * \brief Test before closing a game
          * \return True if the user wants to close

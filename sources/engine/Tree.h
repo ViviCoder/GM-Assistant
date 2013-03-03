@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -50,11 +50,24 @@ class Tree
             private:
                 IterationType itType;
                 Item::State sState;
-                // underlying vector iterators
+                //! underlying vector of iterators
                 std::vector<std::vector<Branch*>::const_iterator> qIts;
+                //! Indices vector
+                std::vector<int> vIndices;
             public:
-                // constructor
+                /*!
+                 * \brief Copy constructor
+                 * \param its Iterator
+                 * \param type Iteration type
+                 * \param state State (used for Item::itState iteration type)
+                 */
                 iterator(const std::vector<std::vector<Branch*>::const_iterator>& its, IterationType type=itNormal, Item::State state=Item::sNone);
+                /*!
+                 * \brief Constructor from a lower level iterator
+                 * \param it Iterator of branches
+                 * \param type Iteration type
+                 * \param state State (used for Item::itState iteration type)
+                 */
                 iterator(const std::vector<Branch*>::const_iterator& it, IterationType type=itNormal, Item::State state=Item::sNone);
                 // accessors
                 IterationType type() const;
@@ -63,13 +76,28 @@ class Tree
                 // overloaded operators
                 bool operator!=(const iterator& it) const;
                 bool operator==(const iterator& it) const;
+                /*!
+                 * \brief Incrementation operator
+                 * \return The incremented iterator
+                 * \throw std::out_of_range Thrown when the iterator has gone beyond the end
+                 */
                 iterator& operator++() throw(std::out_of_range);
+                /*!
+                 * \brief Incrementation operator
+                 * \param i Dummy argument
+                 * \return The iterator before incrementation
+                 */
                 iterator operator++(int i);
                 Item* operator*();
                 // information about the position of the iterator
                 int depth() const;
                 Tree* parent() const;
                 Branch* branch() const;
+                /*!
+                 * \brief Getter for the current indices
+                 * \return Indices of the current branch
+                 */
+                std::string indices() const;
         };
         // constructors
         Tree(Branch* parent=0);
@@ -139,8 +167,15 @@ class Tree
          */
         bool move(const std::string &currentIndices, const std::string &newIndices);
         void clear();
-        // index extractor
-        static int extractIndex(std::string &indices);
+        /*!
+         * \brief Index extractor
+         * \param indices Indices to extract from
+         * \param forward True to begin from the left, false from the right
+         * \return Extracted indices
+         *
+         * After the call, indices contains only indices that have not been extracted yet
+         */
+        static int extractIndex(std::string &indices, bool forward = true);
         // get the index of a branch
         int indexOf(Branch *branch) const;
         std::string indicesOf(Branch *branch) const throw(std::out_of_range);
