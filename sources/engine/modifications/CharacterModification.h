@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -117,6 +117,21 @@ class CharacterModification: public Modification
         // inherited pure virtual methods
         void undo();
         void redo();
+        /*!
+         * \brief Getter for the index
+         * \return The index (or the row for cell editions) of the modification
+         */
+        int index() const;
+        /*!
+         * \brief Getter for the new index
+         * \return The new index (or the column for cell editions) of the modification
+         */
+        int newIndex() const;
+        /*!
+         * \brief Getter for the edition type
+         * \return The edition type of the modification
+         */
+        EditionType editionType() const;
     private:
         //! Type of edition
         EditionType etEditType;

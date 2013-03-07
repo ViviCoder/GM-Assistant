@@ -27,7 +27,7 @@
 #include "ChangeCharacterDialog.h"
 #include "SkillList.h"
 #include "CharacterList.h"
-#include "Modification.h"
+#include "CharacterModification.h"
 
 /*!
  * \brief Custom table widget
@@ -151,10 +151,6 @@ class QCustomTableWidget: public QTableWidget
          */
         void setLists(SkillList *skills, CharacterList *characters);
         /*!
-         * \brief Update of the display
-         */
-        void updateDisplay();
-        /*!
          * \brief Convert visual to logical row index
          * \param visualRow Visual row
          * \return Logical row
@@ -176,6 +172,10 @@ class QCustomTableWidget: public QTableWidget
         void modificationDone(Modification *modification);
     public slots:
         /*!
+         * \brief Update of the display
+         */
+        void updateDisplay();
+        /*!
          * \brief Scrolling
          * \param row Row index
          * \param column Column index
@@ -183,6 +183,12 @@ class QCustomTableWidget: public QTableWidget
          * Scroll to the item at the given indices. If one of the indices is equal to -1, no scrolling in this direction will be performed.
          */
         void scrollTo(int row, int column);
+        /*!
+         * \brief Update after a modification
+         * \param modification Modification to undo or redo
+         * \param undo True to undo, false to redo
+         */
+        void updateModification(CharacterModification *modification, bool undo);
 };
 
 #endif

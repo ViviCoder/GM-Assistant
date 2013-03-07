@@ -20,7 +20,6 @@
 #include "QCustomHeaderView.h"
 #include "ChangeSkillDialog.h"
 #include <QApplication>
-#include "CharacterModification.h"
 #include <QScrollBar>
 
 QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0)
@@ -590,4 +589,61 @@ void QCustomTableWidget::scrollTo(int row, int column)
             }
         }
     }   
+}
+
+void QCustomTableWidget::updateModification(CharacterModification *modification, bool undo)
+{
+    updateDisplay();
+    // selection of the cell to focus on
+    int row = -1;
+    int column = -1;
+    switch (modification->editionType())
+    {
+        case CharacterModification::etCharacter:    if (undo)
+                                                    {
+                                                        switch (modification->action())
+                                                        {
+                                                            case Modification::aAddition:   row = modification->index()-1;
+                                                                                            break;
+                                                            default:    row = modification->index();
+                                                        }
+                                                    }
+                                                    else
+                                                    {
+                                                        switch (modification->action())
+                                                        {
+                                                            case Modification::aDeletion:   row = modification->index()-1;
+                                                                                            break;
+                                                            case Modification::aMovement:   row = modification->newIndex();
+                                                                                            break;
+                                                            default:    row = modification->index();
+                                                        }
+                                                    }
+                                                    break;
+        case CharacterModification::etSkill:    if (undo)
+                                                {
+                                                    switch (modification->action())
+                                                    {
+                                                        case Modification::aAddition:   column = modification->index()-1;
+                                                                                        break;
+                                                        default:    column = modification->index();
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    switch (modification->action())
+                                                    {
+                                                        case Modification::aDeletion:   column = modification->index()-1;
+                                                                                        break;
+                                                        case Modification::aMovement:   column = modification->newIndex();
+                                                                                        break;
+                                                        default:    column = modification->index();
+                                                    }
+                                                }
+                                                break;
+        case CharacterModification::etValue:    row = modification->index();
+                                                column = modification->newIndex();
+                                                break;
+    }
+    scrollTo(row, column);
 }

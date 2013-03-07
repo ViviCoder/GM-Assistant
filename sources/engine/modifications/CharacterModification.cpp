@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -223,4 +223,19 @@ void CharacterModification::redo()
                         break;
         default:    break;
     }
+}
+
+int CharacterModification::index() const
+{
+    return iIndex;
+}
+
+int CharacterModification::newIndex() const
+{
+    return iNewIndex;
+}
+
+CharacterModification::EditionType CharacterModification::editionType() const
+{
+    return etEditType;
 }
