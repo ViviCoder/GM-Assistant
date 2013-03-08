@@ -214,8 +214,14 @@ void QCustomTableWidget::setLists(SkillList *skills, CharacterList *characters)
     updateDisplay();
 }
 
-void QCustomTableWidget::updateDisplay()
+void QCustomTableWidget::updateDisplay(int row, int column)
 {
+    // storing the scroll state
+    QScrollBar *hbar = horizontalScrollBar();
+    QScrollBar *vbar = verticalScrollBar();
+    int x = hbar->value();
+    int y = vbar->value();
+    // iterating over characters and skills to populate the table
     bUpdate = true;
     clear();
     setColumnCount(0);
@@ -252,6 +258,13 @@ void QCustomTableWidget::updateDisplay()
     bUpdate = false;
     resizeRowsToContents();
     resizeColumnsToContents();
+    if (row > -1 || column > -1)
+    {
+        // restoring the scroll state
+        hbar->setValue(x);
+        vbar->setValue(y);
+        scrollTo(row, column);
+    }
 }
 
 void QCustomTableWidget::onCellChanged(int logicalRow, int logicalColumn)
@@ -593,7 +606,6 @@ void QCustomTableWidget::scrollTo(int row, int column)
 
 void QCustomTableWidget::updateModification(CharacterModification *modification, bool undo)
 {
-    updateDisplay();
     // selection of the cell to focus on
     int row = -1;
     int column = -1;
@@ -645,5 +657,5 @@ void QCustomTableWidget::updateModification(CharacterModification *modification,
                                                 column = modification->newIndex();
                                                 break;
     }
-    scrollTo(row, column);
+    updateDisplay(row, column);
 }

@@ -300,10 +300,13 @@ void QCustomTreeWidget::updateDisplay(const string &indices)
     setColumnCount(2);
     if (pTree)
     {
+        // storing the scroll state
+        QScrollBar *vbar = verticalScrollBar();
+        int h = vbar->value();
+        // iterating over the tree to populate the widget
         vector<QCustomTreeWidgetItem*> items;
         QCustomTreeWidgetItem* item, *focusItem=0;
         int depth=0;        
-        // iterating the tree to populate the widget
         for (Tree::iterator it = pTree->begin(); it != pTree->end(); it++)
         {
             depth = it.depth();
@@ -335,6 +338,11 @@ void QCustomTreeWidget::updateDisplay(const string &indices)
         }
         resizeColumnToContents(0);
         resizeColumnToContents(1);
+        // restoring the scroll state
+        if (indices != "")
+        {
+            vbar->setValue(h);
+        }
         if (focusItem)
         {
             scrollToItem(focusItem);

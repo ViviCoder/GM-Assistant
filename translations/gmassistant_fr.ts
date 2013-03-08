@@ -1379,7 +1379,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="102"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="116"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="479"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="487"/>
         <location filename="../sources/windows/MainWindow.cpp" line="235"/>
         <location filename="../sources/windows/MainWindow.cpp" line="239"/>
         <location filename="../sources/windows/MainWindow.cpp" line="268"/>

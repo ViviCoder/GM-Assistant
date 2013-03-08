@@ -173,8 +173,10 @@ class QCustomTableWidget: public QTableWidget
     public slots:
         /*!
          * \brief Update of the display
+         * \param row Row to focus on
+         * \param column Column to focus on
          */
-        void updateDisplay();
+        void updateDisplay(int row = -1, int column = -1);
         /*!
          * \brief Scrolling
          * \param row Row index
