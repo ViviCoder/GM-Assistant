@@ -345,7 +345,7 @@ void QCustomTreeWidget::updateDisplay(const string &indices)
         }
         if (focusItem)
         {
-            scrollToItem(focusItem);
+            scrollTo(focusItem);
             setCurrentItem(focusItem);
         }
     }
