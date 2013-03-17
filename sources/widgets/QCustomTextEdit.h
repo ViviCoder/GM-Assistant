@@ -82,6 +82,16 @@ class QCustomTextEdit: public QTextEdit
          * Works together with keyPressEvent
          */
         void mousePressEvent(QMouseEvent *e);
+        /*!
+         * \brief DragEnter event handler
+         * \param e Event to handle
+         */
+        void dragEnterEvent(QDragEnterEvent *e);
+        /*!
+         * \brief Drop event handler
+         * \param e Event to handle
+         */
+        void dropEvent(QDropEvent *e);
     protected slots:
         /*!
          * \brief Slot for when the text has changed
@@ -106,6 +116,20 @@ class QCustomTextEdit: public QTextEdit
         std::string *pNotes;
         //! Edition status
         Status sStatus; 
+        //! Modified string
+        QString sModif;
+        //! String before modification
+        QString sOldModif;
+        //! Modification index
+        int iIndex;
+        //! New index (for drag & drop modifications)
+        int iNewIndex;
+        //! Length of the dragged text
+        int iLength;
+        //! Flag for drops
+        bool bDropped;
+        //! Flag for updates
+        bool bUpdate;
     signals:
         /*!
          * \brief Signal to register a modification

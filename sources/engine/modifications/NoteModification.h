@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -29,12 +29,29 @@ class NoteModification: public Modification
 {
     public:
         /*!
-         * \brief Constructor
-         * \param note Modified note 
+         * \brief Constructor for replacements
+         * \param note Modified note
          * \param content Previous content
          * \param newContent Modified content
+         * \param index Index of the modification
          */
-        NoteModification(std::string &note, const std::string &content, const std::string &newContent);
+        NoteModification(std::string &note, const std::string &content, const std::string &newContent, int index);
+        /*!
+         * \brief Constructor for moves
+         * \param note Modified note
+         * \param index Index of the moved text
+         * \param newIndex New index of the moved text
+         * \param length Length of the moved text
+         */
+        NoteModification(std::string &note, int index, int newIndex, int length);
+        /*!
+         * \brief Constructor for additions and deletions
+         * \param note Modified note
+         * \param action Action (addition or deletion)
+         * \param content Added or deleted text
+         * \param index Index of the modification
+         */
+        NoteModification(std::string &note, Action action, const std::string &content, int index);
         /*!
          * \brief Destructor
          */
@@ -50,6 +67,12 @@ class NoteModification: public Modification
         std::string sContent;
         //! Modified content
         std::string sNewContent;
+        //! Modification index
+        int iIndex;
+        //! Modification new index
+        int iNewIndex;
+        //! Length of the moved text
+        int iLength;
 };
 
 #endif
