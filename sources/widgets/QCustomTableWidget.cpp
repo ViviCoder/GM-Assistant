@@ -256,8 +256,6 @@ void QCustomTableWidget::updateDisplay(int row, int column)
         j++;
     }
     bUpdate = false;
-    resizeRowsToContents();
-    resizeColumnsToContents();
     if (row > -1 || column > -1)
     {
         // restoring the scroll state
@@ -293,7 +291,6 @@ void QCustomTableWidget::onCellChanged(int logicalRow, int logicalColumn)
             emit modificationDone(new CharacterModification(pCharacters, value, newValue, row, column));
         }
     }
-    resizeColumnsToContents();
 }
 
 void QCustomTableWidget::onHHeaderClicked(int index, const QPoint &position)
@@ -362,7 +359,6 @@ void QCustomTableWidget::addCharacter(int index)
             rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
             setVerticalHeaderItem(index+1, rowHeaderItem);
         }
-        resizeRowsToContents();
         scrollTo(index+1, -1);
     }
 }
@@ -410,7 +406,6 @@ void QCustomTableWidget::addSkill(int index)
             columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
             setHorizontalHeaderItem(index+1, columnHeaderItem);
         }
-        resizeColumnsToContents();
         scrollTo(-1, index+1);
     }
 }
@@ -424,6 +419,7 @@ void QCustomTableWidget::removeCharacter(int index)
         emit modificationDone(new CharacterModification(pCharacters, new Character((*pCharacters)[index]), index, false));
         pCharacters->remove(index);
     }
+    resizeColumnsToContents();
 }
 
 void QCustomTableWidget::removeSkill(int index)
@@ -470,7 +466,6 @@ void QCustomTableWidget::editCharacter(int index)
             QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index);
             rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
         }
-        resizeRowToContents(index);
         scrollTo(index, -1);
     }
 }
@@ -491,7 +486,6 @@ void QCustomTableWidget::editSkill(int index)
         index = logicalColumn(index);
         QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
         columnHeaderItem->setText(pChangeSkillDial->text());
-        resizeColumnToContents(index);
         scrollTo(-1, index);
     }
 }
