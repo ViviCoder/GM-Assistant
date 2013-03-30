@@ -18,10 +18,12 @@
 
 #include "QCustomTextEdit.h"
 #include <QScrollBar>
+#include <QApplication>
+#include <QClipboard>
 
 using namespace std;
 
-QCustomTextEdit::QCustomTextEdit(QWidget *parent): QTextEdit(parent), pNotes(0), sStatus(sMove), bDropped(false)
+QCustomTextEdit::QCustomTextEdit(QWidget *parent): QTextEdit(parent), pNotes(0), sStatus(sMove), bDropped(false), bPasted(false), bCut(false)
 {
     connect(this, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
 }
@@ -62,6 +64,8 @@ void QCustomTextEdit::onTextChanged()
         *pNotes = sText.toStdString();
         if (sRef == sText || bDropped || bUpdate)
         {
+            bPasted = false;
+            bCut = false;
             return;
         }
         int cursorPosition = textCursor().position();
@@ -92,7 +96,7 @@ void QCustomTextEdit::onTextChanged()
         }
         if (index + rindex == l1)
         {
-            if (sStatus != sInsertion)
+            if (sStatus != sInsertion || bPasted)
             {
                 checkModification();
                 sStatus = sInsertion;
@@ -102,10 +106,14 @@ void QCustomTextEdit::onTextChanged()
             iIndex = sRef.left(index).toStdString().length();
             // we store the text after the last modification
             sOldModif = sText;
+            if (bPasted)
+            {
+                checkModification();
+            }
         }
         else if (index + rindex == l2)
         {
-            if (sStatus != sDeletion)
+            if (sStatus != sDeletion || bCut)
             {
                 checkModification();
                 sStatus = sDeletion;
@@ -115,6 +123,10 @@ void QCustomTextEdit::onTextChanged()
             iIndex = sRef.left(index).toStdString().length();
             // we store the text after the last modification
             sOldModif = sText;
+            if (bCut)
+            {
+                checkModification();
+            }
         }
         else
         {
@@ -123,22 +135,24 @@ void QCustomTextEdit::onTextChanged()
                 checkModification();
                 sStatus = sMove;
                 onTextChanged();
-                return;
             }
-            // replacement
-            sModif = sText.mid(index, l2 - rindex - index);
-            sOldModif = sRef.mid(index, l1 - rindex - index);
-            iIndex = sRef.left(index).toStdString().length();
-            emit modificationDone(new NoteModification(*pNotes, sOldModif.toStdString(), sModif.toStdString(), iIndex));
-            sRef = sText;
+            else
+            {
+                // replacement
+                sModif = sText.mid(index, l2 - rindex - index);
+                sOldModif = sRef.mid(index, l1 - rindex - index);
+                iIndex = sRef.left(index).toStdString().length();
+                emit modificationDone(new NoteModification(*pNotes, sOldModif.toStdString(), sModif.toStdString(), iIndex));
+                sRef = sText;
+            }
         }
-        // to do : copy
+        bPasted = false;
+        bCut = false;
     }
 }
 
 void QCustomTextEdit::checkModification()
 {
-    QString sText = toPlainText();
     if (pNotes)
     {
         switch (sStatus)
@@ -150,6 +164,7 @@ void QCustomTextEdit::checkModification()
             default:    return;
         }
         sRef = sOldModif;
+        sStatus = sMove;
     }
 }
 
@@ -161,7 +176,7 @@ void QCustomTextEdit::focusInEvent(QFocusEvent *e)
 
 void QCustomTextEdit::focusOutEvent(QFocusEvent *e)
 {
-    if (sStatus !=  sMove)
+    if (sStatus != sMove)
     {
         checkModification();
         sStatus = sMove;
@@ -224,5 +239,21 @@ void QCustomTextEdit::dropEvent(QDropEvent *e)
             emit modificationDone(new NoteModification(*pNotes, iIndex, iNewIndex, iLength));
             sRef = sNewText;
         }
+    }
+}
+
+void QCustomTextEdit::forceCut()
+{
+    if (!textCursor().selectedText().isNull())
+    {
+        bCut = true;
+    }
+}
+
+void QCustomTextEdit::forcePaste()
+{
+    if (!QApplication::clipboard()->text().isNull())
+    {
+        bPasted = true;
     }
 }

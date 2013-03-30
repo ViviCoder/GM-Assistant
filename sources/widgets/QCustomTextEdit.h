@@ -53,6 +53,18 @@ class QCustomTextEdit: public QTextEdit
          * Checks if the text has been modified and send the corresponding signal if it is the case
          */
         void checkModification();
+        /*!
+         * \brief Modification forcing for cuts
+         *
+         * Forces the widget to register the next deletion as a separate modification
+         */
+        void forceCut();
+        /*!
+         * \brief Modification forcing for pastings
+         *
+         * Forces the widget to register the next insertion as a separate modification
+         */
+        void forcePaste();
     protected:
         /*!
          * \brief FocusIn event handler
@@ -130,6 +142,10 @@ class QCustomTextEdit: public QTextEdit
         bool bDropped;
         //! Flag for updates
         bool bUpdate;
+        //! Flag for pastes
+        bool bPasted;
+        //! Flag for cuts
+        bool bCut;
     signals:
         /*!
          * \brief Signal to register a modification

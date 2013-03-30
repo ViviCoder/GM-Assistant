@@ -704,27 +704,44 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
         if (e->type() == QEvent::KeyPress)
         {
             QKeyEvent *event = dynamic_cast<QKeyEvent*>(e);
-            if (event->key() == Qt::Key_Z)
+            Qt::KeyboardModifiers modifiers = event->modifiers();
+            switch (event->key())
             {
-                Qt::KeyboardModifiers modifiers = event->modifiers();
-                if (modifiers == Qt::ControlModifier)
-                {
-                    textNotes->checkModification();
-                    if (mqQueue.undoable())
-                    {
-                        on_action_Undo_triggered();
-                    }
-                    return true;
-                }
-                else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier))
-                {
-                    textNotes->checkModification();
-                    if (mqQueue.redoable())
-                    {
-                        on_action_Redo_triggered();
-                    }
-                    return true;
-                }
+                case Qt::Key_Z: // undo - redo
+                                if (modifiers == Qt::ControlModifier)
+                                {
+                                    textNotes->checkModification();
+                                    if (mqQueue.undoable())
+                                    {
+                                        on_action_Undo_triggered();
+                                    }
+                                    return true;
+                                }
+                                else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier))
+                                {
+                                    textNotes->checkModification();
+                                    if (mqQueue.redoable())
+                                    {
+                                        on_action_Redo_triggered();
+                                    }
+                                    return true;
+                                }
+                                break;
+                case Qt::Key_V: if (modifiers == Qt::ControlModifier)
+                                {
+                                    textNotes->forcePaste();
+                                }
+                                break;
+                case Qt::Key_X: if (modifiers == Qt::ControlModifier)
+                                {
+                                    textNotes->forceCut();
+                                }
+                                break;
+                default:    if (modifiers & Qt::ControlModifier)
+                            {
+                                textNotes->checkModification();
+                            }
+                            break;
             }
         }
     }
