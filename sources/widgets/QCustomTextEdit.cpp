@@ -252,7 +252,7 @@ void QCustomTextEdit::forceCut()
 
 void QCustomTextEdit::forcePaste()
 {
-    if (!QApplication::clipboard()->text().isNull())
+    if (!QApplication::clipboard()->text().isEmpty())
     {
         bPasted = true;
     }
