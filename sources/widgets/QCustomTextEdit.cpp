@@ -275,7 +275,11 @@ void QCustomTextEdit::updateModification(NoteModification *modification, bool un
                                         }
                                         else
                                         {
-                                            position = modification->newIndex() - length;
+                                            position = modification->newIndex();
+                                            if (modification->index() < position)
+                                            {
+                                                position -= length;
+                                            }
                                         }
                                         break;
         case Modification::aAddition:   position = modification->index();
