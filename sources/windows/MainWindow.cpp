@@ -655,7 +655,7 @@ void MainWindow::updateModification(Modification *modification, bool undo)
                 }
                 break;
             }
-        case Modification::tNote:   textNotes->updateDisplay(true);
+        case Modification::tNote:   textNotes->updateModification(dynamic_cast<NoteModification*>(modification), undo);
                                     break;
         case Modification::tCharacter:  tableStats->updateModification(dynamic_cast<CharacterModification*>(modification), undo);
                                         break;

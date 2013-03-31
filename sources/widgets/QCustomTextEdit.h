@@ -44,9 +44,10 @@ class QCustomTextEdit: public QTextEdit
     public slots:
         /*!
          * \brief Update of the display
-         * \param rescroll Indicates if the scrolling should not be reset
+         * \param position Position where to scroll to
+         * \param length Length of the selection
          */
-        void updateDisplay(bool rescroll = false);
+        void updateDisplay(int position = 0, int length = 0);
         /*!
          * \brief Modification checking
          *
@@ -65,6 +66,12 @@ class QCustomTextEdit: public QTextEdit
          * Forces the widget to register the next insertion as a separate modification
          */
         void forcePaste();
+        /*!
+         * \brief Update after a modification
+         * \param modification Modification to undo or redo
+         * \param undo True to undo, false to redo
+         */
+        void updateModification(NoteModification *modification, bool undo);
     protected:
         /*!
          * \brief FocusIn event handler

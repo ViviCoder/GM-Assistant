@@ -60,6 +60,31 @@ class NoteModification: public Modification
         Type type() const;
         void undo();
         void redo();
+        /*!
+         * \brief Getter for the index
+         * \return Index of the modification
+         */
+        int index() const;
+        /*!
+         * \brief Getter for the new index
+         * \return New index of the modification
+         */
+        int newIndex() const;
+        /*!
+         * \brief Getter for the length
+         * \return Length of the moved text
+         */
+        int length() const;
+        /*!
+         * \brief Getter for the modified content
+         * \return Modified text
+         */
+        std::string content() const;
+        /*!
+         * \brief Getter for the new content
+         * \return New text
+         */
+        std::string newContent() const;
     private:
         //! Modified note
         std::string &rNote;

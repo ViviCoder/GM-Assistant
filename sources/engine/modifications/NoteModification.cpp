@@ -86,3 +86,28 @@ void NoteModification::redo()
                         break;
     }
 }
+
+int NoteModification::index() const
+{
+    return iIndex;
+}
+
+int NoteModification::newIndex() const
+{
+    return iNewIndex;
+}
+
+int NoteModification::length() const
+{
+    return iLength;
+}
+
+string NoteModification::content() const
+{
+    return sContent;
+}
+
+string NoteModification::newContent() const
+{
+    return sNewContent;
+}

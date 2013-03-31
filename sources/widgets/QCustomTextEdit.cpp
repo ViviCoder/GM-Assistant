@@ -34,7 +34,7 @@ void QCustomTextEdit::setNotes(string *text)
     updateDisplay();
 }
 
-void QCustomTextEdit::updateDisplay(bool rescroll)
+void QCustomTextEdit::updateDisplay(int position, int length)
 {
     if (pNotes)
     {
@@ -47,10 +47,14 @@ void QCustomTextEdit::updateDisplay(bool rescroll)
         bUpdate = false;
         sStatus = sMove;
         sRef = toPlainText();
-        if (rescroll)
+        if (position || length )
         {
             hbar->setValue(h);
             vbar->setValue(v);
+            QTextCursor cursor = textCursor();
+            cursor.setPosition(QString(pNotes->substr(0, position).c_str()).length());
+            cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, QString(pNotes->substr(position, length).c_str()).length());
+            setTextCursor(cursor);
         }
     }
 }
@@ -256,4 +260,46 @@ void QCustomTextEdit::forcePaste()
     {
         bPasted = true;
     }
+}
+
+void QCustomTextEdit::updateModification(NoteModification *modification, bool undo)
+{
+    int position = 0;
+    int length = 0;
+    switch (modification->action())
+    {
+        case Modification::aMovement:   length = modification->length();
+                                        if (undo)
+                                        {
+                                            position = modification->index();
+                                        }
+                                        else
+                                        {
+                                            position = modification->newIndex() - length;
+                                        }
+                                        break;
+        case Modification::aAddition:   position = modification->index();
+                                        if (!undo)
+                                        {
+                                            length = modification->content().length();
+                                        }
+                                        break;
+        case Modification::aDeletion:   position = modification->index();
+                                        if (undo)
+                                        {
+                                            length = modification->content().length();
+                                        }
+                                        break;
+        case Modification::aEdition:    position = modification->index();
+                                        if (undo)
+                                        {
+                                            length = modification->content().length();
+                                        }
+                                        else
+                                        {
+                                            length = modification->newContent().length();
+                                        }
+                                        break;
+    }
+    updateDisplay(position, length);
 }
