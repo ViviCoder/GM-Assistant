@@ -262,6 +262,19 @@ void QCustomTableWidget::updateDisplay(int row, int column)
         hbar->setValue(x);
         vbar->setValue(y);
         scrollTo(row, column);
+        // setting the current cell, row or column
+        QItemSelectionModel::SelectionFlags flags = QItemSelectionModel::Select;
+        if (row == -1)
+        {
+            flags |= QItemSelectionModel::Columns;
+            row = 0;
+        }
+        if (column == -1)
+        {
+            flags |= QItemSelectionModel::Rows;
+            column = 0;
+        }
+        setCurrentCell(row, column, flags);
     }
 }
 

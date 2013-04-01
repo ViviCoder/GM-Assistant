@@ -24,6 +24,8 @@ QCustomHeaderView::QCustomHeaderView(Qt::Orientation orientation, QWidget *paren
     setMovable(true);
     // enabling auto-resize
     setResizeMode(QHeaderView::ResizeToContents);
+    // enabling row or column selection
+    setClickable(true);
 }
 
 void QCustomHeaderView::mousePressEvent(QMouseEvent *e)
