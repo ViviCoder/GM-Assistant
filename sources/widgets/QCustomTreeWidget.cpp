@@ -641,4 +641,5 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
         }
     }
     updateDisplay(indices);
+    setFocus(Qt::OtherFocusReason);
 } 

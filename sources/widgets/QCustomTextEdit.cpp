@@ -316,6 +316,7 @@ void QCustomTextEdit::updateModification(NoteModification *modification, bool un
                                         break;
     }
     updateDisplay(position, length);
+    setFocus(Qt::OtherFocusReason);
 }
 
 bool QCustomTextEdit::unregisteredModification() const

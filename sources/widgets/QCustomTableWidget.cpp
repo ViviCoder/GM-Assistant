@@ -665,4 +665,5 @@ void QCustomTableWidget::updateModification(CharacterModification *modification,
                                                 break;
     }
     updateDisplay(row, column);
+    setFocus(Qt::OtherFocusReason);
 }
