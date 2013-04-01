@@ -41,13 +41,18 @@ class QCustomTextEdit: public QTextEdit
          * \param text Text of the notes
          */
         void setNotes(std::string *text); 
+        /*!
+         * \brief Indicator of unregistered modifications
+         * \return True if there is an unregistered modification
+         */
+        bool unregisteredModification() const;
     public slots:
         /*!
          * \brief Update of the display
          * \param position Position where to scroll to
          * \param length Length of the selection
          */
-        void updateDisplay(int position = 0, int length = 0);
+        void updateDisplay(int position = -1, int length = 0);
         /*!
          * \brief Modification checking
          *
@@ -161,6 +166,12 @@ class QCustomTextEdit: public QTextEdit
          * This signal is sent when the notes are modified
          */
         void modificationDone(Modification* modification);
+        /*!
+         * \brief Signal to update the modified/unmodified state
+         *
+         * This signal is sent when a modification is done without being registered or when the text is reset to the reference text
+         */
+        void unregistered();
 };
 
 #endif

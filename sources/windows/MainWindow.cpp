@@ -42,6 +42,7 @@ MainWindow::MainWindow(): QMainWindow(), pAboutDial(new AboutDialog(this)), time
     connect(treeMusic, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(treeFX, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(textNotes, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    connect(textNotes, SIGNAL(unregistered()), this, SLOT(updateUndoRedo()));
     textNotes->installEventFilter(this);
     connect(tableStats, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     // setting audio options
@@ -679,7 +680,7 @@ void MainWindow::updateUndoRedo()
 {
     action_Undo->setEnabled(mqQueue.undoable());
     action_Redo->setEnabled(mqQueue.redoable());
-    bool modified = !mqQueue.isUpToDate();
+    bool modified = !mqQueue.isUpToDate() || textNotes->unregisteredModification();
     action_Save->setEnabled(modified);
     QString title("GM-Assistant - ");
     if (sFileName.isEmpty())

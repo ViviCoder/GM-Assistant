@@ -47,7 +47,7 @@ void QCustomTextEdit::updateDisplay(int position, int length)
         bUpdate = false;
         sStatus = sMove;
         sRef = toPlainText();
-        if (position || length )
+        if (position > -1)
         {
             hbar->setValue(h);
             vbar->setValue(v);
@@ -70,6 +70,8 @@ void QCustomTextEdit::onTextChanged()
         {
             bPasted = false;
             bCut = false;
+            sStatus = sMove;
+            emit unregistered();
             return;
         }
         int cursorPosition = textCursor().position();
@@ -114,6 +116,10 @@ void QCustomTextEdit::onTextChanged()
             {
                 checkModification();
             }
+            else
+            {
+                emit unregistered();
+            }
         }
         else if (index + rindex == l2)
         {
@@ -130,6 +136,10 @@ void QCustomTextEdit::onTextChanged()
             if (bCut)
             {
                 checkModification();
+            }
+            else
+            {
+                emit unregistered();
             }
         }
         else
@@ -306,4 +316,9 @@ void QCustomTextEdit::updateModification(NoteModification *modification, bool un
                                         break;
     }
     updateDisplay(position, length);
+}
+
+bool QCustomTextEdit::unregisteredModification() const
+{
+    return (sStatus != sMove);
 }
