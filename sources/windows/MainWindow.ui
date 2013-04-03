@@ -336,9 +336,16 @@
     <addaction name="action_Undo"/>
     <addaction name="action_Redo"/>
    </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>&amp;Tools</string>
+    </property>
+    <addaction name="action_Dice"/>
+   </widget>
    <addaction name="menuGame"/>
    <addaction name="menu_Edit"/>
    <addaction name="menuView"/>
+   <addaction name="menuTools"/>
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
@@ -520,6 +527,11 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+Shift+Z</string>
+   </property>
+  </action>
+  <action name="action_Dice">
+   <property name="text">
+    <string>&amp;Dice simulator</string>
    </property>
   </action>
  </widget>

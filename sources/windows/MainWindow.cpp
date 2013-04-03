@@ -26,7 +26,7 @@
 #include <QStackedLayout>
 #include "NoteModification.h"
 
-MainWindow::MainWindow(): QMainWindow(), pAboutDial(new AboutDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), siCurrentMusic(0)
+MainWindow::MainWindow(): QMainWindow(), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), siCurrentMusic(0)
 {
     setupUi(this);
     updateDisplay();
@@ -775,4 +775,9 @@ void MainWindow::closeEvent(QCloseEvent *e)
     {
         e->ignore();
     }
+}
+
+void MainWindow::on_action_Dice_triggered()
+{
+    pDiceDialog->show();
 }

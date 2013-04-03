@@ -23,6 +23,7 @@
 #include "Scenario.h"
 #include "SoundEngine.h"
 #include "AboutDialog.h"
+#include "DiceDialog.h"
 #include <QTimer>
 #include <QSignalMapper>
 #include "ModificationQueue.h"
@@ -47,7 +48,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \brief File name of the current game
          */
         QString sFileName;
+        //! Information dialog window
         AboutDialog *pAboutDial;
+        //! Dice simulation dialog window
+        DiceDialog *pDiceDialog;
         /*!
          * \brief Timer used by the window
          */
@@ -192,6 +196,12 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Reloads the current game
          */
         void on_action_Reload_triggered();
+        /*!
+         * \brief Slot for the "Dice simulator" menu item
+         *
+         * Launches the dice simulator
+         */
+        void on_action_Dice_triggered();
         /*!
          * \brief Slot for when the music button is clicked
          *
