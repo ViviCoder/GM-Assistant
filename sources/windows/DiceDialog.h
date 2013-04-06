@@ -26,12 +26,23 @@
  */
 class DiceDialog: public QDialog, private Ui::diceDialog
 {
-    private:
-        //! Number of faces
-        int iFaces;
+    Q_OBJECT
     public:
         //! Default constructor
         DiceDialog(QWidget *parent);
+    public slots:
+        /*!
+         * \brief Slot for when the Generate button is clicked
+         *
+         * Generates the requested random numbers
+         */
+        void on_pushThrow_clicked();
+        /*!
+         * \brief Overriden slot for showing the dialog window
+         *
+         * Resets the results
+         */
+        void show();
 };
 
 #endif

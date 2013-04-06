@@ -18,7 +18,51 @@
 
 #include "DiceDialog.h"
 
-DiceDialog::DiceDialog(QWidget *parent): QDialog(parent), iFaces(6)
+DiceDialog::DiceDialog(QWidget *parent): QDialog(parent)
 {
     setupUi(this);
+    /* Initializes the random seed */
+    srand(time(0));
+}
+
+void DiceDialog::on_pushThrow_clicked()
+{
+    int faces;
+    switch (comboType->currentIndex())
+    {
+        case 0:     faces = 2;
+                    break;
+        case 1:     faces = 3;
+                    break;
+        case 2:     faces = 4;
+                    break;
+        case 3:     faces = 6;
+                    break;
+        case 4:     faces = 8;
+                    break;
+        case 5:     faces = 10;
+                    break;
+        case 6:     faces = 12;
+                    break;
+        case 7:     faces = 20;
+                    break;
+        default:    faces = 100;
+    }
+    QString result;
+    int nb = spinNumber->value();
+    for (int i = 0; i < nb; i++)
+    {
+        result += QString("%1").arg(rand() % faces + 1);
+        if (i+1 < nb)
+        {
+            result += " ";
+        }
+    }
+    lineResult->setText(result);
+}
+
+void DiceDialog::show()
+{
+    lineResult->setText(QString());
+    QDialog::show();
 }

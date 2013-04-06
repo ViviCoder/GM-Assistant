@@ -411,6 +411,9 @@
    <property name="statusTip">
     <string>Display information about GM-Assistant</string>
    </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
   </action>
   <action name="action_Reload">
    <property name="text">
@@ -442,7 +445,7 @@
     <string>&amp;Full</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Scenario, Note, Characters, History, Music, Sound</string>
+    <string>Tools shown : Scenario, Notes, Characters, History, Music and Sound effects</string>
    </property>
    <property name="shortcut">
     <string>F5</string>
@@ -459,7 +462,7 @@
     <string>&amp;Music</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Music, Sound</string>
+    <string>Tools shown : Music and Sound effects</string>
    </property>
    <property name="shortcut">
     <string>F7</string>
@@ -473,7 +476,7 @@
     <string>&amp;Simple</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Scenario, Music and Sound</string>
+    <string>Tools shown : Scenario, Music and Sound effects</string>
    </property>
    <property name="shortcut">
     <string>F6</string>
@@ -487,7 +490,7 @@
     <string>&amp;Design</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Scenario, Characters, Note </string>
+    <string>Tools shown : Scenario, Characters and Notes</string>
    </property>
    <property name="shortcut">
     <string>F8</string>
@@ -501,7 +504,7 @@
     <string>&amp;No Music</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Scenario, Note, History, Characters</string>
+    <string>Tools shown : Scenario, Characters, History and Notes</string>
    </property>
    <property name="shortcut">
     <string>F9</string>
@@ -532,6 +535,12 @@
   <action name="action_Dice">
    <property name="text">
     <string>&amp;Dice simulator</string>
+   </property>
+   <property name="statusTip">
+    <string>Throw virtual dices</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
    </property>
   </action>
  </widget>
