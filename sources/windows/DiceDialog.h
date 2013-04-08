@@ -38,6 +38,12 @@ class DiceDialog: public QDialog, private Ui::diceDialog
          */
         void on_pushThrow_clicked();
         /*!
+         * \brief Slot for when the Reset button is clicked
+         *
+         * Resets the results
+         */
+        void on_pushReset_clicked();
+        /*!
          * \brief Overriden slot for showing the dialog window
          *
          * Resets the results

@@ -17,6 +17,9 @@
    <string>About GM-Assistant</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetFixedSize</enum>
+   </property>
    <item>
     <widget class="QLabel" name="labelTitle">
      <property name="text">

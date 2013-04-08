@@ -62,8 +62,13 @@ void DiceDialog::on_pushThrow_clicked()
     lineResult->setText(result);
 }
 
-void DiceDialog::show()
+void DiceDialog::on_pushReset_clicked()
 {
     lineResult->setText(QString());
+}
+
+void DiceDialog::show()
+{
+    on_pushReset_clicked();
     QDialog::show();
 }

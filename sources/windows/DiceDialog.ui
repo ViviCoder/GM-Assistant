@@ -14,6 +14,9 @@
    <string>Dice simulator</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+   <property name="sizeConstraint">
+    <enum>QLayout::SetFixedSize</enum>
+   </property>
    <item>
     <layout class="QFormLayout" name="formLayout_2">
      <property name="fieldGrowthPolicy">
@@ -116,6 +119,13 @@
        </property>
        <property name="default">
         <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushReset">
+       <property name="text">
+        <string>&amp;Reset</string>
        </property>
       </widget>
      </item>

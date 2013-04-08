@@ -9,7 +9,7 @@
         <translation>À propos de GM-Assistant</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="23"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="26"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -18,7 +18,7 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="39"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="42"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p&gt;Version:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
@@ -27,7 +27,7 @@ p, li { white-space: pre-wrap; }
 &lt;p&gt;Version :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="74"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="77"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline&quot;&gt;Developed and maintained by:&lt;/p&gt;
@@ -40,7 +40,7 @@ p, li { white-space: pre-wrap; }
 &lt;a href=&quot;http://gmassistant.free.fr&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://gmassistant.free.fr&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="88"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="91"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
@@ -55,7 +55,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;GM-Assistant est un logiciel libre conçu pour assister le Maître du Jeu lors de jeux de rôle.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="113"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="116"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline&quot;&gt;Using:&lt;/p&gt;
@@ -110,7 +110,7 @@ conçu pour assister le Maître du Jeu&lt;br /&gt;
 lors d&apos;une partie de jeu de rôles&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="103"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="106"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot; text-decoration: underline;&quot;&gt;License:&lt;/p&gt;
@@ -255,7 +255,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">GM-Assistant est un logiciel libre conçu pour assister le Maître du Jeu lors d&apos;une partie de jeu de rôle</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="63"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="66"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
@@ -874,67 +874,72 @@ p, li { white-space: pre-wrap; }
         <translation>Simulateur de dés</translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="25"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="28"/>
         <source>Dice type:</source>
         <translation>Type de dé :</translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="39"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="42"/>
         <source>d2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="44"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="47"/>
         <source>d3</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="49"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="52"/>
         <source>d4</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="54"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="57"/>
         <source>d6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="59"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="62"/>
         <source>d8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="64"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="67"/>
         <source>d10</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="69"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="72"/>
         <source>d12</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="74"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="77"/>
         <source>d20</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="79"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="82"/>
         <source>d100</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="87"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="90"/>
         <source>Number of dices:</source>
         <translation>Nombre de dés :</translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="115"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="118"/>
         <source>&amp;Throw</source>
         <translation>&amp;Lancer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="125"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="128"/>
+        <source>&amp;Reset</source>
+        <translation type="unfinished">&amp;Mettre à zéro</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/DiceDialog.ui" line="135"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>

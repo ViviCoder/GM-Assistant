@@ -27,11 +27,4 @@ AboutDialog::AboutDialog(QWidget *parent): QDialog(parent)
     labelVersionNumber->setText(Version::currentVersion().fullVersion().c_str());
     QSvgRenderer *renderer = labelLogo->renderer();
     renderer->load(QString(":data/images/GMA.svg"));
-    labelLogo->setFixedSize(labelLogo->renderer()->defaultSize());
-}
-
-void AboutDialog::showEvent(QShowEvent *e)
-{
-    setFixedSize(size());
-    QDialog::showEvent(e); 
 }
