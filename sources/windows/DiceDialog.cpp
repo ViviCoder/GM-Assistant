@@ -17,6 +17,7 @@
 *************************************************************************/
 
 #include "DiceDialog.h"
+#include <ctime>
 
 DiceDialog::DiceDialog(QWidget *parent): QDialog(parent)
 {
