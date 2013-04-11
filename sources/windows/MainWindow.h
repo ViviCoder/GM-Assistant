@@ -24,6 +24,7 @@
 #include "SoundEngine.h"
 #include "AboutDialog.h"
 #include "DiceDialog.h"
+#include "SelectCharacterDialog.h"
 #include <QTimer>
 #include <QSignalMapper>
 #include "ModificationQueue.h"
@@ -52,6 +53,8 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         AboutDialog *pAboutDial;
         //! Dice simulation dialog window
         DiceDialog *pDiceDialog;
+        //! Character selection dialog window
+        SelectCharacterDialog *pSelectCharacterDialog;
         /*!
          * \brief Timer used by the window
          */
@@ -202,6 +205,12 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Launches the dice simulator
          */
         void on_action_Dice_triggered();
+        /*!
+         * \brief Slot for the "Combat manager" menu item
+         *
+         * Launches the character selection dialog window before the combat manager
+         */
+        void on_action_Combat_triggered();
         /*!
          * \brief Slot for when the music button is clicked
          *
