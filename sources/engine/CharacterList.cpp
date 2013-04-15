@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -157,4 +157,9 @@ CharacterList::iterator::iterator(const vector<Character>::iterator &it): vector
 
 CharacterList::const_iterator::const_iterator(const vector<Character>::const_iterator &it): vector<Character>::const_iterator(it)
 {
+}
+
+int CharacterList::count() const
+{
+    return vCharacters.size();
 }

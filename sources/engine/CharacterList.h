@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -74,6 +74,11 @@ class CharacterList
         const_iterator end() const;
         iterator begin();
         iterator end();
+        /*!
+         * \brief Getter for the number of characters
+         * \return Number of characters
+         */
+        int count() const;
 };
 
 #endif

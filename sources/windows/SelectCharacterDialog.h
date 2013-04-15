@@ -21,6 +21,7 @@
 
 #include "ui_SelectCharacterDialog.h"
 #include "CharacterList.h"
+#include <QSignalMapper>
 
 /*!
  * \brief Dialog window used to select the characters involved in a combat
@@ -28,6 +29,9 @@
 class SelectCharacterDialog: public QDialog, private Ui::selectCharacterDialog
 {
     Q_OBJECT
+    private:
+        //! Signal mapper
+        QSignalMapper *smMapper;
     public:
         //! Default constructor
         SelectCharacterDialog(QWidget *parent);
@@ -39,6 +43,13 @@ class SelectCharacterDialog: public QDialog, private Ui::selectCharacterDialog
          * Prepares the dialog window with the given list of characters
          */
         void exec(const CharacterList &list);
+        /*!
+         * \brief Slot for when a checkbox is clicked
+         * \param widget Spinbox to update
+         *
+         * Updates the spinbox corresponding to the clicked checkbox
+         */
+        void update(QWidget *widget);
 };
 
 #endif
