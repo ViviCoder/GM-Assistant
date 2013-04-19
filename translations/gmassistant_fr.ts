@@ -534,6 +534,34 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
+    <name>combatDialog</name>
+    <message>
+        <location filename="../sources/windows/CombatDialog.ui" line="14"/>
+        <source>Combat manager</source>
+        <translation>Gestionnaire de combat</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/CombatDialog.ui" line="33"/>
+        <source>Notes</source>
+        <translation>Notes</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/CombatDialog.ui" line="43"/>
+        <source>&amp;Next</source>
+        <translation>&amp;Suivant</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/CombatDialog.ui" line="53"/>
+        <source>&amp;Remove</source>
+        <translation>S&amp;upprimer</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/CombatDialog.ui" line="60"/>
+        <source>&amp;Close</source>
+        <translation>&amp;Fermer</translation>
+    </message>
+</context>
+<context>
     <name>custom</name>
     <message>
         <source>&amp;None</source>
@@ -1618,6 +1646,16 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/SelectCharacterDialog.ui" line="45"/>
         <source>&amp;Cancel</source>
         <translation>A&amp;nnuler</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/SelectCharacterDialog.cpp" line="90"/>
+        <source>Uncompleted character selection</source>
+        <translation>Sélection de personnages inachevée</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/SelectCharacterDialog.cpp" line="90"/>
+        <source>You have selected too few characters. There must be at least two of them.</source>
+        <translation>Vous avez sélectionné trop peu de personnages. Il doit y en avoir au moins deux.</translation>
     </message>
 </context>
 </TS>

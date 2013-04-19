@@ -18,10 +18,9 @@
 
 #include "SelectCharacterDialog.h"
 #include <QFormLayout>
-#include <QCheckBox>
-#include <QSpinBox>
+#include <QMessageBox>
 
-SelectCharacterDialog::SelectCharacterDialog(QWidget *parent): QDialog(parent), smMapper(new QSignalMapper(this))
+SelectCharacterDialog::SelectCharacterDialog(QWidget *parent): QDialog(parent), smMapper(new QSignalMapper(this)), pCombat(new CombatDialog(parent))
 {
     setupUi(this);
     connect(smMapper, SIGNAL(mapped(QWidget*)), this, SLOT(update(QWidget*)));
@@ -29,10 +28,10 @@ SelectCharacterDialog::SelectCharacterDialog(QWidget *parent): QDialog(parent), 
 
 void SelectCharacterDialog::exec(const CharacterList &list)
 {
-    int n = list.count();
+    iNumber = list.count();
     QFormLayout *formLayout = new QFormLayout();
-    QCheckBox *checkList = new QCheckBox[n];
-    QSpinBox *spinList = new QSpinBox[n];
+    checkList = new QCheckBox[iNumber];
+    spinList = new QSpinBox[iNumber];
     int i = 0;
     for (CharacterList::const_iterator it = list.begin(); it != list.end(); it++)
     {
@@ -58,4 +57,36 @@ void SelectCharacterDialog::exec(const CharacterList &list)
 void SelectCharacterDialog::update(QWidget *widget)
 {
     widget->setEnabled(!widget->isEnabled());
+}
+
+void SelectCharacterDialog::accept()
+{
+    QStringList list;
+    for (int i = 0; i < iNumber; i++)
+    {
+        if (checkList[i].isChecked())
+        {
+            int n = spinList[i].value();
+            if (n == 1)
+            {
+                list.append(checkList[i].text());
+            }
+            else
+            {
+                for (int j = 0; j < spinList[i].value(); j++)
+                {
+                    list.append(checkList[i].text() + QString(" (%1)").arg(j+1));
+                }
+            }
+        }
+    }
+    if (list.size() > 1)
+    {
+        QDialog::accept();
+        pCombat->show(list);
+    }
+    else
+    {
+        QMessageBox::critical(this, QApplication::translate("selectCharacterDialog", "Uncompleted character selection", 0), QApplication::translate("selectCharacterDialog", "You have selected too few characters. There must be at least two of them.", 0));
+    }
 }

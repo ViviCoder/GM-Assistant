@@ -16,53 +16,28 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_SELECTCHARACTERDIALOG
-#define HEADER_SELECTCHARACTERDIALOG
+#ifndef HEADER_COMBATDIALOG
+#define HEADER_COMBATDIALOG
 
-#include "ui_SelectCharacterDialog.h"
-#include "CharacterList.h"
-#include <QSignalMapper>
-#include <QCheckBox>
-#include <QSpinBox>
-#include "CombatDialog.h"
+#include "ui_CombatDialog.h"
 
 /*!
- * \brief Dialog window used to select the characters involved in a combat
+ * \brief Dialog window which manages the action order in a turn-per-turn combat
  */
-class SelectCharacterDialog: public QDialog, private Ui::selectCharacterDialog
+class CombatDialog: public QDialog, private Ui::combatDialog
 {
     Q_OBJECT
-    private:
-        //! Signal mapper
-        QSignalMapper *smMapper;
-        //! Number of characters
-        int iNumber;
-        //! CheckBox array
-        QCheckBox *checkList;
-        //! SpinBox array
-        QSpinBox *spinList;
-        //! Combat manager dialog window
-        CombatDialog *pCombat;
     public:
         //! Default constructor
-        SelectCharacterDialog(QWidget *parent);
+        CombatDialog(QWidget *parent);
     public slots:
         /*!
          * \brief Overriden slot for showing the dialog window
-         * \param list List of characters
+         * \param list List of involved characters
          *
          * Prepares the dialog window with the given list of characters
          */
-        void exec(const CharacterList &list);
-        /*!
-         * \brief Slot for when a checkbox is clicked
-         * \param widget Spinbox to update
-         *
-         * Updates the spinbox corresponding to the clicked checkbox
-         */
-        void update(QWidget *widget);
-        // Overriden slot
-        void accept();
+        void show(const QStringList &list);
 };
 
 #endif
