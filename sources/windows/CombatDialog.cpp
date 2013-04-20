@@ -18,14 +18,18 @@
 
 #include "CombatDialog.h"
 
-CombatDialog::CombatDialog(QWidget *parent): QDialog(parent)
+CombatDialog::CombatDialog(QWidget *parent): QDialog(parent), bForce(true)
 {
     setupUi(this);
-    tableWidget->verticalHeader()->setMovable(true);
+    header = tableWidget->verticalHeader();
+    header->setMovable(true);
+    connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onCharacterMoved(int, int, int)));
 }
 
 void CombatDialog::show(const QStringList &list)
 {
+    iCharacter = -1;
+    tableWidget->setRowCount(0);
     tableWidget->setRowCount(list.size());
     int i = 0;
     for (QStringList::const_iterator it = list.begin(); it != list.end(); it++)
@@ -34,5 +38,43 @@ void CombatDialog::show(const QStringList &list)
         tableWidget->setVerticalHeaderItem(i, item);
         i++;
     } 
+    pushNext->setText(QApplication::translate("combatDialog", "&Start", 0));
     QDialog::show();
+}
+
+void CombatDialog::on_pushNext_clicked()
+{
+    if (iCharacter < 0)
+    {
+        pushNext->setText(QApplication::translate("combatDialog", "&Next", 0));
+    }
+    iCharacter = (iCharacter + 1) % tableWidget->rowCount();
+    // We force the change
+    bForce = true;
+    tableWidget->setCurrentCell(header->logicalIndex(iCharacter), 0);
+}
+
+void CombatDialog::on_tableWidget_itemSelectionChanged()
+{
+    if (bForce || iCharacter < 0)
+    {
+        bForce = false;
+    }
+    else
+    {
+        tableWidget->setCurrentCell(header->logicalIndex(iCharacter), 0);
+    }
+}
+
+void CombatDialog::onCharacterMoved(int, int oldVisualIndex, int newVisualIndex)
+{
+    if (oldVisualIndex < iCharacter && newVisualIndex >= iCharacter)
+    {
+        iCharacter--;
+    }
+    else if (oldVisualIndex > iCharacter && newVisualIndex <= iCharacter)
+    {
+        iCharacter++;
+    }
+    tableWidget->setCurrentCell(header->logicalIndex(iCharacter), 0);
 }

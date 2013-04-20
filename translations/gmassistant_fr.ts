@@ -541,24 +541,30 @@ p, li { white-space: pre-wrap; }
         <translation>Gestionnaire de combat</translation>
     </message>
     <message>
-        <location filename="../sources/windows/CombatDialog.ui" line="33"/>
+        <location filename="../sources/windows/CombatDialog.ui" line="36"/>
         <source>Notes</source>
         <translation>Notes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/CombatDialog.ui" line="43"/>
+        <location filename="../sources/windows/CombatDialog.ui" line="46"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="49"/>
         <source>&amp;Next</source>
         <translation>&amp;Suivant</translation>
     </message>
     <message>
-        <location filename="../sources/windows/CombatDialog.ui" line="53"/>
+        <location filename="../sources/windows/CombatDialog.ui" line="56"/>
         <source>&amp;Remove</source>
         <translation>S&amp;upprimer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/CombatDialog.ui" line="60"/>
+        <location filename="../sources/windows/CombatDialog.ui" line="63"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/CombatDialog.cpp" line="41"/>
+        <source>&amp;Start</source>
+        <translation>&amp;Démarrer</translation>
     </message>
 </context>
 <context>
