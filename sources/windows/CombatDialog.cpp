@@ -39,6 +39,7 @@ void CombatDialog::show(const QStringList &list)
         i++;
     } 
     pushNext->setText(QApplication::translate("combatDialog", "&Start", 0));
+    pushRemove->setEnabled(tableWidget->rowCount() > 2);
     QDialog::show();
 }
 
@@ -77,4 +78,22 @@ void CombatDialog::onCharacterMoved(int, int oldVisualIndex, int newVisualIndex)
         iCharacter++;
     }
     tableWidget->setCurrentCell(header->logicalIndex(iCharacter), 0);
+}
+
+void CombatDialog::on_pushRemove_clicked()
+{
+    int n = tableWidget->rowCount();
+    if (n > 2)
+    {
+        tableWidget->removeRow(tableWidget->currentRow());
+        if (iCharacter == n-1)
+        {
+            iCharacter = 0;
+        }
+        tableWidget->setCurrentCell(header->logicalIndex(iCharacter), 0);
+        if (n == 3)
+        {
+            pushRemove->setEnabled(false);
+        }
+    }
 }

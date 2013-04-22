@@ -64,6 +64,12 @@ class CombatDialog: public QDialog, private Ui::combatDialog
          * \param newVisualIndex New visual index
          */
         void onCharacterMoved(int logicalIndex, int oldVisualIndex, int newVisualIndex);
+        /*!
+         * \brief Slot for when the Remove button is clicked
+         *
+         * Deletes the current character
+         */
+        void on_pushRemove_clicked();
 };
 
 #endif

@@ -547,7 +547,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/CombatDialog.ui" line="46"/>
-        <location filename="../sources/windows/CombatDialog.cpp" line="49"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="50"/>
         <source>&amp;Next</source>
         <translation>&amp;Suivant</translation>
     </message>
