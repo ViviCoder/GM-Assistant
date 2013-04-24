@@ -323,11 +323,19 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
+    <widget class="QMenu" name="menu_Language">
+     <property name="title">
+      <string>&amp;Language</string>
+     </property>
+     <addaction name="action_English"/>
+    </widget>
     <addaction name="actionFull"/>
     <addaction name="actionSimple"/>
     <addaction name="actionMusic"/>
     <addaction name="actionDesign"/>
     <addaction name="actionNoMusic"/>
+    <addaction name="separator"/>
+    <addaction name="menu_Language"/>
    </widget>
    <widget class="QMenu" name="menu_Edit">
     <property name="title">
@@ -451,9 +459,6 @@
    <property name="shortcut">
     <string>F5</string>
    </property>
-   <property name="softKeyRole">
-    <enum>QAction::NoSoftKey</enum>
-   </property>
   </action>
   <action name="actionMusic">
    <property name="checkable">
@@ -553,6 +558,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+M</string>
+   </property>
+  </action>
+  <action name="action_English">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>&amp;English</string>
    </property>
   </action>
  </widget>

@@ -32,6 +32,14 @@ MainWindow::MainWindow(): QMainWindow(), pAboutDial(new AboutDialog(this)), pDic
     updateDisplay();
     updateUndoRedo();
 
+    // action groups
+    QActionGroup *interfaceGroup = new QActionGroup(this);
+    interfaceGroup->addAction(actionMusic);
+    interfaceGroup->addAction(actionFull);
+    interfaceGroup->addAction(actionSimple);
+    interfaceGroup->addAction(actionDesign);
+    interfaceGroup->addAction(actionNoMusic);
+
     timer->setInterval(1000/TICK);
     timer->setSingleShot(false);
     // connections
@@ -128,13 +136,6 @@ void MainWindow::clearLayout()
     gbNote->hide();
     gbScenario->hide();
     gbSound->hide();
-
-    // Unchecking all actions
-    actionFull->setChecked(false);
-    actionMusic->setChecked(false);
-    actionSimple->setChecked(false);
-    actionNoMusic->setChecked(false);
-    actionDesign->setChecked(false);
 }
 
 void MainWindow::on_actionMusic_triggered()
