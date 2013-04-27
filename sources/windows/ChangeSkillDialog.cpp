@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -47,4 +47,12 @@ int ChangeSkillDialog::exec(QString text)
     editName->setText(text);
     editName->setFocus();
     return QDialog::exec();
+}
+
+void ChangeSkillDialog::changeEvent(QEvent *e)
+{
+    if (e->type() == QEvent::LanguageChange)
+    {
+        retranslateUi(this);
+    }
 }

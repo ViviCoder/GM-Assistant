@@ -28,7 +28,10 @@ class DiceDialog: public QDialog, private Ui::diceDialog
 {
     Q_OBJECT
     public:
-        //! Default constructor
+        /*! 
+         * \brief Default constructor
+         * \param parent Parent widget
+         */
         DiceDialog(QWidget *parent);
     public slots:
         /*!
@@ -49,6 +52,14 @@ class DiceDialog: public QDialog, private Ui::diceDialog
          * Resets the results
          */
         void show();
+    protected:
+        /*!
+         * \brief ChangeEvent handler
+         * \param e Event to handle
+         *
+         * Updates the translation when changing language
+         */
+        void changeEvent(QEvent *e);
 };
 
 #endif

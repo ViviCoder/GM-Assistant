@@ -97,3 +97,11 @@ void CombatDialog::on_pushRemove_clicked()
         }
     }
 }
+
+void CombatDialog::changeEvent(QEvent *e)
+{
+    if (e->type() == QEvent::LanguageChange)
+    {
+        retranslateUi(this);
+    }
+}

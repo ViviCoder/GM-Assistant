@@ -72,3 +72,11 @@ void DiceDialog::show()
     on_pushReset_clicked();
     QDialog::show();
 }
+
+void DiceDialog::changeEvent(QEvent *e)
+{
+    if (e->type() == QEvent::LanguageChange)
+    {
+        retranslateUi(this);
+    }
+}

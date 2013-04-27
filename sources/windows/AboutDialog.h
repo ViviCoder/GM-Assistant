@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -34,6 +34,14 @@ class AboutDialog: public QDialog, private Ui::AboutDialog
          * Fills the version number and the logo
          */
         AboutDialog(QWidget *parent=0);
+    protected:
+        /*!
+         * \brief ChangeEvent handler
+         * \param e Event to handle
+         *
+         * Updates the translation when changing language
+         */
+        void changeEvent(QEvent *e);
 };
 
 #endif

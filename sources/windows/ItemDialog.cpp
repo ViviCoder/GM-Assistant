@@ -193,3 +193,11 @@ int ItemDialog::exec(Item *item)
     // shows it
     return QDialog::exec();
 }
+
+void ItemDialog::changeEvent(QEvent *e)
+{
+    if (e->type() == QEvent::LanguageChange)
+    {
+        retranslateUi(this);
+    }
+}

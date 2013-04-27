@@ -90,3 +90,11 @@ void SelectCharacterDialog::accept()
         QMessageBox::critical(this, QApplication::translate("selectCharacterDialog", "Uncompleted character selection", 0), QApplication::translate("selectCharacterDialog", "You have selected too few characters. There must be at least two of them.", 0));
     }
 }
+
+void SelectCharacterDialog::changeEvent(QEvent *e)
+{
+    if (e->type() == QEvent::LanguageChange)
+    {
+        retranslateUi(this);
+    }
+}

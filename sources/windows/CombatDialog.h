@@ -34,6 +34,14 @@ class CombatDialog: public QDialog, private Ui::combatDialog
         bool bForce;
         //! Vertical header
         QHeaderView *header;
+    protected:
+        /*!
+         * \brief ChangeEvent handler
+         * \param e Event to handle
+         *
+         * Updates the translation when changing language
+         */
+        void changeEvent(QEvent *e);
     public:
         //! Default constructor
         CombatDialog(QWidget *parent);

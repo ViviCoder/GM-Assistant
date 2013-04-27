@@ -78,16 +78,18 @@ int main(int argc, char* argv[])
 #endif
 
     QString locale = QLocale::system().name().section('_',0,0);
-    QTranslator translator,translatorSys;
+    QTranslator *translator, *translatorSys;
     // Translation of the software
-    translator.load(install_dir + "translations/gmassistant_" + locale);
-    app.installTranslator(&translator);
+    translator = new QTranslator(&app);
+    translator->load(install_dir + "translations/gmassistant_" + locale);
+    app.installTranslator(translator);
     // Translation of predefined Qt strings
-    translatorSys.load("qt_" + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-    app.installTranslator(&translatorSys);
+    translatorSys = new QTranslator(&app);
+    translatorSys->load("qt_" + locale, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    app.installTranslator(translatorSys);
 
     // Display of the main window
-    MainWindow main;
+    MainWindow main(translator, translatorSys);
     main.show();
 
     return app.exec();

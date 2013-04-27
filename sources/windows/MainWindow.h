@@ -82,6 +82,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         const SoundItem *siCurrentMusic;
         //! Queue of modifications
         ModificationQueue mqQueue;
+        //! Application translator
+        QTranslator *tApplication;
+        //! System translator
+        QTranslator *tSystem;
     protected:
         // overriden methods
         /*!
@@ -106,13 +110,21 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Checks unsaved modifications before closing
          */
         void closeEvent(QCloseEvent *e);
+        /*!
+         * \brief ChangeEvent handler
+         * \param e Event to handle
+         *
+         * Updates the translation when changing language
+         */
+        void changeEvent(QEvent *e);
     public:
         /*!
          * \brief Constructor of the main window
+         * \systel System translator
          *
          * Initializes various things
          */
-        MainWindow();
+        MainWindow(QTranslator *application, QTranslator *system);
         /*!
          * \brief Destructor of the main window
          *
@@ -211,6 +223,12 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Launches the character selection dialog window before the combat manager
          */
         void on_action_Combat_triggered();
+        /*!
+         * \brief Slot for the "English" menu item
+         *
+         * Changes the language to English
+         */
+        void on_action_English_triggered(); 
         /*!
          * \brief Slot for when the music button is clicked
          *

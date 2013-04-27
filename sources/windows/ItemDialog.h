@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,7 @@
  */
 class ItemDialog: public QDialog, private Ui::itemDialog
 {
+    Q_OBJECT
     public:
         // result type
         enum Result {rBrother,rChild};
@@ -43,10 +44,6 @@ class ItemDialog: public QDialog, private Ui::itemDialog
          */
         QString fileName() const;
         Result selectionResult() const;
-    private:
-        Result rRes;
-
-    Q_OBJECT
     public slots:
         void on_pushChild_clicked();
         void on_pushBrother_clicked();
@@ -83,6 +80,16 @@ class ItemDialog: public QDialog, private Ui::itemDialog
          * Resets the interface and shows the window
          */
         int exec(Item *item = 0);
+    protected:
+        /*!
+         * \brief ChangeEvent handler
+         * \param e Event to handle
+         *
+         * Updates the translation when changing language
+         */
+        void changeEvent(QEvent *e);
+    private:
+        Result rRes;
 };
 
 #endif

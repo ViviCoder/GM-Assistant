@@ -43,6 +43,14 @@ class SelectCharacterDialog: public QDialog, private Ui::selectCharacterDialog
         QSpinBox *spinList;
         //! Combat manager dialog window
         CombatDialog *pCombat;
+    protected:
+        /*!
+         * \brief ChangeEvent handler
+         * \param e Event to handle
+         *
+         * Updates the translation when changing language
+         */
+        void changeEvent(QEvent *e);
     public:
         //! Default constructor
         SelectCharacterDialog(QWidget *parent);

@@ -26,7 +26,7 @@
 #include <QStackedLayout>
 #include "NoteModification.h"
 
-MainWindow::MainWindow(): QMainWindow(), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), siCurrentMusic(0)
+MainWindow::MainWindow(QTranslator *application, QTranslator *system): QMainWindow(), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(application), tSystem(system)
 {
     setupUi(this);
     updateDisplay();
@@ -786,4 +786,18 @@ void MainWindow::on_action_Dice_triggered()
 void MainWindow::on_action_Combat_triggered()
 {
     pSelectCharacterDialog->exec(eGame.characters());
+}
+
+void MainWindow::on_action_English_triggered()
+{
+    QApplication::removeTranslator(tApplication);
+    QApplication::removeTranslator(tSystem);
+}
+
+void MainWindow::changeEvent(QEvent *e)
+{
+    if (e->type() == QEvent::LanguageChange)
+    {
+        retranslateUi(this);
+    }
 }
