@@ -665,72 +665,60 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>customTable</name>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="29"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="647"/>
         <source>&amp;Skill</source>
         <translation>&amp;Compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="30"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="44"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="58"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="72"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="648"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="655"/>
         <source>&amp;Add</source>
         <translation>&amp;Ajouter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="32"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="74"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="649"/>
         <source>Add a new skill</source>
         <translation>Ajoute une nouvelle compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="33"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="47"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="61"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="75"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="650"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="657"/>
         <source>&amp;Remove</source>
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="35"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="77"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="651"/>
         <source>Remove the skill</source>
         <translation>Supprime la compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="36"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="50"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="64"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="78"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="652"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="659"/>
         <source>&amp;Edit</source>
         <translation>&amp;Éditer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="38"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="80"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="653"/>
         <source>Edit the skill</source>
         <translation>Édite la compétence</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="43"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="654"/>
         <source>&amp;Character</source>
         <translation>&amp;Personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="46"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="60"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="656"/>
         <source>Add a new character</source>
         <translation>Ajoute un nouveau personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="49"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="63"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="658"/>
         <source>Remove the character</source>
         <translation>Supprime le personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="52"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="66"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="660"/>
         <source>Edit the character</source>
         <translation>Édite le personnage</translation>
     </message>

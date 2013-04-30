@@ -24,63 +24,37 @@
 
 QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0)
 {
-    // popup menu
-    // skills
-    QMenu *menuColumn = menu->addMenu(QApplication::translate("customTable","&Skill",0));
-    actionAddColumn = new QAction(QIcon(":/data/images/add.svg"),QApplication::translate("customTable","&Add",0),this);
+    // skill menu
+    actionAddColumn = new QAction(this);
+    actionAddColumn->setIcon(QIcon(":/data/images/add.svg"));
     actionAddColumn->setIconVisibleInMenu(true);
-    actionAddColumn->setStatusTip(QApplication::translate("customTable","Add a new skill",0));
-    actionRemoveColumn = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
+    actionRemoveColumn = new QAction(this);
+    actionRemoveColumn->setIcon(QIcon(":/data/images/remove.svg"));
     actionRemoveColumn->setIconVisibleInMenu(true);
-    actionRemoveColumn->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
-    actionEditColumn = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTable","&Edit",0),this);
+    actionEditColumn = new QAction(this);
+    actionEditColumn->setIcon(QIcon(":/data/images/pencil.svg"));
     actionEditColumn->setIconVisibleInMenu(true);
-    actionEditColumn->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
-    menuColumn->addAction(actionAddColumn);
-    menuColumn->addAction(actionRemoveColumn);
-    menuColumn->addAction(actionEditColumn);
-    // characters
-    QMenu *menuRow = menu->addMenu(QApplication::translate("customTable","&Character",0));
-    actionAddRow = new QAction(QIcon(":/data/images/add.svg"),QApplication::translate("customTable","&Add",0),this);
+    hMenu->addAction(actionAddColumn);
+    hMenu->addAction(actionRemoveColumn);
+    hMenu->addAction(actionEditColumn);
+    // character menu
+    actionAddRow = new QAction(this);
+    actionAddRow->setIcon(QIcon(":/data/images/add.svg"));
     actionAddRow->setIconVisibleInMenu(true);
-    actionAddRow->setStatusTip(QApplication::translate("customTable","Add a new character",0));
-    actionRemoveRow = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
+    actionRemoveRow = new QAction(this);
+    actionRemoveRow->setIcon(QIcon(":/data/images/remove.svg"));
     actionRemoveRow->setIconVisibleInMenu(true);
-    actionRemoveRow->setStatusTip(QApplication::translate("customTable","Remove the character",0));
-    actionEditRow = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTable","&Edit",0),this);
+    actionEditRow = new QAction(this);
+    actionEditRow->setIcon(QIcon(":/data/images/pencil.svg"));
     actionEditRow->setIconVisibleInMenu(true);
-    actionEditRow->setStatusTip(QApplication::translate("customTable","Edit the character",0));
-    menuRow->addAction(actionAddRow);
-    menuRow->addAction(actionRemoveRow);
-    menuRow->addAction(actionEditRow);
-
-    // popup menu for vertical header
-    actionVAdd = new QAction(QIcon(":/data/images/add.svg"),QApplication::translate("customTable","&Add",0),this);
-    actionVAdd->setIconVisibleInMenu(true);
-    actionVAdd->setStatusTip(QApplication::translate("customTable","Add a new character",0));
-    actionVRemove = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
-    actionVRemove->setIconVisibleInMenu(true);
-    actionVRemove->setStatusTip(QApplication::translate("customTable","Remove the character",0));
-    actionVEdit = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTable","&Edit",0),this);
-    actionVEdit->setIconVisibleInMenu(true);
-    actionVEdit->setStatusTip(QApplication::translate("customTable","Edit the character",0));
-    vMenu->addAction(actionVAdd);
-    vMenu->addAction(actionVRemove);
-    vMenu->addAction(actionVEdit);
-
-    // popup menu for horizontal header
-    actionHAdd = new QAction(QIcon(":/data/images/add.svg"),QApplication::translate("customTable","&Add",0),this);
-    actionHAdd->setIconVisibleInMenu(true);
-    actionHAdd->setStatusTip(QApplication::translate("customTable","Add a new skill",0));
-    actionHRemove = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTable","&Remove",0),this);
-    actionHRemove->setIconVisibleInMenu(true);
-    actionHRemove->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
-    actionHEdit = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTable","&Edit",0),this);
-    actionHEdit->setIconVisibleInMenu(true);
-    actionHEdit->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
-    hMenu->addAction(actionHAdd);
-    hMenu->addAction(actionHRemove);
-    hMenu->addAction(actionHEdit);
+    vMenu->addAction(actionAddRow);
+    vMenu->addAction(actionRemoveRow);
+    vMenu->addAction(actionEditRow);
+    // main menu
+    menu->addMenu(hMenu);
+    menu->addMenu(vMenu);
+    // sets the text of the menus
+    retranslate();
 
     // headers
     setHorizontalHeader(new QCustomHeaderView(Qt::Horizontal,this));
@@ -309,15 +283,15 @@ void QCustomTableWidget::onCellChanged(int logicalRow, int logicalColumn)
 void QCustomTableWidget::onHHeaderClicked(int index, const QPoint &position)
 {
     QAction *action = hMenu->exec(position);
-    if (action == actionHAdd)
+    if (action == actionAddColumn)
     {
         addSkill(index);
     }
-    else if (action == actionHRemove)
+    else if (action == actionRemoveColumn)
     {
         removeSkill(index);
     }
-    else if (action == actionHEdit)
+    else if (action == actionEditColumn)
     {
         editSkill(index);
     }
@@ -326,15 +300,15 @@ void QCustomTableWidget::onHHeaderClicked(int index, const QPoint &position)
 void QCustomTableWidget::onVHeaderClicked(int index, const QPoint &position)
 {
     QAction *action = vMenu->exec(position);
-    if (action == actionVAdd)
+    if (action == actionAddRow)
     {
         addCharacter(index);
     }
-    else if (action == actionVRemove)
+    else if (action == actionRemoveRow)
     {
         removeCharacter(index);
     }
-    else if (action == actionVEdit)
+    else if (action == actionEditRow)
     {
         editCharacter(index);
     }
@@ -666,4 +640,30 @@ void QCustomTableWidget::updateModification(CharacterModification *modification,
     }
     updateDisplay(row, column);
     setFocus(Qt::OtherFocusReason);
+}
+
+void QCustomTableWidget::retranslate()
+{
+    hMenu->setTitle(QApplication::translate("customTable","&Skill",0));
+    actionAddColumn->setText(QApplication::translate("customTable","&Add",0));
+    actionAddColumn->setStatusTip(QApplication::translate("customTable","Add a new skill",0));
+    actionRemoveColumn->setText(QApplication::translate("customTable","&Remove",0));
+    actionRemoveColumn->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
+    actionEditColumn->setText(QApplication::translate("customTable","&Edit",0));
+    actionEditColumn->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
+    vMenu->setTitle(QApplication::translate("customTable","&Character",0));
+    actionAddRow->setText(QApplication::translate("customTable","&Add",0));
+    actionAddRow->setStatusTip(QApplication::translate("customTable","Add a new character",0));
+    actionRemoveRow->setText(QApplication::translate("customTable","&Remove",0));
+    actionRemoveRow->setStatusTip(QApplication::translate("customTable","Remove the character",0));
+    actionEditRow->setText(QApplication::translate("customTable","&Edit",0));
+    actionEditRow->setStatusTip(QApplication::translate("customTable","Edit the character",0));
+}
+
+void QCustomTableWidget::changeEvent(QEvent *e)
+{
+    if (e->type() == QEvent::LanguageChange)
+    {
+        retranslate();
+    }
 }

@@ -39,8 +39,24 @@ class QCustomTableWidget: public QTableWidget
     Q_OBJECT
 
     private:
-        QMenu *menu, *hMenu, *vMenu;
-        QAction *actionAddColumn, *actionRemoveColumn, *actionAddRow, *actionRemoveRow, *actionEditRow, *actionEditColumn, *actionHAdd, *actionHRemove, *actionHEdit, *actionVAdd, *actionVRemove, *actionVEdit;
+        //! Main menu
+        QMenu *menu;
+        //! Menu of the horizontal header (skills)
+        QMenu *hMenu;
+        //! Menu of the vertical header (characters)
+        QMenu *vMenu;
+        //! Action for column addition
+        QAction *actionAddColumn;
+        //! Action for column deletion
+        QAction *actionRemoveColumn;
+        //! Action for row addition
+        QAction *actionAddRow;
+        //! Action for row deletion
+        QAction *actionRemoveRow;
+        //! Action for row edition
+        QAction *actionEditRow;
+        //! Action for column edition
+        QAction *actionEditColumn;
         ChangeSkillDialog *pChangeSkillDial;
         ChangeCharacterDialog *pChangeCharacterDial;
         //! Underlying list of skills
@@ -69,6 +85,11 @@ class QCustomTableWidget: public QTableWidget
          * \param e Mouse event
          */
         void mouseDoubleClickEvent(QMouseEvent *e);
+        /*!
+         * \brief ChangeEvent handler
+         * \param e Event to handle
+         */
+        void changeEvent(QEvent *e);
         /*!
          * \brief Addition of a skill
          * \param index Index where to add the skill
@@ -99,6 +120,12 @@ class QCustomTableWidget: public QTableWidget
          * \param index Index of the character to be edited
          */
         void editCharacter(int index);
+        /*!
+         * \brief Retranslator
+         *
+         * Retranslates the menus
+         */
+        void retranslate();
     protected slots:
         /*!
          * \brief Slot for when a cell changes 
