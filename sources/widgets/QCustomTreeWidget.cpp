@@ -31,33 +31,21 @@ using namespace std;
 QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(0), pItemDial(new ItemDialog(this)), pDragSource(0), bNewlySelected(false), bEditing(false), bSizeLimited(false), pmMethod(pmNone)
 {
     // creating actions
-    actionNone = new QAction(QIcon(":/data/images/empty.svg"),QApplication::translate("customTree","&None",0),this);
-    actionNone->setIconVisibleInMenu(true);
-    actionNone->setStatusTip(QApplication::translate("customTree","Untag the item",0));
-    actionProgress = new QAction(QIcon(":/data/images/uncheck.svg"),QApplication::translate("customTree","In &progress",0),this);
-    actionProgress->setIconVisibleInMenu(true);
-    actionProgress->setStatusTip(QApplication::translate("customTree","Tag the item as being in progress",0));
-    actionFailure = new QAction(QIcon(":/data/images/failure.svg"),QApplication::translate("customTree","&Failed",0),this);
-    actionFailure->setIconVisibleInMenu(true);
-    actionFailure->setStatusTip(QApplication::translate("customTree","Tag the item as failed",0));
-    actionSuccess = new QAction(QIcon(":/data/images/check.svg"),QApplication::translate("customTree","&Succeeded",0),this);
-    actionSuccess->setIconVisibleInMenu(true);
-    actionSuccess->setStatusTip(QApplication::translate("customTree","Tag the item as succeeded",0));
-    actionAdd = new QAction(QIcon(":/data/images/add.svg"),QApplication::translate("customTree","&Add",0),this);
-    actionAdd->setIconVisibleInMenu(true);
-    actionAdd->setStatusTip(QApplication::translate("customTree","Add a new item",0));
-    actionAdd->setShortcut(QApplication::translate("customTree","Ins",0));
-    actionDelete = new QAction(QIcon(":/data/images/remove.svg"),QApplication::translate("customTree","&Delete",0),this);
-    actionDelete->setIconVisibleInMenu(true);
-    actionDelete->setStatusTip(QApplication::translate("customTree","Delete the item",0));
-    actionDelete->setShortcut(QApplication::translate("customTree","Del",0));
-    actionEdit = new QAction(QIcon(":/data/images/pencil.svg"),QApplication::translate("customTree","&Edit",0),this);
-    actionEdit->setIconVisibleInMenu(true);
-    actionEdit->setStatusTip(QApplication::translate("customTree","Edit the item",0));
-    actionEdit->setShortcut(QApplication::translate("customTree","Ctrl+F2",0));
-    actionLaunch = new QAction(QIcon(),"",this);
-    actionLaunch->setIconVisibleInMenu(true);
-    actionLaunch->setShortcut(QApplication::translate("customTree","Space",0));
+    actionNone = new QAction(this);
+    actionNone->setIcon(QIcon(":/data/images/empty.svg"));
+    actionProgress = new QAction(this);
+    actionProgress->setIcon(QIcon(":/data/images/uncheck.svg"));
+    actionFailure = new QAction(this);
+    actionFailure->setIcon(QIcon(":/data/images/failure.svg"));
+    actionSuccess = new QAction(this);
+    actionSuccess->setIcon(QIcon(":/data/images/check.svg"));
+    actionAdd = new QAction(this);
+    actionAdd->setIcon(QIcon(":/data/images/add.svg"));
+    actionDelete = new QAction(this);
+    actionDelete->setIcon(QIcon(":/data/images/remove.svg"));
+    actionEdit = new QAction(this);
+    actionEdit->setIcon(QIcon(":/data/images/pencil.svg"));
+    actionLaunch = new QAction(this);
     // populating the pop-up menu
     menuIcons->addAction(actionNone);
     menuIcons->addAction(actionProgress);
@@ -69,6 +57,8 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     menuIcons->addAction(actionEdit);
     menuIcons->addSeparator();
     menuIcons->addAction(actionLaunch);
+    // text of the actions
+    retranslate();
     // connecting signals
     connect(this, SIGNAL(itemChanged(QTreeWidgetItem *,int)), SLOT(on_itemChanged(QTreeWidgetItem*, int)));
     connect(this, SIGNAL(itemCollapsed(QTreeWidgetItem *)), SLOT(onItemCollapsed(QTreeWidgetItem *)));
@@ -643,3 +633,33 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
     updateDisplay(indices);
     setFocus(Qt::OtherFocusReason);
 } 
+
+void QCustomTreeWidget::changeEvent(QEvent *e)
+{
+    if (e->type() == QEvent::LanguageChange)
+    {
+        retranslate();
+    }
+}
+
+void QCustomTreeWidget::retranslate()
+{
+    actionNone->setText(QApplication::translate("customTree","&None",0));
+    actionNone->setStatusTip(QApplication::translate("customTree","Untag the item",0));
+    actionProgress->setText(QApplication::translate("customTree","In &progress",0));
+    actionProgress->setStatusTip(QApplication::translate("customTree","Tag the item as being in progress",0));
+    actionFailure->setText(QApplication::translate("customTree","&Failed",0));
+    actionFailure->setStatusTip(QApplication::translate("customTree","Tag the item as failed",0));
+    actionSuccess->setText(QApplication::translate("customTree","&Succeeded",0));
+    actionSuccess->setStatusTip(QApplication::translate("customTree","Tag the item as succeeded",0));
+    actionAdd->setText(QApplication::translate("customTree","&Add",0));
+    actionAdd->setStatusTip(QApplication::translate("customTree","Add a new item",0));
+    actionAdd->setShortcut(QApplication::translate("customTree","Ins",0));
+    actionDelete->setText(QApplication::translate("customTree","&Delete",0));
+    actionDelete->setStatusTip(QApplication::translate("customTree","Delete the item",0));
+    actionDelete->setShortcut(QApplication::translate("customTree","Del",0));
+    actionEdit->setText(QApplication::translate("customTree","&Edit",0));
+    actionEdit->setStatusTip(QApplication::translate("customTree","Edit the item",0));
+    actionEdit->setShortcut(QApplication::translate("customTree","Ctrl+F2",0));
+    actionLaunch->setShortcut(QApplication::translate("customTree","Space",0));
+}

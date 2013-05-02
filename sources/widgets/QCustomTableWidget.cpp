@@ -27,26 +27,20 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     // skill menu
     actionAddColumn = new QAction(this);
     actionAddColumn->setIcon(QIcon(":/data/images/add.svg"));
-    actionAddColumn->setIconVisibleInMenu(true);
     actionRemoveColumn = new QAction(this);
     actionRemoveColumn->setIcon(QIcon(":/data/images/remove.svg"));
-    actionRemoveColumn->setIconVisibleInMenu(true);
     actionEditColumn = new QAction(this);
     actionEditColumn->setIcon(QIcon(":/data/images/pencil.svg"));
-    actionEditColumn->setIconVisibleInMenu(true);
     hMenu->addAction(actionAddColumn);
     hMenu->addAction(actionRemoveColumn);
     hMenu->addAction(actionEditColumn);
     // character menu
     actionAddRow = new QAction(this);
     actionAddRow->setIcon(QIcon(":/data/images/add.svg"));
-    actionAddRow->setIconVisibleInMenu(true);
     actionRemoveRow = new QAction(this);
     actionRemoveRow->setIcon(QIcon(":/data/images/remove.svg"));
-    actionRemoveRow->setIconVisibleInMenu(true);
     actionEditRow = new QAction(this);
     actionEditRow->setIcon(QIcon(":/data/images/pencil.svg"));
-    actionEditRow->setIconVisibleInMenu(true);
     vMenu->addAction(actionAddRow);
     vMenu->addAction(actionRemoveRow);
     vMenu->addAction(actionEditRow);

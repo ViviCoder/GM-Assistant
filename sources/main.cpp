@@ -46,6 +46,9 @@ int main(int argc, char* argv[])
     QCoreApplication::setOrganizationName(APPLICATION_NAME);
     QCoreApplication::setApplicationName(APPLICATION_NAME);
 
+    // icon visibility in menus
+    app.setAttribute(Qt::AA_DontShowIconsInMenus, false);
+
     // getting install directory (on Linux only)
     QString install_dir;
 #ifdef __linux__

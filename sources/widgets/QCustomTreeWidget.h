@@ -146,6 +146,17 @@ class QCustomTreeWidget: public QTreeWidget
          * \param e Event to handle
          */
         void dropEvent(QDropEvent *e);
+        /*!
+         * \brief ChangeEvent handler
+         * \param e Event to handle
+         */
+        void changeEvent(QEvent *e);
+        /*!
+         * \brief Retranslator
+         *
+         * Retranslates the menu
+         */
+        void retranslate();
     protected slots:
         /*!
          * \brief Slot for when an item is expanded
