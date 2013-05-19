@@ -294,7 +294,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>25</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
@@ -324,10 +324,12 @@
      <string>&amp;View</string>
     </property>
     <widget class="QMenu" name="menu_Language">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
      <property name="title">
       <string>&amp;Language</string>
      </property>
-     <addaction name="action_English"/>
     </widget>
     <addaction name="actionFull"/>
     <addaction name="actionSimple"/>

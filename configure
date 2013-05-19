@@ -314,7 +314,7 @@ fi
 sed "s#<bin_path>#$bindir#" $desk_file.src > $desk_file 
 sed $sed_i "s#<icon_path>#$datadir#" $desk_file
 
-sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINDIR=$(DESTDIR)'$bindir'\nDATADIR=$(DESTDIR)'$datadir'\nTRANSLATIONS=$(DATADIR)/translations\nMANDIR=$(DESTDIR)'$mandir'\nCONFDIR=$(DESTDIR)'$confdir'\nDESKTOPDIR=$(DESTDIR)'$desktopdir'\ninstall:\n\t\install -d $(BASEDIR) $(BINDIR) $(TRANSLATIONS) $(MANDIR) $(CONFDIR) $(DESKTOPDIR)\n\t$(INSTALL_PROGRAM) '$target' $(BINDIR)\n'"$install_icon"'\t$(INSTALL_FILE) data/images/GMA.svg $(DATADIR)\n\t$(INSTALL_FILE) translations/*.qm $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/'$man_file' $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONFDIR)\n\t$(INSTALL_FILE) '$desk_file' $(DESKTOPDIR)#' Makefile
+sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINDIR=$(DESTDIR)'$bindir'\nDATADIR=$(DESTDIR)'$datadir'\nTRANSLATIONS=$(DATADIR)/translations\nMANDIR=$(DESTDIR)'$mandir'\nCONFDIR=$(DESTDIR)'$confdir'\nDESKTOPDIR=$(DESTDIR)'$desktopdir'\ninstall:\n\t\install -d $(BASEDIR) $(BINDIR) $(TRANSLATIONS) $(MANDIR) $(CONFDIR) $(DESKTOPDIR)\n\t$(INSTALL_PROGRAM) '$target' $(BINDIR)\n'"$install_icon"'\t$(INSTALL_FILE) data/images/GMA.svg $(DATADIR)\n\t$(INSTALL_FILE) translations/*.qm translations/languages $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/'$man_file' $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONFDIR)\n\t$(INSTALL_FILE) '$desk_file' $(DESKTOPDIR)#' Makefile
 
 # preparing the uninstallation
 sed $sed_i 's#rmdir#rmdir --ignore-fail-on-non-empty#' Makefile

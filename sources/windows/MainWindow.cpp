@@ -25,20 +25,71 @@
 #include <QSettings>
 #include <QStackedLayout>
 #include "NoteModification.h"
+#include <QTextStream>
+#include <QLibraryInfo>
+#include <QTranslator>
 
-MainWindow::MainWindow(QTranslator *application, QTranslator *system): QMainWindow(), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(application), tSystem(system)
+MainWindow::MainWindow(const QString &install_dir): QMainWindow(), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this))
 {
     setupUi(this);
     updateDisplay();
     updateUndoRedo();
 
-    // action groups
+    // interface action group
     QActionGroup *interfaceGroup = new QActionGroup(this);
     interfaceGroup->addAction(actionMusic);
     interfaceGroup->addAction(actionFull);
     interfaceGroup->addAction(actionSimple);
     interfaceGroup->addAction(actionDesign);
     interfaceGroup->addAction(actionNoMusic);
+
+    // language action group
+    QActionGroup *languageGroup = new QActionGroup(this);
+
+    // Listing available translations
+    QFile file(sInstall + "translations/languages");
+    QString locale = QLocale::system().name().section('_',0,0);
+    bool locale_found = false;
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
+        QTextStream in(&file);
+        while (!in.atEnd())
+        {
+            QStringList parts = in.readLine().split(':');
+            if (parts.size() == 2)
+            {
+                QAction *action = new QAction(this);
+                action->setText(parts[0]);
+                action->setCheckable(true);
+                languageGroup->addAction(action);
+                if (parts[1] == locale)
+                {
+                    action->setChecked(true);
+                    locale_found = true;
+                }
+                else if (parts[1].isEmpty() && !locale_found)
+                {
+                    // default language: english
+                    action->setChecked(true);
+                }
+                menu_Language->addAction(action);
+                menu_Language->setEnabled(true);
+                // signal mapping
+                connect(action, SIGNAL(triggered()), smLanguage, SLOT(map()));
+                smLanguage->setMapping(action, parts[1]);
+            }
+        }
+        file.close();
+        connect(smLanguage, SIGNAL(mapped(const QString&)), this, SLOT(translationRequested(const QString&)));
+    }
+
+    // Translators
+    QApplication::installTranslator(tApplication);
+    QApplication::installTranslator(tSystem);
+    if (locale_found)
+    {
+        translationRequested(locale);
+    }
 
     timer->setInterval(1000/TICK);
     timer->setSingleShot(false);
@@ -788,16 +839,16 @@ void MainWindow::on_action_Combat_triggered()
     pSelectCharacterDialog->exec(eGame.characters());
 }
 
-void MainWindow::on_action_English_triggered()
-{
-    QApplication::removeTranslator(tApplication);
-    QApplication::removeTranslator(tSystem);
-}
-
 void MainWindow::changeEvent(QEvent *e)
 {
     if (e->type() == QEvent::LanguageChange)
     {
         retranslateUi(this);
     }
+}
+
+void MainWindow::translationRequested(const QString &suffix)
+{
+    tApplication->load(sInstall + "translations/gmassistant_" + suffix);
+    tSystem->load("qt_" + suffix, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 }
