@@ -29,7 +29,7 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 
-MainWindow::MainWindow(const QString &install_dir): QMainWindow(), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this))
+MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(this), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this))
 {
     setupUi(this);
     updateDisplay();
@@ -505,7 +505,7 @@ void MainWindow::stopMusic(const SoundItem *item)
     if (item == siCurrentMusic)
     {
         siCurrentMusic = 0;
-        soundEngine.stop();
+        soundEngine.stopMusic();
         timer->stop();
         updateTimeDisplay();
     }

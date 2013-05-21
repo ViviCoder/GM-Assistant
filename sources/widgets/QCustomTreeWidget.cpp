@@ -19,7 +19,6 @@
 #include "QCustomTreeWidget.h"
 #include "QCustomTreeWidgetItem.h"
 #include "ItemFactory.h"
-#include "SoundEngine.h"
 #include "ImageWindow.h"
 #include <QApplication>
 #include <QMessageBox>

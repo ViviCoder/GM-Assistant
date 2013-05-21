@@ -251,7 +251,7 @@ echo "********************************"
 echo
 
 $qmake -project -o $pro_file
-echo "QT += svg" >> $pro_file
+echo "QT += svg phonon" >> $pro_file
 $lupdate $pro_file
 $lrelease $pro_file
 $qmake $pro_file

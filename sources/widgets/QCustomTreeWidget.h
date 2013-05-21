@@ -24,7 +24,7 @@
 #include <QMenu>
 #include "Tree.h"
 #include "ItemDialog.h"
-#include "SoundEngine.h"
+#include "QSoundEngine.h"
 #include "TreeModification.h"
 
 class QCustomTreeWidgetItem;

@@ -17,7 +17,7 @@
 *************************************************************************/
 
 #include "SoundItem.h"
-#include "SoundEngine.h"
+#include "QSoundEngine.h"
 
 using namespace std;
 

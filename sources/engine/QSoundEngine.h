@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -16,40 +16,30 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_SOUNDENGINE
-#define HEADER_SOUNDENGINE
+#ifndef HEADER_QSOUNDENGINE
+#define HEADER_QSOUNDENGINE
 
 #include <string>
 #include <stdexcept>
-#include <SDL_mixer.h>
-#include <SDL_sound.h>
+#include <phonon>
 
 #define DEFAULT_BUFFER_SIZE 1024
 
 /*!
  * \brief Sound engine
  */
-class SoundEngine
+class QSoundEngine
 {
 	private:
-        int iRate;
-        Uint16 uFormat;
-        int iChannels;  // 1 : mono / 2 : stereo
-        int iBufferSize;
-        // music
-        Mix_Music *mmMusic;
-        // sample of the sound
-        Sound_Sample *ssSample;
+        //! Audio object
+        Phonon::MediaObject *audioObject;
 	public:
-		// constructor
-		SoundEngine() throw(std::runtime_error);
-        // destructor
-        ~SoundEngine();
+		/*!
+         * \brief Default constructor
+         * \param parent Parent widget
+         */
+        QSoundEngine(QWidget *parent = 0);
 		// accessors
-        int audioRate() const;
-        Uint16 audioFormat() const;
-        int audioChannels() const;
-        int bufferSize() const;
         bool isPlayingMusic() const;
         bool isMusicPaused() const;
         // methods
@@ -57,15 +47,9 @@ class SoundEngine
 		void playMusic(const std::string &fileName) throw(std::runtime_error);
         void pauseMusic();
         void resumeMusic();
-        void move(double step);
-        /*!
-         * \brief Stopping method
-         *
-         * Stops playing music and sound and frees it
-         */
         void stop();
-        // callback method
-        static void onStopSound(int channel);
+        void stopMusic();
+        void move(double step);
 };
 
 #endif

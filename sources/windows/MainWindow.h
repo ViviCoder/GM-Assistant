@@ -21,7 +21,7 @@
 
 #include "ui_MainWindow.h"
 #include "Scenario.h"
-#include "SoundEngine.h"
+#include "QSoundEngine.h"
 #include "AboutDialog.h"
 #include "DiceDialog.h"
 #include "SelectCharacterDialog.h"
@@ -44,7 +44,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \brief Scenario
          */
         Scenario eGame;
-        SoundEngine soundEngine;
+        QSoundEngine soundEngine;
         /*!
          * \brief File name of the current game
          */
