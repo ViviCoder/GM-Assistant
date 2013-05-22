@@ -20,60 +20,62 @@
 
 using namespace std;
 
-QSoundEngine::QSoundEngine(QWidget *parent): audioObject(new Phonon::MediaObject(parent)) 
+QSoundEngine::QSoundEngine(QWidget *parent): musicObject(new Phonon::MediaObject(parent)), soundObject(new Phonon::MediaObject(parent)) 
 {
-    Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::MusicCategory, parent);
-    Phonon::Path path = Phonon::createPath(audioObject, audioOutput);
-
-    audioObject->play();
+    // music
+    Phonon::AudioOutput *musicOutput = new Phonon::AudioOutput(Phonon::MusicCategory, parent);
+    Phonon::Path musicPath = Phonon::createPath(musicObject, musicOutput);
+    // sound
+    Phonon::AudioOutput *soundOutput = new Phonon::AudioOutput(Phonon::MusicCategory, parent);
+    Phonon::Path soundPath = Phonon::createPath(soundObject, soundOutput);
 }
 
 bool QSoundEngine::isMusicPaused() const
 {
-    return audioObject->state() == Phonon::PausedState;
+    return musicObject->state() == Phonon::PausedState;
 }
 
 // methods
 
 void QSoundEngine::playSound(const string &fileName) throw(runtime_error)
 {
-    Phonon::MediaObject *player = Phonon::createPlayer(Phonon::GameCategory, Phonon::MediaSource(fileName.c_str()));
-    player->play();
-    delete player;
+    soundObject->setCurrentSource(Phonon::MediaSource(fileName.c_str()));
+    soundObject->play();
 }
 
 void QSoundEngine::playMusic(const string &fileName) throw(runtime_error)
 {
-    audioObject->setCurrentSource(Phonon::MediaSource(fileName.c_str()));
-    audioObject->play();
+    musicObject->setCurrentSource(Phonon::MediaSource(fileName.c_str()));
+    musicObject->play();
 }
 
 void QSoundEngine::pauseMusic()
 {
-    audioObject->pause();
+    musicObject->pause();
 }
 
 void QSoundEngine::resumeMusic()
 {
-    audioObject->play();
+    musicObject->play();
 }
 
 bool QSoundEngine::isPlayingMusic() const
 {
-    return audioObject->state() == Phonon::PlayingState;
+    return musicObject->state() == Phonon::PlayingState;
 }
 
 void QSoundEngine::move(double step)
 {
-    audioObject->seek((int)(step * 1000));
+    musicObject->seek((int)(step * 1000));
 }
 
 void QSoundEngine::stopMusic()
 {
-    audioObject->stop();
+    musicObject->stop();
 }
 
 void QSoundEngine::stop()
 {
     stopMusic();
+    soundObject->stop();
 }

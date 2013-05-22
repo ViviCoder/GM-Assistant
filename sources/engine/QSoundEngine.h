@@ -31,8 +31,10 @@
 class QSoundEngine
 {
 	private:
-        //! Audio object
-        Phonon::MediaObject *audioObject;
+        //! Music audio object
+        Phonon::MediaObject *musicObject;
+        //! Sound audio object
+        Phonon::MediaObject *soundObject;
 	public:
 		/*!
          * \brief Default constructor
