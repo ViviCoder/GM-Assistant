@@ -463,9 +463,13 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
         {
             switch (pItemDial->type())
             {
-                case Item::tSound:      newItem = new SoundItem(pItemDial->text().toStdString(),pItemDial->state(), false, pItemDial->fileName().toStdString(),bSizeLimited);
-                                        break;
-                case Item::tImage:    newItem = new ImageItem(pItemDial->text().toStdString(),pItemDial->state(), false, pItemDial->fileName().toStdString());
+                case Item::tSound:      {
+                                            SoundItem *soundItem = new SoundItem(pItemDial->text().toStdString(), pItemDial->state(), false, bSizeLimited);
+                                            soundItem->setFileName(pItemDial->fileName().toStdString(), false);
+                                            newItem = soundItem;
+                                            break;
+                                        }
+                case Item::tImage:      newItem = new ImageItem(pItemDial->text().toStdString(), pItemDial->state(), false, pItemDial->fileName().toStdString());
                                         break;
                 default:                newItem = new Item(pItemDial->text().toStdString(),pItemDial->state());
                                         break;

@@ -127,7 +127,7 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     settings.beginGroup("files");
     slRecent = settings.value("recent").toStringList();
     // display the recently opened games in the menu
-    actionR_ecent->setMenu(new QMenu);
+    actionR_ecent->setMenu(new QMenu(this));
     addRecent("");
     sFileName = settings.value("last").toString();
     if (!sFileName.isEmpty())

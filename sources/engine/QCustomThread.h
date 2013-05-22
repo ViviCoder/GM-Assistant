@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 
 #include <string>
 #include <QThread>
+#include <phonon>
 
 class QCustomThread: public QThread
 {
@@ -28,15 +29,17 @@ class QCustomThread: public QThread
 
     private:
         std::string sFileName;
-        int iBufferSize;
         double *dResult;
         bool *bFinished;
+        Phonon::MediaObject *moPlayer;
     protected:
         // running thread
         void run();
+    protected slots:
+        void finish(qint64 totalTime);
     public:
         // constructor
-        QCustomThread(const std::string &fileName, int bufferSize, double *result, bool *finished);
+        QCustomThread(const std::string &fileName, double *result, bool *finished);
 };
 
 #endif

@@ -42,7 +42,7 @@ class SoundItem: public FileItem
          * \brief Thread used to compute the duration
          */
         QCustomThread *pThread;
-    protected:
+    public:
         /*!
          * \brief Setter for the file name
          * \param fileName New file name
@@ -53,34 +53,23 @@ class SoundItem: public FileItem
          * Calculates the duration of the sound file
          */
         void setFileName(const std::string &fileName, bool checkFile) throw(std::invalid_argument, std::overflow_error);
-    public:
         /*!
          *  \brief Constructor
          *  \param content Content of the item
          *  \param state State of the item
          *  \param expanded Expanded/collapsed state of the item
-         *  \param fileName Name of the sound file of the item
          *  \param sizeLimited Indicates wether or not the size of the file is limited
          */
-        SoundItem(const std::string &content="", State state=sNone, bool expanded=true, const std::string &fileName="", bool sizeLimited = false);
+        SoundItem(const std::string &content="", State state=sNone, bool expanded=true, bool sizeLimited = false);
         /*!
          * \brief Destructor
          */
         ~SoundItem();
         /*!
-         * \brief Read the item from a XML file
-         * \param root Parent XML element
-         * \param checkFile Indicates if the existence of the file is checked
-         * \throw xmlpp::exception Exception thrown when the XML file is uncorrect
-         * \throw std::invalid_argument Exception thrown when the sound file does not exist
-         * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
-         */
-        void fromXML(const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, std::invalid_argument, std::overflow_error);
-        /*!
          * \brief Getter for the type of the item
          * \return Item::tSound
          */
-        Type type() const;  // overriden
+        Type type() const;
         /*!
          * \brief Getter for the duration of the sound
          * \return Pointer to the duration of the sound

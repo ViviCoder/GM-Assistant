@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,41 +17,38 @@
 *************************************************************************/
 
 #include "QCustomThread.h"
-#include <SDL_sound.h>
 
 using namespace std;
+using namespace Phonon;
 
-QCustomThread::QCustomThread(const string &fileName, int bufferSize, double *result, bool *finished): QThread(), sFileName(fileName), iBufferSize(bufferSize), dResult(result), bFinished(finished)
+QCustomThread::QCustomThread(const string &fileName, double *result, bool *finished): QThread(), sFileName(fileName), dResult(result), bFinished(finished), moPlayer(new MediaObject(this))   
 {
     // enables termination
     setTerminationEnabled(true);
     // in order to delete the thread after finishing
     connect(this,SIGNAL(finished()),this,SLOT(deleteLater()));
-    // the thread is running
+    connect(moPlayer, SIGNAL(totalTimeChanged(qint64)), this, SLOT(finish(qint64)));
+    // launches the thread
     start();
-    *bFinished = false;
-    *dResult = 0.0;
 }
 
 void QCustomThread::run()
 {
-    // decoding
-    Sound_Sample *sample = Sound_NewSampleFromFile(sFileName.c_str(),0,iBufferSize);
-#ifdef _WIN32
-    if (sample)
-#else
-    if (sample && sample->flags != SOUND_SAMPLEFLAG_NONE)
-#endif
+    *bFinished = false;
+    *dResult = 0.0;
+    // determination of the duration
+    moPlayer->setCurrentSource(MediaSource(sFileName.c_str()));
+    moPlayer->play();
+    exec();
+}
+
+void QCustomThread::finish(qint64 totalTime)
+{
+    if (!*bFinished)
     {
-        int totalSize=0,size;
-        do
-        {
-            size = Sound_Decode(sample);
-            totalSize += size;
-            *dResult = 8192*(double)(totalSize) / (sample->actual.rate*sample->actual.format); 
-        }
-        while (size==iBufferSize && !*bFinished);
-        Sound_FreeSample(sample);
+        moPlayer->stop();
+        *dResult = totalTime / 1000.0;
+        *bFinished = true;
+        exit(0);
     }
-    *bFinished = true;
 }
