@@ -29,7 +29,7 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 
-MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(this), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), timer(new QTimer(this)), iTimerCount(0), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this))
+MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(this), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this))
 {
     setupUi(this);
     updateDisplay();
@@ -91,10 +91,7 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
         translationRequested(locale);
     }
 
-    timer->setInterval(1000/TICK);
-    timer->setSingleShot(false);
     // connections
-    connect(timer,SIGNAL(timeout()),this,SLOT(onTimer_timeout()));
     connect(smRecent,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
     connect(treeScenario, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(treeHistory, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
@@ -104,10 +101,15 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     connect(textNotes, SIGNAL(unregistered()), this, SLOT(updateUndoRedo()));
     textNotes->installEventFilter(this);
     connect(tableStats, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+
     // setting audio options
     treeFX->setSizeLimited(true);
     treeMusic->setPlayingMethod(this, QCustomTreeWidget::pmMusic);
     treeFX->setPlayingMethod(this, QCustomTreeWidget::pmSound);
+    Phonon::MediaObject *player = soundEngine.musicPlayer();
+    sliderMusic->setMediaObject(player);
+    connect(player, SIGNAL(tick(qint64)), this, SLOT(updateTimeDisplay(qint64)));
+    connect(player, SIGNAL(finished()), this, SLOT(on_music_finished()));
 
     // loading settings
     QSettings settings;
@@ -389,30 +391,23 @@ void MainWindow::updateDisplay()
     treeMusic->setTree(&eGame.music());
     treeFX->setTree(&eGame.effects());
     tableStats->setLists(&eGame.skills(),&eGame.characters());
-    timer->stop();
-    iTimerCount = 0;
     soundEngine.stop();
     siCurrentMusic = 0;
     checkRepeat->setChecked(false);
-    updateTimeDisplay();
+    updateTimeDisplay(0);
 }
 
 void MainWindow::on_buttonMusic_clicked()
 {
     if (soundEngine.isPlayingMusic())
     {
-        if (soundEngine.isMusicPaused())
-        {
-            timer->start();
-            soundEngine.resumeMusic();
-            buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
-        }
-        else
-        {
-            timer->stop();
-            soundEngine.pauseMusic();
-            buttonMusic->setText(QApplication::translate("mainWindow","&Resume",0));
-        }
+        soundEngine.pauseMusic();
+        buttonMusic->setText(QApplication::translate("mainWindow","&Resume",0));
+    }
+    else if (soundEngine.isMusicPaused())
+    {
+        soundEngine.resumeMusic();
+        buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
     }
     else
     {
@@ -426,50 +421,24 @@ void MainWindow::on_buttonMusic_clicked()
                 SoundItem *sItem = dynamic_cast<SoundItem*>(item);
                 playMusic(sItem);
             }
-            updateTimeDisplay();
-            timer->start();
+            updateTimeDisplay(0);
         }
     }
 }
 
-void MainWindow::onTimer_timeout()
-{
-    if (!soundEngine.isPlayingMusic())
-    {
-        if (siCurrentMusic && siCurrentMusic->duration() > 0 && checkRepeat->isChecked())
-        {
-            playMusic(siCurrentMusic);
-        }
-        else
-        {
-            stopMusic(siCurrentMusic);
-        }
-    }
-    // calculate the percentage of the music played
-    iTimerCount++;
-    if (!sliderMusic->isSliderDown())
-    {
-        updateTimeDisplay();
-    }
-}
-
-void MainWindow::updateTimeDisplay()
+void MainWindow::updateTimeDisplay(qint64 position)
 {
     if (siCurrentMusic)
     {
         double dDuration = siCurrentMusic->duration(); 
-        // we move the slider only if the user is not moving it manually
-        double dPosition = (double)iTimerCount/TICK;
-        sliderMusic->setValue(floor(dPosition/dDuration*sliderMusic->maximum()));
         // update of the position display
-        int position = floor(dPosition);
+        int position_s = position / 1000;
         int duration = floor(dDuration);
-        labelPosition->setText(QString("%1:%2/%3:%4").arg(position/60).arg(position%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
+        labelPosition->setText(QString("%1:%2/%3:%4").arg(position_s/60).arg(position_s%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
     }
     else
     {
         // resets the display
-        sliderMusic->setValue(0);
         labelPosition->setText("0:00/0:00");
         buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
         sliderMusic->setEnabled(false);
@@ -484,10 +453,8 @@ void MainWindow::playMusic(const SoundItem *item)
         {
             soundEngine.playMusic(item->fileName());
             siCurrentMusic = item;
-            timer->start();
             sliderMusic->setEnabled(true);
             buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
-            iTimerCount = 0;
         }
         catch (std::runtime_error &e)
         {
@@ -506,8 +473,7 @@ void MainWindow::stopMusic(const SoundItem *item)
     {
         siCurrentMusic = 0;
         soundEngine.stopMusic();
-        timer->stop();
-        updateTimeDisplay();
+        updateTimeDisplay(0);
     }
 }
 
@@ -524,19 +490,6 @@ void MainWindow::playSound(const SoundItem *item)
     {
         QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),e.what());
     }
-}
-
-void MainWindow::on_sliderMusic_released()
-{
-    // new position in the music
-    if (siCurrentMusic)
-    {
-        double position = (double)sliderMusic->value()/sliderMusic->maximum()*siCurrentMusic->duration();
-        soundEngine.move(position);
-        // updating the timer count
-        iTimerCount = floor(TICK*position);
-    }
-    updateTimeDisplay();
 }
 
 void MainWindow::on_action_Reload_triggered()
@@ -661,20 +614,6 @@ void MainWindow::loadRecent(int index)
     }
 }
     
-void MainWindow::on_sliderMusic_wheeled(bool positive)
-{
-    int value = sliderMusic->value();
-    if (positive && value < sliderMusic->maximum())
-    {
-        sliderMusic->setValue(sliderMusic->value()+sliderMusic->pageStep());
-    }
-    else if (!positive && value > 0)
-    {
-        sliderMusic->setValue(sliderMusic->value()-sliderMusic->pageStep());
-    }
-    on_sliderMusic_released();
-}
-
 void MainWindow::on_action_Undo_triggered()
 {
     updateModification(mqQueue.undo(), true);
@@ -851,4 +790,17 @@ void MainWindow::translationRequested(const QString &suffix)
 {
     tApplication->load(sInstall + "translations/gmassistant_" + suffix);
     tSystem->load("qt_" + suffix, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+}
+
+void MainWindow::on_music_finished()
+{
+    if (checkRepeat->isChecked())
+    {
+        playMusic(siCurrentMusic);
+    }
+    else
+    {
+        siCurrentMusic = 0;
+        updateTimeDisplay(0);
+    }
 }

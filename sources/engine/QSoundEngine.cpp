@@ -19,33 +19,35 @@
 #include "QSoundEngine.h"
 
 using namespace std;
+using namespace Phonon;
 
-QSoundEngine::QSoundEngine(QWidget *parent): musicObject(new Phonon::MediaObject(parent)), soundObject(new Phonon::MediaObject(parent)) 
+QSoundEngine::QSoundEngine(QWidget *parent): musicObject(new MediaObject(parent)), soundObject(new MediaObject(parent)) 
 {
     // music
-    Phonon::AudioOutput *musicOutput = new Phonon::AudioOutput(Phonon::MusicCategory, parent);
-    Phonon::Path musicPath = Phonon::createPath(musicObject, musicOutput);
+    AudioOutput *musicOutput = new AudioOutput(MusicCategory, parent);
+    Path musicPath = createPath(musicObject, musicOutput);
+    musicObject->setTickInterval(TICK_INTERVAL);
     // sound
-    Phonon::AudioOutput *soundOutput = new Phonon::AudioOutput(Phonon::MusicCategory, parent);
-    Phonon::Path soundPath = Phonon::createPath(soundObject, soundOutput);
+    AudioOutput *soundOutput = new AudioOutput(MusicCategory, parent);
+    Path soundPath = createPath(soundObject, soundOutput);
 }
 
 bool QSoundEngine::isMusicPaused() const
 {
-    return musicObject->state() == Phonon::PausedState;
+    return musicObject->state() == PausedState;
 }
 
 // methods
 
 void QSoundEngine::playSound(const string &fileName) throw(runtime_error)
 {
-    soundObject->setCurrentSource(Phonon::MediaSource(fileName.c_str()));
+    soundObject->setCurrentSource(MediaSource(fileName.c_str()));
     soundObject->play();
 }
 
 void QSoundEngine::playMusic(const string &fileName) throw(runtime_error)
 {
-    musicObject->setCurrentSource(Phonon::MediaSource(fileName.c_str()));
+    musicObject->setCurrentSource(MediaSource(fileName.c_str()));
     musicObject->play();
 }
 
@@ -61,7 +63,7 @@ void QSoundEngine::resumeMusic()
 
 bool QSoundEngine::isPlayingMusic() const
 {
-    return musicObject->state() == Phonon::PlayingState;
+    return musicObject->state() == PlayingState;
 }
 
 void QSoundEngine::move(double step)
@@ -78,4 +80,9 @@ void QSoundEngine::stop()
 {
     stopMusic();
     soundObject->stop();
+}
+
+MediaObject* QSoundEngine::musicPlayer() const
+{
+    return musicObject;
 }

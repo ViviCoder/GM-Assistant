@@ -24,6 +24,8 @@
 #include <phonon>
 
 #define DEFAULT_BUFFER_SIZE 1024
+// frequency of refreshing music information
+#define TICK_INTERVAL 100
 
 /*!
  * \brief Sound engine
@@ -44,6 +46,11 @@ class QSoundEngine
 		// accessors
         bool isPlayingMusic() const;
         bool isMusicPaused() const;
+        /*!
+         * \brief Getter for the music object
+         * \return The the music object
+         */
+        Phonon::MediaObject* musicPlayer() const;
         // methods
 		void playSound(const std::string &fileName) throw(std::runtime_error);
 		void playMusic(const std::string &fileName) throw(std::runtime_error);
