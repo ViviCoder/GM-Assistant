@@ -56,13 +56,10 @@ int main(int argc, char* argv[])
     #endif
     settings.beginGroup("directories");
     install_dir = settings.value("install").toString();
-    if (!install_dir.isEmpty())
-    {
-        install_dir += "/";
-    }
     settings.endGroup();
 #endif
 #ifdef _WIN32
+	install_dir = QDir::currentPath();
 	QDir home = QDir::home();
 	QString dirName = "GM-Assistant";
 	if (home.exists(dirName) || home.mkdir(dirName))
@@ -76,6 +73,10 @@ int main(int argc, char* argv[])
 		settings.endGroup();
 	}
 #endif
+    if (!install_dir.isEmpty())
+    {
+        install_dir += "/";
+    }
     
     // Display of the main window
     MainWindow main(install_dir);
