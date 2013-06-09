@@ -59,6 +59,11 @@ class QSoundEngine
         void stop();
         void stopMusic();
         void move(double step);
+        /*!
+         * \brief Getter for the duration of the playing song
+         * \return Duration of the current song (-1 if none)
+         */
+        int musicDuration() const;
 };
 
 #endif

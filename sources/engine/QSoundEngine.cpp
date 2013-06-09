@@ -86,3 +86,8 @@ MediaObject* QSoundEngine::musicPlayer() const
 {
     return musicObject;
 }
+
+int QSoundEngine::musicDuration() const
+{
+    return (int)musicObject->totalTime();
+}

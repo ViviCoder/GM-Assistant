@@ -20,7 +20,6 @@
 #define HEADER_SOUNDITEM
 
 #include "FileItem.h"
-#include "QCustomThread.h"
 
 #define SOUND_SIZE_LIMIT    1024
 
@@ -29,19 +28,6 @@
  */
 class SoundItem: public FileItem
 {
-    private:
-        /*!
-         * \brief Duration of the sound
-         */
-        double dDuration;
-        /*!
-         * \brief Boolean indicating if the computation of the duration is finished
-         */
-        bool bThreadFinished;
-        /*!
-         * \brief Thread used to compute the duration
-         */
-        QCustomThread *pThread;
     public:
         /*!
          * \brief Setter for the file name
@@ -62,19 +48,10 @@ class SoundItem: public FileItem
          */
         SoundItem(const std::string &content="", State state=sNone, bool expanded=true, bool sizeLimited = false);
         /*!
-         * \brief Destructor
-         */
-        ~SoundItem();
-        /*!
          * \brief Getter for the type of the item
          * \return Item::tSound
          */
         Type type() const;
-        /*!
-         * \brief Getter for the duration of the sound
-         * \return Pointer to the duration of the sound
-         */
-        double duration() const;
 };
 
 #endif

@@ -430,10 +430,9 @@ void MainWindow::updateTimeDisplay(qint64 position)
 {
     if (siCurrentMusic)
     {
-        double dDuration = siCurrentMusic->duration(); 
         // update of the position display
         int position_s = position / 1000;
-        int duration = floor(dDuration);
+        int duration = soundEngine.musicDuration() / 1000;
         labelPosition->setText(QString("%1:%2/%3:%4").arg(position_s/60).arg(position_s%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
     }
     else
@@ -447,7 +446,7 @@ void MainWindow::updateTimeDisplay(qint64 position)
 
 void MainWindow::playMusic(const SoundItem *item)
 {
-    if (item && item->duration() > 0.0)
+    if (item)
     {
         try
         {

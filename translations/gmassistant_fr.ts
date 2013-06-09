@@ -1195,7 +1195,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="247"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="443"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="442"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
@@ -1541,7 +1541,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="410"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="457"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="456"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
@@ -1558,12 +1558,12 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="294"/>
         <location filename="../sources/windows/MainWindow.cpp" line="323"/>
         <location filename="../sources/windows/MainWindow.cpp" line="353"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="461"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="466"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="491"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="511"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="522"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="526"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="460"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="465"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="490"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="510"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="521"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="525"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1580,13 +1580,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="294"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="526"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="525"/>
         <source>The game will be loaded anyway, but some features might not work properly.</source>
         <translation>Le jeu va tout de même être chargé, mais certaines fonctionnalités peuvent ne pas fonctionner normalement.</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="294"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="526"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="525"/>
         <source>The game cannot be loaded correctly for the following reason: </source>
         <translation>Le jeu n&apos;a pas pu être chargé pour la raison suivante :</translation>
     </message>
@@ -1596,22 +1596,22 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="466"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="465"/>
         <source>Unable to play the file</source>
         <translation>Impossible de jouer le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="511"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="510"/>
         <source>The file &quot;%1&quot; does not exist.</source>
         <translation>Le fichier &quot;%1&quot; n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="751"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="750"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="751"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="750"/>
         <source>The current game has been modified since the last save. If you continue, unsaved changes will be discarded.</source>
         <translation>Le jeu en cours a été modifié depuis la dernière sauvegarde. Si vous continuez, les changements non sauvegardés seront perdus.</translation>
     </message>
@@ -1624,7 +1624,7 @@ p, li { white-space: pre-wrap; }
         <translation type="obsolete">Le fichier n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="679"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="678"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>

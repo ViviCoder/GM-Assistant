@@ -20,24 +20,13 @@
 
 using namespace std;
 
-SoundItem::SoundItem(const string &content, Item::State state, bool expanded, bool sizeLimited): FileItem(content, state, expanded, "", sizeLimited, sizeLimited?SOUND_SIZE_LIMIT:SIZE_LIMIT), dDuration(0), bThreadFinished(true), pThread(0)
+SoundItem::SoundItem(const string &content, Item::State state, bool expanded, bool sizeLimited): FileItem(content, state, expanded, "", sizeLimited, sizeLimited?SOUND_SIZE_LIMIT:SIZE_LIMIT)
 {
-}
-
-SoundItem::~SoundItem()
-{
-    // terminate the thread if still running
-    bThreadFinished = true;
 }
 
 Item::Type SoundItem::type() const
 {
     return tSound;
-}
-
-double SoundItem::duration() const
-{
-    return dDuration;
 }
 
 void SoundItem::setFileName(const string &fileName, bool checkFile) throw(invalid_argument, overflow_error)
@@ -49,13 +38,5 @@ void SoundItem::setFileName(const string &fileName, bool checkFile) throw(invali
     catch (overflow_error &e)
     {
         throw overflow_error(string(e.what()) + " Use music instead.");
-    }
-
-    // terminate the thread if still running
-    dDuration = 0;
-    bThreadFinished = true;
-    if (fileName != "")
-    {
-        pThread = new QCustomThread(fileName, &dDuration, &bThreadFinished);
     }
 }
