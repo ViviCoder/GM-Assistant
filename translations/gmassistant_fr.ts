@@ -974,7 +974,7 @@ p, li { white-space: pre-wrap; }
     <name>itemDialog</name>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="17"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="169"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="178"/>
         <source>Create a new item</source>
         <translation>Créer un nouvel item</translation>
     </message>
@@ -1066,7 +1066,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="183"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="172"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="181"/>
         <source>C&amp;hild</source>
         <translation>En&amp;fant</translation>
     </message>
@@ -1080,52 +1080,60 @@ p, li { white-space: pre-wrap; }
         <translation>A&amp;nnuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="78"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="83"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="98"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="103"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="211"/>
+        <source>Audio files (*)</source>
+        <translation>Fichiers audio (*)</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="84"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="89"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="104"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="109"/>
         <source>Uncomplete data</source>
         <translation>Données incomplètes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="78"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="98"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="84"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="104"/>
         <source>You must select a file before validating.</source>
         <translation>Vous devez sélectionner un fichier avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="83"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="103"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="89"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="109"/>
         <source>You must fill the content before validating.</source>
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="147"/>
         <source>Select the image file to associate to the item</source>
         <translation>Sélectionnez le fichier image à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="134"/>
         <source>Audio files (*.mp3 *.wav *.ogg)</source>
-        <translation>Fichiers audio (*.mp3 *.wav *.ogg)</translation>
+        <translation type="obsolete">Fichiers audio (*.mp3 *.wav *.ogg)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="134"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="23"/>
         <source>Select the audio file to associate to the item</source>
         <translation>Sélectionnez le fichier audio à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
+        <source>Audio files</source>
+        <translation type="obsolete">Fichiers audio</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="147"/>
         <source>Image files (*.jpg *.jpeg *.png *.bmp *.svg)</source>
         <translation>Fichiers image (*.jpg *.jpeg *.png *.bmp *.svg)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="153"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="162"/>
         <source>Edit the item</source>
         <translation>Éditer l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="156"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="165"/>
         <source>&amp;Validate</source>
         <translation>&amp;Valider</translation>
     </message>

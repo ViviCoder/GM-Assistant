@@ -167,11 +167,11 @@ fi
 
 if [ $OS = "Linux" ]
 then
-	inc_path="/usr/include/"
+	inc_path="/usr/include"
     sed_i="-i"
 elif [ $OS = "Darwin" ]
 then
-	inc_path="/opt/local/include/"
+	inc_path="/opt/local/include"
     sed_i='-i ""'
 else
     echo "Operating system not supported."
@@ -218,9 +218,9 @@ xml_dev_path=$(ls -l $inc_path | grep -o -e "libxml++-2\.[0-9]\{1,\}" | head -n 
 
 for dev in $xml_devs
 do
-    if [ -e "$inc_path$xml_dev_path/libxml++/$dev.h" ]
+    if [ -e "$inc_path/$xml_dev_path/libxml++/$dev.h" ]
     then
-        echo $inc_path$xml_dev_path/libxml++/$dev.h: OK
+        echo $inc_path/$xml_dev_path/libxml++/$dev.h: OK
     else
         echo $dev.h missing !
         exit $err_missing_header
@@ -231,7 +231,7 @@ done
 echo
 echo Phonon:
 phonon_devs="phonon"
-phonon_dev_path=$inc_path"phonon"
+phonon_dev_path="$inc_path/phonon"
 
 for dev in $phonon_devs
 do
@@ -240,6 +240,23 @@ do
         echo $phonon_dev_path/$dev: OK
     else
         echo $dev missing !
+        exit $err_missing_header
+    fi
+done
+
+# magic
+echo
+echo magic:
+magic_devs="magic"
+magic_dev_path=$inc_path
+
+for dev in $magic_devs
+do
+    if [ -e "$magic_dev_path/$dev.h" ]
+    then
+        echo $magic_dev_path/$dev.h: OK
+    else
+        echo $dev.h missing !
         exit $err_missing_header
     fi
 done
@@ -270,12 +287,13 @@ echo
 
 echo $xml_dev_path
 echo Phonon
+echo magic
 
-# adding libxml++ includes in the Makefile
-sed $sed_i "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I)#" Makefile
+# adding libxml++ and magic includes in the Makefile
+sed $sed_i "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) -I$magic_dev_path #" Makefile
 
-# adding libxml++ binaries
-sed $sed_i "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs)#" Makefile
+# adding libxml++ and magic binaries
+sed $sed_i "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lmagic#" Makefile
 
 # cleaning previous compilation
 make -s clean

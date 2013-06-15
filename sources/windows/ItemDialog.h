@@ -21,6 +21,7 @@
 
 #include "ui_ItemDialog.h"
 #include "ItemFactory.h"
+#include <QFileDialog>
 
 /*!
  * \brief Dialog window for item creation
@@ -89,7 +90,10 @@ class ItemDialog: public QDialog, private Ui::itemDialog
          */
         void changeEvent(QEvent *e);
     private:
+        //! Modal result
         Result rRes;
+        //! Audio file browser
+        QFileDialog *audioBrowser;
 };
 
 #endif
