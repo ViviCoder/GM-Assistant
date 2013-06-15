@@ -227,19 +227,19 @@ do
     fi
 done
 
-# SDL
+# Phonon
 echo
-echo SDL:
-sdl_devs="SDL_mixer SDL_sound"
-sdl_dev_path=$inc_path"SDL"
+echo Phonon:
+phonon_devs="phonon"
+phonon_dev_path=$inc_path"phonon"
 
-for dev in $sdl_devs
+for dev in $phonon_devs
 do
-    if [ -e "$sdl_dev_path/$dev.h" ]
+    if [ -e "$phonon_dev_path/$dev" ]
     then
-        echo $sdl_dev_path/$dev.h: OK
+        echo $phonon_dev_path/$dev: OK
     else
-        echo $dev.h missing !
+        echo $dev missing !
         exit $err_missing_header
     fi
 done
@@ -269,15 +269,13 @@ echo "************************"
 echo
 
 echo $xml_dev_path
-echo SDL
-echo SDL_mixer
-echo SDL_sound
+echo Phonon
 
-# adding libxml++ and SDL includes in the Makefile
-sed $sed_i "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --cflags-only-I)#" Makefile
+# adding libxml++ includes in the Makefile
+sed $sed_i "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I)#" Makefile
 
-# adding libxml++ and SDL binaries
-sed $sed_i "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
+# adding libxml++ binaries
+sed $sed_i "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs)#" Makefile
 
 # cleaning previous compilation
 make -s clean
