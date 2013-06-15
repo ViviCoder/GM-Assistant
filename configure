@@ -269,7 +269,7 @@ echo
 
 $qmake -project -o $pro_file
 echo "QT += svg phonon" >> $pro_file
-$lupdate $pro_file
+$lupdate -no-obsolete $pro_file
 $lrelease $pro_file
 $qmake $pro_file
 
