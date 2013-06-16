@@ -326,7 +326,12 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          *
          * Restarts the song if the "Repeat" check box is checked
          */
-        void on_music_finished();
+        void onMusicFinished();
+        /*!
+         * \brief Slot for error messages
+         * \param message MEssage to display
+         */
+        void displayError(const QString &message);
 };
 
 #endif

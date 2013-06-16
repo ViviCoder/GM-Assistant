@@ -109,7 +109,8 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     Phonon::MediaObject *player = soundEngine.musicPlayer();
     sliderMusic->setMediaObject(player);
     connect(player, SIGNAL(tick(qint64)), this, SLOT(updateTimeDisplay(qint64)));
-    connect(player, SIGNAL(finished()), this, SLOT(on_music_finished()));
+    connect(player, SIGNAL(finished()), this, SLOT(onMusicFinished()));
+    connect(&soundEngine, SIGNAL(errorOccured(const QString&)), this, SLOT(displayError(const QString&)));
 
     // loading settings
     QSettings settings;
@@ -448,17 +449,10 @@ void MainWindow::playMusic(const SoundItem *item)
 {
     if (item)
     {
-        try
-        {
-            soundEngine.playMusic(item->fileName());
+            soundEngine.playMusic(item->fileName().c_str());
             siCurrentMusic = item;
             sliderMusic->setEnabled(true);
             buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
-        }
-        catch (std::runtime_error &e)
-        {
-            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),e.what());
-        }
     }
     else
     {
@@ -478,16 +472,9 @@ void MainWindow::stopMusic(const SoundItem *item)
 
 void MainWindow::playSound(const SoundItem *item)
 {
-    try
+    if (item)
     {
-        if (item)
-        {
-            soundEngine.playSound(item->fileName());
-        }
-    }
-    catch (std::runtime_error &e)
-    {
-        QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),e.what());
+        soundEngine.playSound(item->fileName().c_str());
     }
 }
 
@@ -791,7 +778,7 @@ void MainWindow::translationRequested(const QString &suffix)
     tSystem->load("qt_" + suffix, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 }
 
-void MainWindow::on_music_finished()
+void MainWindow::onMusicFinished()
 {
     if (checkRepeat->isChecked())
     {
@@ -802,4 +789,9 @@ void MainWindow::on_music_finished()
         siCurrentMusic = 0;
         updateTimeDisplay(0);
     }
+}
+
+void MainWindow::displayError(const QString &message)
+{
+    QMessageBox::critical(this, QApplication::translate("mainWindow", "Error", 0), message);
 }

@@ -19,19 +19,17 @@
 #ifndef HEADER_QSOUNDENGINE
 #define HEADER_QSOUNDENGINE
 
-#include <string>
-#include <stdexcept>
 #include <phonon>
 
-#define DEFAULT_BUFFER_SIZE 1024
 // frequency of refreshing music information
 #define TICK_INTERVAL 100
 
 /*!
  * \brief Sound engine
  */
-class QSoundEngine
+class QSoundEngine: public QObject
 {
+    Q_OBJECT
 	private:
         //! Music audio object
         Phonon::MediaObject *musicObject;
@@ -51,9 +49,16 @@ class QSoundEngine
          * \return The the music object
          */
         Phonon::MediaObject* musicPlayer() const;
-        // methods
-		void playSound(const std::string &fileName) throw(std::runtime_error);
-		void playMusic(const std::string &fileName) throw(std::runtime_error);
+		/*!
+         * \brief Play the given sound
+         * \param fileName Name of the file to play
+         */
+        void playSound(const QString &fileName);
+		/*!
+         * \brief Play the given song
+         * \param fileName Name of the file to play
+         */
+		void playMusic(const QString &fileName);
         void pauseMusic();
         void resumeMusic();
         void stop();
@@ -64,6 +69,25 @@ class QSoundEngine
          * \return Duration of the current song (-1 if none)
          */
         int musicDuration() const;
+    private slots:
+        /*!
+         * \brief Slot for when the music state changes
+         * \param newState New state
+         * \param oldState Old state
+         */
+        void onMusicStateChanged(Phonon::State newState, Phonon::State oldState);
+        /*!
+         * \brief Slot for when the music state changes
+         * \param newState New state
+         * \param oldState Old state
+         */
+        void onSoundStateChanged(Phonon::State newState, Phonon::State oldState);
+    signals:
+        /*!
+         * \brief Signal send when a fatal error occurs
+         * \param message Error message
+         */
+        void errorOccured(const QString &message);
 };
 
 #endif

@@ -18,18 +18,19 @@
 
 #include "QSoundEngine.h"
 
-using namespace std;
 using namespace Phonon;
 
-QSoundEngine::QSoundEngine(QWidget *parent): musicObject(new MediaObject(parent)), soundObject(new MediaObject(parent)) 
+QSoundEngine::QSoundEngine(QWidget *parent): QObject(), musicObject(new MediaObject(parent)), soundObject(new MediaObject(parent)) 
 {
     // music
     AudioOutput *musicOutput = new AudioOutput(MusicCategory, parent);
     Path musicPath = createPath(musicObject, musicOutput);
     musicObject->setTickInterval(TICK_INTERVAL);
+    connect(musicObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(onMusicStateChanged(Phonon::State, Phonon::State))); 
     // sound
     AudioOutput *soundOutput = new AudioOutput(MusicCategory, parent);
     Path soundPath = createPath(soundObject, soundOutput);
+    connect(soundObject, SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(onSoundStateChanged(Phonon::State, Phonon::State))); 
 }
 
 bool QSoundEngine::isMusicPaused() const
@@ -37,17 +38,15 @@ bool QSoundEngine::isMusicPaused() const
     return musicObject->state() == PausedState;
 }
 
-// methods
-
-void QSoundEngine::playSound(const string &fileName) throw(runtime_error)
+void QSoundEngine::playSound(const QString &fileName)
 {
-    soundObject->setCurrentSource(MediaSource(fileName.c_str()));
+    soundObject->setCurrentSource(MediaSource(fileName));
     soundObject->play();
 }
 
-void QSoundEngine::playMusic(const string &fileName) throw(runtime_error)
+void QSoundEngine::playMusic(const QString &fileName)
 {
-    musicObject->setCurrentSource(MediaSource(fileName.c_str()));
+    musicObject->setCurrentSource(MediaSource(fileName));
     musicObject->play();
 }
 
@@ -90,4 +89,20 @@ MediaObject* QSoundEngine::musicPlayer() const
 int QSoundEngine::musicDuration() const
 {
     return (int)musicObject->totalTime();
+}
+
+void QSoundEngine::onMusicStateChanged(State newState, State)
+{
+    if (newState == ErrorState && musicObject->errorType() == FatalError)
+    {
+        emit errorOccured(musicObject->errorString());
+    }
+}
+
+void QSoundEngine::onSoundStateChanged(State newState, State)
+{
+    if (newState == ErrorState)// && soundObject->errorType() == FatalError)
+    {
+        emit errorOccured(soundObject->errorString());
+    }
 }
