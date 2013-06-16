@@ -43,8 +43,8 @@ class QAudioProxyModel: public QSortFilterProxyModel
     protected:
         /*!
          * \brief Filter
-         * \param source_row Row
-         * \param source_parent Index of the parent
+         * \param sourceRow Row
+         * \param sourceParent Index of the parent
          * \return True if the file is accepted, false otherwise
          *
          * Filters the files to keep only audio ones
