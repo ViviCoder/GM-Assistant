@@ -24,7 +24,7 @@
 #include <QMenu>
 #include "Tree.h"
 #include "ItemDialog.h"
-#include "SoundEngine.h"
+#include "QSoundEngine.h"
 #include "TreeModification.h"
 
 class QCustomTreeWidgetItem;
@@ -83,6 +83,11 @@ class QCustomTreeWidget: public QTreeWidget
          * \return Playing method
          */
         PlayingMethod playingMethod() const;
+        /*!
+         * \brief Setter for the item dialog window
+         * \param window Item dialog window
+         */
+        void setItemDialogWindow(ItemDialog *window);
     public slots:
         void on_itemChanged(QTreeWidgetItem* item,int column);
         /*!

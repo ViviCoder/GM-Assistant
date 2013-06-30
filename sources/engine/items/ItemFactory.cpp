@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -36,7 +36,7 @@ Item* ItemFactory::createItem(Item::Type type, const std::string &content, Item:
     {
         case Item::tBasic:  return new Item(content,state,expanded); break;
         case Item::tFile:   return new FileItem(content,state,expanded); break;
-        case Item::tSound:  return new SoundItem(content,state,expanded,"",sizeLimited); break;
+        case Item::tSound:  return new SoundItem(content,state,expanded,sizeLimited); break;
         case Item::tImage:  return new ImageItem(content,state,expanded); break;
     }
     return 0;

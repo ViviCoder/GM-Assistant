@@ -8,8 +8,8 @@ To compile, you need:
 - g++ and the C++ standard library (with development files)
 - Qt4 library (with development files)
 - Qt4 linguist and qmake
+- Qt4 Phonon module (with development files)
 - XML++ library (with development files)
-- SDL-mixer (>= 1.2.12) and SDL-sound libraries (with development files)
 and optionally:
 - ImageMagick
 - RSVG tools

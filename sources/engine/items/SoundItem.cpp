@@ -17,32 +17,16 @@
 *************************************************************************/
 
 #include "SoundItem.h"
-#include "SoundEngine.h"
 
 using namespace std;
 
-SoundItem::SoundItem(const string &content, Item::State state, bool expanded, const string &fileName, bool sizeLimited): FileItem(content,state,expanded,fileName, sizeLimited, sizeLimited?SOUND_SIZE_LIMIT:SIZE_LIMIT), dDuration(0), bThreadFinished(true), pThread(0)
+SoundItem::SoundItem(const string &content, Item::State state, bool expanded, bool sizeLimited): FileItem(content, state, expanded, "", sizeLimited, sizeLimited?SOUND_SIZE_LIMIT:SIZE_LIMIT)
 {
-    if (fileName != "")
-    {
-        pThread = new QCustomThread(fileName,DEFAULT_BUFFER_SIZE,&dDuration,&bThreadFinished);
-    }
-}
-
-SoundItem::~SoundItem()
-{
-    // terminate the thread if still running
-    bThreadFinished = true;
 }
 
 Item::Type SoundItem::type() const
 {
     return tSound;
-}
-
-double SoundItem::duration() const
-{
-    return dDuration;
 }
 
 void SoundItem::setFileName(const string &fileName, bool checkFile) throw(invalid_argument, overflow_error)
@@ -54,23 +38,5 @@ void SoundItem::setFileName(const string &fileName, bool checkFile) throw(invali
     catch (overflow_error &e)
     {
         throw overflow_error(string(e.what()) + " Use music instead.");
-    }
-
-    // terminate the thread if still running
-    dDuration = 0;
-    bThreadFinished = true;
-    if (fileName != "")
-    {
-        pThread = new QCustomThread(fileName,DEFAULT_BUFFER_SIZE,&dDuration,&bThreadFinished);
-    }
-}
-
-void SoundItem::fromXML(const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, invalid_argument, overflow_error)
-{
-    FileItem::fromXML(root, checkFile);
-    string name = fileName();
-    if (name != "")
-    {
-        pThread = new QCustomThread(name,DEFAULT_BUFFER_SIZE,&dDuration,&bThreadFinished);
     }
 }

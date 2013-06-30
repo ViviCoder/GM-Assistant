@@ -230,18 +230,9 @@
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_2">
            <item>
-            <widget class="QCustomSlider" name="sliderMusic">
-             <property name="focusPolicy">
-              <enum>Qt::NoFocus</enum>
-             </property>
+            <widget class="Phonon::SeekSlider" name="sliderMusic">
              <property name="statusTip">
               <string>Browse the music file</string>
-             </property>
-             <property name="maximum">
-              <number>999</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
              </property>
             </widget>
            </item>
@@ -573,6 +564,11 @@
  </widget>
  <customwidgets>
   <customwidget>
+   <class>Phonon::SeekSlider</class>
+   <extends>QWidget</extends>
+   <header location="global">phonon/seekslider.h</header>
+  </customwidget>
+  <customwidget>
    <class>QCustomTreeWidget</class>
    <extends>QTreeWidget</extends>
    <header>QCustomTreeWidget.h</header>
@@ -581,11 +577,6 @@
    <class>QCustomTableWidget</class>
    <extends>QTableWidget</extends>
    <header>QCustomTableWidget.h</header>
-  </customwidget>
-  <customwidget>
-   <class>QCustomSlider</class>
-   <extends>QSlider</extends>
-   <header>QCustomSlider.h</header>
   </customwidget>
   <customwidget>
    <class>QCustomTextEdit</class>

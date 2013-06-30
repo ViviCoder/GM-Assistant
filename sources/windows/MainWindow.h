@@ -21,16 +21,15 @@
 
 #include "ui_MainWindow.h"
 #include "Scenario.h"
-#include "SoundEngine.h"
+#include "QSoundEngine.h"
 #include "AboutDialog.h"
 #include "DiceDialog.h"
 #include "SelectCharacterDialog.h"
 #include <QTimer>
 #include <QSignalMapper>
 #include "ModificationQueue.h"
+#include "ItemDialog.h"
 
-// frequency of refreshing music information
-#define TICK 10
 // number of recently opened games stored
 #define RECENT_NUMBER   5
 
@@ -44,7 +43,8 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \brief Scenario
          */
         Scenario eGame;
-        SoundEngine soundEngine;
+        //! Sound engine
+        QSoundEngine soundEngine;
         /*!
          * \brief File name of the current game
          */
@@ -55,15 +55,6 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         DiceDialog *pDiceDialog;
         //! Character selection dialog window
         SelectCharacterDialog *pSelectCharacterDialog;
-        /*!
-         * \brief Timer used by the window
-         */
-        QTimer *timer;
-        /*!
-         * \brief Number of timer ticks
-         *
-         */
-        int iTimerCount;
         /*!
          * \brief Previous size of the window before being maximized
          */
@@ -90,6 +81,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         QString sInstall;
         //! Signal mapper for the available languages
         QSignalMapper *smLanguage;
+        //! Audio filter
+        QAudioProxyModel *audioFilter;
+        //! Item editor
+        ItemDialog *pItemDialog;
     protected:
         // overriden methods
         /*!
@@ -234,31 +229,18 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          */
         void on_buttonMusic_clicked();
         /*!
-         * \brief Slot for when the timer ticks
-         */
-        void onTimer_timeout();
-        /*!
          * \brief Time display update
+         * \param position Position in the music file, in milliseconds
          *
          * Updates the display of the position in the music file
          */
-        void updateTimeDisplay();
+        void updateTimeDisplay(qint64 position);
         /*!
          * \brief Display update
          *
          * Updates the display when the current game is changed or reloaded
          */
         void updateDisplay();
-        // slider
-        /*!
-         * \brief Slot for when the slider is released (or clicked)
-         */
-        void on_sliderMusic_released();
-        /*!
-         * \brief Slot for when the slider is wheeled
-         * \param positive True if wheeled forward, false otherwise
-         */
-        void on_sliderMusic_wheeled(bool positive);
         // play music and sound
         /*!
          * \brief Play a music file associated with a SoundItem
@@ -344,6 +326,17 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Retranslates the interface
          */
         void translationRequested(const QString &suffix);
+        /*!
+         * \brief Slot for when the current song has finished playback
+         *
+         * Restarts the song if the "Repeat" check box is checked
+         */
+        void onMusicFinished();
+        /*!
+         * \brief Slot for error messages
+         * \param message MEssage to display
+         */
+        void displayError(const QString &message);
 };
 
 #endif

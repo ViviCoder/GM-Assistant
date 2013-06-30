@@ -167,11 +167,11 @@ fi
 
 if [ $OS = "Linux" ]
 then
-	inc_path="/usr/include/"
+	inc_path="/usr/include"
     sed_i="-i"
 elif [ $OS = "Darwin" ]
 then
-	inc_path="/opt/local/include/"
+	inc_path="/opt/local/include"
     sed_i='-i ""'
 else
     echo "Operating system not supported."
@@ -218,26 +218,43 @@ xml_dev_path=$(ls -l $inc_path | grep -o -e "libxml++-2\.[0-9]\{1,\}" | head -n 
 
 for dev in $xml_devs
 do
-    if [ -e "$inc_path$xml_dev_path/libxml++/$dev.h" ]
+    if [ -e "$inc_path/$xml_dev_path/libxml++/$dev.h" ]
     then
-        echo $inc_path$xml_dev_path/libxml++/$dev.h: OK
+        echo $inc_path/$xml_dev_path/libxml++/$dev.h: OK
     else
         echo $dev.h missing !
         exit $err_missing_header
     fi
 done
 
-# SDL
+# Phonon
 echo
-echo SDL:
-sdl_devs="SDL_mixer SDL_sound"
-sdl_dev_path=$inc_path"SDL"
+echo Phonon:
+phonon_devs="phonon"
+phonon_dev_path="$inc_path/phonon"
 
-for dev in $sdl_devs
+for dev in $phonon_devs
 do
-    if [ -e "$sdl_dev_path/$dev.h" ]
+    if [ -e "$phonon_dev_path/$dev" ]
     then
-        echo $sdl_dev_path/$dev.h: OK
+        echo $phonon_dev_path/$dev: OK
+    else
+        echo $dev missing !
+        exit $err_missing_header
+    fi
+done
+
+# magic
+echo
+echo magic:
+magic_devs="magic"
+magic_dev_path=$inc_path
+
+for dev in $magic_devs
+do
+    if [ -e "$magic_dev_path/$dev.h" ]
+    then
+        echo $magic_dev_path/$dev.h: OK
     else
         echo $dev.h missing !
         exit $err_missing_header
@@ -251,8 +268,8 @@ echo "********************************"
 echo
 
 $qmake -project -o $pro_file
-echo "QT += svg" >> $pro_file
-$lupdate $pro_file
+echo "QT += svg phonon" >> $pro_file
+$lupdate -no-obsolete $pro_file
 $lrelease $pro_file
 $qmake $pro_file
 
@@ -269,15 +286,14 @@ echo "************************"
 echo
 
 echo $xml_dev_path
-echo SDL
-echo SDL_mixer
-echo SDL_sound
+echo Phonon
+echo magic
 
-# adding libxml++ and SDL includes in the Makefile
-sed $sed_i "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) $(pkg-config sdl --cflags-only-I)#" Makefile
+# adding libxml++ and magic includes in the Makefile
+sed $sed_i "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) -I$magic_dev_path #" Makefile
 
-# adding libxml++ and SDL binaries
-sed $sed_i "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lSDL_mixer -lSDL_sound#" Makefile
+# adding libxml++ and magic binaries
+sed $sed_i "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lmagic#" Makefile
 
 # cleaning previous compilation
 make -s clean

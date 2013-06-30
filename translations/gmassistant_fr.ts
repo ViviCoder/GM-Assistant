@@ -57,57 +57,17 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="116"/>
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;body&gt;
-&lt;p style=&quot;text-decoration: underline&quot;&gt;Using:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Using:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt; with the Phonon module&lt;br /&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;body&gt;
-&lt;p style=&quot;text-decoration: underline&quot;&gt;Utilisant :&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt; et &lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;body&gt;
-&lt;p style=&quot;text-decoration: underline&quot;&gt;Developed and maintained by:&lt;/p&gt;
-&lt;p&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;br /&gt;
-&lt;a href=&quot;https://github.com/ViviCoder/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/ViviCoder/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//FR&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;body&gt;
-&lt;p style=&quot;text-decoration: underline&quot;&gt;Développé et maintenu par :&lt;/p&gt;
-&lt;p&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;br /&gt;
-&lt;a href=&quot;https://github.com/ViviCoder/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/ViviCoder/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;body&gt;
-&lt;p style=&quot;text-decoration: underline&quot;&gt;Using:&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/ &quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//FR&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;body&gt;
-&lt;p style=&quot;text-decoration: underline&quot;&gt;Utilisant :&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/ &quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt; et &lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot;text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;body&gt;
-&lt;p style=&quot;text-decoration: underline;&quot;&gt;Description:&lt;/p&gt;
-&lt;p&gt;GM-Assistant is a free software&lt;br /&gt;
-designed to assist the Game Master&lt;br /&gt;
-during a role playing game&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//FR&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;body&gt;
-&lt;p style=&quot;text-decoration: underline;&quot;&gt;Description :&lt;/p&gt;
-&lt;p&gt;GM-Assistant est un logiciel libre&lt;br /&gt;
-conçu pour assister le Maître du Jeu&lt;br /&gt;
-lors d&apos;une partie de jeu de rôles&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Utilisant :&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt; avec le module Phonon&lt;br /&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="106"/>
@@ -121,302 +81,9 @@ lors d&apos;une partie de jeu de rôles&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</tra
 &lt;p&gt;GPLv3+&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Version:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Version :&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>GM-Assistant is a free software
-designed to assist the Game Master
-during a role playing game</source>
-        <translation type="obsolete">GM-Assistant est un logiciel libre
-conçu pour assister le Maître du Jeu
-lors d&apos;une partie de jeu de rôle</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline;&quot;&gt;Using:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/ &quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline;&quot;&gt;Utilisant :&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/ &quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; et &lt;/span&gt;&lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Developed and maintained by:&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/ViviCoder/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/ViviCoder/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Développé et maintenu par :&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;https://github.com/ViviCoder/GM-Assistant&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;https://github.com/ViviCoder/GM-Assistant&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline;&quot;&gt;Using:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/ &quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; and &lt;/span&gt;&lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;www.boost.org/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;boost-thread&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline;&quot;&gt;Utilisant :&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/ &quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt;&lt;span style=&quot; font-size:11pt;&quot;&gt; et &lt;/span&gt;&lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;www.boost.org/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;boost-thread&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline;&quot;&gt;Using:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/ &quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt; and &lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline;&quot;&gt;Utilisant :&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.libsdl.org/projects/SDL_mixer/ &quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-mixer&lt;/span&gt;&lt;/a&gt; et &lt;a href=&quot;http://icculus.org/SDL_sound/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline;&quot;&gt;Using:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.fmod.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound &amp;amp; SDL-mixer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline;&quot;&gt;Utilisant :&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.fmod.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;SDL-sound &amp;amp; SDL-mixer&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline;&quot;&gt;Using:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.fmod.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;FMOD Sound System&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;LibXML++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline;&quot;&gt;Utilisant :&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.fmod.org&quot;&gt;&lt;span style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;FMOD Sound System&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; font-size:11pt; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-        <source>Gm-Assistant is a free software
- to assiste a Game master
- during a role playing game</source>
-        <translation type="obsolete">GM-Assistant est un logiciel libre conçu pour assister le Maître du Jeu lors d&apos;une partie de jeu de rôle</translation>
-    </message>
-    <message>
         <location filename="../sources/windows/AboutDialog.ui" line="66"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
-    </message>
-    <message>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Using:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;and&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.fmod.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Audio engine : FMOD Sound &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.fmod.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;System by Firelight Technologies&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;and&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;LibXML++&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="obsolete">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Utilisant :&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;and&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.fmod.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Moteur audio : FMOD Sound &lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://www.fmod.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;System par Firelight Technologies&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-style:italic;&quot;&gt;et&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;libXML++2&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-</context>
-<context>
-    <name>DialogItem</name>
-    <message>
-        <source>Create item</source>
-        <translation type="obsolete">Créer un item</translation>
-    </message>
-    <message>
-        <source>Create a new item</source>
-        <translation type="obsolete">Créer un nouvel item</translation>
-    </message>
-    <message>
-        <source>&amp;None</source>
-        <translation type="obsolete">&amp;Aucun</translation>
-    </message>
-    <message>
-        <source>In &amp;progress</source>
-        <translation type="obsolete">En &amp;cours</translation>
-    </message>
-    <message>
-        <source>&amp;Failed</source>
-        <translation type="obsolete">&amp;Échoué</translation>
-    </message>
-    <message>
-        <source>&amp;Succeeded</source>
-        <translation type="obsolete">&amp;Réussi</translation>
-    </message>
-    <message>
-        <source>&amp;Add</source>
-        <translation type="obsolete">A&amp;jouter</translation>
-    </message>
-    <message>
-        <source>S&amp;on</source>
-        <translation type="obsolete">&amp;Fils</translation>
-    </message>
-    <message>
-        <source>&amp;Cancel</source>
-        <translation type="obsolete">A&amp;nnuler</translation>
-    </message>
-</context>
-<context>
-    <name>Dialog_Item</name>
-    <message>
-        <source>Create item</source>
-        <translation type="obsolete">Créer un item</translation>
-    </message>
-    <message>
-        <source>&amp;None</source>
-        <translation type="obsolete">&amp;Aucun</translation>
-    </message>
-    <message>
-        <source>In &amp;progress</source>
-        <translation type="obsolete">En &amp;cours</translation>
-    </message>
-    <message>
-        <source>&amp;Failed</source>
-        <translation type="obsolete">&amp;Échoué</translation>
-    </message>
-    <message>
-        <source>&amp;Succeeded</source>
-        <translation type="obsolete">&amp;Réussi</translation>
-    </message>
-    <message>
-        <source>&amp;Add</source>
-        <translation type="obsolete">A&amp;jouter</translation>
-    </message>
-    <message>
-        <source>S&amp;on</source>
-        <translation type="obsolete">&amp;Fils</translation>
-    </message>
-    <message>
-        <source>&amp;Cancel</source>
-        <translation type="obsolete">A&amp;nnuler</translation>
-    </message>
-</context>
-<context>
-    <name>action</name>
-    <message>
-        <source>Confirmation</source>
-        <translation type="obsolete">Confirmation</translation>
-    </message>
-    <message>
-        <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
-        <translation type="obsolete">Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
-    </message>
-    <message>
-        <source>Select the file to open</source>
-        <translation type="obsolete">Sélectionnez le fichier à ouvrir</translation>
-    </message>
-    <message>
-        <source>XML files (*.xml)</source>
-        <translation type="obsolete">Fichiers XML (*.xml)</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">Erreur</translation>
-    </message>
-    <message>
-        <source>Select the file to save</source>
-        <translation type="obsolete">Sélectionnez le fichier à sauvegarder</translation>
-    </message>
-</context>
-<context>
-    <name>action_Load</name>
-    <message>
-        <source>Confirmation</source>
-        <translation type="obsolete">Confirmation</translation>
-    </message>
-    <message>
-        <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue ?</source>
-        <translation type="obsolete">Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
-    </message>
-    <message>
-        <source>The game has been modified since the last save. If you continue, these changes will be discarded. Are you sure you want to continue?</source>
-        <translation type="obsolete">Le jeu a été modifié depuis la dernière sauvegarde. Si vous continuez, ces changements seront perdus. Êtes-vous sûr de vouloir continuer ?</translation>
-    </message>
-    <message>
-        <source>Select the file to open</source>
-        <translation type="obsolete">Sélectionnez le fichier à ouvrir</translation>
-    </message>
-    <message>
-        <source>XML files (*.xml)</source>
-        <translation type="obsolete">Fichiers XML (*.xml)</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">Erreur</translation>
-    </message>
-</context>
-<context>
-    <name>action_Save</name>
-    <message>
-        <source>Select the file to save</source>
-        <translation type="obsolete">Sélectionnez le fichier à sauvegarder</translation>
     </message>
 </context>
 <context>
@@ -425,10 +92,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="17"/>
         <source>New name</source>
         <translation>Nouveau nom</translation>
-    </message>
-    <message>
-        <source>Name of the character:</source>
-        <translation type="obsolete">Nom du personnage :</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="29"/>
@@ -444,10 +107,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="51"/>
         <source>&amp;Validate</source>
         <translation>&amp;Valider</translation>
-    </message>
-    <message>
-        <source>&amp;Edit</source>
-        <translation type="obsolete">&amp;Éditer</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="62"/>
@@ -466,38 +125,7 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>changeHeaderDialog</name>
-    <message>
-        <source>Create a new item</source>
-        <translation type="obsolete">Créer un nouvel item</translation>
-    </message>
-    <message>
-        <source>Change the name</source>
-        <translation type="obsolete">Changer le nom</translation>
-    </message>
-    <message>
-        <source>New name:</source>
-        <translation type="obsolete">Nouveau nom :</translation>
-    </message>
-    <message>
-        <source>&amp;Edit</source>
-        <translation type="obsolete">&amp;Éditer</translation>
-    </message>
-    <message>
-        <source>&amp;Cancel</source>
-        <translation type="obsolete">A&amp;nnuler</translation>
-    </message>
-</context>
-<context>
     <name>changeSkillDialog</name>
-    <message>
-        <source>Change the name</source>
-        <translation type="obsolete">Changer le nom</translation>
-    </message>
-    <message>
-        <source>New name:</source>
-        <translation type="obsolete">Nouveau nom :</translation>
-    </message>
     <message>
         <location filename="../sources/windows/ChangeSkillDialog.ui" line="17"/>
         <source>New name</source>
@@ -512,10 +140,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/ChangeSkillDialog.ui" line="41"/>
         <source>&amp;Validate</source>
         <translation>&amp;Valider</translation>
-    </message>
-    <message>
-        <source>&amp;Edit</source>
-        <translation type="obsolete">&amp;Éditer</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangeSkillDialog.ui" line="52"/>
@@ -565,101 +189,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/CombatDialog.cpp" line="41"/>
         <source>&amp;Start</source>
         <translation>&amp;Démarrer</translation>
-    </message>
-</context>
-<context>
-    <name>custom</name>
-    <message>
-        <source>&amp;None</source>
-        <translation type="obsolete">&amp;Aucun</translation>
-    </message>
-    <message>
-        <source>In &amp;progress</source>
-        <translation type="obsolete">En &amp;cours</translation>
-    </message>
-    <message>
-        <source>&amp;Failed</source>
-        <translation type="obsolete">&amp;Échoué</translation>
-    </message>
-    <message>
-        <source>&amp;Succeeded</source>
-        <translation type="obsolete">&amp;Réussi</translation>
-    </message>
-    <message>
-        <source>&amp;Add</source>
-        <translation type="obsolete">A&amp;jouter</translation>
-    </message>
-    <message>
-        <source>&amp;Edit</source>
-        <translation type="obsolete">&amp;Éditer</translation>
-    </message>
-    <message>
-        <source>&amp;Delete</source>
-        <translation type="obsolete">&amp;Supprimer</translation>
-    </message>
-    <message>
-        <source>Error</source>
-        <translation type="obsolete">Erreur</translation>
-    </message>
-    <message>
-        <source>Double click to play the file</source>
-        <translation type="obsolete">Double-cliquez pour jouer le fichier</translation>
-    </message>
-    <message>
-        <source>&amp;Add a column</source>
-        <translation type="obsolete">&amp;Ajouter une colonne</translation>
-    </message>
-    <message>
-        <source>&amp;Remove the column</source>
-        <translation type="obsolete">&amp;Supprimer la colonne</translation>
-    </message>
-    <message>
-        <source>A&amp;dd a row</source>
-        <translation type="obsolete">A&amp;jouter une ligne</translation>
-    </message>
-    <message>
-        <source>R&amp;emove the row</source>
-        <translation type="obsolete">S&amp;upprimer la ligne</translation>
-    </message>
-    <message>
-        <source>&amp;Add a skill</source>
-        <translation type="obsolete">&amp;Ajouter une compétence</translation>
-    </message>
-    <message>
-        <source>&amp;Remove the skill</source>
-        <translation type="obsolete">&amp;Supprimer la compétence</translation>
-    </message>
-    <message>
-        <source>A&amp;dd a character</source>
-        <translation type="obsolete">A&amp;jouter un personnage</translation>
-    </message>
-    <message>
-        <source>R&amp;emove the character</source>
-        <translation type="obsolete">S&amp;upprimer le personnage</translation>
-    </message>
-    <message>
-        <source>Change &amp;character&apos;s name</source>
-        <translation type="obsolete">Changer le nom du &amp;personnage</translation>
-    </message>
-    <message>
-        <source>Change &amp;skill&apos;s name</source>
-        <translation type="obsolete">Changer le nom de la &amp;compétence</translation>
-    </message>
-    <message>
-        <source>&amp;Add a row</source>
-        <translation type="obsolete">A&amp;jouter une ligne</translation>
-    </message>
-    <message>
-        <source>&amp;Remove the row</source>
-        <translation type="obsolete">S&amp;upprimer la ligne</translation>
-    </message>
-    <message>
-        <source>Change character&apos;s name</source>
-        <translation type="obsolete">Changer le nom du &amp;personnage</translation>
-    </message>
-    <message>
-        <source>Edit the row</source>
-        <translation type="obsolete">Éditer l</translation>
     </message>
 </context>
 <context>
@@ -722,158 +251,126 @@ p, li { white-space: pre-wrap; }
         <source>Edit the character</source>
         <translation>Édite le personnage</translation>
     </message>
-    <message>
-        <source>&amp;Add a character</source>
-        <translation type="obsolete">&amp;Ajouter un personnage</translation>
-    </message>
-    <message>
-        <source>&amp;Remove the character</source>
-        <translation type="obsolete">&amp;Supprimer le personnage</translation>
-    </message>
-    <message>
-        <source>&amp;Edit the character</source>
-        <translation type="obsolete">&amp;Éditer le personnage</translation>
-    </message>
-    <message>
-        <source>&amp;Add a skill</source>
-        <translation type="obsolete">&amp;Ajouter une compétence</translation>
-    </message>
-    <message>
-        <source>&amp;Remove the skill</source>
-        <translation type="obsolete">&amp;Supprimer la compétence</translation>
-    </message>
-    <message>
-        <source>&amp;Edit the skill</source>
-        <translation type="obsolete">&amp;Éditer la compétence</translation>
-    </message>
 </context>
 <context>
     <name>customTree</name>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="647"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="650"/>
         <source>&amp;None</source>
         <translation>&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="648"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="651"/>
         <source>Untag the item</source>
         <translation>Retire toute étiquette de l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="649"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="652"/>
         <source>In &amp;progress</source>
         <translation>En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="650"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="653"/>
         <source>Tag the item as being in progress</source>
         <translation>Marque l&apos;item comme étant en cours</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="651"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="654"/>
         <source>&amp;Failed</source>
         <translation>&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="652"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="655"/>
         <source>Tag the item as failed</source>
         <translation>Marque l&apos;item comme échoué</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="653"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="656"/>
         <source>&amp;Succeeded</source>
         <translation>&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="654"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="657"/>
         <source>Tag the item as succeeded</source>
         <translation>Marque l&apos;item comme réussi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="655"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="658"/>
         <source>&amp;Add</source>
         <translation>A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="656"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="659"/>
         <source>Add a new item</source>
         <translation>Ajoute un nouvel item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="657"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="660"/>
         <source>Ins</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="658"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="661"/>
         <source>&amp;Delete</source>
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="659"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="662"/>
         <source>Delete the item</source>
         <translation>Supprime l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="660"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="663"/>
         <source>Del</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="661"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="664"/>
         <source>&amp;Edit</source>
         <translation>É&amp;diter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="662"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="665"/>
         <source>Edit the item</source>
         <translation>Édite l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="663"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="666"/>
         <source>Ctrl+F2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="664"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="667"/>
         <source>Space</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="92"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="91"/>
         <source>Audio files can be played only in the Music and Sound effects modules.</source>
         <translation>Les fichiers audios ne peuvent être joués que dans les modules Musique et Bruitages.</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="141"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="140"/>
         <source>Play the audio file</source>
         <translation>Joue le fichier audio</translation>
     </message>
     <message>
-        <source>Audio files can be played only in the Music and Sound effects modules</source>
-        <translation type="obsolete">Les fichiers audio ne peuvent être joués que dans les modules Musique et Bruitages</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="106"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="105"/>
         <source>Unable to display the file</source>
         <translation>Impossible d&apos;afficher le fichier</translation>
     </message>
     <message>
-        <source>Play the sound</source>
-        <translation type="obsolete">Joue le fichier audio</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="142"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="141"/>
         <source>P&amp;lay</source>
         <translation>J&amp;ouer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="147"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="146"/>
         <source>Display the image</source>
         <translation>Affiche l&apos;image</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="148"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="147"/>
         <source>Disp&amp;lay</source>
         <translation>A&amp;fficher</translation>
     </message>
@@ -965,16 +462,12 @@ p, li { white-space: pre-wrap; }
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
-    <message>
-        <source>&amp;Exit</source>
-        <translation type="obsolete">&amp;Fermer</translation>
-    </message>
 </context>
 <context>
     <name>itemDialog</name>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="17"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="169"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="178"/>
         <source>Create a new item</source>
         <translation>Créer un nouvel item</translation>
     </message>
@@ -992,10 +485,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/ItemDialog.ui" line="47"/>
         <source>&amp;None</source>
         <translation>&amp;Aucun</translation>
-    </message>
-    <message>
-        <source>In &amp;progress</source>
-        <translation type="obsolete">En &amp;cours</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="61"/>
@@ -1029,17 +518,9 @@ p, li { white-space: pre-wrap; }
         <translation>A&amp;udio</translation>
     </message>
     <message>
-        <source>S&amp;ound</source>
-        <translation type="obsolete">A&amp;udio</translation>
-    </message>
-    <message>
         <location filename="../sources/windows/ItemDialog.ui" line="128"/>
         <source>I&amp;mage</source>
         <translation>&amp;Image</translation>
-    </message>
-    <message>
-        <source>&amp;Picture</source>
-        <translation type="obsolete">&amp;Image</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="141"/>
@@ -1057,22 +538,10 @@ p, li { white-space: pre-wrap; }
         <translation>A&amp;jouter</translation>
     </message>
     <message>
-        <source>Return, Alt+A</source>
-        <translation type="obsolete">Return, Alt+J</translation>
-    </message>
-    <message>
-        <source>Esc, Alt+C</source>
-        <translation type="obsolete">Esc, Alt+N</translation>
-    </message>
-    <message>
         <location filename="../sources/windows/ItemDialog.ui" line="183"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="172"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="181"/>
         <source>C&amp;hild</source>
         <translation>En&amp;fant</translation>
-    </message>
-    <message>
-        <source>S&amp;on</source>
-        <translation type="obsolete">&amp;Fils</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="194"/>
@@ -1080,62 +549,54 @@ p, li { white-space: pre-wrap; }
         <translation>A&amp;nnuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="78"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="83"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="98"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="103"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="211"/>
+        <source>Audio files (*)</source>
+        <translation>Fichiers audio (*)</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="84"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="89"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="104"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="109"/>
         <source>Uncomplete data</source>
         <translation>Données incomplètes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="78"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="98"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="84"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="104"/>
         <source>You must select a file before validating.</source>
         <translation>Vous devez sélectionner un fichier avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="83"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="103"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="89"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="109"/>
         <source>You must fill the content before validating.</source>
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="147"/>
         <source>Select the image file to associate to the item</source>
         <translation>Sélectionnez le fichier image à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="134"/>
-        <source>Audio files (*.mp3 *.wav *.ogg)</source>
-        <translation>Fichiers audio (*.mp3 *.wav *.ogg)</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="134"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="23"/>
         <source>Select the audio file to associate to the item</source>
         <translation>Sélectionnez le fichier audio à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="138"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="147"/>
         <source>Image files (*.jpg *.jpeg *.png *.bmp *.svg)</source>
         <translation>Fichiers image (*.jpg *.jpeg *.png *.bmp *.svg)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="153"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="162"/>
         <source>Edit the item</source>
         <translation>Éditer l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="156"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="165"/>
         <source>&amp;Validate</source>
         <translation>&amp;Valider</translation>
-    </message>
-    <message>
-        <source>&amp;Edit</source>
-        <translation type="obsolete">É&amp;diter</translation>
-    </message>
-    <message>
-        <source>Picture files (*.jpg *.jpeg *.png *.bmp)</source>
-        <translation type="obsolete">Ficher image (*.jpg *.jpeg *.png *.bmp)</translation>
     </message>
 </context>
 <context>
@@ -1151,17 +612,9 @@ p, li { white-space: pre-wrap; }
         <translation>Historique</translation>
     </message>
     <message>
-        <source>Playing characters</source>
-        <translation type="obsolete">Personnages joueurs</translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="152"/>
         <source>Sound effects</source>
         <translation>Bruitages</translation>
-    </message>
-    <message>
-        <source>Play</source>
-        <translation type="obsolete">Jouer</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="194"/>
@@ -1184,447 +637,398 @@ p, li { white-space: pre-wrap; }
         <translation>Personnages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="238"/>
+        <location filename="../sources/windows/MainWindow.ui" line="235"/>
         <source>Browse the music file</source>
         <translation>Navigue dans le fichier musical</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="253"/>
+        <location filename="../sources/windows/MainWindow.ui" line="244"/>
         <source>Play/Pause/Resume the music</source>
         <translation>Joue/pause/reprend la musique</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="256"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="474"/>
+        <location filename="../sources/windows/MainWindow.ui" line="247"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="443"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="263"/>
+        <location filename="../sources/windows/MainWindow.ui" line="254"/>
         <source>0:00/0:00</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="273"/>
+        <location filename="../sources/windows/MainWindow.ui" line="264"/>
         <source>Enable/Disable loop playing</source>
         <translation>Active/désactive le jeu en boucle</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="276"/>
+        <location filename="../sources/windows/MainWindow.ui" line="267"/>
         <source>&amp;Loop</source>
         <translation>&amp;Boucle</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="302"/>
+        <location filename="../sources/windows/MainWindow.ui" line="293"/>
         <source>&amp;Game</source>
         <translation>&amp;Jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="318"/>
+        <location filename="../sources/windows/MainWindow.ui" line="309"/>
         <source>&amp;?</source>
         <translation></translation>
     </message>
     <message>
-        <source>&amp;Interface</source>
-        <translation type="obsolete">&amp;Interface</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="324"/>
+        <location filename="../sources/windows/MainWindow.ui" line="315"/>
         <source>&amp;View</source>
         <translation>&amp;Affichage</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="331"/>
+        <location filename="../sources/windows/MainWindow.ui" line="322"/>
         <source>&amp;Language</source>
         <translation>&amp;Langue</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="344"/>
+        <location filename="../sources/windows/MainWindow.ui" line="335"/>
         <source>&amp;Edit</source>
         <translation>&amp;Édition</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="351"/>
+        <location filename="../sources/windows/MainWindow.ui" line="342"/>
         <source>&amp;Tools</source>
         <translation>&amp;Outils</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="365"/>
+        <location filename="../sources/windows/MainWindow.ui" line="356"/>
         <source>&amp;New</source>
         <translation>&amp;Nouveau</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="368"/>
+        <location filename="../sources/windows/MainWindow.ui" line="359"/>
         <source>Create a new game</source>
         <translation>Crée un nouveau jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="371"/>
+        <location filename="../sources/windows/MainWindow.ui" line="362"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="376"/>
+        <location filename="../sources/windows/MainWindow.ui" line="367"/>
         <source>&amp;Load</source>
         <translation>&amp;Charger</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="379"/>
+        <location filename="../sources/windows/MainWindow.ui" line="370"/>
         <source>Load a game</source>
         <translation>Charge un jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="382"/>
+        <location filename="../sources/windows/MainWindow.ui" line="373"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="387"/>
+        <location filename="../sources/windows/MainWindow.ui" line="378"/>
         <source>&amp;Save</source>
         <translation>&amp;Enregistrer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="390"/>
+        <location filename="../sources/windows/MainWindow.ui" line="381"/>
         <source>Save the current game</source>
         <translation>Sauvegarde le jeu en cours</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="393"/>
+        <location filename="../sources/windows/MainWindow.ui" line="384"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="398"/>
+        <location filename="../sources/windows/MainWindow.ui" line="389"/>
         <source>S&amp;ave as</source>
         <translation>Enregistrer &amp;sous</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="401"/>
+        <location filename="../sources/windows/MainWindow.ui" line="392"/>
         <source>Save the current game in a new file</source>
         <translation>Sauvegarde le jeu en cours dans un nouveau fichier</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="404"/>
+        <location filename="../sources/windows/MainWindow.ui" line="395"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="409"/>
+        <location filename="../sources/windows/MainWindow.ui" line="400"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="412"/>
+        <location filename="../sources/windows/MainWindow.ui" line="403"/>
         <source>Exit the application</source>
         <translation>Sort de l&apos;application</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="415"/>
+        <location filename="../sources/windows/MainWindow.ui" line="406"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="420"/>
+        <location filename="../sources/windows/MainWindow.ui" line="411"/>
         <source>&amp;About</source>
         <translation>&amp;À propos</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="423"/>
+        <location filename="../sources/windows/MainWindow.ui" line="414"/>
         <source>Display information about GM-Assistant</source>
         <translation>Informations à propos de GM-Assistant</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="426"/>
+        <location filename="../sources/windows/MainWindow.ui" line="417"/>
         <source>F1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="431"/>
+        <location filename="../sources/windows/MainWindow.ui" line="422"/>
         <source>&amp;Reload</source>
         <translation>&amp;Recharger</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="434"/>
+        <location filename="../sources/windows/MainWindow.ui" line="425"/>
         <source>Reload the current game</source>
         <translation>Recharge le jeu en cours</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="442"/>
+        <location filename="../sources/windows/MainWindow.ui" line="433"/>
         <source>R&amp;ecent</source>
         <translation>R&amp;écents</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="445"/>
+        <location filename="../sources/windows/MainWindow.ui" line="436"/>
         <source>Load a recently opened game</source>
         <translation>Charge un jeu ouvert récemment</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="456"/>
+        <location filename="../sources/windows/MainWindow.ui" line="447"/>
         <source>&amp;Full</source>
         <translation>&amp;Complet</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="459"/>
+        <location filename="../sources/windows/MainWindow.ui" line="450"/>
         <source>Tools shown : Scenario, Notes, Characters, History, Music and Sound effects</source>
         <translation>Outils affichés : Scénario, Notes, Personnages, Historique, Musique et Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="473"/>
+        <location filename="../sources/windows/MainWindow.ui" line="464"/>
         <source>Tools shown : Music and Sound effects</source>
         <translation>Outils affichés : Musique et Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="487"/>
+        <location filename="../sources/windows/MainWindow.ui" line="478"/>
         <source>Tools shown : Scenario, Music and Sound effects</source>
         <translation>Outils affichés : Scénario, Musique et Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="548"/>
+        <location filename="../sources/windows/MainWindow.ui" line="539"/>
         <source>Throw virtual dices</source>
         <translation>Jette des dés virtuels</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="551"/>
+        <location filename="../sources/windows/MainWindow.ui" line="542"/>
         <source>Ctrl+D</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="556"/>
+        <location filename="../sources/windows/MainWindow.ui" line="547"/>
         <source>&amp;Combat manager</source>
         <translation>&amp;Gestionnaire de combat</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="559"/>
+        <location filename="../sources/windows/MainWindow.ui" line="550"/>
         <source>Manage round per round combats</source>
         <translation>Gère les combats au tour par tour</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="562"/>
+        <location filename="../sources/windows/MainWindow.ui" line="553"/>
         <source>Ctrl+M</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="570"/>
+        <location filename="../sources/windows/MainWindow.ui" line="561"/>
         <source>&amp;English</source>
         <translation></translation>
     </message>
     <message>
-        <source>Tools shown : Scenario, Note, Characters, History, Music, Sound</source>
-        <translation type="obsolete">Outils affichés : Scénario, Notes, Personnages, Historique, Musique, Bruitages</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="462"/>
+        <location filename="../sources/windows/MainWindow.ui" line="453"/>
         <source>F5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="470"/>
+        <location filename="../sources/windows/MainWindow.ui" line="461"/>
         <source>&amp;Music</source>
         <translation>&amp;Musique</translation>
     </message>
     <message>
-        <source>Tools shown : Music, Sound</source>
-        <translation type="obsolete">Outils affichés : Musique, Bruitages</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="476"/>
+        <location filename="../sources/windows/MainWindow.ui" line="467"/>
         <source>F7</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="484"/>
+        <location filename="../sources/windows/MainWindow.ui" line="475"/>
         <source>&amp;Simple</source>
         <translation>&amp;Simple</translation>
     </message>
     <message>
-        <source>Tools shown : Scenario, Music and Sound</source>
-        <translation type="obsolete">Outils affichés : Scénario, Musique, Bruitages</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="490"/>
+        <location filename="../sources/windows/MainWindow.ui" line="481"/>
         <source>F6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="498"/>
+        <location filename="../sources/windows/MainWindow.ui" line="489"/>
         <source>&amp;Design</source>
         <translation>C&amp;onception</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="501"/>
+        <location filename="../sources/windows/MainWindow.ui" line="492"/>
         <source>Tools shown : Scenario, Characters and Notes</source>
         <translation>Outils affichés : Scénario, Personnages et Notes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="515"/>
+        <location filename="../sources/windows/MainWindow.ui" line="506"/>
         <source>Tools shown : Scenario, Characters, History and Notes</source>
         <translation>Outils affichés : Scénario, Personnages, Historique et Notes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="523"/>
+        <location filename="../sources/windows/MainWindow.ui" line="514"/>
         <source>&amp;Undo</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="526"/>
+        <location filename="../sources/windows/MainWindow.ui" line="517"/>
         <source>Undo the last modification</source>
         <translation>Annule la dernière modification</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="529"/>
+        <location filename="../sources/windows/MainWindow.ui" line="520"/>
         <source>Ctrl+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="534"/>
+        <location filename="../sources/windows/MainWindow.ui" line="525"/>
         <source>&amp;Redo</source>
         <translation>&amp;Refaire</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="537"/>
+        <location filename="../sources/windows/MainWindow.ui" line="528"/>
         <source>Redo the last undone modification</source>
         <translation>Refait la dernière modification annulée</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="540"/>
+        <location filename="../sources/windows/MainWindow.ui" line="531"/>
         <source>Ctrl+Shift+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="545"/>
+        <location filename="../sources/windows/MainWindow.ui" line="536"/>
         <source>&amp;Dice simulator</source>
         <translation>&amp;Simulateur de dés</translation>
     </message>
     <message>
-        <source>&amp;Conception</source>
-        <translation type="obsolete">C&amp;onception</translation>
-    </message>
-    <message>
-        <source>Tools shown : Scenario, Characters, Note </source>
-        <translation type="obsolete">Outils affichés : Scénario, Personnages, Notes</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="504"/>
+        <location filename="../sources/windows/MainWindow.ui" line="495"/>
         <source>F8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="512"/>
+        <location filename="../sources/windows/MainWindow.ui" line="503"/>
         <source>&amp;No Music</source>
         <translation>S&amp;ans son</translation>
     </message>
     <message>
-        <source>Tools shown : Scenario, Note, History, Characters</source>
-        <translation type="obsolete">Outils affichés : Scénario, Notes, Historique, Personnages</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="518"/>
+        <location filename="../sources/windows/MainWindow.ui" line="509"/>
         <source>F9</source>
         <translation></translation>
     </message>
     <message>
-        <source>Reload the current file</source>
-        <translation type="obsolete">Recharge le jeu en cours</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="437"/>
+        <location filename="../sources/windows/MainWindow.ui" line="428"/>
         <source>Ctrl+R</source>
         <translation></translation>
     </message>
     <message>
-        <source>Pause</source>
-        <translation type="obsolete">Pause</translation>
-    </message>
-    <message>
-        <source>Resume</source>
-        <translation type="obsolete">Reprise</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="408"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="489"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="411"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="455"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="414"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="406"/>
         <source>&amp;Resume</source>
         <translation>&amp;Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="92"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="106"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="477"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="288"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="292"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="321"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="351"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="494"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="499"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="525"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="558"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="569"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="573"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="91"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="105"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="480"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="291"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="295"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="324"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="354"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="459"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="497"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="508"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="512"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="796"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="277"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="280"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="277"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="328"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="280"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="331"/>
         <source>GM-Assistant files (*.gma);;XML files (*.xml)</source>
         <translation>Fichiers GM-Assistant (*.gma);;Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="292"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="573"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="295"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="512"/>
         <source>The game will be loaded anyway, but some features might not work properly.</source>
         <translation>Le jeu va tout de même être chargé, mais certaines fonctionnalités peuvent ne pas fonctionner normalement.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="292"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="573"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="295"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="512"/>
         <source>The game cannot be loaded correctly for the following reason: </source>
         <translation>Le jeu n&apos;a pas pu être chargé pour la raison suivante :</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="328"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="331"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="499"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="459"/>
         <source>Unable to play the file</source>
         <translation>Impossible de jouer le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="558"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="497"/>
         <source>The file &quot;%1&quot; does not exist.</source>
         <translation>Le fichier &quot;%1&quot; n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="812"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="737"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="812"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="737"/>
         <source>The current game has been modified since the last save. If you continue, unsaved changes will be discarded.</source>
         <translation>Le jeu en cours a été modifié depuis la dernière sauvegarde. Si vous continuez, les changements non sauvegardés seront perdus.</translation>
     </message>
     <message>
-        <source>The file %1 does not exist.</source>
-        <translation type="obsolete">Le fichier %1 n&apos;existe pas.</translation>
-    </message>
-    <message>
-        <source>The file does not exist.</source>
-        <translation type="obsolete">Le fichier n&apos;existe pas.</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="740"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="665"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>

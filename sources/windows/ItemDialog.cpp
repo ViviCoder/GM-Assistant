@@ -18,11 +18,19 @@
 
 #include "ItemDialog.h"
 #include <QMessageBox>
-#include <QFileDialog>
 
-ItemDialog::ItemDialog(QWidget *parent): QDialog(parent)
+ItemDialog::ItemDialog(QWidget *parent, QAudioProxyModel *filter): QDialog(parent), audioBrowser(new QFileDialog(this, QApplication::translate("itemDialog", "Select the audio file to associate to the item", 0)))
 {
     setupUi(this);
+    // setting the audio browser up
+    audioBrowser->setFileMode(QFileDialog::ExistingFile);
+    audioBrowser->setReadOnly(true);
+    audioBrowser->setNameFilterDetailsVisible(false);
+    if (!filter)
+    {
+        filter = new QAudioProxyModel(audioBrowser);
+    }
+    audioBrowser->setProxyModel(filter);
 }
 
 Item::State ItemDialog::state() const
@@ -131,7 +139,10 @@ void ItemDialog::on_toolBrowse_clicked()
     switch (type())
     {
         case Item::tSound:  {
-                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the audio file to associate to the item",0),"",QApplication::translate("itemDialog","Audio files (*.mp3 *.wav *.ogg)",0)));    
+                                if (audioBrowser->exec())
+                                {
+                                    editFile->setText(audioBrowser->selectedFiles()[0]);
+                                }    
                                 break;
                             }
         case Item::tImage:  { 
@@ -199,5 +210,6 @@ void ItemDialog::changeEvent(QEvent *e)
     if (e->type() == QEvent::LanguageChange)
     {
         retranslateUi(this);
+        audioBrowser->setNameFilter(QApplication::translate("itemDialog", "Audio files (*)", 0));
     }
 }

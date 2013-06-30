@@ -18,6 +18,5 @@ See the LICENSE file for more information about this license
 
 Once installed (see README.install), to launch GM-Assistant you need:
 - C++ standard library
-- Qt4 library
+- Qt4 library (including the Phonon module)
 - XML++ library
-- SDL-mixer (>= 1.2.12) and SDL-sound libraries
