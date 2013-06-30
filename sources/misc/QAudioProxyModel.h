@@ -34,8 +34,9 @@ class QAudioProxyModel: public QSortFilterProxyModel
         /*!
          * \brief Default constructor
          * \param parent Parent widget
+         * \param installDir Installation directory
          */
-        QAudioProxyModel(QWidget *parent = 0);
+        QAudioProxyModel(QWidget *parent = 0, const QString &installDir = "");
         /*!
          * \brief Destructor
          */
@@ -55,6 +56,8 @@ class QAudioProxyModel: public QSortFilterProxyModel
         magic_t cookie;
         //! Supported formats
         QStringList slFormats;
+        //! Flag for filtering
+        bool bFiltering;
 };
 
 #endif

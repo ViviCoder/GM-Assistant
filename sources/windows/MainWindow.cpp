@@ -29,7 +29,7 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 
-MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(this), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this))
+MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(this), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), audioFilter(new QAudioProxyModel(this, install_dir)), pItemDialog(new ItemDialog(this, audioFilter))
 {
     setupUi(this);
     updateDisplay();
@@ -101,6 +101,12 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     connect(textNotes, SIGNAL(unregistered()), this, SLOT(updateUndoRedo()));
     textNotes->installEventFilter(this);
     connect(tableStats, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+
+    // Item dialog
+    treeScenario->setItemDialogWindow(pItemDialog);
+    treeHistory->setItemDialogWindow(pItemDialog);
+    treeMusic->setItemDialogWindow(pItemDialog);
+    treeFX->setItemDialogWindow(pItemDialog);
 
     // setting audio options
     treeFX->setSizeLimited(true);

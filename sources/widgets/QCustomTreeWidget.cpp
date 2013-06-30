@@ -27,7 +27,7 @@
 
 using namespace std;
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(0), pItemDial(new ItemDialog(this)), pDragSource(0), bNewlySelected(false), bEditing(false), bSizeLimited(false), pmMethod(pmNone)
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(0), pItemDial(), pDragSource(0), bNewlySelected(false), bEditing(false), bSizeLimited(false), pmMethod(pmNone)
 {
     // creating actions
     actionNone = new QAction(this);
@@ -447,108 +447,111 @@ void QCustomTreeWidget::on_itemSelectionChanged()
 
 void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
 {
-    if (edition)
+    if (pItemDial)
     {
-        pItemDial->exec(item->branch()->item());
-    }
-    else
-    {
-        pItemDial->exec();
-    }
-    if (pItemDial->result()==QDialog::Accepted)
-    {
-        // creation of the new item
-        Item *newItem = 0;
-        try
+        if (edition)
         {
-            switch (pItemDial->type())
-            {
-                case Item::tSound:      {
-                                            SoundItem *soundItem = new SoundItem(pItemDial->text().toStdString(), pItemDial->state(), false, bSizeLimited);
-                                            soundItem->setFileName(pItemDial->fileName().toStdString(), false);
-                                            newItem = soundItem;
-                                            break;
-                                        }
-                case Item::tImage:      newItem = new ImageItem(pItemDial->text().toStdString(), pItemDial->state(), false, pItemDial->fileName().toStdString());
-                                        break;
-                default:                newItem = new Item(pItemDial->text().toStdString(),pItemDial->state());
-                                        break;
-            }
-        }
-        catch (exception &e)
-        {
-            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),e.what());
-            if (newItem)
-            {
-                delete newItem;
-            }
-            return;
-        }
-        Branch *newBranch = 0;
-        if (item)
-        {
-            // an item is selected
-            if (edition)
-            {
-                emit modificationDone(new TreeModification(*pTree, ItemFactory::copyItem(item->branch()->item()), ItemFactory::copyItem(newItem), pTree->indicesOf(item->branch())));
-                // stopping the music if necessary
-                Item *iItem = item->branch()->item();
-                if (pmMethod == pmMusic && iItem->type() == Item::tSound)
-                {
-                    SoundItem *siItem = dynamic_cast<SoundItem*>(iItem);
-                    if (newItem->type() != Item::tSound || dynamic_cast<SoundItem*>(newItem)->fileName() != siItem->fileName())
-                    {
-                        emit fileToStop(siItem);
-                    }
-                }
-                // replacement
-                item->branch()->setItem(newItem);
-                item->updateDisplay(); 
-                scrollTo(item);
-            }
-            else
-            {    
-                QCustomTreeWidgetItem *newQItem = 0;
-                switch (pItemDial->selectionResult())
-                {
-                    case ItemDialog::rBrother:  {
-                                                    // we want to insert it after the given item
-                                                    Branch *parent = item->branch()->parent()->parent();
-                                                    if (parent)
-                                                    {
-                                                        newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
-                                                        newQItem = new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
-                                                    }
-                                                    else
-                                                    {
-                                                        newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
-                                                        newQItem = new QCustomTreeWidgetItem(this,newBranch,item);
-                                                    }
-                                                    break;
-                                                }
-                    case ItemDialog::rChild:    {
-                                                    // we want to insert it inside the given item
-                                                    newBranch = item->branch()->tree().add(newItem);
-                                                    newQItem = new QCustomTreeWidgetItem(item,newBranch);
-                                                    expandItem(newQItem->parent());
-                                                    break;
-                                                }
-                }
-                scrollTo(newQItem);
-            }
+            pItemDial->exec(item->branch()->item());
         }
         else
         {
-            // There is no item in the tree
-            newBranch = pTree->add(newItem);
-            new QCustomTreeWidgetItem(this,newBranch);
+            pItemDial->exec();
         }
-        // creating the modification
-        if (!edition)
+        if (pItemDial->result()==QDialog::Accepted)
         {
-            emit modificationDone(new TreeModification(*pTree, ItemFactory::copyItem(newItem), pTree->indicesOf(newBranch)));
+            // creation of the new item
+            Item *newItem = 0;
+            try
+            {
+                switch (pItemDial->type())
+                {
+                    case Item::tSound:      {
+                                                SoundItem *soundItem = new SoundItem(pItemDial->text().toStdString(), pItemDial->state(), false, bSizeLimited);
+                                                soundItem->setFileName(pItemDial->fileName().toStdString(), false);
+                                                newItem = soundItem;
+                                                break;
+                                            }
+                    case Item::tImage:      newItem = new ImageItem(pItemDial->text().toStdString(), pItemDial->state(), false, pItemDial->fileName().toStdString());
+                                            break;
+                    default:                newItem = new Item(pItemDial->text().toStdString(),pItemDial->state());
+                                            break;
+                }
+            }
+            catch (exception &e)
+            {
+                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),e.what());
+                if (newItem)
+                {
+                    delete newItem;
+                }
+                return;
+            }
+            Branch *newBranch = 0;
+            if (item)
+            {
+                // an item is selected
+                if (edition)
+                {
+                    emit modificationDone(new TreeModification(*pTree, ItemFactory::copyItem(item->branch()->item()), ItemFactory::copyItem(newItem), pTree->indicesOf(item->branch())));
+                    // stopping the music if necessary
+                    Item *iItem = item->branch()->item();
+                    if (pmMethod == pmMusic && iItem->type() == Item::tSound)
+                    {
+                        SoundItem *siItem = dynamic_cast<SoundItem*>(iItem);
+                        if (newItem->type() != Item::tSound || dynamic_cast<SoundItem*>(newItem)->fileName() != siItem->fileName())
+                        {
+                            emit fileToStop(siItem);
+                        }
+                    }
+                    // replacement
+                    item->branch()->setItem(newItem);
+                    item->updateDisplay(); 
+                    scrollTo(item);
+                }
+                else
+                {    
+                    QCustomTreeWidgetItem *newQItem = 0;
+                    switch (pItemDial->selectionResult())
+                    {
+                        case ItemDialog::rBrother:  {
+                                                        // we want to insert it after the given item
+                                                        Branch *parent = item->branch()->parent()->parent();
+                                                        if (parent)
+                                                        {
+                                                            newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
+                                                            newQItem = new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
+                                                        }
+                                                        else
+                                                        {
+                                                            newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
+                                                            newQItem = new QCustomTreeWidgetItem(this,newBranch,item);
+                                                        }
+                                                        break;
+                                                    }
+                        case ItemDialog::rChild:    {
+                                                        // we want to insert it inside the given item
+                                                        newBranch = item->branch()->tree().add(newItem);
+                                                        newQItem = new QCustomTreeWidgetItem(item,newBranch);
+                                                        expandItem(newQItem->parent());
+                                                        break;
+                                                    }
+                    }
+                    scrollTo(newQItem);
+                }
+            }
+            else
+            {
+                // There is no item in the tree
+                newBranch = pTree->add(newItem);
+                new QCustomTreeWidgetItem(this,newBranch);
+            }
+            // creating the modification
+            if (!edition)
+            {
+                emit modificationDone(new TreeModification(*pTree, ItemFactory::copyItem(newItem), pTree->indicesOf(newBranch)));
+            }
+            resizeColumnToContents(0);
         }
-        resizeColumnToContents(0);
     }
 }
 
@@ -665,4 +668,9 @@ void QCustomTreeWidget::retranslate()
     actionEdit->setStatusTip(QApplication::translate("customTree","Edit the item",0));
     actionEdit->setShortcut(QApplication::translate("customTree","Ctrl+F2",0));
     actionLaunch->setShortcut(QApplication::translate("customTree","Space",0));
+}
+
+void QCustomTreeWidget::setItemDialogWindow(ItemDialog *window)
+{
+    pItemDial = window;
 }

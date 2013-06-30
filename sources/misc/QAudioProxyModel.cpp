@@ -21,9 +21,17 @@
 
 using namespace Phonon;
 
-QAudioProxyModel::QAudioProxyModel(QWidget *parent): QSortFilterProxyModel(parent), cookie(magic_open(MAGIC_MIME_TYPE)), slFormats(Phonon::BackendCapabilities::availableMimeTypes())
+QAudioProxyModel::QAudioProxyModel(QWidget *parent, const QString &installDir): QSortFilterProxyModel(parent), cookie(magic_open(MAGIC_MIME_TYPE)), slFormats(Phonon::BackendCapabilities::availableMimeTypes()), bFiltering(true)
 {
     magic_load(cookie, 0);
+    if (magic_error(cookie))
+    {
+        magic_load(cookie, (installDir + "magic.mgc").toStdString().c_str());
+    }
+    if (magic_error(cookie))
+    {
+        bFiltering = false;
+    }
     slFormats = slFormats.filter("audio/");
 }
 
@@ -34,6 +42,10 @@ QAudioProxyModel::~QAudioProxyModel()
 
 bool QAudioProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
+    if (!bFiltering)
+    {
+        return true;
+    }   
     QFileSystemModel *model = dynamic_cast<QFileSystemModel*>(sourceModel());
     QModelIndex index = model->index(sourceRow, 0, sourceParent);
     if (model->isDir(index))

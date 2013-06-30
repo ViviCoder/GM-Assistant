@@ -22,6 +22,7 @@
 #include "ui_ItemDialog.h"
 #include "ItemFactory.h"
 #include <QFileDialog>
+#include "QAudioProxyModel.h"
 
 /*!
  * \brief Dialog window for item creation
@@ -32,8 +33,12 @@ class ItemDialog: public QDialog, private Ui::itemDialog
     public:
         // result type
         enum Result {rBrother,rChild};
-        // constructor
-        ItemDialog(QWidget *parent=0);
+        /*!
+         * \brief Constructor
+         * \param parent Parent widget
+         * \param filter Filter for audio files
+         */
+        ItemDialog(QWidget *parent=0, QAudioProxyModel *filter=0);
         // accessors
         Item::State state() const;
         QString text() const;

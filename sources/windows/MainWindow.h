@@ -28,6 +28,7 @@
 #include <QTimer>
 #include <QSignalMapper>
 #include "ModificationQueue.h"
+#include "ItemDialog.h"
 
 // number of recently opened games stored
 #define RECENT_NUMBER   5
@@ -80,6 +81,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         QString sInstall;
         //! Signal mapper for the available languages
         QSignalMapper *smLanguage;
+        //! Audio filter
+        QAudioProxyModel *audioFilter;
+        //! Item editor
+        ItemDialog *pItemDialog;
     protected:
         // overriden methods
         /*!
