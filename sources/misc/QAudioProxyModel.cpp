@@ -26,6 +26,8 @@ QAudioProxyModel::QAudioProxyModel(QWidget *parent, const QString &installDir): 
     magic_load(cookie, 0);
     if (magic_error(cookie))
     {
+        magic_close(cookie);
+        cookie = magic_open(MAGIC_MIME_TYPE);
         magic_load(cookie, (installDir + "magic.mgc").toStdString().c_str());
     }
     if (magic_error(cookie))
