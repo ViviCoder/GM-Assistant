@@ -135,6 +135,9 @@
         <layout class="QVBoxLayout" name="verticalLayout5">
          <item>
           <widget class="QCustomTableWidget" name="tableStats">
+           <property name="editTriggers">
+            <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked</set>
+           </property>
            <property name="verticalScrollMode">
             <enum>QAbstractItemView::ScrollPerPixel</enum>
            </property>

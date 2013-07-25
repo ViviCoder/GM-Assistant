@@ -91,8 +91,8 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     if (qtwitem)
                                     {
                                         setCurrentItem(qtwitem);
-                                        rowPosition = currentRow();
-                                        columnPosition = currentColumn();
+                                        rowPosition = visualRow(currentRow());
+                                        columnPosition = visualColumn(currentColumn());
                                     }
                                     else
                                     {
@@ -152,18 +152,60 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
 void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
 {
     QTableWidgetItem *item = currentItem();
+    int row = visualRow(currentRow());
+    int column = visualColumn(currentColumn());
     if (item)
     {
+        Qt::KeyboardModifiers modifs = e->modifiers();
         switch (e->key())
         {
             case Qt::Key_F2:    if (!bEditing)
                                 {
-                                    bEditing = true;
+                                    if (modifs == Qt::ControlModifier)
+                                    {
+                                        editSkill(column);
+                                    }
+                                    else if (modifs == (Qt::ControlModifier | Qt::ShiftModifier))
+                                    {
+                                        editCharacter(row);
+                                    }
+                                    else
+                                    {
+                                        bEditing = true;
+                                        editItem(item);
+                                    } 
                                 }
                                 break;
             case Qt::Key_Delete:    if (!bEditing)
                                     {
-                                        item->setText("0");
+                                        if (modifs == Qt::ControlModifier)
+                                        {
+                                            removeSkill(column);
+                                        }
+                                        else if (modifs == (Qt::ControlModifier | Qt::ShiftModifier))
+                                        {
+                                            removeCharacter(row);
+                                        }
+                                        else
+                                        {
+                                            item->setText("0");
+                                        }
+                                    }
+                                    break;
+            case Qt::Key_Insert:    if (!bEditing)
+                                    {
+                                        if (modifs == Qt::ControlModifier)
+                                        {
+                                            addSkill(column);
+                                        }
+                                        else if (modifs == (Qt::ControlModifier | Qt::ShiftModifier))
+                                        {
+                                            addCharacter(row);
+                                        }
+                                        else
+                                        {
+                                            QTableWidget::keyReleaseEvent(e);
+                                        }
                                     }
                                     break;
             case Qt::Key_Return:
@@ -443,8 +485,7 @@ void QCustomTableWidget::editCharacter(int index)
             character.setName(pChangeCharacterDial->name().toStdString());
             character.setPlayerName(pChangeCharacterDial->playerName().toStdString());
             emit modificationDone(new CharacterModification(pCharacters, name, playerName, character.name(), character.playerName(), index));
-            index = logicalRow(index);
-            QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index);
+            QTableWidgetItem *rowHeaderItem = verticalHeaderItem(logicalRow(index));
             rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
         }
         scrollTo(index, -1);
@@ -454,7 +495,8 @@ void QCustomTableWidget::editCharacter(int index)
 void QCustomTableWidget::editSkill(int index)
 {
     scrollTo(-1, index);
-    QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
+    int logIndex = logicalColumn(index);
+    QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(logIndex);
     if(pChangeSkillDial->exec(columnHeaderItem->text())==QDialog::Accepted)
     {
         // updating the SkillList
@@ -464,8 +506,7 @@ void QCustomTableWidget::editSkill(int index)
             emit modificationDone(new CharacterModification(pSkills, (*pSkills)[index], newSkill, index));
             (*pSkills)[index] = newSkill;
         }
-        index = logicalColumn(index);
-        QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index);
+        QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(logIndex);
         columnHeaderItem->setText(pChangeSkillDial->text());
         scrollTo(-1, index);
     }
@@ -641,17 +682,23 @@ void QCustomTableWidget::retranslate()
     hMenu->setTitle(QApplication::translate("customTable","&Skill",0));
     actionAddColumn->setText(QApplication::translate("customTable","&Add",0));
     actionAddColumn->setStatusTip(QApplication::translate("customTable","Add a new skill",0));
+    actionAddColumn->setShortcut(QApplication::translate("customTable","Ctrl+Ins", 0));
     actionRemoveColumn->setText(QApplication::translate("customTable","&Remove",0));
     actionRemoveColumn->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
+    actionRemoveColumn->setShortcut(QApplication::translate("customTable","Ctrl+Del", 0));
     actionEditColumn->setText(QApplication::translate("customTable","&Edit",0));
     actionEditColumn->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
+    actionEditColumn->setShortcut(QApplication::translate("customTable","Ctrl+F2", 0));
     vMenu->setTitle(QApplication::translate("customTable","&Character",0));
     actionAddRow->setText(QApplication::translate("customTable","&Add",0));
     actionAddRow->setStatusTip(QApplication::translate("customTable","Add a new character",0));
+    actionAddRow->setShortcut(QApplication::translate("customTable","Ctrl+Shift+Ins", 0));
     actionRemoveRow->setText(QApplication::translate("customTable","&Remove",0));
     actionRemoveRow->setStatusTip(QApplication::translate("customTable","Remove the character",0));
+    actionRemoveRow->setShortcut(QApplication::translate("customTable","Ctrl+Shift+Del", 0));
     actionEditRow->setText(QApplication::translate("customTable","&Edit",0));
     actionEditRow->setStatusTip(QApplication::translate("customTable","Edit the character",0));
+    actionEditRow->setShortcut(QApplication::translate("customTable","Ctrl+Shift+F2", 0));
 }
 
 void QCustomTableWidget::changeEvent(QEvent *e)
