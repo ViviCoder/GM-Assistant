@@ -1005,7 +1005,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="503"/>
         <location filename="../sources/windows/MainWindow.cpp" line="514"/>
         <location filename="../sources/windows/MainWindow.cpp" line="518"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="802"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="803"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>

@@ -775,6 +775,7 @@ void MainWindow::changeEvent(QEvent *e)
     if (e->type() == QEvent::LanguageChange)
     {
         retranslateUi(this);
+        updateUndoRedo();
     }
 }
 
