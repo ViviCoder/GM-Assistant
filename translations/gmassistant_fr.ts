@@ -718,267 +718,272 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Langue</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="338"/>
+        <location filename="../sources/windows/MainWindow.ui" line="330"/>
+        <source>&amp;Interface</source>
+        <translation>&amp;Interface</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.ui" line="343"/>
         <source>&amp;Edit</source>
         <translation>&amp;Édition</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="345"/>
+        <location filename="../sources/windows/MainWindow.ui" line="350"/>
         <source>&amp;Tools</source>
         <translation>&amp;Outils</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="359"/>
+        <location filename="../sources/windows/MainWindow.ui" line="364"/>
         <source>&amp;New</source>
         <translation>&amp;Nouveau</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="362"/>
+        <location filename="../sources/windows/MainWindow.ui" line="367"/>
         <source>Create a new game</source>
         <translation>Crée un nouveau jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="365"/>
+        <location filename="../sources/windows/MainWindow.ui" line="370"/>
         <source>Ctrl+N</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="370"/>
+        <location filename="../sources/windows/MainWindow.ui" line="375"/>
         <source>&amp;Load</source>
         <translation>&amp;Charger</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="373"/>
+        <location filename="../sources/windows/MainWindow.ui" line="378"/>
         <source>Load a game</source>
         <translation>Charge un jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="376"/>
+        <location filename="../sources/windows/MainWindow.ui" line="381"/>
         <source>Ctrl+O</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="381"/>
+        <location filename="../sources/windows/MainWindow.ui" line="386"/>
         <source>&amp;Save</source>
         <translation>&amp;Enregistrer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="384"/>
+        <location filename="../sources/windows/MainWindow.ui" line="389"/>
         <source>Save the current game</source>
         <translation>Sauvegarde le jeu en cours</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="387"/>
+        <location filename="../sources/windows/MainWindow.ui" line="392"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="392"/>
+        <location filename="../sources/windows/MainWindow.ui" line="397"/>
         <source>S&amp;ave as</source>
         <translation>Enregistrer &amp;sous</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="395"/>
+        <location filename="../sources/windows/MainWindow.ui" line="400"/>
         <source>Save the current game in a new file</source>
         <translation>Sauvegarde le jeu en cours dans un nouveau fichier</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="398"/>
+        <location filename="../sources/windows/MainWindow.ui" line="403"/>
         <source>Ctrl+Shift+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="403"/>
+        <location filename="../sources/windows/MainWindow.ui" line="408"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="406"/>
+        <location filename="../sources/windows/MainWindow.ui" line="411"/>
         <source>Exit the application</source>
         <translation>Sort de l&apos;application</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="409"/>
+        <location filename="../sources/windows/MainWindow.ui" line="414"/>
         <source>Ctrl+Q</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="414"/>
+        <location filename="../sources/windows/MainWindow.ui" line="419"/>
         <source>&amp;About</source>
         <translation>&amp;À propos</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="417"/>
+        <location filename="../sources/windows/MainWindow.ui" line="422"/>
         <source>Display information about GM-Assistant</source>
         <translation>Informations à propos de GM-Assistant</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="420"/>
+        <location filename="../sources/windows/MainWindow.ui" line="425"/>
         <source>F1</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="425"/>
+        <location filename="../sources/windows/MainWindow.ui" line="430"/>
         <source>&amp;Reload</source>
         <translation>&amp;Recharger</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="428"/>
+        <location filename="../sources/windows/MainWindow.ui" line="433"/>
         <source>Reload the current game</source>
         <translation>Recharge le jeu en cours</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="436"/>
+        <location filename="../sources/windows/MainWindow.ui" line="441"/>
         <source>R&amp;ecent</source>
         <translation>R&amp;écents</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="439"/>
+        <location filename="../sources/windows/MainWindow.ui" line="444"/>
         <source>Load a recently opened game</source>
         <translation>Charge un jeu ouvert récemment</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="450"/>
+        <location filename="../sources/windows/MainWindow.ui" line="455"/>
         <source>&amp;Full</source>
-        <translation>&amp;Complet</translation>
+        <translation>&amp;Complète</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="453"/>
+        <location filename="../sources/windows/MainWindow.ui" line="458"/>
         <source>Tools shown : Scenario, Notes, Characters, History, Music and Sound effects</source>
         <translation>Outils affichés : Scénario, Notes, Personnages, Historique, Musique et Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="467"/>
+        <location filename="../sources/windows/MainWindow.ui" line="472"/>
         <source>Tools shown : Music and Sound effects</source>
         <translation>Outils affichés : Musique et Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="481"/>
+        <location filename="../sources/windows/MainWindow.ui" line="486"/>
         <source>Tools shown : Scenario, Music and Sound effects</source>
         <translation>Outils affichés : Scénario, Musique et Bruitages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="542"/>
+        <location filename="../sources/windows/MainWindow.ui" line="547"/>
         <source>Throw virtual dices</source>
         <translation>Jette des dés virtuels</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="545"/>
+        <location filename="../sources/windows/MainWindow.ui" line="550"/>
         <source>Ctrl+D</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="550"/>
+        <location filename="../sources/windows/MainWindow.ui" line="555"/>
         <source>&amp;Combat manager</source>
         <translation>&amp;Gestionnaire de combat</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="553"/>
+        <location filename="../sources/windows/MainWindow.ui" line="558"/>
         <source>Manage round per round combats</source>
         <translation>Gère les combats au tour par tour</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="556"/>
+        <location filename="../sources/windows/MainWindow.ui" line="561"/>
         <source>Ctrl+M</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="564"/>
+        <location filename="../sources/windows/MainWindow.ui" line="569"/>
         <source>&amp;English</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="456"/>
+        <location filename="../sources/windows/MainWindow.ui" line="461"/>
         <source>F5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="464"/>
+        <location filename="../sources/windows/MainWindow.ui" line="469"/>
         <source>&amp;Music</source>
         <translation>&amp;Musique</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="470"/>
+        <location filename="../sources/windows/MainWindow.ui" line="475"/>
         <source>F7</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="478"/>
+        <location filename="../sources/windows/MainWindow.ui" line="483"/>
         <source>&amp;Simple</source>
         <translation>&amp;Simple</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="484"/>
+        <location filename="../sources/windows/MainWindow.ui" line="489"/>
         <source>F6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="492"/>
+        <location filename="../sources/windows/MainWindow.ui" line="497"/>
         <source>&amp;Design</source>
         <translation>C&amp;onception</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="495"/>
+        <location filename="../sources/windows/MainWindow.ui" line="500"/>
         <source>Tools shown : Scenario, Characters and Notes</source>
         <translation>Outils affichés : Scénario, Personnages et Notes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="509"/>
+        <location filename="../sources/windows/MainWindow.ui" line="514"/>
         <source>Tools shown : Scenario, Characters, History and Notes</source>
         <translation>Outils affichés : Scénario, Personnages, Historique et Notes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="517"/>
+        <location filename="../sources/windows/MainWindow.ui" line="522"/>
         <source>&amp;Undo</source>
         <translation>&amp;Annuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="520"/>
+        <location filename="../sources/windows/MainWindow.ui" line="525"/>
         <source>Undo the last modification</source>
         <translation>Annule la dernière modification</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="523"/>
+        <location filename="../sources/windows/MainWindow.ui" line="528"/>
         <source>Ctrl+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="528"/>
+        <location filename="../sources/windows/MainWindow.ui" line="533"/>
         <source>&amp;Redo</source>
         <translation>&amp;Refaire</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="531"/>
+        <location filename="../sources/windows/MainWindow.ui" line="536"/>
         <source>Redo the last undone modification</source>
         <translation>Refait la dernière modification annulée</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="534"/>
+        <location filename="../sources/windows/MainWindow.ui" line="539"/>
         <source>Ctrl+Shift+Z</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="539"/>
+        <location filename="../sources/windows/MainWindow.ui" line="544"/>
         <source>&amp;Dice simulator</source>
         <translation>&amp;Simulateur de dés</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="498"/>
+        <location filename="../sources/windows/MainWindow.ui" line="503"/>
         <source>F8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="506"/>
+        <location filename="../sources/windows/MainWindow.ui" line="511"/>
         <source>&amp;No Music</source>
         <translation>S&amp;ans son</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="512"/>
+        <location filename="../sources/windows/MainWindow.ui" line="517"/>
         <source>F9</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="431"/>
+        <location filename="../sources/windows/MainWindow.ui" line="436"/>
         <source>Ctrl+R</source>
         <translation></translation>
     </message>
