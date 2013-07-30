@@ -153,27 +153,19 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     QAction* action = menuIcons->exec(e->globalPos());
                                     if (action == actionNone)
                                     {
-                                        item->setIcon(1,QIcon());
-                                        emit modificationDone(new TreeModification(*pTree, treeItem->state(), Item::sNone, pTree->indicesOf(qItem->branch())));
-                                        treeItem->setState(Item::sNone);
+                                        changeState(qItem, Item::sNone);
                                     }
                                     else if (action == actionProgress)
                                     {
-                                        item->setIcon(1,action->icon());
-                                        emit modificationDone(new TreeModification(*pTree, treeItem->state(), Item::sProgress, pTree->indicesOf(qItem->branch())));
-                                        treeItem->setState(Item::sProgress);
+                                        changeState(qItem, Item::sProgress);
                                     }
                                     else if (action == actionFailure)
                                     {
-                                        item->setIcon(1,action->icon());
-                                        emit modificationDone(new TreeModification(*pTree, treeItem->state(), Item::sFailure, pTree->indicesOf(qItem->branch())));
-                                        treeItem->setState(Item::sFailure);
+                                        changeState(qItem, Item::sFailure);
                                     }
                                     else if (action == actionSuccess)
                                     {
-                                        item->setIcon(1,action->icon());
-                                        emit modificationDone(new TreeModification(*pTree, treeItem->state(), Item::sSuccess, pTree->indicesOf(qItem->branch())));
-                                        treeItem->setState(Item::sSuccess);
+                                        changeState(qItem, Item::sSuccess);
                                     }
                                     else if (action == actionDelete)
                                     {
@@ -215,6 +207,7 @@ void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *e)
     QTreeWidget::mouseReleaseEvent(e);
 }
 
+#include <iostream>
 void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
 {
     QTreeWidgetItem *qItem = currentItem();
@@ -223,19 +216,19 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
         scrollTo(qItem);
         switch (e->key())
         {
-            case Qt::Key_F2:    switch (e->modifiers())
+            case Qt::Key_F2:    if (!bEditing)
                                 {
-                                    case Qt::ControlModifier:   addItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem), true);
-                                                                break;
-                                    case Qt::NoModifier:    if (!bEditing)
-                                                            {
-                                                                qItem->setFlags(qItem->flags() | Qt::ItemIsEditable);
+                                    switch (e->modifiers())
+                                    {
+                                        case Qt::ControlModifier:   addItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem), true);
+                                                                    break;
+                                        case Qt::NoModifier:    qItem->setFlags(qItem->flags() | Qt::ItemIsEditable);
                                                                 editItem(qItem);
                                                                 bEditing = true;
                                                                 qItem->setFlags(qItem->flags() & ~Qt::ItemIsEditable);
-                                                            }
-                                                            break;
-                                    default:    QTreeWidget::keyReleaseEvent(e); break;
+                                                                break;
+                                        default:    QTreeWidget::keyReleaseEvent(e); break;
+                                    }
                                 }
                                 break;
             case Qt::Key_Delete:    if (!bEditing)
@@ -257,7 +250,16 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
             case Qt::Key_Enter:
             case Qt::Key_Escape:    bEditing = false;
                                     break;
-            default:            QTreeWidget::keyReleaseEvent(e); break; 
+            case Qt::Key_F5:    changeState(dynamic_cast<QCustomTreeWidgetItem*>(qItem), Item::sNone);
+                                break;
+            case Qt::Key_F6:    changeState(dynamic_cast<QCustomTreeWidgetItem*>(qItem), Item::sProgress);
+                                break;
+            case Qt::Key_F7:    changeState(dynamic_cast<QCustomTreeWidgetItem*>(qItem), Item::sFailure);
+                                break;
+            case Qt::Key_F8:    changeState(dynamic_cast<QCustomTreeWidgetItem*>(qItem), Item::sSuccess);
+                                break;
+            default:        std::cout << e->key() << std::endl;    
+                            QTreeWidget::keyReleaseEvent(e); break; 
         }
     }
 }
@@ -652,12 +654,16 @@ void QCustomTreeWidget::retranslate()
 {
     actionNone->setText(QApplication::translate("customTree","&None",0));
     actionNone->setStatusTip(QApplication::translate("customTree","Untag the item",0));
+    actionNone->setShortcut(QApplication::translate("customTree", "Ctrl+F5", 0));
     actionProgress->setText(QApplication::translate("customTree","In &progress",0));
     actionProgress->setStatusTip(QApplication::translate("customTree","Tag the item as being in progress",0));
+    actionProgress->setShortcut(QApplication::translate("customTree", "Ctrl+F6", 0));
     actionFailure->setText(QApplication::translate("customTree","&Failed",0));
     actionFailure->setStatusTip(QApplication::translate("customTree","Tag the item as failed",0));
+    actionFailure->setShortcut(QApplication::translate("customTree", "Ctrl+F7", 0));
     actionSuccess->setText(QApplication::translate("customTree","&Succeeded",0));
     actionSuccess->setStatusTip(QApplication::translate("customTree","Tag the item as succeeded",0));
+    actionSuccess->setShortcut(QApplication::translate("customTree", "Ctrl+F8", 0));
     actionAdd->setText(QApplication::translate("customTree","&Add",0));
     actionAdd->setStatusTip(QApplication::translate("customTree","Add a new item",0));
     actionAdd->setShortcut(QApplication::translate("customTree","Ins",0));
@@ -673,4 +679,18 @@ void QCustomTreeWidget::retranslate()
 void QCustomTreeWidget::setItemDialogWindow(ItemDialog *window)
 {
     pItemDial = window;
+}
+
+void QCustomTreeWidget::changeState(QCustomTreeWidgetItem *item, Item::State state)
+{
+    if (item)
+    {
+        item->setIcon(1, icon(state));
+        if (pTree)
+        {
+            Item *treeItem = item->branch()->item();
+            emit modificationDone(new TreeModification(*pTree, treeItem->state(), state, pTree->indicesOf(item->branch())));
+            treeItem->setState(state);
+        }
+    }
 }

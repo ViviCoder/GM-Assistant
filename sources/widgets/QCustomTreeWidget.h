@@ -91,7 +91,7 @@ class QCustomTreeWidget: public QTreeWidget
     public slots:
         void on_itemChanged(QTreeWidgetItem* item,int column);
         /*!
-         * \brief Delete an item
+         * \brief Deletes an item
          * \param item Item to delete
          */
         void deleteItem(QTreeWidgetItem* item);
@@ -127,6 +127,12 @@ class QCustomTreeWidget: public QTreeWidget
          * \param undo True to undo, false to redo
          */
         void updateModification(TreeModification *modification, bool undo);
+        /*!
+         * \brief Modifies the state of an item
+         * \param item Item to modify
+         * \param state New state
+         */
+        void changeState(QCustomTreeWidgetItem *item, Item::State state);
     protected:
         // overriden methods
         /*!
