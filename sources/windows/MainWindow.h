@@ -148,14 +148,14 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         /*!
          * \brief Slot for "Simple" menu item
          * 
-         * Change the layout to Simple (Music + Scenario Tree)
+         * Change the layout to Simple
          */
         void on_actionSimple_triggered();
 
         /*!
          * \brief Slot for "Full" menu item
          * 
-         * Change the layout to Full layout
+         * Change the layout to Full
          */
         void on_actionFull_triggered();
 

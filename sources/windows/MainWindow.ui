@@ -22,13 +22,13 @@
     <item row="0" column="0">
      <layout class="QGridLayout" name="GridLayout">
       <item row="4" column="0">
-       <widget class="QGroupBox" name="gbScenario">
+       <widget class="QGroupBox" name="gbPlot">
         <property name="title">
-         <string>Scenario</string>
+         <string>Plot</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout1">
          <item>
-          <widget class="QCustomTreeWidget" name="treeScenario">
+          <widget class="QCustomTreeWidget" name="treePlot">
            <property name="mouseTracking">
             <bool>true</bool>
            </property>
@@ -455,7 +455,7 @@
     <string>&amp;Full</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Scenario, Notes, Characters, History, Music and Sound effects</string>
+    <string>Tools shown : Plot, Notes, Characters, History, Music and Sound effects</string>
    </property>
    <property name="shortcut">
     <string>F5</string>
@@ -483,7 +483,7 @@
     <string>&amp;Simple</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Scenario, Music and Sound effects</string>
+    <string>Tools shown : Plot, Music and Sound effects</string>
    </property>
    <property name="shortcut">
     <string>F6</string>
@@ -497,7 +497,7 @@
     <string>&amp;Design</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Scenario, Characters and Notes</string>
+    <string>Tools shown : Plot, Characters and Notes</string>
    </property>
    <property name="shortcut">
     <string>F8</string>
@@ -511,7 +511,7 @@
     <string>&amp;No Music</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Scenario, Characters, History and Notes</string>
+    <string>Tools shown : Plot, Characters, History and Notes</string>
    </property>
    <property name="shortcut">
     <string>F9</string>

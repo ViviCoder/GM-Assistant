@@ -38,11 +38,11 @@ class Scenario
         enum UserInterface {
             //! Full interface
             uiFull,
-            //! Simple interface with scenario, musics and sounds
+            //! Simple interface with the plot, musics and sounds
             uiSimple,
             //! Interface with only musics and sounds
             uiMusic,
-            //! Design-phase interface with scenario, characters and notes
+            //! Design-phase interface with the plot, characters and notes
             uiDesign,
             //! Interface without musics and sounds
             uiNoMusic
@@ -72,7 +72,7 @@ class Scenario
          */
         void toFile(const std::string &fileName) const;
         // accessors
-        Tree& scenario();
+        Tree& plot();
         std::string& notes();
         Tree& history();
         Tree& music();
@@ -106,7 +106,7 @@ class Scenario
          */
         static UserInterface stringToInterface(const std::string& interface) throw(std::invalid_argument);
     private:
-        Tree tScenario,tHistory,tMusic,tEffects;
+        Tree tPlot, tHistory, tMusic, tEffects;
         std::string sNotes;
         CharacterList lCharacters;
         SkillList lSkills;

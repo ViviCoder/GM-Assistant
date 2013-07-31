@@ -652,11 +652,6 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>mainWindow</name>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="27"/>
-        <source>Scenario</source>
-        <translation>Scénario</translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="69"/>
         <source>History</source>
         <translation>Historique</translation>
@@ -675,6 +670,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.ui" line="14"/>
         <source>GM-Assistant</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.ui" line="27"/>
+        <source>Plot</source>
+        <translation>Intrigue</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="111"/>
@@ -868,19 +868,9 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Complète</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="458"/>
-        <source>Tools shown : Scenario, Notes, Characters, History, Music and Sound effects</source>
-        <translation>Outils affichés : Scénario, Notes, Personnages, Historique, Musique et Bruitages</translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="472"/>
         <source>Tools shown : Music and Sound effects</source>
         <translation>Outils affichés : Musique et Bruitages</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="486"/>
-        <source>Tools shown : Scenario, Music and Sound effects</source>
-        <translation>Outils affichés : Scénario, Musique et Bruitages</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="547"/>
@@ -918,6 +908,11 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
+        <location filename="../sources/windows/MainWindow.ui" line="458"/>
+        <source>Tools shown : Plot, Notes, Characters, History, Music and Sound effects</source>
+        <translation>Outils affichés : Intrigue, Notes, Personnages, Historique, Musique et Bruitages</translation>
+    </message>
+    <message>
         <location filename="../sources/windows/MainWindow.ui" line="469"/>
         <source>&amp;Music</source>
         <translation>&amp;Musique</translation>
@@ -933,6 +928,11 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Simple</translation>
     </message>
     <message>
+        <location filename="../sources/windows/MainWindow.ui" line="486"/>
+        <source>Tools shown : Plot, Music and Sound effects</source>
+        <translation>Outils affichés : Intrigue, Musique et Bruitages</translation>
+    </message>
+    <message>
         <location filename="../sources/windows/MainWindow.ui" line="489"/>
         <source>F6</source>
         <translation></translation>
@@ -941,16 +941,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.ui" line="497"/>
         <source>&amp;Design</source>
         <translation>C&amp;onception</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="500"/>
-        <source>Tools shown : Scenario, Characters and Notes</source>
-        <translation>Outils affichés : Scénario, Personnages et Notes</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="514"/>
-        <source>Tools shown : Scenario, Characters, History and Notes</source>
-        <translation>Outils affichés : Scénario, Personnages, Historique et Notes</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="522"/>
@@ -993,9 +983,19 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
+        <location filename="../sources/windows/MainWindow.ui" line="500"/>
+        <source>Tools shown : Plot, Characters and Notes</source>
+        <translation>Outils affichés : Intrigue, Personnages et Notes</translation>
+    </message>
+    <message>
         <location filename="../sources/windows/MainWindow.ui" line="511"/>
         <source>&amp;No Music</source>
         <translation>S&amp;ans son</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.ui" line="514"/>
+        <source>Tools shown : Plot, Characters, History and Notes</source>
+        <translation>Outils affichés : Intrigue, Personnages, Historique et Notes</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="517"/>

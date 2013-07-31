@@ -93,7 +93,7 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
 
     // connections
     connect(smRecent,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
-    connect(treeScenario, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    connect(treePlot, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(treeHistory, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(treeMusic, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(treeFX, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
@@ -103,7 +103,7 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     connect(tableStats, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
 
     // Item dialog
-    treeScenario->setItemDialogWindow(pItemDialog);
+    treePlot->setItemDialogWindow(pItemDialog);
     treeHistory->setItemDialogWindow(pItemDialog);
     treeMusic->setItemDialogWindow(pItemDialog);
     treeFX->setItemDialogWindow(pItemDialog);
@@ -185,7 +185,7 @@ void MainWindow::clearLayout()
     GridLayout->removeWidget(gbCharacter);
     GridLayout->removeWidget(gbHistory);
     GridLayout->removeWidget(gbNote);
-    GridLayout->removeWidget(gbScenario);
+    GridLayout->removeWidget(gbPlot);
     GridLayout->removeWidget(gbSound);
     GridLayout->removeWidget(gbMusic);
 
@@ -194,7 +194,7 @@ void MainWindow::clearLayout()
     gbHistory->hide();
     gbMusic->hide();
     gbNote->hide();
-    gbScenario->hide();
+    gbPlot->hide();
     gbSound->hide();
 }
 
@@ -212,13 +212,13 @@ void MainWindow::on_actionMusic_triggered()
 void MainWindow::on_actionFull_triggered()
 {
     clearLayout();
-    GridLayout->addWidget(gbScenario,0,0);
+    GridLayout->addWidget(gbPlot,0,0);
     GridLayout->addWidget(gbNote,0,1);
     GridLayout->addWidget(gbCharacter,0,2);
     GridLayout->addWidget(gbHistory,1,0);
     GridLayout->addWidget(gbMusic,1,1);
     GridLayout->addWidget(gbSound,1,2);
-    gbScenario->show();
+    gbPlot->show();
     gbNote->show();
     gbCharacter->show();
     gbHistory->show();
@@ -231,10 +231,10 @@ void MainWindow::on_actionFull_triggered()
 void MainWindow::on_actionSimple_triggered()
 {
     clearLayout();
-    GridLayout->addWidget(gbScenario,0,0,2,1);
+    GridLayout->addWidget(gbPlot,0,0,2,1);
     GridLayout->addWidget(gbMusic,0,1);
     GridLayout->addWidget(gbSound,1,1);
-    gbScenario->show();
+    gbPlot->show();
     gbMusic->show();
     gbSound->show();
     eGame.setUserInterface(Scenario::uiSimple);
@@ -244,10 +244,10 @@ void MainWindow::on_actionSimple_triggered()
 void MainWindow::on_actionDesign_triggered()
 {
     clearLayout();
-    GridLayout->addWidget(gbScenario,0,0,2,1);
+    GridLayout->addWidget(gbPlot,0,0,2,1);
     GridLayout->addWidget(gbCharacter,0,1);
     GridLayout->addWidget(gbNote,1,1);
-    gbScenario->show();
+    gbPlot->show();
     gbCharacter->show();
     gbNote->show();
     eGame.setUserInterface(Scenario::uiDesign);
@@ -257,11 +257,11 @@ void MainWindow::on_actionDesign_triggered()
 void MainWindow::on_actionNoMusic_triggered()
 {
     clearLayout();
-    GridLayout->addWidget(gbScenario,0,0);
+    GridLayout->addWidget(gbPlot,0,0);
     GridLayout->addWidget(gbHistory,1,0);
     GridLayout->addWidget(gbCharacter,0,1);
     GridLayout->addWidget(gbNote,1,1);
-    gbScenario->show();
+    gbPlot->show();
     gbHistory->show();
     gbCharacter->show();
     gbNote->show();
@@ -392,7 +392,7 @@ void MainWindow::updateDisplay()
         case Scenario::uiNoMusic: on_actionNoMusic_triggered();
                                 break;
     }
-    treeScenario->setTree(&eGame.scenario());
+    treePlot->setTree(&eGame.plot());
     textNotes->setNotes(&eGame.notes());
     treeHistory->setTree(&eGame.history());
     treeMusic->setTree(&eGame.music());
@@ -621,9 +621,9 @@ void MainWindow::updateModification(Modification *modification, bool undo)
             {
                 TreeModification* treeModif = dynamic_cast<TreeModification*>(modification);
                 Tree *adr = &treeModif->tree();
-                if (adr == &eGame.scenario())
+                if (adr == &eGame.plot())
                 {
-                    treeScenario->updateModification(treeModif, undo);
+                    treePlot->updateModification(treeModif, undo);
                 }
                 else if (adr == &eGame.history())
                 {
