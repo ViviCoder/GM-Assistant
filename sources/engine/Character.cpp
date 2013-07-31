@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -57,18 +57,18 @@ bool Character::isPlaying() const
     return sPlayerName == "";
 }
 
-std::string& Character::skill(int index) throw(out_of_range)
+std::string& Character::property(int index) throw(out_of_range)
 {
-    if (index < 0 || (unsigned int)index >= vSkills.size())
+    if (index < 0 || (unsigned int)index >= vProperties.size())
     {
         throw out_of_range("Index out of bounds");
     }
-    return vSkills[index];
+    return vProperties[index];
 }
 
-unsigned int Character::skillNumber() const
+unsigned int Character::propertyNumber() const
 {
-    return vSkills.size();
+    return vProperties.size();
 }
 
 // methods
@@ -77,7 +77,7 @@ void Character::toXML(xmlpp::Element &root) const
 {
     using namespace xmlpp;
 
-    for (vector<std::string>::const_iterator it = vSkills.begin(); it != vSkills.end(); it++)
+    for (vector<std::string>::const_iterator it = vProperties.begin(); it != vProperties.end(); it++)
     {
         Element *tmp = root.add_child("skill");
         tmp->set_attribute("value",*it);
@@ -88,7 +88,7 @@ void Character::fromXML(const xmlpp::Element &root)
 {
     using namespace xmlpp;
 
-    clearSkills();
+    clearProperties();
     Node::NodeList list = root.get_children("skill");
     for (Node::NodeList::const_iterator it = list.begin(); it != list.end(); it++)
     {
@@ -99,39 +99,39 @@ void Character::fromXML(const xmlpp::Element &root)
         {
             value = attr->get_value();
         }
-        vSkills.push_back(value);
+        vProperties.push_back(value);
     }
 }
 
-void Character::addSkill(const std::string &skill, int position)
+void Character::addProperty(const std::string &property, int position)
 {
     // if position is negative or greater than the size of the vector, just push_back
-    if (position<0 || (unsigned int)position>vSkills.size())
+    if (position<0 || (unsigned int)position>vProperties.size())
     {
-        vSkills.push_back(skill);
+        vProperties.push_back(property);
     }
     else
     {
-        vSkills.insert(vSkills.begin()+position,skill);
+        vProperties.insert(vProperties.begin()+position,property);
     }
 }
 
-void Character::removeSkill(int index) throw(out_of_range)
+void Character::removeProperty(int index) throw(out_of_range)
 {
-    if (index < 0 || (unsigned int)index >= vSkills.size())
+    if (index < 0 || (unsigned int)index >= vProperties.size())
     {
         throw out_of_range("Index out of bounds");
     }
-    vSkills.erase(vSkills.begin()+index);
+    vProperties.erase(vProperties.begin()+index);
 }
 
-bool Character::moveSkill(int source, int destination) throw(out_of_range)
+bool Character::moveProperty(int source, int destination) throw(out_of_range)
 {
-    if (source < 0 || (unsigned int)source >= vSkills.size())
+    if (source < 0 || (unsigned int)source >= vProperties.size())
     {
         throw out_of_range("Index of source out of bounds");
     }
-    if (destination < 0 || (unsigned int)destination >= vSkills.size())
+    if (destination < 0 || (unsigned int)destination >= vProperties.size())
     {
         throw out_of_range("Index of destination out of bounds");
     }
@@ -139,8 +139,8 @@ bool Character::moveSkill(int source, int destination) throw(out_of_range)
     {
         return false;
     }
-    // skill to move
-    string skill = vSkills[source];
+    // property to move
+    string property = vProperties[source];
     if (source < destination)
     {
         destination++;
@@ -149,28 +149,28 @@ bool Character::moveSkill(int source, int destination) throw(out_of_range)
     {
         source++;
     }
-    vSkills.insert(vSkills.begin() + destination, skill);
-    vSkills.erase(vSkills.begin() + source);
+    vProperties.insert(vProperties.begin() + destination, property);
+    vProperties.erase(vProperties.begin() + source);
     return true;
 }
 
-void Character::clearSkills()
+void Character::clearProperties()
 {
-    vSkills.clear();
+    vProperties.clear();
 }
 
-Character::SkillIterator Character::begin() const
+Character::PropertyIterator Character::begin() const
 {
-    return SkillIterator(vSkills.begin());
+    return PropertyIterator(vProperties.begin());
 }
 
-Character::SkillIterator Character::end() const
+Character::PropertyIterator Character::end() const
 {
-    return SkillIterator(vSkills.end());
+    return PropertyIterator(vProperties.end());
 }
 
 // iterator's method
 
-Character::SkillIterator::SkillIterator(const vector<string>::const_iterator &it): vector<string>::const_iterator(it)
+Character::PropertyIterator::PropertyIterator(const vector<string>::const_iterator &it): vector<string>::const_iterator(it)
 {
 }

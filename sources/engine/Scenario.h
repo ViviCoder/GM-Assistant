@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,7 @@
 
 #include "Tree.h"
 #include "CharacterList.h"
-#include "SkillList.h"
+#include "PropertyList.h"
 
 /*!
  * \brief Game scenario
@@ -77,7 +77,7 @@ class Scenario
         Tree& history();
         Tree& music();
         Tree& effects();
-        SkillList& skills();
+        PropertyList& properties();
         CharacterList& characters();
         /*!
          * \brief Get the user interface
@@ -109,7 +109,7 @@ class Scenario
         Tree tPlot, tHistory, tMusic, tEffects;
         std::string sNotes;
         CharacterList lCharacters;
-        SkillList lSkills;
+        PropertyList lProperties;
         //! User interface used by the game
         UserInterface uiInterface;
 };

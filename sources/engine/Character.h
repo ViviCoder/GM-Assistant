@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -30,14 +30,14 @@ class Character
         std::string sName;
         std::string sPlayerName;
         //! Underlying vector
-        std::vector<std::string> vSkills;
+        std::vector<std::string> vProperties;
     public:
         // iterator
-        class SkillIterator: public std::vector<std::string>::const_iterator
+        class PropertyIterator: public std::vector<std::string>::const_iterator
         {
             public:
                 // constructor
-                SkillIterator(const std::vector<std::string>::const_iterator &it);
+                PropertyIterator(const std::vector<std::string>::const_iterator &it);
         };
         // constructors
         Character(const std::string &name);    // for NPC
@@ -67,28 +67,28 @@ class Character
         void setPlayerName(const std::string &playerName);
         bool isPlaying() const;
         /*!
-         * \brief Getter/setter of the skills
-         * \param index Index of the skill
-         * \return skill at the given index
-         * \throw std::out_of_range Thrown when the given index does not correspond to any skill
+         * \brief Getter/setter of the properties
+         * \param index Index of the property
+         * \return property at the given index
+         * \throw std::out_of_range Thrown when the given index does not correspond to any property
          */
-        std::string& skill(int index) throw(std::out_of_range);
-        unsigned int skillNumber() const;
+        std::string& property(int index) throw(std::out_of_range);
+        unsigned int propertyNumber() const;
         // populating
-        void addSkill(const std::string &skill, int position=-1);
-        void removeSkill(int index) throw(std::out_of_range);
+        void addProperty(const std::string &property, int position=-1);
+        void removeProperty(int index) throw(std::out_of_range);
         /*!
-         * \brief Move of a skill
-         * \param source Index of the skill to be moved
-         * \param destination Index where to move the skill
+         * \brief Move of a property
+         * \param source Index of the property to be moved
+         * \param destination Index where to move the property
          * \return True if the move has been made, false otherwise
          * \throw std::out_of_range Thrown when one of the indices is invalid
          */
-        bool moveSkill(int source, int destination) throw (std::out_of_range);
-        void clearSkills();
+        bool moveProperty(int source, int destination) throw (std::out_of_range);
+        void clearProperties();
         // iterators
-        SkillIterator begin() const;
-        SkillIterator end() const;
+        PropertyIterator begin() const;
+        PropertyIterator end() const;
 };
 
 #endif

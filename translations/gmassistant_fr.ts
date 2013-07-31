@@ -125,34 +125,34 @@ p, li { white-space: pre-wrap; }
     </message>
 </context>
 <context>
-    <name>changeSkillDialog</name>
+    <name>changePropertyDialog</name>
     <message>
-        <location filename="../sources/windows/ChangeSkillDialog.ui" line="17"/>
+        <location filename="../sources/windows/ChangePropertyDialog.ui" line="17"/>
         <source>New name</source>
         <translation>Nouveau nom</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeSkillDialog.ui" line="29"/>
-        <source>Name of the skill:</source>
-        <translation>Nom de la compétence :</translation>
+        <location filename="../sources/windows/ChangePropertyDialog.ui" line="29"/>
+        <source>Name of the property:</source>
+        <translation>Nom de la propriété :</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeSkillDialog.ui" line="41"/>
+        <location filename="../sources/windows/ChangePropertyDialog.ui" line="41"/>
         <source>&amp;Validate</source>
         <translation>&amp;Valider</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeSkillDialog.ui" line="52"/>
+        <location filename="../sources/windows/ChangePropertyDialog.ui" line="52"/>
         <source>&amp;Cancel</source>
         <translation>A&amp;nnuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeSkillDialog.cpp" line="41"/>
+        <location filename="../sources/windows/ChangePropertyDialog.cpp" line="41"/>
         <source>Uncomplete data</source>
         <translation>Données incomplètes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeSkillDialog.cpp" line="41"/>
+        <location filename="../sources/windows/ChangePropertyDialog.cpp" line="41"/>
         <source>You must fill the content before validating.</source>
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>
@@ -194,20 +194,10 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>customTable</name>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="682"/>
-        <source>&amp;Skill</source>
-        <translation>&amp;Compétence</translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="683"/>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="693"/>
         <source>&amp;Add</source>
         <translation>&amp;Ajouter</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="684"/>
-        <source>Add a new skill</source>
-        <translation>Ajoute une nouvelle compétence</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="695"/>
@@ -230,15 +220,20 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="682"/>
+        <source>&amp;Property</source>
+        <translation>&amp;Propriété</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="684"/>
+        <source>Add a new property</source>
+        <translation>Ajoute une nouvelle propriété</translation>
+    </message>
+    <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="686"/>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="696"/>
         <source>&amp;Remove</source>
         <translation>&amp;Supprimer</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="687"/>
-        <source>Remove the skill</source>
-        <translation>Supprime la compétence</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="688"/>
@@ -252,9 +247,14 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Éditer</translation>
     </message>
     <message>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="687"/>
+        <source>Remove the property</source>
+        <translation>Supprime la propriété</translation>
+    </message>
+    <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="690"/>
-        <source>Edit the skill</source>
-        <translation>Édite la compétence</translation>
+        <source>Edit the property</source>
+        <translation>Édite la propriété</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="691"/>

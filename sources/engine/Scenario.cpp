@@ -93,7 +93,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     node = root->get_children("skills");
     if (!node.empty())
     {
-        lSkills.fromXML(*dynamic_cast<Element*>(node.front()));
+        lProperties.fromXML(*dynamic_cast<Element*>(node.front()));
     }
     node = root->get_children("characters");
     if (!node.empty())
@@ -129,8 +129,8 @@ void Scenario::toFile(const string &fileName) const
     tPlot.toXML(*tmp);
     tmp = root->add_child("notes");
     tmp->add_child_text(sNotes);
-    tmp = root->add_child("skills");
-    lSkills.toXML(*tmp);
+    tmp = root->add_child("properties");
+    lProperties.toXML(*tmp);
     tmp = root->add_child("characters");
     lCharacters.toXML(*tmp);
     tmp = root->add_child("history");
@@ -178,7 +178,7 @@ void Scenario::clear()
     tHistory.clear();
     tMusic.clear();
     tEffects.clear();
-    lSkills.clear();
+    lProperties.clear();
     lCharacters.clear();
 }
 
@@ -187,9 +187,9 @@ CharacterList& Scenario::characters()
     return lCharacters;
 }
 
-SkillList& Scenario::skills()
+PropertyList& Scenario::properties()
 {
-    return lSkills;
+    return lProperties;
 }
 
 string Scenario::interfaceToString(UserInterface interface)

@@ -397,7 +397,7 @@ void MainWindow::updateDisplay()
     treeHistory->setTree(&eGame.history());
     treeMusic->setTree(&eGame.music());
     treeFX->setTree(&eGame.effects());
-    tableStats->setLists(&eGame.skills(),&eGame.characters());
+    tableStats->setLists(&eGame.properties(),&eGame.characters());
     soundEngine.stop();
     siCurrentMusic = 0;
     checkRepeat->setChecked(false);

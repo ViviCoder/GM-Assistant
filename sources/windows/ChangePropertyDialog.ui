@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>changeSkillDialog</class>
- <widget class="QDialog" name="changeSkillDialog">
+ <class>changePropertyDialog</class>
+ <widget class="QDialog" name="changePropertyDialog">
   <property name="windowModality">
    <enum>Qt::ApplicationModal</enum>
   </property>
@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>198</width>
-    <height>106</height>
+    <width>217</width>
+    <height>118</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -26,7 +26,7 @@
    <item>
     <widget class="QLabel" name="label">
      <property name="text">
-      <string>Name of the skill:</string>
+      <string>Name of the property:</string>
      </property>
     </widget>
    </item>
@@ -68,7 +68,7 @@
   <connection>
    <sender>pushCancel</sender>
    <signal>clicked()</signal>
-   <receiver>changeSkillDialog</receiver>
+   <receiver>changePropertyDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">

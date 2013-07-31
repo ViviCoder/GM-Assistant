@@ -16,15 +16,15 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_CHANGESKILLDIALOG
-#define HEADER_CHANGESKILLDIALOG
+#ifndef HEADER_CHANGEPROPERTYDIALOG
+#define HEADER_CHANGEPROPERTYDIALOG
 
-#include "ui_ChangeSkillDialog.h"
+#include "ui_ChangePropertyDialog.h"
 
 /*!
- * \brief Dialog window for skills
+ * \brief Dialog window for properties
  */
-class ChangeSkillDialog: public QDialog, private Ui::changeSkillDialog
+class ChangePropertyDialog: public QDialog, private Ui::changePropertyDialog
 {
     Q_OBJECT
 
@@ -33,7 +33,7 @@ class ChangeSkillDialog: public QDialog, private Ui::changeSkillDialog
          * \brief Constructor
          * \param parent Parent widget
          */
-        ChangeSkillDialog(QWidget *parent=0);
+        ChangePropertyDialog(QWidget *parent=0);
         /*!
          * \brief Getter for the text
          * \return Text of the QLineEdit

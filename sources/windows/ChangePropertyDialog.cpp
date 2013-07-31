@@ -16,21 +16,21 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "ChangeSkillDialog.h"
+#include "ChangePropertyDialog.h"
 #include <QMessageBox>
 #include <QFileDialog>
 
-ChangeSkillDialog::ChangeSkillDialog(QWidget *parent): QDialog(parent)
+ChangePropertyDialog::ChangePropertyDialog(QWidget *parent): QDialog(parent)
 {
     setupUi(this);
 }
 
-QString ChangeSkillDialog::text() const
+QString ChangePropertyDialog::text() const
 {
     return editName->text();
 }
 
-void ChangeSkillDialog::on_pushEdit_clicked()
+void ChangePropertyDialog::on_pushEdit_clicked()
 {
     if (editName->text()!="")
     {
@@ -38,18 +38,18 @@ void ChangeSkillDialog::on_pushEdit_clicked()
     }
     else
     {
-        QMessageBox::critical(this,QApplication::translate("changeSkillDialog","Uncomplete data",0),QApplication::translate("changeSkillDialog","You must fill the content before validating.",0));
+        QMessageBox::critical(this,QApplication::translate("changePropertyDialog","Uncomplete data",0),QApplication::translate("changePropertyDialog","You must fill the content before validating.",0));
     }
 }
 
-int ChangeSkillDialog::exec(QString text)
+int ChangePropertyDialog::exec(QString text)
 {
     editName->setText(text);
     editName->setFocus();
     return QDialog::exec();
 }
 
-void ChangeSkillDialog::changeEvent(QEvent *e)
+void ChangePropertyDialog::changeEvent(QEvent *e)
 {
     if (e->type() == QEvent::LanguageChange)
     {

@@ -21,10 +21,10 @@
 
 #include "Modification.h"
 #include "CharacterList.h"
-#include "SkillList.h"
+#include "PropertyList.h"
 
 /*!
- * \brief Modification of the characters/skills list
+ * \brief Modification of the characters/properties
  */
 class CharacterModification: public Modification
 {
@@ -36,8 +36,8 @@ class CharacterModification: public Modification
         {
             //! Edition of a character 
             etCharacter,
-            //! Edition of a skill
-            etSkill,
+            //! Edition of a property
+            etProperty,
             //! Edition of a value
             etValue
         };
@@ -50,30 +50,30 @@ class CharacterModification: public Modification
          */
         CharacterModification(CharacterList *list, Character *character, int index, bool isAddition);
         /*!
-         *  \brief Constructor for additions of skills
-         *  \param list List of skills
-         *  \param skill Skill added
+         *  \brief Constructor for additions of properties
+         *  \param list List of properties
+         *  \param property Property added
          *  \param characterList List of characters
-         *  \param index Index of the skill
+         *  \param index Index of the property
          */
-        CharacterModification(SkillList *list, const std::string &skill, CharacterList *characterList, int index);
+        CharacterModification(PropertyList *list, const std::string &property, CharacterList *characterList, int index);
         /*!
-         *  \brief Constructor for deletions of skills
-         *  \param skillList List of skills
-         *  \param skill Skill deleted
+         *  \brief Constructor for deletions of properties
+         *  \param propertyList List of properties
+         *  \param property Property deleted
          *  \param characterList List of characters
-         *  \param values Values of the skill
-         *  \param index Index of the skill
+         *  \param values Values of the property
+         *  \param index Index of the property
          */
-        CharacterModification(SkillList *skillList, const std::string &skill, CharacterList *characterList, const std::vector<std::string> &values, int index);
+        CharacterModification(PropertyList *propertyList, const std::string &property, CharacterList *characterList, const std::vector<std::string> &values, int index);
         /*!
-         * \brief Constructor for editions of skills
-         * \param skillList List of skills
-         * \param skill Modified skill
-         * \param newSkill New skill
-         * \param index Index of the skill
+         * \brief Constructor for editions of properties
+         * \param propertyList List of properties
+         * \param property Modified property
+         * \param newProperty New property
+         * \param index Index of the property
          */
-        CharacterModification(SkillList *skillList, const std::string &skill, const std::string &newSkill, int index);
+        CharacterModification(PropertyList *propertyList, const std::string &property, const std::string &newProperty, int index);
         /*!
          * \brief Constructor for editions of characters
          * \param characterList List of characters
@@ -90,17 +90,17 @@ class CharacterModification: public Modification
          *  \param value Modified value
          *  \param newValue New value
          *  \param character Index of the character
-         *  \param skill Index of the skill
+         *  \param property Index of the property
          */
-        CharacterModification(CharacterList *characterList, const std::string &value, const std::string &newValue, int character, int skill);
+        CharacterModification(CharacterList *characterList, const std::string &value, const std::string &newValue, int character, int property);
         /*!
-         *  \brief Constructor for movements of skills
-         *  \param skillList List of skills
+         *  \brief Constructor for movements of properties
+         *  \param propertyList List of properties
          *  \param characterList List of characters
          *  \param oldIndex Old index of the character
          *  \param newIndex New index of the character
          */
-        CharacterModification(SkillList *skillList, CharacterList *characterList, int oldIndex, int newIndex);
+        CharacterModification(PropertyList *propertyList, CharacterList *characterList, int oldIndex, int newIndex);
         /*!
          *  \brief Constructor for movements of characters
          *  \param characterList List of characters
@@ -141,19 +141,19 @@ class CharacterModification: public Modification
         int iNewIndex;
         //! Character list modified
         CharacterList *pCharacterList;
-        //! Skill list modified
-        SkillList *pSkillList;
+        //! Property list modified
+        PropertyList *pPropertyList;
         //! Copy of the character
         Character *pCharacter;
-        //! Copy of the skill (or player name or value)
-        std::string sSkill;
-        //! Copy of the new skill (or player name or value)
-        std::string sNewSkill;
+        //! Copy of the property (or player name or value)
+        std::string sProperty;
+        //! Copy of the new property (or player name or value)
+        std::string sNewProperty;
         //! Copy of the name
         std::string sName;
         //! Copy of the new name
         std::string sNewName;
-        //! Copy of the values of a skill
+        //! Copy of the values of a property
         std::vector<std::string> vValues;
 };
 

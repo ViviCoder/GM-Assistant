@@ -20,35 +20,35 @@
 
 using namespace std;
 
-CharacterModification::CharacterModification(CharacterList *list, Character *character, int index, bool isAddition): Modification(isAddition?(Modification::aAddition):(Modification::aDeletion)), etEditType(etCharacter), iIndex(index), pCharacterList(list), pSkillList(0), pCharacter(character)
+CharacterModification::CharacterModification(CharacterList *list, Character *character, int index, bool isAddition): Modification(isAddition?(Modification::aAddition):(Modification::aDeletion)), etEditType(etCharacter), iIndex(index), pCharacterList(list), pPropertyList(0), pCharacter(character)
 {
 }
 
-CharacterModification::CharacterModification(SkillList *list, const string &skill, CharacterList *characterList, int index): Modification(Modification::aAddition), etEditType(etSkill), iIndex(index), pCharacterList(characterList), pSkillList(list), pCharacter(0), sSkill(skill)
+CharacterModification::CharacterModification(PropertyList *list, const string &property, CharacterList *characterList, int index): Modification(Modification::aAddition), etEditType(etProperty), iIndex(index), pCharacterList(characterList), pPropertyList(list), pCharacter(0), sProperty(property)
 {
 }
 
-CharacterModification::CharacterModification(SkillList *skillList, const string &skill, CharacterList *characterList, const vector<string> &values, int index): Modification(Modification::aDeletion), etEditType(etSkill), iIndex(index), pCharacterList(characterList), pSkillList(skillList), pCharacter(0), sSkill(skill), vValues(values)
+CharacterModification::CharacterModification(PropertyList *propertyList, const string &property, CharacterList *characterList, const vector<string> &values, int index): Modification(Modification::aDeletion), etEditType(etProperty), iIndex(index), pCharacterList(characterList), pPropertyList(propertyList), pCharacter(0), sProperty(property), vValues(values)
 {
 }
 
-CharacterModification::CharacterModification(SkillList *skillList, const string &skill, const string &newSkill, int index): Modification(Modification::aEdition), etEditType(etSkill), iIndex(index), pCharacterList(0), pSkillList(skillList), pCharacter(0), sSkill(skill), sNewSkill(newSkill)
+CharacterModification::CharacterModification(PropertyList *propertyList, const string &property, const string &newProperty, int index): Modification(Modification::aEdition), etEditType(etProperty), iIndex(index), pCharacterList(0), pPropertyList(propertyList), pCharacter(0), sProperty(property), sNewProperty(newProperty)
 {
 }
 
-CharacterModification::CharacterModification(CharacterList *characterList, const string &name, const string &playerName, const string &newName, const string &newPlayerName, int index): Modification(Modification::aEdition), etEditType(etCharacter), iIndex(index), pCharacterList(characterList), pSkillList(0), pCharacter(0), sSkill(playerName), sNewSkill(newPlayerName), sName(name), sNewName(newName)
+CharacterModification::CharacterModification(CharacterList *characterList, const string &name, const string &playerName, const string &newName, const string &newPlayerName, int index): Modification(Modification::aEdition), etEditType(etCharacter), iIndex(index), pCharacterList(characterList), pPropertyList(0), pCharacter(0), sProperty(playerName), sNewProperty(newPlayerName), sName(name), sNewName(newName)
 {
 }
 
-CharacterModification::CharacterModification(CharacterList *characterList, const string &value, const string &newValue, int character, int skill): Modification(Modification::aEdition), etEditType(etValue), iIndex(character), iNewIndex(skill), pCharacterList(characterList), pSkillList(0), pCharacter(0), sSkill(value), sNewSkill(newValue)
+CharacterModification::CharacterModification(CharacterList *characterList, const string &value, const string &newValue, int character, int property): Modification(Modification::aEdition), etEditType(etValue), iIndex(character), iNewIndex(property), pCharacterList(characterList), pPropertyList(0), pCharacter(0), sProperty(value), sNewProperty(newValue)
 {
 }
 
-CharacterModification::CharacterModification(SkillList *skillList, CharacterList *characterList, int oldIndex, int newIndex): Modification(Modification::aMovement), etEditType(etSkill), iIndex(oldIndex), iNewIndex(newIndex), pCharacterList(characterList), pSkillList(skillList), pCharacter(0)
+CharacterModification::CharacterModification(PropertyList *propertyList, CharacterList *characterList, int oldIndex, int newIndex): Modification(Modification::aMovement), etEditType(etProperty), iIndex(oldIndex), iNewIndex(newIndex), pCharacterList(characterList), pPropertyList(propertyList), pCharacter(0)
 {
 }
 
-CharacterModification::CharacterModification(CharacterList *characterList, int oldIndex, int newIndex): Modification(Modification::aMovement), etEditType(etCharacter), iIndex(oldIndex), iNewIndex(newIndex), pCharacterList(characterList), pSkillList(0), pCharacter(0)
+CharacterModification::CharacterModification(CharacterList *characterList, int oldIndex, int newIndex): Modification(Modification::aMovement), etEditType(etCharacter), iIndex(oldIndex), iNewIndex(newIndex), pCharacterList(characterList), pPropertyList(0), pCharacter(0)
 {
 }
 
@@ -80,7 +80,7 @@ void CharacterModification::undo()
                                     case aEdition:  {
                                                         Character &character = (*pCharacterList)[iIndex];
                                                         character.setName(sName);
-                                                        character.setPlayerName(sSkill);
+                                                        character.setPlayerName(sProperty);
                                                         break;
                                                     }
                                     case aMovement: pCharacterList->move(iNewIndex, iIndex);
@@ -89,48 +89,48 @@ void CharacterModification::undo()
                                 }
                             }
                             break;
-        case etSkill:   switch (action())
+        case etProperty:   switch (action())
                         {
-                            case aAddition: if (pSkillList)
+                            case aAddition: if (pPropertyList)
                                             {
-                                                pSkillList->remove(iIndex);
+                                                pPropertyList->remove(iIndex);
                                             }
                                             if (pCharacterList)
                                             {
                                                 for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
                                                 {
-                                                    it->removeSkill(iIndex);
+                                                    it->removeProperty(iIndex);
                                                 }
                                             }
                                             break;
-                            case aDeletion: if (pSkillList)
+                            case aDeletion: if (pPropertyList)
                                             {
-                                                pSkillList->add(sSkill, iIndex);
+                                                pPropertyList->add(sProperty, iIndex);
                                             }
                                             if (pCharacterList)
                                             {
                                                 int i = 0;
                                                 for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
                                                 {
-                                                    it->addSkill(vValues[i], iIndex);
+                                                    it->addProperty(vValues[i], iIndex);
                                                     i++;
                                                 }
                                             }
                                             break;
-                            case aEdition:  if (pSkillList)
+                            case aEdition:  if (pPropertyList)
                                             {
-                                                (*pSkillList)[iIndex] = sSkill;
+                                                (*pPropertyList)[iIndex] = sProperty;
                                             }
                                             break;
-                            case aMovement: if (pSkillList)
+                            case aMovement: if (pPropertyList)
                                             {
-                                                pSkillList->move(iNewIndex, iIndex);
+                                                pPropertyList->move(iNewIndex, iIndex);
                                             }
                                             if (pCharacterList)
                                             {
                                                 for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
                                                 {
-                                                    it->moveSkill(iNewIndex, iIndex);
+                                                    it->moveProperty(iNewIndex, iIndex);
                                                 }
                                             }
                                             break;
@@ -139,7 +139,7 @@ void CharacterModification::undo()
                         break;
         case etValue:   if (pCharacterList)
                         {
-                            (*pCharacterList)[iIndex].skill(iNewIndex) = sSkill;
+                            (*pCharacterList)[iIndex].property(iNewIndex) = sProperty;
                         }
                         break;
         default:    break;
@@ -161,7 +161,7 @@ void CharacterModification::redo()
                                     case aEdition:  {
                                                         Character &character = (*pCharacterList)[iIndex];
                                                         character.setName(sNewName);
-                                                        character.setPlayerName(sNewSkill);
+                                                        character.setPlayerName(sNewProperty);
                                                         break;
                                                     }
                                     case aMovement: pCharacterList->move(iIndex, iNewIndex);
@@ -170,46 +170,46 @@ void CharacterModification::redo()
                                 }
                             }
                             break;
-        case etSkill:   switch (action())
+        case etProperty:   switch (action())
                         {
-                            case aAddition: if (pSkillList)
+                            case aAddition: if (pPropertyList)
                                             {
-                                                pSkillList->add(sSkill, iIndex);
+                                                pPropertyList->add(sProperty, iIndex);
                                             }
                                             if (pCharacterList)
                                             {
                                                 for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
                                                 {
-                                                    it->addSkill("0", iIndex);
+                                                    it->addProperty("0", iIndex);
                                                 }
                                             }
                                             break;
-                            case aDeletion: if (pSkillList)
+                            case aDeletion: if (pPropertyList)
                                             {
-                                                pSkillList->remove(iIndex);
+                                                pPropertyList->remove(iIndex);
                                             }
                                             if (pCharacterList)
                                             {
                                                 for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
                                                 {
-                                                    it->removeSkill(iIndex);
+                                                    it->removeProperty(iIndex);
                                                 }
                                             }
                                             break;
-                            case aEdition:  if (pSkillList)
+                            case aEdition:  if (pPropertyList)
                                             {
-                                                (*pSkillList)[iIndex] = sNewSkill;
+                                                (*pPropertyList)[iIndex] = sNewProperty;
                                             }
                                             break;
-                            case aMovement: if (pSkillList)
+                            case aMovement: if (pPropertyList)
                                             {
-                                                pSkillList->move(iIndex, iNewIndex);
+                                                pPropertyList->move(iIndex, iNewIndex);
                                             }
                                             if (pCharacterList)
                                             {
                                                 for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
                                                 {
-                                                    it->moveSkill(iIndex, iNewIndex);
+                                                    it->moveProperty(iIndex, iNewIndex);
                                                 }
                                             }
                                             break;
@@ -218,7 +218,7 @@ void CharacterModification::redo()
                         break;
         case etValue:   if (pCharacterList)
                         {
-                            (*pCharacterList)[iIndex].skill(iNewIndex) = sNewSkill;
+                            (*pCharacterList)[iIndex].property(iNewIndex) = sNewProperty;
                         }
                         break;
         default:    break;

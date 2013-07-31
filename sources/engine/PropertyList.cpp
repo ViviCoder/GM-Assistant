@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -16,26 +16,26 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "SkillList.h"
+#include "PropertyList.h"
 
 using namespace std;
 
-SkillList::SkillList()
+PropertyList::PropertyList()
 {
 }
 
-void SkillList::toXML(xmlpp::Element &root) const
+void PropertyList::toXML(xmlpp::Element &root) const
 {
     using namespace xmlpp;
 
-    for (vector<string>::const_iterator it = vSkills.begin(); it != vSkills.end(); it++)
+    for (vector<string>::const_iterator it = vProperties.begin(); it != vProperties.end(); it++)
     {
         Element *tmp = root.add_child("skill");
         tmp->set_attribute("name",*it);
     }
 }
 
-void SkillList::fromXML(const xmlpp::Element &root)
+void PropertyList::fromXML(const xmlpp::Element &root)
 {
     using namespace xmlpp;
 
@@ -50,44 +50,44 @@ void SkillList::fromXML(const xmlpp::Element &root)
         {
             name = attr->get_value();
         }
-        vSkills.push_back(name);
+        vProperties.push_back(name);
     }
 }
 
-void SkillList::clear()
+void PropertyList::clear()
 {
-    vSkills.clear();
+    vProperties.clear();
 }
 
-void SkillList::add(const std::string &skill, int position)
+void PropertyList::add(const std::string &property, int position)
 {
     // if position is equal to -1 or greater than the size of the list, just push_back
-    if (position<0 || (unsigned int)position>vSkills.size())
+    if (position<0 || (unsigned int)position>vProperties.size())
     {
-        vSkills.push_back(skill);
+        vProperties.push_back(property);
     }
     else
     {
-        vSkills.insert(vSkills.begin()+position,skill);
+        vProperties.insert(vProperties.begin()+position,property);
     }
 }
 
-void SkillList::remove(int index) throw(out_of_range)
+void PropertyList::remove(int index) throw(out_of_range)
 {
-    if (index < 0 || (unsigned int)index >= vSkills.size())
+    if (index < 0 || (unsigned int)index >= vProperties.size())
     {
         throw out_of_range("Index out of bounds");
     }
-    vSkills.erase(vSkills.begin()+index);
+    vProperties.erase(vProperties.begin()+index);
 }
 
-bool SkillList::move(int source, int destination) throw(out_of_range)
+bool PropertyList::move(int source, int destination) throw(out_of_range)
 {
-    if (source < 0 || (unsigned int)source >= vSkills.size())
+    if (source < 0 || (unsigned int)source >= vProperties.size())
     {
         throw out_of_range("Index of source out of bounds");
     }
-    if (destination < 0 || (unsigned int)destination >= vSkills.size())
+    if (destination < 0 || (unsigned int)destination >= vProperties.size())
     {
         throw out_of_range("Index of destination out of bounds");
     }
@@ -95,8 +95,8 @@ bool SkillList::move(int source, int destination) throw(out_of_range)
     {
         return false;
     }
-    // skill to move
-    string skill = vSkills[source];
+    // property to move
+    string property = vProperties[source];
     if (source < destination)
     {
         destination++;
@@ -105,32 +105,32 @@ bool SkillList::move(int source, int destination) throw(out_of_range)
     {
         source++;
     }
-    vSkills.insert(vSkills.begin() + destination, skill);
-    vSkills.erase(vSkills.begin() + source);
+    vProperties.insert(vProperties.begin() + destination, property);
+    vProperties.erase(vProperties.begin() + source);
     return true;
 }
 
-std::string& SkillList::operator[](int index) throw(out_of_range)
+std::string& PropertyList::operator[](int index) throw(out_of_range)
 {
-    if (index<0 || (unsigned int)index >= vSkills.size())
+    if (index<0 || (unsigned int)index >= vProperties.size())
     {
         throw out_of_range("Index out of bounds");
     }
-    return vSkills[index];
+    return vProperties[index];
 }
 
-SkillList::iterator SkillList::begin() const
+PropertyList::iterator PropertyList::begin() const
 {
-    return iterator(vSkills.begin());
+    return iterator(vProperties.begin());
 }
 
-SkillList::iterator SkillList::end() const
+PropertyList::iterator PropertyList::end() const
 {
-    return iterator(vSkills.end());
+    return iterator(vProperties.end());
 }
 
 // iterator's method
 
-SkillList::iterator::iterator(const vector<string>::const_iterator &it): vector<string>::const_iterator(it)
+PropertyList::iterator::iterator(const vector<string>::const_iterator &it): vector<string>::const_iterator(it)
 {
 }

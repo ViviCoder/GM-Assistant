@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -16,20 +16,20 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_SKILLLIST
-#define HEADER_SKILLLIST
+#ifndef HEADER_PROPERTYLIST
+#define HEADER_PROPERTYLIST
 
 #include <string>
 #include <stdexcept>
 #include <vector>
 #include <libxml++/libxml++.h>
 
-//! List of attributes/features/skills
-class SkillList
+//! List of attributes/features/properties
+class PropertyList
 {
     private:
-        //! Underlying skill vector
-        std::vector<std::string> vSkills;
+        //! Underlying property vector
+        std::vector<std::string> vProperties;
     public:
         // iterator
         class iterator: public std::vector<std::string>::const_iterator
@@ -39,19 +39,19 @@ class SkillList
                 iterator(const std::vector<std::string>::const_iterator &it);
         };
         // constructor
-        SkillList();
+        PropertyList();
         // XML-related methods
         void toXML(xmlpp::Element &root) const;
         void fromXML(const xmlpp::Element &root);
         // accessor
         std::string& operator[](int index) throw(std::out_of_range);
         // populating
-        void add(const std::string &skill, int position=-1);
+        void add(const std::string &property, int position=-1);
         void remove(int index) throw(std::out_of_range);
         /*!
-         * \brief Move of a skill
-         * \param source Index of the skill to be moved
-         * \param destination Index where to move the skill
+         * \brief Move of a property
+         * \param source Index of the property to be moved
+         * \param destination Index where to move the property
          * \return True if the move has been made, false otherwise
          * \throw std::out_of_range Thrown when one of the indices is invalid
          */

@@ -18,13 +18,13 @@
 
 #include "QCustomTableWidget.h"
 #include "QCustomHeaderView.h"
-#include "ChangeSkillDialog.h"
+#include "ChangePropertyDialog.h"
 #include <QApplication>
 #include <QScrollBar>
 
-QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangeSkillDial(new ChangeSkillDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pSkills(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0)
+QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangePropertyDial(new ChangePropertyDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pProperties(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0)
 {
-    // skill menu
+    // property menu
     actionAddColumn = new QAction(this);
     actionAddColumn->setIcon(QIcon(":/data/images/add.svg"));
     actionRemoveColumn = new QAction(this);
@@ -109,20 +109,20 @@ void QCustomTableWidget::mousePressEvent(QMouseEvent *e)
                                     QAction* action = menu->exec(e->globalPos());
                                     if (action == actionAddColumn)
                                     {
-                                        addSkill(columnPosition);
+                                        addProperty(columnPosition);
                                     }
                                     else if (action == actionRemoveColumn)
                                     {
                                         if (qtwitem)
                                         {
-                                            removeSkill(columnPosition);
+                                            removeProperty(columnPosition);
                                         }
                                     }
                                     else if (action == actionEditColumn)
                                     {
                                         if (qtwitem)
                                         {
-                                            editSkill(columnPosition);
+                                            editProperty(columnPosition);
                                         }
                                     }
                                     else if (action == actionAddRow)
@@ -163,7 +163,7 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
                                 {
                                     if (modifs == Qt::ControlModifier)
                                     {
-                                        editSkill(column);
+                                        editProperty(column);
                                     }
                                     else if (modifs == (Qt::ControlModifier | Qt::ShiftModifier))
                                     {
@@ -180,7 +180,7 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
                                     {
                                         if (modifs == Qt::ControlModifier)
                                         {
-                                            removeSkill(column);
+                                            removeProperty(column);
                                         }
                                         else if (modifs == (Qt::ControlModifier | Qt::ShiftModifier))
                                         {
@@ -196,7 +196,7 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
                                     {
                                         if (modifs == Qt::ControlModifier)
                                         {
-                                            addSkill(column);
+                                            addProperty(column);
                                         }
                                         else if (modifs == (Qt::ControlModifier | Qt::ShiftModifier))
                                         {
@@ -217,9 +217,9 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
     }
 }
 
-void QCustomTableWidget::setLists(SkillList *skills, CharacterList *characters)
+void QCustomTableWidget::setLists(PropertyList *properties, CharacterList *characters)
 {
-    pSkills = skills;
+    pProperties = properties;
     pCharacters = characters;
     updateDisplay();
 }
@@ -231,13 +231,13 @@ void QCustomTableWidget::updateDisplay(int row, int column)
     QScrollBar *vbar = verticalScrollBar();
     int x = hbar->value();
     int y = vbar->value();
-    // iterating over characters and skills to populate the table
+    // iterating over characters and properties to populate the table
     bUpdate = true;
     clear();
     setColumnCount(0);
     setRowCount(0);
     int i=0;
-    for (SkillList::iterator it = pSkills->begin(); it != pSkills->end(); it++)
+    for (PropertyList::iterator it = pProperties->begin(); it != pProperties->end(); it++)
     {
         insertColumn(i);
         setHorizontalHeaderItem(i,new QTableWidgetItem((*it).c_str()));
@@ -254,9 +254,9 @@ void QCustomTableWidget::updateDisplay(int row, int column)
         }
         // setting values
         k = 0;
-        for (Character::SkillIterator itSkill = (*it).begin(); itSkill != (*it).end() && k<i; itSkill++)
+        for (Character::PropertyIterator itProperty = (*it).begin(); itProperty != (*it).end() && k<i; itProperty++)
         {
-            setItem(j,k,new QTableWidgetItem((*itSkill).c_str()));
+            setItem(j,k,new QTableWidgetItem((*itProperty).c_str()));
             k++;
         } 
         for (;k<i;k++)
@@ -296,13 +296,13 @@ void QCustomTableWidget::onCellChanged(int logicalRow, int logicalColumn)
     if (pCharacters)
     {
         Character &charact = (*pCharacters)[row];
-        for (int i=charact.skillNumber(); i<column+1; i++)
+        for (int i=charact.propertyNumber(); i<column+1; i++)
         {
-            charact.addSkill("0");
+            charact.addProperty("0");
         }
-        std::string value = charact.skill(column);
+        std::string value = charact.property(column);
         std::string newValue = item(logicalRow, logicalColumn)->text().toStdString();
-        charact.skill(column) = newValue;
+        charact.property(column) = newValue;
         if (iCreatedCells)
         {
             // we ignore the newly created cells
@@ -321,15 +321,15 @@ void QCustomTableWidget::onHHeaderClicked(int index, const QPoint &position)
     QAction *action = hMenu->exec(position);
     if (action == actionAddColumn)
     {
-        addSkill(index);
+        addProperty(index);
     }
     else if (action == actionRemoveColumn)
     {
-        removeSkill(index);
+        removeProperty(index);
     }
     else if (action == actionEditColumn)
     {
-        editSkill(index);
+        editProperty(index);
     }
 }
 
@@ -386,25 +386,25 @@ void QCustomTableWidget::addCharacter(int index)
     }
 }
 
-void QCustomTableWidget::addSkill(int index)
+void QCustomTableWidget::addProperty(int index)
 {
-    if(pChangeSkillDial->exec()==QDialog::Accepted)
+    if(pChangePropertyDial->exec()==QDialog::Accepted)
     {
-        // modifying the skill/character Lists
-        if (pSkills)
+        // modifying the property/character Lists
+        if (pProperties)
         {
-            std::string skill = pChangeSkillDial->text().toStdString();
-            pSkills->add(skill, index+1);
-            emit modificationDone(new CharacterModification(pSkills, skill, pCharacters, index+1));
+            std::string property = pChangePropertyDial->text().toStdString();
+            pProperties->add(property, index+1);
+            emit modificationDone(new CharacterModification(pProperties, property, pCharacters, index+1));
         }
         if (pCharacters)
         {
             for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
             {
-                if ((unsigned int)index+1 < it->skillNumber())
+                if ((unsigned int)index+1 < it->propertyNumber())
                 {
-                    // adding a skill
-                    it->addSkill("0",index+1);
+                    // adding a property
+                    it->addProperty("0",index+1);
                 }
             } 
         }
@@ -422,11 +422,11 @@ void QCustomTableWidget::addSkill(int index)
         QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(index+1);
         if (columnHeaderItem)
         {
-            columnHeaderItem->setText(pChangeSkillDial->text());
+            columnHeaderItem->setText(pChangePropertyDial->text());
         }
         else
         {
-            columnHeaderItem = new QTableWidgetItem(pChangeSkillDial->text());
+            columnHeaderItem = new QTableWidgetItem(pChangePropertyDial->text());
             setHorizontalHeaderItem(index+1, columnHeaderItem);
         }
         scrollTo(-1, index+1);
@@ -445,29 +445,29 @@ void QCustomTableWidget::removeCharacter(int index)
     resizeColumnsToContents();
 }
 
-void QCustomTableWidget::removeSkill(int index)
+void QCustomTableWidget::removeProperty(int index)
 {
     removeColumn(logicalColumn(index));
-    // updating the she skill/character Lists
+    // updating the she property/character Lists
     std::vector<std::string> values;
     if (pCharacters)
     {
         for (CharacterList::iterator it = pCharacters->begin(); it != pCharacters->end(); it++)
         {
-            if ((unsigned int)index < it->skillNumber())
+            if ((unsigned int)index < it->propertyNumber())
             {
-                values.push_back(it->skill(index));
-                it->removeSkill(index);
+                values.push_back(it->property(index));
+                it->removeProperty(index);
             }
         } 
     }
-    if (pSkills)
+    if (pProperties)
     {
         if (pCharacters)
         {
-            emit modificationDone(new CharacterModification(pSkills, (*pSkills)[index], pCharacters, values, index));
+            emit modificationDone(new CharacterModification(pProperties, (*pProperties)[index], pCharacters, values, index));
         }
-        pSkills->remove(index);
+        pProperties->remove(index);
     }
 }
 
@@ -492,22 +492,22 @@ void QCustomTableWidget::editCharacter(int index)
     }
 }
 
-void QCustomTableWidget::editSkill(int index)
+void QCustomTableWidget::editProperty(int index)
 {
     scrollTo(-1, index);
     int logIndex = logicalColumn(index);
     QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(logIndex);
-    if(pChangeSkillDial->exec(columnHeaderItem->text())==QDialog::Accepted)
+    if(pChangePropertyDial->exec(columnHeaderItem->text())==QDialog::Accepted)
     {
-        // updating the SkillList
-        if (pSkills)
+        // updating the PropertyList
+        if (pProperties)
         {
-            std::string newSkill = pChangeSkillDial->text().toStdString();
-            emit modificationDone(new CharacterModification(pSkills, (*pSkills)[index], newSkill, index));
-            (*pSkills)[index] = newSkill;
+            std::string newProperty = pChangePropertyDial->text().toStdString();
+            emit modificationDone(new CharacterModification(pProperties, (*pProperties)[index], newProperty, index));
+            (*pProperties)[index] = newProperty;
         }
         QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(logIndex);
-        columnHeaderItem->setText(pChangeSkillDial->text());
+        columnHeaderItem->setText(pChangePropertyDial->text());
         scrollTo(-1, index);
     }
 }
@@ -529,18 +529,18 @@ void QCustomTableWidget::mouseDoubleClickEvent(QMouseEvent *)
 
 void QCustomTableWidget::onHHeaderMoved(int, int oldColumn, int newColumn)
 {
-    if (pSkills)
+    if (pProperties)
     {
-        if (pSkills->move(oldColumn, newColumn) && pCharacters)
+        if (pProperties->move(oldColumn, newColumn) && pCharacters)
         {
-            emit modificationDone(new CharacterModification(pSkills, pCharacters, oldColumn, newColumn));
+            emit modificationDone(new CharacterModification(pProperties, pCharacters, oldColumn, newColumn));
         }   
     }
     if (pCharacters)
     {
         for (CharacterList::iterator it = pCharacters->begin(); it != pCharacters->end(); it++)
         {
-            it->moveSkill(oldColumn, newColumn);
+            it->moveProperty(oldColumn, newColumn);
         }
     }
 }
@@ -648,7 +648,7 @@ void QCustomTableWidget::updateModification(CharacterModification *modification,
                                                         }
                                                     }
                                                     break;
-        case CharacterModification::etSkill:    if (undo)
+        case CharacterModification::etProperty:    if (undo)
                                                 {
                                                     switch (modification->action())
                                                     {
@@ -679,15 +679,15 @@ void QCustomTableWidget::updateModification(CharacterModification *modification,
 
 void QCustomTableWidget::retranslate()
 {
-    hMenu->setTitle(QApplication::translate("customTable","&Skill",0));
+    hMenu->setTitle(QApplication::translate("customTable","&Property",0));
     actionAddColumn->setText(QApplication::translate("customTable","&Add",0));
-    actionAddColumn->setStatusTip(QApplication::translate("customTable","Add a new skill",0));
+    actionAddColumn->setStatusTip(QApplication::translate("customTable","Add a new property",0));
     actionAddColumn->setShortcut(QApplication::translate("customTable","Ctrl+Ins", 0));
     actionRemoveColumn->setText(QApplication::translate("customTable","&Remove",0));
-    actionRemoveColumn->setStatusTip(QApplication::translate("customTable","Remove the skill",0));
+    actionRemoveColumn->setStatusTip(QApplication::translate("customTable","Remove the property",0));
     actionRemoveColumn->setShortcut(QApplication::translate("customTable","Ctrl+Del", 0));
     actionEditColumn->setText(QApplication::translate("customTable","&Edit",0));
-    actionEditColumn->setStatusTip(QApplication::translate("customTable","Edit the skill",0));
+    actionEditColumn->setStatusTip(QApplication::translate("customTable","Edit the property",0));
     actionEditColumn->setShortcut(QApplication::translate("customTable","Ctrl+F2", 0));
     vMenu->setTitle(QApplication::translate("customTable","&Character",0));
     actionAddRow->setText(QApplication::translate("customTable","&Add",0));

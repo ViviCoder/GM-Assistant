@@ -23,16 +23,16 @@
 #include <QTableWidgetItem>
 #include <QMouseEvent>
 #include <QMenu>
-#include "ChangeSkillDialog.h"
+#include "ChangePropertyDialog.h"
 #include "ChangeCharacterDialog.h"
-#include "SkillList.h"
+#include "PropertyList.h"
 #include "CharacterList.h"
 #include "CharacterModification.h"
 
 /*!
  * \brief Custom table widget
  *
- * This widget is designed to manipulate underlying CharacterList and SkillList
+ * This widget is designed to manipulate underlying CharacterList and PropertyList
  */
 class QCustomTableWidget: public QTableWidget
 {
@@ -41,7 +41,7 @@ class QCustomTableWidget: public QTableWidget
     private:
         //! Main menu
         QMenu *menu;
-        //! Menu of the horizontal header (skills)
+        //! Menu of the horizontal header (properties)
         QMenu *hMenu;
         //! Menu of the vertical header (characters)
         QMenu *vMenu;
@@ -57,10 +57,10 @@ class QCustomTableWidget: public QTableWidget
         QAction *actionEditRow;
         //! Action for column edition
         QAction *actionEditColumn;
-        ChangeSkillDialog *pChangeSkillDial;
+        ChangePropertyDialog *pChangePropertyDial;
         ChangeCharacterDialog *pChangeCharacterDial;
-        //! Underlying list of skills
-        SkillList *pSkills;
+        //! Underlying list of properties
+        PropertyList *pProperties;
         //! Underlying list of characters
         CharacterList *pCharacters;
         //! Flag indicating if an item is currently being edited
@@ -91,30 +91,30 @@ class QCustomTableWidget: public QTableWidget
          */
         void changeEvent(QEvent *e);
         /*!
-         * \brief Addition of a skill
-         * \param index Index where to add the skill
+         * \brief Addition of a property
+         * \param index Index where to add the property
          */
-        void addSkill(int index);
+        void addProperty(int index);
         /*!
          * \brief Addition of a character
          * \param index Index where to add the character
          */
         void addCharacter(int index);
         /*!
-         * \brief Removal of a skill
-         * \param index Index of the skill to be removed
+         * \brief Removal of a property
+         * \param index Index of the property to be removed
          */
-        void removeSkill(int index);
+        void removeProperty(int index);
         /*!
          * \brief Removal of a character
          * \param index Index of the character to be removed
          */
         void removeCharacter(int index);
         /*!
-         * \brief Edition of a skill
-         * \param index Index of the skill to be edited
+         * \brief Edition of a property
+         * \param index Index of the property to be edited
          */
-        void editSkill(int index);
+        void editProperty(int index);
         /*!
          * \brief Edition of a character
          * \param index Index of the character to be edited
@@ -170,13 +170,13 @@ class QCustomTableWidget: public QTableWidget
         //! destructor
         ~QCustomTableWidget();
         /*!
-         * \brief Setter for the underlying skill and character lists
-         * \param skills Skill list
+         * \brief Setter for the underlying property and character lists
+         * \param properties Property list
          * \param characters Character list
          *
          * Updates the display after the modification
          */
-        void setLists(SkillList *skills, CharacterList *characters);
+        void setLists(PropertyList *properties, CharacterList *characters);
         /*!
          * \brief Convert visual to logical row index
          * \param visualRow Visual row
