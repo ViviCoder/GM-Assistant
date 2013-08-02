@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -39,17 +39,17 @@ class Version
         int iRelease;
     public:
         /*!
-         * \brief Constructor
+         * \brief Constructor from integer version numbers
          * \param major Major version number
          * \param minor Minor version number
          * \param release Release version number
          */
-        Version(int major = 1, int minor = 0, int release = 0);
+        Version(int major = MAJOR_VERSION, int minor = MINOR_VERSION, int release = RELEASE_VERSION);
         /*!
-         * \brief Current version
-         * \return Current version
+         * \brief Constructor from a string
+         * \param version String containing the version under the form x.y.z
          */
-        static Version currentVersion();
+        Version(const std::string &version);
         /*!
          * \brief Short version
          * \return String containing the short version

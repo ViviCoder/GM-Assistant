@@ -24,7 +24,7 @@
 AboutDialog::AboutDialog(QWidget *parent): QDialog(parent)
 {
     setupUi(this);
-    labelVersionNumber->setText(Version::currentVersion().fullVersion().c_str());
+    labelVersionNumber->setText(Version().fullVersion().c_str());
     QSvgRenderer *renderer = labelLogo->renderer();
     renderer->load(QString(":data/images/GMA.svg"));
 }

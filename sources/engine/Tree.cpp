@@ -34,9 +34,9 @@ Tree::Tree(const Tree &tree, Branch* parent)
     pParent = parent;
 }
 
-Tree::Tree(const xmlpp::Element &root, bool checkFiles, Branch* parent): pParent(parent)
+Tree::Tree(const IOConfig &config, const xmlpp::Element &root, bool checkFiles, Branch* parent): pParent(parent)
 {
-    fromXML(root, checkFiles);
+    fromXML(config, root, checkFiles);
 }
 
 // destructor
@@ -62,7 +62,7 @@ Tree& Tree::operator=(const Tree &tree)
 
 // methods
 
-void Tree::toXML(xmlpp::Element &root) const
+void Tree::toXML(const IOConfig &config, xmlpp::Element &root) const
 {
     using namespace xmlpp;
 
@@ -70,15 +70,15 @@ void Tree::toXML(xmlpp::Element &root) const
     {
         Element *tmp = root.add_child("item");
         tmp->set_attribute("state",Item::stateToStr((*it)->item()->state()));
-        tmp->set_attribute("type",Item::typeToStr((*it)->item()->type()));
+        tmp->set_attribute("type", Item::typeToStr((*it)->item()->type(), config));
         tmp->set_attribute("content",(*it)->item()->content());
         tmp->set_attribute("expanded",Item::boolToStr((*it)->item()->expanded()));
         (*it)->item()->toXML(*tmp);
-        (*it)->tree().toXML(*tmp);
+        (*it)->tree().toXML(config, *tmp);
     }
 }
 
-void Tree::fromXML(const xmlpp::Element &root, bool checkFiles, bool limitedSize) throw(invalid_argument, overflow_error)
+void Tree::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles, bool limitedSize) throw(xmlpp::exception, overflow_error)
 {
     clear();
     using namespace xmlpp;
@@ -97,7 +97,7 @@ void Tree::fromXML(const xmlpp::Element &root, bool checkFiles, bool limitedSize
         Item::Type type = Item::tBasic;
         if (attr)
         {
-            type = Item::strToType(attr->get_value());
+            type = Item::strToType(attr->get_value(), config);
         }
         attr = elem->get_attribute("content");
         string content="";
@@ -113,7 +113,7 @@ void Tree::fromXML(const xmlpp::Element &root, bool checkFiles, bool limitedSize
         }
         Item *item = ItemFactory::createItem(type,content,state,expanded,limitedSize);
         item->fromXML(*elem, checkFiles);
-        Branch *branch = new Branch(item,*elem,checkFiles,this);
+        Branch *branch = new Branch(item, config, *elem, checkFiles, this);
         vChildren.push_back(branch);
     }
 }

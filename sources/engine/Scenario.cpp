@@ -23,11 +23,11 @@ using namespace std;
 
 // constructors
 
-Scenario::Scenario(): uiInterface(uiFull)
+Scenario::Scenario(): uiInterface(uiFull), ioConfig(Version())
 {
 }
 
-Scenario::Scenario(const string &fileName, bool checkFiles) throw(xmlpp::exception)
+Scenario::Scenario(const string &fileName, bool checkFiles) throw(xmlpp::exception): ioConfig(Version())
 {
     try
     {
@@ -47,12 +47,13 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     using namespace xmlpp;
 
     clear();
+    ioConfig = IOConfig::detect(fileName);
     DomParser parser(fileName);
     Document *document = parser.get_document();
     Element *root = document->get_root_node();
-    if (root->get_name()!="game")
+    if (root->get_name() != ioConfig.rootName())
     {
-        throw xmlpp::exception("Bad document content type: game expected");
+        throw xmlpp::exception("Bad document content type: " + ioConfig.rootName() + " expected");
     }
     // getting the user interface
     try
@@ -72,13 +73,21 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
         throw xmlpp::exception("Bad user interface");
     }
     // now loading the different parts of the game
-    Node::NodeList node = root->get_children("scenario");
-    if (!node.empty())
+    Node::NodeList node = root->get_children(ioConfig.plotName());
+    if (node.empty())
     {
-        tPlot.fromXML(*dynamic_cast<Element*>(node.front()), checkFiles);
+        throw xmlpp::exception("Missing \"" + ioConfig.plotName() + "\" section");
+    }
+    else
+    {
+        tPlot.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles);
     }
     node = root->get_children("notes");
-    if (!node.empty())
+    if (node.empty())
+    {
+        throw xmlpp::exception("Missing \"notes\" section");
+    }
+    else
     {
         Element *elem = dynamic_cast<Element*>(node.front());
         if (elem->has_child_text())
@@ -90,30 +99,50 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
             sNotes = "";
         }
     }
-    node = root->get_children("skills");
-    if (!node.empty())
+    node = root->get_children(ioConfig.propertiesName());
+    if (node.empty())
+    {
+        throw xmlpp::exception("Missing \"" + ioConfig.propertiesName() + "\" section");
+    }
+    else
     {
         lProperties.fromXML(*dynamic_cast<Element*>(node.front()));
     }
     node = root->get_children("characters");
-    if (!node.empty())
+    if (node.empty())
+    {
+        throw xmlpp::exception("Missing \"characters\" section");
+    }
+    else
     {
         lCharacters.fromXML(*dynamic_cast<Element*>(node.front()));
     }
     node = root->get_children("history");
-    if (!node.empty())
+    if (node.empty())
     {
-        tHistory.fromXML(*dynamic_cast<Element*>(node.front()), checkFiles);
+        throw xmlpp::exception("Missing \"history\" section");
+    }
+    else
+    {
+        tHistory.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles);
     }
     node = root->get_children("music");
-    if (!node.empty())
+    if (node.empty())
     {
-        tMusic.fromXML(*dynamic_cast<Element*>(node.front()), checkFiles);
+        throw xmlpp::exception("Missing \"music\" section");
+    }
+    else
+    {
+        tMusic.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles);
     }
     node = root->get_children("effects");
-    if (!node.empty())
+    if (node.empty())
     {
-        tEffects.fromXML(*dynamic_cast<Element*>(node.front()), checkFiles, true);
+        throw xmlpp::exception("Missing \"effects\" section");
+    }
+    else
+    {
+        tEffects.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles, true);
     }
 }
 
@@ -122,23 +151,23 @@ void Scenario::toFile(const string &fileName) const
     using namespace xmlpp;
 
     Document document;
-    Element *root = document.create_root_node("game");
-    root->set_attribute("version",Version::currentVersion().shortVersion());
+    Element *root = document.create_root_node(ioConfig.rootName());
+    root->set_attribute("version",ioConfig.version().shortVersion());
     root->set_attribute("interface",interfaceToString(uiInterface));
-    Element *tmp = root->add_child("scenario");
-    tPlot.toXML(*tmp);
+    Element *tmp = root->add_child(ioConfig.plotName());
+    tPlot.toXML(ioConfig, *tmp);
     tmp = root->add_child("notes");
     tmp->add_child_text(sNotes);
-    tmp = root->add_child("properties");
+    tmp = root->add_child(ioConfig.propertiesName());
     lProperties.toXML(*tmp);
     tmp = root->add_child("characters");
     lCharacters.toXML(*tmp);
     tmp = root->add_child("history");
-    tHistory.toXML(*tmp);
+    tHistory.toXML(ioConfig, *tmp);
     tmp = root->add_child("music");
-    tMusic.toXML(*tmp);
+    tMusic.toXML(ioConfig, *tmp);
     tmp = root->add_child("effects");
-    tEffects.toXML(*tmp);
+    tEffects.toXML(ioConfig, *tmp);
     document.write_to_file_formatted(fileName,"UTF-8");
 }
 
@@ -180,6 +209,8 @@ void Scenario::clear()
     tEffects.clear();
     lProperties.clear();
     lCharacters.clear();
+    uiInterface = uiFull;
+    ioConfig = IOConfig(Version());
 }
 
 CharacterList& Scenario::characters()

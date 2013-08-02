@@ -22,6 +22,7 @@
 #include "Tree.h"
 #include "CharacterList.h"
 #include "PropertyList.h"
+#include "IOConfig.h"
 
 /*!
  * \brief Game scenario
@@ -112,6 +113,8 @@ class Scenario
         PropertyList lProperties;
         //! User interface used by the game
         UserInterface uiInterface;
+        //! IO configuration
+        IOConfig ioConfig;
 };
 
 #endif

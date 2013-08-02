@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -73,34 +73,34 @@ string Item::stateToStr(State state)
     return "";
 } 
 
-string Item::typeToStr(Type type)
+string Item::typeToStr(Type type, const IOConfig &config)
 {
     switch (type)
     {
         case tBasic:    return "basic"; break;
         case tFile:     return "file"; break;
         case tSound:    return "sound"; break;
-        case tImage:    return "picture"; break;
+        case tImage:    return config.imageName(); break;
     }
     return "";
 }
 
-Item::State Item::strToState(const string &name) throw(invalid_argument)
+Item::State Item::strToState(const string &name) throw(xmlpp::exception)
 {
     if (name=="none")   return sNone;
     else if (name=="progress")  return sProgress;
     else if (name=="failure")   return sFailure;
     else if (name=="success")   return sSuccess;
-    else    throw invalid_argument("Unrecognized \""+name+"\" item state");
+    else    throw xmlpp::exception("Unrecognized \""+name+"\" item state");
 }
 
-Item::Type Item::strToType(const string &name) throw(invalid_argument)
+Item::Type Item::strToType(const string &name, const IOConfig &config) throw(xmlpp::exception)
 {
     if (name=="basic")  return tBasic;
     else if (name=="file") return tFile;
     else if (name=="sound") return tSound;
-    else if (name=="picture") return tImage;
-    else    throw invalid_argument("Unrecognized \""+name+"\" item type");
+    else if (name == config.imageName()) return tImage;
+    else    throw xmlpp::exception("Unrecognized \""+name+"\" item type");
 }
 
 bool Item::is(Type type, Type isType)
@@ -156,9 +156,9 @@ std::string Item::boolToStr(bool value)
     }
 }
 
-bool Item::strToBool(const string &name) throw(invalid_argument)
+bool Item::strToBool(const string &name) throw(xmlpp::exception)
 {
     if (name == "true") return true;
     if (name == "false") return false;
-    else    throw invalid_argument("Unrecognized \""+name+"\" boolean");
+    else    throw xmlpp::exception("Unrecognized \""+name+"\" boolean");
 }

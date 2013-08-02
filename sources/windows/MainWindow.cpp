@@ -295,6 +295,8 @@ void MainWindow::on_action_Load_triggered()
             catch (xmlpp::exception &xml)
             {
                 QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+                eGame.clear();
+                file = "";
             }
             catch (std::exception &e)
             {
@@ -512,6 +514,8 @@ void MainWindow::on_action_Reload_triggered()
         catch (xmlpp::exception &xml)
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+            eGame.clear();
+            sFileName = "";
         }
         catch (std::exception &e)
         {

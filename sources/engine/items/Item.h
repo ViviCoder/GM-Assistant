@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,8 @@
 #define HEADER_ITEM
 
 #include <string>
-#include <stdexcept>
 #include <libxml++/libxml++.h>
+#include "IOConfig.h"
 
 /*!
  * \brief Base item class
@@ -85,16 +85,20 @@ class Item
         /*!
          * \brief Conversion method from Type to string
          * \param type Type
+         * \param config IO configuration
          * \return String equivalent to the type
+         * \throw xmlpp::exception Thrown when the given string does not correspond to any state
          */
-        static std::string typeToStr(Type type);
-        static State strToState(const std::string &name) throw(std::invalid_argument);
+        static std::string typeToStr(Type type, const IOConfig &config);
+        static State strToState(const std::string &name) throw(xmlpp::exception);
         /*!
          * \brief Conversion method from string to Type
          * \param name Name of the type
+         * \param config IO configuration
          * \return Type equivalent to the string
+         * \throw xmlpp::exception Thrown when the given string does not correspond to any type
          */
-        static Type strToType(const std::string &name) throw(std::invalid_argument);
+        static Type strToType(const std::string &name, const IOConfig &config) throw(xmlpp::exception);
         /*!
          * \brief Subclass hierarchy test method
          * \param type Type to test
@@ -118,8 +122,9 @@ class Item
          * \brief Conversion method from string to boolean
          * \param name String to convert
          * \return Boolean equivalent to the string
+         * \throw xmlpp::exception Thrown when the given string does not correspond to any boolean value
          */
-        static bool strToBool(const std::string &name) throw(std::invalid_argument);
+        static bool strToBool(const std::string &name) throw(xmlpp::exception);
     private:
         State sState;
         std::string sContent;

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -25,9 +25,14 @@ Version::Version(int major, int minor, int release): iMajor(major), iMinor(minor
 {
 }
 
-Version Version::currentVersion()
+Version::Version(const string &version): iMajor(MAJOR_VERSION), iMinor(MINOR_VERSION), iRelease(RELEASE_VERSION)
 {
-    return Version(MAJOR_VERSION, MINOR_VERSION, RELEASE_VERSION);
+    istringstream buf(version);
+    buf >> iMajor;
+    buf.ignore(1);
+    buf >> iMinor;
+    buf.ignore(1);
+    buf >> iRelease;
 }
 
 string Version::shortVersion()

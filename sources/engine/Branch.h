@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -35,11 +35,12 @@ class Branch
         /*!
          * \brief Constructor from an XML tree
          * \param item Root item of the branch
+         * \param config IO configuration
          * \param root Root of the XML tree
          * \param checkFiles Indicates if the existence of the files within FileItems is checked
          * \param parent Parent tree
          */
-        Branch(Item* item, const xmlpp::Element &root, bool checkFiles, Tree *parent);
+        Branch(Item* item, const IOConfig &config, const xmlpp::Element &root, bool checkFiles, Tree *parent);
         // destructor
         ~Branch();
         //accessors

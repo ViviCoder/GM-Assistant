@@ -22,6 +22,8 @@
 #include "Item.h"
 #include <vector>
 #include <iterator>
+#include "IOConfig.h"
+#include <stdexcept>
 
 class Branch;
 
@@ -104,11 +106,12 @@ class Tree
         Tree(const Tree &tree, Branch* parent=0);
         /*!
          * \brief Constructor which read directly in a XML tree
+         * \param config IO configuration
          * \param root Root of the XML tree
          * \param checkFiles Indicates if the existence of files associated with FileItems is checked
          * \param parent Pointer to the parent branch of the tree
          */
-        Tree(const xmlpp::Element &root, bool checkFiles, Branch* parent);
+        Tree(const IOConfig &config, const xmlpp::Element &root, bool checkFiles, Branch* parent);
         // destructor
         ~Tree();
         // copy operator
@@ -116,18 +119,20 @@ class Tree
         // XML-related methods
         /*!
          * \brief XML saver
+         * \param config IO configuration
          * \param root Root of the XML tree
          */
-        void toXML(xmlpp::Element &root) const;
+        void toXML(const IOConfig &config, xmlpp::Element &root) const;
         /*!
          * \brief XML loader
+         * \param config IO configuration
          * \param root Position of the tree in the XML tree
          * \param checkFiles Indicates if the existence of files associated with FileItems is checked
          * \param limitedSize Indicates if the size of the items is limited
-         * \throw std::invalid_argument Thrown when an item has not been loaded correctly        
+         * \throw xmlpp::exception Thrown when an item has not been loaded correctly        
          * \throw std::overflow_error Thrown when the size of a file exceeds the limit (if limited)
          */
-        void fromXML(const xmlpp::Element &root, bool checkFiles, bool limitedSize = false) throw(std::invalid_argument, std::overflow_error);
+        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles, bool limitedSize = false) throw(xmlpp::exception, std::overflow_error);
         // iterator-related methods
         iterator begin() const;
         iterator beginUnchecked() const;
