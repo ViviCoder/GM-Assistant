@@ -207,7 +207,6 @@ void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *e)
     QTreeWidget::mouseReleaseEvent(e);
 }
 
-#include <iostream>
 void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
 {
     QTreeWidgetItem *qItem = currentItem();
@@ -258,8 +257,7 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
                                 break;
             case Qt::Key_F8:    changeState(dynamic_cast<QCustomTreeWidgetItem*>(qItem), Item::sSuccess);
                                 break;
-            default:        std::cout << e->key() << std::endl;    
-                            QTreeWidget::keyReleaseEvent(e); break; 
+            default:    QTreeWidget::keyReleaseEvent(e); break; 
         }
     }
 }
