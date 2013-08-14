@@ -20,70 +20,34 @@
 #include <QFormLayout>
 #include <QMessageBox>
 
-SelectCharacterDialog::SelectCharacterDialog(QWidget *parent): QDialog(parent), smMapper(new QSignalMapper(this)), pCombat(new CombatDialog(parent))
+SelectCharacterDialog::SelectCharacterDialog(QWidget *parent): QDialog(parent), pCombat(new CombatDialog(parent))
 {
     setupUi(this);
-    connect(smMapper, SIGNAL(mapped(QWidget*)), this, SLOT(update(QWidget*)));
 }
 
 void SelectCharacterDialog::exec(const CharacterList &list)
 {
-    iNumber = list.count();
-    QFormLayout *formLayout = new QFormLayout();
-    checkList = new QCheckBox[iNumber];
-    spinList = new QSpinBox[iNumber];
-    int i = 0;
+    listAll->clear();
     for (CharacterList::const_iterator it = list.begin(); it != list.end(); it++)
     {
-        // setting up the check box
-        checkList[i].setText(it->name().c_str());
-        // setting up the spin box
-        spinList[i].setMinimum(1);
-        spinList[i].setMaximum(10);
-        spinList[i].setValue(1);
-        spinList[i].setEnabled(false);
-        smMapper->setMapping(checkList+i, spinList+i);
-        connect(checkList+i, SIGNAL(clicked()), smMapper, SLOT(map()));
-        formLayout->addRow(checkList+i, spinList+i);
-        i++;
+        listAll->addItem((*it).name().c_str());
     }
-    groupBox->setLayout(formLayout);
+    listInvolved->clear();
     QDialog::exec();
-    delete formLayout;
-    delete[] checkList;
-    delete[] spinList;
-}
-
-void SelectCharacterDialog::update(QWidget *widget)
-{
-    widget->setEnabled(!widget->isEnabled());
 }
 
 void SelectCharacterDialog::accept()
 {
-    QStringList list;
-    for (int i = 0; i < iNumber; i++)
+    int n = listInvolved->count();
+    if (n > 1)
     {
-        if (checkList[i].isChecked())
+        QStringList list;
+        for (int i = 0; i < n; i++)
         {
-            int n = spinList[i].value();
-            if (n == 1)
-            {
-                list.append(checkList[i].text());
-            }
-            else
-            {
-                for (int j = 0; j < spinList[i].value(); j++)
-                {
-                    list.append(checkList[i].text() + QString(" (%1)").arg(j+1));
-                }
-            }
+            list.append(listInvolved->item(i)->text());
         }
-    }
-    if (list.size() > 1)
-    {
-        QDialog::accept();
         pCombat->show(list);
+        QDialog::accept();
     }
     else
     {
@@ -96,5 +60,46 @@ void SelectCharacterDialog::changeEvent(QEvent *e)
     if (e->type() == QEvent::LanguageChange)
     {
         retranslateUi(this);
+    }
+}
+
+void SelectCharacterDialog::on_pushAdd_clicked()
+{
+    QListWidgetItem *item = listAll->currentItem();
+    if (item)
+    {
+        listInvolved->addItem(item->text());
+    }
+}
+
+void SelectCharacterDialog::on_pushRemove_clicked()
+{
+    QListWidgetItem *item = listInvolved->currentItem();
+    if (item)
+    {
+        listInvolved->removeItemWidget(item);
+        delete item;
+    }
+}
+
+void SelectCharacterDialog::on_pushUp_clicked()
+{
+    int n = listInvolved->currentRow();
+    if (n > 0)
+    {
+        QListWidgetItem *item = listInvolved->takeItem(n);
+        listInvolved->insertItem(n - 1, item);
+        listInvolved->setCurrentRow(n - 1);
+    }
+}
+
+void SelectCharacterDialog::on_pushDown_clicked()
+{
+    int n = listInvolved->currentRow();
+    if (n >= 0 && n < listInvolved->count()-1)
+    {
+        QListWidgetItem *item = listInvolved->takeItem(n);
+        listInvolved->insertItem(n + 1, item);
+        listInvolved->setCurrentRow(n + 1);
     }
 }

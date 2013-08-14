@@ -21,9 +21,6 @@
 
 #include "ui_SelectCharacterDialog.h"
 #include "CharacterList.h"
-#include <QSignalMapper>
-#include <QCheckBox>
-#include <QSpinBox>
 #include "CombatDialog.h"
 
 /*!
@@ -33,14 +30,6 @@ class SelectCharacterDialog: public QDialog, private Ui::selectCharacterDialog
 {
     Q_OBJECT
     private:
-        //! Signal mapper
-        QSignalMapper *smMapper;
-        //! Number of characters
-        int iNumber;
-        //! CheckBox array
-        QCheckBox *checkList;
-        //! SpinBox array
-        QSpinBox *spinList;
         //! Combat manager dialog window
         CombatDialog *pCombat;
     protected:
@@ -63,12 +52,29 @@ class SelectCharacterDialog: public QDialog, private Ui::selectCharacterDialog
          */
         void exec(const CharacterList &list);
         /*!
-         * \brief Slot for when a checkbox is clicked
-         * \param widget Spinbox to update
+         * \brief Slot for the Add button
          *
-         * Updates the spinbox corresponding to the clicked checkbox
+         * Adds a character in the list of involved characters
          */
-        void update(QWidget *widget);
+        void on_pushAdd_clicked();
+        /*!
+         * \brief Slot for the Remove button
+         *
+         * Removes a character from the list of involved characters
+         */
+        void on_pushRemove_clicked();
+        /*!
+         * \brief Slot for the Up button
+         *
+         * Put a character a slot higher
+         */
+        void on_pushUp_clicked();
+        /*!
+         * \brief Slot for the Down button
+         *
+         * Put a character a lot lower
+         */
+        void on_pushDown_clicked();
         // Overriden slot
         void accept();
 };

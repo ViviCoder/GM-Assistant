@@ -1092,31 +1092,46 @@ p, li { white-space: pre-wrap; }
     <name>selectCharacterDialog</name>
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.ui" line="17"/>
-        <source>Combat manager</source>
-        <translation>Gestionnaire de combat</translation>
+        <source>Character selection</source>
+        <translation>Sélection de personnages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.ui" line="26"/>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="28"/>
+        <source>All characters</source>
+        <translation>Tous les personnages</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="39"/>
+        <source>&amp;Add</source>
+        <translation>A&amp;jouter</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="50"/>
+        <source>&amp;Remove</source>
+        <translation>&amp;Retirer</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="66"/>
         <source>Involved characters</source>
         <translation>Personnages impliqués</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.ui" line="35"/>
-        <source>&amp;Accept</source>
-        <translation>&amp;Accepter</translation>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="77"/>
+        <source>&amp;Up</source>
+        <translation>&amp;Haut</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.ui" line="45"/>
-        <source>&amp;Cancel</source>
-        <translation>A&amp;nnuler</translation>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="88"/>
+        <source>&amp;Down</source>
+        <translation>&amp;Bas</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.cpp" line="90"/>
+        <location filename="../sources/windows/SelectCharacterDialog.cpp" line="54"/>
         <source>Uncompleted character selection</source>
-        <translation>Sélection de personnages inachevée</translation>
+        <translation>Sélection des personnages incomplète</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.cpp" line="90"/>
+        <location filename="../sources/windows/SelectCharacterDialog.cpp" line="54"/>
         <source>You have selected too few characters. There must be at least two of them.</source>
         <translation>Vous avez sélectionné trop peu de personnages. Il doit y en avoir au moins deux.</translation>
     </message>

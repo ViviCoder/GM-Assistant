@@ -14,6 +14,7 @@ License: CC0-1.0
 Comment:
  add.svg:       http://openclipart.org/detail/16950
  check.svg:     http://openclipart.org/detail/159733
+ down.svg:      http://openclipart.org/detail/12114
  failure.svg:   http://openclipart.org/detail/166859
  image.svg:     http://openclipart.org/detail/25499
  pencil.svg     http://openclipart.org/detail/3297
@@ -22,6 +23,7 @@ Comment:
  speaker.svg:   http://openclipart.org/detail/168846
  stop.svg:      http://openclipart.org/detail/57745
  uncheck.svg:   http://openclipart.org/detail/33685
+ up.svg:        http://openclipart.org/detail/12115
 
 Files: data/images/empty.svg
 Copyright: None

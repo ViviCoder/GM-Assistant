@@ -9,40 +9,112 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>565</width>
+    <height>421</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Combat manager</string>
+   <string>Character selection</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <property name="sizeConstraint">
     <enum>QLayout::SetFixedSize</enum>
    </property>
    <item>
-    <widget class="QGroupBox" name="groupBox">
-     <property name="title">
-      <string>Involved characters</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QGroupBox" name="groupBox_All">
+       <property name="title">
+        <string>All characters</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QListWidget" name="listAll"/>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_4">
+          <item>
+           <widget class="QPushButton" name="pushAdd">
+            <property name="text">
+             <string>&amp;Add</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressource.qrc">
+              <normaloff>:/data/images/add.svg</normaloff>:/data/images/add.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushRemove">
+            <property name="text">
+             <string>&amp;Remove</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressource.qrc">
+              <normaloff>:/data/images/remove.svg</normaloff>:/data/images/remove.svg</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_Involved">
+       <property name="title">
+        <string>Involved characters</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_5">
+        <item>
+         <widget class="QListWidget" name="listInvolved"/>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_3">
+          <item>
+           <widget class="QPushButton" name="pushUp">
+            <property name="text">
+             <string>&amp;Up</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressource.qrc">
+              <normaloff>:/data/images/up.svg</normaloff>:/data/images/up.svg</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushDown">
+            <property name="text">
+             <string>&amp;Down</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../ressource.qrc">
+              <normaloff>:/data/images/down.svg</normaloff>:/data/images/down.svg</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="pushAccept">
-       <property name="text">
-        <string>&amp;Accept</string>
+      <widget class="QDialogButtonBox" name="buttonBox">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-       <property name="default">
-        <bool>true</bool>
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="pushCancel">
-       <property name="text">
-        <string>&amp;Cancel</string>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
        </property>
       </widget>
      </item>
@@ -50,37 +122,39 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../ressource.qrc"/>
+ </resources>
  <connections>
   <connection>
-   <sender>pushAccept</sender>
-   <signal>clicked()</signal>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
    <receiver>selectCharacterDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>128</x>
-     <y>216</y>
+     <x>221</x>
+     <y>399</y>
     </hint>
     <hint type="destinationlabel">
-     <x>175</x>
-     <y>283</y>
+     <x>115</x>
+     <y>392</y>
     </hint>
    </hints>
   </connection>
   <connection>
-   <sender>pushCancel</sender>
-   <signal>clicked()</signal>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
    <receiver>selectCharacterDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>309</x>
-     <y>220</y>
+     <x>355</x>
+     <y>404</y>
     </hint>
     <hint type="destinationlabel">
-     <x>325</x>
-     <y>266</y>
+     <x>458</x>
+     <y>390</y>
     </hint>
    </hints>
   </connection>
