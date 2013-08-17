@@ -30,8 +30,6 @@ class CombatDialog: public QDialog, private Ui::combatDialog
     private:
         //! Counter
         int iCharacter;
-        //! Flag used to distinguish between user/computer selection changes
-        bool bForce;
         //! Vertical header
         QHeaderView *header;
     protected:
@@ -59,12 +57,6 @@ class CombatDialog: public QDialog, private Ui::combatDialog
          * Goes to the next character to play
          */
         void on_pushNext_clicked();
-        /*!
-         * \brief Slot for when the selection changes
-         *
-         * It resets the selection to the current character if the user changed the selection
-         */
-        void on_tableWidget_itemSelectionChanged();
         /*!
          * \brief Slot for when a character is moved
          * \param logicalIndex Logical index of the moved header section

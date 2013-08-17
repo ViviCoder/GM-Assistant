@@ -18,7 +18,7 @@
 
 #include "CombatDialog.h"
 
-CombatDialog::CombatDialog(QWidget *parent): QDialog(parent), bForce(true)
+CombatDialog::CombatDialog(QWidget *parent): QDialog(parent)
 {
     setupUi(this);
     header = tableWidget->verticalHeader();
@@ -37,34 +37,17 @@ void CombatDialog::show(const QStringList &list)
         QTableWidgetItem *item = new QTableWidgetItem(*it);
         tableWidget->setVerticalHeaderItem(i, item);
         i++;
-    } 
-    pushNext->setText(QApplication::translate("combatDialog", "&Start", 0));
+    }
     pushRemove->setEnabled(tableWidget->rowCount() > 2);
+    on_pushNext_clicked();
     QDialog::show();
 }
 
 void CombatDialog::on_pushNext_clicked()
 {
-    if (iCharacter < 0)
-    {
-        pushNext->setText(QApplication::translate("combatDialog", "&Next", 0));
-    }
     iCharacter = (iCharacter + 1) % tableWidget->rowCount();
-    // We force the change
-    bForce = true;
+    label->setText(QApplication::translate("combatDialog", "Current character:", 0) + " <strong>"+tableWidget->verticalHeaderItem(header->logicalIndex(iCharacter))->text()+"</strong>");
     tableWidget->setCurrentCell(header->logicalIndex(iCharacter), 0);
-}
-
-void CombatDialog::on_tableWidget_itemSelectionChanged()
-{
-    if (bForce || iCharacter < 0)
-    {
-        bForce = false;
-    }
-    else
-    {
-        tableWidget->setCurrentCell(header->logicalIndex(iCharacter), 0);
-    }
 }
 
 void CombatDialog::onCharacterMoved(int, int oldVisualIndex, int newVisualIndex)
@@ -95,6 +78,7 @@ void CombatDialog::on_pushRemove_clicked()
         {
             pushRemove->setEnabled(false);
         }
+        label->setText(QApplication::translate("combatDialog", "Current character:", 0) + " <strong>"+tableWidget->verticalHeaderItem(header->logicalIndex(iCharacter))->text()+"</strong>");
     }
 }
 

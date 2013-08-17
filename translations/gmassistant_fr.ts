@@ -165,30 +165,31 @@ p, li { white-space: pre-wrap; }
         <translation>Gestionnaire de combat</translation>
     </message>
     <message>
-        <location filename="../sources/windows/CombatDialog.ui" line="36"/>
+        <location filename="../sources/windows/CombatDialog.ui" line="37"/>
         <source>Notes</source>
         <translation>Notes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/CombatDialog.ui" line="46"/>
-        <location filename="../sources/windows/CombatDialog.cpp" line="50"/>
+        <location filename="../sources/windows/CombatDialog.ui" line="47"/>
         <source>&amp;Next</source>
         <translation>&amp;Suivant</translation>
     </message>
     <message>
-        <location filename="../sources/windows/CombatDialog.ui" line="56"/>
+        <location filename="../sources/windows/CombatDialog.ui" line="57"/>
         <source>&amp;Remove</source>
         <translation>S&amp;upprimer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/CombatDialog.ui" line="63"/>
+        <location filename="../sources/windows/CombatDialog.ui" line="64"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/CombatDialog.cpp" line="41"/>
-        <source>&amp;Start</source>
-        <translation>&amp;Démarrer</translation>
+        <location filename="../sources/windows/CombatDialog.ui" line="20"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="49"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="81"/>
+        <source>Current character:</source>
+        <translation>Personnage actuel :</translation>
     </message>
 </context>
 <context>
