@@ -24,23 +24,23 @@ PropertyList::PropertyList()
 {
 }
 
-void PropertyList::toXML(xmlpp::Element &root) const
+void PropertyList::toXML(const IOConfig &config, xmlpp::Element &root) const
 {
     using namespace xmlpp;
 
     for (vector<string>::const_iterator it = vProperties.begin(); it != vProperties.end(); it++)
     {
-        Element *tmp = root.add_child("skill");
+        Element *tmp = root.add_child(config.propertyName());
         tmp->set_attribute("name",*it);
     }
 }
 
-void PropertyList::fromXML(const xmlpp::Element &root)
+void PropertyList::fromXML(const IOConfig &config, const xmlpp::Element &root)
 {
     using namespace xmlpp;
 
     clear();
-    Node::NodeList node = root.get_children("skill");
+    Node::NodeList node = root.get_children(config.propertyName());
     for (Node::NodeList::const_iterator it = node.begin(); it != node.end(); it++)
     {
         Element *elem = dynamic_cast<Element*>(*it);

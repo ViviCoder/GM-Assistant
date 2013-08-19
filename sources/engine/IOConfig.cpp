@@ -24,6 +24,14 @@ using namespace xmlpp;
 
 IOConfig::IOConfig(const Version &version): vVersion(version)
 {
+    if (vVersion < Version(1, 1))
+    {
+        bHasImages = false;
+    }
+    else
+    {
+        bHasImages = true;
+    }
     if (vVersion < Version(1, 2))
     {
         sRootName = "game";
@@ -31,6 +39,7 @@ IOConfig::IOConfig(const Version &version): vVersion(version)
         sPropertiesName = "skills";
         sImageName = "picture";
         sPropertyName = "skill";
+        bHasExpanded = false;
     }
     else
     {
@@ -39,6 +48,7 @@ IOConfig::IOConfig(const Version &version): vVersion(version)
         sPropertiesName = "properties";
         sImageName = "image";
         sPropertyName = "property";
+        bHasExpanded = true;
     }
 }
 
@@ -95,18 +105,41 @@ IOConfig IOConfig::detect(const string &fileName)
     if (!root->get_children("properties").empty())
     {
         res.sPropertiesName = "properties";
+        res.sPropertyName = "property";
     }
     else if (!root->get_children("skills").empty())
     {
         res.sPropertiesName = "skills";
+        res.sPropertyName = "skill";
     }
     if (!root->find("//item[@type='image']").empty())
     {
         res.sImageName = "image";
+        res.bHasImages = true;
     }
     else if (!root->find("//item[@type='picture']").empty())
     {
         res.sImageName = "picture";
+        res.bHasImages = true;
+    }
+    if (!root->find("//item[@expanded]").empty())
+    {
+        res.bHasExpanded = true;
     }
     return res;
+}
+
+string IOConfig::propertyName() const
+{
+    return sPropertyName;
+}
+
+bool IOConfig::hasImages() const
+{
+    return bHasImages;
+}
+
+bool IOConfig::hasExpanded() const
+{
+    return bHasExpanded;
 }

@@ -106,7 +106,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     }
     else
     {
-        lProperties.fromXML(*dynamic_cast<Element*>(node.front()));
+        lProperties.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()));
     }
     node = root->get_children("characters");
     if (node.empty())
@@ -115,7 +115,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     }
     else
     {
-        lCharacters.fromXML(*dynamic_cast<Element*>(node.front()));
+        lCharacters.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()));
     }
     node = root->get_children("history");
     if (node.empty())
@@ -159,9 +159,9 @@ void Scenario::toFile(const string &fileName) const
     tmp = root->add_child("notes");
     tmp->add_child_text(sNotes);
     tmp = root->add_child(ioConfig.propertiesName());
-    lProperties.toXML(*tmp);
+    lProperties.toXML(ioConfig, *tmp);
     tmp = root->add_child("characters");
-    lCharacters.toXML(*tmp);
+    lCharacters.toXML(ioConfig, *tmp);
     tmp = root->add_child("history");
     tHistory.toXML(ioConfig, *tmp);
     tmp = root->add_child("music");

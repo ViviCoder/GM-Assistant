@@ -77,10 +77,14 @@ string Item::typeToStr(Type type, const IOConfig &config)
 {
     switch (type)
     {
-        case tBasic:    return "basic"; break;
         case tFile:     return "file"; break;
         case tSound:    return "sound"; break;
-        case tImage:    return config.imageName(); break;
+        case tImage:    if (config.hasImages())
+                        {
+                            return config.imageName();
+                            break;
+                        }
+        case tBasic:    return "basic"; break;
     }
     return "";
 }
@@ -99,7 +103,7 @@ Item::Type Item::strToType(const string &name, const IOConfig &config) throw(xml
     if (name=="basic")  return tBasic;
     else if (name=="file") return tFile;
     else if (name=="sound") return tSound;
-    else if (name == config.imageName()) return tImage;
+    else if (config.hasImages() && name == config.imageName()) return tImage;
     else    throw xmlpp::exception("Unrecognized \""+name+"\" item type");
 }
 

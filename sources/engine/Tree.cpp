@@ -69,11 +69,18 @@ void Tree::toXML(const IOConfig &config, xmlpp::Element &root) const
     for (vector<Branch*>::const_iterator it=vChildren.begin(); it != vChildren.end(); it++)
     {
         Element *tmp = root.add_child("item");
-        tmp->set_attribute("state",Item::stateToStr((*it)->item()->state()));
-        tmp->set_attribute("type", Item::typeToStr((*it)->item()->type(), config));
-        tmp->set_attribute("content",(*it)->item()->content());
-        tmp->set_attribute("expanded",Item::boolToStr((*it)->item()->expanded()));
-        (*it)->item()->toXML(*tmp);
+        Item *item = (*it)->item();
+        tmp->set_attribute("state", Item::stateToStr(item->state()));
+        tmp->set_attribute("type", Item::typeToStr(item->type(), config));
+        tmp->set_attribute("content", item->content());
+        if (config.hasExpanded())
+        {
+            tmp->set_attribute("expanded", Item::boolToStr((*it)->item()->expanded()));
+        }
+        if (item->type() != Item::tImage || config.hasImages())
+        {
+            item->toXML(*tmp);
+        }
         (*it)->tree().toXML(config, *tmp);
     }
 }
@@ -105,11 +112,14 @@ void Tree::fromXML(const IOConfig &config, const xmlpp::Element &root, bool chec
         {
             content = attr->get_value();
         }
-        attr = elem->get_attribute("expanded");
         bool expanded = false;
-        if (attr)
+        if (config.hasExpanded())
         {
-            expanded = Item::strToBool(attr->get_value());
+            attr = elem->get_attribute("expanded");
+            if (attr)
+            {
+                expanded = Item::strToBool(attr->get_value());
+            }
         }
         Item *item = ItemFactory::createItem(type,content,state,expanded,limitedSize);
         item->fromXML(*elem, checkFiles);

@@ -40,6 +40,10 @@ class IOConfig
         std::string sImageName;
         //! Name of the XML property element
         std::string sPropertyName;
+        //! Flag of availability of image elements
+        bool bHasImages;
+        //! Flag of availability of the expanded state
+        bool bHasExpanded;
         //! Version
         Version vVersion;
     public:
@@ -68,6 +72,21 @@ class IOConfig
          * \return Name of the image element
          */
         std::string imageName() const;
+        /*!
+         * \brief Getter for the name of the property element
+         * \return Name of the property element
+         */
+        std::string propertyName() const;
+        /*!
+         * \brief Getter for the flag of availability of image elements
+         * \return Flag of availability of image elements
+         */
+        bool hasImages() const;
+        /*!
+         * \brief Getter for the flag of availability of the expanded state
+         * \return Flag of availability of the expanded state
+         */
+        bool hasExpanded() const;
         /*!
          * \brief Getter for the version
          * \return Version of the file

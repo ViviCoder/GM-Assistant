@@ -73,23 +73,23 @@ unsigned int Character::propertyNumber() const
 
 // methods
 
-void Character::toXML(xmlpp::Element &root) const
+void Character::toXML(const IOConfig &config, xmlpp::Element &root) const
 {
     using namespace xmlpp;
 
     for (vector<std::string>::const_iterator it = vProperties.begin(); it != vProperties.end(); it++)
     {
-        Element *tmp = root.add_child("skill");
+        Element *tmp = root.add_child(config.propertyName());
         tmp->set_attribute("value",*it);
     }
 }
 
-void Character::fromXML(const xmlpp::Element &root)
+void Character::fromXML(const IOConfig &config, const xmlpp::Element &root)
 {
     using namespace xmlpp;
 
     clearProperties();
-    Node::NodeList list = root.get_children("skill");
+    Node::NodeList list = root.get_children(config.propertyName());
     for (Node::NodeList::const_iterator it = list.begin(); it != list.end(); it++)
     {
         Element *elem = dynamic_cast<Element *>(*it);

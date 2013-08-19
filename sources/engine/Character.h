@@ -22,6 +22,7 @@
 #include <vector>
 #include <libxml++/libxml++.h>
 #include <stdexcept>
+#include "IOConfig.h"
 
 //! Character (PC or NPC)
 class Character
@@ -42,9 +43,18 @@ class Character
         // constructors
         Character(const std::string &name);    // for NPC
         Character(const std::string &name, const std::string &playerName);    // for PC
-        // XML-related methods
-        void toXML(xmlpp::Element &root) const;
-        void fromXML(const xmlpp::Element &root);
+        /*!
+         * \brief XML saver
+         * \param config IO configuration
+         * \param root Root of the XML tree
+         */
+        void toXML(const IOConfig &config, xmlpp::Element &root) const;
+        /*!
+         * \brief XML loader
+         * \param config IO configuration
+         * \param root Root of the XML tree
+         */
+        void fromXML(const IOConfig &config, const xmlpp::Element &root);
         /*!
          * \brief Getter of the name
          * \return Character's name

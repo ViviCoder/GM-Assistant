@@ -23,6 +23,7 @@
 #include <stdexcept>
 #include <vector>
 #include <libxml++/libxml++.h>
+#include "IOConfig.h"
 
 //! List of attributes/features/properties
 class PropertyList
@@ -40,9 +41,18 @@ class PropertyList
         };
         // constructor
         PropertyList();
-        // XML-related methods
-        void toXML(xmlpp::Element &root) const;
-        void fromXML(const xmlpp::Element &root);
+        /*!
+         * \brief XML saver
+         * \param config IO configuration
+         * \param root Root of the XML tree
+         */
+        void toXML(const IOConfig &config, xmlpp::Element &root) const;
+        /*!
+         * \brief XML loader
+         * \param config IO configuration
+         * \param root Root of the XML tree
+         */
+        void fromXML(const IOConfig &config, const xmlpp::Element &root);
         // accessor
         std::string& operator[](int index) throw(std::out_of_range);
         // populating
