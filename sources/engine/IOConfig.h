@@ -46,6 +46,8 @@ class IOConfig
         bool bHasExpanded;
         //! Version
         Version vVersion;
+        //! Flag of validity of the configuration
+        bool bValid;
     public:
         /*!
          * \brief Constructor
@@ -58,35 +60,70 @@ class IOConfig
          */
         std::string rootName() const;
         /*!
+         * \brief Setter for the name of the root element
+         * \param rootName New name of the root element
+         */
+        void setRootName(const std::string &rootName);
+        /*!
          * \brief Getter for the name of the plot element
          * \return Name of the plot element
          */
         std::string plotName() const;
+        /*!
+         * \brief Setter for the name of the plot element
+         * \param plotName New name of the plot element
+         */
+        void setPlotName(const std::string &plotName);
         /*!
          * \brief Getter for the name of the properties element
          * \return Name of the properties element
          */
         std::string propertiesName() const;
         /*!
+         * \brief Setter for the name of the properties element
+         * \param propertiesName New name of the properties element
+         */
+        void setPropertiesName(const std::string &propertiesName);
+        /*!
          * \brief Getter for the name of the image element
          * \return Name of the image element
          */
         std::string imageName() const;
+        /*!
+         * \brief Setter for the name of the image element
+         * \param imageName New name of the image element
+         */
+        void setImageName(const std::string &imageName);
         /*!
          * \brief Getter for the name of the property element
          * \return Name of the property element
          */
         std::string propertyName() const;
         /*!
+         * \brief Setter for the name of the property element
+         * \param propertyName New name of the property element
+         */
+        void setPropertyName(const std::string &propertyName);
+        /*!
          * \brief Getter for the flag of availability of image elements
          * \return Flag of availability of image elements
          */
         bool hasImages() const;
         /*!
+         * \brief Setter for the flag of availability of image elements
+         * \param hasImages New flag of availability of image elements
+         */
+        void setHasImages(bool hasImages);
+        /*!
          * \brief Getter for the flag of availability of the expanded state
          * \return Flag of availability of the expanded state
          */
         bool hasExpanded() const;
+        /*!
+         * \brief Setter for the flag of availability of the expanded state
+         * \param hasExpanded New flag of availability of the expanded state
+         */
+        void setHasExpanded(bool hasExpanded);
         /*!
          * \brief Getter for the version
          * \return Version of the file
@@ -98,6 +135,11 @@ class IOConfig
          * \return Pointer to an IO configuration corresponding to the given file
          */
         static IOConfig detect(const std::string &fileName);
+        /*!
+         * \brief Getter for the flag of validity
+         * \return Validity of the configuration
+         */
+        bool isValid() const;
 };
 
 #endif

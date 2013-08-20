@@ -22,7 +22,7 @@
 using namespace std;
 using namespace xmlpp;
 
-IOConfig::IOConfig(const Version &version): vVersion(version)
+IOConfig::IOConfig(const Version &version): vVersion(version), bValid(true)
 {
     if (vVersion < Version(1, 1))
     {
@@ -92,39 +92,39 @@ IOConfig IOConfig::detect(const string &fileName)
     string newRoot = root->get_name();
     if (newRoot == "game" || newRoot == "scenario")
     {
-        res.sRootName = newRoot;
+        res.setRootName(newRoot);
     }
     if (!root->get_children("plot").empty())
     {
-        res.sPlotName = "plot";
+        res.setPlotName("plot");
     }
     else if (!root->get_children("scenario").empty())
     {
-        res.sPlotName = "scenario";
+        res.setPlotName("scenario");
     }
     if (!root->get_children("properties").empty())
     {
-        res.sPropertiesName = "properties";
-        res.sPropertyName = "property";
+        res.setPropertiesName("properties");
+        res.setPropertyName("property");
     }
     else if (!root->get_children("skills").empty())
     {
-        res.sPropertiesName = "skills";
-        res.sPropertyName = "skill";
+        res.setPropertiesName("skills");
+        res.setPropertyName("skill");
     }
     if (!root->find("//item[@type='image']").empty())
     {
-        res.sImageName = "image";
-        res.bHasImages = true;
+        res.setImageName("image");
+        res.setHasImages(true);
     }
     else if (!root->find("//item[@type='picture']").empty())
     {
-        res.sImageName = "picture";
-        res.bHasImages = true;
+        res.setImageName("picture");
+        res.setHasImages(true);
     }
     if (!root->find("//item[@expanded]").empty())
     {
-        res.bHasExpanded = true;
+        res.setHasExpanded(true);
     }
     return res;
 }
@@ -142,4 +142,72 @@ bool IOConfig::hasImages() const
 bool IOConfig::hasExpanded() const
 {
     return bHasExpanded;
+}
+
+bool IOConfig::isValid() const
+{
+    return bValid;
+}
+
+void IOConfig::setRootName(const string &rootName)
+{
+    if (rootName != sRootName)
+    {
+        sRootName = rootName;
+        bValid = false;
+    }
+}
+
+void IOConfig::setPlotName(const string &plotName)
+{
+    if (plotName != sPlotName)
+    {
+        sPlotName = plotName;
+        bValid = false;
+    }
+}
+
+void IOConfig::setPropertiesName(const string &propertiesName)
+{
+    if (propertiesName != sPropertiesName)
+    {
+        sPropertiesName = propertiesName;
+        bValid = false;
+    }
+}
+
+void IOConfig::setPropertyName(const string &propertyName)
+{
+    if (propertyName != sPropertyName)
+    {
+        sPropertyName = propertyName;
+        bValid = false;
+    }
+}
+
+void IOConfig::setImageName(const string &imageName)
+{
+    if (imageName != sImageName)
+    {
+        sImageName = imageName;
+        bValid = false;
+    }
+}
+
+void IOConfig::setHasImages(bool hasImages)
+{
+    if (hasImages != bHasImages)
+    {
+        bHasImages = hasImages;
+        bValid = false;
+    }
+}
+
+void IOConfig::setHasExpanded(bool hasExpanded)
+{
+    if (hasExpanded != bHasExpanded)
+    {
+        bHasExpanded = hasExpanded;
+        bValid = false;
+    }
 }
