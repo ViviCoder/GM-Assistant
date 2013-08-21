@@ -260,3 +260,13 @@ void Scenario::setUserInterface(Scenario::UserInterface interface)
 {
     uiInterface = interface;
 }
+
+IOConfig Scenario::configuration() const
+{
+    return ioConfig;
+}
+
+void Scenario::setVersion(const Version &version)
+{
+    ioConfig = IOConfig(version);
+}

@@ -308,6 +308,14 @@ void MainWindow::on_action_Load_triggered()
             addRecent(file);
             sFileName = file;
             updateUndoRedo();
+            if (!eGame.configuration().isValid())
+            {
+                if (QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The syntax of the game you have just loaded is not rigourously correct. Would you like to fix it now?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
+                {
+                    eGame.setVersion(eGame.configuration().version());
+                    on_action_Save_triggered();
+                }
+            }
         }
     }
 }
@@ -322,6 +330,10 @@ void MainWindow::on_action_Save_triggered()
     {
         try
         {
+            if (eGame.configuration().version() < Version() && QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The game you want to save does not use the latest version of GM-Assistant files. Do you want to update it? If no, some features may not be saved properly."), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
+            {
+                eGame.setVersion(Version());
+            }
             eGame.toFile(sFileName.toStdString());
             mqQueue.save();
             action_Save->setEnabled(false);
@@ -336,12 +348,15 @@ void MainWindow::on_action_Save_triggered()
 
 void MainWindow::on_actionS_ave_as_triggered()
 {
-    QFileDialog *dial = new QFileDialog(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0));
+    QFileDialog *dial = new QFileDialog(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (1.2) (*.gma);;GM-Assistant files (1.1) (*.gma);;GM-Assistant files (1.0) (*.xml)",0));
     dial->setAcceptMode(QFileDialog::AcceptSave);
     if (dial->exec() == QFileDialog::Accepted)
     {
         QString file = dial->selectedFiles()[0]; 
         // adding the suffix if not present
+        QString sVersion = dial->selectedNameFilter().right(12);
+        sVersion = sVersion.left(sVersion.indexOf(')'));
+        Version version(sVersion.toStdString());
         QString suffix = dial->selectedNameFilter().right(5).left(4);
         if (!file.endsWith(suffix))
         {
@@ -349,6 +364,11 @@ void MainWindow::on_actionS_ave_as_triggered()
         }
         try
         {
+            if (version < Version() && QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The game you want to save does not use the latest version of GM-Assistant files. Do you want to update it? If no, some features may not be saved properly."), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
+            {
+                version = Version();
+            }
+            eGame.setVersion(version);
             eGame.toFile(file.toStdString());
             mqQueue.save();
             action_Save->setEnabled(false);
@@ -525,6 +545,14 @@ void MainWindow::on_action_Reload_triggered()
         updateDisplay();
         mqQueue.clear();
         updateUndoRedo();
+        if (!eGame.configuration().isValid())
+        {
+            if (QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The syntax of the game you have just loaded is not rigourously correct. Would you like to fix it now?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
+            {
+                eGame.setVersion(eGame.configuration().version());
+                on_action_Save_triggered();
+            }
+        }
     }
 }
 

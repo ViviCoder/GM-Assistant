@@ -106,6 +106,18 @@ class Scenario
          * \throw std::invalid_argument Exception thrown when the string does not correspond to any user interface
          */
         static UserInterface stringToInterface(const std::string& interface) throw(std::invalid_argument);
+        /*!
+         * \brief Getter for the IO configuration
+         * \return IO configuration
+         */
+        IOConfig configuration() const;
+        /*!
+         * \brief Setter for the IO configuration version
+         * \param version Version
+         *
+         * Sets the IO configuration to the default for the given version
+         */
+        void setVersion(const Version &version);
     private:
         Tree tPlot, tHistory, tMusic, tEffects;
         std::string sNotes;
