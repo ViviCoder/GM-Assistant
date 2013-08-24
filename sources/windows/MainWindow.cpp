@@ -29,7 +29,7 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 
-MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(this), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), audioFilter(new QAudioProxyModel(this, install_dir)), pItemDialog(new ItemDialog(this, audioFilter))
+MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(this), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), audioFilter(new QAudioProxyModel(this, install_dir)), pItemDialog(new ItemDialog(this, audioFilter)), pMetadataDialog(new MetadataDialog(this))
 {
     setupUi(this);
     updateDisplay();
@@ -833,4 +833,9 @@ void MainWindow::onMusicFinished()
 void MainWindow::displayError(const QString &message)
 {
     QMessageBox::critical(this, QApplication::translate("mainWindow", "Error", 0), message);
+}
+
+void MainWindow::on_action_Metadata_triggered()
+{
+    pMetadataDialog->exec();
 }

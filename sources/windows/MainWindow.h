@@ -29,6 +29,7 @@
 #include <QSignalMapper>
 #include "ModificationQueue.h"
 #include "ItemDialog.h"
+#include "MetadataDialog.h"
 
 // number of recently opened games stored
 #define RECENT_NUMBER   5
@@ -85,6 +86,8 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         QAudioProxyModel *audioFilter;
         //! Item editor
         ItemDialog *pItemDialog;
+        //! Metadata editor
+        MetadataDialog *pMetadataDialog;
     protected:
         // overriden methods
         /*!
@@ -334,9 +337,16 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void onMusicFinished();
         /*!
          * \brief Slot for error messages
-         * \param message MEssage to display
+         * \param message Message to display
          */
         void displayError(const QString &message);
+        /*!
+         * \brief Slot for the Metadata menu item
+         *
+         * Displays the metadata editor
+         */
+        void on_action_Metadata_triggered();
+
 };
 
 #endif
