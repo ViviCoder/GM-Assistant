@@ -23,6 +23,7 @@
 #include "CharacterList.h"
 #include "PropertyList.h"
 #include "IOConfig.h"
+#include "Metadata.h"
 
 /*!
  * \brief Game scenario
@@ -118,6 +119,16 @@ class Scenario
          * Sets the IO configuration to the default for the given version
          */
         void setVersion(const Version &version);
+        /*!
+         * \brief Getter for the metadata
+         * \return Metadata of the game
+         */
+        Metadata metadata() const;
+        /*!
+         * \brief Setter for the metadata
+         * \param metadata New metadata
+         */
+        void setMetadata(const Metadata &metadata);
     private:
         Tree tPlot, tHistory, tMusic, tEffects;
         std::string sNotes;
@@ -127,6 +138,8 @@ class Scenario
         UserInterface uiInterface;
         //! IO configuration
         IOConfig ioConfig;
+        //! Metadata
+        Metadata mMetadata;
 };
 
 #endif

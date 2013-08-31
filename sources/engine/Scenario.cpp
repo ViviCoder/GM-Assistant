@@ -73,7 +73,16 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
         throw xmlpp::exception("Bad user interface");
     }
     // now loading the different parts of the game
-    Node::NodeList node = root->get_children(ioConfig.plotName());
+    Node::NodeList node;
+    if (ioConfig.hasMetadata())
+    {
+        node = root->get_children("metadata");
+        if (!node.empty())
+        {
+            mMetadata.fromXML(*dynamic_cast<Element*>(node.front()));
+        }
+    }
+    node = root->get_children(ioConfig.plotName());
     if (node.empty())
     {
         throw xmlpp::exception("Missing \"" + ioConfig.plotName() + "\" section");
@@ -154,7 +163,13 @@ void Scenario::toFile(const string &fileName) const
     Element *root = document.create_root_node(ioConfig.rootName());
     root->set_attribute("version",ioConfig.version().shortVersion());
     root->set_attribute("interface",interfaceToString(uiInterface));
-    Element *tmp = root->add_child(ioConfig.plotName());
+    Element *tmp;
+    if (ioConfig.hasMetadata())
+    {
+       tmp = root->add_child("metadata");
+       mMetadata.toXML(*tmp);
+    }
+    tmp = root->add_child(ioConfig.plotName());
     tPlot.toXML(ioConfig, *tmp);
     tmp = root->add_child("notes");
     tmp->add_child_text(sNotes);
@@ -211,6 +226,7 @@ void Scenario::clear()
     lCharacters.clear();
     uiInterface = uiFull;
     ioConfig = IOConfig(Version());
+    mMetadata = Metadata();
 }
 
 CharacterList& Scenario::characters()
@@ -269,4 +285,14 @@ IOConfig Scenario::configuration() const
 void Scenario::setVersion(const Version &version)
 {
     ioConfig = IOConfig(version);
+}
+
+Metadata Scenario::metadata() const
+{
+    return mMetadata;
+}
+
+void Scenario::setMetadata(const Metadata &metadata)
+{
+    mMetadata = metadata;
 }

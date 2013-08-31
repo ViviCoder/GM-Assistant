@@ -48,6 +48,8 @@ class IOConfig
         Version vVersion;
         //! Flag of validity of the configuration
         bool bValid;
+        //! Flag of availability of metadata
+        bool bHasMetadata;
     public:
         /*!
          * \brief Constructor
@@ -140,6 +142,16 @@ class IOConfig
          * \return Validity of the configuration
          */
         bool isValid() const;
+        /*!
+         * \brief Getter for the flag of availability of metadata
+         * \return Flag of availability of metadata
+         */
+        bool hasMetadata() const;
+        /*!
+         * \brief Setter for the flag of availability of metadata
+         * \param hadMetadata New flag of availability of metadata
+         */
+        void setHasMetadata(bool hadMetadata);
 };
 
 #endif

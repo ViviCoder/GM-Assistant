@@ -40,6 +40,7 @@ IOConfig::IOConfig(const Version &version): vVersion(version), bValid(true)
         sImageName = "picture";
         sPropertyName = "skill";
         bHasExpanded = false;
+        bHasMetadata = false;
     }
     else
     {
@@ -49,6 +50,7 @@ IOConfig::IOConfig(const Version &version): vVersion(version), bValid(true)
         sImageName = "image";
         sPropertyName = "property";
         bHasExpanded = true;
+        bHasMetadata = true;
     }
 }
 
@@ -93,6 +95,10 @@ IOConfig IOConfig::detect(const string &fileName)
     if (newRoot == "game" || newRoot == "scenario")
     {
         res.setRootName(newRoot);
+    }
+    if (!root->get_children("metadata").empty())
+    {
+        res.setHasMetadata(true);
     }
     if (!root->get_children("plot").empty())
     {
@@ -208,6 +214,20 @@ void IOConfig::setHasExpanded(bool hasExpanded)
     if (hasExpanded != bHasExpanded)
     {
         bHasExpanded = hasExpanded;
+        bValid = false;
+    }
+}
+
+bool IOConfig::hasMetadata() const
+{
+    return bHasMetadata;
+}
+
+void IOConfig::setHasMetadata(bool hasMetadata)
+{
+    if (hasMetadata != bHasMetadata)
+    {
+        bHasMetadata = hasMetadata;
         bValid = false;
     }
 }
