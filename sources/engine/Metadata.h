@@ -131,7 +131,7 @@ class Metadata
         Date gameDate() const;
         /*!
          * \brief Setter for the game date
-         * \param New game date
+         * \param gameDate New game date
          */
         void setGameDate(const Date &gameDate);
         /*!

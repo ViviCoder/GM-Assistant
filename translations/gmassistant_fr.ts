@@ -1151,22 +1151,22 @@ p, li { white-space: pre-wrap; }
         <translation>Auteur</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MetadataDialog.ui" line="55"/>
+        <location filename="../sources/windows/MetadataDialog.ui" line="59"/>
         <source>Creation date</source>
         <translation>Date de création</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MetadataDialog.ui" line="62"/>
+        <location filename="../sources/windows/MetadataDialog.ui" line="66"/>
         <source>Description</source>
         <translation>Description</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MetadataDialog.ui" line="72"/>
+        <location filename="../sources/windows/MetadataDialog.ui" line="76"/>
         <source>Players</source>
         <translation>Joueurs</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MetadataDialog.ui" line="85"/>
+        <location filename="../sources/windows/MetadataDialog.ui" line="93"/>
         <source>Game date</source>
         <translation>Date de jeu</translation>
     </message>

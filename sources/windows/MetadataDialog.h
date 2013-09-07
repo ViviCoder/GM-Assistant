@@ -20,12 +20,16 @@
 #define HEADER_METADATADIALOG
 
 #include "ui_MetadataDialog.h"
+#include "Metadata.h"
 
 /*!
  * \brief Metadata editor
  */
 class MetadataDialog: public QDialog, private Ui::metadataDialog
 {
+    private:
+        //! Underlying metadata
+        Metadata mMetadata;
     protected:
         /*!
          * \brief ChangeEvent handler
@@ -40,6 +44,23 @@ class MetadataDialog: public QDialog, private Ui::metadataDialog
          * \param parent Parent widget
          */
         MetadataDialog(QWidget *parent = 0);
+        /*!
+         * \brief Execution of the dialog window
+         * \param metadata Current metadata
+         * \return Result of the execution
+         */
+        int exec(const Metadata &metadata);
+        /*!
+         * \brief Slot for when the modifications have been accepted
+         *
+         * Modifies the underlying metadata
+         */
+        void accept();
+        /*!
+         * \brief Getter for the metadata
+         * \return Metadata
+         */
+        Metadata metadata() const;
 };
 
 #endif

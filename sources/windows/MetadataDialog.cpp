@@ -30,3 +30,42 @@ void MetadataDialog::changeEvent(QEvent *e)
         retranslateUi(this);
     }    
 }
+
+int MetadataDialog::exec(const Metadata &metadata)
+{
+    mMetadata = metadata;
+    // Updating the widgets
+    lineTitle->setText(metadata.title().c_str());
+    lineAuthor->setText(metadata.author().c_str());
+    // Creation date
+    Metadata::Date date = metadata.creationDate();
+    QDate qDate(date.year(), date.month(), date.day());
+    dateCreation->setDate(qDate);
+    textDescription->setText(metadata.description().c_str());
+    linePlayers->setText(metadata.players().c_str());
+    // Game date
+    date = metadata.gameDate();
+    qDate = QDate(date.year(), date.month(), date.day());
+    dateGame->setDate(qDate);
+    
+    return QDialog::exec();
+}
+
+void MetadataDialog::accept()
+{
+    mMetadata.setTitle(lineTitle->text().toStdString());
+    mMetadata.setAuthor(lineAuthor->text().toStdString());
+    QDate qDate = dateCreation->date();
+    mMetadata.setCreationDate(Metadata::Date(qDate.day(), qDate.month(), qDate.year()));
+    mMetadata.setDescription(textDescription->toPlainText().toStdString());
+    mMetadata.setPlayers(linePlayers->text().toStdString());
+    qDate = dateGame->date();
+    mMetadata.setCreationDate(Metadata::Date(qDate.day(), qDate.month(), qDate.year()));
+    // parent
+    QDialog::accept();
+}
+
+Metadata MetadataDialog::metadata() const
+{
+    return mMetadata;
+}

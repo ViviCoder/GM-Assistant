@@ -837,5 +837,8 @@ void MainWindow::displayError(const QString &message)
 
 void MainWindow::on_action_Metadata_triggered()
 {
-    pMetadataDialog->exec();
+    if (pMetadataDialog->exec(eGame.metadata()) == QDialog::Accepted)
+    {
+        eGame.setMetadata(pMetadataDialog->metadata());
+    }
 }
