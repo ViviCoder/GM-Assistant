@@ -64,6 +64,12 @@ class Metadata
                  * \return Year
                  */
                 int year() const;
+                /*!
+                 * \brief Comparison operator
+                 * \param date Date to compare with
+                 * \return True if both are different, false otherwise
+                 */
+                bool operator!=(const Date &date) const;
             private:
                 //! Day
                 int iDay;
@@ -144,6 +150,12 @@ class Metadata
          * \param root Root of the XML tree
          */
         void toXML(xmlpp::Element &root) const;
+        /*!
+         * \brief Comparison operator
+         * \param metadata Metadata to compare with
+         * \return True if both are different, false otherwise
+         */
+        bool operator!=(const Metadata &metadata) const;
     private:
         //! Title of the game
         std::string sTitle;

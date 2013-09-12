@@ -28,6 +28,7 @@
 #include <QTextStream>
 #include <QLibraryInfo>
 #include <QTranslator>
+#include "MetadataModification.h"
 
 MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(this), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), audioFilter(new QAudioProxyModel(this, install_dir)), pItemDialog(new ItemDialog(this, audioFilter)), pMetadataDialog(new MetadataDialog(this))
 {
@@ -697,20 +698,25 @@ void MainWindow::updateUndoRedo()
     action_Redo->setEnabled(mqQueue.redoable());
     bool modified = !mqQueue.isUpToDate() || textNotes->unregisteredModification();
     action_Save->setEnabled(modified);
-    QString title("GM-Assistant - ");
-    if (sFileName.isEmpty())
+    QString windowTitle("GM-Assistant - ");
+    QString title(eGame.metadata().title().c_str());
+    if (!title.isEmpty())
     {
-        title += QApplication::translate("mainWindow", "New game", 0);
+        windowTitle += title;
+    }
+    else if (sFileName.isEmpty())
+    {
+        windowTitle += QApplication::translate("mainWindow", "New game", 0);
     }
     else
     {
-        title += QFileInfo(sFileName).fileName();
+        windowTitle += QFileInfo(sFileName).fileName();
     }
     if (modified)
     {
-        title += "*";
+        windowTitle += "*";
     }
-    setWindowTitle(title);
+    setWindowTitle(windowTitle);
 }
 
 bool MainWindow::eventFilter(QObject *source, QEvent *e)
@@ -837,8 +843,15 @@ void MainWindow::displayError(const QString &message)
 
 void MainWindow::on_action_Metadata_triggered()
 {
-    if (pMetadataDialog->exec(eGame.metadata()) == QDialog::Accepted)
+    Metadata &metadata = eGame.metadata();
+    Metadata oldMetadata(metadata);
+    if (pMetadataDialog->exec(oldMetadata) == QDialog::Accepted)
     {
-        eGame.setMetadata(pMetadataDialog->metadata());
+        Metadata newMetadata = pMetadataDialog->metadata();
+        if (oldMetadata != newMetadata)
+        {
+            metadata = newMetadata;
+            registerModification(new MetadataModification(metadata, newMetadata, oldMetadata));
+        }
     }
 }

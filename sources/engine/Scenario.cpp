@@ -287,12 +287,7 @@ void Scenario::setVersion(const Version &version)
     ioConfig = IOConfig(version);
 }
 
-Metadata Scenario::metadata() const
+Metadata& Scenario::metadata()
 {
     return mMetadata;
-}
-
-void Scenario::setMetadata(const Metadata &metadata)
-{
-    mMetadata = metadata;
 }

@@ -123,12 +123,7 @@ class Scenario
          * \brief Getter for the metadata
          * \return Metadata of the game
          */
-        Metadata metadata() const;
-        /*!
-         * \brief Setter for the metadata
-         * \param metadata New metadata
-         */
-        void setMetadata(const Metadata &metadata);
+        Metadata& metadata();
     private:
         Tree tPlot, tHistory, tMusic, tEffects;
         std::string sNotes;

@@ -49,7 +49,9 @@ class Modification
             //! Character or property
             tCharacter,
             //! Note
-            tNote
+            tNote,
+            //! Metadata
+            tMetadata
         };
         /*!
          *  \brief Default constructor

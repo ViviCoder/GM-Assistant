@@ -169,6 +169,11 @@ void Metadata::toXML(xmlpp::Element &root) const
     tmp->set_attribute("date", bufGame.str());
 }
 
+bool Metadata::operator!=(const Metadata &metadata) const
+{
+    return (sTitle != metadata.sTitle || sAuthor != metadata.sAuthor || dCreation != metadata.dCreation || sDescription != metadata.sDescription || sPlayers != metadata.sPlayers || dGame != metadata.dGame);
+}
+
 // Date methods
 
 Metadata::Date::Date()
@@ -208,4 +213,9 @@ Metadata::Date::Date(const string &date)
     buf >> iMonth;
     buf.ignore(1);
     buf >> iYear;
+}
+
+bool Metadata::Date::operator!=(const Date &date) const
+{
+    return (iDay != date.iDay || iMonth != date.iMonth || iYear != date.iYear);
 }
