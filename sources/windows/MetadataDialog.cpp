@@ -60,7 +60,7 @@ void MetadataDialog::accept()
     mMetadata.setDescription(textDescription->toPlainText().toStdString());
     mMetadata.setPlayers(linePlayers->text().toStdString());
     qDate = dateGame->date();
-    mMetadata.setCreationDate(Metadata::Date(qDate.day(), qDate.month(), qDate.year()));
+    mMetadata.setGameDate(Metadata::Date(qDate.day(), qDate.month(), qDate.year()));
     // parent
     QDialog::accept();
 }
