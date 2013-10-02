@@ -186,8 +186,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/CombatDialog.ui" line="20"/>
-        <location filename="../sources/windows/CombatDialog.cpp" line="49"/>
-        <location filename="../sources/windows/CombatDialog.cpp" line="81"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="59"/>
         <source>Current character:</source>
         <translation>Personnage actuel :</translation>
     </message>

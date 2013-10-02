@@ -28,29 +28,38 @@ CombatDialog::CombatDialog(QWidget *parent): QDialog(parent)
 
 void CombatDialog::show(const QStringList &list)
 {
-    iCharacter = -1;
+    iCharacter = 0;
     tableWidget->setRowCount(0);
     tableWidget->setRowCount(list.size());
     int i = 0;
     for (QStringList::const_iterator it = list.begin(); it != list.end(); it++)
     {
-        QTableWidgetItem *item = new QTableWidgetItem(*it);
-        tableWidget->setVerticalHeaderItem(i, item);
+        QTableWidgetItem *headerItem = new QTableWidgetItem(*it);
+        QTableWidgetItem *item = new QTableWidgetItem("");
+        tableWidget->setVerticalHeaderItem(i, headerItem);
+        tableWidget->setItem(i, 0, item);
         i++;
     }
     pushRemove->setEnabled(tableWidget->rowCount() > 2);
-    on_pushNext_clicked();
+    updateDisplay();
     QDialog::show();
 }
 
 void CombatDialog::on_pushNext_clicked()
 {
+    tableWidget->item(header->logicalIndex(iCharacter), 0)->setBackground(QPalette().color(QPalette::Base));
     iCharacter = (iCharacter + 1) % tableWidget->rowCount();
-    label->setText(QApplication::translate("combatDialog", "Current character:", 0) + " <strong>"+tableWidget->verticalHeaderItem(header->logicalIndex(iCharacter))->text()+"</strong>");
-    tableWidget->setCurrentCell(header->logicalIndex(iCharacter), 0);
+    updateDisplay();
 }
 
-void CombatDialog::onCharacterMoved(int, int oldVisualIndex, int newVisualIndex)
+void CombatDialog::updateDisplay()
+{
+    int logical = header->logicalIndex(iCharacter);
+    tableWidget->item(logical, 0)->setBackground(QPalette().color(QPalette::ToolTipBase));
+    label->setText(QApplication::translate("combatDialog", "Current character:", 0) + " <strong>"+tableWidget->verticalHeaderItem(logical)->text()+"</strong>");
+}
+
+void CombatDialog::onCharacterMoved(int logicalIndex, int oldVisualIndex, int newVisualIndex)
 {
     if (oldVisualIndex < iCharacter && newVisualIndex >= iCharacter)
     {
@@ -60,25 +69,37 @@ void CombatDialog::onCharacterMoved(int, int oldVisualIndex, int newVisualIndex)
     {
         iCharacter++;
     }
-    tableWidget->setCurrentCell(header->logicalIndex(iCharacter), 0);
+    else if (oldVisualIndex == iCharacter)
+    {
+        tableWidget->item(logicalIndex, 0)->setBackground(QPalette().color(QPalette::Base));
+        if (newVisualIndex < iCharacter)
+        {
+            on_pushNext_clicked();
+        }
+        else
+        {
+            updateDisplay();
+        }
+    }
 }
 
 void CombatDialog::on_pushRemove_clicked()
 {
+    tableWidget->item(header->logicalIndex(iCharacter), 0)->setBackground(QPalette().color(QPalette::Base));
     int n = tableWidget->rowCount();
     if (n > 2)
     {
-        tableWidget->removeRow(tableWidget->currentRow());
-        if (iCharacter == n-1)
+        int row = tableWidget->currentRow();
+        tableWidget->removeRow(row);
+        if (iCharacter > row)
         {
-            iCharacter = 0;
+            iCharacter--;
         }
-        tableWidget->setCurrentCell(header->logicalIndex(iCharacter), 0);
         if (n == 3)
         {
             pushRemove->setEnabled(false);
         }
-        label->setText(QApplication::translate("combatDialog", "Current character:", 0) + " <strong>"+tableWidget->verticalHeaderItem(header->logicalIndex(iCharacter))->text()+"</strong>");
+        updateDisplay();
     }
 }
 

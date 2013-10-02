@@ -70,6 +70,10 @@ class CombatDialog: public QDialog, private Ui::combatDialog
          * Deletes the current character
          */
         void on_pushRemove_clicked();
+        /*!
+         * \brief Slot to update the display
+         */
+        void updateDisplay();
 };
 
 #endif
