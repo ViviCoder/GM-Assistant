@@ -30,6 +30,7 @@
 #include "ModificationQueue.h"
 #include "ItemDialog.h"
 #include "MetadataDialog.h"
+#include "FileDetector.h"
 
 // number of recently opened games stored
 #define RECENT_NUMBER   5
@@ -40,10 +41,6 @@
 class MainWindow: public QMainWindow, private Ui::mainWindow
 {
     private:
-        /*!
-         * \brief Scenario
-         */
-        Scenario eGame;
         //! Sound engine
         QSoundEngine soundEngine;
         /*!
@@ -82,12 +79,16 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         QString sInstall;
         //! Signal mapper for the available languages
         QSignalMapper *smLanguage;
+        //! Metadata editor
+        MetadataDialog *pMetadataDialog;
+        //! File detector
+        FileDetector detector;
+        //! Scenario
+        Scenario sGame;
         //! Audio filter
         QAudioProxyModel *audioFilter;
         //! Item editor
         ItemDialog *pItemDialog;
-        //! Metadata editor
-        MetadataDialog *pMetadataDialog;
     protected:
         // overriden methods
         /*!

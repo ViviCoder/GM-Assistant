@@ -30,7 +30,7 @@
 #include <QTranslator>
 #include "MetadataModification.h"
 
-MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(this), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), audioFilter(new QAudioProxyModel(this, install_dir)), pItemDialog(new ItemDialog(this, audioFilter)), pMetadataDialog(new MetadataDialog(this))
+MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(this), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), detector(install_dir.toStdString()), sGame(&detector), audioFilter(new QAudioProxyModel(this, &detector)), pItemDialog(new ItemDialog(this, audioFilter))
 {
     setupUi(this);
     updateDisplay();
@@ -206,7 +206,7 @@ void MainWindow::on_actionMusic_triggered()
     GridLayout->addWidget(gbSound,0,1);
     gbMusic->show();
     gbSound->show();
-    eGame.setUserInterface(Scenario::uiMusic);
+    sGame.setUserInterface(Scenario::uiMusic);
     actionMusic->setChecked(true);
 }
 
@@ -225,7 +225,7 @@ void MainWindow::on_actionFull_triggered()
     gbHistory->show();
     gbMusic->show();
     gbSound->show();
-    eGame.setUserInterface(Scenario::uiFull);
+    sGame.setUserInterface(Scenario::uiFull);
     actionFull->setChecked(true);
 }
 
@@ -238,7 +238,7 @@ void MainWindow::on_actionSimple_triggered()
     gbPlot->show();
     gbMusic->show();
     gbSound->show();
-    eGame.setUserInterface(Scenario::uiSimple);
+    sGame.setUserInterface(Scenario::uiSimple);
     actionSimple->setChecked(true);
 }
 
@@ -251,7 +251,7 @@ void MainWindow::on_actionDesign_triggered()
     gbPlot->show();
     gbCharacter->show();
     gbNote->show();
-    eGame.setUserInterface(Scenario::uiDesign);
+    sGame.setUserInterface(Scenario::uiDesign);
     actionDesign->setChecked(true);
 }
 
@@ -266,7 +266,7 @@ void MainWindow::on_actionNoMusic_triggered()
     gbHistory->show();
     gbCharacter->show();
     gbNote->show();
-    eGame.setUserInterface(Scenario::uiNoMusic);
+    sGame.setUserInterface(Scenario::uiNoMusic);
     actionNoMusic->setChecked(true);
 }
 
@@ -291,29 +291,29 @@ void MainWindow::on_action_Load_triggered()
             QDir::setCurrent(QFileInfo(file).dir().path());
             try
             {
-                eGame.fromFile(file.toStdString());
+                sGame.fromFile(file.toStdString());
             }
             catch (xmlpp::exception &xml)
             {
                 QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
-                eGame.clear();
+                sGame.clear();
                 file = "";
             }
             catch (std::exception &e)
             {
                 QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QApplication::translate("mainWindow","The game cannot be loaded correctly for the following reason: ",0) + "\n\n" + QString(e.what()) + "\n\n" + QApplication::translate("mainWindow","The game will be loaded anyway, but some features might not work properly.",0));
-                eGame.fromFile(file.toStdString(), false);
+                sGame.fromFile(file.toStdString(), false);
             }
             updateDisplay();
             mqQueue.clear();
             addRecent(file);
             sFileName = file;
             updateUndoRedo();
-            if (!eGame.configuration().isValid())
+            if (!sGame.configuration().isValid())
             {
                 if (QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The syntax of the game you have just loaded is not rigourously correct. Would you like to fix it now?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
                 {
-                    eGame.setVersion(eGame.configuration().version());
+                    sGame.setVersion(sGame.configuration().version());
                     on_action_Save_triggered();
                 }
             }
@@ -331,11 +331,11 @@ void MainWindow::on_action_Save_triggered()
     {
         try
         {
-            if (eGame.configuration().version() < Version() && QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The game you want to save does not use the latest version of GM-Assistant files. Do you want to update it? If no, some features may not be saved properly."), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
+            if (sGame.configuration().version() < Version() && QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The game you want to save does not use the latest version of GM-Assistant files. Do you want to update it? If no, some features may not be saved properly."), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
             {
-                eGame.setVersion(Version());
+                sGame.setVersion(Version());
             }
-            eGame.toFile(sFileName.toStdString());
+            sGame.toFile(sFileName.toStdString());
             mqQueue.save();
             action_Save->setEnabled(false);
             updateUndoRedo();
@@ -369,8 +369,8 @@ void MainWindow::on_actionS_ave_as_triggered()
             {
                 version = Version();
             }
-            eGame.setVersion(version);
-            eGame.toFile(file.toStdString());
+            sGame.setVersion(version);
+            sGame.toFile(file.toStdString());
             mqQueue.save();
             action_Save->setEnabled(false);
             addRecent(file);
@@ -390,8 +390,8 @@ void MainWindow::on_action_New_triggered()
 {
     if (canClose())
     {
-        eGame.clear();
-        eGame.setUserInterface(Scenario::uiFull);
+        sGame.clear();
+        sGame.setUserInterface(Scenario::uiFull);
         updateDisplay();
         mqQueue.clear();
         addRecent("");
@@ -402,7 +402,7 @@ void MainWindow::on_action_New_triggered()
 
 void MainWindow::updateDisplay()
 {
-    switch (eGame.userInterface())
+    switch (sGame.userInterface())
     {
         case Scenario::uiFull:    on_actionFull_triggered();
                                 break;
@@ -415,12 +415,12 @@ void MainWindow::updateDisplay()
         case Scenario::uiNoMusic: on_actionNoMusic_triggered();
                                 break;
     }
-    treePlot->setTree(&eGame.plot());
-    textNotes->setNotes(&eGame.notes());
-    treeHistory->setTree(&eGame.history());
-    treeMusic->setTree(&eGame.music());
-    treeFX->setTree(&eGame.effects());
-    tableStats->setLists(&eGame.properties(),&eGame.characters());
+    treePlot->setTree(&sGame.plot());
+    textNotes->setNotes(&sGame.notes());
+    treeHistory->setTree(&sGame.history());
+    treeMusic->setTree(&sGame.music());
+    treeFX->setTree(&sGame.effects());
+    tableStats->setLists(&sGame.properties(),&sGame.characters());
     soundEngine.stop();
     siCurrentMusic = 0;
     checkRepeat->setChecked(false);
@@ -530,27 +530,27 @@ void MainWindow::on_action_Reload_triggered()
         QDir::setCurrent(file.dir().path());
         try
         {
-            eGame.fromFile(sFileName.toStdString());
+            sGame.fromFile(sFileName.toStdString());
         }
         catch (xmlpp::exception &xml)
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
-            eGame.clear();
+            sGame.clear();
             sFileName = "";
         }
         catch (std::exception &e)
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QApplication::translate("mainWindow","The game cannot be loaded correctly for the following reason: ",0) + "\n\n" + QString(e.what()) + "\n\n" + QApplication::translate("mainWindow","The game will be loaded anyway, but some features might not work properly.",0));
-            eGame.fromFile(sFileName.toStdString(), false);
+            sGame.fromFile(sFileName.toStdString(), false);
         }
         updateDisplay();
         mqQueue.clear();
         updateUndoRedo();
-        if (!eGame.configuration().isValid())
+        if (!sGame.configuration().isValid())
         {
             if (QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The syntax of the game you have just loaded is not rigourously correct. Would you like to fix it now?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
             {
-                eGame.setVersion(eGame.configuration().version());
+                sGame.setVersion(sGame.configuration().version());
                 on_action_Save_triggered();
             }
         }
@@ -654,19 +654,19 @@ void MainWindow::updateModification(Modification *modification, bool undo)
             {
                 TreeModification* treeModif = dynamic_cast<TreeModification*>(modification);
                 Tree *adr = &treeModif->tree();
-                if (adr == &eGame.plot())
+                if (adr == &sGame.plot())
                 {
                     treePlot->updateModification(treeModif, undo);
                 }
-                else if (adr == &eGame.history())
+                else if (adr == &sGame.history())
                 {
                     treeHistory->updateModification(treeModif, undo);
                 }
-                else if (adr == &eGame.music())
+                else if (adr == &sGame.music())
                 {
                     treeMusic->updateModification(treeModif, undo);
                 }
-                else if (adr == &eGame.effects())
+                else if (adr == &sGame.effects())
                 {
                     treeFX->updateModification(treeModif, undo);
                 }
@@ -699,7 +699,7 @@ void MainWindow::updateUndoRedo()
     bool modified = !mqQueue.isUpToDate() || textNotes->unregisteredModification();
     action_Save->setEnabled(modified);
     QString windowTitle("GM-Assistant - ");
-    QString title(eGame.metadata().title().c_str());
+    QString title(sGame.metadata().title().c_str());
     if (!title.isEmpty())
     {
         windowTitle += title;
@@ -805,7 +805,7 @@ void MainWindow::on_action_Dice_triggered()
 
 void MainWindow::on_action_Combat_triggered()
 {
-    pSelectCharacterDialog->exec(eGame.characters());
+    pSelectCharacterDialog->exec(sGame.characters());
 }
 
 void MainWindow::changeEvent(QEvent *e)
@@ -843,7 +843,7 @@ void MainWindow::displayError(const QString &message)
 
 void MainWindow::on_action_Metadata_triggered()
 {
-    Metadata &metadata = eGame.metadata();
+    Metadata &metadata = sGame.metadata();
     Metadata oldMetadata(metadata);
     if (pMetadataDialog->exec(oldMetadata) == QDialog::Accepted)
     {

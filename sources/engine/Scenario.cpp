@@ -18,25 +18,20 @@
 
 #include "Scenario.h"
 #include "Version.h"
+#include <Poco/Path.h>
+#include <Poco/Zip/Decompress.h>
+#include <fstream>
+#include <Poco/TemporaryFile.h>
 
 using namespace std;
 
 // constructors
 
-Scenario::Scenario(): uiInterface(uiFull), ioConfig(Version())
+Scenario::Scenario(const FileDetector *detector): uiInterface(uiFull), ioConfig(Version()), pDetector(0)
 {
-}
-
-Scenario::Scenario(const string &fileName, bool checkFiles) throw(xmlpp::exception): ioConfig(Version())
-{
-    try
+    if (detector && detector->isValid())
     {
-        fromFile(fileName, checkFiles);
-    }
-    catch (xmlpp::exception)
-    {
-        clear();
-        throw;
+        pDetector = detector;
     }
 }
 
@@ -45,10 +40,41 @@ Scenario::Scenario(const string &fileName, bool checkFiles) throw(xmlpp::excepti
 void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlpp::exception, invalid_argument, overflow_error)
 {
     using namespace xmlpp;
+    using namespace Poco;
+    string xmlFile;
 
     clear();
-    ioConfig = IOConfig::detect(fileName);
-    DomParser parser(fileName);
+    if (pDetector && pDetector->typeOfFile(fileName) == "application/xml")
+    {
+        xmlFile = fileName;
+    }
+    else
+    {
+        // attempt to unzip
+        ifstream input(fileName.c_str());
+        if (input.good())
+        {
+            string tempDir(TemporaryFile::tempName());
+            Zip::Decompress dec(input, tempDir);
+            TemporaryFile::registerForDeletion(tempDir);
+            dec.decompressAllFiles();
+            Zip::Decompress::ZipMapping mapping = dec.mapping();
+            try
+            {
+                xmlFile = mapping.at("scenario.xml").getFileName();
+            }
+            catch(out_of_range &e)
+            {
+                throw xmlpp::exception("No scenario in file " + fileName);
+            }
+        }
+        else
+        {
+            throw xmlpp::exception("Unable to open the file " + fileName);
+        }
+    }
+    ioConfig = IOConfig::detect(xmlFile);
+    DomParser parser(xmlFile);
     Document *document = parser.get_document();
     Element *root = document->get_root_node();
     if (root->get_name() != ioConfig.rootName())

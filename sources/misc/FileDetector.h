@@ -16,30 +16,34 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "QAudioProxyModel.h"
-#include <QFileSystemModel>
+#ifndef HEADER_FILEDETECTOR
+#define HEADER_FILEDETECTOR
 
-using namespace Phonon;
+#include <magic.h>
+#include <string>
 
-QAudioProxyModel::QAudioProxyModel(QWidget *parent, const FileDetector *detector): QSortFilterProxyModel(parent), pDetector(0), slFormats(Phonon::BackendCapabilities::availableMimeTypes().filter("audio/"))
+//! File type detector
+class FileDetector
 {
-    if (detector && detector->isValid())
-    {
-        pDetector = detector;
-    }
-}
+    public:
+        //! Default constructor
+        FileDetector(const std::string &installDir);
+        //! Default destructor
+        ~FileDetector();
+        /*!
+         * \brief Type detection
+         * \param fileName Name of the file to be analysed
+         * \return Type of the file
+         */
+        std::string typeOfFile(const std::string &fileName) const;
+        /*!
+         * \brief Getter for the validity of the detector
+         * \return True if the detector is valid, false otherwise
+         */
+        bool isValid() const;
+    private:
+        //! Magic cookie
+        magic_t mCookie;
+};
 
-bool QAudioProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
-{
-    if (!pDetector)
-    {
-        return true;
-    }   
-    QFileSystemModel *model = dynamic_cast<QFileSystemModel*>(sourceModel());
-    QModelIndex index = model->index(sourceRow, 0, sourceParent);
-    if (model->isDir(index))
-    {
-        return true;
-    }
-    return slFormats.contains(pDetector->typeOfFile(model->filePath(index).toStdString()).c_str());
-}
+#endif

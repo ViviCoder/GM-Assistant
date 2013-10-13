@@ -261,6 +261,23 @@ do
     fi
 done
 
+# PocoZip
+echo
+echo PocoZip:
+pocozip_devs="Zip"
+pocozip_dev_path="$inc_path/Poco/Zip"
+
+for dev in $pocozip_devs
+do
+    if [ -e "$pocozip_dev_path/$dev.h" ]
+    then
+        echo $pocozip_dev_path/$dev.h: OK
+    else
+        echo $dev.h missing !
+        exit $err_missing_header
+    fi
+done
+
 echo
 echo "********************************"
 echo "* Preparing the compilation... *"
@@ -288,12 +305,13 @@ echo
 echo $xml_dev_path
 echo Phonon
 echo magic
+echo PocoZip
 
-# adding libxml++ and magic includes in the Makefile
-sed $sed_i "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) -I$magic_dev_path #" Makefile
+# adding includes in the Makefile
+sed $sed_i "s#-I\.#$(pkg-config $xml_dev_path --cflags-only-I) -I$magic_dev_path -I$pocozip_dev_path#" Makefile
 
-# adding libxml++ and magic binaries
-sed $sed_i "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lmagic#" Makefile
+# adding libraries in the Makefile
+sed $sed_i "s#-lQtCore#-lQtCore $(pkg-config $xml_dev_path --libs) -lmagic -lPocoZip -lPocoFoundation#" Makefile
 
 # cleaning previous compilation
 make -s clean

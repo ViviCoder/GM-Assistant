@@ -517,7 +517,7 @@ p, li { white-space: pre-wrap; }
     <name>itemDialog</name>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="17"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="180"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="179"/>
         <source>Create a new item</source>
         <translation>Créer un nouvel item</translation>
     </message>
@@ -589,7 +589,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="183"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="183"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="182"/>
         <source>C&amp;hild</source>
         <translation>En&amp;fant</translation>
     </message>
@@ -599,32 +599,32 @@ p, li { white-space: pre-wrap; }
         <translation>A&amp;nnuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="213"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="212"/>
         <source>Audio files (*)</source>
         <translation>Fichiers audio (*)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="86"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="91"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="106"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="111"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="85"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="90"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="105"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="110"/>
         <source>Uncomplete data</source>
         <translation>Données incomplètes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="86"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="106"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="85"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="105"/>
         <source>You must select a file before validating.</source>
         <translation>Vous devez sélectionner un fichier avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="91"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="111"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="90"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="110"/>
         <source>You must fill the content before validating.</source>
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="149"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="148"/>
         <source>Select the image file to associate to the item</source>
         <translation>Sélectionnez le fichier image à associer à l&apos;item</translation>
     </message>
@@ -634,17 +634,17 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier audio à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="149"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="148"/>
         <source>Image files (*.jpg *.jpeg *.png *.bmp *.svg)</source>
         <translation>Fichiers image (*.jpg *.jpeg *.png *.bmp *.svg)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="164"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="163"/>
         <source>Edit the item</source>
         <translation>Éditer l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="167"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="166"/>
         <source>&amp;Validate</source>
         <translation>&amp;Valider</translation>
     </message>

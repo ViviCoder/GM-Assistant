@@ -21,7 +21,7 @@
 
 #include <phonon>
 #include <QSortFilterProxyModel>
-#include <magic.h>
+#include "FileDetector.h"
 
 /*!
  * \brief Audio proxy model
@@ -34,13 +34,9 @@ class QAudioProxyModel: public QSortFilterProxyModel
         /*!
          * \brief Default constructor
          * \param parent Parent widget
-         * \param installDir Installation directory
+         * \param detector File type detector
          */
-        QAudioProxyModel(QWidget *parent = 0, const QString &installDir = "");
-        /*!
-         * \brief Destructor
-         */
-        ~QAudioProxyModel();
+        QAudioProxyModel(QWidget *parent = 0, const FileDetector *detector = 0);
     protected:
         /*!
          * \brief Filter
@@ -52,12 +48,10 @@ class QAudioProxyModel: public QSortFilterProxyModel
          */
         bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
     private:
-        //! Magic cookie
-        magic_t cookie;
+        //! File type detector
+        const FileDetector *pDetector;
         //! Supported formats
         QStringList slFormats;
-        //! Flag for filtering
-        bool bFiltering;
 };
 
 #endif

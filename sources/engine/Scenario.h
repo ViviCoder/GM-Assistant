@@ -24,6 +24,7 @@
 #include "PropertyList.h"
 #include "IOConfig.h"
 #include "Metadata.h"
+#include "FileDetector.h"
 
 /*!
  * \brief Game scenario
@@ -49,21 +50,17 @@ class Scenario
             //! Interface without musics and sounds
             uiNoMusic
         };
-        // constructors
-        Scenario();
-        /*!
-         * \brief Constructor which loads directly a scenario from a file
-         * \param fileName File name of the scenario to load
-         * \param checkFiles Indicates if the existence of files associated with FileItems is checked
-         * \throw xmlpp::exception Exception thrown by the XML library when the file is uncorrect
+        /*
+         * \brief Default constructor
+         * \param detector File type detector
          */
-        Scenario(const std::string &fileName, bool checkFiles = true) throw(xmlpp::exception);
+        Scenario(const FileDetector *detector = 0);
         // loading and saving methods
         /*!
          * \brief Loads a scenario from a file
          * \param fileName File name of the scenario to load
          * \param checkFiles Indicates if the existence of files associated with FileItems is checked
-         * \throw xmlpp::exception Exception thrown by the XML library when the file is uncorrect
+         * \throw xmlpp::exception Thrown when the file is uncorrect
          * \throw std::invalid_argument Thrown when an item has not been loaded correctly
          * \throw std::overflow_error Thrown when the size of a file exceeds the limit (if limited)
          */
@@ -135,6 +132,8 @@ class Scenario
         IOConfig ioConfig;
         //! Metadata
         Metadata mMetadata;
+        //! File type detector
+        const FileDetector *pDetector;
 };
 
 #endif

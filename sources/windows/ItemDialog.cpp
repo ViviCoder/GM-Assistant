@@ -26,11 +26,10 @@ ItemDialog::ItemDialog(QWidget *parent, QAudioProxyModel *filter): QDialog(paren
     audioBrowser->setFileMode(QFileDialog::ExistingFile);
     audioBrowser->setReadOnly(true);
     audioBrowser->setNameFilterDetailsVisible(false);
-    if (!filter)
+    if (filter)
     {
-        filter = new QAudioProxyModel(audioBrowser);
+        audioBrowser->setProxyModel(filter);
     }
-    audioBrowser->setProxyModel(filter);
 }
 
 Item::State ItemDialog::state() const
