@@ -41,14 +41,18 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
 {
     using namespace xmlpp;
     using namespace Poco;
-    string xmlFile;
+    string xmlFile, fileType;
 
     clear();
-    if (pDetector && pDetector->typeOfFile(fileName) == "application/xml")
+    if (pDetector)
+    {
+       fileType = pDetector->typeOfFile(fileName);
+    }
+    if (fileType == "application/xml")
     {
         xmlFile = fileName;
     }
-    else
+    else if (!pDetector || fileType == "application/zip")
     {
         // attempt to unzip
         ifstream input(fileName.c_str());
@@ -57,21 +61,45 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
             string tempDir(TemporaryFile::tempName());
             Zip::Decompress dec(input, tempDir);
             TemporaryFile::registerForDeletion(tempDir);
-            dec.decompressAllFiles();
-            Zip::Decompress::ZipMapping mapping = dec.mapping();
+            // flag of valid extraction
+            bool ok = false;
             try
             {
-                xmlFile = mapping.at("scenario.xml").getFileName();
+                dec.decompressAllFiles();
+                ok = true;
             }
-            catch(out_of_range &e)
+            catch (Poco::Exception)
             {
-                throw xmlpp::exception("No scenario in file " + fileName);
+                if (!pDetector)
+                {
+                    xmlFile = fileName;
+                }
+                else
+                {
+                    throw xmlpp::exception("Bad file format");
+                }
+            }
+            if (ok)
+            {
+                Zip::Decompress::ZipMapping mapping = dec.mapping();
+                try
+                {
+                    xmlFile = mapping.at("scenario.xml").getFileName();
+                }
+                catch(out_of_range &e)
+                {
+                    throw xmlpp::exception("No scenario in file " + fileName);
+                }
             }
         }
         else
         {
             throw xmlpp::exception("Unable to open the file " + fileName);
         }
+    }
+    else
+    {
+        throw xmlpp::exception("Unreckognized file format");
     }
     ioConfig = IOConfig::detect(xmlFile);
     DomParser parser(xmlFile);
