@@ -58,9 +58,10 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
         ifstream input(fileName.c_str());
         if (input.good())
         {
-            string tempDir(TemporaryFile::tempName());
-            Zip::Decompress dec(input, tempDir);
-            TemporaryFile::registerForDeletion(tempDir);
+            // creating new temporary directory and extracting into it
+            sTempDir = TemporaryFile::tempName();
+            Zip::Decompress dec(input, sTempDir);
+            TemporaryFile::registerForDeletion(sTempDir);
             // flag of valid extraction
             bool ok = false;
             try
@@ -281,6 +282,16 @@ void Scenario::clear()
     uiInterface = uiFull;
     ioConfig = IOConfig(Version());
     mMetadata = Metadata();
+    // removing previous temporary directory
+    if (sTempDir != "")
+    {
+        Poco::File file(sTempDir);
+        if (file.exists() && file.canWrite())
+        {
+            file.remove(true);
+        }
+        sTempDir = "";
+    }
 }
 
 CharacterList& Scenario::characters()

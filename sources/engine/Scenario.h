@@ -88,9 +88,8 @@ class Scenario
          * \param interface New value of the user interface
          */
         void setUserInterface(UserInterface interface);
-        // emptying
+        //! Clear the current scenario
         void clear();
-        // static methods
         /*!
          * \brief Convertion method from UserInterface to string
          * \param interface User interface
@@ -134,6 +133,8 @@ class Scenario
         Metadata mMetadata;
         //! File type detector
         const FileDetector *pDetector;
+        //! Temporary directory (for the archive format)
+        std::string sTempDir;
 };
 
 #endif
