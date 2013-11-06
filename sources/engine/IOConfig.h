@@ -50,6 +50,8 @@ class IOConfig
         bool bValid;
         //! Flag of availability of metadata
         bool bHasMetadata;
+        //! Flag of archive format
+        bool bArchived;
     public:
         /*!
          * \brief Constructor
@@ -134,9 +136,10 @@ class IOConfig
         /*!
          * \brief IOConfig detector
          * \param fileName Name of the file to scan
+         * \param isArchived Indicates if the game file is an archive
          * \return Pointer to an IO configuration corresponding to the given file
          */
-        static IOConfig detect(const std::string &fileName);
+        static IOConfig detect(const std::string &fileName, bool isArchived);
         /*!
          * \brief Getter for the flag of validity
          * \return Validity of the configuration
@@ -152,6 +155,152 @@ class IOConfig
          * \param hadMetadata New flag of availability of metadata
          */
         void setHasMetadata(bool hadMetadata);
+        /*!
+         * \brief Getter for the flag of archive format
+         * \return Flag of archive format
+         */
+        bool isArchived() const;
+        /*!
+         * \brief Setter for the flag of archive format
+         * \param isArchived New flag of archive format
+         */
+        void setArchived(bool isArchived);
 };
+
+inline std::string IOConfig::rootName() const
+{
+    return sRootName;
+}
+
+inline std::string IOConfig::plotName() const
+{
+    return sPlotName;
+}
+
+inline std::string IOConfig::propertiesName() const
+{
+    return sPropertiesName;
+}
+
+inline std::string IOConfig::imageName() const
+{
+    return sImageName;
+}
+
+inline Version IOConfig::version() const
+{
+    return vVersion;
+}
+
+inline std::string IOConfig::propertyName() const
+{
+    return sPropertyName;
+}
+
+inline bool IOConfig::hasImages() const
+{
+    return bHasImages;
+}
+
+inline bool IOConfig::hasExpanded() const
+{
+    return bHasExpanded;
+}
+
+inline bool IOConfig::isValid() const
+{
+    return bValid;
+}
+
+inline bool IOConfig::hasMetadata() const
+{
+    return bHasMetadata;
+}
+
+inline bool IOConfig::isArchived() const
+{
+    return bArchived;
+}
+
+inline void IOConfig::setRootName(const std::string &rootName)
+{
+    if (rootName != sRootName)
+    {
+        sRootName = rootName;
+        bValid = false;
+    }
+}
+
+inline void IOConfig::setPlotName(const std::string &plotName)
+{
+    if (plotName != sPlotName)
+    {
+        sPlotName = plotName;
+        bValid = false;
+    }
+}
+
+inline void IOConfig::setPropertiesName(const std::string &propertiesName)
+{
+    if (propertiesName != sPropertiesName)
+    {
+        sPropertiesName = propertiesName;
+        bValid = false;
+    }
+}
+
+inline void IOConfig::setPropertyName(const std::string &propertyName)
+{
+    if (propertyName != sPropertyName)
+    {
+        sPropertyName = propertyName;
+        bValid = false;
+    }
+}
+
+inline void IOConfig::setImageName(const std::string &imageName)
+{
+    if (imageName != sImageName)
+    {
+        sImageName = imageName;
+        bValid = false;
+    }
+}
+
+inline void IOConfig::setHasImages(bool hasImages)
+{
+    if (hasImages != bHasImages)
+    {
+        bHasImages = hasImages;
+        bValid = false;
+    }
+}
+
+inline void IOConfig::setHasExpanded(bool hasExpanded)
+{
+    if (hasExpanded != bHasExpanded)
+    {
+        bHasExpanded = hasExpanded;
+        bValid = false;
+    }
+}
+
+inline void IOConfig::setHasMetadata(bool hasMetadata)
+{
+    if (hasMetadata != bHasMetadata)
+    {
+        bHasMetadata = hasMetadata;
+        bValid = false;
+    }
+}
+
+inline void IOConfig::setArchived(bool isArchived)
+{
+    if (isArchived != bArchived)
+    {
+        bArchived = isArchived;
+        bValid = false;
+    }
+}
 
 #endif

@@ -42,6 +42,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     using namespace xmlpp;
     using namespace Poco;
     string xmlFile, fileType;
+    bool isArchive = false;
 
     clear();
     if (pDetector)
@@ -62,12 +63,12 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
             sTempDir = TemporaryFile::tempName();
             Zip::Decompress dec(input, sTempDir);
             TemporaryFile::registerForDeletion(sTempDir);
-            // flag of valid extraction
-            bool ok = false;
+            // valid extraction
+            isArchive = false;
             try
             {
                 dec.decompressAllFiles();
-                ok = true;
+                isArchive = true;
             }
             catch (Poco::Exception)
             {
@@ -80,7 +81,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
                     throw xmlpp::exception("Bad file format");
                 }
             }
-            if (ok)
+            if (isArchive)
             {
                 Zip::Decompress::ZipMapping mapping = dec.mapping();
                 try
@@ -102,7 +103,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     {
         throw xmlpp::exception("Unreckognized file format");
     }
-    ioConfig = IOConfig::detect(xmlFile);
+    ioConfig = IOConfig::detect(xmlFile, isArchive);
     DomParser parser(xmlFile);
     Document *document = parser.get_document();
     Element *root = document->get_root_node();

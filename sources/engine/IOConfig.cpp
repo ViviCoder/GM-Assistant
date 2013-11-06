@@ -41,6 +41,7 @@ IOConfig::IOConfig(const Version &version): vVersion(version), bValid(true)
         sPropertyName = "skill";
         bHasExpanded = false;
         bHasMetadata = false;
+        bArchived = false;
     }
     else
     {
@@ -51,35 +52,11 @@ IOConfig::IOConfig(const Version &version): vVersion(version), bValid(true)
         sPropertyName = "property";
         bHasExpanded = true;
         bHasMetadata = true;
+        bArchived = true;
     }
 }
 
-string IOConfig::rootName() const
-{
-    return sRootName;
-}
-
-string IOConfig::plotName() const
-{
-    return sPlotName;
-}
-
-string IOConfig::propertiesName() const
-{
-    return sPropertiesName;
-}
-
-string IOConfig::imageName() const
-{
-    return sImageName;
-}
-
-Version IOConfig::version() const
-{
-    return vVersion;
-}
-
-IOConfig IOConfig::detect(const string &fileName)
+IOConfig IOConfig::detect(const string &fileName, bool isArchived)
 {
     DomParser parser(fileName);
     Document *document = parser.get_document();
@@ -91,6 +68,7 @@ IOConfig IOConfig::detect(const string &fileName)
         version = Version(attr->get_value());
     }
     IOConfig res(version);
+    res.setArchived(isArchived);
     string newRoot = root->get_name();
     if (newRoot == "game" || newRoot == "scenario")
     {
@@ -133,101 +111,4 @@ IOConfig IOConfig::detect(const string &fileName)
         res.setHasExpanded(true);
     }
     return res;
-}
-
-string IOConfig::propertyName() const
-{
-    return sPropertyName;
-}
-
-bool IOConfig::hasImages() const
-{
-    return bHasImages;
-}
-
-bool IOConfig::hasExpanded() const
-{
-    return bHasExpanded;
-}
-
-bool IOConfig::isValid() const
-{
-    return bValid;
-}
-
-void IOConfig::setRootName(const string &rootName)
-{
-    if (rootName != sRootName)
-    {
-        sRootName = rootName;
-        bValid = false;
-    }
-}
-
-void IOConfig::setPlotName(const string &plotName)
-{
-    if (plotName != sPlotName)
-    {
-        sPlotName = plotName;
-        bValid = false;
-    }
-}
-
-void IOConfig::setPropertiesName(const string &propertiesName)
-{
-    if (propertiesName != sPropertiesName)
-    {
-        sPropertiesName = propertiesName;
-        bValid = false;
-    }
-}
-
-void IOConfig::setPropertyName(const string &propertyName)
-{
-    if (propertyName != sPropertyName)
-    {
-        sPropertyName = propertyName;
-        bValid = false;
-    }
-}
-
-void IOConfig::setImageName(const string &imageName)
-{
-    if (imageName != sImageName)
-    {
-        sImageName = imageName;
-        bValid = false;
-    }
-}
-
-void IOConfig::setHasImages(bool hasImages)
-{
-    if (hasImages != bHasImages)
-    {
-        bHasImages = hasImages;
-        bValid = false;
-    }
-}
-
-void IOConfig::setHasExpanded(bool hasExpanded)
-{
-    if (hasExpanded != bHasExpanded)
-    {
-        bHasExpanded = hasExpanded;
-        bValid = false;
-    }
-}
-
-bool IOConfig::hasMetadata() const
-{
-    return bHasMetadata;
-}
-
-void IOConfig::setHasMetadata(bool hasMetadata)
-{
-    if (hasMetadata != bHasMetadata)
-    {
-        bHasMetadata = hasMetadata;
-        bValid = false;
-    }
 }
