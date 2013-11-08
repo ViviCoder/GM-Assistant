@@ -110,7 +110,6 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     treeFX->setItemDialogWindow(pItemDialog);
 
     // setting audio options
-    treeFX->setSizeLimited(true);
     treeMusic->setPlayingMethod(this, QCustomTreeWidget::pmMusic);
     treeFX->setPlayingMethod(this, QCustomTreeWidget::pmSound);
     Phonon::MediaObject *player = soundEngine.musicPlayer();

@@ -68,11 +68,6 @@ class QCustomTreeWidget: public QTreeWidget
         // associating an icon to a state
         static QIcon icon(Item::State state);
         /*!
-         * \brief Setter for the flag sizeLimited
-         * \param sizeLimited Indicates if the size of the items is limited
-         */
-        void setSizeLimited(bool sizeLimited);
-        /*!
          * \brief Setter for the playing method
          * \param player Widget in charge of playing
          * \param playingMethod New playing method
@@ -231,10 +226,6 @@ class QCustomTreeWidget: public QTreeWidget
         QTreeWidgetItem *pDragSource;
         bool bNewlySelected;
         bool bEditing;
-        /*!
-         * \brief Boolean indicating if the size of the items is limited
-         */
-        bool bSizeLimited;
         /*!
          * \brief Playing method
          */

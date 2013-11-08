@@ -85,7 +85,7 @@ void Tree::toXML(const IOConfig &config, xmlpp::Element &root) const
     }
 }
 
-void Tree::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles, bool limitedSize) throw(xmlpp::exception, overflow_error)
+void Tree::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles) throw(xmlpp::exception)
 {
     clear();
     using namespace xmlpp;
@@ -121,7 +121,7 @@ void Tree::fromXML(const IOConfig &config, const xmlpp::Element &root, bool chec
                 expanded = Item::strToBool(attr->get_value());
             }
         }
-        Item *item = ItemFactory::createItem(type,content,state,expanded,limitedSize);
+        Item *item = ItemFactory::createItem(type,content,state,expanded);
         item->fromXML(*elem, checkFiles);
         Branch *branch = new Branch(item, config, *elem, checkFiles, this);
         vChildren.push_back(branch);

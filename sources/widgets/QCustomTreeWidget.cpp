@@ -27,7 +27,7 @@
 
 using namespace std;
 
-QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(0), pItemDial(), pDragSource(0), bNewlySelected(false), bEditing(false), bSizeLimited(false), pmMethod(pmNone)
+QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menuIcons(new QMenu(this)), pTree(0), pItemDial(), pDragSource(0), bNewlySelected(false), bEditing(false), pmMethod(pmNone)
 {
     // creating actions
     actionNone = new QAction(this);
@@ -466,7 +466,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                 switch (pItemDial->type())
                 {
                     case Item::tSound:      {
-                                                SoundItem *soundItem = new SoundItem(pItemDial->text().toStdString(), pItemDial->state(), false, bSizeLimited);
+                                                SoundItem *soundItem = new SoundItem(pItemDial->text().toStdString(), pItemDial->state(), false);
                                                 soundItem->setFileName(pItemDial->fileName().toStdString(), false);
                                                 newItem = soundItem;
                                                 break;
@@ -553,11 +553,6 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
             resizeColumnToContents(0);
         }
     }
-}
-
-void QCustomTreeWidget::setSizeLimited(bool sizeLimited)
-{
-    bSizeLimited = sizeLimited;
 }
 
 void QCustomTreeWidget::setPlayingMethod(QWidget *player, PlayingMethod playingMethod)

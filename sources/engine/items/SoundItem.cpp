@@ -20,23 +20,6 @@
 
 using namespace std;
 
-SoundItem::SoundItem(const string &content, Item::State state, bool expanded, bool sizeLimited): FileItem(content, state, expanded, "", sizeLimited, sizeLimited?SOUND_SIZE_LIMIT:SIZE_LIMIT)
+SoundItem::SoundItem(const string &content, Item::State state, bool expanded): FileItem(content, state, expanded, "")
 {
-}
-
-Item::Type SoundItem::type() const
-{
-    return tSound;
-}
-
-void SoundItem::setFileName(const string &fileName, bool checkFile) throw(invalid_argument, overflow_error)
-{
-    try
-    {
-        FileItem::setFileName(fileName, checkFile);
-    }
-    catch (overflow_error &e)
-    {
-        throw overflow_error(string(e.what()) + " Use music instead.");
-    }
 }

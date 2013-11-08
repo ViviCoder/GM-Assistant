@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,11 +17,11 @@
 *************************************************************************/
 
 #include "FileItem.h"
-#include <QFileInfo>
+#include <Poco/File.h>
 
 using namespace std;
 
-FileItem::FileItem(const string &content, State state, bool expanded, const string &fileName, bool sizeLimited, int limitSize): Item(content,state,expanded), sFileName(fileName), bSizeLimited(sizeLimited), iLimitSize(limitSize)
+FileItem::FileItem(const string &content, State state, bool expanded, const string &fileName): Item(content,state,expanded), sFileName(fileName)
 {
     if (fileName != "")
     {
@@ -29,31 +29,17 @@ FileItem::FileItem(const string &content, State state, bool expanded, const stri
     }
 }
 
-Item::Type FileItem::type() const
-{
-    return tFile;
-}
-
-string FileItem::fileName() const
-{
-    return sFileName;
-}
-
-void FileItem::setFileName(const string &fileName, bool checkFile) throw(invalid_argument, overflow_error)
+void FileItem::setFileName(const string &fileName, bool checkFile) throw(invalid_argument)
 {
     sFileName = fileName;
-    QFileInfo file(fileName.c_str());
+    Poco::File file(fileName.c_str());
     if (checkFile && !file.exists())
     {
         throw invalid_argument("The file "+fileName+" does not exist.");
     }
-    if (bSizeLimited && file.size()/1024 > iLimitSize)
-    {
-        throw overflow_error((QString("The file ") + fileName.c_str() + " exceeds the size limit of %1MB.").arg(iLimitSize/1024).toStdString());
-    }
 }
 
-void FileItem::fromXML(const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, invalid_argument, overflow_error)
+void FileItem::fromXML(const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, invalid_argument)
 {
     using namespace xmlpp;
     

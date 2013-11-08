@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,19 @@ class ImageItem: public FileItem
          * \brief Getter for the type of the item
          * \return Item::tImage
          */
-        Type type() const;  // overriden
+        Type type() const;
+        // archive subdirectory
+        std::string subdirectory() const;
 };
+
+inline Item::Type ImageItem::type() const
+{
+    return tImage;
+}
+
+inline std::string ImageItem::subdirectory() const
+{
+    return "images";
+}
 
 #endif

@@ -128,11 +128,9 @@ class Tree
          * \param config IO configuration
          * \param root Position of the tree in the XML tree
          * \param checkFiles Indicates if the existence of files associated with FileItems is checked
-         * \param limitedSize Indicates if the size of the items is limited
          * \throw xmlpp::exception Thrown when an item has not been loaded correctly        
-         * \throw std::overflow_error Thrown when the size of a file exceeds the limit (if limited)
          */
-        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles, bool limitedSize = false) throw(xmlpp::exception, std::overflow_error);
+        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles) throw(xmlpp::exception);
         // iterator-related methods
         iterator begin() const;
         iterator beginUnchecked() const;

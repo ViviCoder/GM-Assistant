@@ -21,8 +21,6 @@
 
 #include "FileItem.h"
 
-#define SOUND_SIZE_LIMIT    1024
-
 /*!
  * \brief Item related to a sound file 
  */
@@ -30,28 +28,29 @@ class SoundItem: public FileItem
 {
     public:
         /*!
-         * \brief Setter for the file name
-         * \param fileName New file name
-         * \param checkFile Indicates if the existence of the file is checked
-         * \throw std::invalid_argument Thrown when the file is not readable
-         * \throw std::overflow_error Thrown when the size of the file exceeds the limit (if limited)
-         *
-         * Calculates the duration of the sound file
-         */
-        void setFileName(const std::string &fileName, bool checkFile) throw(std::invalid_argument, std::overflow_error);
-        /*!
          *  \brief Constructor
          *  \param content Content of the item
          *  \param state State of the item
          *  \param expanded Expanded/collapsed state of the item
-         *  \param sizeLimited Indicates wether or not the size of the file is limited
          */
-        SoundItem(const std::string &content="", State state=sNone, bool expanded=true, bool sizeLimited = false);
+        SoundItem(const std::string &content="", State state=sNone, bool expanded=true);
         /*!
          * \brief Getter for the type of the item
          * \return Item::tSound
          */
         Type type() const;
+        // archive subdirectory
+        std::string subdirectory() const;
 };
+
+inline Item::Type SoundItem::type() const
+{
+    return tSound;
+}
+
+inline std::string SoundItem::subdirectory() const
+{
+    return "sounds";
+}
 
 #endif

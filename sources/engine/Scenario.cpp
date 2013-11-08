@@ -37,7 +37,7 @@ Scenario::Scenario(const FileDetector *detector): uiInterface(uiFull), ioConfig(
 
 // XML methods
 
-void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlpp::exception, invalid_argument, overflow_error)
+void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlpp::exception, invalid_argument)
 {
     using namespace xmlpp;
     using namespace Poco;
@@ -207,7 +207,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     }
     else
     {
-        tEffects.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles, true);
+        tEffects.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles);
     }
 }
 
