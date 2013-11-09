@@ -18,6 +18,7 @@
 
 #include "IOConfig.h"
 #include <libxml++/libxml++.h>
+#include <Poco/Path.h>
 
 using namespace std;
 using namespace xmlpp;
@@ -56,6 +57,7 @@ IOConfig::IOConfig(const Version &version): vVersion(version), bValid(true)
     }
 }
 
+#include <iostream>
 IOConfig IOConfig::detect(const string &fileName, bool isArchived)
 {
     DomParser parser(fileName);
@@ -69,6 +71,11 @@ IOConfig IOConfig::detect(const string &fileName, bool isArchived)
     }
     IOConfig res(version);
     res.setArchived(isArchived);
+    // Temporary directory
+    if (isArchived)
+    {
+        res.sTempDir = Poco::Path(fileName).parent().toString();
+    }
     string newRoot = root->get_name();
     if (newRoot == "game" || newRoot == "scenario")
     {

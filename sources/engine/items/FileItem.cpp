@@ -18,6 +18,7 @@
 
 #include "FileItem.h"
 #include <Poco/File.h>
+#include <Poco/Path.h>
 
 using namespace std;
 
@@ -39,7 +40,7 @@ void FileItem::setFileName(const string &fileName, bool checkFile) throw(invalid
     }
 }
 
-void FileItem::fromXML(const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, invalid_argument)
+void FileItem::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, invalid_argument)
 {
     using namespace xmlpp;
     
@@ -58,13 +59,22 @@ void FileItem::fromXML(const xmlpp::Element &root, bool checkFile) throw(xmlpp::
             name = attr->get_value();
         }
     }
+    if (config.isArchived())
+    {
+        name = config.temporaryDirectory() + subdirectory() + name;
+    }
     setFileName(name, checkFile);
 }
 
-void FileItem::toXML(xmlpp::Element &root)
+void FileItem::toXML(const IOConfig &config, xmlpp::Element &root)
 {
     using namespace xmlpp;
 
     Element *tmp = root.add_child("file");
-    tmp->set_attribute("name",sFileName);
+    std::string fileName(sFileName);
+    if (config.isArchived())
+    {
+        fileName = Poco::Path(sFileName).getFileName();
+    }
+    tmp->set_attribute("name", fileName);
 }

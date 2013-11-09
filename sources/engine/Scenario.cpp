@@ -86,7 +86,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
                 Zip::Decompress::ZipMapping mapping = dec.mapping();
                 try
                 {
-                    xmlFile = mapping.at("scenario.xml").getFileName();
+                    xmlFile = mapping.at("scenario.xml").makeAbsolute(sTempDir).toString();
                 }
                 catch(out_of_range &e)
                 {

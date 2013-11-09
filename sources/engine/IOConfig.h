@@ -51,7 +51,9 @@ class IOConfig
         //! Flag of availability of metadata
         bool bHasMetadata;
         //! Flag of archive format
-        bool bArchived;
+        bool bArchived; 
+        //! Temporary directory
+        std::string sTempDir;
     public:
         /*!
          * \brief Constructor
@@ -165,6 +167,11 @@ class IOConfig
          * \param isArchived New flag of archive format
          */
         void setArchived(bool isArchived);
+        /*!
+         * \brief Getter for the temporary directory
+         * \return Temporary directory
+         */
+        std::string temporaryDirectory() const;
 };
 
 inline std::string IOConfig::rootName() const
@@ -301,6 +308,11 @@ inline void IOConfig::setArchived(bool isArchived)
         bArchived = isArchived;
         bValid = false;
     }
+}
+
+inline std::string IOConfig::temporaryDirectory() const
+{
+    return sTempDir;
 }
 
 #endif

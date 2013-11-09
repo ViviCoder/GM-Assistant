@@ -129,8 +129,9 @@ class Tree
          * \param root Position of the tree in the XML tree
          * \param checkFiles Indicates if the existence of files associated with FileItems is checked
          * \throw xmlpp::exception Thrown when an item has not been loaded correctly        
+         * \throw std::invalid_argument Thrown when a file cannot be found        
          */
-        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles) throw(xmlpp::exception);
+        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles) throw(xmlpp::exception, std::invalid_argument);
         // iterator-related methods
         iterator begin() const;
         iterator beginUnchecked() const;

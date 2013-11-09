@@ -79,13 +79,13 @@ void Tree::toXML(const IOConfig &config, xmlpp::Element &root) const
         }
         if (item->type() != Item::tImage || config.hasImages())
         {
-            item->toXML(*tmp);
+            item->toXML(config, *tmp);
         }
         (*it)->tree().toXML(config, *tmp);
     }
 }
 
-void Tree::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles) throw(xmlpp::exception)
+void Tree::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles) throw(xmlpp::exception, invalid_argument)
 {
     clear();
     using namespace xmlpp;
@@ -122,7 +122,7 @@ void Tree::fromXML(const IOConfig &config, const xmlpp::Element &root, bool chec
             }
         }
         Item *item = ItemFactory::createItem(type,content,state,expanded);
-        item->fromXML(*elem, checkFiles);
+        item->fromXML(config, *elem, checkFiles);
         Branch *branch = new Branch(item, config, *elem, checkFiles, this);
         vChildren.push_back(branch);
     }

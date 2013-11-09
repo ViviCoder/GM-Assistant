@@ -75,11 +75,17 @@ class Item
         // XML-related methods
         /*!
          * \brief XML loader
+         * \param config IO configuration
          * \param root Root of the tree
          * \param checkFiles Indicates if the existence of potential files is checked
          */
-        virtual void fromXML(const xmlpp::Element &root, bool checkFiles);
-        virtual void toXML(xmlpp::Element &root);
+        virtual void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles);
+        /*!
+         * \brief XML saver
+         * \param config IO configuration
+         * \param root Root of the XML tree
+         */
+        virtual void toXML(const IOConfig &config, xmlpp::Element &root);
         // static methods to get a link between strings and state or type
         static std::string stateToStr(State state);
         /*!

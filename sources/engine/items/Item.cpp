@@ -53,11 +53,11 @@ Item::Type Item::type() const
     return tBasic;
 }
 
-void Item::fromXML(const xmlpp::Element &, bool)
+void Item::fromXML(const IOConfig&, const xmlpp::Element&, bool)
 {
 }
 
-void Item::toXML(xmlpp::Element &)
+void Item::toXML(const IOConfig&, xmlpp::Element&)
 {
 }
 

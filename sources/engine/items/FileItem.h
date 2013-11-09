@@ -62,13 +62,14 @@ class FileItem: public Item
         // overriden XML-related methods
         /*!
          * \brief Loads the item from a XML tree
+         * \param config IO configuration
          * \param root Position of the item in the XML tree
          * \param checkFile Indicates if the existence of the file is checked
          * \throw xmlpp::exception Thrown when there is an error in the XML tree
          * \throw std::invalid_argument Thrown when a file is not readable 
          */
-        void fromXML(const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, std::invalid_argument);
-        void toXML(xmlpp::Element &root);
+        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, std::invalid_argument);
+        void toXML(const IOConfig &config, xmlpp::Element &root);
         /*!
          * \brief Getter for the archive subdirectory
          * \return Subdirectory of the archive in which the file is stored
