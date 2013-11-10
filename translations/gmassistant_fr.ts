@@ -1056,8 +1056,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="286"/>
-        <source>GM-Assistant files (*.gma);;XML files (*.xml)</source>
-        <translation>Fichiers GM-Assistant (*.gma);;Fichiers XML (*.xml)</translation>
+        <source>GM-Assistant files (*.gms, *.gma);;XML files (*.xml)</source>
+        <translation>Fichiers GM-Assistant (*.gms, *.gma);;Fichiers XML (*.xml)</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="303"/>
@@ -1098,8 +1098,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="351"/>
-        <source>GM-Assistant files (1.2) (*.gma);;GM-Assistant files (1.1) (*.gma);;GM-Assistant files (1.0) (*.xml)</source>
-        <translation>Fichiers GM-Assistant (1.2) (*.gma);;Fichiers GM-Assistant (1.1) (*.gma);;Fichiers GM-Assistant (1.0) (*.xml)</translation>
+        <source>GM-Assistant files (1.2) (*.gms);;GM-Assistant files (1.1) (*.gma);;GM-Assistant files (1.0) (*.xml)</source>
+        <translation>Fichiers GM-Assistant (1.2) (*.gms);;Fichiers GM-Assistant (1.1) (*.gma);;Fichiers GM-Assistant (1.0) (*.xml)</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="487"/>

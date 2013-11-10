@@ -22,6 +22,7 @@
 #include <Poco/Zip/Decompress.h>
 #include <fstream>
 #include <Poco/TemporaryFile.h>
+#include <Poco/Zip/Compress.h>
 
 using namespace std;
 
@@ -214,7 +215,10 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
 void Scenario::toFile(const string &fileName) const
 {
     using namespace xmlpp;
+    using namespace Poco;
 
+    // file mapping (for archives)
+    FileMapping fileMapping;
     Document document;
     Element *root = document.create_root_node(ioConfig.rootName());
     root->set_attribute("version",ioConfig.version().shortVersion());
@@ -226,7 +230,7 @@ void Scenario::toFile(const string &fileName) const
        mMetadata.toXML(*tmp);
     }
     tmp = root->add_child(ioConfig.plotName());
-    tPlot.toXML(ioConfig, *tmp);
+    tPlot.toXML(ioConfig, *tmp, fileMapping);
     tmp = root->add_child("notes");
     tmp->add_child_text(sNotes);
     tmp = root->add_child(ioConfig.propertiesName());
@@ -234,12 +238,39 @@ void Scenario::toFile(const string &fileName) const
     tmp = root->add_child("characters");
     lCharacters.toXML(ioConfig, *tmp);
     tmp = root->add_child("history");
-    tHistory.toXML(ioConfig, *tmp);
+    tHistory.toXML(ioConfig, *tmp, fileMapping);
     tmp = root->add_child("music");
-    tMusic.toXML(ioConfig, *tmp);
+    tMusic.toXML(ioConfig, *tmp, fileMapping);
     tmp = root->add_child("effects");
-    tEffects.toXML(ioConfig, *tmp);
-    document.write_to_file_formatted(fileName,"UTF-8");
+    tEffects.toXML(ioConfig, *tmp, fileMapping);
+    // saved XML file and temporary directory (if needed)
+    string xmlFile(fileName);
+    File tempDir;
+    if (ioConfig.isArchived())
+    {
+        tempDir = TemporaryFile::tempName();
+        tempDir.createDirectory();
+        TemporaryFile::registerForDeletion(tempDir.path());
+        xmlFile = tempDir.path() + "/scenario.xml";        
+    }
+    document.write_to_file_formatted(xmlFile, "UTF-8");
+    if (ioConfig.isArchived())
+    {
+        // adding files to the archive
+        for (FileMapping::Iterator it = fileMapping.begin(); it != fileMapping.end(); it++)
+        {
+            Path path(tempDir.path());
+            path.append(it.destination());
+            File(path.parent()).createDirectory();
+            File(it.file()).copyTo(path.toString());
+        }
+        // compressing it
+        ofstream output(fileName.c_str());
+        Zip::Compress comp(output, true);
+        comp.addRecursive(tempDir.path());
+        comp.close();
+        tempDir.remove(true);
+    }
 }
 
 // accessors

@@ -62,7 +62,7 @@ Tree& Tree::operator=(const Tree &tree)
 
 // methods
 
-void Tree::toXML(const IOConfig &config, xmlpp::Element &root) const
+void Tree::toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping) const
 {
     using namespace xmlpp;
 
@@ -79,9 +79,9 @@ void Tree::toXML(const IOConfig &config, xmlpp::Element &root) const
         }
         if (item->type() != Item::tImage || config.hasImages())
         {
-            item->toXML(config, *tmp);
+            item->toXML(config, *tmp, fileMapping);
         }
-        (*it)->tree().toXML(config, *tmp);
+        (*it)->tree().toXML(config, *tmp, fileMapping);
     }
 }
 

@@ -50,7 +50,7 @@ inline Item::Type SoundItem::type() const
 
 inline std::string SoundItem::subdirectory() const
 {
-    return "sounds";
+    return "sounds/";
 }
 
 #endif

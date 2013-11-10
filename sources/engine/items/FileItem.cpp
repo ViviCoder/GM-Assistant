@@ -66,7 +66,7 @@ void FileItem::fromXML(const IOConfig &config, const xmlpp::Element &root, bool 
     setFileName(name, checkFile);
 }
 
-void FileItem::toXML(const IOConfig &config, xmlpp::Element &root)
+void FileItem::toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping)
 {
     using namespace xmlpp;
 
@@ -75,6 +75,7 @@ void FileItem::toXML(const IOConfig &config, xmlpp::Element &root)
     if (config.isArchived())
     {
         fileName = Poco::Path(sFileName).getFileName();
+        fileName = Poco::Path(fileMapping.addFile(sFileName, subdirectory() + fileName)).getFileName();
     }
     tmp->set_attribute("name", fileName);
 }

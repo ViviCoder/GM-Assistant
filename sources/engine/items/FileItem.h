@@ -69,7 +69,7 @@ class FileItem: public Item
          * \throw std::invalid_argument Thrown when a file is not readable 
          */
         void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, std::invalid_argument);
-        void toXML(const IOConfig &config, xmlpp::Element &root);
+        void toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping);
         /*!
          * \brief Getter for the archive subdirectory
          * \return Subdirectory of the archive in which the file is stored
@@ -89,7 +89,7 @@ inline std::string FileItem::fileName() const
 
 inline std::string FileItem::subdirectory() const
 {
-    return "misc";
+    return "misc/";
 }
 
 #endif

@@ -51,7 +51,7 @@ inline Item::Type ImageItem::type() const
 
 inline std::string ImageItem::subdirectory() const
 {
-    return "images";
+    return "images/";
 }
 
 #endif

@@ -57,7 +57,7 @@ void Item::fromXML(const IOConfig&, const xmlpp::Element&, bool)
 {
 }
 
-void Item::toXML(const IOConfig&, xmlpp::Element&)
+void Item::toXML(const IOConfig&, xmlpp::Element&, FileMapping&)
 {
 }
 

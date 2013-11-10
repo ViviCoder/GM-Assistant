@@ -283,7 +283,7 @@ void MainWindow::on_action_Load_triggered()
 {
     if (canClose())
     {
-        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gma);;XML files (*.xml)",0)); 
+        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gms, *.gma);;XML files (*.xml)",0)); 
         if (!file.isEmpty())
         {
             // changing current directory
@@ -348,7 +348,7 @@ void MainWindow::on_action_Save_triggered()
 
 void MainWindow::on_actionS_ave_as_triggered()
 {
-    QFileDialog *dial = new QFileDialog(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (1.2) (*.gma);;GM-Assistant files (1.1) (*.gma);;GM-Assistant files (1.0) (*.xml)",0));
+    QFileDialog *dial = new QFileDialog(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (1.2) (*.gms);;GM-Assistant files (1.1) (*.gma);;GM-Assistant files (1.0) (*.xml)",0));
     dial->setAcceptMode(QFileDialog::AcceptSave);
     if (dial->exec() == QFileDialog::Accepted)
     {
