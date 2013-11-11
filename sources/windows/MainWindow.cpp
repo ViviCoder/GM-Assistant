@@ -283,7 +283,7 @@ void MainWindow::on_action_Load_triggered()
 {
     if (canClose())
     {
-        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gms, *.gma);;XML files (*.xml)",0)); 
+        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gms *.gma);;XML files (*.xml)",0)); 
         if (!file.isEmpty())
         {
             // changing current directory
