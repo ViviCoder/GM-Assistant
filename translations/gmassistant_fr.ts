@@ -425,12 +425,17 @@ p, li { white-space: pre-wrap; }
         <translation>A&amp;fficher</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="58"/>
+        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="60"/>
+        <source> (included in the loaded file)</source>
+        <translation> (inclus dans le fichier chargé)</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="71"/>
         <source>Double click to play the file</source>
         <translation>Double-cliquez pour jouer le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="63"/>
+        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="75"/>
         <source>Double click to show the file</source>
         <translation>Double-cliquez pour afficher l&apos;image</translation>
     </message>

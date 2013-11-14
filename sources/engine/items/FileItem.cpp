@@ -22,7 +22,7 @@
 
 using namespace std;
 
-FileItem::FileItem(const string &content, State state, bool expanded, const string &fileName): Item(content,state,expanded), sFileName(fileName)
+FileItem::FileItem(const string &content, State state, bool expanded, const string &fileName): Item(content,state,expanded), sFileName(fileName), bIncluded(false)
 {
     if (fileName != "")
     {
@@ -61,6 +61,7 @@ void FileItem::fromXML(const IOConfig &config, const xmlpp::Element &root, bool 
     }
     if (config.isArchived())
     {
+        bIncluded = true;
         name = config.temporaryDirectory() + subdirectory() + name;
     }
     setFileName(name, checkFile);

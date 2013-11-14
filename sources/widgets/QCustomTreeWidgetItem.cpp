@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -49,22 +49,32 @@ void QCustomTreeWidgetItem::updateDisplay()
     Item *item = pBranch->item();
     setText(0,item->content().c_str());
     setIcon(1,QCustomTreeWidget::icon(item->state()));
-    switch (item->type())
+    Item::Type type = item->type();
+    if (Item::is(type, Item::tFile))
     {
-        case Item::tSound:  setIcon(0,QIcon(":/data/images/speaker.svg"));
-                            setToolTip(0,dynamic_cast<SoundItem*>(item)->fileName().c_str()); 
-                            if (dynamic_cast<QCustomTreeWidget*>(treeWidget())->playingMethod() != QCustomTreeWidget::pmNone)
-                            {
-                                setStatusTip(0,QApplication::translate("customTree","Double click to play the file",0));
-                            }
-                            break;
-        case Item::tImage:  setIcon(0,QIcon(":/data/images/image.svg"));
-                            setToolTip(0,dynamic_cast<ImageItem*>(item)->fileName().c_str()); 
-                            setStatusTip(0,QApplication::translate("customTree","Double click to show the file",0));
-                            break;
-        default:    setIcon(0, QIcon());
-                    setToolTip(0, "");
-                    setStatusTip(0, "");
-                    break;
+        FileItem *fileItem = dynamic_cast<FileItem*>(item);
+        std::string fileName = fileItem->fileName(); 
+        if (fileItem->isIncluded())
+        {
+            QFileInfo file(fileName.c_str());
+            setToolTip(0, file.fileName() + QApplication::translate("customTree", " (included in the loaded file)", 0));
+        }
+        else
+        {
+            setToolTip(0, fileName.c_str()); 
+        }
+        switch (type)
+        {
+            case Item::tSound:  setIcon(0,QIcon(":/data/images/speaker.svg"));
+                                if (dynamic_cast<QCustomTreeWidget*>(treeWidget())->playingMethod() != QCustomTreeWidget::pmNone)
+                                {
+                                    setStatusTip(0,QApplication::translate("customTree","Double click to play the file",0));
+                                }
+                                break;
+            case Item::tImage:  setIcon(0,QIcon(":/data/images/image.svg"));
+                                setStatusTip(0,QApplication::translate("customTree","Double click to show the file",0));
+                                break;
+            default:    break;
+        }
     }
 }

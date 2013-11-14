@@ -32,6 +32,8 @@ class FileItem: public Item
          * \brief Name of the file related to the item
          */
         std::string sFileName;
+        //! Flag if included in archive or not
+        bool bIncluded;
     public:
         /*!
          * \brief Setter for the name of the file of the item
@@ -75,6 +77,11 @@ class FileItem: public Item
          * \return Subdirectory of the archive in which the file is stored
          */
         virtual std::string subdirectory() const;
+        /*!
+         * \brief Getter for the inclusion flag
+         * \return True if the item is included in an archive file, false otherwise
+         */
+        bool isIncluded() const;
 };
 
 inline Item::Type FileItem::type() const
@@ -90,6 +97,11 @@ inline std::string FileItem::fileName() const
 inline std::string FileItem::subdirectory() const
 {
     return "misc/";
+}
+
+inline bool FileItem::isIncluded() const
+{
+    return bIncluded;
 }
 
 #endif
