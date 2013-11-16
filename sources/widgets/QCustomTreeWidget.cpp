@@ -24,6 +24,7 @@
 #include <QMessageBox>
 #include <exception>
 #include <QScrollBar>
+#include <QFileDialog>
 
 using namespace std;
 
@@ -45,6 +46,8 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     actionEdit = new QAction(this);
     actionEdit->setIcon(QIcon(":/data/images/pencil.svg"));
     actionLaunch = new QAction(this);
+    actionExport = new QAction(this);
+    actionExport->setIcon(QIcon(":/data/images/son.svg"));
     // populating the pop-up menu
     menuIcons->addAction(actionNone);
     menuIcons->addAction(actionProgress);
@@ -56,6 +59,7 @@ QCustomTreeWidget::QCustomTreeWidget(QWidget *parent): QTreeWidget(parent), menu
     menuIcons->addAction(actionEdit);
     menuIcons->addSeparator();
     menuIcons->addAction(actionLaunch);
+    menuIcons->addAction(actionExport);
     // text of the actions
     retranslate();
     // connecting signals
@@ -128,7 +132,8 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     setCurrentItem(item);
                                     QCustomTreeWidgetItem *qItem = dynamic_cast<QCustomTreeWidgetItem*>(item);
                                     Item *treeItem = qItem->branch()->item();
-                                    switch (treeItem->type())
+                                    Item::Type type = treeItem->type();
+                                    switch (type)
                                     {
                                         case Item::tSound:  if (pmMethod == pmNone)
                                                             {
@@ -150,6 +155,9 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                         default:    actionLaunch->setVisible(false);
                                                     break;
                                     }
+                                    // export
+                                    actionExport->setVisible(Item::is(type, Item::tFile) && dynamic_cast<FileItem*>(treeItem)->isIncluded());
+                                    // execute menu
                                     QAction* action = menuIcons->exec(e->globalPos());
                                     if (action == actionNone)
                                     {
@@ -183,6 +191,10 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                     {
                                         launchItem(item);
                                     }
+                                    else if (action == actionExport)
+                                    {
+                                        exportFile(treeItem);
+                                    }
                                 }
                                 else
                                 {
@@ -213,13 +225,14 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
     if (qItem)
     {
         scrollTo(qItem);
+        QCustomTreeWidgetItem *customItem = dynamic_cast<QCustomTreeWidgetItem*>(qItem);
         switch (e->key())
         {
             case Qt::Key_F2:    if (!bEditing)
                                 {
                                     switch (e->modifiers())
                                     {
-                                        case Qt::ControlModifier:   addItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem), true);
+                                        case Qt::ControlModifier:   addItem(customItem, true);
                                                                     break;
                                         case Qt::NoModifier:    qItem->setFlags(qItem->flags() | Qt::ItemIsEditable);
                                                                 editItem(qItem);
@@ -237,25 +250,32 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
                                     break;
             case Qt::Key_Insert:    if (!bEditing)
                                     {
-                                        addItem(dynamic_cast<QCustomTreeWidgetItem*>(qItem));
+                                        addItem(customItem);
                                     }
                                     break;
             case Qt::Key_Space: if (!bEditing)
                                 {
-                                    launchItem(qItem);
+                                    if (e->modifiers() == Qt::ControlModifier)
+                                    {
+                                        exportFile(customItem->branch()->item());
+                                    }
+                                    else
+                                    {
+                                        launchItem(qItem);
+                                    }
                                 }
                                 break;
             case Qt::Key_Return:
             case Qt::Key_Enter:
             case Qt::Key_Escape:    bEditing = false;
                                     break;
-            case Qt::Key_F5:    changeState(dynamic_cast<QCustomTreeWidgetItem*>(qItem), Item::sNone);
+            case Qt::Key_F5:    changeState(customItem, Item::sNone);
                                 break;
-            case Qt::Key_F6:    changeState(dynamic_cast<QCustomTreeWidgetItem*>(qItem), Item::sProgress);
+            case Qt::Key_F6:    changeState(customItem, Item::sProgress);
                                 break;
-            case Qt::Key_F7:    changeState(dynamic_cast<QCustomTreeWidgetItem*>(qItem), Item::sFailure);
+            case Qt::Key_F7:    changeState(customItem, Item::sFailure);
                                 break;
-            case Qt::Key_F8:    changeState(dynamic_cast<QCustomTreeWidgetItem*>(qItem), Item::sSuccess);
+            case Qt::Key_F8:    changeState(customItem, Item::sSuccess);
                                 break;
             default:    QTreeWidget::keyReleaseEvent(e); break; 
         }
@@ -667,6 +687,9 @@ void QCustomTreeWidget::retranslate()
     actionEdit->setStatusTip(QApplication::translate("customTree","Edit the item",0));
     actionEdit->setShortcut(QApplication::translate("customTree","Ctrl+F2",0));
     actionLaunch->setShortcut(QApplication::translate("customTree","Space",0));
+    actionExport->setText(QApplication::translate("customTree", "E&xport", 0));
+    actionExport->setStatusTip(QApplication::translate("customTree", "Export the file associated to the item", 0));
+    actionExport->setShortcut(QApplication::translate("customTree", "Ctrl+Space", 0));
 }
 
 void QCustomTreeWidget::setItemDialogWindow(ItemDialog *window)
@@ -684,6 +707,23 @@ void QCustomTreeWidget::changeState(QCustomTreeWidgetItem *item, Item::State sta
             Item *treeItem = item->branch()->item();
             emit modificationDone(new TreeModification(*pTree, treeItem->state(), state, pTree->indicesOf(item->branch())));
             treeItem->setState(state);
+        }
+    }
+}
+
+void QCustomTreeWidget::exportFile(Item *item)
+{
+    FileItem *fileItem = dynamic_cast<FileItem*>(item);
+    if (fileItem)
+    {
+        QString fileName = fileItem->fileName().c_str();
+        QString newFileName = QFileDialog::getSaveFileName(this, QApplication::translate("customTree", "Select where to export the file", 0), "", "*." + QFileInfo(fileName).suffix());
+        if (!newFileName.isEmpty())
+        {
+            if (!QFile::copy(fileName, newFileName))
+            {
+                QMessageBox::critical(0, QApplication::translate("customTree", "Error", 0), QApplication::translate("customTree", "Unable to export the file", 0));
+            }
         }
     }
 }

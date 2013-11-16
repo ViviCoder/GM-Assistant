@@ -128,6 +128,11 @@ class QCustomTreeWidget: public QTreeWidget
          * \param state New state
          */
         void changeState(QCustomTreeWidgetItem *item, Item::State state);
+        /*!
+         * \brief Slot for exporting files
+         * \param item Item which contains the file to export
+         */
+        void exportFile(Item *item);
     protected:
         // overriden methods
         /*!
@@ -215,6 +220,8 @@ class QCustomTreeWidget: public QTreeWidget
          * \brief Launch action
          */
         QAction *actionLaunch;
+        //! Export action
+        QAction *actionExport;
         /*!
          * \brief Underlying tree
          */
