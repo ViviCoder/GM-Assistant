@@ -559,7 +559,7 @@
     <string>Manage round per round combats</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+M</string>
+    <string>Ctrl+B</string>
    </property>
   </action>
   <action name="action_English">
@@ -578,7 +578,7 @@
     <string>Edit the game metadata</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+E</string>
+    <string>Ctrl+M</string>
    </property>
   </action>
  </widget>

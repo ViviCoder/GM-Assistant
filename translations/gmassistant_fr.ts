@@ -929,6 +929,11 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="562"/>
+        <source>Ctrl+B</source>
+        <translation></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.ui" line="581"/>
         <source>Ctrl+M</source>
         <translation></translation>
     </message>
@@ -946,11 +951,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.ui" line="578"/>
         <source>Edit the game metadata</source>
         <translation>Édite les métadonnées du jeu</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="581"/>
-        <source>Ctrl+E</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="462"/>
