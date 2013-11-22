@@ -119,6 +119,11 @@ class Scenario
          * \return Metadata of the game
          */
         Metadata& metadata();
+        /*!
+         * \brief Setter for the IO configuration
+         * \param config IO configuration
+         */
+        void setConfig(const IOConfig &config);
     private:
         Tree tPlot, tHistory, tMusic, tEffects;
         std::string sNotes;
@@ -135,5 +140,10 @@ class Scenario
         //! Temporary directory (for the archive format)
         std::string sTempDir;
 };
+
+inline void Scenario::setConfig(const IOConfig &config)
+{
+    ioConfig = config;
+}
 
 #endif

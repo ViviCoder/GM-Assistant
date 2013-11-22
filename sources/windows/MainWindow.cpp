@@ -312,15 +312,14 @@ void MainWindow::on_action_Load_triggered()
             {
                 if (QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The syntax of the game you have just loaded is not rigourously correct. Would you like to fix it now?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
                 {
-                    sGame.setVersion(sGame.configuration().version());
-                    on_action_Save_triggered();
+                    changeFormatIfNeeded();
                 }
             }
         }
     }
 }
 
-void MainWindow::on_action_Save_triggered()
+void MainWindow::on_action_Save_triggered(bool askForUpdate)
 {
     if (sFileName.isEmpty())
     {
@@ -330,9 +329,10 @@ void MainWindow::on_action_Save_triggered()
     {
         try
         {
-            if (sGame.configuration().version() < Version() && QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The game you want to save does not use the latest version of GM-Assistant files. Do you want to update it? If no, some features may not be saved properly."), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
+            if (askForUpdate && sGame.configuration().version() < Version() && QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The game you want to save does not use the latest version of GM-Assistant files. Do you want to update it? If no, some features may not be saved properly."), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
             {
-                sGame.setVersion(Version());
+                changeFormatIfNeeded(false);
+                return;
             }
             sGame.toFile(sFileName.toStdString());
             mqQueue.save();
@@ -346,9 +346,14 @@ void MainWindow::on_action_Save_triggered()
     }
 }
 
-void MainWindow::on_actionS_ave_as_triggered()
+bool MainWindow::on_actionS_ave_as_triggered()
 {
-    QFileDialog *dial = new QFileDialog(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (1.2) (*.gms);;GM-Assistant files (1.1) (*.gma);;GM-Assistant files (1.0) (*.xml)",0));
+    QString filters(QApplication::translate("mainWindow","GM-Assistant files (1.2) (*.gms)",0));
+    if (!sGame.configuration().isArchived())
+    {
+        filters += QApplication::translate("mainWindow",";;GM-Assistant files (1.1) (*.gma);;GM-Assistant files (1.0) (*.xml)",0);
+    }
+    QFileDialog *dial = new QFileDialog(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(), filters);
     dial->setAcceptMode(QFileDialog::AcceptSave);
     if (dial->exec() == QFileDialog::Accepted)
     {
@@ -364,10 +369,6 @@ void MainWindow::on_actionS_ave_as_triggered()
         }
         try
         {
-            if (version < Version() && QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The game you want to save does not use the latest version of GM-Assistant files. Do you want to update it? If no, some features may not be saved properly."), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
-            {
-                version = Version();
-            }
             sGame.setVersion(version);
             sGame.toFile(file.toStdString());
             mqQueue.save();
@@ -380,9 +381,15 @@ void MainWindow::on_actionS_ave_as_triggered()
         catch (xmlpp::exception &xml)
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+            return false;
         }
     }
+    else
+    {
+        return false;
+    }
     delete dial;
+    return true;
 }
 
 void MainWindow::on_action_New_triggered()
@@ -549,8 +556,7 @@ void MainWindow::on_action_Reload_triggered()
         {
             if (QMessageBox::warning(this, QApplication::translate("mainWindow", "Warning", 0), QApplication::translate("mainWindow", "The syntax of the game you have just loaded is not rigourously correct. Would you like to fix it now?"), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
             {
-                sGame.setVersion(sGame.configuration().version());
-                on_action_Save_triggered();
+                changeFormatIfNeeded();
             }
         }
     }
@@ -851,6 +857,32 @@ void MainWindow::on_action_Metadata_triggered()
         {
             metadata = newMetadata;
             registerModification(new MetadataModification(metadata, newMetadata, oldMetadata));
+        }
+    }
+}
+
+void MainWindow::changeFormatIfNeeded(bool askForUpdate)
+{
+    IOConfig config = sGame.configuration();
+    if (askForUpdate)
+    {
+        sGame.setVersion(config.version());
+    }
+    else
+    {
+        sGame.setVersion(Version());
+    }
+    if (config.isArchived() == sGame.configuration().isArchived())
+    {
+        on_action_Save_triggered(askForUpdate);
+    }
+    else
+    {
+        // we need to choose another file
+        if (!on_actionS_ave_as_triggered())
+        {
+            // cancels the configuration change
+            sGame.setConfig(config);
         }
     }
 }

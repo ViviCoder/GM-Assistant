@@ -192,16 +192,18 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void on_action_Load_triggered();
         /*!
          * \brief Slot for the "Save" menu item
+         * \param askForUpdate Indicates if the user should be asked to update an outdated game
          *
          * Saves the game
          */
-        void on_action_Save_triggered();
+        void on_action_Save_triggered(bool askForUpdate = true);
         /*!
          * \brief Slot for the "Save as" menu item
+         * \return True if a file has been chosen and saved
          *
          * Saves the game in a new file
          */
-        void on_actionS_ave_as_triggered();
+        bool on_actionS_ave_as_triggered();
         /*!
          * \brief Slot for the "New" menu item
          *
@@ -347,7 +349,14 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Displays the metadata editor
          */
         void on_action_Metadata_triggered();
-
+        /*!
+         * \brief Slot used to change a file format if needed
+         * \param askForUpdate Indicates if the user is asked to update an outdated game
+         *
+         * If a new file format is needed to save the game, it asks for a new file.
+         * If askForUpdate is false, it updates the game.
+         */
+        void changeFormatIfNeeded(bool askForUpdate = true);
 };
 
 #endif
