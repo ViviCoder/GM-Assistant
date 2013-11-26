@@ -26,66 +26,6 @@ Metadata::Metadata()
 {
 }
 
-string Metadata::title() const
-{
-    return sTitle;
-}
-
-void Metadata::setTitle(const string &title)
-{
-    sTitle = title;
-}
-
-string Metadata::author() const
-{
-    return sAuthor;
-}
-
-void Metadata::setAuthor(const string &author)
-{
-    sAuthor = author;
-}
-
-Metadata::Date Metadata::creationDate() const
-{
-    return dCreation;
-}
-
-void Metadata::setCreationDate(const Date &creationDate)
-{
-    dCreation = creationDate;
-}
-
-string Metadata::description() const
-{
-    return sDescription;
-}
-
-void Metadata::setDescription(const string &description)
-{
-    sDescription = description;
-}
-
-string Metadata::players() const
-{
-    return sPlayers;
-}
-
-void Metadata::setPlayers(const string &players)
-{
-    sPlayers = players;
-}
-
-Metadata::Date Metadata::gameDate() const
-{
-    return dGame;
-}
-
-void Metadata::setGameDate(const Date &gameDate)
-{
-    dGame = gameDate;
-}
-
 void Metadata::fromXML(const xmlpp::Element &root)
 {
     using namespace xmlpp;
@@ -127,6 +67,15 @@ void Metadata::fromXML(const xmlpp::Element &root)
             setDescription(tmp->get_child_text()->get_content());
         }
     }
+    node = root.get_children("rpg");
+    if (!node.empty())
+    {
+        attr = dynamic_cast<Element*>(node.front())->get_attribute("value");
+        if (attr)
+        {
+            setRpg(attr->get_value());
+        }
+    }
     node = root.get_children("players");
     if (!node.empty())
     {
@@ -161,6 +110,8 @@ void Metadata::toXML(xmlpp::Element &root) const
     tmp->set_attribute("date", bufCreation.str());
     tmp = root.add_child("description");
     tmp->add_child_text(sDescription);
+    tmp = root.add_child("rpg");
+    tmp->set_attribute("value", sRpg);
     tmp = root.add_child("players");
     tmp->set_attribute("value", sPlayers);
     tmp = root.add_child("game");
@@ -171,7 +122,7 @@ void Metadata::toXML(xmlpp::Element &root) const
 
 bool Metadata::operator!=(const Metadata &metadata) const
 {
-    return (sTitle != metadata.sTitle || sAuthor != metadata.sAuthor || dCreation != metadata.dCreation || sDescription != metadata.sDescription || sPlayers != metadata.sPlayers || dGame != metadata.dGame);
+    return (sTitle != metadata.sTitle || sAuthor != metadata.sAuthor || dCreation != metadata.dCreation || sDescription != metadata.sDescription || sRpg != metadata.sRpg || sPlayers != metadata.sPlayers || dGame != metadata.dGame);
 }
 
 // Date methods
@@ -188,21 +139,6 @@ Metadata::Date::Date()
 
 Metadata::Date::Date(int day, int month, int year): iDay(day), iMonth(month), iYear(year)
 {
-}
-
-int Metadata::Date::day() const
-{
-    return iDay;
-}
-
-int Metadata::Date::month() const
-{
-    return iMonth;
-}
-
-int Metadata::Date::year() const
-{
-    return iYear;
 }
 
 Metadata::Date::Date(const string &date)

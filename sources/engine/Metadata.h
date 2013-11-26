@@ -53,17 +53,17 @@ class Metadata
                  * \brief Getter for the day
                  * \return Day of the month
                  */
-                int day() const;
+                inline int day() const;
                 /*!
                  * \brief Getter for the month
                  * \return Month of the year
                  */
-                int month() const;
+                inline int month() const;
                 /*!
                  * \brief Getter for the year
                  * \return Year
                  */
-                int year() const;
+                inline int year() const;
                 /*!
                  * \brief Comparison operator
                  * \param date Date to compare with
@@ -84,62 +84,72 @@ class Metadata
          * \brief Getter for the title
          * \return Title of the game
          */
-        std::string title() const;
+        inline std::string title() const;
         /*!
          * \brief Setter for the title
          * \param title New title
          */
-        void setTitle(const std::string &title);
+        inline void setTitle(const std::string &title);
         /*!
          * \brief Getter for the author
          * \return Author of the game
          */
-        std::string author() const;
+        inline std::string author() const;
         /*!
          * \brief Setter for the author
          * \param author New author
          */
-        void setAuthor(const std::string &author);
+        inline void setAuthor(const std::string &author);
         /*!
          * \brief Getter for the creation date
          * \return Creation date of the game
          */
-        Date creationDate() const;
+        inline Date creationDate() const;
         /*!
          * \brief Setter for the creation date
          * \param creationDate New creation date
          */
-        void setCreationDate(const Date &creationDate);
+        inline void setCreationDate(const Date &creationDate);
         /*!
          * \brief Getter for the description
          * \return Description of the game
          */
-        std::string description() const;
+        inline std::string description() const;
         /*!
          * \brief Setter for the description
          * \param description New description
          */
-        void setDescription(const std::string &description);
+        inline void setDescription(const std::string &description);
+        /*!
+         * \brief Getter for the role-playing game
+         * \return Role-playing game
+         */
+        inline std::string rpg() const;
+        /*!
+         * \brief Setter for the role-playing game
+         * \param rpg New role-playing game
+         */
+        inline void setRpg(const std::string &rpg); 
         /*!
          * \brief Getter for the players
          * \return Players
          */
-        std::string players() const;
+        inline std::string players() const;
         /*!
          * \brief Setter for the players
          * \param players New players
          */
-        void setPlayers(const std::string &players);
+        inline void setPlayers(const std::string &players);
         /*!
          * \brief Getter for the game date
          * \return Game date
          */
-        Date gameDate() const;
+        inline Date gameDate() const;
         /*!
          * \brief Setter for the game date
          * \param gameDate New game date
          */
-        void setGameDate(const Date &gameDate);
+        inline void setGameDate(const Date &gameDate);
         /*!
          * \brief XML loader
          * \param root Root of the XML tree
@@ -165,10 +175,101 @@ class Metadata
         Date dCreation;
         //! Description
         std::string sDescription;
+        //! Role-playing game
+        std::string sRpg;
         //! Players
         std::string sPlayers;
         //! Game date
         Date dGame;
 };
+
+// inline Metadata::Date methods
+
+int Metadata::Date::day() const
+{
+    return iDay;
+}
+
+int Metadata::Date::month() const
+{
+    return iMonth;
+}
+
+int Metadata::Date::year() const
+{
+    return iYear;
+}
+
+// inline Metadata methods
+
+std::string Metadata::title() const
+{
+    return sTitle;
+}
+
+void Metadata::setTitle(const std::string &title)
+{
+    sTitle = title;
+}
+
+std::string Metadata::author() const
+{
+    return sAuthor;
+}
+
+void Metadata::setAuthor(const std::string &author)
+{
+    sAuthor = author;
+}
+
+Metadata::Date Metadata::creationDate() const
+{
+    return dCreation;
+}
+
+void Metadata::setCreationDate(const Date &creationDate)
+{
+    dCreation = creationDate;
+}
+
+std::string Metadata::description() const
+{
+    return sDescription;
+}
+
+void Metadata::setDescription(const std::string &description)
+{
+    sDescription = description;
+}
+
+std::string Metadata::rpg() const
+{
+    return sRpg;
+}
+
+void Metadata::setRpg(const std::string &rpg)
+{
+    sRpg = rpg;
+}
+
+std::string Metadata::players() const
+{
+    return sPlayers;
+}
+
+void Metadata::setPlayers(const std::string &players)
+{
+    sPlayers = players;
+}
+
+Metadata::Date Metadata::gameDate() const
+{
+    return dGame;
+}
+
+void Metadata::setGameDate(const Date &gameDate)
+{
+    dGame = gameDate;
+}
 
 #endif

@@ -1207,6 +1207,11 @@ p, li { white-space: pre-wrap; }
         <source>Game date</source>
         <translation>Date de jeu</translation>
     </message>
+    <message>
+        <location filename="../sources/windows/MetadataDialog.ui" line="103"/>
+        <source>Role-playing game</source>
+        <translation>Jeu de rôle</translation>
+    </message>
 </context>
 <context>
     <name>selectCharacterDialog</name>

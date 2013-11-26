@@ -42,6 +42,7 @@ int MetadataDialog::exec(const Metadata &metadata)
     QDate qDate(date.year(), date.month(), date.day());
     dateCreation->setDate(qDate);
     textDescription->setText(metadata.description().c_str());
+    lineRpg->setText(metadata.rpg().c_str());
     linePlayers->setText(metadata.players().c_str());
     // Game date
     date = metadata.gameDate();
@@ -58,6 +59,7 @@ void MetadataDialog::accept()
     QDate qDate = dateCreation->date();
     mMetadata.setCreationDate(Metadata::Date(qDate.day(), qDate.month(), qDate.year()));
     mMetadata.setDescription(textDescription->toPlainText().toStdString());
+    mMetadata.setRpg(lineRpg->text().toStdString());
     mMetadata.setPlayers(linePlayers->text().toStdString());
     qDate = dateGame->date();
     mMetadata.setGameDate(Metadata::Date(qDate.day(), qDate.month(), qDate.year()));
