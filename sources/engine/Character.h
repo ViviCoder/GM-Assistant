@@ -29,7 +29,8 @@ class Character
 {
     private:
         std::string sName;
-        std::string sPlayerName;
+        //! Short description of the character
+        std::string sShort;
         //! Underlying vector
         std::vector<std::string> vProperties;
     public:
@@ -40,9 +41,12 @@ class Character
                 // constructor
                 PropertyIterator(const std::vector<std::string>::const_iterator &it);
         };
-        // constructors
-        Character(const std::string &name);    // for NPC
-        Character(const std::string &name, const std::string &playerName);    // for PC
+        /*!
+         * \brief Constructor
+         * \param name Character's name
+         * \param shortDescription Short description (typically player's name for PCs or group/race for NPCs)
+         */
+        Character(const std::string &name, const std::string &shortDescription);
         /*!
          * \brief XML saver
          * \param config IO configuration
@@ -59,23 +63,22 @@ class Character
          * \brief Getter of the name
          * \return Character's name
          */
-        std::string name() const;
+        inline std::string name() const;
         /*!
          * \brief Setter of the name
          * \param name New name
          */
-        void setName(const std::string &name);
+        inline void setName(const std::string &name);
         /*!
-         * \brief Getter of the player's name
-         * \return Player's name
+         * \brief Getter for the short description
+         * \return Short description of the character
          */
-        std::string playerName() const;
+        inline std::string shortDescription() const;
         /*!
-         * \brief Setter of the player's name
-         * \param playerName New player's name
+         * \brief Setter for the short description
+         * \param shortDescription New short description
          */
-        void setPlayerName(const std::string &playerName);
-        bool isPlaying() const;
+        inline void setShortDescription(const std::string &shortDescription);
         /*!
          * \brief Getter/setter of the properties
          * \param index Index of the property
@@ -100,5 +103,25 @@ class Character
         PropertyIterator begin() const;
         PropertyIterator end() const;
 };
+
+std::string Character::name() const
+{
+    return sName;
+}
+
+void Character::setName(const std::string &name)
+{
+    sName = name;
+}
+
+std::string Character::shortDescription() const
+{
+    return sShort;
+}
+
+void Character::setShortDescription(const std::string &shortDescription)
+{
+    sShort = shortDescription;
+}
 
 #endif

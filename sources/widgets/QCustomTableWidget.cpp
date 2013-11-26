@@ -247,7 +247,7 @@ void QCustomTableWidget::updateDisplay(int row, int column)
     for (CharacterList::iterator it = pCharacters->begin(); it != pCharacters->end(); it++)
     {
         insertRow(j);
-        setVerticalHeaderItem(j,new QTableWidgetItem(((*it).name()+"\n"+(*it).playerName()).c_str()));
+        setVerticalHeaderItem(j, new QTableWidgetItem(((*it).name() + "\n" + (*it).shortDescription()).c_str()));
         // creating items
         for (k=0;k<i;k++)
         {
@@ -357,7 +357,7 @@ void QCustomTableWidget::addCharacter(int index)
         // updating the CharacterList
         if (pCharacters)
         {
-            Character character(pChangeCharacterDial->name().toStdString(),pChangeCharacterDial->playerName().toStdString());
+            Character character(pChangeCharacterDial->name().toStdString(), pChangeCharacterDial->shortDescription().toStdString());
             pCharacters->add(character,index+1);
             emit modificationDone(new CharacterModification(pCharacters, new Character(character), index+1, true));
         }
@@ -375,11 +375,11 @@ void QCustomTableWidget::addCharacter(int index)
         QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index+1);
         if (rowHeaderItem)
         {
-            rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
+            rowHeaderItem->setText(pChangeCharacterDial->name() + "\n" + pChangeCharacterDial->shortDescription());
         }
         else
         {
-            rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
+            rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name() + "\n" + pChangeCharacterDial->shortDescription());
             setVerticalHeaderItem(index+1, rowHeaderItem);
         }
         scrollTo(index+1, -1);
@@ -481,12 +481,12 @@ void QCustomTableWidget::editCharacter(int index)
         {
             // updating the CharacterList
             std::string name = character.name();
-            std::string playerName = character.playerName();
+            std::string shortDescription = character.shortDescription();
             character.setName(pChangeCharacterDial->name().toStdString());
-            character.setPlayerName(pChangeCharacterDial->playerName().toStdString());
-            emit modificationDone(new CharacterModification(pCharacters, name, playerName, character.name(), character.playerName(), index));
+            character.setShortDescription(pChangeCharacterDial->shortDescription().toStdString());
+            emit modificationDone(new CharacterModification(pCharacters, name, shortDescription, character.name(), character.shortDescription(), index));
             QTableWidgetItem *rowHeaderItem = verticalHeaderItem(logicalRow(index));
-            rowHeaderItem->setText(pChangeCharacterDial->name()+"\n"+pChangeCharacterDial->playerName());
+            rowHeaderItem->setText(pChangeCharacterDial->name() + "\n" + pChangeCharacterDial->shortDescription());
         }
         scrollTo(index, -1);
     }

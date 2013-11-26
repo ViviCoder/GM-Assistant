@@ -43,6 +43,7 @@ IOConfig::IOConfig(const Version &version): vVersion(version), bValid(true)
         bHasExpanded = false;
         bHasMetadata = false;
         bArchived = false;
+        sDescriptionName = "playername";
     }
     else
     {
@@ -54,10 +55,10 @@ IOConfig::IOConfig(const Version &version): vVersion(version), bValid(true)
         bHasExpanded = true;
         bHasMetadata = true;
         bArchived = true;
+        sDescriptionName = "description";
     }
 }
 
-#include <iostream>
 IOConfig IOConfig::detect(const string &fileName, bool isArchived)
 {
     DomParser parser(fileName);
@@ -116,6 +117,14 @@ IOConfig IOConfig::detect(const string &fileName, bool isArchived)
     if (!root->find("//item[@expanded]").empty())
     {
         res.setHasExpanded(true);
+    }
+    if (!root->find("//character[@description]").empty())
+    {
+        res.setDescriptionName("description");
+    }
+    else if (!root->find("//character[@playername]").empty())
+    {
+        res.setDescriptionName("playername");
     }
     return res;
 }

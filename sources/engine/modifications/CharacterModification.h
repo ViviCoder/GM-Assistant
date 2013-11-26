@@ -78,12 +78,12 @@ class CharacterModification: public Modification
          * \brief Constructor for editions of characters
          * \param characterList List of characters
          * \param name Modified name
-         * \param playerName Modified player's name
+         * \param shortDescription Modified player's name
          * \param newName New name
-         * \param newPlayerName New player's name
+         * \param newShortDescription New player's name
          * \param index Index of the character
          */
-        CharacterModification(CharacterList *characterList, const std::string &name, const std::string &playerName, const std::string &newName, const std::string &newPlayerName, int index);
+        CharacterModification(CharacterList *characterList, const std::string &name, const std::string &shortDescription, const std::string &newName, const std::string &newShortDescription, int index);
         /*!
          *  \brief Constructor for editions of values
          *  \param characterList List of characters

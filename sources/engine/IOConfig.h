@@ -40,6 +40,8 @@ class IOConfig
         std::string sImageName;
         //! Name of the XML property element
         std::string sPropertyName;
+        //! Name of the XML character's short description attribute
+        std::string sDescriptionName; 
         //! Flag of availability of image elements
         bool bHasImages;
         //! Flag of availability of the expanded state
@@ -64,77 +66,77 @@ class IOConfig
          * \brief Getter for the name of the root element
          * \return Name of the root element
          */
-        std::string rootName() const;
+        inline std::string rootName() const;
         /*!
          * \brief Setter for the name of the root element
          * \param rootName New name of the root element
          */
-        void setRootName(const std::string &rootName);
+        inline void setRootName(const std::string &rootName);
         /*!
          * \brief Getter for the name of the plot element
          * \return Name of the plot element
          */
-        std::string plotName() const;
+        inline std::string plotName() const;
         /*!
          * \brief Setter for the name of the plot element
          * \param plotName New name of the plot element
          */
-        void setPlotName(const std::string &plotName);
+        inline void setPlotName(const std::string &plotName);
         /*!
          * \brief Getter for the name of the properties element
          * \return Name of the properties element
          */
-        std::string propertiesName() const;
+        inline std::string propertiesName() const;
         /*!
          * \brief Setter for the name of the properties element
          * \param propertiesName New name of the properties element
          */
-        void setPropertiesName(const std::string &propertiesName);
+        inline void setPropertiesName(const std::string &propertiesName);
         /*!
          * \brief Getter for the name of the image element
          * \return Name of the image element
          */
-        std::string imageName() const;
+        inline std::string imageName() const;
         /*!
          * \brief Setter for the name of the image element
          * \param imageName New name of the image element
          */
-        void setImageName(const std::string &imageName);
+        inline void setImageName(const std::string &imageName);
         /*!
          * \brief Getter for the name of the property element
          * \return Name of the property element
          */
-        std::string propertyName() const;
+        inline std::string propertyName() const;
         /*!
          * \brief Setter for the name of the property element
          * \param propertyName New name of the property element
          */
-        void setPropertyName(const std::string &propertyName);
+        inline void setPropertyName(const std::string &propertyName);
         /*!
          * \brief Getter for the flag of availability of image elements
          * \return Flag of availability of image elements
          */
-        bool hasImages() const;
+        inline bool hasImages() const;
         /*!
          * \brief Setter for the flag of availability of image elements
          * \param hasImages New flag of availability of image elements
          */
-        void setHasImages(bool hasImages);
+        inline void setHasImages(bool hasImages);
         /*!
          * \brief Getter for the flag of availability of the expanded state
          * \return Flag of availability of the expanded state
          */
-        bool hasExpanded() const;
+        inline bool hasExpanded() const;
         /*!
          * \brief Setter for the flag of availability of the expanded state
          * \param hasExpanded New flag of availability of the expanded state
          */
-        void setHasExpanded(bool hasExpanded);
+        inline void setHasExpanded(bool hasExpanded);
         /*!
          * \brief Getter for the version
          * \return Version of the file
          */
-        Version version() const;
+        inline Version version() const;
         /*!
          * \brief IOConfig detector
          * \param fileName Name of the file to scan
@@ -146,90 +148,100 @@ class IOConfig
          * \brief Getter for the flag of validity
          * \return Validity of the configuration
          */
-        bool isValid() const;
+        inline bool isValid() const;
         /*!
          * \brief Getter for the flag of availability of metadata
          * \return Flag of availability of metadata
          */
-        bool hasMetadata() const;
+        inline bool hasMetadata() const;
         /*!
          * \brief Setter for the flag of availability of metadata
          * \param hadMetadata New flag of availability of metadata
          */
-        void setHasMetadata(bool hadMetadata);
+        inline void setHasMetadata(bool hadMetadata);
         /*!
          * \brief Getter for the flag of archive format
          * \return Flag of archive format
          */
-        bool isArchived() const;
+        inline bool isArchived() const;
         /*!
          * \brief Setter for the flag of archive format
          * \param isArchived New flag of archive format
          */
-        void setArchived(bool isArchived);
+        inline void setArchived(bool isArchived);
         /*!
          * \brief Getter for the temporary directory
          * \return Temporary directory
          */
-        std::string temporaryDirectory() const;
+        inline std::string temporaryDirectory() const;
+        /*!
+         * \brief Getter for the name of the short description attribute
+         * \return Name of the short description attribute
+         */
+        inline std::string descriptionName() const;
+        /*!
+         * \brief Setter for the name of the short description attribute
+         * \param descriptionName New name of the short description attribute
+         */
+        inline void setDescriptionName(const std::string &descriptionName);
 };
 
-inline std::string IOConfig::rootName() const
+std::string IOConfig::rootName() const
 {
     return sRootName;
 }
 
-inline std::string IOConfig::plotName() const
+std::string IOConfig::plotName() const
 {
     return sPlotName;
 }
 
-inline std::string IOConfig::propertiesName() const
+std::string IOConfig::propertiesName() const
 {
     return sPropertiesName;
 }
 
-inline std::string IOConfig::imageName() const
+std::string IOConfig::imageName() const
 {
     return sImageName;
 }
 
-inline Version IOConfig::version() const
+Version IOConfig::version() const
 {
     return vVersion;
 }
 
-inline std::string IOConfig::propertyName() const
+std::string IOConfig::propertyName() const
 {
     return sPropertyName;
 }
 
-inline bool IOConfig::hasImages() const
+bool IOConfig::hasImages() const
 {
     return bHasImages;
 }
 
-inline bool IOConfig::hasExpanded() const
+bool IOConfig::hasExpanded() const
 {
     return bHasExpanded;
 }
 
-inline bool IOConfig::isValid() const
+bool IOConfig::isValid() const
 {
     return bValid;
 }
 
-inline bool IOConfig::hasMetadata() const
+bool IOConfig::hasMetadata() const
 {
     return bHasMetadata;
 }
 
-inline bool IOConfig::isArchived() const
+bool IOConfig::isArchived() const
 {
     return bArchived;
 }
 
-inline void IOConfig::setRootName(const std::string &rootName)
+void IOConfig::setRootName(const std::string &rootName)
 {
     if (rootName != sRootName)
     {
@@ -238,7 +250,7 @@ inline void IOConfig::setRootName(const std::string &rootName)
     }
 }
 
-inline void IOConfig::setPlotName(const std::string &plotName)
+void IOConfig::setPlotName(const std::string &plotName)
 {
     if (plotName != sPlotName)
     {
@@ -247,7 +259,7 @@ inline void IOConfig::setPlotName(const std::string &plotName)
     }
 }
 
-inline void IOConfig::setPropertiesName(const std::string &propertiesName)
+void IOConfig::setPropertiesName(const std::string &propertiesName)
 {
     if (propertiesName != sPropertiesName)
     {
@@ -256,7 +268,7 @@ inline void IOConfig::setPropertiesName(const std::string &propertiesName)
     }
 }
 
-inline void IOConfig::setPropertyName(const std::string &propertyName)
+void IOConfig::setPropertyName(const std::string &propertyName)
 {
     if (propertyName != sPropertyName)
     {
@@ -265,7 +277,7 @@ inline void IOConfig::setPropertyName(const std::string &propertyName)
     }
 }
 
-inline void IOConfig::setImageName(const std::string &imageName)
+void IOConfig::setImageName(const std::string &imageName)
 {
     if (imageName != sImageName)
     {
@@ -274,7 +286,7 @@ inline void IOConfig::setImageName(const std::string &imageName)
     }
 }
 
-inline void IOConfig::setHasImages(bool hasImages)
+void IOConfig::setHasImages(bool hasImages)
 {
     if (hasImages != bHasImages)
     {
@@ -283,7 +295,7 @@ inline void IOConfig::setHasImages(bool hasImages)
     }
 }
 
-inline void IOConfig::setHasExpanded(bool hasExpanded)
+void IOConfig::setHasExpanded(bool hasExpanded)
 {
     if (hasExpanded != bHasExpanded)
     {
@@ -292,7 +304,7 @@ inline void IOConfig::setHasExpanded(bool hasExpanded)
     }
 }
 
-inline void IOConfig::setHasMetadata(bool hasMetadata)
+void IOConfig::setHasMetadata(bool hasMetadata)
 {
     if (hasMetadata != bHasMetadata)
     {
@@ -301,7 +313,7 @@ inline void IOConfig::setHasMetadata(bool hasMetadata)
     }
 }
 
-inline void IOConfig::setArchived(bool isArchived)
+void IOConfig::setArchived(bool isArchived)
 {
     if (isArchived != bArchived)
     {
@@ -310,9 +322,23 @@ inline void IOConfig::setArchived(bool isArchived)
     }
 }
 
-inline std::string IOConfig::temporaryDirectory() const
+std::string IOConfig::temporaryDirectory() const
 {
     return sTempDir;
+}
+
+std::string IOConfig::descriptionName() const
+{
+    return sDescriptionName;
+}
+
+void IOConfig::setDescriptionName(const std::string &descriptionName)
+{
+    if (descriptionName != sDescriptionName)
+    {
+        sDescriptionName = descriptionName;
+        bValid = false;
+    }
 }
 
 #endif

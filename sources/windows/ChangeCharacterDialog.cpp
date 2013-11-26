@@ -25,16 +25,6 @@ ChangeCharacterDialog::ChangeCharacterDialog(QWidget *parent): QDialog(parent)
     setupUi(this);
 }
 
-QString ChangeCharacterDialog::name() const
-{
-    return editName->text();
-}
-
-QString ChangeCharacterDialog::playerName() const
-{
-    return editPlayer->text();
-}
-
 void ChangeCharacterDialog::on_pushEdit_clicked()
 {
     if (editName->text()!="")
@@ -53,11 +43,11 @@ int ChangeCharacterDialog::exec(Character *character)
     if (character)
     {
         name = character->name().c_str();
-        player = character->playerName().c_str();
+        player = character->shortDescription().c_str();
     }
     editName->setText(name);
     editName->setFocus();
-    editPlayer->setText(player);
+    editShort->setText(player);
     return QDialog::exec();
 }
 

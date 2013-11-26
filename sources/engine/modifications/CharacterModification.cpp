@@ -36,7 +36,7 @@ CharacterModification::CharacterModification(PropertyList *propertyList, const s
 {
 }
 
-CharacterModification::CharacterModification(CharacterList *characterList, const string &name, const string &playerName, const string &newName, const string &newPlayerName, int index): Modification(Modification::aEdition), etEditType(etCharacter), iIndex(index), pCharacterList(characterList), pPropertyList(0), pCharacter(0), sProperty(playerName), sNewProperty(newPlayerName), sName(name), sNewName(newName)
+CharacterModification::CharacterModification(CharacterList *characterList, const string &name, const string &shortDescription, const string &newName, const string &newShortDescription, int index): Modification(Modification::aEdition), etEditType(etCharacter), iIndex(index), pCharacterList(characterList), pPropertyList(0), pCharacter(0), sProperty(shortDescription), sNewProperty(newShortDescription), sName(name), sNewName(newName)
 {
 }
 
@@ -80,7 +80,7 @@ void CharacterModification::undo()
                                     case aEdition:  {
                                                         Character &character = (*pCharacterList)[iIndex];
                                                         character.setName(sName);
-                                                        character.setPlayerName(sProperty);
+                                                        character.setShortDescription(sProperty);
                                                         break;
                                                     }
                                     case aMovement: pCharacterList->move(iNewIndex, iIndex);
@@ -161,7 +161,7 @@ void CharacterModification::redo()
                                     case aEdition:  {
                                                         Character &character = (*pCharacterList)[iIndex];
                                                         character.setName(sNewName);
-                                                        character.setPlayerName(sNewProperty);
+                                                        character.setShortDescription(sNewProperty);
                                                         break;
                                                     }
                                     case aMovement: pCharacterList->move(iIndex, iNewIndex);

@@ -100,8 +100,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="39"/>
-        <source>Player&apos;s name:</source>
-        <translation>Nom du joueur :</translation>
+        <source>Short description:</source>
+        <translation>Description rapide :</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="51"/>
@@ -114,12 +114,12 @@ p, li { white-space: pre-wrap; }
         <translation>A&amp;nnuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="46"/>
+        <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="36"/>
         <source>Uncomplete data</source>
         <translation>Données incomplètes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="46"/>
+        <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="36"/>
         <source>You must fill the content before validating.</source>
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>

@@ -39,12 +39,12 @@ class ChangeCharacterDialog: public QDialog, private Ui::changeCharacterDialog
          * \brief Getter for the character's name
          * \return Character's name
          */
-        QString name() const;
+        inline QString name() const;
         /*!
-         * \brief Getter for the player's name
-         * \return Player's name
+         * \brief Getter for the short description of the character
+         * \return Short description of the character
          */
-        QString playerName() const;
+        inline QString shortDescription() const;
     public slots:
         /*!
          * \brief Slot for when the button is pressed
@@ -67,5 +67,15 @@ class ChangeCharacterDialog: public QDialog, private Ui::changeCharacterDialog
          */
         void changeEvent(QEvent *e);
 };
+
+QString ChangeCharacterDialog::name() const
+{
+    return editName->text();
+}
+
+QString ChangeCharacterDialog::shortDescription() const
+{
+    return editShort->text();
+}
 
 #endif

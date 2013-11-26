@@ -32,7 +32,7 @@ void CharacterList::toXML(const IOConfig &config, xmlpp::Element &root) const
     {
         Element *tmp = root.add_child("character");
         tmp->set_attribute("name",it->name());
-        tmp->set_attribute("playername",it->playerName());
+        tmp->set_attribute(config.descriptionName(), it->shortDescription());
         it->toXML(config, *tmp);
     }
 }
@@ -52,13 +52,13 @@ void CharacterList::fromXML(const IOConfig &config, const xmlpp::Element &root)
         {
             name = attr->get_value();
         }
-        string playerName="";
-        attr = elem->get_attribute("playername");
+        string shortDescription = "";
+        attr = elem->get_attribute(config.descriptionName());
         if (attr)
         {
-            playerName = attr->get_value();
+            shortDescription = attr->get_value();
         }
-        Character character = Character(name,playerName);
+        Character character = Character(name, shortDescription);
         character.fromXML(config, *elem);
         vCharacters.push_back(character);
     }        

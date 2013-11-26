@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>198</width>
+    <width>212</width>
     <height>160</height>
    </rect>
   </property>
@@ -36,12 +36,12 @@
    <item>
     <widget class="QLabel" name="label_2">
      <property name="text">
-      <string>Player's name:</string>
+      <string>Short description:</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="editPlayer"/>
+    <widget class="QLineEdit" name="editShort"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">

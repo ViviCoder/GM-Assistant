@@ -22,39 +22,8 @@ using namespace std;
 
 // constructors
 
-Character::Character(const string &name): sName(name)
+Character::Character(const string &name, const string &shortDescription): sName(name), sShort(shortDescription)
 {
-}
-
-Character::Character(const string &name, const string &playerName): sName(name), sPlayerName(playerName)
-{
-}
-
-// accessors
-
-string Character::name() const
-{
-    return sName;
-}
-
-void Character::setName(const string &name)
-{
-    sName = name;
-}
-
-string Character::playerName() const
-{
-    return sPlayerName;
-}
-
-void Character::setPlayerName(const string &playerName)
-{
-    sPlayerName = playerName;
-}
-
-bool Character::isPlaying() const
-{
-    return sPlayerName == "";
 }
 
 std::string& Character::property(int index) throw(out_of_range)
