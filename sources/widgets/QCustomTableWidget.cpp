@@ -247,7 +247,7 @@ void QCustomTableWidget::updateDisplay(int row, int column)
     for (CharacterList::iterator it = pCharacters->begin(); it != pCharacters->end(); it++)
     {
         insertRow(j);
-        setVerticalHeaderItem(j, new QTableWidgetItem(((*it).name() + "\n" + (*it).shortDescription()).c_str()));
+        setVerticalHeaderItem(j, new QTableWidgetItem(headerText((*it).name().c_str(), (*it).shortDescription().c_str())));
         // creating items
         for (k=0;k<i;k++)
         {
@@ -375,11 +375,11 @@ void QCustomTableWidget::addCharacter(int index)
         QTableWidgetItem *rowHeaderItem = verticalHeaderItem(index+1);
         if (rowHeaderItem)
         {
-            rowHeaderItem->setText(pChangeCharacterDial->name() + "\n" + pChangeCharacterDial->shortDescription());
+            rowHeaderItem->setText(headerText(pChangeCharacterDial->name(), pChangeCharacterDial->shortDescription()));
         }
         else
         {
-            rowHeaderItem = new QTableWidgetItem(pChangeCharacterDial->name() + "\n" + pChangeCharacterDial->shortDescription());
+            rowHeaderItem = new QTableWidgetItem(headerText(pChangeCharacterDial->name(), pChangeCharacterDial->shortDescription()));
             setVerticalHeaderItem(index+1, rowHeaderItem);
         }
         scrollTo(index+1, -1);
@@ -486,7 +486,7 @@ void QCustomTableWidget::editCharacter(int index)
             character.setShortDescription(pChangeCharacterDial->shortDescription().toStdString());
             emit modificationDone(new CharacterModification(pCharacters, name, shortDescription, character.name(), character.shortDescription(), index));
             QTableWidgetItem *rowHeaderItem = verticalHeaderItem(logicalRow(index));
-            rowHeaderItem->setText(pChangeCharacterDial->name() + "\n" + pChangeCharacterDial->shortDescription());
+            rowHeaderItem->setText(headerText(pChangeCharacterDial->name(), pChangeCharacterDial->shortDescription()));
         }
         scrollTo(index, -1);
     }
@@ -707,4 +707,14 @@ void QCustomTableWidget::changeEvent(QEvent *e)
     {
         retranslate();
     }
+}
+
+QString QCustomTableWidget::headerText(const QString &name, const QString &description)
+{
+    QString result(name);
+    if (!description.isEmpty())
+    {
+        result += "\n(" + description + ")";
+    }
+    return result;
 }

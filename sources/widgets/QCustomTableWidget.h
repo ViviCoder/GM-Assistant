@@ -126,6 +126,13 @@ class QCustomTableWidget: public QTableWidget
          * Retranslates the menus
          */
         void retranslate();
+        /*!
+         * \brief Formater for the horizontal header
+         * \param name Character's name
+         * \param description Short description
+         * \return Formated header text
+         */
+        static QString headerText(const QString &name, const QString &description);
     protected slots:
         /*!
          * \brief Slot for when a cell changes 
