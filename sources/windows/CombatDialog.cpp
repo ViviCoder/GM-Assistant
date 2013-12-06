@@ -24,6 +24,7 @@ CombatDialog::CombatDialog(QWidget *parent): QDialog(parent)
     header = tableWidget->verticalHeader();
     header->setMovable(true);
     connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onCharacterMoved(int, int, int)));
+    connect(header, SIGNAL(sectionDoubleClicked(int)), this, SLOT(onCharacterSelected(int)));
 }
 
 void CombatDialog::show(const QStringList &list)
@@ -109,4 +110,11 @@ void CombatDialog::changeEvent(QEvent *e)
     {
         retranslateUi(this);
     }
+}
+
+void CombatDialog::onCharacterSelected(int logicalIndex)
+{
+    tableWidget->item(header->logicalIndex(iCharacter), 0)->setBackground(QPalette().color(QPalette::Base));
+    iCharacter = header->visualIndex(logicalIndex);
+    updateDisplay();
 }

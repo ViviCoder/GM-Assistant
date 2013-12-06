@@ -74,6 +74,11 @@ class CombatDialog: public QDialog, private Ui::combatDialog
          * \brief Slot to update the display
          */
         void updateDisplay();
+        /*!
+         * \brief Slot for when a character is double-clicked
+         * \param logicalIndex Logical index of the header section
+         */
+        void onCharacterSelected(int logicalIndex);
 };
 
 #endif
