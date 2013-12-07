@@ -810,7 +810,7 @@ void MainWindow::on_action_Dice_triggered()
 
 void MainWindow::on_action_Combat_triggered()
 {
-    pSelectCharacterDialog->exec(sGame.characters());
+    pSelectCharacterDialog->show(sGame.characters());
 }
 
 void MainWindow::changeEvent(QEvent *e)

@@ -1216,37 +1216,37 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>selectCharacterDialog</name>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.ui" line="17"/>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="14"/>
         <source>Character selection</source>
         <translation>Sélection de personnages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.ui" line="28"/>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="25"/>
         <source>All characters</source>
         <translation>Tous les personnages</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.ui" line="39"/>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="36"/>
         <source>&amp;Add</source>
         <translation>A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.ui" line="50"/>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="47"/>
         <source>&amp;Remove</source>
         <translation>&amp;Retirer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.ui" line="66"/>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="63"/>
         <source>Involved characters</source>
         <translation>Personnages impliqués</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.ui" line="77"/>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="74"/>
         <source>&amp;Up</source>
         <translation>&amp;Haut</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.ui" line="88"/>
+        <location filename="../sources/windows/SelectCharacterDialog.ui" line="85"/>
         <source>&amp;Down</source>
         <translation>&amp;Bas</translation>
     </message>

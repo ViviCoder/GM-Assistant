@@ -25,7 +25,7 @@ SelectCharacterDialog::SelectCharacterDialog(QWidget *parent): QDialog(parent), 
     setupUi(this);
 }
 
-void SelectCharacterDialog::exec(const CharacterList &list)
+void SelectCharacterDialog::show(const CharacterList &list)
 {
     listAll->clear();
     for (CharacterList::const_iterator it = list.begin(); it != list.end(); it++)
@@ -33,7 +33,7 @@ void SelectCharacterDialog::exec(const CharacterList &list)
         listAll->addItem((*it).name().c_str());
     }
     listInvolved->clear();
-    QDialog::exec();
+    QDialog::show();
 }
 
 void SelectCharacterDialog::accept()

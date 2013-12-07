@@ -50,7 +50,7 @@ class SelectCharacterDialog: public QDialog, private Ui::selectCharacterDialog
          *
          * Prepares the dialog window with the given list of characters
          */
-        void exec(const CharacterList &list);
+        void show(const CharacterList &list);
         /*!
          * \brief Slot for the Add button
          *
