@@ -19,6 +19,9 @@
 #include "FileMapping.h"
 #include <Poco/Path.h>
 #include <sstream>
+#include <fstream>
+#include <Poco/DigestStream.h>
+#include <Poco/StreamCopier.h>
 
 using namespace std;
 using namespace Poco;
@@ -26,27 +29,42 @@ using namespace Poco;
 string FileMapping::addFile(const string &fileName, const string &destination)
 {
     map<string, string>::const_iterator pos = mMapping.find(fileName);
-    if (pos == mMapping.end())
-    {
-        Path target(destination);
-        string baseName = target.getBaseName();
-        int i = 2;
-        while (sAddedFiles.find(target.toString()) != sAddedFiles.end())
-        {
-            stringstream buf;
-            buf << i;
-            target.setBaseName(baseName + "_" + buf.str()); 
-            i++;
-        }
-        string result(target.toString());
-        mMapping.insert(pair<string, string>(fileName, result));
-        sAddedFiles.insert(result);
-        return result;
-    }
-    else
+    if (pos != mMapping.end())
     {
         return pos->second;
     }
+    // test if the file has already been added (even with a different file name)
+    string hash("x");
+    ifstream ibuf(fileName.c_str());
+    if (ibuf.good())
+    {
+        DigestOutputStream digestStream(md5Engine);
+        StreamCopier::copyStream(ibuf, digestStream);
+        digestStream.close();
+        // computing MD5 hash to compare files
+        hash = DigestEngine::digestToHex(md5Engine.digest());
+        pos = mHashes.find(hash);
+        if (pos != mHashes.end())
+        {
+            return pos->second;
+        }
+    }
+    // otherwise, add it (but beware of existing name)
+    Path target(destination);
+    string baseName = target.getBaseName();
+    int i = 2;
+    while (sAddedFiles.find(target.toString()) != sAddedFiles.end())
+    {
+        stringstream buf;
+        buf << i;
+        target.setBaseName(baseName + "_" + buf.str()); 
+        i++;
+    }
+    string result(target.toString());
+    mMapping.insert(pair<string, string>(fileName, result));
+    mHashes.insert(pair<string, string>(hash, result));
+    sAddedFiles.insert(result);
+    return result;
 }
 
 // iterator methods

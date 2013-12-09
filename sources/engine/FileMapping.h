@@ -19,9 +19,10 @@
 #ifndef HEADER_FILEMAPPING
 #define HEADER_FILEMAPPING
 
-#include <set>
 #include <map>
+#include <set>
 #include <string>
+#include <Poco/MD5Engine.h>
 
 //! Class used to determine actual file names for archives
 class FileMapping
@@ -31,6 +32,10 @@ class FileMapping
         std::set<std::string> sAddedFiles;
         //! Map of files
         std::map<std::string, std::string> mMapping;
+        //! Map of hashes
+        std::map<std::string, std::string> mHashes;
+        //! MD5 engine
+        Poco::MD5Engine md5Engine;
     public:
         //! Constant iterator
         class Iterator
@@ -48,18 +53,18 @@ class FileMapping
                  * \brief Getter for the current file name
                  * \return Current file name, "" if at the end of the iterator
                  */
-                std::string file() const;
+                inline std::string file() const;
                 /*!
                  * \brief Getter for the current destination
                  * \return Current destination, "" if at the end of the iterator
                  */
-                std::string destination() const;
+                inline std::string destination() const;
                 /*!
                  * \brief Comparison operator
                  * \param it Iterator to compare with
                  * \return True if the iterators are differents, false otherwise
                  */
-                bool operator!=(const Iterator &it) const;
+                inline bool operator!=(const Iterator &it) const;
                 /*!
                  * \brief Incrementation operator
                  * \return Incremented iterator
@@ -87,37 +92,37 @@ class FileMapping
          * \brief Beginning of the mapping
          * \return First position of the iterator
          */
-        Iterator begin() const;
+        inline Iterator begin() const;
         /*!
          * \brief End of the mapping
          * \return Last position of the iterator
          */
-        Iterator end() const;
+        inline Iterator end() const;
 };
 
-inline FileMapping::Iterator FileMapping::begin() const
+FileMapping::Iterator FileMapping::begin() const
 {
     return Iterator(mMapping.begin());
 }
 
-inline FileMapping::Iterator FileMapping::end() const
+FileMapping::Iterator FileMapping::end() const
 {
     return Iterator(mMapping.end());
 }
 
 // iterator methods
 
-inline bool FileMapping::Iterator::operator!=(const FileMapping::Iterator &it) const
+bool FileMapping::Iterator::operator!=(const FileMapping::Iterator &it) const
 {
     return itMap != it.itMap;
 }
 
-inline std::string FileMapping::Iterator::file() const
+std::string FileMapping::Iterator::file() const
 {
     return itMap->first;
 }
 
-inline std::string FileMapping::Iterator::destination() const
+std::string FileMapping::Iterator::destination() const
 {
     return itMap->second;
 }
