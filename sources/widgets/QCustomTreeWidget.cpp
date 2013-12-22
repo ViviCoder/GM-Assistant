@@ -364,9 +364,22 @@ void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
 {
     Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
     // stop the music if the item is a SoundItem
-    if (pmMethod == pmMusic && branch->item()->type() == Item::tSound)
+    if (pmMethod == pmMusic)
     {
-        emit fileToStop(dynamic_cast<SoundItem*>(branch->item()));
+        Item *item = branch->item();
+        Tree &children = branch->tree();
+        if (item->type() == Item::tSound)
+        {
+            emit fileToStop(dynamic_cast<SoundItem*>(item));
+        }
+        for (Tree::iterator it = children.begin(); it != children.end(); it++)
+        {
+            Item *childItem = it.branch()->item();
+            if (childItem->type() == Item::tSound)
+            {
+                emit fileToStop(dynamic_cast<SoundItem*>(childItem));
+            }
+        }
     }
     // delete item
     if (pTree)

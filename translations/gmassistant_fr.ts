@@ -285,142 +285,142 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>customTree</name>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="668"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="681"/>
         <source>&amp;None</source>
         <translation>&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="669"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="682"/>
         <source>Untag the item</source>
         <translation>Retire toute étiquette de l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="670"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="683"/>
         <source>Ctrl+F5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="671"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="684"/>
         <source>In &amp;progress</source>
         <translation>En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="672"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="685"/>
         <source>Tag the item as being in progress</source>
         <translation>Marque l&apos;item comme étant en cours</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="673"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="686"/>
         <source>Ctrl+F6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="674"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="687"/>
         <source>&amp;Failed</source>
         <translation>&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="675"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="688"/>
         <source>Tag the item as failed</source>
         <translation>Marque l&apos;item comme échoué</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="676"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="689"/>
         <source>Ctrl+F7</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="677"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="690"/>
         <source>&amp;Succeeded</source>
         <translation>&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="678"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="691"/>
         <source>Tag the item as succeeded</source>
         <translation>Marque l&apos;item comme réussi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="679"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="692"/>
         <source>Ctrl+F8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="680"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="693"/>
         <source>&amp;Add</source>
         <translation>A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="681"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="694"/>
         <source>Add a new item</source>
         <translation>Ajoute un nouvel item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="682"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="695"/>
         <source>Ins</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="683"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="696"/>
         <source>&amp;Delete</source>
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="684"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="697"/>
         <source>Delete the item</source>
         <translation>Supprime l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="685"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="698"/>
         <source>Del</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="686"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="699"/>
         <source>&amp;Edit</source>
         <translation>É&amp;diter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="687"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="700"/>
         <source>Edit the item</source>
         <translation>Édite l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="688"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="701"/>
         <source>Ctrl+F2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="689"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="702"/>
         <source>Space</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="690"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="703"/>
         <source>E&amp;xport</source>
         <translation>E&amp;xporter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="691"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="704"/>
         <source>Export the file associated to the item</source>
         <translation>Exporte le fichier associé à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="692"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="705"/>
         <source>Ctrl+Space</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="720"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="733"/>
         <source>Select where to export the file</source>
         <translation>Sélectionnez où exporter le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="725"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="738"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="725"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="738"/>
         <source>Unable to export the file</source>
         <translation>Impossible d&apos;exporter le fichier</translation>
     </message>
@@ -1071,7 +1071,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="109"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="502"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="515"/>
         <location filename="../sources/windows/MainWindow.cpp" line="297"/>
         <location filename="../sources/windows/MainWindow.cpp" line="303"/>
         <location filename="../sources/windows/MainWindow.cpp" line="344"/>
