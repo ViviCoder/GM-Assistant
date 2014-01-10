@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -90,12 +90,12 @@ class TreeModification: public Modification
          */
         virtual ~TreeModification();
         // inherited pure virtual getter
-        Type type() const;
+        inline Type type() const;
         /*!
          * \brief Getter for the tree
          * \return Modified tree
          */
-        Tree& tree();
+        inline Tree& tree();
         // inherited pure virtual methods
         void undo();
         void redo();
@@ -103,7 +103,7 @@ class TreeModification: public Modification
          * \brief Getter for the indices
          * \return Indices of the modification
          */
-        std::string indices() const;
+        inline std::string indices() const;
         /*!
          * \brief Modified indices for undoing a movement
          * \return Indices where to put back the moved branch
@@ -119,6 +119,20 @@ class TreeModification: public Modification
          * \return Indices of the nearest item to the deleted one
          */
         std::string deletedIndices() const;
+        /*!
+         * \brief Getter for the modified item (or the previous when undoing an addition)
+         * \return Modified item or just undone added item (to be deleted separately by freeItem))
+         */
+        inline Item* item() const;
+        /*!
+         * \brief Getter for the newly added item
+         * \return New item
+         */
+        inline Item* newItem() const;
+        /*!
+         * \brief Unadded item deletion
+         */
+        void freeItem();
     private:
         //! Type of edition (if this is the case)
         EditionType etEditType;
@@ -130,7 +144,7 @@ class TreeModification: public Modification
         Tree &rTree;
         //! Copy of the deleted branch
         Branch *pBranch;
-        //! Copy of the modified item
+        //! Copy of the modified item (or the previous item when undoing an addition)
         Item *pItem;
         //! Copy of the new item
         Item *pNewItem;
@@ -143,5 +157,30 @@ class TreeModification: public Modification
         //! New state
         Item::State sNewState;
 };
+
+Modification::Type TreeModification::type() const
+{
+    return tTree;
+}
+
+std::string TreeModification::indices() const
+{
+    return sIndices;
+}
+
+Tree& TreeModification::tree()
+{
+    return rTree;
+}
+
+Item* TreeModification::item() const
+{
+    return pItem;
+}
+
+Item* TreeModification::newItem() const
+{
+    return pNewItem;
+}
 
 #endif

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -61,16 +61,12 @@ TreeModification::~TreeModification()
     }
 }
 
-Modification::Type TreeModification::type() const
-{
-    return tTree;
-}
-
 void TreeModification::undo()
 {
     switch (action())
     {
-        case aAddition: rTree.remove(sIndices);
+        case aAddition: pItem = rTree[sIndices];
+                        rTree.remove(sIndices, false);
                         break;
         case aDeletion: rTree.insert(sIndices, new Branch(*pBranch));
                         break;
@@ -112,16 +108,6 @@ void TreeModification::redo()
                         break;
         default:    break;
     }
-}
-
-string TreeModification::indices() const
-{
-    return sIndices;
-}
-
-Tree& TreeModification::tree()
-{
-    return rTree;
 }
 
 string TreeModification::modifiedIndices() const
@@ -223,5 +209,14 @@ string TreeModification::deletedIndices() const
         }
         buf << n-1;
         return buf.str();
+    }
+}
+
+void TreeModification::freeItem()
+{
+    if (pItem)
+    {
+        delete pItem;
+        pItem = 0;
     }
 }

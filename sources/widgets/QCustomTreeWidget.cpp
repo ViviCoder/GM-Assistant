@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -648,8 +648,18 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
     {
         switch (modification->action())
         {
-            case Modification::aAddition:   indices = modification->deletedIndices();
-                                            break;
+            case Modification::aAddition:
+                {
+                    indices = modification->deletedIndices();
+                    // stopping music if necessary
+                    Item *item = modification->item();
+                    if (pmMethod == pmMusic && item->type() == Item::tSound)
+                    {
+                        emit fileToStop(dynamic_cast<SoundItem*>(item));
+                    }
+                    modification->freeItem();
+                    break;
+                }
             default:    indices = modification->indices();
         }
     }
