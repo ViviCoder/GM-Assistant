@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -36,13 +36,6 @@ class Tree
         std::vector<Branch*> vChildren;
         // pointer to its parent branch
         Branch* pParent;
-        /*!
-         * \brief Getter for branches
-         * \param indices Indices of the branch
-         * \return Branch at the given indices
-         * \throw std::out_of_range Thrown when there is no branch at the given indices
-         */
-        Branch* branch(const std::string &indices) throw(std::out_of_range);
     public:
         // different possible types of iterating over the items of the model
         enum IterationType {itNormal,itUnchecked,itState};
@@ -185,6 +178,13 @@ class Tree
         int indexOf(Branch *branch) const;
         std::string indicesOf(Branch *branch) const throw(std::out_of_range);
         std::string indicesOfNext(Branch *branch) const;
+        /*!
+         * \brief Getter for branches
+         * \param indices Indices of the branch
+         * \return Branch at the given indices
+         * \throw std::out_of_range Thrown when there is no branch at the given indices
+         */
+        Branch* branch(const std::string &indices) throw(std::out_of_range);
 };
 
 #include "Branch.h"

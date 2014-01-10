@@ -133,6 +133,11 @@ class TreeModification: public Modification
          * \brief Unadded item deletion
          */
         void freeItem();
+        /*!
+         * \brief Getter for the deleted branch
+         * \return Deleted branch
+         */
+        inline Branch* branch() const;
     private:
         //! Type of edition (if this is the case)
         EditionType etEditType;
@@ -181,6 +186,11 @@ Item* TreeModification::item() const
 Item* TreeModification::newItem() const
 {
     return pNewItem;
+}
+
+Branch* TreeModification::branch() const
+{
+    return pBranch;
 }
 
 #endif

@@ -68,7 +68,8 @@ void TreeModification::undo()
         case aAddition: pItem = rTree[sIndices];
                         rTree.remove(sIndices, false);
                         break;
-        case aDeletion: rTree.insert(sIndices, new Branch(*pBranch));
+        case aDeletion: rTree.insert(sIndices, pBranch);
+                        pBranch = 0;
                         break;
         case aEdition:  switch (etEditType)
                         {
@@ -92,7 +93,8 @@ void TreeModification::redo()
     {
         case aAddition: rTree.insert(sIndices, new Branch(ItemFactory::copyItem(pNewItem)));
                         break;
-        case aDeletion: rTree.remove(sIndices);
+        case aDeletion: pBranch = rTree.branch(sIndices);
+                        rTree.remove(sIndices, false);
                         break;
         case aEdition:  switch (etEditType)
                         {

@@ -366,27 +366,14 @@ void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
     // stop the music if the item is a SoundItem
     if (pmMethod == pmMusic)
     {
-        Item *item = branch->item();
-        Tree &children = branch->tree();
-        if (item->type() == Item::tSound)
-        {
-            emit fileToStop(dynamic_cast<SoundItem*>(item));
-        }
-        for (Tree::iterator it = children.begin(); it != children.end(); it++)
-        {
-            Item *childItem = it.branch()->item();
-            if (childItem->type() == Item::tSound)
-            {
-                emit fileToStop(dynamic_cast<SoundItem*>(childItem));
-            }
-        }
+        stopMusic(branch);
     }
     // delete item
     if (pTree)
     {
         string indices = pTree->indicesOf(branch);
-        emit modificationDone(new TreeModification(*pTree, new Branch(*branch), indices));
-        pTree->remove(indices);
+        emit modificationDone(new TreeModification(*pTree, branch, indices));
+        pTree->remove(indices, false);
     }
     // delete widgetItem
     delete item;
@@ -668,6 +655,10 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
         switch (modification->action())
         {
             case Modification::aDeletion:   indices = modification->deletedIndices();
+                                            if (pmMethod == pmMusic)
+                                            {
+                                                stopMusic(modification->branch());
+                                            }
                                             break;
             case Modification::aMovement:   indices = modification->modifiedNewIndices();
                                             break;
@@ -746,6 +737,27 @@ void QCustomTreeWidget::exportFile(Item *item)
             if (!QFile::copy(fileName, newFileName))
             {
                 QMessageBox::critical(0, QApplication::translate("customTree", "Error", 0), QApplication::translate("customTree", "Unable to export the file", 0));
+            }
+        }
+    }
+}
+
+void QCustomTreeWidget::stopMusic(Branch *branch)
+{
+    if (branch)
+    {
+        Item *item = branch->item();
+        Tree &children = branch->tree();
+        if (item->type() == Item::tSound)
+        {
+            emit fileToStop(dynamic_cast<SoundItem*>(item));
+        }
+        for (Tree::iterator it = children.begin(); it != children.end(); it++)
+        {
+            Item *childItem = it.branch()->item();
+            if (childItem->type() == Item::tSound)
+            {
+                emit fileToStop(dynamic_cast<SoundItem*>(childItem));
             }
         }
     }
