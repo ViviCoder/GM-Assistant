@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,9 @@ class QCustomTreeWidgetItem: public QTreeWidgetItem
         QCustomTreeWidgetItem(QCustomTreeWidget *parent, Branch *branch, QCustomTreeWidgetItem *previous);
         QCustomTreeWidgetItem(QCustomTreeWidgetItem *parent, Branch *branch, QCustomTreeWidgetItem *previous);
         Branch* branch();
-        // update the displat (text and icons)
+        /*
+         * \brief Update of the display (icon, text, tool/status tips)
+         */
         void updateDisplay();
 };
 
