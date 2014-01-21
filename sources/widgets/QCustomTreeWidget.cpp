@@ -512,9 +512,9 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                 // an item is selected
                 if (edition)
                 {
-                    emit modificationDone(new TreeModification(*pTree, ItemFactory::copyItem(item->branch()->item()), ItemFactory::copyItem(newItem), pTree->indicesOf(item->branch())));
-                    // stopping the music if necessary
                     Item *iItem = item->branch()->item();
+                    emit modificationDone(new TreeModification(*pTree, iItem, ItemFactory::copyItem(newItem), pTree->indicesOf(item->branch())));
+                    // stopping the music if necessary
                     if (pmMethod == pmMusic && iItem->type() == Item::tSound)
                     {
                         SoundItem *siItem = dynamic_cast<SoundItem*>(iItem);
@@ -639,14 +639,29 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                 {
                     indices = modification->deletedIndices();
                     // stopping music if necessary
-                    Item *item = modification->item();
+                    Item *item = modification->undoneItem();
                     if (pmMethod == pmMusic && item->type() == Item::tSound)
                     {
                         emit fileToStop(dynamic_cast<SoundItem*>(item));
                     }
-                    modification->freeItem();
+                    modification->freeUndoneItem();
                     break;
                 }
+            case Modification::aEdition:    if (modification->editionType() == TreeModification::etFull)
+                                            {
+                                                // stopping music if necessary
+                                                Item *item = modification->undoneItem();
+                                                if (pmMethod == pmMusic && item->type() == Item::tSound)
+                                                {
+                                                    SoundItem *sItem = dynamic_cast<SoundItem*>(item);
+                                                    Item *oldItem = modification->item();
+                                                    if (oldItem->type() != Item::tSound || dynamic_cast<SoundItem*>(oldItem)->fileName() != sItem->fileName())
+                                                    {
+                                                        emit fileToStop(sItem);
+                                                    }
+                                                }
+                                                modification->freeUndoneItem();
+                                            }
             default:    indices = modification->indices();
         }
     }
@@ -662,6 +677,21 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                                             break;
             case Modification::aMovement:   indices = modification->modifiedNewIndices();
                                             break;
+            case Modification::aEdition:    if (modification->editionType() == TreeModification::etFull)
+                                            {
+                                                // stopping music if necessary
+                                                Item *item = modification->undoneItem();
+                                                if (pmMethod == pmMusic && item->type() == Item::tSound)
+                                                {
+                                                    SoundItem *sItem = dynamic_cast<SoundItem*>(item);
+                                                    Item *newItem = modification->newItem();
+                                                    if (newItem->type() != Item::tSound || dynamic_cast<SoundItem*>(newItem)->fileName() != sItem->fileName())
+                                                    {
+                                                        emit fileToStop(sItem);
+                                                    }
+                                                }
+                                                modification->freeUndoneItem();
+                                            }
             default:    indices = modification->indices();
         }
     }

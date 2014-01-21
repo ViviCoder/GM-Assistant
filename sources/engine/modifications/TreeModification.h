@@ -130,14 +130,24 @@ class TreeModification: public Modification
          */
         inline Item* newItem() const;
         /*!
-         * \brief Unadded item deletion
+         * \brief Deletion of the undone item
          */
-        void freeItem();
+        void freeUndoneItem();
         /*!
          * \brief Getter for the deleted branch
          * \return Deleted branch
          */
         inline Branch* branch() const;
+        /*!
+         * \brief Getter for the item to be undone (for additions and full editions)
+         * \return Item to be undone (to be deleted separately by freeItem)
+         */
+        inline Item* undoneItem() const;
+        /*!
+         * \brief Getter for the edition type (if edition)
+         * \return Edition type (if edition only)
+         */
+        inline EditionType editionType() const;
     private:
         //! Type of edition (if this is the case)
         EditionType etEditType;
@@ -149,7 +159,7 @@ class TreeModification: public Modification
         Tree &rTree;
         //! Copy of the deleted branch
         Branch *pBranch;
-        //! Copy of the modified item (or the previous item when undoing an addition)
+        //! Copy of the modified item
         Item *pItem;
         //! Copy of the new item
         Item *pNewItem;
@@ -161,6 +171,8 @@ class TreeModification: public Modification
         Item::State sState;
         //! New state
         Item::State sNewState;
+        //! Item to be undone (for undoing additions and full editions)
+        Item *pUndoneItem;
 };
 
 Modification::Type TreeModification::type() const
@@ -191,6 +203,16 @@ Item* TreeModification::newItem() const
 Branch* TreeModification::branch() const
 {
     return pBranch;
+}
+
+Item* TreeModification::undoneItem() const
+{
+    return pUndoneItem;
+}
+
+TreeModification::EditionType TreeModification::editionType() const
+{
+    return etEditType;
 }
 
 #endif

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -43,20 +43,58 @@ class Branch
         Branch(Item* item, const IOConfig &config, const xmlpp::Element &root, bool checkFiles, Tree *parent);
         // destructor
         ~Branch();
-        //accessors
-        Item* item() const;
-        Tree& tree();
-        Tree* parent() const;
-        void setParent(Tree *parent);
+        /*!
+         * \brief Getter for the item
+         * \return Item of the branch
+         */
+        inline Item* item() const;
+        /*!
+         * \brief Getter for the child tree
+         * \return Child tree of the branch
+         */
+        inline Tree& tree();
+        /*!
+         * \brief Getter for the parent tree
+         * \return Parent tree of the branch
+         */
+        inline Tree* parent() const;
+        /*!
+         * \brief Setter for the parent tree
+         * \param parent New parent tree
+         */
+        inline void setParent(Tree *parent);
         // copy operator
         Branch& operator=(const Branch &branch);
         /*!
          * \brief Setter for the item
          * \param item New item
-         *
-         * Replaces the old item by the new one and deletes it
          */
-        void setItem(Item *item);
+        inline void setItem(Item *item);
 };
+
+Item* Branch::item() const
+{
+    return pItem;
+}
+
+Tree& Branch::tree()
+{
+    return tTree;
+}
+
+Tree* Branch::parent() const
+{
+    return pParent;
+}
+
+void Branch::setParent(Tree *parent)
+{
+    pParent = parent;
+}
+
+void Branch::setItem(Item *item)
+{
+    pItem = item;
+}
 
 #endif

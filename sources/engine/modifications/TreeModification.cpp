@@ -21,27 +21,27 @@
 
 using namespace std;
 
-TreeModification::TreeModification(Tree &tree, Item *newItem, const string &indices): Modification(aAddition), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pNewItem(newItem)
+TreeModification::TreeModification(Tree &tree, Item *newItem, const string &indices): Modification(aAddition), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pNewItem(newItem), pUndoneItem(0)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, Branch *branch, const string &indices): Modification(aDeletion), sIndices(indices), rTree(tree), pBranch(branch), pItem(0), pNewItem(0)
+TreeModification::TreeModification(Tree &tree, Branch *branch, const string &indices): Modification(aDeletion), sIndices(indices), rTree(tree), pBranch(branch), pItem(0), pNewItem(0), pUndoneItem(0)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, Item *item, Item *newItem, const string &indices): Modification(aEdition), etEditType(etFull), sIndices(indices), rTree(tree), pBranch(0), pItem(item), pNewItem(newItem)
+TreeModification::TreeModification(Tree &tree, Item *item, Item *newItem, const string &indices): Modification(aEdition), etEditType(etFull), sIndices(indices), rTree(tree), pBranch(0), pItem(item), pNewItem(newItem), pUndoneItem(0)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, const string &content, const string &newContent, const string &indices): Modification(aEdition), etEditType(etContent), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pNewItem(0), sContent(content), sNewContent(newContent)
+TreeModification::TreeModification(Tree &tree, const string &content, const string &newContent, const string &indices): Modification(aEdition), etEditType(etContent), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pNewItem(0), sContent(content), sNewContent(newContent), pUndoneItem(0)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, Item::State state, Item::State newState, const string &indices): Modification(aEdition), etEditType(etState), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pNewItem(0), sState(state), sNewState(newState)
+TreeModification::TreeModification(Tree &tree, Item::State state, Item::State newState, const string &indices): Modification(aEdition), etEditType(etState), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pNewItem(0), sState(state), sNewState(newState), pUndoneItem(0)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, const string &indices, const string &newIndices): Modification(aMovement), sIndices(indices), sNewIndices(newIndices), rTree(tree), pBranch(0), pItem(0), pNewItem(0)
+TreeModification::TreeModification(Tree &tree, const string &indices, const string &newIndices): Modification(aMovement), sIndices(indices), sNewIndices(newIndices), rTree(tree), pBranch(0), pItem(0), pNewItem(0), pUndoneItem(0)
 {
 }
 
@@ -59,13 +59,17 @@ TreeModification::~TreeModification()
     {
         delete pNewItem;
     }
+    if (pUndoneItem)
+    {
+        delete pUndoneItem;
+    }
 }
 
 void TreeModification::undo()
 {
     switch (action())
     {
-        case aAddition: pItem = rTree[sIndices];
+        case aAddition: pUndoneItem = rTree[sIndices];
                         rTree.remove(sIndices, false);
                         break;
         case aDeletion: rTree.insert(sIndices, pBranch);
@@ -73,7 +77,8 @@ void TreeModification::undo()
                         break;
         case aEdition:  switch (etEditType)
                         {
-                            case etFull:    rTree.setItem(sIndices, ItemFactory::copyItem(pItem));
+                            case etFull:    pUndoneItem = rTree[sIndices];
+                                            rTree.setItem(sIndices, ItemFactory::copyItem(pItem));
                                             break;
                             case etContent: rTree[sIndices]->setContent(sContent);
                                             break;
@@ -98,7 +103,8 @@ void TreeModification::redo()
                         break;
         case aEdition:  switch (etEditType)
                         {
-                            case etFull:    rTree.setItem(sIndices, ItemFactory::copyItem(pNewItem));
+                            case etFull:    pUndoneItem = rTree[sIndices];
+                                            rTree.setItem(sIndices, ItemFactory::copyItem(pNewItem));
                                             break;
                             case etContent: rTree[sIndices]->setContent(sNewContent);
                                             break;
@@ -214,11 +220,11 @@ string TreeModification::deletedIndices() const
     }
 }
 
-void TreeModification::freeItem()
+void TreeModification::freeUndoneItem()
 {
-    if (pItem)
+    if (pUndoneItem)
     {
-        delete pItem;
-        pItem = 0;
+        delete pUndoneItem;
+        pUndoneItem = 0;
     }
 }

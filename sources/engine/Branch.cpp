@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -45,28 +45,6 @@ Branch::~Branch()
     delete pItem;
 }
 
-// methods
-
-Item* Branch::item() const
-{
-    return pItem;
-}
-
-Tree& Branch::tree()
-{
-    return tTree;
-}
-
-Tree* Branch::parent() const
-{
-    return pParent;
-}
-
-void Branch::setParent(Tree *parent)
-{
-    pParent = parent;
-}
-
 // operators
 
 Branch& Branch::operator=(const Branch &branch)
@@ -75,11 +53,4 @@ Branch& Branch::operator=(const Branch &branch)
     tTree = branch.tTree;
 
     return *this;
-}
-
-void Branch::setItem(Item *item)
-{
-    Item *tmp = pItem;
-    pItem = item;
-    delete tmp;
 }
