@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -884,5 +884,13 @@ void MainWindow::changeFormatIfNeeded(bool askForUpdate)
             // cancels the configuration change
             sGame.setConfig(config);
         }
+    }
+}
+
+void MainWindow::changeCurrentMusic(const SoundItem *oldItem, const SoundItem *newItem)
+{
+    if (oldItem == siCurrentMusic)
+    {
+        siCurrentMusic = newItem;
     }
 }

@@ -262,6 +262,12 @@ class QCustomTreeWidget: public QTreeWidget
          * \param item Pointer to the soundItem we want to stop
          */
         void fileToStop(const SoundItem *item);
+        /*!
+         * \brief Signal to change the current sound item (without playing it again)
+         * \param oldItem Old sound item
+         * \param newItem New sound item
+         */
+        void fileToChange(const SoundItem *oldItem, const SoundItem *newItem);
 };
 
 #endif

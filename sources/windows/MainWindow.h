@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -357,6 +357,12 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * If askForUpdate is false, it updates the game.
          */
         void changeFormatIfNeeded(bool askForUpdate = true);
+        /*!
+         * \brief Slot to change the current sound item without modifying the playback
+         * \param oldItem Old sound item
+         * \param newItem New sound item
+         */
+        void changeCurrentMusic(const SoundItem *oldItem, const SoundItem *newItem);
 };
 
 #endif

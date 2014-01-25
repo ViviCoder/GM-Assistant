@@ -78,7 +78,8 @@ void TreeModification::undo()
         case aEdition:  switch (etEditType)
                         {
                             case etFull:    pUndoneItem = rTree[sIndices];
-                                            rTree.setItem(sIndices, ItemFactory::copyItem(pItem));
+                                            pCurrentItem = ItemFactory::copyItem(pItem);
+                                            rTree.setItem(sIndices, pCurrentItem);
                                             break;
                             case etContent: rTree[sIndices]->setContent(sContent);
                                             break;
@@ -104,7 +105,8 @@ void TreeModification::redo()
         case aEdition:  switch (etEditType)
                         {
                             case etFull:    pUndoneItem = rTree[sIndices];
-                                            rTree.setItem(sIndices, ItemFactory::copyItem(pNewItem));
+                                            pCurrentItem = ItemFactory::copyItem(pNewItem);
+                                            rTree.setItem(sIndices, pCurrentItem);
                                             break;
                             case etContent: rTree[sIndices]->setContent(sNewContent);
                                             break;

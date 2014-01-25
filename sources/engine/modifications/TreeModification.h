@@ -148,6 +148,13 @@ class TreeModification: public Modification
          * \return Edition type (if edition only)
          */
         inline EditionType editionType() const;
+        /*!
+         * \brief Getter for the current copy of the item (for editions)
+         * \return Current item
+         *
+         * Is non null only after undo has been called at least once
+         */
+        inline Item* currentItem() const;
     private:
         //! Type of edition (if this is the case)
         EditionType etEditType;
@@ -173,6 +180,8 @@ class TreeModification: public Modification
         Item::State sNewState;
         //! Item to be undone (for undoing additions and full editions)
         Item *pUndoneItem;
+        //! Current copy of the item (for editions)
+        Item *pCurrentItem; 
 };
 
 Modification::Type TreeModification::type() const
@@ -213,6 +222,11 @@ Item* TreeModification::undoneItem() const
 TreeModification::EditionType TreeModification::editionType() const
 {
     return etEditType;
+}
+
+Item* TreeModification::currentItem() const
+{
+    return pCurrentItem;
 }
 
 #endif

@@ -518,7 +518,19 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                     if (pmMethod == pmMusic && iItem->type() == Item::tSound)
                     {
                         SoundItem *siItem = dynamic_cast<SoundItem*>(iItem);
-                        if (newItem->type() != Item::tSound || dynamic_cast<SoundItem*>(newItem)->fileName() != siItem->fileName())
+                        if (newItem->type() == Item::tSound)
+                        {
+                            SoundItem* newSItem = dynamic_cast<SoundItem*>(newItem);
+                            if (newSItem->fileName() != siItem->fileName())
+                            {
+                                emit fileToStop(siItem);
+                            }
+                            else
+                            {
+                                emit fileToChange(siItem, newSItem);
+                            }
+                        }
+                        else
                         {
                             emit fileToStop(siItem);
                         }
@@ -588,6 +600,8 @@ void QCustomTreeWidget::setPlayingMethod(QWidget *player, PlayingMethod playingM
         case pmMusic:   connect(this, SIGNAL(fileToPlay(const SoundItem*)), player, SLOT(playMusic(const SoundItem*)));
                         // connection for stopping
                         connect(this, SIGNAL(fileToStop(const SoundItem*)), player, SLOT(stopMusic(const SoundItem*)));
+                        // connection for changing without modifying playback
+                        connect(this, SIGNAL(fileToChange(const SoundItem*, const SoundItem*)), player, SLOT(changeCurrentMusic(const SoundItem*, const SoundItem*)));
                         break;
         default:        break;                        
     }
@@ -654,8 +668,20 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                                                 if (pmMethod == pmMusic && item->type() == Item::tSound)
                                                 {
                                                     SoundItem *sItem = dynamic_cast<SoundItem*>(item);
-                                                    Item *oldItem = modification->item();
-                                                    if (oldItem->type() != Item::tSound || dynamic_cast<SoundItem*>(oldItem)->fileName() != sItem->fileName())
+                                                    Item *oldItem = modification->currentItem();
+                                                    if (oldItem->type() == Item::tSound)
+                                                    {
+                                                        SoundItem *oldSItem = dynamic_cast<SoundItem*>(oldItem);
+                                                        if (oldSItem->fileName() != sItem->fileName())
+                                                        {
+                                                            emit fileToStop(sItem);
+                                                        }
+                                                        else
+                                                        {
+                                                            emit fileToChange(sItem, oldSItem);
+                                                        }
+                                                    }
+                                                    else
                                                     {
                                                         emit fileToStop(sItem);
                                                     }
@@ -684,8 +710,20 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                                                 if (pmMethod == pmMusic && item->type() == Item::tSound)
                                                 {
                                                     SoundItem *sItem = dynamic_cast<SoundItem*>(item);
-                                                    Item *newItem = modification->newItem();
-                                                    if (newItem->type() != Item::tSound || dynamic_cast<SoundItem*>(newItem)->fileName() != sItem->fileName())
+                                                    Item *newItem = modification->currentItem();
+                                                    if (newItem->type() == Item::tSound)
+                                                    {
+                                                        SoundItem *newSItem = dynamic_cast<SoundItem*>(newItem);
+                                                        if (newSItem->fileName() != sItem->fileName())
+                                                        {
+                                                            emit fileToStop(sItem);
+                                                        }
+                                                        else
+                                                        {
+                                                            emit fileToChange(sItem, newSItem);
+                                                        }
+                                                    }
+                                                    else
                                                     {
                                                         emit fileToStop(sItem);
                                                     }
