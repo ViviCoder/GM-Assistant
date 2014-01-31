@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -318,9 +318,17 @@ void QCustomTableWidget::onCellChanged(int logicalRow, int logicalColumn)
 
 void QCustomTableWidget::onHHeaderClicked(int index, const QPoint &position)
 {
+    bool null = (index != -1);
+    actionRemoveColumn->setVisible(null);
+    actionEditColumn->setVisible(null);
     QAction *action = hMenu->exec(position);
     if (action == actionAddColumn)
     {
+        if (index < 0)
+        {
+            // if no column is selected, we insert it at the end
+            index += columnCount();
+        }
         addProperty(index);
     }
     else if (action == actionRemoveColumn)
@@ -335,9 +343,17 @@ void QCustomTableWidget::onHHeaderClicked(int index, const QPoint &position)
 
 void QCustomTableWidget::onVHeaderClicked(int index, const QPoint &position)
 {
+    bool null = (index != -1);
+    actionRemoveRow->setVisible(null);
+    actionEditRow->setVisible(null);
     QAction *action = vMenu->exec(position);
     if (action == actionAddRow)
     {
+        if (index < 0)
+        {
+            // if no row is selected, we insert it at the end
+            index += rowCount();
+        }
         addCharacter(index);
     }
     else if (action == actionRemoveRow)
