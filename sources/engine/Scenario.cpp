@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -259,10 +259,15 @@ void Scenario::toFile(const string &fileName) const
         // adding files to the archive
         for (FileMapping::Iterator it = fileMapping.begin(); it != fileMapping.end(); it++)
         {
-            Path path(tempDir.path());
-            path.append(it.destination());
-            File(path.parent()).createDirectory();
-            File(it.file()).copyTo(path.toString());
+            File file(it.file());
+            // only if the file exists and is readable
+            if (file.exists() && file.canRead())
+            {
+                Path path(tempDir.path());
+                path.append(it.destination());
+                File(path.parent()).createDirectory();
+                file.copyTo(path.toString());
+            }
         }
         // compressing it
         ofstream output(fileName.c_str());
