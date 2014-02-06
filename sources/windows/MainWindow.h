@@ -363,6 +363,14 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \param newItem New sound item
          */
         void changeCurrentMusic(const SoundItem *oldItem, const SoundItem *newItem);
+        /*!
+         * \brief Slot used whenever the state of the music player changes
+         * \param newState New state of the music player
+         * \param oldState Old state of the music player
+         *
+         * It is used to detect when the playback starts
+         */
+        void onMusicStateChanged(Phonon::State newState, Phonon::State oldState);
 };
 
 #endif

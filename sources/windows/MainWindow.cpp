@@ -116,6 +116,7 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     sliderMusic->setMediaObject(player);
     connect(player, SIGNAL(tick(qint64)), this, SLOT(updateTimeDisplay(qint64)));
     connect(player, SIGNAL(finished()), this, SLOT(onMusicFinished()));
+    connect(player, SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(onMusicStateChanged(Phonon::State, Phonon::State)));
     connect(&soundEngine, SIGNAL(errorOccured(const QString&)), this, SLOT(displayError(const QString&)));
 
     // loading settings
@@ -484,10 +485,8 @@ void MainWindow::playMusic(const SoundItem *item)
 {
     if (item)
     {
-            soundEngine.playMusic(item->fileName().c_str());
-            siCurrentMusic = item;
-            sliderMusic->setEnabled(true);
-            buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
+        soundEngine.playMusic(item->fileName().c_str());
+        siCurrentMusic = item;
     }
     else
     {
@@ -892,5 +891,14 @@ void MainWindow::changeCurrentMusic(const SoundItem *oldItem, const SoundItem *n
     if (oldItem == siCurrentMusic)
     {
         siCurrentMusic = newItem;
+    }
+}
+
+void MainWindow::onMusicStateChanged(Phonon::State newState, Phonon::State oldState)
+{
+    if (newState == Phonon::PausedState && oldState == Phonon::StoppedState)
+    {
+        sliderMusic->setEnabled(true);
+        buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
     }
 }
