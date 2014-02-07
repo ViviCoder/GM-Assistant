@@ -457,6 +457,11 @@ void QCustomTableWidget::removeCharacter(int index)
             emit modificationDone(new CharacterModification(pCharacters, new Character((*pCharacters)[index]), index, false));
             pCharacters->remove(index);
         }
+        if (index == rowCount())
+        {
+            index--;
+        }
+        setCurrentCell(index, 0, QItemSelectionModel::Select | QItemSelectionModel::Rows);
     }
 }
 
@@ -486,6 +491,11 @@ void QCustomTableWidget::removeProperty(int index)
             }
             pProperties->remove(index);
         }
+        if (index == columnCount())
+        {
+            index--;
+        }
+        setCurrentCell(0, index, QItemSelectionModel::Select | QItemSelectionModel::Columns);
     }
 }
 
