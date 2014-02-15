@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,8 +17,11 @@
 *************************************************************************/
 
 #include "FileDetector.h"
+#include <Poco/FileStream.h>
 
-FileDetector::FileDetector(const std::string &installDir): mCookie(magic_open(MAGIC_MIME_TYPE))
+#define MAGIC_BUFFER_SIZE  4096
+
+FileDetector::FileDetector(const std::string &installDir): mCookie(magic_open(MAGIC_MIME_TYPE)), pBuffer(new char[MAGIC_BUFFER_SIZE])
 {
     magic_load(mCookie, 0);
     if (magic_error(mCookie))
@@ -32,11 +35,23 @@ FileDetector::FileDetector(const std::string &installDir): mCookie(magic_open(MA
 FileDetector::~FileDetector()
 {
     magic_close(mCookie);
+    delete pBuffer;
 }
 
 std::string FileDetector::typeOfFile(const std::string &fileName) const
 {
-    return magic_file(mCookie, fileName.c_str());
+    std::string type = magic_file(mCookie, fileName.c_str());
+    // On Windows, non-ASCII paths fail 
+    if (type.substr(0, 11) == "cannot open")
+    {
+        Poco::FileInputStream stream(fileName);
+        if (stream.good())
+        {
+            stream.get(pBuffer, MAGIC_BUFFER_SIZE);
+            type = magic_buffer(mCookie, pBuffer, MAGIC_BUFFER_SIZE);
+        }
+    }
+    return type;
 }
 
 bool FileDetector::isValid() const

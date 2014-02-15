@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -44,6 +44,8 @@ class FileDetector
     private:
         //! Magic cookie
         magic_t mCookie;
+        //! Buffer used when magic_file fails
+        char *pBuffer;
 };
 
 #endif

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,7 +19,7 @@
 #include "FileMapping.h"
 #include <Poco/Path.h>
 #include <sstream>
-#include <fstream>
+#include <Poco/FileStream.h>
 #include <Poco/DigestStream.h>
 #include <Poco/StreamCopier.h>
 
@@ -35,9 +35,9 @@ string FileMapping::addFile(const string &fileName, const string &destination)
     }
     // test if the file has already been added (even with a different file name)
     string hash("x");
-    ifstream ibuf(fileName.c_str());
-    if (ibuf.good())
+    try
     {
+        FileInputStream ibuf(fileName.c_str());
         DigestOutputStream digestStream(md5Engine);
         StreamCopier::copyStream(ibuf, digestStream);
         digestStream.close();
@@ -49,6 +49,7 @@ string FileMapping::addFile(const string &fileName, const string &destination)
             return pos->second;
         }
     }
+    catch(...){}
     // otherwise, add it (but beware of existing name)
     Path target(destination);
     string baseName = target.getBaseName();

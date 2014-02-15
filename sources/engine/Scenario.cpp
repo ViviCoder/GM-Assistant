@@ -20,7 +20,7 @@
 #include "Version.h"
 #include <Poco/Path.h>
 #include <Poco/Zip/Decompress.h>
-#include <fstream>
+#include <Poco/FileStream.h>
 #include <Poco/TemporaryFile.h>
 #include <Poco/Zip/Compress.h>
 
@@ -57,7 +57,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     else if (!pDetector || fileType == "application/zip")
     {
         // attempt to unzip
-        ifstream input(fileName.c_str());
+        FileInputStream input(fileName.c_str());
         if (input.good())
         {
             // creating new temporary directory and extracting into it
@@ -270,7 +270,7 @@ void Scenario::toFile(const string &fileName) const
             }
         }
         // compressing it
-        ofstream output(fileName.c_str());
+        FileOutputStream output(fileName.c_str());
         Zip::Compress comp(output, true);
         comp.addRecursive(tempDir.path());
         comp.close();
