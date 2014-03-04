@@ -1,3 +1,24 @@
+Changes in version 1.2.0
+
+* New features
+    - possibility to undo/redo modifications
+    - metadata added to the scenario
+    - possibility to move characters and properties
+    - new tools: dice simulator and combat manager
+    - scenario file format changed to an archive containing all audio and image files
+    - save of the expanded/collapsed state of items
+    - confirmation before closing
+    - possibility to choose the language of the interface
+* Interface changes
+    - Scenario replaced by Plot
+    - Skill replaced by Property
+    - Player's name replaced by Short description
+    - new shortcuts for item/character/property manipulations
+    - reorganization of the View menu
+* Others
+    - audio engine changed to Phonon Qt module
+    - a lot of bug fixes
+
 Changes in version 1.1.9
 - reorganization of the info dialog window to fit in low-resolution screens
 - auto-scrolling in table/tree widgets when adding/editing skill/character 
