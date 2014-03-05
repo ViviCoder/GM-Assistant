@@ -10,6 +10,8 @@ To compile, you need:
 - Qt4 linguist and qmake
 - Qt4 Phonon module (with development files)
 - XML++ library (with development files)
+- PocoZip library (with development files)
+- Magic library (with development files)
 and optionally:
 - ImageMagick
 - RSVG tools
