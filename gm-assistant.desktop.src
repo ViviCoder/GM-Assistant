@@ -1,9 +1,11 @@
 [Desktop Entry]
 Categories=Game;RolePlaying;
-Comment=Assistant for the Game Master during role-playing games
-Comment[fr]=Assistant pour le Maître du Jeu lors de jeux de rôle
+Comment=Assistant for the Game Master during tabletop role-playing games
+Comment[fr]=Assistant pour le Maître du Jeu lors de jeux de rôle sur papier
 Exec=<bin_path>/gm-assistant
 Icon=<icon_path>/GMA.svg
+Keywords=Assistant;RPG;Tabletop;
+Keywords[fr]=Assistant;JDR;Papier;
 Name=GM-Assistant
 Terminal=false
 Type=Application
