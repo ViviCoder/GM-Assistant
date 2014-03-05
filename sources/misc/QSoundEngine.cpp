@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -40,13 +40,13 @@ bool QSoundEngine::isMusicPaused() const
 
 void QSoundEngine::playSound(const QString &fileName)
 {
-    soundObject->setCurrentSource(MediaSource(fileName));
+    soundObject->setCurrentSource(MediaSource(QUrl::fromLocalFile(fileName)));
     soundObject->play();
 }
 
 void QSoundEngine::playMusic(const QString &fileName)
 {
-    musicObject->setCurrentSource(MediaSource(fileName));
+    musicObject->setCurrentSource(MediaSource(QUrl::fromLocalFile(fileName)));
     musicObject->play();
 }
 
