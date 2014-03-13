@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -42,28 +42,28 @@ class CharacterModification: public Modification
             etValue
         };
         /*!
-         *  \brief Constructor for additions/deletions of characters
-         *  \param list List of characters
-         *  \param character Character added or deleted
-         *  \param index Index of the character
-         *  \param isAddition Indicates if the modification is an addition (true) or a deletion (false)
+         * \brief Constructor for additions/deletions of characters
+         * \param list List of characters
+         * \param character Character added or deleted
+         * \param index Index of the character
+         * \param isAddition Indicates if the modification is an addition (true) or a deletion (false)
          */
         CharacterModification(CharacterList *list, Character *character, int index, bool isAddition);
         /*!
-         *  \brief Constructor for additions of properties
-         *  \param list List of properties
-         *  \param property Property added
-         *  \param characterList List of characters
-         *  \param index Index of the property
+         * \brief Constructor for additions of properties
+         * \param list List of properties
+         * \param property Property added
+         * \param characterList List of characters
+         * \param index Index of the property
          */
         CharacterModification(PropertyList *list, const std::string &property, CharacterList *characterList, int index);
         /*!
-         *  \brief Constructor for deletions of properties
-         *  \param propertyList List of properties
-         *  \param property Property deleted
-         *  \param characterList List of characters
-         *  \param values Values of the property
-         *  \param index Index of the property
+         * \brief Constructor for deletions of properties
+         * \param propertyList List of properties
+         * \param property Property deleted
+         * \param characterList List of characters
+         * \param values Values of the property
+         * \param index Index of the property
          */
         CharacterModification(PropertyList *propertyList, const std::string &property, CharacterList *characterList, const std::vector<std::string> &values, int index);
         /*!
@@ -85,27 +85,27 @@ class CharacterModification: public Modification
          */
         CharacterModification(CharacterList *characterList, const std::string &name, const std::string &shortDescription, const std::string &newName, const std::string &newShortDescription, int index);
         /*!
-         *  \brief Constructor for editions of values
-         *  \param characterList List of characters
-         *  \param value Modified value
-         *  \param newValue New value
-         *  \param character Index of the character
-         *  \param property Index of the property
+         * \brief Constructor for editions of values
+         * \param characterList List of characters
+         * \param value Modified value
+         * \param newValue New value
+         * \param character Index of the character
+         * \param property Index of the property
          */
         CharacterModification(CharacterList *characterList, const std::string &value, const std::string &newValue, int character, int property);
         /*!
-         *  \brief Constructor for movements of properties
-         *  \param propertyList List of properties
-         *  \param characterList List of characters
-         *  \param oldIndex Old index of the character
-         *  \param newIndex New index of the character
+         * \brief Constructor for movements of properties
+         * \param propertyList List of properties
+         * \param characterList List of characters
+         * \param oldIndex Old index of the character
+         * \param newIndex New index of the character
          */
         CharacterModification(PropertyList *propertyList, CharacterList *characterList, int oldIndex, int newIndex);
         /*!
-         *  \brief Constructor for movements of characters
-         *  \param characterList List of characters
-         *  \param oldIndex Old index of the character
-         *  \param newIndex New index of the character
+         * \brief Constructor for movements of characters
+         * \param characterList List of characters
+         * \param oldIndex Old index of the character
+         * \param newIndex New index of the character
          */
         CharacterModification(CharacterList *characterList, int oldIndex, int newIndex);
         /*!

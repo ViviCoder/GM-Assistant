@@ -41,48 +41,48 @@ class TreeModification: public Modification
             etState
         };
         /*!
-         *  \brief Constructor for additions
-         *  \param tree Modified tree
-         *  \param newItem Copy of the new item
-         *  \param indices Indices of the item
+         * \brief Constructor for additions
+         * \param tree Modified tree
+         * \param newItem Copy of the new item
+         * \param indices Indices of the item
          */
         TreeModification(Tree &tree, Item *newItem, const std::string &indices);
         /*!
-         *  \brief Constructor for deletions
-         *  \param tree Modified tree
-         *  \param branch Copy of the deleted branch
-         *  \param indices Indices of the branch
+         * \brief Constructor for deletions
+         * \param tree Modified tree
+         * \param branch Copy of the deleted branch
+         * \param indices Indices of the branch
          */
         TreeModification(Tree &tree, Branch *branch, const std::string &indices);
         /*!
-         *  \brief Constructor for full editions
-         *  \param tree Modified tree
-         *  \param item Copy of the previous item
-         *  \param newItem Copy of the new item
-         *  \param indices Indices of the item
+         * \brief Constructor for full editions
+         * \param tree Modified tree
+         * \param item Copy of the previous item
+         * \param newItem Copy of the new item
+         * \param indices Indices of the item
          */
         TreeModification(Tree &tree, Item *item, Item *newItem, const std::string &indices);
         /*!
-         *  \brief Constructor for content-only editions
-         *  \param tree Modified tree
-         *  \param content Previous content
-         *  \param newContent New content
-         *  \param indices Indices of the item
+         * \brief Constructor for content-only editions
+         * \param tree Modified tree
+         * \param content Previous content
+         * \param newContent New content
+         * \param indices Indices of the item
          */
         TreeModification(Tree &tree, const std::string &content, const std::string &newContent, const std::string &indices);
         /*!
-         *  \brief Constructor for state-only editions
-         *  \param tree Modified tree
-         *  \param state Previous state
-         *  \param newState New state
-         *  \param indices Indices of the item
+         * \brief Constructor for state-only editions
+         * \param tree Modified tree
+         * \param state Previous state
+         * \param newState New state
+         * \param indices Indices of the item
          */
         TreeModification(Tree &tree, Item::State state, Item::State newState, const std::string &indices);
         /*!
-         *  \brief Constructor for movements
-         *  \param tree Modified tree
-         *  \param indices Indices of the moved branch
-         *  \param newIndices New indices of the branch
+         * \brief Constructor for movements
+         * \param tree Modified tree
+         * \param indices Indices of the moved branch
+         * \param newIndices New indices of the branch
          */
         TreeModification(Tree &tree, const std::string &indices, const std::string &newIndices);
         /*!
