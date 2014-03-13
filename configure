@@ -202,8 +202,19 @@ do
         echo $soft: $path        
     fi
 done
-echo 
 
+# Optional software
+path=$(which dot)
+if [ $? = 1 ]
+then
+    dot="NO"
+else
+    dot="YES"
+    echo dot: $path        
+fi
+sed $sed_i "s/HAVE_DOT.*=.*/HAVE_DOT\t\t= $dot/" dox.conf
+
+echo
 echo "*********************************"
 echo "* Checking development files... *"
 echo "*********************************"
@@ -365,7 +376,7 @@ dox=$(which doxygen)
 if [ $? = 0 ]
 then
     echo "To generate the documentation, type make doc"
-    echo -e 'doc: $(filter sources/%,$(SOURCES))\n\tdoxygen dox.conf' >> Makefile
+    echo -e 'doc: dox.conf $(filter sources/%,$(SOURCES))\n\tdoxygen dox.conf' >> Makefile
 else
     echo "In order to be able to generate the documentation, you need doxygen"
     echo
