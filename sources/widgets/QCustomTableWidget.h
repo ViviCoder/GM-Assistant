@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -133,6 +133,11 @@ class QCustomTableWidget: public QTableWidget
          * \return Formated header text
          */
         static QString headerText(const QString &name, const QString &description);
+        /*!
+         * \brief Size hint for columns taking into account unvisible ones
+         * \param column Column to resize
+         */
+        int sizeHintForColumn(int column) const;
     protected slots:
         /*!
          * \brief Slot for when a cell changes 

@@ -752,3 +752,21 @@ QString QCustomTableWidget::headerText(const QString &name, const QString &descr
     }
     return result;
 }
+
+int QCustomTableWidget::sizeHintForColumn(int column) const
+{
+    QStyleOptionViewItem option(viewOptions());
+    int hint = 0;
+    QAbstractItemDelegate *delegate = itemDelegate();
+    QAbstractItemModel *itemModel = model();
+    for(int row = 0; row < rowCount(); row++)
+    {
+        hint = qMax(hint, delegate->sizeHint(option, itemModel->index(row,column)).width());
+    }
+    if (showGrid())
+    {
+        hint++;
+    }
+
+    return hint;
+}
