@@ -1,0 +1,426 @@
+%*************************************************************************
+%* Copyright © 2012 Vincent Prat & Simon Nicolas
+%*
+%* This document is free; you can redistribute it and/or modify
+%* it under the terms of the GNU General Public License as published by
+%* the Free Software Foundation; either version 3 of the License, or
+%* (at your option) any later version.
+%*
+%* This document is distributed in the hope that it will be useful,
+%* but WITHOUT ANY WARRANTY; without even the implied warranty of
+%* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+%* GNU General Public License for more details.
+%*
+%* You should have received a copy of the GNU General Public License along
+%* with this document; if not, write to the Free Software Foundation, Inc.,
+%* 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+%*************************************************************************
+
+\documentclass[a4paper,12pt]{article}
+%\documentclass[12pt,twoside,french]{report}
+%\documentclass[12pt]{proc}
+
+%\usepackage{fullpage}
+
+\usepackage[frenchb]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath, graphicx}
+\usepackage{hyperref}
+
+
+\title{GM-Assistant, guide de l'utilisateur}
+\author{GMA Team}
+\date{\today}
+
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+%\begin{abstract}
+%This is the paper's abstract \ldots
+%\end{abstract}
+
+\section{Introduction}
+Une partie de jeu de rôle est une alchimie riche, et complexe. Les joueurs doivent être impliqués et investis, le maître de jeu (MJ) doit parfaitement maîtriser le système de règle, le scénario, se rappeler des évènements précédents, anticiper les évènements à venir, et improviser le présent en fonction des actions et choix des joueurs (PJ).
+Si en pleine partie le MJ doit chercher des détails sur un PNJ, une précision sur un point de règle, des musiques d'ambiance ou des bruitages sur l'ordinateur, des images dans son classeur, ou autre, alors la partie ralenti, l'émulsion retombe, et les joueurs se dispersent. Ne niez pas, un rôliste se disperse vite.
+
+La solution est GM-Assistant.
+
+GM-Assistant (pour Game-Master Assistant) est un logiciel d'assistant MJ. Son objectif est de simplifier la vie du MJ pendant les parties en mettant à sa disposition les informations et outils dont il peut avoir besoin pendant la partie.
+GM-Assistant propose donc une interface où le MJ va pouvoir rassembler et ordonner toutes les informations, notes, fichiers (musiques, bruitages, images) qu'il estime util à sa partie.
+
+\section{Présentation générale}
+Commençons par une présentation générale du logiciel et de sa fenêtre principale.
+Si vous lancez GM-Assistant vide vous obtenez une fenêtre comprenant 6 sous-parties et une barre de menu.
+\subsection{Présentation des menus}\label{menu}
+La barre des menus de GM-Assistant est similaire à celle que l'on trouve dans la plupart des logiciels. Détaillons-les un par un.
+\subsubsection{Jeu}
+Ce menu comprend tous les outils de gestion sauvegarde:
+\begin{itemize}
+    \item \emph{Nouveau :} Crée une nouvelle fiche scénario
+    \item \emph{Recharger :} Restaure une fiche scénario telle qu'elle était lors de son dernier enregistrement
+    \item \emph{Charger :} Charge une fiche scénario stockée sur l'ordinateur
+    \item \emph{Récent :} propose la liste des fiches scénario récemment ouverte
+    \item \emph{Enregistrer :} Sauvegarde la fiche scénario en cours d'édition sur le disque
+    \item \emph{Enregistrer sous :} Sauvegarde la fiche scénario en cours d'édition dans un nouveau fichier
+    \item \emph{Métadonnées :} affiche une fenêtre permettant de noter le titre du scénario, son auteur, la date de création de la fiche scénario, une description sommaire, le jeu de rôle, la liste des joueurs et la date de jeu. L'idée est rassemler des informations qui ne servent pas en partie mais plutôt qui permettent de se souvenir "qui? quand? comment?"
+\end{itemize}
+\paragraph{Le fichier de sauvegarde}
+Le fichier de sauvegarde .gms créé est un fichier complet qui comprend toutes les informations qui sont dans la fiche scénario et les fichiers que vous y avez ajouté (musique, bruitage, images), lui permettant d'être déplacé d'un ordinateur à un autre sans risque de perte (un son manquant ou une image absente par exemple).
+\subsubsection{Edition}
+Permet d'annuler et refaire les dernières actions, comme la suppression d'un élément de scénario ou l'ajout d'une musique d'ambiance (voir chapître concerné)
+\subsubsection{Affichage}
+Permet de choisir l'arrangement de modules affichés et la langue du logiciel.
+\emph{Interface} : Ouvre la liste des arrangements de modules disponible. Chaque interface propose un appariement différent de modules.
+\subsubsection{Outil}
+Le menu outil rassemble les différent outils annexe proposé par GM-Assistant.
+Dans la version 1.2 ce menu comprend
+\begin{itemize}
+    \item Un gestionnaire de combat
+    \item Un simulateur de dé
+\end{itemize}
+
+\subsubsection{menu "?"} Ouvre les informations générales sur le logiciel et ses licences.
+
+\subsection{Présentation des modules}\label{modules}
+La fenêtre principale est découpée en 6 blocs que nous appelerons modules.
+GMA est organisé en module. Chaque module est indépendant et dédié à une fonctionnalité. Voici la liste des modules présent  dans la version 1.2 :
+\begin{itemize}
+    \item \emph{Scénario :} l'arbre de scénario est un arbre "dépliable" qui permet d'afficher de manière ordonnée les différents évènements important du scénario. extensible à l'infini;
+    \item \emph{Notes :} éditeur de texte simpliste qui permet de prendre des notes pendant le scénario;
+    \item \emph{Personnages :} un tableau permettant d'afficher les protagonistes (PJ ou PNJ) avec leurs caractéristiques importantes;
+    \item \emph{Historique :} structurable en arbre aussi il a pour vocation à rappeler les évènements les plus marquants du scénario précédent;
+    \item \emph{Musique :} un lecteur de musique simple qui est pensé pour jouer des musiques d'ambiance;
+    \item \emph{Bruitages :} un lecteur de musique encore plus simple pensé pour déclencher au besoin des bruitages courts.
+\end{itemize}
+Tout ces modules sont rassemblées dans l'interface principale du logiciel :
+\begin{figure}[h]
+    \includegraphics[width=0.9\textwidth]{screen_scenar_exemple}
+    \caption{Voici une capture de l'écran principal avec une partie en cours.
+    ATTENTION il pourrait être mieux de faire une capture windows avec la barre des menus}
+\end{figure}
+
+\section{Les modules dans tous leurs états}\label{details}
+Dans cette section nous rentrons dans le coeurs du sujet, nous allons découvrir en détail les fonctionnalités proposées par GMA.
+
+\subsection{La notion d'item}\label{item}
+Les items sont à la base du fonctionnement de GMA on les retrouve à de nombreux endroits dans le logiciel, il est donc approprié d'en expliquer le fonctionnement avant de détailler les modules.
+\\
+\emph{Définition : } Élément minimal d'un ensemble.
+\\
+Dans notre cas un item est une ligne, une entrée-objet d'un des modules du logiciel, qui sert à contenir une information textuelle, un son (musique/bruitage), une image, etc.
+\\
+Les modules qui utilisent les items sont : Scénario, Historique, Musique et Bruitage.
+
+\begin{itemize}
+    \item\emph{Clic droit dans le partie vide du module} fait apparaitre la fenêtre "créer un nouvel item".
+    \item\emph{Clic droit sur un item} fait apparaitre le menu item contenant les 4 états disponibles pour un item : \emph{Aucun}, \emph{En cours}, \emph{Échoué}, \emph{Réussi}, puis les 3 actions \emph{Ajouter}, \emph{Supprimer} et \emph{Éditer}.
+\end{itemize}
+L'état d'un item permet de prendre note rapidement du succès ou de l'échec de certains points clefs du scénario, et d'en avoir une vision rapide.\\
+
+\emph{Ajouter} nous permet d'accéder à la fenêtre de création d'item :
+\begin{figure}[h]
+    \includegraphics[width=0.5\textwidth]{screen_add_item}
+    \caption{fenêtre d'ajout d'item}
+\end{figure}
+\begin{itemize}
+    \item le cadre \emph{Contenu} reçoit un commentaire / description de l'évènement;
+    \item le cadre \emph{État} permet de fixer l'état de l'item;
+    \item le cade \emph{Type} permet de choisir si c'est un item "Basique"(donc juste du texte), un "Son" ou une "Image", dans les 2 derniers cas la ligne "Fichier" devient accessible pour aller chercher sur l'ordinateur le fichier requis;
+    \item Le bouton \emph{Ajouter} ajoute l'item à la suite et au même niveau que l'item sur lequel on a cliqué droit;
+    \item Le bouton \emph{Enfant} ajoute l'item à la suite et sous l'item sur lequel on a cliqué droit, imbriqué dedans;
+    \item Le bouton \emph{Annuler} annule la création d'item en cours.
+\end{itemize}
+
+Il est important de bien saisir la différence entre les 2 boutons \emph{Ajouter} et \emph{Enfant}, c'est avec ça que vous organiserez les étapes de votre scénario.
+\\
+\emph{Nota Bene :} Les items sont déplaçable à la souris par \emph{cliquer-déplacer}
+
+\subsection{L'arbe de Scénario}\label{scenario}
+L'arbre de scénario est dans la majorité des cas le cœur de GMA. En effet dedans vous renseignez le plan détaillé et ordonné du scénario, de manière à ne jamais être perdu entre 2 scènes ni oublier un élément.
+\\
+Voir figure(\ref{arbre_scenar}) pour un aperçu de ce qu'il est possible de faire
+\begin{figure}[h]
+    \includegraphics[width=0.6\textwidth]{scenario_type}
+    \caption{Plan schématique d'un scénario}
+    \label{arbre_scenar}
+\end{figure}
+Donc comment faire ?
+\\
+chaque ligne que vous voyez est un \emph{item}, il suffit de suivre la technique de création d'item pour ordonner son scénario.
+\subsection{L'arbre d'Historique}\label{historique}
+L'arbre d'historique sert à se préparer une liste des évènements importants ayant marqués les séances précédentes, commme la rencontre des personnages, une promesse faite par un PJ à un PNJ (ou l'inverse), etc.
+Il se comporte et s'utilise (d'un point de vue technique) exactement de la même manière que l'arbre de Scénario.
+
+
+\subsection{Prise de note rapide}
+Le module de prise de note est un éditeur de texte ultra simpliste qui permet de noter à la volée toute information qui est utile à garder (exemple : "Sylvain a insulté le directeur du museum"). Pour entrer du texte dedans il suffit de cliquer gauche quelque part dans le cadre texte et d'écrire.
+\\
+%\emph{Nota Bene :} ce module sera rapidement accessible lorsque la fonctionnalité de \emph{suivi de campagne} sera implémentée.
+
+\subsubsection{Gestion des protagonistes}\label{personnage}
+Le module \emph{personnages} est pensé pour accueillir la liste des protagonistes ainsi que les caractéristiques numériques dont vous pouvez avoir besoin rapidement. Que ce soit des PJ pour lesquels on a besoin des scores de Perception, vigilance, esquive passive, des points de vie etc. ou directement des caractéristiques complètes des PNJ.
+\\
+Liste des actions possibles :
+\begin{itemize}
+    \item \emph{Clic droit dans la partie vide $\rightarrow$ propriété} ajoute une compétence sur le bandeau horizontale;
+    \item \emph{Clic droit dans la partie vide $\rightarrow$ personnage} ajoute un personnage sur le bandeau vertical.
+\end{itemize}
+Ensuite une fois qu'on a créé au moins un personnage et une compétence alors la case est éditable. Il faut maintenant cliquer gauche pour éditer la case voulue et y entrer la valeur.
+\\\emph{Nota bene :} il est possible d'entrer du texte, des nombres, mais aussi d'autre caractères comme le "\%"
+
+\subsection{Musique d'ambiance}\label{musique}
+Le module de musique d'ambiance est un lecteur de musique basique (loin des Winamp et autres VirtualDJ) qui permet de jouer une musique (au format MP3).
+\\
+Liste des actions possibles :
+\begin{itemize}
+    \item Actions des items cf (\ref{item})
+    \item \emph{Clic gauche Lecture} joue le son sélectionné;
+    \item \emph{Clic gauche sur la case blanche "Boucle"} active le mode \emph{répétition} donc joue en boucle la musique de cours de lecture;
+    \item \emph{Clic gauche déplacer sur la barre d'avancement} permet de se déplacer dans le son.
+\end{itemize}
+\emph{Nota Bene :} il est impossible de jouer 2 musiques en même temps.
+
+\subsection{Les Bruitages}\label{bruitage}
+Le module de bruitage est pensé pour accueillir une liste de son très court (au format MP3) comme un coup de feu, un hurlement, une porte qui claque, etc.
+\\
+Liste des actions possibles :
+\begin{itemize}
+    \item Actions des items cf (\ref{item})
+    \item \emph{Double clic gauche sur un item} joue le bruitage
+\end{itemize}
+
+\emph{Nota Bene :} Il est tout fait possible de jouer un bruitage alors qu'une musique est en cours de lecture.
+
+\subsection{Les modules secondaires}
+\paragraph{gestionnaire de combat}
+Quand on lance le gestionnaire de combat on arrive sur une fenêtre de selection de personnage. On choisi donc les protagonistes du combat, parmi les protagonistes ajoutés dans le module "Personnage".
+\\
+On ajoute les différents acteurs, dans l'ordre de leurs actions, si certains agissent plusieurs fois par tour il suffit de les ajouter plusieurs fois.
+\\
+Avec les flèches "haut" et "bas" à droite on peut réorganiser l'ordre des actions.
+\\
+Ensuite on valide et la fenêtre de combat apparait. À chaque round on clique sur "suivant" pour savoir qui doit agir, et la colonne "Notes" permet de noter les blessures (entre autre).
+
+\paragraph{Simulateur de dés}
+Le simulateur de dés permet simplement de "lancer" un certain nombre de dés d'un certain type.
+\\
+La fenêtre que vous obtenez comprend plusieurs éléments.
+\begin{itemize}
+  \item  \emph{type de dés} permet de choisir le nombre de faces qu'auront les dés.
+  \item \emph{nombre} permet de choisir combien de dés.
+\end{itemize}
+Ensuite on clique sur "Lancer" et le résultat s'affiche dans le cadre blanc.
+
+\section{Exemple : Construire la fiche d'un scénario}
+\subsection{Introduction}
+Maintenant que nous avons fait le tour des fonctionnalités du logiciel, construisons ensemble la "fiche scénario" du scénario exceptionnel (et exclusif) : \emph{La nuit tous les profonds sont gris}.
+
+\subsection{Scénario}
+\label{exemple_scenario}
+Métadonnée
+\begin{itemize}
+    \item \emph{Titre du scénario :} La nuit tous les profonds sont gris
+    \item \emph{Jeux de rôle :} L'appel de Cthulhu
+    \item \emph{Année :} 1920
+    \item \emph{Lieux :} Toulouse
+    \item \emph{Nombre de joueurs : } 4
+\end{itemize}
+
+\emph{Scénario :}\\ 
+Les PJ sont au vernissage d'une exposition au laboratoire de pharmacologie de la faculté de médecine située allée Jules Guesde à Toulouse. Cependant ce laboratoire hébèrge  un étrange squelette retrouvé récemment au fond de l'eau. Au cours de la soirée des profonds sortent de la garonne pour récupérer le-dit squelette, qui est en fait la dépouille d'un de leur chaman.
+\\
+En même temps une des convives, Kate Elver, est une sorciere qui veut utiliser ce squelette pour en extraire de la puissance. Elle profitera de la cohue des convives lors de l'assaut des profonds pour aller dans le laboratoire, et commencer son rituel. La suite dépend des PJ. Si le rituel va au bout une onde de choc jette tout le monde à terre et les profonds fou de rage d'avoir perdu leur chaman définitivement assassinent tout le monde, sinon ils repartent "tranquillement" avec leur chaman (squelette).
+
+\subsection{Création de la fiche scénario}
+Commençons notre fiche.
+\subsection{Les Métadonnées}
+La première étape est de remplir les métadonnées. Cliquons donc sur le menu "Jeu" puis "Métadonnées".
+la fenêtre des "Métadonnées" figure(\ref{metadata} apparait :
+\begin{figure}[h!]
+    \includegraphics[width=0.6\textwidth]{metadata}
+    \caption{fenêtre métadonnées}
+    \label{metadata}
+\end{figure}
+Puis validons en cliquant gauche "OK".
+
+\subsection{L'Intrigue}
+Rentrons maintenant le plan du scénarion en ajoutant dans le module "Intrigue" les différentes étapes clef du scénario.
+\\
+Commençons par cliquer gauche dans le cadre blanc. La fenêtre (\ref{intrigue_scenario}) apparait 
+\begin{figure}[h!]
+    \includegraphics[width=0.5\textwidth]{intrigue_intro}
+    \caption{fenêtre d'ajout d'item}
+    \label{intrigue_scenario}
+\end{figure}
+Nous allons écrire "introduction" puis détailler l'intro dans les item "fils".
+\\
+Clic droit sur "Introduction", ajouter, nous arrivons sur la fenêtre d'ajout d'item, ce coup-ci on va l'ajouter en "enfant", pour qu'il apparaisse imbriqué sous "Introduction".
+\\
+voir figure (\ref{item_enfant})
+\begin{figure}[h!]
+    \includegraphics[width=0.5\textwidth]{item_enfant}
+    \label{item_enfant}
+\end{figure}
+Et on valide en cliquant gauche sur "enfant".
+On peut utiliser cette partie d'introduction pour se rappeler des différents élément d'ambiance à présenter aux joueurs.
+\\
+Ensuite on ajoute la première partie du scénario. Clic droit dans la partie blanche, dans "contenu" on écrit "partie 1" et on valide par "ajouter" pour qu'il apparaisse à la suite de "Introduction" et au même niveau.
+\\
+On procède de la même manière pour les différentes étapes du scénario :
+\begin{itemize}
+    \item Introduction
+    \begin{itemize}
+        \item début de soirée, hivers, froid, humide
+        \item PJ à la conférence
+    \end{itemize}
+    \item Partie 1
+    \begin{itemize}
+        \item Au milieu de la conf les profonds arrivent
+        \begin{itemize}
+            \item Test de "vigilance" pour les repérer
+        \end{itemize}
+        \item Arrivée des profonds
+        \item Fuite de Kate Elver
+        \item au bout de 1/4h une femme hurle
+    \end{itemize}
+    \item Partie 2
+    \begin{itemize}
+        \item Si les PJ suivent Kate
+        \begin{itemize}
+            \item Négociation, elle est folle
+            \item début du rituel "Kate Elver, fais tourner x3"
+        \end{itemize}
+        \item Si les PJ fuient
+        \begin{itemize}
+            \item une marée de profonds les assaille
+        \end{itemize}
+    \end{itemize}
+    \item Dans tout les cas les PJ meurent
+\end{itemize}
+voir le résultat sur la figure (\ref{intrigue_full}).  
+\begin{figure}[h!]
+    \includegraphics[width=0.8\textwidth]{intrigue_full}
+    \caption{le scénario est prêt}
+    \label{intrigue_full}
+\end{figure}    
+L'intrigue est prête mais pas notre scénario.
+
+\subsection{Personnages}
+Rentrons maintenant les différents protagonistes PNJ:
+\begin{itemize}
+    \item Kate Elver, la sorcière
+    \item les guerriers profonds
+    \item le shaman profond
+\end{itemize}
+et les PJ
+\begin{itemize}
+    \item Jed Steed, joué par Nathan
+    \item Caleb de la muerta, joué par Yan
+    \item Connara l'den, joué par Nico
+\end{itemize}
+Pour ajouter ces protagonistes commençons par cliquer droit dans la partie vide du module "Personnage", puis "personnage $\rightarrow$ ajouter".
+\\
+figure(\ref{ajout_perso})
+\begin{figure}[h!]
+    \includegraphics[width=0.4\textwidth]{ajout_perso}
+    \caption{ajoutons Kate Elver}
+    \label{ajout_perso}
+\end{figure}
+De la même manière nous allons ajouter tous les protagoniste, en mettant dans la seconde ligne une description sommaire (un ou deux mots) du PNJ, ou alors le nom du joueur qui contrôle le personnage.
+\\
+Ensuite ajoutons les compétences. Celle qui nous serviront sont :
+\begin{itemize}
+    \item TOC, Trouver objet caché (compétence perception de l'Appel de Cthlhu) qui nous permettra de faire des test de perception derrière l'écran sans que les joueurs ne se doute de quoi que ce soit
+    \item Combat, surtout utile pour nos PNJ
+    \item Défense, idem
+    \item PV, points de vie
+\end{itemize}
+Le reste dépendra de ce que font les joeurs.
+\\
+On clique droit dans la partie vide du module "Personnage", puis "propriété" $\rightarrow$ ajouter".
+\\
+figure(\ref{ajout_propriete})
+\begin{figure}[h!]
+    \includegraphics[width=0.4\textwidth]{ajout_propriete}
+    \caption{ajoutons la défense}
+    \label{ajout_propriete}
+\end{figure}
+puis il suffit de remplir les cases en double cliquant gauche sur chacune des case.
+\\
+Le résultat final est visible sur la figure (\ref{exemple_personnage})
+\begin{figure}[h!]
+    \includegraphics[width=0.8\textwidth]{personnage}
+    \label{exemple_personnage}
+\end{figure}
+\\ \emph{Nota bene :} Il est conseillé de ne mettre que les compétences les plus utiles et non toutes celles des personnages, pour garder un maximum de lisiblité. Pour les PJ les seules utiles sont celle qui peuvent amener à un jet sans que le joueur soit au courant (perception, 6ème sens, etc.)
+
+\subsection{Notes}
+Dans le module note ajoutons quelques info utiles.
+\\
+Le rituel fait perdre 1D100+50 points de santé mentale s'il est mené à son terme, notons donc le ici pour ne pas avoir à chercher.
+Il est possible d'utiliser ce module pour noter l'état de santé des protagoniste.
+\\
+Voici ce que ça donne, figure (\ref{note})
+\begin{figure}[h!]
+    \includegraphics[width=0.7\textwidth]{notes}
+    \caption{Module de prise de note}
+    \label{note}
+\end{figure}
+
+\subsection{bruitage}
+Préparons maintenant quelques bruitages d'ambiance. Ce sont des bruitages libres, récupérables gratuitement (et légalement) sur ce site web : http://www.universal-soundbank.com/
+\\
+Donc cliquons droit dans la partie vide du module "Bruitage", nous arrivons sur la fenêtre d'ajout d'item. Remplissons comme dans la figure (\ref{coup de feu}) 
+\begin{figure}[h!]
+    \includegraphics[width=0.5\textwidth]{coup_de_feu}
+    \caption{Ajout d'un bruitage}
+    \label{coup de feu}
+\end{figure}
+Il faut bien sélectionner "Audio" dans le "Type", pour pouvoir aller chercher le fichier MP3 sur votre ordinateur.
+\\
+On valide en cliquant "Ajouter".
+\\
+Voir la figure (\ref{exemple_bruitage}).
+\begin{figure}[h!]
+    \includegraphics[width=0.5\textwidth]{bruitage}
+    \caption{module de bruitage}
+    \label{exemple_bruitage}
+\end{figure}
+\\ \emph{Nota Bene :} Il est possible de se faire des regroupements de son par "chapitre" par exemple, pour ceux qui utilisent beaucoup de bruitage/musique. Il suffit de créer un item "texte" par regroupement, et de mettre vos bruitages en tant que "item fils" dans les regroupements.
+
+\subsection{Musique}
+Le module musique est exactement le même à un détail prêt, vous pouvez mettre la musique en pause, et la mettre en "lecture en boucle" en cochant le bouton boucle, pour qu'elle ne s'arrête pas.
+\\
+La musique que nous avons ajouté : Night of Chaos, est une musique sour licence creative commons (équivalent de open source pour des médias) téléchargeable gratuitement (et légalement) à cette adresse http://incompetech.com/music/royalty-free/
+
+\subsection{Scénario complet}
+Voici donc la fenêtre complète, figure (\ref{scenario_complet})
+\begin{figure}[h!]
+    \includegraphics[width=0.9\textwidth]{scenario_complet}
+    \caption{La partie est prête}
+    \label{scenario_complet}
+\end{figure}
+
+Ce fichier scénario est disponible dans le dossier "documentation" de GM-Assistant.
+
+\section{Participer}\label{participer}
+GMA c'est trop cool, vous n'envisagez plus de jouer sans et vous voulez participer au projet ?
+Très bonne idée, nous sommes preneur de toute aide.
+Le logiciel est placé sous license GPL3 et le projet est hébergé sur GitHub à cette adresse :
+\href{http://vivicoder.github.com/GM-Assistant}{http://vivicoder.github.com/GM-Assistant}
+%\url{http://vivicoder.github.com} ou un truc du genre 
+
+\section{Conclusions}\label{conclusions}
+GMA s'trop cool "T'AS VU !"
+Home made, no inspiration expect 2 brilliant brains.
+
+\section*{Nous contacter}
+Pour les commentaires constructifs 2 autres adresses :
+\begin{itemize}
+    \item \href{mailto:dramac.nicolas@gmail.com}{dramac.nicolas@gmail.com}
+    \item \href{mailto:vinceprat@free.fr}{vinceprat@free.fr}
+\end{itemize}
+
+\end{document}
