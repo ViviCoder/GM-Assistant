@@ -12,5 +12,7 @@ moc_*
 *.qm
 *.log
 documentation/
-*.conf
-*.desktop
+*.pdf
+*.aux
+*.out
+*.toc
