@@ -26,12 +26,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath, graphicx}
 \usepackage{hyperref}
+\usepackage{xspace}
 
 \graphicspath{{images/}}
 
+\newcommand*{\GMA}{GM-Assistant\xspace}
 
-\title{GM-Assistant, guide de l'utilisateur}
-\author{GMA Team}
+
+\title{\GMA, guide de l'utilisateur}
+\author{Équipe \GMA}
 \date{\today}
 
 
@@ -47,16 +50,16 @@
 Une partie de jeu de rôle est une alchimie riche, et complexe. Les joueurs doivent être impliqués et investis, le maître de jeu (MJ) doit parfaitement maîtriser le système de règle, le scénario, se rappeler des évènements précédents, anticiper les évènements à venir, et improviser le présent en fonction des actions et choix des joueurs (PJ).
 Si en pleine partie le MJ doit chercher des détails sur un PNJ, une précision sur un point de règle, des musiques d'ambiance ou des bruitages sur l'ordinateur, des images dans son classeur, ou autre, alors la partie ralenti, l'émulsion retombe, et les joueurs se dispersent. Ne niez pas, un rôliste se disperse vite.
 
-La solution est GM-Assistant.
+La solution est \GMA.
 
-GM-Assistant (pour Game-Master Assistant) est un logiciel d'assistant MJ. Son objectif est de simplifier la vie du MJ pendant les parties en mettant à sa disposition les informations et outils dont il peut avoir besoin pendant la partie.
-GM-Assistant propose donc une interface où le MJ va pouvoir rassembler et ordonner toutes les informations, notes, fichiers (musiques, bruitages, images) qu'il estime util à sa partie.
+\GMA (pour Game-Master Assistant) est un logiciel d'assistant MJ. Son objectif est de simplifier la vie du MJ pendant les parties en mettant à sa disposition les informations et outils dont il peut avoir besoin pendant la partie.
+\GMA propose donc une interface où le MJ va pouvoir rassembler et ordonner toutes les informations, notes, fichiers (musiques, bruitages, images) qu'il estime util à sa partie.
 
 \section{Présentation générale}
 Commençons par une présentation générale du logiciel et de sa fenêtre principale.
-Si vous lancez GM-Assistant vide vous obtenez une fenêtre comprenant 6 sous-parties et une barre de menu.
+Si vous lancez \GMA vide vous obtenez une fenêtre comprenant 6 sous-parties et une barre de menu.
 \subsection{Présentation des menus}\label{menu}
-La barre des menus de GM-Assistant est similaire à celle que l'on trouve dans la plupart des logiciels. Détaillons-les un par un.
+La barre des menus de \GMA est similaire à celle que l'on trouve dans la plupart des logiciels. Détaillons-les un par un.
 \subsubsection{Jeu}
 Ce menu comprend tous les outils de gestion sauvegarde:
 \begin{itemize}
@@ -76,7 +79,7 @@ Permet d'annuler et refaire les dernières actions, comme la suppression d'un é
 Permet de choisir l'arrangement de modules affichés et la langue du logiciel.
 \emph{Interface} : Ouvre la liste des arrangements de modules disponible. Chaque interface propose un appariement différent de modules.
 \subsubsection{Outil}
-Le menu outil rassemble les différent outils annexe proposé par GM-Assistant.
+Le menu outil rassemble les différent outils annexe proposé par \GMA.
 Dans la version 1.2 ce menu comprend
 \begin{itemize}
     \item Un gestionnaire de combat
@@ -87,7 +90,7 @@ Dans la version 1.2 ce menu comprend
 
 \subsection{Présentation des modules}\label{modules}
 La fenêtre principale est découpée en 6 blocs que nous appelerons modules.
-GMA est organisé en module. Chaque module est indépendant et dédié à une fonctionnalité. Voici la liste des modules présent  dans la version 1.2 :
+\GMA est organisé en module. Chaque module est indépendant et dédié à une fonctionnalité. Voici la liste des modules présent  dans la version 1.2 :
 \begin{itemize}
     \item \emph{Scénario :} l'arbre de scénario est un arbre "dépliable" qui permet d'afficher de manière ordonnée les différents évènements important du scénario. extensible à l'infini;
     \item \emph{Notes :} éditeur de texte simpliste qui permet de prendre des notes pendant le scénario;
@@ -104,10 +107,10 @@ Tout ces modules sont rassemblées dans l'interface principale du logiciel :
 \end{figure}
 
 \section{Les modules dans tous leurs états}\label{details}
-Dans cette section nous rentrons dans le coeurs du sujet, nous allons découvrir en détail les fonctionnalités proposées par GMA.
+Dans cette section nous rentrons dans le coeurs du sujet, nous allons découvrir en détail les fonctionnalités proposées par \GMA.
 
 \subsection{La notion d'item}\label{item}
-Les items sont à la base du fonctionnement de GMA on les retrouve à de nombreux endroits dans le logiciel, il est donc approprié d'en expliquer le fonctionnement avant de détailler les modules.
+Les items sont à la base du fonctionnement de \GMA on les retrouve à de nombreux endroits dans le logiciel, il est donc approprié d'en expliquer le fonctionnement avant de détailler les modules.
 \\
 \emph{Définition : } Élément minimal d'un ensemble.
 \\
@@ -140,7 +143,7 @@ Il est important de bien saisir la différence entre les 2 boutons \emph{Ajouter
 \emph{Nota Bene :} Les items sont déplaçable à la souris par \emph{cliquer-déplacer}
 
 \subsection{L'arbe de Scénario}\label{scenario}
-L'arbre de scénario est dans la majorité des cas le cœur de GMA. En effet dedans vous renseignez le plan détaillé et ordonné du scénario, de manière à ne jamais être perdu entre 2 scènes ni oublier un élément.
+L'arbre de scénario est dans la majorité des cas le cœur de \GMA. En effet dedans vous renseignez le plan détaillé et ordonné du scénario, de manière à ne jamais être perdu entre 2 scènes ni oublier un élément.
 \\
 Voir figure(\ref{arbre_scenar}) pour un aperçu de ce qu'il est possible de faire
 \begin{figure}[h]
@@ -405,17 +408,17 @@ Voici donc la fenêtre complète, figure (\ref{scenario_complet})
     \label{scenario_complet}
 \end{figure}
 
-Ce fichier scénario est disponible dans le dossier "documentation" de GM-Assistant.
+Ce fichier scénario est disponible dans le dossier "documentation" de \GMA.
 
 \section{Participer}\label{participer}
-GMA c'est trop cool, vous n'envisagez plus de jouer sans et vous voulez participer au projet ?
+\GMA c'est trop cool, vous n'envisagez plus de jouer sans et vous voulez participer au projet ?
 Très bonne idée, nous sommes preneur de toute aide.
 Le logiciel est placé sous license GPL3 et le projet est hébergé sur GitHub à cette adresse :
 \href{http://vivicoder.github.com/GM-Assistant}{http://vivicoder.github.com/GM-Assistant}
 %\url{http://vivicoder.github.com} ou un truc du genre 
 
 \section{Conclusions}\label{conclusions}
-GMA s'trop cool "T'AS VU !"
+\GMA s'trop cool "T'AS VU !"
 Home made, no inspiration expect 2 brilliant brains.
 
 \section*{Nous contacter}
