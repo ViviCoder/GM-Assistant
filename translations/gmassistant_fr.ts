@@ -758,11 +758,6 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="313"/>
-        <source>&amp;?</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="319"/>
         <source>&amp;View</source>
         <translation>&amp;Affichage</translation>
@@ -956,6 +951,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.ui" line="462"/>
         <source>F5</source>
         <translation></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/MainWindow.ui" line="313"/>
+        <source>&amp;Help</source>
+        <translation>A&amp;ide</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="459"/>

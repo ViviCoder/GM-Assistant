@@ -15,6 +15,7 @@ Changes in version 1.2.0
     - Player's name replaced by Short description
     - new shortcuts for item/character/property manipulations
     - reorganization of the View menu
+    - ? menu renamed Help
 * Others
     - audio engine changed to Phonon Qt module
     - a lot of bug fixes
