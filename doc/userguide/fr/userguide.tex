@@ -31,7 +31,8 @@
 \graphicspath{{images/}}
 
 \newcommand*{\GMA}{GM-Assistant\xspace}
-
+\newcommand*{\interfaceitem}[1]{\texttt{#1}}
+\newcommand*{\guillemets}[1]{\og #1\fg{}\xspace}
 
 \title{\GMA, guide de l'utilisateur}
 \author{Équipe \GMA}
@@ -61,23 +62,31 @@ Si vous lancez \GMA vide vous obtenez une fenêtre comprenant 6 sous-parties et 
 \subsection{Présentation des menus}\label{menu}
 La barre des menus de \GMA est similaire à celle que l'on trouve dans la plupart des logiciels. Détaillons-les un par un.
 \subsubsection{Jeu}
-Ce menu comprend tous les outils de gestion sauvegarde:
-\begin{itemize}
-    \item \emph{Nouveau :} Crée une nouvelle fiche scénario
-    \item \emph{Recharger :} Restaure une fiche scénario telle qu'elle était lors de son dernier enregistrement
-    \item \emph{Charger :} Charge une fiche scénario stockée sur l'ordinateur
-    \item \emph{Récent :} propose la liste des fiches scénario récemment ouverte
-    \item \emph{Enregistrer :} Sauvegarde la fiche scénario en cours d'édition sur le disque
-    \item \emph{Enregistrer sous :} Sauvegarde la fiche scénario en cours d'édition dans un nouveau fichier
-    \item \emph{Métadonnées :} affiche une fenêtre permettant de noter le titre du scénario, son auteur, la date de création de la fiche scénario, une description sommaire, le jeu de rôle, la liste des joueurs et la date de jeu. L'idée est rassemler des informations qui ne servent pas en partie mais plutôt qui permettent de se souvenir "qui? quand? comment?"
-\end{itemize}
+Ce menu comprend tous les outils de gestion et de sauvegarde:
+\begin{description}
+    \item[\interfaceitem{Nouveau}~:]{crée une nouvelle fiche scénario}
+    \item[\interfaceitem{Recharger}~:]{restaure une fiche scénario telle qu'elle était lors de son dernier enregistrement}
+    \item[\interfaceitem{Charger}~:]{charge une fiche scénario stockée sur l'ordinateur}
+    \item[\interfaceitem{Récents}~:]{propose la liste des fiches scénario récemment ouvertes}
+    \item[\interfaceitem{Enregistrer}~:]{sauvegarde la fiche scénario en cours d'édition sur le disque}
+    \item[\interfaceitem{Enregistrer sous}~:]{sauvegarde la fiche scénario en cours d'édition dans un nouveau fichier}
+    \item[\interfaceitem{Métadonnées}~:]{affiche une fenêtre permettant de noter le titre du scénario, son auteur, la date de création de la fiche scénario, une description sommaire, le jeu de rôle, la liste des joueurs et la date de jeu.
+            L'idée est rassembler des informations qui ne servent pas en partie mais qui permettent de se souvenir de \guillemets{Qui~? Quand~? Comment~?}.}
+    \item[\interfaceitem{Quitter}~:]{ferme la fiche scénario en cours et quitte le logiciel}
+\end{description}
 \paragraph{Le fichier de sauvegarde}
 Le fichier de sauvegarde .gms créé est un fichier complet qui comprend toutes les informations qui sont dans la fiche scénario et les fichiers que vous y avez ajouté (musique, bruitage, images), lui permettant d'être déplacé d'un ordinateur à un autre sans risque de perte (un son manquant ou une image absente par exemple).
 \subsubsection{Edition}
 Permet d'annuler et refaire les dernières actions, comme la suppression d'un élément de scénario ou l'ajout d'une musique d'ambiance (voir chapître concerné)
 \subsubsection{Affichage}
-Permet de choisir l'arrangement de modules affichés et la langue du logiciel.
-\emph{Interface} : Ouvre la liste des arrangements de modules disponible. Chaque interface propose un appariement différent de modules.
+Permet de choisir l'arrangement de modules (voir la section~\ref{sec:modules}) affiché et la langue du logiciel.
+\begin{description}
+    \item[\interfaceitem{Interface}~:]{ouvre la liste des arrangements de modules disponibles.
+        Chaque interface propose un appariement différent de modules.}
+    \item[\interfaceitem{Langue}~:]{ouvre la liste des langues disponibles.
+        Actuellement, seuls l'anglais et le français sont supportés.}
+\end{description}
+
 \subsubsection{Outil}
 Le menu outil rassemble les différent outils annexe proposé par \GMA.
 Dans la version 1.2 ce menu comprend
@@ -89,16 +98,18 @@ Dans la version 1.2 ce menu comprend
 \subsubsection{menu "?"} Ouvre les informations générales sur le logiciel et ses licences.
 
 \subsection{Présentation des modules}\label{modules}
+\label{sec:modules}
+
 La fenêtre principale est découpée en 6 blocs que nous appelerons modules.
 \GMA est organisé en module. Chaque module est indépendant et dédié à une fonctionnalité. Voici la liste des modules présent  dans la version 1.2 :
-\begin{itemize}
-    \item \emph{Scénario :} l'arbre de scénario est un arbre "dépliable" qui permet d'afficher de manière ordonnée les différents évènements important du scénario. extensible à l'infini;
-    \item \emph{Notes :} éditeur de texte simpliste qui permet de prendre des notes pendant le scénario;
-    \item \emph{Personnages :} un tableau permettant d'afficher les protagonistes (PJ ou PNJ) avec leurs caractéristiques importantes;
-    \item \emph{Historique :} structurable en arbre aussi il a pour vocation à rappeler les évènements les plus marquants du scénario précédent;
-    \item \emph{Musique :} un lecteur de musique simple qui est pensé pour jouer des musiques d'ambiance;
-    \item \emph{Bruitages :} un lecteur de musique encore plus simple pensé pour déclencher au besoin des bruitages courts.
-\end{itemize}
+\begin{description}
+    \item[\interfaceitem{Intrigue}~:]{l'arbre de scénario est un arbre \guillemets{dépliable} qui permet d'afficher de manière ordonnée les différents évènements important du scénario}
+    \item[\interfaceitem{Notes}~:]{éditeur de texte simpliste qui permet de prendre des notes pendant le scénario}
+    \item[\interfaceitem{Personnages}~:]{tableau permettant d'afficher les protagonistes (PJ ou PNJ) avec leurs caractéristiques importantes}
+    \item[\interfaceitem{Historique}~:]{structurable en arbre aussi, il a pour vocation à rappeler les évènements les plus marquants des scénarios précédents}
+    \item[\interfaceitem{Musique}~:]{lecteur de musique simple pensé pour jouer des musiques d'ambiance}
+    \item[\interfaceitem{Bruitages}~:]{lecteur de musique encore plus simple pensé pour déclencher au besoin des bruitages courts}
+\end{description}
 Tout ces modules sont rassemblées dans l'interface principale du logiciel :
 \begin{figure}[h]
     \includegraphics[width=0.9\textwidth]{screen_scenar_exemple}
@@ -111,36 +122,34 @@ Dans cette section nous rentrons dans le coeurs du sujet, nous allons découvrir
 
 \subsection{La notion d'item}\label{item}
 Les items sont à la base du fonctionnement de \GMA on les retrouve à de nombreux endroits dans le logiciel, il est donc approprié d'en expliquer le fonctionnement avant de détailler les modules.
-\\
+
 \emph{Définition : } Élément minimal d'un ensemble.
-\\
+
 Dans notre cas un item est une ligne, une entrée-objet d'un des modules du logiciel, qui sert à contenir une information textuelle, un son (musique/bruitage), une image, etc.
-\\
-Les modules qui utilisent les items sont : Scénario, Historique, Musique et Bruitage.
+Les modules qui utilisent les items sont : \interfaceitem{Intrigue}, \interfaceitem{Historique}, \interfaceitem{Musique} et \interfaceitem{Bruitage}.
 
 \begin{itemize}
-    \item\emph{Clic droit dans le partie vide du module} fait apparaitre la fenêtre "créer un nouvel item".
-    \item\emph{Clic droit sur un item} fait apparaitre le menu item contenant les 4 états disponibles pour un item : \emph{Aucun}, \emph{En cours}, \emph{Échoué}, \emph{Réussi}, puis les 3 actions \emph{Ajouter}, \emph{Supprimer} et \emph{Éditer}.
+    \item\emph{Clic droit dans le partie vide du module} fait apparaitre la fenêtre \interfaceitem{Créer un nouvel item}.
+    \item\emph{Clic droit sur un item} fait apparaitre le menu item contenant les 4 états disponibles pour un item --- \interfaceitem{Aucun}, \interfaceitem{En cours}, \interfaceitem{Échoué} et \interfaceitem{Réussi} --- puis les trois actions \interfaceitem{Ajouter}, \interfaceitem{Supprimer} et \interfaceitem{Éditer}.
 \end{itemize}
-L'état d'un item permet de prendre note rapidement du succès ou de l'échec de certains points clefs du scénario, et d'en avoir une vision rapide.\\
+L'état d'un item permet de prendre note rapidement du succès ou de l'échec de certains points clefs du scénario, et d'en avoir une vision rapide.
 
-\emph{Ajouter} nous permet d'accéder à la fenêtre de création d'item :
+\interfaceitem{Ajouter} nous permet d'accéder à la fenêtre de création d'item :
 \begin{figure}[h]
     \includegraphics[width=0.5\textwidth]{screen_add_item}
     \caption{fenêtre d'ajout d'item}
 \end{figure}
 \begin{itemize}
-    \item le cadre \emph{Contenu} reçoit un commentaire / description de l'évènement;
-    \item le cadre \emph{État} permet de fixer l'état de l'item;
-    \item le cade \emph{Type} permet de choisir si c'est un item "Basique"(donc juste du texte), un "Son" ou une "Image", dans les 2 derniers cas la ligne "Fichier" devient accessible pour aller chercher sur l'ordinateur le fichier requis;
-    \item Le bouton \emph{Ajouter} ajoute l'item à la suite et au même niveau que l'item sur lequel on a cliqué droit;
-    \item Le bouton \emph{Enfant} ajoute l'item à la suite et sous l'item sur lequel on a cliqué droit, imbriqué dedans;
-    \item Le bouton \emph{Annuler} annule la création d'item en cours.
+    \item le cadre \interfaceitem{Contenu} reçoit un commentaire / description de l'évènement;
+    \item le cadre \interfaceitem{État} permet de fixer l'état de l'item;
+    \item le cade \interfaceitem{Type} permet de choisir si c'est un item "Basique"(donc juste du texte), un "Son" ou une "Image", dans les 2 derniers cas la ligne "Fichier" devient accessible pour aller chercher sur l'ordinateur le fichier requis;
+    \item Le bouton \interfaceitem{Ajouter} ajoute l'item à la suite et au même niveau que l'item sur lequel on a cliqué droit;
+    \item Le bouton \interfaceitem{Enfant} ajoute l'item à la suite et sous l'item sur lequel on a cliqué droit, imbriqué dedans;
+    \item Le bouton \interfaceitem{Annuler} annule la création d'item en cours.
 \end{itemize}
 
-Il est important de bien saisir la différence entre les 2 boutons \emph{Ajouter} et \emph{Enfant}, c'est avec ça que vous organiserez les étapes de votre scénario.
-\\
-\emph{Nota Bene :} Les items sont déplaçable à la souris par \emph{cliquer-déplacer}
+Il est important de bien saisir la différence entre les 2 boutons \interfaceitem{Ajouter} et \interfaceitem{Enfant}, c'est avec ça que vous organiserez les étapes de votre scénario.
+Les items sont également déplaçables à la souris par \guillemets{cliquer-déplacer}.
 
 \subsection{L'arbe de Scénario}\label{scenario}
 L'arbre de scénario est dans la majorité des cas le cœur de \GMA. En effet dedans vous renseignez le plan détaillé et ordonné du scénario, de manière à ne jamais être perdu entre 2 scènes ni oublier un élément.
@@ -165,12 +174,12 @@ Le module de prise de note est un éditeur de texte ultra simpliste qui permet d
 %\emph{Nota Bene :} ce module sera rapidement accessible lorsque la fonctionnalité de \emph{suivi de campagne} sera implémentée.
 
 \subsubsection{Gestion des protagonistes}\label{personnage}
-Le module \emph{personnages} est pensé pour accueillir la liste des protagonistes ainsi que les caractéristiques numériques dont vous pouvez avoir besoin rapidement. Que ce soit des PJ pour lesquels on a besoin des scores de Perception, vigilance, esquive passive, des points de vie etc. ou directement des caractéristiques complètes des PNJ.
+Le module \interfaceitem{Personnages} est pensé pour accueillir la liste des protagonistes ainsi que les caractéristiques numériques dont vous pouvez avoir besoin rapidement. Que ce soit des PJ pour lesquels on a besoin des scores de Perception, vigilance, esquive passive, des points de vie etc. ou directement des caractéristiques complètes des PNJ.
 \\
 Liste des actions possibles :
 \begin{itemize}
-    \item \emph{Clic droit dans la partie vide $\rightarrow$ propriété} ajoute une compétence sur le bandeau horizontale;
-    \item \emph{Clic droit dans la partie vide $\rightarrow$ personnage} ajoute un personnage sur le bandeau vertical.
+    \item \emph{Clic droit dans la partie vide} puis \interfaceitem{Propriété}~: ajoute une propriété sur le bandeau horizontale;
+    \item \emph{Clic droit dans la partie vide} puis \interfaceitem{Personnage}~: ajoute un personnage sur le bandeau vertical.
 \end{itemize}
 Ensuite une fois qu'on a créé au moins un personnage et une compétence alors la case est éditable. Il faut maintenant cliquer gauche pour éditer la case voulue et y entrer la valeur.
 \\\emph{Nota bene :} il est possible d'entrer du texte, des nombres, mais aussi d'autre caractères comme le "\%"
@@ -180,10 +189,10 @@ Le module de musique d'ambiance est un lecteur de musique basique (loin des Wina
 \\
 Liste des actions possibles :
 \begin{itemize}
-    \item Actions des items cf (\ref{item})
-    \item \emph{Clic gauche Lecture} joue le son sélectionné;
-    \item \emph{Clic gauche sur la case blanche "Boucle"} active le mode \emph{répétition} donc joue en boucle la musique de cours de lecture;
-    \item \emph{Clic gauche déplacer sur la barre d'avancement} permet de se déplacer dans le son.
+    \item Actions des items (\emph{cf.} section~\ref{item})
+    \item \emph{Clic gauche} \interfaceitem{Lecture}~: joue le son sélectionné;
+    \item \emph{Clic gauche sur la case blanche} \interfaceitem{Boucle}~: active le mode \emph{répétition} donc joue en boucle la musique de cours de lecture;
+    \item \emph{Clic gauche déplacer sur la barre d'avancement}~: permet de se déplacer dans le son.
 \end{itemize}
 \emph{Nota Bene :} il est impossible de jouer 2 musiques en même temps.
 
@@ -200,13 +209,11 @@ Liste des actions possibles :
 
 \subsection{Les modules secondaires}
 \paragraph{gestionnaire de combat}
-Quand on lance le gestionnaire de combat on arrive sur une fenêtre de selection de personnage. On choisi donc les protagonistes du combat, parmi les protagonistes ajoutés dans le module "Personnage".
-\\
+Quand on lance le gestionnaire de combat on arrive sur une fenêtre de selection de personnage. On choisi donc les protagonistes du combat, parmi les protagonistes ajoutés dans le module \interfaceitem{Personnages}.
 On ajoute les différents acteurs, dans l'ordre de leurs actions, si certains agissent plusieurs fois par tour il suffit de les ajouter plusieurs fois.
-\\
-Avec les flèches "haut" et "bas" à droite on peut réorganiser l'ordre des actions.
-\\
-Ensuite on valide et la fenêtre de combat apparait. À chaque round on clique sur "suivant" pour savoir qui doit agir, et la colonne "Notes" permet de noter les blessures (entre autre).
+Avec les flèches \interfaceitem{Haut} et \interfaceitem{Bas} à droite on peut réorganiser l'ordre des actions.
+Ensuite on valide et la fenêtre de combat apparait.
+À chaque round on clique sur \interfaceitem{Suivant} pour savoir qui doit agir, et la colonne \interfaceitem{Notes} permet de noter les blessures (entre autres).
 
 \paragraph{Simulateur de dés}
 Le simulateur de dés permet simplement de "lancer" un certain nombre de dés d'un certain type.
@@ -241,17 +248,17 @@ En même temps une des convives, Kate Elver, est une sorciere qui veut utiliser 
 \subsection{Création de la fiche scénario}
 Commençons notre fiche.
 \subsection{Les Métadonnées}
-La première étape est de remplir les métadonnées. Cliquons donc sur le menu "Jeu" puis "Métadonnées".
-la fenêtre des "Métadonnées" figure(\ref{metadata} apparait :
+La première étape est de remplir les métadonnées. Cliquons donc sur le menu \interfaceitem{Jeu} puis \interfaceitem{Métadonnées}.
+la fenêtre des métadonnées (figure~\ref{metadata}) apparait :
 \begin{figure}[h!]
     \includegraphics[width=0.6\textwidth]{metadata}
     \caption{fenêtre métadonnées}
     \label{metadata}
 \end{figure}
-Puis validons en cliquant gauche "OK".
+Puis validons en cliquant gauche \interfaceitem{OK}.
 
 \subsection{L'Intrigue}
-Rentrons maintenant le plan du scénarion en ajoutant dans le module "Intrigue" les différentes étapes clef du scénario.
+Rentrons maintenant le plan du scénarion en ajoutant dans le module \interfaceitem{Intrigue} les différentes étapes clef du scénario.
 \\
 Commençons par cliquer gauche dans le cadre blanc. La fenêtre (\ref{intrigue_scenario}) apparait 
 \begin{figure}[h!]
@@ -259,20 +266,16 @@ Commençons par cliquer gauche dans le cadre blanc. La fenêtre (\ref{intrigue_s
     \caption{fenêtre d'ajout d'item}
     \label{intrigue_scenario}
 \end{figure}
-Nous allons écrire "introduction" puis détailler l'intro dans les item "fils".
-\\
-Clic droit sur "Introduction", ajouter, nous arrivons sur la fenêtre d'ajout d'item, ce coup-ci on va l'ajouter en "enfant", pour qu'il apparaisse imbriqué sous "Introduction".
-\\
-voir figure (\ref{item_enfant})
+Nous allons écrire \interfaceitem{Introduction} puis détailler l'intro dans les item "fils".
+Clic droit sur \interfaceitem{Introduction}, \interfaceitem{Ajouter}, nous arrivons sur la fenêtre d'ajout d'item, ce coup-ci on va l'ajouter en "enfant", pour qu'il apparaisse imbriqué sous \interfaceitem{Introduction} (voir figure~\ref{item_enfant}).
 \begin{figure}[h!]
     \includegraphics[width=0.5\textwidth]{item_enfant}
     \label{item_enfant}
 \end{figure}
-Et on valide en cliquant gauche sur "enfant".
+Et on valide en cliquant gauche sur \interfaceitem{Enfant}.
 On peut utiliser cette partie d'introduction pour se rappeler des différents élément d'ambiance à présenter aux joueurs.
-\\
-Ensuite on ajoute la première partie du scénario. Clic droit dans la partie blanche, dans "contenu" on écrit "partie 1" et on valide par "ajouter" pour qu'il apparaisse à la suite de "Introduction" et au même niveau.
-\\
+
+Ensuite on ajoute la première partie du scénario. Clic droit dans la partie blanche, dans \interfaceitem{Contenu} on écrit \interfaceitem{Partie 1} et on valide par \interfaceitem{Ajouter} pour qu'il apparaisse à la suite de \interfaceitem{Introduction} et au même niveau.
 On procède de la même manière pour les différentes étapes du scénario :
 \begin{itemize}
     \item Introduction
@@ -325,17 +328,15 @@ et les PJ
     \item Caleb de la muerta, joué par Yan
     \item Connara l'den, joué par Nico
 \end{itemize}
-Pour ajouter ces protagonistes commençons par cliquer droit dans la partie vide du module "Personnage", puis "personnage $\rightarrow$ ajouter".
-\\
-figure(\ref{ajout_perso})
+Pour ajouter ces protagonistes commençons par cliquer droit dans la partie vide du module \interfaceitem{Personnages}, puis \interfaceitem{Personnage} et \interfaceitem{Ajouter} (figure~\ref{ajout_perso}).
 \begin{figure}[h!]
     \includegraphics[width=0.4\textwidth]{ajout_perso}
     \caption{ajoutons Kate Elver}
     \label{ajout_perso}
 \end{figure}
 De la même manière nous allons ajouter tous les protagoniste, en mettant dans la seconde ligne une description sommaire (un ou deux mots) du PNJ, ou alors le nom du joueur qui contrôle le personnage.
-\\
-Ensuite ajoutons les compétences. Celle qui nous serviront sont :
+
+Ensuite ajoutons les compétences. Celles qui nous serviront sont :
 \begin{itemize}
     \item TOC, Trouver objet caché (compétence perception de l'Appel de Cthlhu) qui nous permettra de faire des test de perception derrière l'écran sans que les joueurs ne se doute de quoi que ce soit
     \item Combat, surtout utile pour nos PNJ
@@ -344,9 +345,7 @@ Ensuite ajoutons les compétences. Celle qui nous serviront sont :
 \end{itemize}
 Le reste dépendra de ce que font les joeurs.
 \\
-On clique droit dans la partie vide du module "Personnage", puis "propriété" $\rightarrow$ ajouter".
-\\
-figure(\ref{ajout_propriete})
+On clique droit dans la partie vide du module \interfaceitem{Personnages}, puis \interfaceitem{Propriété} et \interfaceitem{Ajouter} (figure~\ref{ajout_propriete})
 \begin{figure}[h!]
     \includegraphics[width=0.4\textwidth]{ajout_propriete}
     \caption{ajoutons la défense}
@@ -377,17 +376,14 @@ Voici ce que ça donne, figure (\ref{note})
 \subsection{bruitage}
 Préparons maintenant quelques bruitages d'ambiance. Ce sont des bruitages libres, récupérables gratuitement (et légalement) sur ce site web : http://www.universal-soundbank.com/
 \\
-Donc cliquons droit dans la partie vide du module "Bruitage", nous arrivons sur la fenêtre d'ajout d'item. Remplissons comme dans la figure (\ref{coup de feu}) 
+Donc cliquons droit dans la partie vide du module \interfaceitem{Bruitages}, nous arrivons sur la fenêtre d'ajout d'item. Remplissons comme dans la figure~\ref{coup de feu}.
 \begin{figure}[h!]
     \includegraphics[width=0.5\textwidth]{coup_de_feu}
     \caption{Ajout d'un bruitage}
     \label{coup de feu}
 \end{figure}
-Il faut bien sélectionner "Audio" dans le "Type", pour pouvoir aller chercher le fichier MP3 sur votre ordinateur.
-\\
-On valide en cliquant "Ajouter".
-\\
-Voir la figure (\ref{exemple_bruitage}).
+Il faut bien sélectionner \interfaceitem{Audio} dans \interfaceitem{Type}, pour pouvoir aller chercher le fichier sur votre ordinateur (voir la figure~\ref{exemple_bruitage}).
+On valide en cliquant sur \interfaceitem{Ajouter}.
 \begin{figure}[h!]
     \includegraphics[width=0.5\textwidth]{bruitage}
     \caption{module de bruitage}
@@ -396,7 +392,7 @@ Voir la figure (\ref{exemple_bruitage}).
 \\ \emph{Nota Bene :} Il est possible de se faire des regroupements de son par "chapitre" par exemple, pour ceux qui utilisent beaucoup de bruitage/musique. Il suffit de créer un item "texte" par regroupement, et de mettre vos bruitages en tant que "item fils" dans les regroupements.
 
 \subsection{Musique}
-Le module musique est exactement le même à un détail prêt, vous pouvez mettre la musique en pause, et la mettre en "lecture en boucle" en cochant le bouton boucle, pour qu'elle ne s'arrête pas.
+Le module musique est exactement le même à un détail prêt, vous pouvez mettre la musique en pause, et la mettre en "lecture en boucle" en cochant le bouton \interfaceitem{Boucle}, pour qu'elle ne s'arrête pas.
 \\
 La musique que nous avons ajouté : Night of Chaos, est une musique sour licence creative commons (équivalent de open source pour des médias) téléchargeable gratuitement (et légalement) à cette adresse http://incompetech.com/music/royalty-free/
 
