@@ -17,6 +17,7 @@
 *************************************************************************/
 
 #include "QSoundEngine.h"
+#include <QFileInfo>
 
 using namespace Phonon;
 
@@ -46,7 +47,7 @@ void QSoundEngine::playSound(const QString &fileName)
 
 void QSoundEngine::playMusic(const QString &fileName)
 {
-    musicObject->setCurrentSource(MediaSource(QUrl::fromLocalFile(fileName)));
+    musicObject->setCurrentSource(MediaSource(QUrl::fromLocalFile(QFileInfo(fileName).absoluteFilePath())));
     musicObject->play();
 }
 
