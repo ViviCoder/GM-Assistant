@@ -17,6 +17,7 @@
 *************************************************************************/
 
 #include "CombatDialog.h"
+#include <QMessageBox>
 
 CombatDialog::CombatDialog(QWidget *parent): QDialog(parent)
 {
@@ -98,16 +99,19 @@ void CombatDialog::on_pushRemove_clicked()
     if (n > 2)
     {
         int row = tableWidget->currentRow();
-        tableWidget->removeRow(row);
-        if (iCharacter > row)
+        if (QMessageBox::question(this, QApplication::translate("combatDialog", "Confirmation", 0), QApplication::translate("combatDialog", "You are about to remove %1 from the combat manager. Are you sure you want to do it?", 0).arg("<strong>"+tableWidget->verticalHeaderItem(row)->text()+"</strong>"), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
         {
-            iCharacter--;
+            tableWidget->removeRow(row);
+            if (iCharacter > row)
+            {
+                iCharacter--;
+            }
+            if (n == 3)
+            {
+                pushRemove->setEnabled(false);
+            }
+            updateDisplay();
         }
-        if (n == 3)
-        {
-            pushRemove->setEnabled(false);
-        }
-        updateDisplay();
     }
 }
 

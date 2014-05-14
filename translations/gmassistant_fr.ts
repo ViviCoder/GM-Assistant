@@ -190,9 +190,19 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/CombatDialog.ui" line="20"/>
-        <location filename="../sources/windows/CombatDialog.cpp" line="69"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="70"/>
         <source>Current character:</source>
         <translation>Personnage actuel :</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/CombatDialog.cpp" line="102"/>
+        <source>Confirmation</source>
+        <translation>Confirmation</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/CombatDialog.cpp" line="102"/>
+        <source>You are about to remove %1 from the combat manager. Are you sure you want to do it?</source>
+        <translation>Vous êtes sur le point de retirer %1 du gestionnaire de combat. Êtes-vous sûr de vouloir le faire ?</translation>
     </message>
 </context>
 <context>
