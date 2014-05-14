@@ -48,7 +48,6 @@ void CombatDialog::show(const QStringList &list)
 
 void CombatDialog::on_pushNext_clicked()
 {
-    tableWidget->item(header->logicalIndex(iCharacter), 0)->setBackground(QPalette().color(QPalette::Base));
     iCharacter = (iCharacter + 1) % tableWidget->rowCount();
     updateDisplay();
 }
@@ -56,11 +55,21 @@ void CombatDialog::on_pushNext_clicked()
 void CombatDialog::updateDisplay()
 {
     int logical = header->logicalIndex(iCharacter);
-    tableWidget->item(logical, 0)->setBackground(QPalette().color(QPalette::ToolTipBase));
+    for (int n = 0; n < tableWidget->rowCount(); n++)
+    {
+        if (n == logical)
+        {
+            tableWidget->item(n, 0)->setBackground(QPalette().color(QPalette::ToolTipBase));
+        }
+        else
+        {
+            tableWidget->item(n, 0)->setBackground(QPalette().color(QPalette::Base));
+        }
+    }
     label->setText(QApplication::translate("combatDialog", "Current character:", 0) + " <strong>"+tableWidget->verticalHeaderItem(logical)->text()+"</strong>");
 }
 
-void CombatDialog::onCharacterMoved(int logicalIndex, int oldVisualIndex, int newVisualIndex)
+void CombatDialog::onCharacterMoved(int, int oldVisualIndex, int newVisualIndex)
 {
     if (oldVisualIndex < iCharacter && newVisualIndex >= iCharacter)
     {
@@ -72,7 +81,6 @@ void CombatDialog::onCharacterMoved(int logicalIndex, int oldVisualIndex, int ne
     }
     else if (oldVisualIndex == iCharacter)
     {
-        tableWidget->item(logicalIndex, 0)->setBackground(QPalette().color(QPalette::Base));
         if (newVisualIndex < iCharacter)
         {
             on_pushNext_clicked();
@@ -86,7 +94,6 @@ void CombatDialog::onCharacterMoved(int logicalIndex, int oldVisualIndex, int ne
 
 void CombatDialog::on_pushRemove_clicked()
 {
-    tableWidget->item(header->logicalIndex(iCharacter), 0)->setBackground(QPalette().color(QPalette::Base));
     int n = tableWidget->rowCount();
     if (n > 2)
     {
@@ -114,7 +121,6 @@ void CombatDialog::changeEvent(QEvent *e)
 
 void CombatDialog::onCharacterSelected(int logicalIndex)
 {
-    tableWidget->item(header->logicalIndex(iCharacter), 0)->setBackground(QPalette().color(QPalette::Base));
     iCharacter = header->visualIndex(logicalIndex);
     updateDisplay();
 }
