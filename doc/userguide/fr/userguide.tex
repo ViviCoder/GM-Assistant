@@ -86,16 +86,37 @@ Permet de choisir l'arrangement de modules (voir la section~\ref{sec:modules}) a
     \item[\interfaceitem{Langue}~:]{ouvre la liste des langues disponibles.
         Actuellement, seuls l'anglais et le français sont supportés.}
 \end{description}
+Présentation rapide des interfaces
+\begin{itemize}
+  \item[\interfaceitem{Complète}~:]{est composé des 6 modules}
+  \item[\interfaceitem{Simple}~:]{est composé des modules : \interfaceitem{Intrigue}, \interfaceitem{Musique} et \interfaceitem{Bruitage}}
+  \item[\interfaceitem{Musique}~:]{est composé des modules : \interfaceitem{Musique} et \interfaceitem{Bruitage}}
+  \item[\interfaceitem{Conception}~:]{est composé des modules : \interfaceitem{Intrigue}, \interfaceitem{Personnages} et \interfaceitem{Notes}}
+  \item[\interfaceitem{Sans son}~:]{est composé des modules \interfaceitem{Intrigue}, \interfaceitem{Historique}, \interfaceitem{Personnages} et \interfaceitem{Notes}}
+\end{itemize}
+
 
 \subsubsection{Outil}
 Le menu outil rassemble les différent outils annexe proposé par \GMA.
 Dans la version 1.2 ce menu comprend
-\begin{itemize}
-    \item Un gestionnaire de combat
-    \item Un simulateur de dé
-\end{itemize}
+\paragraph{gestionnaire de combat}
+Quand on lance le gestionnaire de combat on arrive sur une fenêtre de selection de personnage. On choisi donc les protagonistes du combat, parmi les protagonistes ajoutés dans le module \interfaceitem{Personnages}.
+On ajoute les différents acteurs, dans l'ordre de leurs actions, si certains agissent plusieurs fois par tour il suffit de les ajouter plusieurs fois.
+Avec les flèches \interfaceitem{Haut} et \interfaceitem{Bas} à droite on peut réorganiser l'ordre des actions.
+Ensuite on valide et la fenêtre de combat apparait.
+À chaque round on clique sur \interfaceitem{Suivant} pour savoir qui doit agir, et la colonne \interfaceitem{Notes} permet de noter les blessures (entre autres).
 
-\subsubsection{menu "?"} Ouvre les informations générales sur le logiciel et ses licences.
+\paragraph{Simulateur de dés}
+Le simulateur de dés permet simplement de "lancer" un certain nombre de dés d'un certain type.
+\\
+La fenêtre que vous obtenez comprend plusieurs éléments.
+\begin{itemize}
+  \item  \emph{type de dés} permet de choisir le nombre de faces qu'auront les dés.
+  \item \emph{nombre} permet de choisir combien de dés.
+\end{itemize}
+Ensuite on clique sur "Lancer" et le résultat s'affiche dans le cadre blanc.
+
+\subsubsection{Menu "Aide"} Ouvre les informations générales sur le logiciel et ses licences.
 
 \subsection{Présentation des modules}\label{modules}
 \label{sec:modules}
@@ -117,10 +138,8 @@ Tout ces modules sont rassemblées dans l'interface principale du logiciel :
     ATTENTION il pourrait être mieux de faire une capture windows avec la barre des menus}
 \end{figure}
 
-\section{Les modules dans tous leurs états}\label{details}
-Dans cette section nous rentrons dans le coeurs du sujet, nous allons découvrir en détail les fonctionnalités proposées par \GMA.
 
-\subsection{La notion d'item}\label{item}
+\subsubsection{La notion d'item}\label{item}
 Les items sont à la base du fonctionnement de \GMA on les retrouve à de nombreux endroits dans le logiciel, il est donc approprié d'en expliquer le fonctionnement avant de détailler les modules.
 
 \emph{Définition : } Élément minimal d'un ensemble.
@@ -151,7 +170,7 @@ L'état d'un item permet de prendre note rapidement du succès ou de l'échec de
 Il est important de bien saisir la différence entre les 2 boutons \interfaceitem{Ajouter} et \interfaceitem{Enfant}, c'est avec ça que vous organiserez les étapes de votre scénario.
 Les items sont également déplaçables à la souris par \guillemets{cliquer-déplacer}.
 
-\subsection{L'arbe de Scénario}\label{scenario}
+\subsubsection{Intrigue}\label{scenario}
 L'arbre de scénario est dans la majorité des cas le cœur de \GMA. En effet dedans vous renseignez le plan détaillé et ordonné du scénario, de manière à ne jamais être perdu entre 2 scènes ni oublier un élément.
 \\
 Voir figure(\ref{arbre_scenar}) pour un aperçu de ce qu'il est possible de faire
@@ -163,17 +182,17 @@ Voir figure(\ref{arbre_scenar}) pour un aperçu de ce qu'il est possible de fair
 Donc comment faire ?
 \\
 chaque ligne que vous voyez est un \emph{item}, il suffit de suivre la technique de création d'item pour ordonner son scénario.
-\subsection{L'arbre d'Historique}\label{historique}
+\subsubsection{Historique}\label{historique}
 L'arbre d'historique sert à se préparer une liste des évènements importants ayant marqués les séances précédentes, commme la rencontre des personnages, une promesse faite par un PJ à un PNJ (ou l'inverse), etc.
 Il se comporte et s'utilise (d'un point de vue technique) exactement de la même manière que l'arbre de Scénario.
 
 
-\subsection{Prise de note rapide}
+\subsubsection{Notes}
 Le module de prise de note est un éditeur de texte ultra simpliste qui permet de noter à la volée toute information qui est utile à garder (exemple : "Sylvain a insulté le directeur du museum"). Pour entrer du texte dedans il suffit de cliquer gauche quelque part dans le cadre texte et d'écrire.
 \\
 %\emph{Nota Bene :} ce module sera rapidement accessible lorsque la fonctionnalité de \emph{suivi de campagne} sera implémentée.
 
-\subsubsection{Gestion des protagonistes}\label{personnage}
+\subsubsection{Personnages}\label{personnage}
 Le module \interfaceitem{Personnages} est pensé pour accueillir la liste des protagonistes ainsi que les caractéristiques numériques dont vous pouvez avoir besoin rapidement. Que ce soit des PJ pour lesquels on a besoin des scores de Perception, vigilance, esquive passive, des points de vie etc. ou directement des caractéristiques complètes des PNJ.
 \\
 Liste des actions possibles :
@@ -184,7 +203,7 @@ Liste des actions possibles :
 Ensuite une fois qu'on a créé au moins un personnage et une compétence alors la case est éditable. Il faut maintenant cliquer gauche pour éditer la case voulue et y entrer la valeur.
 \\\emph{Nota bene :} il est possible d'entrer du texte, des nombres, mais aussi d'autre caractères comme le "\%"
 
-\subsection{Musique d'ambiance}\label{musique}
+\subsubsection{Musique}\label{musique}
 Le module de musique d'ambiance est un lecteur de musique basique (loin des Winamp et autres VirtualDJ) qui permet de jouer une musique (au format MP3).
 \\
 Liste des actions possibles :
@@ -196,7 +215,7 @@ Liste des actions possibles :
 \end{itemize}
 \emph{Nota Bene :} il est impossible de jouer 2 musiques en même temps.
 
-\subsection{Les Bruitages}\label{bruitage}
+\subsubsection{Bruitages}\label{bruitage}
 Le module de bruitage est pensé pour accueillir une liste de son très court (au format MP3) comme un coup de feu, un hurlement, une porte qui claque, etc.
 \\
 Liste des actions possibles :
@@ -207,31 +226,14 @@ Liste des actions possibles :
 
 \emph{Nota Bene :} Il est tout fait possible de jouer un bruitage alors qu'une musique est en cours de lecture.
 
-\subsection{Les modules secondaires}
-\paragraph{gestionnaire de combat}
-Quand on lance le gestionnaire de combat on arrive sur une fenêtre de selection de personnage. On choisi donc les protagonistes du combat, parmi les protagonistes ajoutés dans le module \interfaceitem{Personnages}.
-On ajoute les différents acteurs, dans l'ordre de leurs actions, si certains agissent plusieurs fois par tour il suffit de les ajouter plusieurs fois.
-Avec les flèches \interfaceitem{Haut} et \interfaceitem{Bas} à droite on peut réorganiser l'ordre des actions.
-Ensuite on valide et la fenêtre de combat apparait.
-À chaque round on clique sur \interfaceitem{Suivant} pour savoir qui doit agir, et la colonne \interfaceitem{Notes} permet de noter les blessures (entre autres).
-
-\paragraph{Simulateur de dés}
-Le simulateur de dés permet simplement de "lancer" un certain nombre de dés d'un certain type.
-\\
-La fenêtre que vous obtenez comprend plusieurs éléments.
-\begin{itemize}
-  \item  \emph{type de dés} permet de choisir le nombre de faces qu'auront les dés.
-  \item \emph{nombre} permet de choisir combien de dés.
-\end{itemize}
-Ensuite on clique sur "Lancer" et le résultat s'affiche dans le cadre blanc.
 
 \section{Exemple : Construire la fiche d'un scénario}
-\subsection{Introduction}
+
 Maintenant que nous avons fait le tour des fonctionnalités du logiciel, construisons ensemble la "fiche scénario" du scénario exceptionnel (et exclusif) : \emph{La nuit tous les profonds sont gris}.
 
-\subsection{Scénario}
+\subsection{Présentation du scénario}
 \label{exemple_scenario}
-Métadonnée
+Le Scénario
 \begin{itemize}
     \item \emph{Titre du scénario :} La nuit tous les profonds sont gris
     \item \emph{Jeux de rôle :} L'appel de Cthulhu
@@ -245,11 +247,17 @@ Les PJ sont au vernissage d'une exposition au laboratoire de pharmacologie de la
 \\
 En même temps une des convives, Kate Elver, est une sorciere qui veut utiliser ce squelette pour en extraire de la puissance. Elle profitera de la cohue des convives lors de l'assaut des profonds pour aller dans le laboratoire, et commencer son rituel. La suite dépend des PJ. Si le rituel va au bout une onde de choc jette tout le monde à terre et les profonds fou de rage d'avoir perdu leur chaman définitivement assassinent tout le monde, sinon ils repartent "tranquillement" avec leur chaman (squelette).
 
-\subsection{Création de la fiche scénario}
-Commençons notre fiche.
 \subsection{Les Métadonnées}
-La première étape est de remplir les métadonnées. Cliquons donc sur le menu \interfaceitem{Jeu} puis \interfaceitem{Métadonnées}.
-la fenêtre des métadonnées (figure~\ref{metadata}) apparait :
+La première étape est de remplir les métadonnées. À partir des informations du scénario voici les métadonnées
+\begin{itemize}
+    \item \emph{Titre du scénario :} La nuit tous les profonds sont gris
+    \item \emph{Auteur :} octopoulpe
+    \item \emph{Date de création :} 23/11/2013
+    \item \emph{Description :} scénarion de présentation de GM-Assistant, et d'initiation au jeu de rôle. Année de jeu 1920, à Toulouse
+    \item \emph{Jeux de rôle :} L'appel de Cthulhu
+    \item \emph{Joueurs :} Sylvain, Marc, Japhel
+\end{itemize}
+Cliquons donc sur le menu \interfaceitem{Jeu} puis \interfaceitem{Métadonnées}. La fenêtre des métadonnées (figure~\ref{metadata}) apparait :
 \begin{figure}[h!]
     \includegraphics[width=0.6\textwidth]{metadata}
     \caption{fenêtre métadonnées}
