@@ -76,45 +76,38 @@ Ce menu comprend tous les outils de gestion et de sauvegarde:
 \end{description}
 \paragraph{Le fichier de sauvegarde}
 Le fichier de sauvegarde .gms créé est un fichier complet qui comprend toutes les informations qui sont dans la fiche scénario et les fichiers que vous y avez ajouté (musique, bruitage, images), lui permettant d'être déplacé d'un ordinateur à un autre sans risque de perte (un son manquant ou une image absente par exemple).
+
 \subsubsection{Edition}
-Permet d'annuler et refaire les dernières actions, comme la suppression d'un élément de scénario ou l'ajout d'une musique d'ambiance (voir chapître concerné)
+\begin{description}
+    \item[\interfaceitem{Annuler}~:]{Permet d'annuler la dernière modification apportée.}
+    \item[\interfaceitem{Refaire}~:]{Permet de rétablir la dernière modificaion apportée après son annulation.}
+\end{description}
+
 \subsubsection{Affichage}
 Permet de choisir l'arrangement de modules (voir la section~\ref{sec:modules}) affiché et la langue du logiciel.
 \begin{description}
     \item[\interfaceitem{Interface}~:]{ouvre la liste des arrangements de modules disponibles.
         Chaque interface propose un appariement différent de modules.}
-    \item[\interfaceitem{Langue}~:]{ouvre la liste des langues disponibles.
-        Actuellement, seuls l'anglais et le français sont supportés.}
-\end{description}
-Présentation rapide des interfaces
-\begin{itemize}
+\begin{description}
   \item[\interfaceitem{Complète}~:]{est composé des 6 modules}
   \item[\interfaceitem{Simple}~:]{est composé des modules : \interfaceitem{Intrigue}, \interfaceitem{Musique} et \interfaceitem{Bruitage}}
   \item[\interfaceitem{Musique}~:]{est composé des modules : \interfaceitem{Musique} et \interfaceitem{Bruitage}}
   \item[\interfaceitem{Conception}~:]{est composé des modules : \interfaceitem{Intrigue}, \interfaceitem{Personnages} et \interfaceitem{Notes}}
   \item[\interfaceitem{Sans son}~:]{est composé des modules \interfaceitem{Intrigue}, \interfaceitem{Historique}, \interfaceitem{Personnages} et \interfaceitem{Notes}}
-\end{itemize}
-
+\end{description}
+    \item[\interfaceitem{Langue}~:]{ouvre la liste des langues disponibles.
+        Actuellement, seuls l'anglais et le français sont supportés.}
+\end{description}
 
 \subsubsection{Outil}
 Le menu outil rassemble les différent outils annexe proposé par \GMA.
 Dans la version 1.2 ce menu comprend
-\paragraph{gestionnaire de combat}
-Quand on lance le gestionnaire de combat on arrive sur une fenêtre de selection de personnage. On choisi donc les protagonistes du combat, parmi les protagonistes ajoutés dans le module \interfaceitem{Personnages}.
-On ajoute les différents acteurs, dans l'ordre de leurs actions, si certains agissent plusieurs fois par tour il suffit de les ajouter plusieurs fois.
-Avec les flèches \interfaceitem{Haut} et \interfaceitem{Bas} à droite on peut réorganiser l'ordre des actions.
-Ensuite on valide et la fenêtre de combat apparait.
-À chaque round on clique sur \interfaceitem{Suivant} pour savoir qui doit agir, et la colonne \interfaceitem{Notes} permet de noter les blessures (entre autres).
 
 \paragraph{Simulateur de dés}
 Le simulateur de dés permet simplement de "lancer" un certain nombre de dés d'un certain type.
-\\
-La fenêtre que vous obtenez comprend plusieurs éléments.
-\begin{itemize}
-  \item  \emph{type de dés} permet de choisir le nombre de faces qu'auront les dés.
-  \item \emph{nombre} permet de choisir combien de dés.
-\end{itemize}
-Ensuite on clique sur "Lancer" et le résultat s'affiche dans le cadre blanc.
+
+\paragraph{gestionnaire de combat}
+Le gestionnaire de combat est un outil permettant de structurer le déroulement des combat.
 
 \subsubsection{Menu "Aide"} Ouvre les informations générales sur le logiciel et ses licences.
 
@@ -148,8 +141,8 @@ Dans notre cas un item est une ligne, une entrée-objet d'un des modules du logi
 Les modules qui utilisent les items sont : \interfaceitem{Intrigue}, \interfaceitem{Historique}, \interfaceitem{Musique} et \interfaceitem{Bruitage}.
 
 \begin{itemize}
-    \item\emph{Clic droit dans le partie vide du module} fait apparaitre la fenêtre \interfaceitem{Créer un nouvel item}.
-    \item\emph{Clic droit sur un item} fait apparaitre le menu item contenant les 4 états disponibles pour un item --- \interfaceitem{Aucun}, \interfaceitem{En cours}, \interfaceitem{Échoué} et \interfaceitem{Réussi} --- puis les trois actions \interfaceitem{Ajouter}, \interfaceitem{Supprimer} et \interfaceitem{Éditer}.
+    \item Clic droit dans le partie vide du module : fait apparaitre la fenêtre \interfaceitem{Créer un nouvel item}.
+    \item Clic droit sur un item : fait apparaitre le menu item contenant les 4 états disponibles pour un item --- \interfaceitem{Aucun}, \interfaceitem{En cours}, \interfaceitem{Échoué} et \interfaceitem{Réussi} --- puis les trois actions \interfaceitem{Ajouter}, \interfaceitem{Supprimer} et \interfaceitem{Éditer}.
 \end{itemize}
 L'état d'un item permet de prendre note rapidement du succès ou de l'échec de certains points clefs du scénario, et d'en avoir une vision rapide.
 
@@ -169,6 +162,8 @@ L'état d'un item permet de prendre note rapidement du succès ou de l'échec de
 
 Il est important de bien saisir la différence entre les 2 boutons \interfaceitem{Ajouter} et \interfaceitem{Enfant}, c'est avec ça que vous organiserez les étapes de votre scénario.
 Les items sont également déplaçables à la souris par \guillemets{cliquer-déplacer}.
+
+\emph{Les images} : il est possible de mettre une image dans un item. On crée l'item contenant l'image, et on sélectionne le "type image". Une fois l'item créé, il suffit de double-cliquer dessus pour faire apparaître l'image dans une fenêtre spécifique.
 
 \subsubsection{Intrigue}\label{scenario}
 L'arbre de scénario est dans la majorité des cas le cœur de \GMA. En effet dedans vous renseignez le plan détaillé et ordonné du scénario, de manière à ne jamais être perdu entre 2 scènes ni oublier un élément.
@@ -197,8 +192,8 @@ Le module \interfaceitem{Personnages} est pensé pour accueillir la liste des pr
 \\
 Liste des actions possibles :
 \begin{itemize}
-    \item \emph{Clic droit dans la partie vide} puis \interfaceitem{Propriété}~: ajoute une propriété sur le bandeau horizontale;
-    \item \emph{Clic droit dans la partie vide} puis \interfaceitem{Personnage}~: ajoute un personnage sur le bandeau vertical.
+    \item Clic droit dans la partie vide puis \interfaceitem{Propriété}~: ajoute une propriété sur le bandeau horizontale;
+    \item Clic droit dans la partie vide puis \interfaceitem{Personnage}~: ajoute un personnage sur le bandeau vertical.
 \end{itemize}
 Ensuite une fois qu'on a créé au moins un personnage et une compétence alors la case est éditable. Il faut maintenant cliquer gauche pour éditer la case voulue et y entrer la valeur.
 \\\emph{Nota bene :} il est possible d'entrer du texte, des nombres, mais aussi d'autre caractères comme le "\%"
@@ -209,9 +204,9 @@ Le module de musique d'ambiance est un lecteur de musique basique (loin des Wina
 Liste des actions possibles :
 \begin{itemize}
     \item Actions des items (\emph{cf.} section~\ref{item})
-    \item \emph{Clic gauche} \interfaceitem{Lecture}~: joue le son sélectionné;
-    \item \emph{Clic gauche sur la case blanche} \interfaceitem{Boucle}~: active le mode \emph{répétition} donc joue en boucle la musique de cours de lecture;
-    \item \emph{Clic gauche déplacer sur la barre d'avancement}~: permet de se déplacer dans le son.
+    \item Clic gauche \interfaceitem{Lecture/Pause}~: s'il n'y a pas de lecture en cours c'est le bouton \interfaceitem{Lecture} qui est affiché. CLiquer dessus joue le son sélectionné; lorsqu'une lecture est en cours le bouton change en bouton \interfaceitem{Pause} qui est affiché. Cliquer dessus met la lecture en pause.
+    \item Clic gauche sur la case blanche \interfaceitem{Boucle}~: active le mode répétition donc joue en boucle la musique de cours de lecture;
+    \item Clic gauche déplacer sur la barre d'avancement~: permet de se déplacer dans le son.
 \end{itemize}
 \emph{Nota Bene :} il est impossible de jouer 2 musiques en même temps.
 
@@ -221,11 +216,52 @@ Le module de bruitage est pensé pour accueillir une liste de son très court (a
 Liste des actions possibles :
 \begin{itemize}
     \item Actions des items cf (\ref{item})
-    \item \emph{Double clic gauche sur un item} joue le bruitage
+    \item Double clic gauche sur un item:joue le bruitage
 \end{itemize}
 
 \emph{Nota Bene :} Il est tout fait possible de jouer un bruitage alors qu'une musique est en cours de lecture.
 
+\subsection{Présentation des outils}
+
+\subsubsection{Le simulateur de dé}
+Le simulateur de dé est un outil permettant de s'affranchir du lancé de dé en reproduisant directement dans le logiciel l'aléatoire des dés.
+Cet outil se trouve dans le menu \interfaceitem{Outils}
+Vous obtenez la fenêtre (\ref{simulateur_de}).
+\begin{figure}[h]
+    \includegraphics[width=0.6\textwidth]{simulateur_de_de}
+    \caption{Simulateur de dé}
+    \label{simulateur_de}
+\end{figure}
+
+Elle comprend les éléments suivant :
+\begin{itemize}
+  \item  \emph{type de dés} permet de choisir le nombre de faces qu'auront les dés.
+  \item \emph{nombre} permet de choisir combien de dés, jusqu'à concurrence de 10.
+\end{itemize}
+Ensuite on clique sur "Lancer" et le résultat s'affiche dans le cadre blanc.
+
+\subsubsection{Le gestionnaire de combat}
+Quand on lance le gestionnaire de combat on arrive sur la fenêtre (\ref{gestion_combat_choix}) de selection de personnage.
+\begin{figure}[h]
+    \includegraphics[width=1\textwidth]{gestionnaire_combat_1}
+    \caption{Gestionnaire de combat : préparation}
+    \label{gestion_combat_choix}
+\end{figure}
+La liste des personnages est générée automatiquement à partir des protagonistes entrés dans le module \interfaceitem{Personnages}.
+On choisi chaque participant au combat en le sélectionnant dans la colonne de gauche et en l'ajoutant à la colonne de droite en cliquant sur \interfaceitem{Ajouter}.
+On ajoute les différents acteurs, dans l’ordre de leurs actions, si certains
+agissent plusieurs fois par tour il suffit de les ajouter plusieurs fois. Les flèches \interfaceitem{Haut} et \interfaceitem{Bas} à droite permettent de réorganiser l’ordre des actions.
+Une fois la préparation terminée on valide en cliquant \interfaceitem{Ok}.
+Apparait maintenant le gestionnaire de combat lui-même (\ref{gestion_combat_fight}
+\begin{figure}[h]
+    \includegraphics[width=0.4\textwidth]{gestion_combat_fight}
+    \caption{Gestionnaire de combat : action}
+    \label{gestion_combat_fight}
+\end{figure}
+Ensuite à chaque round de combat on clique sur \interfaceitem{Suivant}, la ligne \interfaceitem{Personnage actuel :} indique quel personnage agit. En cas de blessure ou commentaire spécifique il est possible d'ajouter du texte dans la colonne \interfaceitem{Notes} en double-cliquant dessus.
+En cas de sortie du combat pour un personnage (fuite, mort, etc.) il suffit de cliquer sur \interfaceitem{Supprimer}, pour retirer ce personnage du gestionnaire.
+
+Une fois le combat terminé il suffit de cliquer sur \interfaceitem{Fermer}
 
 \section{Exemple : Construire la fiche d'un scénario}
 
@@ -248,16 +284,7 @@ Les PJ sont au vernissage d'une exposition au laboratoire de pharmacologie de la
 En même temps une des convives, Kate Elver, est une sorciere qui veut utiliser ce squelette pour en extraire de la puissance. Elle profitera de la cohue des convives lors de l'assaut des profonds pour aller dans le laboratoire, et commencer son rituel. La suite dépend des PJ. Si le rituel va au bout une onde de choc jette tout le monde à terre et les profonds fou de rage d'avoir perdu leur chaman définitivement assassinent tout le monde, sinon ils repartent "tranquillement" avec leur chaman (squelette).
 
 \subsection{Les Métadonnées}
-La première étape est de remplir les métadonnées. À partir des informations du scénario voici les métadonnées
-\begin{itemize}
-    \item \emph{Titre du scénario :} La nuit tous les profonds sont gris
-    \item \emph{Auteur :} octopoulpe
-    \item \emph{Date de création :} 23/11/2013
-    \item \emph{Description :} scénarion de présentation de GM-Assistant, et d'initiation au jeu de rôle. Année de jeu 1920, à Toulouse
-    \item \emph{Jeux de rôle :} L'appel de Cthulhu
-    \item \emph{Joueurs :} Sylvain, Marc, Japhel
-\end{itemize}
-Cliquons donc sur le menu \interfaceitem{Jeu} puis \interfaceitem{Métadonnées}. La fenêtre des métadonnées (figure~\ref{metadata}) apparait :
+La première étape est de remplir les métadonnées. À partir des informations du scénario nous renseignons donc la fenêtre dédiée: (figure~\ref{metadata}).
 \begin{figure}[h!]
     \includegraphics[width=0.6\textwidth]{metadata}
     \caption{fenêtre métadonnées}
