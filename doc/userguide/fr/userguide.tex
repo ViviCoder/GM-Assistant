@@ -17,14 +17,10 @@
 %*************************************************************************
 
 \documentclass[a4paper,12pt]{article}
-%\documentclass[12pt,twoside,french]{report}
-%\documentclass[12pt]{proc}
-
-%\usepackage{fullpage}
 
 \usepackage[frenchb]{babel}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath, graphicx}
+\usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{xspace}
 
@@ -33,11 +29,10 @@
 \newcommand*{\GMA}{GM-Assistant\xspace}
 \newcommand*{\interfaceitem}[1]{\texttt{#1}}
 \newcommand*{\guillemets}[1]{\og #1\fg{}\xspace}
+\newcommand*{\versionnumber}{1.2\xspace}
 
-\title{\GMA, guide de l'utilisateur}
-\author{Équipe \GMA}
-\date{\today}
-
+\title{\GMA \versionnumber, guide de l'utilisateur}
+\author{Simon Nicolas \and Vincent Prat}
 
 \begin{document}
 \maketitle
@@ -99,9 +94,9 @@ Permet de choisir l'arrangement de modules (voir la section~\ref{sec:modules}) a
         Actuellement, seuls l'anglais et le français sont supportés.}
 \end{description}
 
-\subsubsection{Outil}
-Le menu outil rassemble les différent outils annexe proposé par \GMA.
-Dans la version 1.2 ce menu comprend
+\subsubsection{Outils}
+Ce menu rassemble les différents outils annexes proposés par \GMA.
+Dans la présente version du logiciel, le menu comprend~:
 
 \paragraph{Simulateur de dés}
 Le simulateur de dés permet simplement de "lancer" un certain nombre de dés d'un certain type.
@@ -115,7 +110,8 @@ Le gestionnaire de combat est un outil permettant de structurer le déroulement 
 \label{sec:modules}
 
 La fenêtre principale est découpée en 6 blocs que nous appelerons modules.
-\GMA est organisé en module. Chaque module est indépendant et dédié à une fonctionnalité. Voici la liste des modules présent  dans la version 1.2 :
+Chaque module est indépendant et dédié à une fonctionnalité.
+Voici la liste des modules présents dans cette version~:
 \begin{description}
     \item[\interfaceitem{Intrigue}~:]{l'arbre de scénario est un arbre \guillemets{dépliable} qui permet d'afficher de manière ordonnée les différents évènements important du scénario}
     \item[\interfaceitem{Notes}~:]{éditeur de texte simpliste qui permet de prendre des notes pendant le scénario}
