@@ -35,14 +35,13 @@
 \author{Simon Nicolas \and Vincent Prat}
 
 \begin{document}
+
 \maketitle
 
 \tableofcontents
-%\begin{abstract}
-%This is the paper's abstract \ldots
-%\end{abstract}
 
 \section{Introduction}
+
 Une partie de jeu de rôle est une alchimie riche et complexe.
 Les joueurs doivent être impliqués et investis et le maître de jeu (ou MJ) doit parfaitement maîtriser le système de règle, le scénario, se rappeler des évènements précédents, anticiper les évènements à venir, et improviser le présent en fonction des actions et choix des joueurs.
 Si en pleine partie le MJ doit chercher des détails sur un PNJ (personnage non joueur, c'est-à-dire non incarné par un joueurs), une précision sur un point de règle, des musiques d'ambiance ou des bruitages sur l'ordinateur, des images dans son classeur, ou autre, alors la partie ralentit, l'émulsion retombe, et les joueurs se dispersent.
@@ -52,12 +51,24 @@ La solution est \GMA, pour \emph{Game Master Assistant} (en français, assistant
 Son objectif est de simplifier la vie du MJ en mettant à sa disposition les informations et outils dont il peut avoir besoin pendant la partie.
 \GMA propose donc une interface où le MJ va pouvoir rassembler et ordonner toutes les informations, notes et fichiers (musiques, bruitages, images) qu'il estime utiles.
 
+Cette documentation a pour but d'aider l'utilisateur (c'est-à-dire vous) à se familiariser avec le logiciel.
+Pour cela, elle est divisée en deux grandes parties~: tout d'abord une présentation générale de l'interface du logiciel et de ses fonctionnalités (section~\ref{sec:pres}), puis dans un second temps un exemple d'utilisation de \GMA pour construire une fiche de scénario (section~\ref{sec:exem}).
+
 \section{Présentation générale}
-Commençons par une présentation générale du logiciel et de sa fenêtre principale.
-Si vous lancez \GMA vide vous obtenez une fenêtre comprenant 6 sous-parties et une barre de menu.
-\subsection{Présentation des menus}\label{menu}
-La barre des menus de \GMA est similaire à celle que l'on trouve dans la plupart des logiciels. Détaillons-les un par un.
+\label{sec:pres}
+
+La fenêtre principale du logiciel comporte d'une part une barre de menus, qui sera développée dans la section~\ref{menu} et d'autre part 6 sous-parties que nous appellerons modules et qui seront présentés dans la section~\ref{sec:modules}.
+Le logiciel propose également un certain nombre d'outils annexes qui feront l'objet de la section~\ref{sec:outils}.
+
+\subsection{Présentation des menus}
+\label{menu}
+
+La barre de menus de \GMA est similaire à celle que l'on trouve dans la plupart des logiciels.
+Nous allons maintenant détailler un par un les menus principaux, qui sont \interfaceitem{Jeu} (section~\ref{sec:jeu}), \interfaceitem{Édition} (section~\ref{sec:edition}), \interfaceitem{Affichage} (section~\ref{sec:affich}), \interfaceitem{Outils} (section~\ref{sec:menu_outils}) et \interfaceitem{Aide} (section~\ref{sec:aide}).
+
 \subsubsection{Jeu}
+\label{sec:jeu}
+
 Ce menu comprend tous les outils de gestion et de sauvegarde:
 \begin{description}
     \item[\interfaceitem{Nouveau}~:]{crée une nouvelle fiche scénario}
@@ -73,13 +84,18 @@ Ce menu comprend tous les outils de gestion et de sauvegarde:
 \paragraph{Le fichier de sauvegarde}
 Le fichier de sauvegarde .gms créé est un fichier complet qui comprend toutes les informations qui sont dans la fiche scénario et les fichiers que vous y avez ajouté (musique, bruitage, images), lui permettant d'être déplacé d'un ordinateur à un autre sans risque de perte (un son manquant ou une image absente par exemple).
 
+
 \subsubsection{Edition}
+\label{sec:edition}
+
 \begin{description}
     \item[\interfaceitem{Annuler}~:]{Permet d'annuler la dernière modification apportée.}
     \item[\interfaceitem{Refaire}~:]{Permet de rétablir la dernière modificaion apportée après son annulation.}
 \end{description}
 
 \subsubsection{Affichage}
+\label{sec:affich}
+
 Permet de choisir l'arrangement de modules (voir la section~\ref{sec:modules}) affiché et la langue du logiciel.
 \begin{description}
     \item[\interfaceitem{Interface}~:]{ouvre la liste des arrangements de modules disponibles.
@@ -96,6 +112,8 @@ Permet de choisir l'arrangement de modules (voir la section~\ref{sec:modules}) a
 \end{description}
 
 \subsubsection{Outils}
+\label{sec:menu_outils}
+
 Ce menu rassemble les différents outils annexes proposés par \GMA.
 Dans la présente version du logiciel, le menu comprend~:
 
@@ -105,9 +123,12 @@ Le simulateur de dés permet simplement de "lancer" un certain nombre de dés d'
 \paragraph{gestionnaire de combat}
 Le gestionnaire de combat est un outil permettant de structurer le déroulement des combat.
 
-\subsubsection{Menu "Aide"} Ouvre les informations générales sur le logiciel et ses licences.
+\subsubsection{Menu "Aide"}
+\label{sec:aide}
 
-\subsection{Présentation des modules}\label{modules}
+Ouvre les informations générales sur le logiciel et ses licences.
+
+\subsection{Présentation des modules}
 \label{sec:modules}
 
 La fenêtre principale est découpée en 6 blocs que nous appelerons modules.
@@ -219,6 +240,7 @@ Liste des actions possibles :
 \emph{Nota Bene :} Il est tout fait possible de jouer un bruitage alors qu'une musique est en cours de lecture.
 
 \subsection{Présentation des outils}
+\label{sec:outils}
 
 \subsubsection{Le simulateur de dé}
 Le simulateur de dé est un outil permettant de s'affranchir du lancé de dé en reproduisant directement dans le logiciel l'aléatoire des dés.
@@ -261,6 +283,7 @@ En cas de sortie du combat pour un personnage (fuite, mort, etc.) il suffit de c
 Une fois le combat terminé il suffit de cliquer sur \interfaceitem{Fermer}
 
 \section{Exemple : Construire la fiche d'un scénario}
+\label{sec:exem}
 
 Maintenant que nous avons fait le tour des fonctionnalités du logiciel, construisons ensemble la "fiche scénario" du scénario exceptionnel (et exclusif) : \emph{La nuit tous les profonds sont gris}.
 
