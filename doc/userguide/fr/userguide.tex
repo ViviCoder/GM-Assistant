@@ -69,45 +69,49 @@ Nous allons maintenant détailler un par un les menus principaux, qui sont \inte
 \subsubsection{Jeu}
 \label{sec:jeu}
 
-Ce menu comprend tous les outils de gestion et de sauvegarde:
+Ce menu comprend tous les outils de gestion et de sauvegarde des fiches de scénarios créées avec \GMA.
+En voici la liste~:
 \begin{description}
-    \item[\interfaceitem{Nouveau}~:]{crée une nouvelle fiche scénario}
-    \item[\interfaceitem{Recharger}~:]{restaure une fiche scénario telle qu'elle était lors de son dernier enregistrement}
-    \item[\interfaceitem{Charger}~:]{charge une fiche scénario stockée sur l'ordinateur}
-    \item[\interfaceitem{Récents}~:]{propose la liste des fiches scénario récemment ouvertes}
-    \item[\interfaceitem{Enregistrer}~:]{sauvegarde la fiche scénario en cours d'édition sur le disque}
-    \item[\interfaceitem{Enregistrer sous}~:]{sauvegarde la fiche scénario en cours d'édition dans un nouveau fichier}
-    \item[\interfaceitem{Métadonnées}~:]{affiche une fenêtre permettant de noter le titre du scénario, son auteur, la date de création de la fiche scénario, une description sommaire, le jeu de rôle, la liste des joueurs et la date de jeu.
+    \item[\interfaceitem{Nouveau}~:]{crée une nouvelle fiche de scénario vide}
+    \item[\interfaceitem{Recharger}~:]{restaure la fiche de scénario courante telle qu'elle était lors de la dernière sauvegarde}
+    \item[\interfaceitem{Charger}~:]{charge une fiche de scénario stockée sur l'ordinateur}
+    \item[\interfaceitem{Récents}~:]{propose la liste des fiches de scénario récemment ouvertes}
+    \item[\interfaceitem{Enregistrer}~:]{sauvegarde la fiche de scénario en cours d'édition}
+    \item[\interfaceitem{Enregistrer sous}~:]{sauvegarde la fiche de scénario en cours d'édition dans un nouveau fichier}
+    \item[\interfaceitem{Métadonnées}~:]{affiche une fenêtre permettant de noter le titre du scénario, son auteur, la date de création, une description sommaire, le jeu de rôle, la liste des joueurs et la date de jeu.
             L'idée est rassembler des informations qui ne servent pas en partie mais qui permettent de se souvenir de \guillemets{Qui~? Quand~? Comment~?}.}
-    \item[\interfaceitem{Quitter}~:]{ferme la fiche scénario en cours et quitte le logiciel}
+    \item[\interfaceitem{Quitter}~:]{ferme la fiche de scénario en cours et quitte le logiciel}
 \end{description}
 \paragraph{Le fichier de sauvegarde}
-Le fichier de sauvegarde .gms créé est un fichier complet qui comprend toutes les informations qui sont dans la fiche scénario et les fichiers que vous y avez ajouté (musique, bruitage, images), lui permettant d'être déplacé d'un ordinateur à un autre sans risque de perte (un son manquant ou une image absente par exemple).
+Le fichier de sauvegarde \texttt{.gms} créé est un fichier complet qui comprend toutes les informations qui sont dans la fiche de scénario et les fichiers annexes que vous y avez ajouté (musique, bruitages, images), lui permettant d'être déplacé d'un ordinateur à un autre sans risque de perte (un son manquant ou une image absente par exemple).
 
-
-\subsubsection{Edition}
+\subsubsection{Édition}
 \label{sec:edition}
 
+Ce menu a pour but d'aider l'utilisateur lors de l'élaboration de la fiche de scénario.
+Pour l'instant, il se compose uniquement de deux actions~:
 \begin{description}
-    \item[\interfaceitem{Annuler}~:]{Permet d'annuler la dernière modification apportée.}
-    \item[\interfaceitem{Refaire}~:]{Permet de rétablir la dernière modificaion apportée après son annulation.}
+    \item[\interfaceitem{Annuler}~:]{annule la dernière modification apportée}
+    \item[\interfaceitem{Refaire}~:]{rétablit la dernière modification apportée après son annulation}
 \end{description}
 
 \subsubsection{Affichage}
 \label{sec:affich}
 
-Permet de choisir l'arrangement de modules (voir la section~\ref{sec:modules}) affiché et la langue du logiciel.
+Ce menu permet de choisir parmi différentes options d'affichage.
+Il se compose de deux sous-menus~:
 \begin{description}
-    \item[\interfaceitem{Interface}~:]{ouvre la liste des arrangements de modules disponibles.
-        Chaque interface propose un appariement différent de modules.}
-\begin{description}
-  \item[\interfaceitem{Complète}~:]{est composé des 6 modules}
-  \item[\interfaceitem{Simple}~:]{est composé des modules : \interfaceitem{Intrigue}, \interfaceitem{Musique} et \interfaceitem{Bruitage}}
-  \item[\interfaceitem{Musique}~:]{est composé des modules : \interfaceitem{Musique} et \interfaceitem{Bruitage}}
-  \item[\interfaceitem{Conception}~:]{est composé des modules : \interfaceitem{Intrigue}, \interfaceitem{Personnages} et \interfaceitem{Notes}}
-  \item[\interfaceitem{Sans son}~:]{est composé des modules \interfaceitem{Intrigue}, \interfaceitem{Historique}, \interfaceitem{Personnages} et \interfaceitem{Notes}}
-\end{description}
-    \item[\interfaceitem{Langue}~:]{ouvre la liste des langues disponibles.
+    \item[\interfaceitem{Interface}~:]{ouvre la liste des arrangements de modules disponibles (voir la section~\ref{sec:modules} pour la description de chacun des modules).
+        Chaque interface propose un appariement différent de modules~:
+        \begin{description}
+            \item[\interfaceitem{Complète}~:]{est composée des 6 modules}
+            \item[\interfaceitem{Simple}~:]{est composée des modules \interfaceitem{Intrigue}, \interfaceitem{Musique} et \interfaceitem{Bruitage}}
+            \item[\interfaceitem{Musique}~:]{est composée des modules \interfaceitem{Musique} et \interfaceitem{Bruitage}}
+            \item[\interfaceitem{Conception}~:]{est composée des modules \interfaceitem{Intrigue}, \interfaceitem{Personnages} et \interfaceitem{Notes}}
+            \item[\interfaceitem{Sans son}~:]{est composée des modules \interfaceitem{Intrigue}, \interfaceitem{Historique}, \interfaceitem{Personnages} et \interfaceitem{Notes}}
+        \end{description}
+    }
+    \item[\interfaceitem{Langue}~:]{ouvre la liste des langues disponibles pour l'interface graphique du logiciel.
         Actuellement, seuls l'anglais et le français sont supportés.}
 \end{description}
 
@@ -116,17 +120,15 @@ Permet de choisir l'arrangement de modules (voir la section~\ref{sec:modules}) a
 
 Ce menu rassemble les différents outils annexes proposés par \GMA.
 Dans la présente version du logiciel, le menu comprend~:
+\begin{description}
+    \item[\interfaceitem{Simulateur de dés}~:]{permet de simuler le lancer d'un certain nombre de dés d'un certain type}
+    \item[\interfaceitem{Gestionnaire de combat}~:]{outil permettant de structurer le déroulement des combat}
+\end{description}
 
-\paragraph{Simulateur de dés}
-Le simulateur de dés permet simplement de "lancer" un certain nombre de dés d'un certain type.
-
-\paragraph{gestionnaire de combat}
-Le gestionnaire de combat est un outil permettant de structurer le déroulement des combat.
-
-\subsubsection{Menu "Aide"}
+\subsubsection{Aide}
 \label{sec:aide}
 
-Ouvre les informations générales sur le logiciel et ses licences.
+Ce menu donne accès aux informations générales sur le logiciel et sa licence.
 
 \subsection{Présentation des modules}
 \label{sec:modules}
