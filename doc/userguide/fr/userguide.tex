@@ -119,6 +119,7 @@ Il se compose de deux sous-menus~:
 \label{sec:menu_outils}
 
 Ce menu rassemble les différents outils annexes proposés par \GMA.
+Le fonctionnement de ces outils sera abordé en détail dans la section~\ref{sec:outils}.
 Dans la présente version du logiciel, le menu comprend~:
 \begin{description}
     \item[\interfaceitem{Simulateur de dés}~:]{permet de simuler le lancer d'un certain nombre de dés d'un certain type}
@@ -133,24 +134,23 @@ Ce menu donne accès aux informations générales sur le logiciel et sa licence.
 \subsection{Présentation des modules}
 \label{sec:modules}
 
-La fenêtre principale est découpée en 6 blocs que nous appelerons modules.
-Chaque module est indépendant et dédié à une fonctionnalité.
+Comme évoqué précédemment, la fenêtre principale du logiciel est découpée en 6 blocs indépendants et dédiés chacun à une fonctionnalité.
 Voici la liste des modules présents dans cette version~:
 \begin{description}
-    \item[\interfaceitem{Intrigue}~:]{l'arbre de scénario est un arbre \guillemets{dépliable} qui permet d'afficher de manière ordonnée les différents évènements important du scénario}
-    \item[\interfaceitem{Notes}~:]{éditeur de texte simpliste qui permet de prendre des notes pendant le scénario}
-    \item[\interfaceitem{Personnages}~:]{tableau permettant d'afficher les protagonistes (PJ ou PNJ) avec leurs caractéristiques importantes}
-    \item[\interfaceitem{Historique}~:]{structurable en arbre aussi, il a pour vocation à rappeler les évènements les plus marquants des scénarios précédents}
-    \item[\interfaceitem{Musique}~:]{lecteur de musique simple pensé pour jouer des musiques d'ambiance}
-    \item[\interfaceitem{Bruitages}~:]{lecteur de musique encore plus simple pensé pour déclencher au besoin des bruitages courts}
+    \item[\interfaceitem{Intrigue}~:]{arbre \guillemets{dépliable} qui permet d'afficher de manière ordonnée les différents évènements important du scénario (voir la section~\ref{sec:intrigue} pour plus de détail)}
+    \item[\interfaceitem{Historique}~:]{encore un arbre, qui a cette fois vocation à rappeler les évènements les plus marquants des scénarios précédents ou du passé des personnages (voir section~\ref{sec:historique})}
+    \item[\interfaceitem{Notes}~:]{éditeur de texte simpliste qui permet de prendre des notes avant ou pendant la partie (voir section~\ref{sec:notes})}
+    \item[\interfaceitem{Personnages}~:]{tableau permettant d'afficher les protagonistes (PJ ou PNJ) avec leurs caractéristiques importantes (voir section~\ref{sec:perso})}
+    \item[\interfaceitem{Musique}~:]{lecteur de musique simple pensé pour jouer des musiques d'ambiance (voir section~\ref{sec:musique})}
+    \item[\interfaceitem{Bruitages}~:]{lecteur de musique encore plus simple pensé pour jouer des bruitages courts (voir section~\ref{sec:bruitages})}
 \end{description}
-Tout ces modules sont rassemblées dans l'interface principale du logiciel :
+Tout ces modules sont rassemblés dans l'interface par défaut du logiciel, comme on peut le voir sur la figure~\ref{fig:interface}, mais peuvent également être réorganisés grâce au sous-menu \interfaceitem{Interface} du menu \interfaceitem{Affichage} décrit précédemment dans la section~\ref{sec:affich}.
 \begin{figure}[h]
     \includegraphics[width=0.9\textwidth]{screen_scenar_exemple}
     \caption{Voici une capture de l'écran principal avec une partie en cours.
     ATTENTION il pourrait être mieux de faire une capture windows avec la barre des menus}
+    \label{fig:interface}
 \end{figure}
-
 
 \subsubsection{La notion d'item}\label{item}
 Les items sont à la base du fonctionnement de \GMA on les retrouve à de nombreux endroits dans le logiciel, il est donc approprié d'en expliquer le fonctionnement avant de détailler les modules.
@@ -185,8 +185,11 @@ Les items sont également déplaçables à la souris par \guillemets{cliquer-dé
 
 \emph{Les images} : il est possible de mettre une image dans un item. On crée l'item contenant l'image, et on sélectionne le "type image". Une fois l'item créé, il suffit de double-cliquer dessus pour faire apparaître l'image dans une fenêtre spécifique.
 
-\subsubsection{Intrigue}\label{scenario}
-L'arbre de scénario est dans la majorité des cas le cœur de \GMA. En effet dedans vous renseignez le plan détaillé et ordonné du scénario, de manière à ne jamais être perdu entre 2 scènes ni oublier un élément.
+\subsubsection{Intrigue}
+\label{sec:intrigue}
+
+L'arbre d'intrigue est dans la majorité des cas le cœur de \GMA.
+En effet, vous pouvez entrer dedans le plan détaillé et ordonné du scénario, de manière à ne jamais être perdu entre deux scènes ni oublier un élément.
 \\
 Voir figure(\ref{arbre_scenar}) pour un aperçu de ce qu'il est possible de faire
 \begin{figure}[h]
@@ -197,17 +200,24 @@ Voir figure(\ref{arbre_scenar}) pour un aperçu de ce qu'il est possible de fair
 Donc comment faire ?
 \\
 chaque ligne que vous voyez est un \emph{item}, il suffit de suivre la technique de création d'item pour ordonner son scénario.
-\subsubsection{Historique}\label{historique}
+
+\subsubsection{Historique}
+\label{sec:historique}
+
 L'arbre d'historique sert à se préparer une liste des évènements importants ayant marqués les séances précédentes, commme la rencontre des personnages, une promesse faite par un PJ à un PNJ (ou l'inverse), etc.
 Il se comporte et s'utilise (d'un point de vue technique) exactement de la même manière que l'arbre de Scénario.
 
 
 \subsubsection{Notes}
+\label{sec:notes}
+
 Le module de prise de note est un éditeur de texte ultra simpliste qui permet de noter à la volée toute information qui est utile à garder (exemple : "Sylvain a insulté le directeur du museum"). Pour entrer du texte dedans il suffit de cliquer gauche quelque part dans le cadre texte et d'écrire.
 \\
 %\emph{Nota Bene :} ce module sera rapidement accessible lorsque la fonctionnalité de \emph{suivi de campagne} sera implémentée.
 
-\subsubsection{Personnages}\label{personnage}
+\subsubsection{Personnages}
+\label{sec:perso}
+
 Le module \interfaceitem{Personnages} est pensé pour accueillir la liste des protagonistes ainsi que les caractéristiques numériques dont vous pouvez avoir besoin rapidement. Que ce soit des PJ pour lesquels on a besoin des scores de Perception, vigilance, esquive passive, des points de vie etc. ou directement des caractéristiques complètes des PNJ.
 \\
 Liste des actions possibles :
@@ -218,7 +228,9 @@ Liste des actions possibles :
 Ensuite une fois qu'on a créé au moins un personnage et une compétence alors la case est éditable. Il faut maintenant cliquer gauche pour éditer la case voulue et y entrer la valeur.
 \\\emph{Nota bene :} il est possible d'entrer du texte, des nombres, mais aussi d'autre caractères comme le "\%"
 
-\subsubsection{Musique}\label{musique}
+\subsubsection{Musique}
+\label{sec:musique}
+
 Le module de musique d'ambiance est un lecteur de musique basique (loin des Winamp et autres VirtualDJ) qui permet de jouer une musique (au format MP3).
 \\
 Liste des actions possibles :
@@ -230,7 +242,9 @@ Liste des actions possibles :
 \end{itemize}
 \emph{Nota Bene :} il est impossible de jouer 2 musiques en même temps.
 
-\subsubsection{Bruitages}\label{bruitage}
+\subsubsection{Bruitages}
+\label{sec:bruitages}
+
 Le module de bruitage est pensé pour accueillir une liste de son très court (au format MP3) comme un coup de feu, un hurlement, une porte qui claque, etc.
 \\
 Liste des actions possibles :
