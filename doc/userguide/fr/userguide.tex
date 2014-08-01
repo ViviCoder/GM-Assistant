@@ -134,10 +134,12 @@ Ce menu donne accès aux informations générales sur le logiciel et sa licence.
 \subsection{Présentation des modules}
 \label{sec:modules}
 
-Comme évoqué précédemment, la fenêtre principale du logiciel est découpée en 6 blocs indépendants et dédiés chacun à une fonctionnalité.
+Comme évoqué précédemment, la fenêtre principale du logiciel est découpée en six blocs indépendants et dédiés chacun à une fonctionnalité, appelés modules.
+Plusieurs de ces modules se présentent sous forme d'un arbre \guillemets{dépliable} permettant d'organiser des informations.
+Les possibilités offertes par ces arbres et les items qui les composent seront développées dans la section~\ref{item}.
 Voici la liste des modules présents dans cette version~:
 \begin{description}
-    \item[\interfaceitem{Intrigue}~:]{arbre \guillemets{dépliable} qui permet d'afficher de manière ordonnée les différents évènements important du scénario (voir la section~\ref{sec:intrigue} pour plus de détail)}
+    \item[\interfaceitem{Intrigue}~:]{arbre qui permet d'afficher de manière ordonnée les différents évènements important du scénario (voir la section~\ref{sec:intrigue} pour plus de détail)}
     \item[\interfaceitem{Historique}~:]{encore un arbre, qui a cette fois vocation à rappeler les évènements les plus marquants des scénarios précédents ou du passé des personnages (voir section~\ref{sec:historique})}
     \item[\interfaceitem{Notes}~:]{éditeur de texte simpliste qui permet de prendre des notes avant ou pendant la partie (voir section~\ref{sec:notes})}
     \item[\interfaceitem{Personnages}~:]{tableau permettant d'afficher les protagonistes (PJ ou PNJ) avec leurs caractéristiques importantes (voir section~\ref{sec:perso})}
@@ -152,19 +154,27 @@ Tout ces modules sont rassemblés dans l'interface par défaut du logiciel, comm
     \label{fig:interface}
 \end{figure}
 
-\subsubsection{La notion d'item}\label{item}
-Les items sont à la base du fonctionnement de \GMA on les retrouve à de nombreux endroits dans le logiciel, il est donc approprié d'en expliquer le fonctionnement avant de détailler les modules.
+\subsubsection{La notion d'item}
+\label{item}
 
-\emph{Définition : } Élément minimal d'un ensemble.
+Les items sont à la base du fonctionnement de \GMA, il est donc approprié d'en expliquer le fonctionnement avant de détailler les modules.
+Par définition, un item désigne un élément minimal d'un ensemble.
+Dans notre cas, un item est une ligne, une entrée dans un des modules sous forme d'arbre du logiciel, qui sert à contenir une information textuelle, un son (musique ou bruitage), une image, etc.
+Les modules qui utilisent les items sont \interfaceitem{Intrigue}, \interfaceitem{Historique}, \interfaceitem{Musique} et \interfaceitem{Bruitage}.
 
-Dans notre cas un item est une ligne, une entrée-objet d'un des modules du logiciel, qui sert à contenir une information textuelle, un son (musique/bruitage), une image, etc.
-Les modules qui utilisent les items sont : \interfaceitem{Intrigue}, \interfaceitem{Historique}, \interfaceitem{Musique} et \interfaceitem{Bruitage}.
+Chaque item se présente comme une ligne de texte dans un certain état et d'un certain type.
+L'état d'un item permet de prendre note rapidement du succès ou de l'échec de certains points clefs du scénario, et d'en avoir une vision rapide.
+Les quatre états disponibles sont \interfaceitem{Aucun}, \interfaceitem{En cours}, \interfaceitem{Échoué} et \interfaceitem{Réussi}.
+Le type d'un item détermine sa fonction.
+Dans cette version du logiciel, un item peut être \interfaceitem{Basique} (uniquement du texte), \interfaceitem{Audio} (musiques et bruitages) ou \interfaceitem{Image}.
 
+Nous allons maintenant décrire le fonctionnement des arbres.
 \begin{itemize}
     \item Clic droit dans le partie vide du module : fait apparaitre la fenêtre \interfaceitem{Créer un nouvel item}.
-    \item Clic droit sur un item : fait apparaitre le menu item contenant les 4 états disponibles pour un item --- \interfaceitem{Aucun}, \interfaceitem{En cours}, \interfaceitem{Échoué} et \interfaceitem{Réussi} --- puis les trois actions \interfaceitem{Ajouter}, \interfaceitem{Supprimer} et \interfaceitem{Éditer}.
+    \item Clic droit sur un item : fait apparaitre le menu de gestion d'item contenant les états disponibles pour un item puis les trois actions \interfaceitem{Ajouter}, \interfaceitem{Supprimer} et \interfaceitem{Éditer}.
+        Si l'item est de type \interfaceitem{Audio} ou \interfaceitem{Image}, une action supplémentaire est présente pour jouer le fichier audio ou afficher l'image.
+        Veuillez noter que pour les fichiers audio, cette action n'apparaît que dans les modules \interfaceitem{Musique} et \interfaceitem{Bruitages}.
 \end{itemize}
-L'état d'un item permet de prendre note rapidement du succès ou de l'échec de certains points clefs du scénario, et d'en avoir une vision rapide.
 
 \interfaceitem{Ajouter} nous permet d'accéder à la fenêtre de création d'item :
 \begin{figure}[h]
