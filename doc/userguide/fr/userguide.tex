@@ -149,8 +149,7 @@ Voici la liste des modules présents dans cette version~:
 Tout ces modules sont rassemblés dans l'interface par défaut du logiciel, comme on peut le voir sur la figure~\ref{fig:interface}, mais peuvent également être réorganisés grâce au sous-menu \interfaceitem{Interface} du menu \interfaceitem{Affichage} décrit précédemment dans la section~\ref{sec:affich}.
 \begin{figure}[h]
     \includegraphics[width=0.9\textwidth]{screen_scenar_exemple}
-    \caption{Voici une capture de l'écran principal avec une partie en cours.
-    ATTENTION il pourrait être mieux de faire une capture windows avec la barre des menus}
+    \caption{Fenêtre principale du logiciel avec une partie en cours}
     \label{fig:interface}
 \end{figure}
 
@@ -169,31 +168,32 @@ Le type d'un item détermine sa fonction.
 Dans cette version du logiciel, un item peut être \interfaceitem{Basique} (uniquement du texte), \interfaceitem{Audio} (musiques et bruitages) ou \interfaceitem{Image}.
 
 Nous allons maintenant décrire le fonctionnement des arbres.
-\begin{itemize}
-    \item Clic droit dans le partie vide du module : fait apparaitre la fenêtre \interfaceitem{Créer un nouvel item}.
-    \item Clic droit sur un item : fait apparaitre le menu de gestion d'item contenant les états disponibles pour un item puis les trois actions \interfaceitem{Ajouter}, \interfaceitem{Supprimer} et \interfaceitem{Éditer}.
-        Si l'item est de type \interfaceitem{Audio} ou \interfaceitem{Image}, une action supplémentaire est présente pour jouer le fichier audio ou afficher l'image.
-        Veuillez noter que pour les fichiers audio, cette action n'apparaît que dans les modules \interfaceitem{Musique} et \interfaceitem{Bruitages}.
-\end{itemize}
+Lorsque vous cliquez avec le bouton droit de la souris sur un item apparaît le menu de gestion d'item.
+Ce menu contient les quatre états possible d'un item puis les trois actions \interfaceitem{Ajouter}, \interfaceitem{Supprimer} et \interfaceitem{Éditer}.
+Si l'item est de type \interfaceitem{Audio} ou \interfaceitem{Image}, une action supplémentaire est présente pour jouer le fichier audio ou afficher l'image.
+Veuillez noter que pour les fichiers audio, cette action n'apparaît que dans les modules \interfaceitem{Musique} et \interfaceitem{Bruitages}.
 
-\interfaceitem{Ajouter} nous permet d'accéder à la fenêtre de création d'item :
+L'action \interfaceitem{Ajouter} nous permet d'accéder à la fenêtre de création d'item (figure~\ref{fig:ajout}).
 \begin{figure}[h]
     \includegraphics[width=0.5\textwidth]{screen_add_item}
-    \caption{fenêtre d'ajout d'item}
+    \caption{Fenêtre de création d'item}
+    \label{fig:ajout}
 \end{figure}
+Notez qu'il est également possible d'accéder à cette fenêtre en cliquant avec le bouton droit de la souris dans la partie vide du module ou en appuyant sur la touche \interfaceitem{Inser} de votre clavier.
+Voici comment s'organise cette fenêtre~:
 \begin{itemize}
-    \item le cadre \interfaceitem{Contenu} reçoit un commentaire / description de l'évènement;
-    \item le cadre \interfaceitem{État} permet de fixer l'état de l'item;
-    \item le cade \interfaceitem{Type} permet de choisir si c'est un item "Basique"(donc juste du texte), un "Son" ou une "Image", dans les 2 derniers cas la ligne "Fichier" devient accessible pour aller chercher sur l'ordinateur le fichier requis;
-    \item Le bouton \interfaceitem{Ajouter} ajoute l'item à la suite et au même niveau que l'item sur lequel on a cliqué droit;
-    \item Le bouton \interfaceitem{Enfant} ajoute l'item à la suite et sous l'item sur lequel on a cliqué droit, imbriqué dedans;
+    \item le cadre \interfaceitem{Contenu} reçoit la description de l'évènement~;
+    \item le cadre \interfaceitem{État} permet de fixer l'état de l'item~;
+    \item le cadre \interfaceitem{Type} permet de choisir le type de l'item et pour les items de type \interfaceitem{Audio} et \interfaceitem{Image} de sélectionner le fichier correspondant~;
+    \item Le bouton \interfaceitem{Ajouter} ajoute l'item à la suite et au même niveau que l'item sur lequel on a cliqué avant d'ouvrir la fenêtre (si aucun item n'était sélectionné, ajoute simplement l'item à la suite au niveau le plus bas)~;
+    \item Le bouton \interfaceitem{Enfant} ajoute l'item à la suite et sous l'item sur lequel on a cliqué précédemment, imbriqué dedans~;
     \item Le bouton \interfaceitem{Annuler} annule la création d'item en cours.
 \end{itemize}
+Il est important de bien saisir la différence entre les deux boutons \interfaceitem{Ajouter} et \interfaceitem{Enfant}, car c'est grâce à eux que vous organiserez les étapes de votre scénario.
+Une fois créés, les items sont également déplaçables au sein d'un même module par \guillemets{glisser-déposer}.
 
-Il est important de bien saisir la différence entre les 2 boutons \interfaceitem{Ajouter} et \interfaceitem{Enfant}, c'est avec ça que vous organiserez les étapes de votre scénario.
-Les items sont également déplaçables à la souris par \guillemets{cliquer-déplacer}.
-
-\emph{Les images} : il est possible de mettre une image dans un item. On crée l'item contenant l'image, et on sélectionne le "type image". Une fois l'item créé, il suffit de double-cliquer dessus pour faire apparaître l'image dans une fenêtre spécifique.
+L'action \interfaceitem{Éditer} ouvre une fenêtre similaire à celle de création d'item, la seule différence importante étant qu'il n'y a plus \interfaceitem{Ajouter} et \interfaceitem{Enfant}, mais uniquement un bouton \interfaceitem{Valider} permettant de valider l'édition.
+Si vous voulez uniquement modifier le texte d'un item, il vous suffit d'appuyer sur la touche \interfaceitem{F2} de votre clavier (la combinaison \interfaceitem{Ctrl+F2} ouvre quant à elle la fenêtre d'édition).
 
 \subsubsection{Intrigue}
 \label{sec:intrigue}
