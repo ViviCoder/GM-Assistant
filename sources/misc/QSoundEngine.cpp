@@ -18,6 +18,7 @@
 
 #include "QSoundEngine.h"
 #include <QFileInfo>
+#include <QUrl>
 
 using namespace Phonon;
 
