@@ -896,7 +896,8 @@ void MainWindow::changeCurrentMusic(const SoundItem *oldItem, const SoundItem *n
 
 void MainWindow::onMusicStateChanged(Phonon::State newState, Phonon::State oldState)
 {
-    if (newState == Phonon::PausedState && oldState == Phonon::StoppedState)
+    // first case for Linux and second one for Windows
+    if ((newState == Phonon::PausedState && oldState == Phonon::StoppedState) || (newState == Phonon::PlayingState && oldState != Phonon::PausedState))
     {
         sliderMusic->setEnabled(true);
         buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));

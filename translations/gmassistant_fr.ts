@@ -1073,7 +1073,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="447"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="902"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="903"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
