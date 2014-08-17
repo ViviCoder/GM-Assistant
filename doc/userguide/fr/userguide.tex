@@ -247,16 +247,21 @@ Il est également important de noter qu'une fois un personnage ou une propriét�
 \subsubsection{Musique}
 \label{sec:musique}
 
-Le module de musique d'ambiance est un lecteur de musique basique (loin des Winamp et autres VirtualDJ) qui permet de jouer une musique (au format MP3).
-\\
-Liste des actions possibles :
+Le module de musique est un lecteur de musique basique qui permet de jouer des musiques d'ambiance ou des sons continus (comme de la pluie ou du vent).
+Notez qu'il n'est possible de jouer qu'un seul morceau à la fois.
+
+Le module se divise en deux parties : un arbre similaire à l'\interfaceitem{Intrigue} et à l'\interfaceitem{Historique}, et le lecteur proprement dit, composé de~:
 \begin{itemize}
-    \item Actions des items (\emph{cf.} section~\ref{item})
-    \item Clic gauche \interfaceitem{Lecture/Pause}~: s'il n'y a pas de lecture en cours c'est le bouton \interfaceitem{Lecture} qui est affiché. CLiquer dessus joue le son sélectionné; lorsqu'une lecture est en cours le bouton change en bouton \interfaceitem{Pause} qui est affiché. Cliquer dessus met la lecture en pause.
-    \item Clic gauche sur la case blanche \interfaceitem{Boucle}~: active le mode répétition donc joue en boucle la musique de cours de lecture;
-    \item Clic gauche déplacer sur la barre d'avancement~: permet de se déplacer dans le son.
+    \item une barre de défilement ainsi qu'un compteur qui indiquent la position dans le morceau en cours~;
+    \item un bouton qui permet de contrôler la lecture~;
+    \item une case à cocher permettant de jouer en boucle le morceau en cours.
 \end{itemize}
-\emph{Nota Bene :} il est impossible de jouer 2 musiques en même temps.
+Lorsqu'il n'y a pas de lecture en cours, il est écrit \interfaceitem{Lecture} sur le bouton.
+Cliquer dessus joue le morceau sélectionné dans l'arbre.
+Lors de la lecture, le texte du bouton est \interfaceitem{Pause}.
+Cliquer dessus met alors la lecture en pause et le texte du bouton devient \interfaceitem{Reprise}.
+Cliquer à nouveau reprend la lecture là où elle s'était arrêtée.
+Faire glisser le curseur de la barre de défilement permet de naviguer dans le morceau.
 
 \subsubsection{Bruitages}
 \label{sec:bruitages}
