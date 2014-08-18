@@ -250,7 +250,7 @@ Il est également important de noter qu'une fois un personnage ou une propriét�
 Le module de musique est un lecteur de musique basique qui permet de jouer des musiques d'ambiance ou des sons continus (comme de la pluie ou du vent).
 Notez qu'il n'est possible de jouer qu'un seul morceau à la fois.
 
-Le module se divise en deux parties : un arbre similaire à l'\interfaceitem{Intrigue} et à l'\interfaceitem{Historique}, et le lecteur proprement dit, composé de~:
+Le module se divise en deux parties : un arbre similaire à l'\interfaceitem{Intrigue} et à l'\interfaceitem{Historique} permettant de hiérarchiser les différents morceaux, et le lecteur proprement dit, composé de~:
 \begin{itemize}
     \item une barre de défilement ainsi qu'un compteur qui indiquent la position dans le morceau en cours~;
     \item un bouton qui permet de contrôler la lecture~;
@@ -266,15 +266,13 @@ Faire glisser le curseur de la barre de défilement permet de naviguer dans le m
 \subsubsection{Bruitages}
 \label{sec:bruitages}
 
-Le module de bruitage est pensé pour accueillir une liste de son très court (au format MP3) comme un coup de feu, un hurlement, une porte qui claque, etc.
-\\
-Liste des actions possibles :
-\begin{itemize}
-    \item Actions des items cf (\ref{item})
-    \item Double clic gauche sur un item:joue le bruitage
-\end{itemize}
+Le module de bruitages est un lecteur de musique encore plus basique pensé pour jouer des sons très courts comme un coup de feu, un hurlement, une porte qui claque, \emph{etc.}
+Contrairement au module de musique, celui des bruitages ne comporte qu'un arbre.
+Pour jouer un bruitage, il suffit d'effectuer un double clic sur l'item audio voulu.
 
-\emph{Nota Bene :} Il est tout fait possible de jouer un bruitage alors qu'une musique est en cours de lecture.
+Il est tout à fait possible de jouer un bruitage alors qu'une musique est en cours de lecture.
+En revanche, jouer un autre bruitage remplace immédiatement le bruitage en cours.
+Une autre différence par rapport au module de musique est qu'une fois un bruitage en cours de lecture, il n'est pas possible de l'arrêter.
 
 \subsection{Présentation des outils}
 \label{sec:outils}
