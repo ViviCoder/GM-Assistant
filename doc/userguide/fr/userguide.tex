@@ -277,24 +277,35 @@ Une autre différence par rapport au module de musique est qu'une fois un bruita
 \subsection{Présentation des outils}
 \label{sec:outils}
 
-\subsubsection{Le simulateur de dé}
-Le simulateur de dé est un outil permettant de s'affranchir du lancé de dé en reproduisant directement dans le logiciel l'aléatoire des dés.
-Cet outil se trouve dans le menu \interfaceitem{Outils}
-Vous obtenez la fenêtre (\ref{simulateur_de}).
+Tout comme les modules, les outils ont pour but de faciliter le travail du MJ lors de parties, mais contrairement à eux, ils ne servent pas à stocker d'informations.
+Les deux outils disponibles dans la présente version du logiciel sont un simulateur de dés (voir section~\ref{sec:des}) et un gestionnaire de combat (voir section~\ref{sec:combat}).
+
+\subsubsection{Simulateur de dés}
+\label{sec:des}
+
+Le simulateur de dés est un outil permettant de s'affranchir du lancer physique de dés en simulant directement dans le logiciel le résultat aléatoire de dés virtuels.
+Que ce soit pendant la préparation d'une séance ou en cours de partie, vous aurez ainsi tout ce qu'il vous faut si vous avez oublié vos dés ou si vous voulez en lancer plus à la fois que ce dont vous disposez.
+Pour l'utiliser, il suffit de sélectionner l'option correspondante du menu \interfaceitem{Outils}.
+Une fenêtre similaire à celle représentée sur la figure~\ref{simulateur_de} s'ouvre alors.
 \begin{figure}[h]
     \includegraphics[width=0.6\textwidth]{simulateur_de_de}
     \caption{Simulateur de dé}
     \label{simulateur_de}
 \end{figure}
 
-Elle comprend les éléments suivant :
-\begin{itemize}
-  \item  \emph{type de dés} permet de choisir le nombre de faces qu'auront les dés.
-  \item \emph{nombre} permet de choisir combien de dés, jusqu'à concurrence de 10.
-\end{itemize}
-Ensuite on clique sur "Lancer" et le résultat s'affiche dans le cadre blanc.
+Cette fenêtre permet de choisir les éléments suivants :
+\begin{description}
+    \item[\interfaceitem{Type de dé}~:]{nombre de faces de chaque dé. Pour ceux qui ne seraient pas familiers avec les notations des rôlistes, d$n$ désigne un dé à $n$ faces.}
+    \item[\interfaceitem{Nombre de dés}~:]{nombre de dés à lancer, jusqu'à concurrence de dix.}
+\end{description}
+Un simple clic sur le bouton \interfaceitem{Lancer} affiche le résultat donné par chacun des dés.
+Le bouton \interfaceitem{Mettre à zéro} permet quant à lui d'effacer le résultat de lancers précédents.
+Enfin, le bouton \interfaceitem{Fermer} sert à fermer le simulateur de dés une fois les lancers terminés.
+Notez que toute l'interface du logiciel reste accessible même lorsque le simulateur est ouvert.
 
 \subsubsection{Le gestionnaire de combat}
+\label{sec:combat}
+
 Quand on lance le gestionnaire de combat on arrive sur la fenêtre (\ref{gestion_combat_choix}) de selection de personnage.
 \begin{figure}[h]
     \includegraphics[width=1\textwidth]{gestionnaire_combat_1}
