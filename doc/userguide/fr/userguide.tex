@@ -303,30 +303,54 @@ Le bouton \interfaceitem{Mettre à zéro} permet quant à lui d'effacer le résu
 Enfin, le bouton \interfaceitem{Fermer} sert à fermer le simulateur de dés une fois les lancers terminés.
 Notez que toute l'interface du logiciel reste accessible même lorsque le simulateur est ouvert.
 
-\subsubsection{Le gestionnaire de combat}
+\subsubsection{Gestionnaire de combat}
 \label{sec:combat}
 
-Quand on lance le gestionnaire de combat on arrive sur la fenêtre (\ref{gestion_combat_choix}) de selection de personnage.
+Dans un certain nombre de jeux de rôle, les combats sont un peu compliqués à gérer.
+En effet, il faut garder en mémoire l'ordre dans lequel les différents personnages agissent pour être capable de dire à tout moment qui doit agir.
+Il faut également compter les points de vie des PNJ, les éventuelles blessures, \emph{etc.}
+Pour aider le MJ dans cette tâche parfois difficile, \GMA propose un outil conçu à cet effet~: le gestionnaire de combat.
+
+Tout comme pour le simulateur de dés, le gestionnaire de combat s'ouvre en sélectionnant l'option correspondante dans le menu \interfaceitem{Outils}.
+Son utilisation se divise en deux étapes~: la sélection des participants au combat dans un premier temps, puis le combat proprement dit.
+
+\paragraph{Sélection des participants}
+
+La première fenêtre à apparaître ressemble à celle représentée sur la figure~\ref{gestion_combat_choix}.
 \begin{figure}[h]
     \includegraphics[width=1\textwidth]{gestionnaire_combat_1}
-    \caption{Gestionnaire de combat : préparation}
+    \caption{Gestionnaire de combat~: sélection des participants}
     \label{gestion_combat_choix}
 \end{figure}
-La liste des personnages est générée automatiquement à partir des protagonistes entrés dans le module \interfaceitem{Personnages}.
-On choisi chaque participant au combat en le sélectionnant dans la colonne de gauche et en l'ajoutant à la colonne de droite en cliquant sur \interfaceitem{Ajouter}.
-On ajoute les différents acteurs, dans l’ordre de leurs actions, si certains
-agissent plusieurs fois par tour il suffit de les ajouter plusieurs fois. Les flèches \interfaceitem{Haut} et \interfaceitem{Bas} à droite permettent de réorganiser l’ordre des actions.
-Une fois la préparation terminée on valide en cliquant \interfaceitem{Ok}.
-Apparait maintenant le gestionnaire de combat lui-même (\ref{gestion_combat_fight}
+La liste des personnages de la colonne de gauche est générée automatiquement à partir des protagonistes entrés dans le module \interfaceitem{Personnages}.
+Il s'agit alors de choisir chaque participant au combat en le sélectionnant dans la colonne de gauche et en l'ajoutant à la colonne de droite en cliquant sur \interfaceitem{Ajouter}.
+En cas d'erreur, il est possible de retirer de la colonne de droite un personnage en le sélectionnant et en cliquant sur \interfaceitem{Retirer}.
+
+L'ordre dans lequel les différents acteurs figurent dans la colonne de droite est celui dans lequel ils agiront lors du combat.
+Si certains agissent plusieurs fois par tour il suffit de les ajouter plusieurs fois.
+Veillez à bien ordonner la liste des participants en utilisant les boutons \interfaceitem{Haut} et \interfaceitem{Bas}, qui ont pour effet de monter et descendre le personnage sélectionné dans la liste.
+Sachez toutefois qu'il sera possible de changer l'ordre d'action en cours de combat.
+Une fois la préparation terminée, il suffit de cliquer sur \interfaceitem{OK} pour passer à l'étape suivante.
+
+\paragraph{Combat}
+
+Apparaît maintenant le gestionnaire de combat lui-même, représenté sur la figure~\ref{gestion_combat_fight}.
 \begin{figure}[h]
     \includegraphics[width=0.4\textwidth]{gestion_combat_fight}
-    \caption{Gestionnaire de combat : action}
+    \caption{Gestionnaire de combat~: action}
     \label{gestion_combat_fight}
 \end{figure}
-Ensuite à chaque round de combat on clique sur \interfaceitem{Suivant}, la ligne \interfaceitem{Personnage actuel :} indique quel personnage agit. En cas de blessure ou commentaire spécifique il est possible d'ajouter du texte dans la colonne \interfaceitem{Notes} en double-cliquant dessus.
-En cas de sortie du combat pour un personnage (fuite, mort, etc.) il suffit de cliquer sur \interfaceitem{Supprimer}, pour retirer ce personnage du gestionnaire.
+On y retrouve la liste ordonnée de participants élaborée lors de l'étape précédente, avec en plus la possibilité d'ajouter une note pour chaque personnage dans la colonne \interfaceitem{Notes}.
+Cela peut s'avérer utile pour noter les blessures, les points de vie actuels, ou encore tout autre commentaire spécifique.
+Pour ce faire, il suffit de double-cliquer dans la case correspondante ou de taper \interfaceitem{F2} une fois la case sélectionnée.
+Le fonctionnement du gestionnaire est le suivant~: à chaque tour de combat la ligne \interfaceitem{Personnage actuel} indique quel personnage doit agir.
+La case de note du personnage en question apparaît alors sur fond jaunâtre.
+Lorsque ce personnage a fini d'agir, on clique sur \interfaceitem{Suivant} et le gestionnaire passe au personnage suivant.
 
-Une fois le combat terminé il suffit de cliquer sur \interfaceitem{Fermer}
+En cas de sortie du combat d'un personnage, par exemple en cas de fuite ou de mort, ce personnage peut être retiré simplement du gestionnaire en cliquant sur \interfaceitem{Supprimer} après l'avoir sélectionné.
+Si au cours du combat un personnage décide de retarder son action, ou si vous vous êtes trompé dans l'ordre d'action lors de la phase de sélection des participants, il est possible de déplacer un personnage au sein de la liste par glisser-déposer.
+Si c'était à ce personnage d'agir, le personnage suivant sera automatiquement sélectionné.
+Enfin, une fois le combat terminé, il suffit de cliquer sur \interfaceitem{Fermer}.
 
 \section{Exemple : Construire la fiche d'un scénario}
 \label{sec:exem}
