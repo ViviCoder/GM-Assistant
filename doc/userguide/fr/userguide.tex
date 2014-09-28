@@ -52,21 +52,17 @@ Son objectif est de simplifier la vie du MJ en mettant à sa disposition les inf
 \GMA propose donc une interface où le MJ va pouvoir rassembler et ordonner toutes les informations, notes et fichiers (musiques, bruitages, images) qu'il estime utiles.
 
 Cette documentation a pour but d'aider l'utilisateur (c'est-à-dire vous) à se familiariser avec le logiciel.
-Pour cela, elle est divisée en deux grandes parties~: tout d'abord une présentation générale de l'interface du logiciel et de ses fonctionnalités (section~\ref{sec:pres}), puis dans un second temps un exemple d'utilisation de \GMA pour construire une fiche de scénario (section~\ref{sec:exem}).
-
-\section{Présentation générale}
-\label{sec:pres}
-
 La fenêtre principale du logiciel comporte d'une part une barre de menus, qui sera développée dans la section~\ref{menu} et d'autre part 6 sous-parties que nous appellerons modules et qui seront présentés dans la section~\ref{sec:modules}.
 Le logiciel propose également un certain nombre d'outils annexes qui feront l'objet de la section~\ref{sec:outils}.
+Pour finir, en cas de besoin, vous pourrez trouver la liste des raccourcis clavier dans l'annexe~\ref{sec:raccourcis}. 
 
-\subsection{Présentation des menus}
+\section{Présentation des menus}
 \label{menu}
 
 La barre de menus de \GMA est similaire à celle que l'on trouve dans la plupart des logiciels.
 Nous allons maintenant détailler un par un les menus principaux, qui sont \interfaceitem{Jeu} (section~\ref{sec:jeu}), \interfaceitem{Édition} (section~\ref{sec:edition}), \interfaceitem{Affichage} (section~\ref{sec:affich}), \interfaceitem{Outils} (section~\ref{sec:menu_outils}) et \interfaceitem{Aide} (section~\ref{sec:aide}).
 
-\subsubsection{Jeu}
+\subsection{Jeu}
 \label{sec:jeu}
 
 Ce menu comprend tous les outils de gestion et de sauvegarde des fiches de scénarios créées avec \GMA.
@@ -74,18 +70,18 @@ En voici la liste~:
 \begin{description}
     \item[\interfaceitem{Nouveau}~:]{crée une nouvelle fiche de scénario vide}
     \item[\interfaceitem{Recharger}~:]{restaure la fiche de scénario courante telle qu'elle était lors de la dernière sauvegarde}
-    \item[\interfaceitem{Charger}~:]{charge une fiche de scénario stockée sur l'ordinateur}
+    \item[\interfaceitem{Charger}~:]{charge une fiche de scénario stockée dans un fichier}
     \item[\interfaceitem{Récents}~:]{propose la liste des fiches de scénario récemment ouvertes}
     \item[\interfaceitem{Enregistrer}~:]{sauvegarde la fiche de scénario en cours d'édition}
     \item[\interfaceitem{Enregistrer sous}~:]{sauvegarde la fiche de scénario en cours d'édition dans un nouveau fichier}
     \item[\interfaceitem{Métadonnées}~:]{affiche une fenêtre permettant de noter le titre du scénario, son auteur, la date de création, une description sommaire, le jeu de rôle, la liste des joueurs et la date de jeu.
-            L'idée est rassembler des informations qui ne servent pas en partie mais qui permettent de se souvenir de \guillemets{Qui~? Quand~? Comment~?}.}
+            L'idée est de rassembler des informations qui ne servent pas en partie mais qui permettent de se souvenir de \guillemets{Qui~? Quand~? Comment~?}.}
     \item[\interfaceitem{Quitter}~:]{ferme la fiche de scénario en cours et quitte le logiciel}
 \end{description}
 \paragraph{Le fichier de sauvegarde}
 Le fichier de sauvegarde \texttt{.gms} créé est un fichier complet qui comprend toutes les informations qui sont dans la fiche de scénario et les fichiers annexes que vous y avez ajouté (musique, bruitages, images), lui permettant d'être déplacé d'un ordinateur à un autre sans risque de perte (un son manquant ou une image absente par exemple).
 
-\subsubsection{Édition}
+\subsection{Édition}
 \label{sec:edition}
 
 Ce menu a pour but d'aider l'utilisateur lors de l'élaboration de la fiche de scénario.
@@ -95,7 +91,7 @@ Pour l'instant, il se compose uniquement de deux actions~:
     \item[\interfaceitem{Refaire}~:]{rétablit la dernière modification apportée après son annulation}
 \end{description}
 
-\subsubsection{Affichage}
+\subsection{Affichage}
 \label{sec:affich}
 
 Ce menu permet de choisir parmi différentes options d'affichage.
@@ -115,7 +111,7 @@ Il se compose de deux sous-menus~:
         Actuellement, seuls l'anglais et le français sont supportés.}
 \end{description}
 
-\subsubsection{Outils}
+\subsection{Outils}
 \label{sec:menu_outils}
 
 Ce menu rassemble les différents outils annexes proposés par \GMA.
@@ -126,12 +122,12 @@ Dans la présente version du logiciel, le menu comprend~:
     \item[\interfaceitem{Gestionnaire de combat}~:]{outil permettant de structurer le déroulement des combat}
 \end{description}
 
-\subsubsection{Aide}
+\subsection{Aide}
 \label{sec:aide}
 
 Ce menu donne accès aux informations générales sur le logiciel et sa licence.
 
-\subsection{Présentation des modules}
+\section{Présentation des modules}
 \label{sec:modules}
 
 Comme évoqué précédemment, la fenêtre principale du logiciel est découpée en six blocs indépendants et dédiés chacun à une fonctionnalité, appelés modules.
@@ -153,7 +149,7 @@ Tout ces modules sont rassemblés dans l'interface par défaut du logiciel, comm
     \label{fig:interface}
 \end{figure}
 
-\subsubsection{La notion d'item}
+\subsection{La notion d'item}
 \label{item}
 
 Les items sont à la base du fonctionnement de \GMA, il est donc approprié d'en expliquer le fonctionnement avant de détailler les modules.
@@ -195,7 +191,7 @@ Une fois créés, les items sont également déplaçables au sein d'un même mod
 L'action \interfaceitem{Éditer} ouvre une fenêtre similaire à celle de création d'item, la seule différence importante étant qu'il n'y a plus \interfaceitem{Ajouter} et \interfaceitem{Enfant}, mais uniquement un bouton \interfaceitem{Valider} permettant de valider l'édition.
 Si vous voulez uniquement modifier le texte d'un item, il vous suffit d'appuyer sur la touche \interfaceitem{F2} de votre clavier (la combinaison \interfaceitem{Ctrl+F2} ouvre quant à elle la fenêtre d'édition).
 
-\subsubsection{Intrigue}
+\subsection{Intrigue}
 \label{sec:intrigue}
 
 L'arbre d'intrigue est dans la majorité des cas le cœur de \GMA.
@@ -210,7 +206,7 @@ Chaque ligne que vous voyez est un item, et il suffit donc de suivre la techniqu
 N'oubliez pas que vous pouvez modifier l'état des différents items composant l'intrigue au fur et à mesure que la partie avance pour garder une trace de la progression des PJ.
 Cela peut s'avérer utile si le scénario s'étale sur plusieurs séances.
 
-\subsubsection{Historique}
+\subsection{Historique}
 \label{sec:historique}
 
 L'arbre d'historique sert à préparer une liste des évènements importants ayant marqué les séances précédentes, commme les rencontres des personnages, une promesse faite par un PJ à un PNJ (ou l'inverse), etc.
@@ -218,7 +214,7 @@ Il est également possible d'y inscrire des éléments du passé des personnages
 De cette manière, toutes ces informations seront accessibles rapidement au MJ.
 D'un point de vue technique, il se comporte et s'utilise exactement de la même manière que l'arbre d'intrigue.
 
-\subsubsection{Notes}
+\subsection{Notes}
 \label{sec:notes}
 
 Le module de prise de notes est un éditeur de texte simpliste (pour entrer du texte il suffit de cliquer avec le bouton gauche de la souris quelque part dans l'éditeur et d'écrire) qui permet de noter à la volée toute information utile à garder.
@@ -226,7 +222,7 @@ Par exemple~: \guillemets{Sylvain a insulté le directeur du museum}.
 Ce module peut également être utilisé lors de la préparation d'une partie pour stocker des informations textuelles appartenant normalement à d'autres modules --- comme l'intrigue, l'historique ou encore les personnages --- mais dont la longueur n'est pas adaptée à ces mêmes modules.
 Par exemple, il est possible d'y écrire la description d'un personnage que les PJ rencontrent, ou une histoire qui leur est racontée par un PNJ.
 
-\subsubsection{Personnages}
+\subsection{Personnages}
 \label{sec:perso}
 
 Le module \interfaceitem{Personnages} est pensé pour accueillir la liste des protagonistes ainsi que les caractéristes dont vous pourriez avoir besoin rapidement en cours de partie les concernant.
@@ -244,7 +240,7 @@ Une fois qu'au moins un personnage et une propriété ont été créés apparais
 Cliquer avec le bouton droit de la souris dans une de ces cases ouvrira le même menu déroulant, mais cette fois-ci avec en plus la possibilité de supprimer ou d'éditer le personnage ou la propriété correspondant selon le sous-menu choisi.
 Il est également important de noter qu'une fois un personnage ou une propriété créé, un clic droit sur le bandeau d'en-tête correspondant (horizontal pour les propriétés et vertical pour les personnages) ouvrira directement le sous-menu correspondant.
 
-\subsubsection{Musique}
+\subsection{Musique}
 \label{sec:musique}
 
 Le module de musique est un lecteur de musique basique qui permet de jouer des musiques d'ambiance ou des sons continus (comme de la pluie ou du vent).
@@ -263,7 +259,7 @@ Cliquer dessus met alors la lecture en pause et le texte du bouton devient \inte
 Cliquer à nouveau reprend la lecture là où elle s'était arrêtée.
 Faire glisser le curseur de la barre de défilement permet de naviguer dans le morceau.
 
-\subsubsection{Bruitages}
+\subsection{Bruitages}
 \label{sec:bruitages}
 
 Le module de bruitages est un lecteur de musique encore plus basique pensé pour jouer des sons très courts comme un coup de feu, un hurlement, une porte qui claque, \emph{etc.}
@@ -274,13 +270,13 @@ Il est tout à fait possible de jouer un bruitage alors qu'une musique est en co
 En revanche, jouer un autre bruitage remplace immédiatement le bruitage en cours.
 Une autre différence par rapport au module de musique est qu'une fois un bruitage en cours de lecture, il n'est pas possible de l'arrêter.
 
-\subsection{Présentation des outils}
+\section{Présentation des outils}
 \label{sec:outils}
 
 Tout comme les modules, les outils ont pour but de faciliter le travail du MJ lors de parties, mais contrairement à eux, ils ne servent pas à stocker d'informations.
 Les deux outils disponibles dans la présente version du logiciel sont un simulateur de dés (voir section~\ref{sec:des}) et un gestionnaire de combat (voir section~\ref{sec:combat}).
 
-\subsubsection{Simulateur de dés}
+\subsection{Simulateur de dés}
 \label{sec:des}
 
 Le simulateur de dés est un outil permettant de s'affranchir du lancer physique de dés en simulant directement dans le logiciel le résultat aléatoire de dés virtuels.
@@ -303,7 +299,7 @@ Le bouton \interfaceitem{Mettre à zéro} permet quant à lui d'effacer le résu
 Enfin, le bouton \interfaceitem{Fermer} sert à fermer le simulateur de dés une fois les lancers terminés.
 Notez que toute l'interface du logiciel reste accessible même lorsque le simulateur est ouvert.
 
-\subsubsection{Gestionnaire de combat}
+\subsection{Gestionnaire de combat}
 \label{sec:combat}
 
 Dans un certain nombre de jeux de rôle, les combats sont un peu compliqués à gérer.
@@ -314,7 +310,7 @@ Pour aider le MJ dans cette tâche parfois difficile, \GMA propose un outil con�
 Tout comme pour le simulateur de dés, le gestionnaire de combat s'ouvre en sélectionnant l'option correspondante dans le menu \interfaceitem{Outils}.
 Son utilisation se divise en deux étapes~: la sélection des participants au combat dans un premier temps, puis le combat proprement dit.
 
-\paragraph{Sélection des participants}
+\subsubsection{Sélection des participants}
 
 La première fenêtre à apparaître ressemble à celle représentée sur la figure~\ref{gestion_combat_choix}.
 \begin{figure}[h]
@@ -332,7 +328,7 @@ Veillez à bien ordonner la liste des participants en utilisant les boutons \int
 Sachez toutefois qu'il sera possible de changer l'ordre d'action en cours de combat.
 Une fois la préparation terminée, il suffit de cliquer sur \interfaceitem{OK} pour passer à l'étape suivante.
 
-\paragraph{Combat}
+\subsubsection{Combat}
 
 Apparaît maintenant le gestionnaire de combat lui-même, représenté sur la figure~\ref{gestion_combat_fight}.
 \begin{figure}[h]
@@ -351,185 +347,6 @@ En cas de sortie du combat d'un personnage, par exemple en cas de fuite ou de mo
 Si au cours du combat un personnage décide de retarder son action, ou si vous vous êtes trompé dans l'ordre d'action lors de la phase de sélection des participants, il est possible de déplacer un personnage au sein de la liste par glisser-déposer.
 Si c'était à ce personnage d'agir, le personnage suivant sera automatiquement sélectionné.
 Enfin, une fois le combat terminé, il suffit de cliquer sur \interfaceitem{Fermer}.
-
-\section{Exemple : Construire la fiche d'un scénario}
-\label{sec:exem}
-
-Maintenant que nous avons fait le tour des fonctionnalités du logiciel, construisons ensemble la "fiche scénario" du scénario exceptionnel (et exclusif) : \emph{La nuit tous les profonds sont gris}.
-
-\subsection{Présentation du scénario}
-\label{exemple_scenario}
-Le Scénario
-\begin{itemize}
-    \item \emph{Titre du scénario :} La nuit tous les profonds sont gris
-    \item \emph{Jeux de rôle :} L'appel de Cthulhu
-    \item \emph{Année :} 1920
-    \item \emph{Lieux :} Toulouse
-    \item \emph{Nombre de joueurs : } 4
-\end{itemize}
-
-\emph{Scénario :}\\ 
-Les PJ sont au vernissage d'une exposition au laboratoire de pharmacologie de la faculté de médecine située allée Jules Guesde à Toulouse. Cependant ce laboratoire hébèrge  un étrange squelette retrouvé récemment au fond de l'eau. Au cours de la soirée des profonds sortent de la garonne pour récupérer le-dit squelette, qui est en fait la dépouille d'un de leur chaman.
-\\
-En même temps une des convives, Kate Elver, est une sorciere qui veut utiliser ce squelette pour en extraire de la puissance. Elle profitera de la cohue des convives lors de l'assaut des profonds pour aller dans le laboratoire, et commencer son rituel. La suite dépend des PJ. Si le rituel va au bout une onde de choc jette tout le monde à terre et les profonds fou de rage d'avoir perdu leur chaman définitivement assassinent tout le monde, sinon ils repartent "tranquillement" avec leur chaman (squelette).
-
-\subsection{Les Métadonnées}
-La première étape est de remplir les métadonnées. À partir des informations du scénario nous renseignons donc la fenêtre dédiée: (figure~\ref{metadata}).
-\begin{figure}[h!]
-    \includegraphics[width=0.6\textwidth]{metadata}
-    \caption{fenêtre métadonnées}
-    \label{metadata}
-\end{figure}
-Puis validons en cliquant gauche \interfaceitem{OK}.
-
-\subsection{L'Intrigue}
-Rentrons maintenant le plan du scénarion en ajoutant dans le module \interfaceitem{Intrigue} les différentes étapes clef du scénario.
-\\
-Commençons par cliquer gauche dans le cadre blanc. La fenêtre (\ref{intrigue_scenario}) apparait 
-\begin{figure}[h!]
-    \includegraphics[width=0.5\textwidth]{intrigue_intro}
-    \caption{fenêtre d'ajout d'item}
-    \label{intrigue_scenario}
-\end{figure}
-Nous allons écrire \interfaceitem{Introduction} puis détailler l'intro dans les item "fils".
-Clic droit sur \interfaceitem{Introduction}, \interfaceitem{Ajouter}, nous arrivons sur la fenêtre d'ajout d'item, ce coup-ci on va l'ajouter en "enfant", pour qu'il apparaisse imbriqué sous \interfaceitem{Introduction} (voir figure~\ref{item_enfant}).
-\begin{figure}[h!]
-    \includegraphics[width=0.5\textwidth]{item_enfant}
-    \label{item_enfant}
-\end{figure}
-Et on valide en cliquant gauche sur \interfaceitem{Enfant}.
-On peut utiliser cette partie d'introduction pour se rappeler des différents élément d'ambiance à présenter aux joueurs.
-
-Ensuite on ajoute la première partie du scénario. Clic droit dans la partie blanche, dans \interfaceitem{Contenu} on écrit \interfaceitem{Partie 1} et on valide par \interfaceitem{Ajouter} pour qu'il apparaisse à la suite de \interfaceitem{Introduction} et au même niveau.
-On procède de la même manière pour les différentes étapes du scénario :
-\begin{itemize}
-    \item Introduction
-    \begin{itemize}
-        \item début de soirée, hivers, froid, humide
-        \item PJ à la conférence
-    \end{itemize}
-    \item Partie 1
-    \begin{itemize}
-        \item Au milieu de la conf les profonds arrivent
-        \begin{itemize}
-            \item Test de "vigilance" pour les repérer
-        \end{itemize}
-        \item Arrivée des profonds
-        \item Fuite de Kate Elver
-        \item au bout de 1/4h une femme hurle
-    \end{itemize}
-    \item Partie 2
-    \begin{itemize}
-        \item Si les PJ suivent Kate
-        \begin{itemize}
-            \item Négociation, elle est folle
-            \item début du rituel "Kate Elver, fais tourner x3"
-        \end{itemize}
-        \item Si les PJ fuient
-        \begin{itemize}
-            \item une marée de profonds les assaille
-        \end{itemize}
-    \end{itemize}
-    \item Dans tout les cas les PJ meurent
-\end{itemize}
-voir le résultat sur la figure (\ref{intrigue_full}).  
-\begin{figure}[h!]
-    \includegraphics[width=0.8\textwidth]{intrigue_full}
-    \caption{le scénario est prêt}
-    \label{intrigue_full}
-\end{figure}    
-L'intrigue est prête mais pas notre scénario.
-
-\subsection{Personnages}
-Rentrons maintenant les différents protagonistes PNJ:
-\begin{itemize}
-    \item Kate Elver, la sorcière
-    \item les guerriers profonds
-    \item le shaman profond
-\end{itemize}
-et les PJ
-\begin{itemize}
-    \item Jed Steed, joué par Nathan
-    \item Caleb de la muerta, joué par Yan
-    \item Connara l'den, joué par Nico
-\end{itemize}
-Pour ajouter ces protagonistes commençons par cliquer droit dans la partie vide du module \interfaceitem{Personnages}, puis \interfaceitem{Personnage} et \interfaceitem{Ajouter} (figure~\ref{ajout_perso}).
-\begin{figure}[h!]
-    \includegraphics[width=0.4\textwidth]{ajout_perso}
-    \caption{ajoutons Kate Elver}
-    \label{ajout_perso}
-\end{figure}
-De la même manière nous allons ajouter tous les protagoniste, en mettant dans la seconde ligne une description sommaire (un ou deux mots) du PNJ, ou alors le nom du joueur qui contrôle le personnage.
-
-Ensuite ajoutons les compétences. Celles qui nous serviront sont :
-\begin{itemize}
-    \item TOC, Trouver objet caché (compétence perception de l'Appel de Cthlhu) qui nous permettra de faire des test de perception derrière l'écran sans que les joueurs ne se doute de quoi que ce soit
-    \item Combat, surtout utile pour nos PNJ
-    \item Défense, idem
-    \item PV, points de vie
-\end{itemize}
-Le reste dépendra de ce que font les joeurs.
-\\
-On clique droit dans la partie vide du module \interfaceitem{Personnages}, puis \interfaceitem{Propriété} et \interfaceitem{Ajouter} (figure~\ref{ajout_propriete})
-\begin{figure}[h!]
-    \includegraphics[width=0.4\textwidth]{ajout_propriete}
-    \caption{ajoutons la défense}
-    \label{ajout_propriete}
-\end{figure}
-puis il suffit de remplir les cases en double cliquant gauche sur chacune des case.
-\\
-Le résultat final est visible sur la figure (\ref{exemple_personnage})
-\begin{figure}[h!]
-    \includegraphics[width=0.8\textwidth]{personnage}
-    \label{exemple_personnage}
-\end{figure}
-\\ \emph{Nota bene :} Il est conseillé de ne mettre que les compétences les plus utiles et non toutes celles des personnages, pour garder un maximum de lisiblité. Pour les PJ les seules utiles sont celle qui peuvent amener à un jet sans que le joueur soit au courant (perception, 6ème sens, etc.)
-
-\subsection{Notes}
-Dans le module note ajoutons quelques info utiles.
-\\
-Le rituel fait perdre 1D100+50 points de santé mentale s'il est mené à son terme, notons donc le ici pour ne pas avoir à chercher.
-Il est possible d'utiliser ce module pour noter l'état de santé des protagoniste.
-\\
-Voici ce que ça donne, figure (\ref{note})
-\begin{figure}[h!]
-    \includegraphics[width=0.7\textwidth]{notes}
-    \caption{Module de prise de note}
-    \label{note}
-\end{figure}
-
-\subsection{bruitage}
-Préparons maintenant quelques bruitages d'ambiance. Ce sont des bruitages libres, récupérables gratuitement (et légalement) sur ce site web : http://www.universal-soundbank.com/
-\\
-Donc cliquons droit dans la partie vide du module \interfaceitem{Bruitages}, nous arrivons sur la fenêtre d'ajout d'item. Remplissons comme dans la figure~\ref{coup de feu}.
-\begin{figure}[h!]
-    \includegraphics[width=0.5\textwidth]{coup_de_feu}
-    \caption{Ajout d'un bruitage}
-    \label{coup de feu}
-\end{figure}
-Il faut bien sélectionner \interfaceitem{Audio} dans \interfaceitem{Type}, pour pouvoir aller chercher le fichier sur votre ordinateur (voir la figure~\ref{exemple_bruitage}).
-On valide en cliquant sur \interfaceitem{Ajouter}.
-\begin{figure}[h!]
-    \includegraphics[width=0.5\textwidth]{bruitage}
-    \caption{module de bruitage}
-    \label{exemple_bruitage}
-\end{figure}
-\\ \emph{Nota Bene :} Il est possible de se faire des regroupements de son par "chapitre" par exemple, pour ceux qui utilisent beaucoup de bruitage/musique. Il suffit de créer un item "texte" par regroupement, et de mettre vos bruitages en tant que "item fils" dans les regroupements.
-
-\subsection{Musique}
-Le module musique est exactement le même à un détail prêt, vous pouvez mettre la musique en pause, et la mettre en "lecture en boucle" en cochant le bouton \interfaceitem{Boucle}, pour qu'elle ne s'arrête pas.
-\\
-La musique que nous avons ajouté : Night of Chaos, est une musique sour licence creative commons (équivalent de open source pour des médias) téléchargeable gratuitement (et légalement) à cette adresse http://incompetech.com/music/royalty-free/
-
-\subsection{Scénario complet}
-Voici donc la fenêtre complète, figure (\ref{scenario_complet})
-\begin{figure}[h!]
-    \includegraphics[width=0.9\textwidth]{scenario_complet}
-    \caption{La partie est prête}
-    \label{scenario_complet}
-\end{figure}
-
-Ce fichier scénario est disponible dans le dossier "documentation" de \GMA.
 
 \section{Conclusion}\label{conclusions}
 \GMA est un logiciel conçu par des rôlistes pour des rôlistes, c'est-à-dire vous.
@@ -554,6 +371,7 @@ Enfin, si vous désirez être tenu au courant des dernières actualités concern
 \appendix
 
 \section{Liste des raccourcis clavier}
+\label{sec:raccourcis}
 
 \subsection{Menus}
 
