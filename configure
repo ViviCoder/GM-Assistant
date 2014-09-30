@@ -337,6 +337,7 @@ sed $sed_i 's#LFLAGS.*=\(.*\)#LFLAGS = \1 $(LDFLAGS)#' Makefile
 # add files to clean
 sed $sed_i 's#DEL_FILE) $(OBJECTS)#DEL_FILE) $(OBJECTS)\n\t-$(DEL_FILE) GMA.*#' Makefile
 sed $sed_i 's#DEL_FILE) Makefile#DEL_FILE) Makefile\n\t-$(DEL_FILE) translations/*.qm\n\t-$(DEL_FILE) '$pro_file'\n\t-$(DEL_FILE) '$conf_file'\n\t-$(DEL_FILE) '$desk_file'#' Makefile
+sed $sed_i 's#DEL_FILE) $(OBJECTS)#DEL_FILE) $(OBJECTS)\n\t-$(DEL_FILE) doc/userguide/userguide-*\n\t-$(DEL_DIR) doc/dev#' Makefile
 
 # preparing conf file
 echo "[directories]" > $conf_file
@@ -372,13 +373,35 @@ echo "********************"
 echo
 
 # adding the rule for generating the documentation
+pdfl=$(which pdflatex)
+if [ $? = 0 ]
+then
+    echo "To generate the user documentation, type make doc"
+    echo ".PHONY: doc" >> Makefile
+    list=""
+    for dir in doc/userguide/*
+    do
+        lang=$(echo $dir | sed "s#doc/userguide/##")
+        file="$dir/userguide.tex"
+        outputfile="doc/userguide/userguide-$lang.pdf"
+        if [ -e $file ]
+        then
+            list="$list $outputfile"
+            echo -e $outputfile': '$file'\n\tcd '$dir'; pdflatex userguide.tex; pdflatex userguide.tex\n\tcp '$dir'/userguide.pdf doc/userguide/userguide-'$lang'.pdf\n' >> Makefile
+        fi
+    done
+    echo -e 'doc: '$list'\n' >> Makefile
+else
+    echo "In order to be able to generate the user documentation, you need pdflatex"
+    echo
+fi
 dox=$(which doxygen)
 if [ $? = 0 ]
 then
-    echo "To generate the documentation, type make doc"
-    echo -e 'doc: dox.conf $(filter sources/%,$(SOURCES))\n\tdoxygen dox.conf' >> Makefile
+    echo "To generate the developer documentation, type make devdoc"
+    echo -e 'devdoc: dox.conf $(filter sources/%,$(SOURCES))\n\tdoxygen dox.conf' >> Makefile
 else
-    echo "In order to be able to generate the documentation, you need doxygen"
+    echo "In order to be able to generate the developer documentation, you need doxygen"
     echo
 fi
 
