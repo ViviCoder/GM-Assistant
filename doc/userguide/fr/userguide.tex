@@ -33,7 +33,7 @@
 
 \title{\GMA \versionnumber, guide de l'utilisateur}
 \author{Simon Nicolas \and Vincent Prat}
-\date{15 novembre 2014}
+\date{18 décembre 2014}
 
 \begin{document}
 
@@ -45,7 +45,7 @@
 
 Une partie de jeu de rôle est une alchimie riche et complexe.
 Les joueurs doivent être impliqués et investis et le maître de jeu (ou MJ) doit parfaitement maîtriser le système de règle, le scénario, se rappeler des évènements précédents, anticiper les évènements à venir, et improviser le présent en fonction des actions et choix des joueurs.
-Si en pleine partie le MJ doit chercher des détails sur un PNJ (personnage non joueur, c'est-à-dire non incarné par un joueurs, par opposition à PJ), une précision sur un point de règle, des musiques d'ambiance ou des bruitages sur l'ordinateur, des images dans son classeur, ou autre, alors la partie ralentit, l'émulsion retombe, et les joueurs se dispersent.
+Si en pleine partie le MJ doit chercher des détails sur un personnage, une précision sur un point de règle, des musiques d'ambiance ou des bruitages sur l'ordinateur, des images dans son classeur, ou autre, alors la partie ralentit, l'émulsion retombe, et les joueurs se dispersent.
 Ne niez pas, un rôliste se disperse vite.
 
 La solution est \GMA, pour \emph{Game Master Assistant} (en français, assistant au MJ).
@@ -76,7 +76,7 @@ En voici la liste~:
     \item[\interfaceitem{Enregistrer}~:]{sauvegarde la fiche de scénario en cours d'édition}
     \item[\interfaceitem{Enregistrer sous}~:]{sauvegarde la fiche de scénario en cours d'édition dans un nouveau fichier}
     \item[\interfaceitem{Métadonnées}~:]{affiche une fenêtre permettant de noter le titre du scénario, son auteur, la date de création, une description sommaire, le jeu de rôle, la liste des joueurs et la date de jeu.
-            L'idée est de rassembler des informations qui ne servent pas en partie mais qui permettent de se souvenir de \guillemets{Qui~? Quand~? Comment~?}.}
+            L'idée est de rassembler des informations qui ne servent pas pendant la partie mais qui permettent de se souvenir de \guillemets{Qui~? Quand~? Comment~?}.}
     \item[\interfaceitem{Quitter}~:]{ferme la fiche de scénario en cours et quitte le logiciel}
 \end{description}
 \paragraph{Le fichier de sauvegarde}
@@ -131,7 +131,7 @@ Ce menu donne accès aux informations générales sur le logiciel et sa licence.
 \section{Présentation des modules}
 \label{sec:modules}
 
-Comme évoqué précédemment, la fenêtre principale du logiciel est découpée en six blocs indépendants et dédiés chacun à une fonctionnalité, appelés modules.
+Comme évoqué précédemment, la fenêtre principale du logiciel est découpée en six modules indépendants et dédiés chacun à une fonctionnalité.
 Plusieurs de ces modules se présentent sous forme d'un arbre \guillemets{dépliable} permettant d'organiser des informations.
 Les possibilités offertes par ces arbres et les items qui les composent seront développées dans la section~\ref{item}.
 Voici la liste des modules présents dans cette version~:
@@ -139,7 +139,7 @@ Voici la liste des modules présents dans cette version~:
     \item[\interfaceitem{Intrigue}~:]{arbre qui permet d'afficher de manière ordonnée les différents évènements important du scénario (voir la section~\ref{sec:intrigue} pour plus de détail)}
     \item[\interfaceitem{Historique}~:]{encore un arbre, qui a cette fois vocation à rappeler les évènements les plus marquants des scénarios précédents ou du passé des personnages (voir section~\ref{sec:historique})}
     \item[\interfaceitem{Notes}~:]{éditeur de texte simpliste qui permet de prendre des notes avant ou pendant la partie (voir section~\ref{sec:notes})}
-    \item[\interfaceitem{Personnages}~:]{tableau permettant d'afficher les protagonistes (PJ ou PNJ) avec leurs caractéristiques importantes (voir section~\ref{sec:perso})}
+    \item[\interfaceitem{Personnages}~:]{tableau permettant d'afficher les protagonistes avec leurs caractéristiques importantes (voir section~\ref{sec:perso})}
     \item[\interfaceitem{Musique}~:]{lecteur de musique simple pensé pour jouer des musiques d'ambiance (voir section~\ref{sec:musique})}
     \item[\interfaceitem{Bruitages}~:]{lecteur de musique encore plus simple pensé pour jouer des bruitages courts (voir section~\ref{sec:bruitages})}
 \end{description}
@@ -158,13 +158,10 @@ Par définition, un item désigne un élément minimal d'un ensemble.
 Dans notre cas, un item est une ligne, une entrée dans un des modules sous forme d'arbre du logiciel, qui sert à contenir une information textuelle, un son (musique ou bruitage), une image, etc.
 Les modules qui utilisent les items sont \interfaceitem{Intrigue}, \interfaceitem{Historique}, \interfaceitem{Musique} et \interfaceitem{Bruitage}.
 
-Chaque item se présente comme une ligne de texte dans un certain état et d'un certain type.
-L'état d'un item permet de prendre note rapidement du succès ou de l'échec de certains points clefs du scénario, et d'en avoir une vision rapide.
+Chaque item se présente comme une ligne de texte, à laquelle est associé un état qui permet de prendre rapidement note du succès ou de l'échec de certains points clefs du scénario et d'en avoir une vision rapide.
 Les quatre états disponibles sont \interfaceitem{Aucun}, \interfaceitem{En cours}, \interfaceitem{Échoué} et \interfaceitem{Réussi}.
-Le type d'un item détermine sa fonction.
-Dans cette version du logiciel, un item peut être \interfaceitem{Basique} (uniquement du texte), \interfaceitem{Audio} (musiques et bruitages) ou \interfaceitem{Image}.
+Un item peut également comporter du contenu supplémentaire, selon son type, qui peut être \interfaceitem{Basique} (aucun contenu supplémentaire), \interfaceitem{Audio} (musiques et bruitages) ou \interfaceitem{Image} (n'importe quel type d'image).
 
-Nous allons maintenant décrire le fonctionnement des arbres.
 Lorsque vous cliquez avec le bouton droit de la souris sur un item apparaît le menu de gestion d'item.
 Ce menu contient les quatre états possible d'un item puis les trois actions \interfaceitem{Ajouter}, \interfaceitem{Supprimer} et \interfaceitem{Éditer}.
 Si l'item est de type \interfaceitem{Audio} ou \interfaceitem{Image}, une action supplémentaire est présente pour jouer le fichier audio ou afficher l'image.
@@ -204,7 +201,7 @@ La figure~\ref{arbre_scenar} donne un aperçu de ce qu'il est possible de faire 
     \label{arbre_scenar}
 \end{figure}
 Chaque ligne que vous voyez est un item, et il suffit donc de suivre la technique de création d'item présentée dans la section~\ref{item} pour ordonner son scénario.
-N'oubliez pas que vous pouvez modifier l'état des différents items composant l'intrigue au fur et à mesure que la partie avance pour garder une trace de la progression des PJ.
+N'oubliez pas que vous pouvez modifier l'état des différents items composant l'intrigue au fur et à mesure que la partie avance pour garder une trace de la progression des personnages incarnés par vos joueurs (appelés PJ, par opposition aux PNJ, incarnés par le MJ).
 Cela peut s'avérer utile si le scénario s'étale sur plusieurs séances.
 
 \subsection{Historique}
@@ -220,26 +217,25 @@ D'un point de vue technique, il se comporte et s'utilise exactement de la même 
 
 Le module de prise de notes est un éditeur de texte simpliste (pour entrer du texte il suffit de cliquer avec le bouton gauche de la souris quelque part dans l'éditeur et d'écrire) qui permet de noter à la volée toute information utile à garder.
 Par exemple~: \guillemets{Sylvain a insulté le directeur du museum}.
-Ce module peut également être utilisé lors de la préparation d'une partie pour stocker des informations textuelles appartenant normalement à d'autres modules --- comme l'intrigue, l'historique ou encore les personnages --- mais dont la longueur n'est pas adaptée à ces mêmes modules.
+Ce module peut également être utilisé lors de la préparation d'une partie pour compléter certains éléments du scénario --- comme l'intrigue, l'historique ou encore les personnages --- avec des informations dont la longueur n'est pas adaptée aux modules correspondants.
 Par exemple, il est possible d'y écrire la description d'un personnage que les PJ rencontrent, ou une histoire qui leur est racontée par un PNJ.
 
 \subsection{Personnages}
 \label{sec:perso}
 
-Le module \interfaceitem{Personnages} est pensé pour accueillir la liste des protagonistes ainsi que les caractéristes dont vous pourriez avoir besoin rapidement en cours de partie les concernant.
-Il peut s'agir des PJ, pour lesquels on peut avoir besoin des scores de perception, vigilance, esquive passive, des points de vie, \emph{etc.}, ou de PNJ, pour lesquels les caractéristiques complètes sont nécessaires.
-Ces caractéristiques, appelées \guillemets{propriétés} dans le logiciel, peuvent se présenter non seulement sous forme de nombres, mais également sous forme de texte.
+Le module \interfaceitem{Personnages} est pensé pour accueillir la liste des protagonistes ainsi que les informations dont vous pourriez avoir besoin rapidement en cours de partie les concernant.
+Ces informations, appelées \guillemets{propriétés} dans le logiciel, peuvent se présenter sous forme de nombres ou sous forme de texte.
 Dans le module, les personnages correspondent à des lignes, et les propriétés à des colonnes.
 
 De la même manière que pour les modules sous forme d'arbre, la construction du tableau se fait à l'aide du clic droit de la souris.
-Cela a pour effet d'afficher un menu déroulant permettant de choisir l'action voulue.
+Cela affiche un menu déroulant permettant de choisir l'action voulue.
 Lorsque le module est vide, les sous-menus \interfaceitem{Personnages} et \interfaceitem{Propriétés} permettent d'ajouter un personnage ou une propriété grâce à l'action \interfaceitem{Ajouter}.
 Une fenêtre s'ouvrira alors, vous permettant de créer le personnage ou la propriété.
 Dans le cas d'un personnage, outre son nom, vous aurez la possibilité d'ajouter une courte description permettant de l'identifier facilement.
 
 Une fois qu'au moins un personnage et une propriété ont été créés apparaissent des cases éditables où l'on peut introduire les valeurs des différentes propriétés pour chaque personnage.
-Cliquer avec le bouton droit de la souris dans une de ces cases ouvrira le même menu déroulant, mais cette fois-ci avec en plus la possibilité de supprimer ou d'éditer le personnage ou la propriété correspondant selon le sous-menu choisi.
-Il est également important de noter qu'une fois un personnage ou une propriété créé, un clic droit sur le bandeau d'en-tête correspondant (horizontal pour les propriétés et vertical pour les personnages) ouvrira directement le sous-menu correspondant.
+Cliquer avec le bouton droit de la souris dans une de ces cases ouvrira le même menu déroulant que précédemment, avec en plus la possibilité de supprimer ou d'éditer le personnage ou la propriété correspondant.
+Notez qu'une fois un personnage ou une propriété créé, un clic droit sur le bandeau d'en-tête correspondant (horizontal pour les propriétés et vertical pour les personnages) ouvrira directement le sous-menu correspondant.
 
 \subsection{Musique}
 \label{sec:musique}
@@ -280,8 +276,8 @@ Les deux outils disponibles dans la présente version du logiciel sont un simula
 \subsection{Simulateur de dés}
 \label{sec:des}
 
-Le simulateur de dés est un outil permettant de s'affranchir du lancer physique de dés en simulant directement dans le logiciel le résultat aléatoire de dés virtuels.
-Que ce soit pendant la préparation d'une séance ou en cours de partie, vous aurez ainsi tout ce qu'il vous faut si vous avez oublié vos dés ou si vous voulez en lancer plus à la fois que ce dont vous disposez.
+Le simulateur de dés est un outil permettant de simuler directement dans le logiciel le résultat aléatoire de dés virtuels.
+Vous aurez ainsi tout ce qu'il vous faut si vous avez oublié vos dés ou si vous voulez en lancer plus à la fois que ce dont vous disposez.
 Pour l'utiliser, il suffit de sélectionner l'option correspondante du menu \interfaceitem{Outils}.
 Une fenêtre similaire à celle représentée sur la figure~\ref{simulateur_des} s'ouvre alors.
 \begin{figure}[ht]
@@ -303,9 +299,9 @@ Notez que toute l'interface du logiciel reste accessible même lorsque le simula
 \subsection{Gestionnaire de combat}
 \label{sec:combat}
 
-Dans un certain nombre de jeux de rôle, les combats sont un peu compliqués à gérer.
+Dans la plupart des jeux de rôle, les combats sont un peu compliqués à gérer.
 En effet, il faut garder en mémoire l'ordre dans lequel les différents personnages agissent pour être capable de dire à tout moment qui doit agir.
-Il faut également compter les points de vie des PNJ, les éventuelles blessures, \emph{etc.}
+Il faut également compter les points de vie des intervenants, les éventuelles blessures, \emph{etc.}
 Pour aider le MJ dans cette tâche parfois difficile, \GMA propose un outil conçu à cet effet~: le gestionnaire de combat.
 
 Tout comme pour le simulateur de dés, le gestionnaire de combat s'ouvre en sélectionnant l'option correspondante dans le menu \interfaceitem{Outils}.
@@ -324,8 +320,7 @@ Il s'agit alors de choisir chaque participant au combat en le sélectionnant dan
 En cas d'erreur, il est possible de retirer de la colonne de droite un personnage en le sélectionnant et en cliquant sur \interfaceitem{Retirer}.
 
 L'ordre dans lequel les différents acteurs figurent dans la colonne de droite est celui dans lequel ils agiront lors du combat.
-Si certains agissent plusieurs fois par tour il suffit de les ajouter plusieurs fois.
-Veillez à bien ordonner la liste des participants en utilisant les boutons \interfaceitem{Haut} et \interfaceitem{Bas}, qui ont pour effet de monter et descendre le personnage sélectionné dans la liste.
+Veillez donc à bien ordonner la liste des participants en utilisant les boutons \interfaceitem{Haut} et \interfaceitem{Bas}, qui ont pour effet de monter et descendre le personnage sélectionné dans la liste.
 Sachez toutefois qu'il sera possible de changer l'ordre d'action en cours de combat.
 Une fois la préparation terminée, il suffit de cliquer sur \interfaceitem{OK} pour passer à l'étape suivante.
 
