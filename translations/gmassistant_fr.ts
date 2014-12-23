@@ -747,7 +747,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="250"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="479"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="484"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
@@ -1072,13 +1072,13 @@ p, li { white-space: pre-wrap; }
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="447"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="903"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="452"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="911"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="442"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="447"/>
         <source>&amp;Resume</source>
         <translation>&amp;Reprise</translation>
     </message>
@@ -1086,95 +1086,95 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="109"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="502"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="298"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="304"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="345"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="384"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="493"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="531"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="542"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="548"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="845"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="303"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="309"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="350"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="389"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="498"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="536"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="547"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="553"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="853"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="287"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="292"/>
         <source>Select the file to open</source>
         <translation>Sélectionnez le fichier à ouvrir</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="287"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="292"/>
         <source>GM-Assistant files (*.gms *.gma);;XML files (*.xml)</source>
         <translation>Fichiers GM-Assistant (*.gms *.gma);;Fichiers XML (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="304"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="548"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="309"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="553"/>
         <source>The game will be loaded anyway, but some features might not work properly.</source>
         <translation>Le jeu va tout de même être chargé, mais certaines fonctionnalités peuvent ne pas fonctionner normalement.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="304"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="548"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="309"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="553"/>
         <source>The game cannot be loaded correctly for the following reason: </source>
         <translation>Le jeu n&apos;a pas pu être chargé pour la raison suivante :</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="314"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="333"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="556"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="319"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="338"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="561"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="314"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="556"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="319"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="561"/>
         <source>The syntax of the game you have just loaded is not rigourously correct. Would you like to fix it now?</source>
         <translation>La syntaxe du jeu que vous venez de charger n&apos;est pas rigoureusement correcte. Voulez-vous la corriger maintenant ?</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="333"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="338"/>
         <source>The game you want to save does not use the latest version of GM-Assistant files. Do you want to update it? If no, some features may not be saved properly.</source>
         <translation>Le jeu que vous voulez sauvegarder n&apos;utilise pas la dernière version de fichiers GM-Assistant. Voulez-vous le mettre à jour ? Si non, certaines fonctionnalités peuvent ne pas être sauvegardées correctement.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="352"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="357"/>
         <source>GM-Assistant files (1.2) (*.gms)</source>
         <translation>Fichiers GM-Assistant (1.2) (*.gms)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="355"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="360"/>
         <source>;;GM-Assistant files (1.1) (*.gma);;GM-Assistant files (1.0) (*.xml)</source>
         <translation>;;Fichiers GM-Assistant (1.1) (*.gma);;Fichiers GM-Assistant (1.0) (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="357"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="362"/>
         <source>Select the file to save</source>
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="493"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="498"/>
         <source>Unable to play the file</source>
         <translation>Impossible de jouer le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="531"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="536"/>
         <source>The file &quot;%1&quot; does not exist.</source>
         <translation>Le fichier &quot;%1&quot; n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="785"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="793"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="785"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="793"/>
         <source>The current game has been modified since the last save. If you continue, unsaved changes will be discarded.</source>
         <translation>Le jeu en cours a été modifié depuis la dernière sauvegarde. Si vous continuez, les changements non sauvegardés seront perdus.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="713"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="718"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>

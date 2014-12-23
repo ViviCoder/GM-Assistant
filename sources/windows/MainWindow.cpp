@@ -95,13 +95,18 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     // connections
     connect(smRecent,SIGNAL(mapped(int)),this,SLOT(loadRecent(int)));
     connect(treePlot, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    treePlot->installEventFilter(this);
     connect(treeHistory, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    treeHistory->installEventFilter(this);
     connect(treeMusic, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    treeMusic->installEventFilter(this);
     connect(treeFX, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    treeFX->installEventFilter(this);
     connect(textNotes, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(textNotes, SIGNAL(unregistered()), this, SLOT(updateUndoRedo()));
     textNotes->installEventFilter(this);
     connect(tableStats, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    tableStats->installEventFilter(this);
 
     // Item dialog
     treePlot->setItemDialogWindow(pItemDialog);
@@ -725,50 +730,53 @@ void MainWindow::updateUndoRedo()
 
 bool MainWindow::eventFilter(QObject *source, QEvent *e)
 {
-    if (source == textNotes)
+    if (e->type() == QEvent::KeyPress)
     {
-        if (e->type() == QEvent::KeyPress)
+        QKeyEvent *event = dynamic_cast<QKeyEvent*>(e);
+        Qt::KeyboardModifiers modifiers = event->modifiers();
+        switch (event->key())
         {
-            QKeyEvent *event = dynamic_cast<QKeyEvent*>(e);
-            Qt::KeyboardModifiers modifiers = event->modifiers();
-            switch (event->key())
-            {
-                case Qt::Key_Z: // undo - redo
-                                if (modifiers == Qt::ControlModifier)
-                                {
-                                    textNotes->checkModification();
-                                    if (mqQueue.undoable())
-                                    {
-                                        on_action_Undo_triggered();
-                                    }
-                                    return true;
-                                }
-                                else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier))
-                                {
-                                    textNotes->checkModification();
-                                    if (mqQueue.redoable())
-                                    {
-                                        on_action_Redo_triggered();
-                                    }
-                                    return true;
-                                }
-                                break;
-                case Qt::Key_V: if (modifiers == Qt::ControlModifier)
-                                {
-                                    textNotes->forcePaste();
-                                }
-                                break;
-                case Qt::Key_X: if (modifiers == Qt::ControlModifier)
-                                {
-                                    textNotes->forceCut();
-                                }
-                                break;
-                default:    if (modifiers & Qt::ControlModifier)
+            case Qt::Key_Z: // undo - redo
+                            if (modifiers == Qt::ControlModifier)
                             {
-                                textNotes->checkModification();
+                                if (source == textNotes)
+                                {
+                                    textNotes->checkModification();
+                                }
+                                if (mqQueue.undoable())
+                                {
+                                    on_action_Undo_triggered();
+                                }
+                                return true;
+                            }
+                            else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier))
+                            {
+                                if (source == textNotes)
+                                {
+                                    textNotes->checkModification();
+                                }
+                                if (mqQueue.redoable())
+                                {
+                                    on_action_Redo_triggered();
+                                }
+                                return true;
                             }
                             break;
-            }
+            case Qt::Key_V: if (source == textNotes && modifiers == Qt::ControlModifier)
+                            {
+                                textNotes->forcePaste();
+                            }
+                            break;
+            case Qt::Key_X: if (source == textNotes && modifiers == Qt::ControlModifier)
+                            {
+                                textNotes->forceCut();
+                            }
+                            break;
+            default:    if (source == textNotes && modifiers & Qt::ControlModifier)
+                        {
+                            textNotes->checkModification();
+                        }
+                        break;
         }
     }
     return QMainWindow::eventFilter(source, e);
