@@ -493,7 +493,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/DiceDialog.ui" line="28"/>
-        <source>Dice type:</source>
+        <source>Die type:</source>
         <translation>Type de dé :</translation>
     </message>
     <message>
@@ -543,7 +543,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/DiceDialog.ui" line="90"/>
-        <source>Number of dices:</source>
+        <source>Number of dice:</source>
         <translation>Nombre de dés :</translation>
     </message>
     <message>

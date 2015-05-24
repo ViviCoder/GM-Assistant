@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>305</width>
-    <height>146</height>
+    <height>172</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -25,7 +25,7 @@
      <item row="1" column="0">
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>Dice type:</string>
+        <string>Die type:</string>
        </property>
       </widget>
      </item>
@@ -87,7 +87,7 @@
      <item row="2" column="0">
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>Number of dices:</string>
+        <string>Number of dice:</string>
        </property>
       </widget>
      </item>
