@@ -1,5 +1,5 @@
 ##########################################################################
-# Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+# Copyright © 2011-2015 Vincent Prat & Simon Nicolas
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ target="gm-assistant"
 # Initializing some options
 debug=0
 system_install=1
-build_icon=0
+build=0
 
 # Error returns
 err_bad_option=1
@@ -55,13 +55,21 @@ man_file=$target.6
 
 # Reading options
 supported_short_options="ghu"
-supported_long_options="help,debug,prefix:,user,bindir:,datadir:,desktopdir:,build:,includedir:,mandir:,libdir:,infodir:,sysconfdir:,usrconfdir:,localstatedir:,libexecdir:,disable-maintainer-mode,disable-dependency-tracking"
+supported_long_options="help,debug,prefix:,user,bindir:,datadir:,desktopdir:,build:,includedir:,mandir:,libdir:,infodir:,sysconfdir:,usrconfdir:,localstatedir:,libexecdir:,disable-maintainer-mode,disable-dependency-tracking,disable-silent-rules"
 
 options=$(getopt -s sh -l $supported_long_options $supported_short_options $@)
 if [ $? -eq 1 ]   # unsupported options
 then
     echo "Try the --help option for more information"
     exit $err_bad_option
+fi
+
+# Test of the behavior of echo
+if [ "$(echo -e)" = '-e' ]
+then
+    echo_e=''
+else
+    echo_e='-e'
 fi
 
 # initialization
@@ -72,10 +80,10 @@ do
     then
         case $opt in
             -g | --debug)   debug=1;;
-            -h | --help)    echo -e "Usage: configure [options]\n\nGeneral options:\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n -u, --user\tInstall in a user scope\n\nDirectory options:\n --prefix=[$default_prefix]\t\t\t\tInstallation prefix\n --bindir=[<prefix>/$default_bindir]\t\t\tBinary directory\n --datadir=[<prefix>/$default_datadir]\tData directory\n --desktopdir=[<prefix>/$default_desktopdir]\tDesktop file directory\n --mandir=[<prefix>/$default_mandir]\t\t\tManual directory\n --sysconfdir=[$default_sysconfdir]\t\t\t\tSystem configuration directory\n --usrconfdir=[$default_usrconfdir]\t\t\tUser configuration directory\n\nEnvironment variables:\n CFLAGS:\tC compilation flags\n CXXFLAGS:\tC++ compilation flags\n CPPFLAGS:\tC/C++ pre-processor flags\n LDFLAGS:\tlinking flags"
+            -h | --help)    echo $echo_e "Usage: configure [options]\n\nGeneral options:\n -g, --debug\tEnable debugging\n -h, --help\tDisplay this usage guide\n -u, --user\tInstall in a user scope\n\nDirectory options:\n --prefix=[$default_prefix]\t\t\t\tInstallation prefix\n --bindir=[<prefix>/$default_bindir]\t\t\tBinary directory\n --datadir=[<prefix>/$default_datadir]\tData directory\n --desktopdir=[<prefix>/$default_desktopdir]\tDesktop file directory\n --mandir=[<prefix>/$default_mandir]\t\t\tManual directory\n --sysconfdir=[$default_sysconfdir]\t\t\t\tSystem configuration directory\n --usrconfdir=[$default_usrconfdir]\t\t\tUser configuration directory\n\nEnvironment variables:\n CFLAGS:\tC compilation flags\n CXXFLAGS:\tC++ compilation flags\n CPPFLAGS:\tC/C++ pre-processor flags\n LDFLAGS:\tlinking flags"
                 exit 0;;
             -u | --user)    system_install=0;;
-            --build)        build_icon=1;;
+            --build)        build=1;;
             --prefix)       arg=1;;
             --sysconfdir)   arg=2;;
             --mandir)       arg=3;;
@@ -186,7 +194,7 @@ echo
 
 # Needed softwares
 softs="uname echo getopt ls grep head pkg-config make sed install tr readlink $qmake $lrelease $lupdate g++ $moc rcc $uic"
-if [ $build_icon -ne 0 ]
+if [ $build -ne 0 ]
 then
     softs=$softs" rsvg-convert convert"
 fi
@@ -349,10 +357,10 @@ then
     sed $sed_i 's#-o main.o#-DSYSTEM_INSTALL -o main.o#' Makefile
 fi
 
-if [ $build_icon -ne 0 ]
+if [ $build -ne 0 ]
 then
     # preparing the icon
-    sed $sed_i 's#Makefile $(TARGET)#Makefile $(TARGET) GMA.xpm\n\nGMA.xpm: GMA.png\n\tconvert -resize 32x32 $< $@\n\nGMA.png: data/images/GMA.svg\n\trsvg-convert $< -o $@#' Makefile
+    sed $sed_i 's#Makefile $(TARGET)#Makefile $(TARGET) GMA.xpm doc\n\nGMA.xpm: GMA.png\n\tconvert -resize 32x32 $< $@\n\nGMA.png: data/images/GMA.svg\n\trsvg-convert $< -o $@#' Makefile
     install_icon='\t$(INSTALL_FILE) GMA.xpm $(DATADIR)\n'
 fi
 
@@ -360,7 +368,7 @@ fi
 sed "s#<bin_path>#$bindir#" $desk_file.src > $desk_file 
 sed $sed_i "s#<icon_path>#$datadir#" $desk_file
 
-sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINDIR=$(DESTDIR)'$bindir'\nDATADIR=$(DESTDIR)'$datadir'\nTRANSLATIONS=$(DATADIR)/translations\nMANDIR=$(DESTDIR)'$mandir'\nCONFDIR=$(DESTDIR)'$confdir'\nDESKTOPDIR=$(DESTDIR)'$desktopdir'\ninstall:\n\t\install -d $(BASEDIR) $(BINDIR) $(TRANSLATIONS) $(MANDIR) $(CONFDIR) $(DESKTOPDIR)\n\t$(INSTALL_PROGRAM) '$target' $(BINDIR)\n'"$install_icon"'\t$(INSTALL_FILE) data/images/GMA.svg $(DATADIR)\n\t$(INSTALL_FILE) translations/*.qm translations/languages $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/'$man_file' $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONFDIR)\n\t$(INSTALL_FILE) '$desk_file' $(DESKTOPDIR)#' Makefile
+sed $sed_i 's#^install:.*#BASEDIR=$(DESTDIR)'$prefix'\nBINDIR=$(DESTDIR)'$bindir'\nDATADIR=$(DESTDIR)'$datadir'\nTRANSLATIONS=$(DATADIR)/translations\nMANDIR=$(DESTDIR)'$mandir'\nCONFDIR=$(DESTDIR)'$confdir'\nDESKTOPDIR=$(DESTDIR)'$desktopdir'\n\ninstall:\n\tinstall -d $(BASEDIR) $(BINDIR) $(TRANSLATIONS) $(MANDIR) $(CONFDIR) $(DESKTOPDIR)\n\t$(INSTALL_PROGRAM) '$target' $(BINDIR)\n'"$install_icon"'\t$(INSTALL_FILE) data/images/GMA.svg $(DATADIR)\n\t$(INSTALL_FILE) translations/*.qm translations/languages $(TRANSLATIONS)\n\t$(INSTALL_FILE) doc/'$man_file' $(MANDIR)\n\t$(INSTALL_FILE) '$conf_file' $(CONFDIR)\n\t$(INSTALL_FILE) '$desk_file' $(DESKTOPDIR)#' Makefile
 
 # preparing the uninstallation
 sed $sed_i 's#rmdir#rmdir --ignore-fail-on-non-empty#' Makefile
@@ -387,23 +395,31 @@ then
         if [ -e $file ]
         then
             list="$list $outputfile"
-            echo -e $outputfile': '$file'\n\tcd '$dir'; pdflatex userguide.tex; pdflatex userguide.tex\n\tcp '$dir'/userguide.pdf doc/userguide/userguide-'$lang'.pdf\n' >> Makefile
+            echo $echo_e $outputfile': '$file'\n\tcd '$dir'; pdflatex userguide.tex; pdflatex userguide.tex\n\tcp '$dir'/userguide.pdf doc/userguide/userguide-'$lang'.pdf\n' >> Makefile
         fi
     done
-    echo -e 'doc: '$list'\n' >> Makefile
+    echo $echo_e 'doc: '$list'\n' >> Makefile
+    echo $echo_e 'DOCDIR=$(DESTDIR)'$prefix'/share/doc/gm-assistant-doc/' >> Makefile
+    echo $echo_e '\ninstall-doc:\n\tinstall -d $(DOCDIR)\n\t$(INSTALL_FILE) doc/userguide/userguide-*.pdf $(DOCDIR)\n' >> Makefile
+    echo $echo_e 'uninstall-doc:\n\t$(DEL_FILE) $(DOCDIR)/userguide-*.pdf\n\t$(DEL_DIR) $(DOCDIR)\n' >> Makefile
+    if [ $build -ne 0 ]
+    then
+        sed $sed_i 's#^install:.*#install: install-doc#' Makefile
+        sed $sed_i 's#^uninstall:.*#uninstall: uninstall-doc#' Makefile
+    fi
 else
     echo "In order to be able to generate the user documentation, you need pdflatex"
     echo
 fi
+
 dox=$(which doxygen)
 if [ $? = 0 ]
 then
     echo "To generate the developer documentation, type make devdoc"
-    echo -e 'devdoc: dox.conf $(filter sources/%,$(SOURCES))\n\tdoxygen dox.conf' >> Makefile
+    echo $echo_e 'devdoc: dox.conf $(filter sources/%,$(SOURCES))\n\tdoxygen dox.conf' >> Makefile
 else
     echo "In order to be able to generate the developer documentation, you need doxygen"
     echo
 fi
 
 echo "To compile, type make"
-
