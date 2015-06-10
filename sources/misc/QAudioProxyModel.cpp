@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2015 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -41,5 +41,12 @@ bool QAudioProxyModel::filterAcceptsRow(int sourceRow, const QModelIndex &source
     {
         return true;
     }
-    return slFormats.contains(pDetector->typeOfFile(model->filePath(index).toStdString()).c_str());
+    QString fileName = model->filePath(index);
+    std::string mimeType = pDetector->typeOfFile(fileName.toStdString());
+    // special case when mp3 files are not properly recognized as such
+    if (fileName.endsWith("mp3") && mimeType == "application/octet-stream")
+    {
+        return true;
+    }
+    return slFormats.contains(mimeType.c_str());
 }
