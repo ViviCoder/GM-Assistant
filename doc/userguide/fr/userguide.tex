@@ -18,13 +18,14 @@
 
 \documentclass[a4paper,12pt]{article}
 
-\usepackage[frenchb]{babel}
+\usepackage[french]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{xspace}
+\usepackage{html}
 
 \graphicspath{{images/}}
 
@@ -41,7 +42,7 @@
 
 \maketitle
 
-\tableofcontents
+\latex{\tableofcontents}
 
 \section{Introduction}
 
@@ -81,7 +82,9 @@ En voici la liste~:
             L'idée est de rassembler des informations qui ne servent pas pendant la partie mais qui permettent de se souvenir de \guillemets{Qui~? Quand~? Comment~?}.}
     \item[\interfaceitem{Quitter}~:]{ferme la fiche de scénario en cours et quitte le logiciel}
 \end{description}
-\paragraph{Le fichier de sauvegarde}
+
+\latex{\paragraph{Fichier de sauvegarde}}
+
 Le fichier de sauvegarde \texttt{.gms} créé est un fichier complet qui comprend toutes les informations qui sont dans la fiche de scénario et les fichiers annexes que vous y avez ajouté (musique, bruitages, images), lui permettant d'être déplacé d'un ordinateur à un autre sans risque de perte (un son manquant ou une image absente par exemple).
 
 \subsection{Édition}
@@ -148,7 +151,7 @@ Voici la liste des modules présents dans cette version~:
 Tout ces modules sont rassemblés dans l'interface par défaut du logiciel, comme on peut le voir sur la figure~\ref{fig:interface}, mais peuvent également être réorganisés grâce au sous-menu \interfaceitem{Interface} du menu \interfaceitem{Affichage} décrit précédemment dans la section~\ref{sec:affich}.
 \begin{figure}[ht]
     \centerline{\includegraphics[width=\textwidth]{scenario_complet}}
-    \caption{Fenêtre principale du logiciel avec une partie en cours}
+    \caption{Fen\^etre principale du logiciel avec une partie en cours}
     \label{fig:interface}
 \end{figure}
 
@@ -172,7 +175,7 @@ Veuillez noter que pour les fichiers audio, l'action \interfaceitem{Jouer} n'app
 L'action \interfaceitem{Ajouter} nous permet d'accéder à la fenêtre de création d'item (figure~\ref{fig:ajout}).
 \begin{figure}[ht]
     \centerline{\includegraphics[width=0.4\textwidth]{add_item}}
-    \caption{Fenêtre de création d'item}
+    \caption{Fen\^etre de cr\'eation d'item}
     \label{fig:ajout}
 \end{figure}
 Notez qu'il est également possible d'accéder à cette fenêtre en cliquant avec le bouton droit de la souris dans la partie vide du module ou en appuyant sur la touche \interfaceitem{Inser} de votre clavier.
@@ -199,7 +202,7 @@ C'est en effet à cet endroit que vous pouvez entrer le plan détaillé et ordon
 La figure~\ref{arbre_scenar} donne un aperçu de ce qu'il est possible de faire avec ce module.
 \begin{figure}[ht]
     \centerline{\includegraphics[width=0.7\textwidth]{scenario_type}}
-    \caption{Plan schématique d'un scénario}
+    \caption{Plan sch\'ematique d'un sc\'enario}
     \label{arbre_scenar}
 \end{figure}
 Chaque ligne que vous voyez est un item, et il suffit donc de suivre la technique de création d'item présentée dans la section~\ref{item} pour ordonner son scénario.
@@ -284,7 +287,7 @@ Pour l'utiliser, il suffit de sélectionner l'option correspondante du menu \int
 Une fenêtre similaire à celle représentée sur la figure~\ref{simulateur_des} s'ouvre alors.
 \begin{figure}[ht]
     \centerline{\includegraphics[width=0.4\textwidth]{simulateur_de_des}}
-    \caption{Simulateur de dés}
+    \caption{Simulateur de d\'es}
     \label{simulateur_des}
 \end{figure}
 
@@ -314,7 +317,7 @@ Son utilisation se divise en deux étapes~: la sélection des participants au co
 La première fenêtre à apparaître ressemble à celle représentée sur la figure~\ref{gestion_combat_choix}.
 \begin{figure}[ht]
     \centerline{\includegraphics[width=1\textwidth]{gestionnaire_combat_prep}}
-    \caption{Gestionnaire de combat~: sélection des participants}
+    \caption{Gestionnaire de combat~: s\'election des participants}
     \label{gestion_combat_choix}
 \end{figure}
 La liste des personnages de la colonne de gauche est générée automatiquement à partir des protagonistes entrés dans le module \interfaceitem{Personnages}.

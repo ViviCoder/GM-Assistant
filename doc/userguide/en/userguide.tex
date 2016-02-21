@@ -19,9 +19,11 @@
 \documentclass[a4paper,12pt]{article}
 
 \usepackage[utf8]{inputenc}
+\usepackage{lmodern}
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{xspace}
+\usepackage{html}
 
 \graphicspath{{images/}}
 
@@ -37,7 +39,7 @@
 
 \maketitle
 
-\tableofcontents
+\latex{\tableofcontents}
 
 \section{Introduction}
 
@@ -71,7 +73,8 @@ This menu gathers all the commands needed to manage your saves:
     \item[\interfaceitem{Metadata}:]{Displays a window with data about the scenario, such as the title, the author, the creation date, a short abstract, the list of players and the date of the game}
     \item[\interfaceitem{Quit}:]{Closes the scenario file and the application}
 \end{description}
-\paragraph{The save file}
+
+\latex{\paragraph{The save file}}
 
 The save file \texttt{.gms} created is a file with everything included -- all the information and the auxiliary files (music, sound effects and images) -- so you can move it to another computer and use it without any trouble.
 
@@ -131,7 +134,7 @@ The list of modules includes:
 All these modules are available in the main interface of the software.
 \begin{figure}[ht]
     \centerline{\includegraphics[width=\textwidth]{full_scenario}}
-    \caption{Fenêtre principale du logiciel avec une partie en cours}
+    \caption{Main window}
     \label{fig:interface}
 \end{figure}
 
@@ -238,7 +241,7 @@ Like modules, tools are meant to help the GM during games, but unlike them, they
 The dice simulator is a tool allowing the user to simulate directly in the software the random result of virtual dice. You will have all you need if you forget your dice or if you want to roll more dice than you have. To use it, select this option in the \interfaceitem{Tools} menu. A window similar to figure~\ref{simulateur_des} will open.
 \begin{figure}[ht]
     \centerline{\includegraphics[width=0.4\textwidth]{dice_simulator}}
-    \caption{Simulateur de dés}
+    \caption{Dice simulator}
     \label{simulateur_des}
 \end{figure}
 
