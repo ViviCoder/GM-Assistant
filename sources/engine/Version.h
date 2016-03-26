@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #define HEADER_VERSION
 
 #define MAJOR_VERSION   1
-#define MINOR_VERSION   2
+#define MINOR_VERSION   3
 #define RELEASE_VERSION 0
 
 #include <string>

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -56,6 +56,14 @@ IOConfig::IOConfig(const Version &version): vVersion(version), bValid(true)
         bHasMetadata = true;
         bArchived = true;
         sDescriptionName = "description";
+    }
+    if (vVersion < Version(1, 3))
+    {
+        bHasNotes = false;
+    }
+    else
+    {
+        bHasNotes = true;
     }
 }
 
@@ -125,6 +133,10 @@ IOConfig IOConfig::detect(const string &fileName, bool isArchived)
     else if (!root->find("//character[@playername]").empty())
     {
         res.setDescriptionName("playername");
+    }
+    if (!root->find("//item[@type='note']").empty())
+    {
+        res.setHasNotes(true);
     }
     return res;
 }

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -53,7 +53,9 @@ class IOConfig
         //! Flag of availability of metadata
         bool bHasMetadata;
         //! Flag of archive format
-        bool bArchived; 
+        bool bArchived;
+        // Flag of availability of note elements
+        bool bHasNotes;
         //! Temporary directory
         std::string sTempDir;
     public:
@@ -156,9 +158,9 @@ class IOConfig
         inline bool hasMetadata() const;
         /*!
          * \brief Setter for the flag of availability of metadata
-         * \param hadMetadata New flag of availability of metadata
+         * \param hasMetadata New flag of availability of metadata
          */
-        inline void setHasMetadata(bool hadMetadata);
+        inline void setHasMetadata(bool hasMetadata);
         /*!
          * \brief Getter for the flag of archive format
          * \return Flag of archive format
@@ -184,6 +186,16 @@ class IOConfig
          * \param descriptionName New name of the short description attribute
          */
         inline void setDescriptionName(const std::string &descriptionName);
+        /*!
+         * \brief Getter for the flag of availability of notes
+         * \return Flag of availability of notes
+         */
+        inline bool hasNotes() const;
+        /*!
+         * \brief Setter for the flag of availability of notes
+         * \param Flag of availability of notes
+         */
+        inline void setHasNotes(bool hasNotes);
 };
 
 std::string IOConfig::rootName() const
@@ -337,6 +349,20 @@ void IOConfig::setDescriptionName(const std::string &descriptionName)
     if (descriptionName != sDescriptionName)
     {
         sDescriptionName = descriptionName;
+        bValid = false;
+    }
+}
+
+bool IOConfig::hasNotes() const
+{
+    return bHasNotes;
+}
+
+void IOConfig::setHasNotes(bool hasNotes)
+{
+    if (hasNotes != bHasNotes)
+    {
+        bHasNotes = hasNotes;
         bValid = false;
     }
 }

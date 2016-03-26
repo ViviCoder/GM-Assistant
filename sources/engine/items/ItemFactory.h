@@ -19,10 +19,12 @@
 #ifndef HEADER_ITEMFACTORY
 #define HEADER_ITEMFACTORY
 
+// also used to broadcast all item classes
 #include "Item.h"
 #include "FileItem.h"
 #include "SoundItem.h"
 #include "ImageItem.h"
+#include "NoteItem.h"
 
 /*!
  * \brief Item factory

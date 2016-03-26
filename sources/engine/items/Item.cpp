@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -85,6 +85,11 @@ string Item::typeToStr(Type type, const IOConfig &config)
                             break;
                         }
         case tBasic:    return "basic"; break;
+        case tNote:     if (config.hasNotes())
+                        {
+                            return "note";
+                            break;
+                        }
     }
     return "";
 }
@@ -104,6 +109,7 @@ Item::Type Item::strToType(const string &name, const IOConfig &config) throw(xml
     else if (name=="file") return tFile;
     else if (name=="sound") return tSound;
     else if (config.hasImages() && name == config.imageName()) return tImage;
+    else if (config.hasNotes() && name == "note") return tNote;
     else    throw xmlpp::exception("Unrecognized \""+name+"\" item type");
 }
 

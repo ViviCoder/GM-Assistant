@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -44,7 +44,9 @@ class Item
             //! Item related to a sound file
             tSound,
             //! Item related to an image file
-            tImage
+            tImage,
+            //! Item associted with a note
+            tNote
         };
         /*!
          * \brief Constructor
