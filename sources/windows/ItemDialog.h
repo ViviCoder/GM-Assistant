@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -41,7 +41,15 @@ class ItemDialog: public QDialog, private Ui::itemDialog
         ItemDialog(QWidget *parent=0, QAudioProxyModel *filter=0);
         // accessors
         Item::State state() const;
-        QString text() const;
+        /*!
+         * \brief Getter for the text of the item
+         * \return Text of the item
+         */
+        inline QString text() const;
+        /*!
+         * \brief Getter for the type of the item
+         * \return Type of the item
+         */
         Item::Type type() const;
         /*!
          * \brief Getter for the name of the file
@@ -49,9 +57,23 @@ class ItemDialog: public QDialog, private Ui::itemDialog
          * If the file is within the current directory, returns the relative path
          */
         QString fileName() const;
-        Result selectionResult() const;
+        /*!
+         * \brief Getter for the result of the selection
+         * \return Result of the selection
+         */
+        inline Result selectionResult() const;
     public slots:
+        /*!
+         * \brief Slot for the "Child" push button
+         *
+         * Creates a new item as a child of the current item
+         */
         void on_pushChild_clicked();
+        /*!
+         * \brief Slot for the "Brother" push button
+         *
+         * Creates a new item at the same level as the current item
+         */
         void on_pushBrother_clicked();
         /*!
          * \brief Slot for the "Basic" radio button
@@ -65,6 +87,12 @@ class ItemDialog: public QDialog, private Ui::itemDialog
          * Sets the type of the item to tSound
          */
         void on_radioSound_clicked();
+        /*!
+         * \brief Slot for the "Note" radio item
+         *
+         * Sets the type of the item to tNote
+         */
+        void on_radioNote_clicked();
         /*!
          * \brief Slot for the "Browse" tool button
          *
@@ -100,5 +128,15 @@ class ItemDialog: public QDialog, private Ui::itemDialog
         //! Audio file browser
         QFileDialog *audioBrowser;
 };
+
+QString ItemDialog::text() const
+{
+    return editItem->text();
+}
+
+ItemDialog::Result ItemDialog::selectionResult() const
+{
+    return rRes;
+}
 
 #endif

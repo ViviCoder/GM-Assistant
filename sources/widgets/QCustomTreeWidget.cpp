@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -147,11 +147,16 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                                                 actionLaunch->setVisible(true);
                                                             }
                                                             break;
-                                        case Item::tImage:      actionLaunch->setIcon(QIcon(":/data/images/image.svg"));
-                                                                actionLaunch->setStatusTip(QApplication::translate("customTree","Display the image",0));
-                                                                actionLaunch->setText(QApplication::translate("customTree","Disp&lay",0));
-                                                                actionLaunch->setVisible(true);
-                                                                break;
+                                        case Item::tImage:  actionLaunch->setIcon(QIcon(":/data/images/image.svg"));
+                                                            actionLaunch->setStatusTip(QApplication::translate("customTree","Display the image",0));
+                                                            actionLaunch->setText(QApplication::translate("customTree","Disp&lay",0));
+                                                            actionLaunch->setVisible(true);
+                                                            break;
+                                        case Item::tNote:   actionLaunch->setIcon(QIcon(":/data/images/text.svg")),
+                                                            actionLaunch->setStatusTip(QApplication::translate("customTree", "Display the note", 0));
+                                                            actionLaunch->setText(QApplication::translate("customTree", "Disp&lay", 0));
+                                                            actionLaunch->setVisible(true);
+                                                            break;
                                         default:    actionLaunch->setVisible(false);
                                                     break;
                                     }
@@ -492,6 +497,8 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                                 break;
                                             }
                     case Item::tImage:      newItem = new ImageItem(pItemDial->text().toStdString(), pItemDial->state(), false, pItemDial->fileName().toStdString());
+                                            break;
+                    case Item::tNote:       newItem = new NoteItem(pItemDial->text().toStdString(), pItemDial->state());
                                             break;
                     default:                newItem = new Item(pItemDial->text().toStdString(),pItemDial->state());
                                             break;

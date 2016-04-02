@@ -1,6 +1,7 @@
 <RCC>
   <qresource>
     <file>data/images/GMA.svg</file>
+    <file>data/images/text.svg</file>
     <file>data/images/add.svg</file>
     <file>data/images/image.svg</file>
     <file>data/images/check.svg</file>

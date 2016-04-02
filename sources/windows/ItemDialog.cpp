@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -44,17 +44,14 @@ Item::State ItemDialog::state() const
         return Item::sSuccess;
 }
 
-QString ItemDialog::text() const
-{
-    return editItem->text();
-}
-
 Item::Type ItemDialog::type() const
 {
     if (radioSound->isChecked())
         return Item::tSound;
     else if (radioImage->isChecked())
         return Item::tImage;
+    else if (radioNote->isChecked())
+        return Item::tNote;
     else
         return Item::tBasic;
 }
@@ -75,14 +72,14 @@ void ItemDialog::on_pushChild_clicked()
 {
     if (editItem->text()!="")
     {
-        if (radioBasic->isChecked() || editFile->text()!="")
+        if (radioBasic->isChecked() || radioNote->isChecked() || editFile->text() != "")
         {
             rRes = rChild;
             accept();
         }
         else
         {
-        QMessageBox::critical(this,QApplication::translate("itemDialog","Uncomplete data",0),QApplication::translate("itemDialog","You must select a file before validating.",0));
+            QMessageBox::critical(this,QApplication::translate("itemDialog","Uncomplete data",0),QApplication::translate("itemDialog","You must select a file before validating.",0));
         }
     }
     else
@@ -95,7 +92,7 @@ void ItemDialog::on_pushBrother_clicked()
 {
     if (editItem->text()!="")
     {
-        if (radioBasic->isChecked() || editFile->text()!="")
+        if (radioBasic->isChecked() || radioNote->isChecked() || editFile->text()!="")
         {
             rRes = rBrother;
             accept();
@@ -109,11 +106,6 @@ void ItemDialog::on_pushBrother_clicked()
     {
         QMessageBox::critical(this,QApplication::translate("itemDialog","Uncomplete data",0),QApplication::translate("itemDialog","You must fill the content before validating.",0));
     }
-}
-
-ItemDialog::Result ItemDialog::selectionResult() const
-{
-    return rRes;
 }
 
 void ItemDialog::on_radioBasic_clicked()
@@ -131,6 +123,11 @@ void ItemDialog::on_radioImage_clicked()
 {
     toolBrowse->setEnabled(true);
     editFile->setText("");
+}
+
+void ItemDialog::on_radioNote_clicked()
+{
+    toolBrowse->setEnabled(false);
 }
 
 void ItemDialog::on_toolBrowse_clicked()
@@ -193,8 +190,9 @@ int ItemDialog::exec(Item *item)
     radioBasic->setChecked(itemType == Item::tBasic);
     radioSound->setChecked(itemType == Item::tSound);
     radioImage->setChecked(itemType == Item::tImage);
+    radioNote->setChecked(itemType == Item::tNote);
     // everuthing else
-    toolBrowse->setEnabled(itemType != Item::tBasic);
+    toolBrowse->setEnabled(itemType != Item::tBasic && itemType != Item::tNote);
 
     editItem->setText(content);
     editItem->setFocus();

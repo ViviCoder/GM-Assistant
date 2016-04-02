@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -72,10 +72,16 @@ void QCustomTreeWidgetItem::updateDisplay()
                                 }
                                 break;
             case Item::tImage:  setIcon(0,QIcon(":/data/images/image.svg"));
-                                setStatusTip(0,QApplication::translate("customTree","Double click to show the file",0));
+                                setStatusTip(0,QApplication::translate("customTree", "Double click to display the image", 0));
                                 break;
             default:    break;
         }
+    }
+    else if (item->type() == Item::tNote)
+    {
+        setIcon(0, QIcon(":/data/images/text.svg"));
+        setStatusTip(0, QApplication::translate("customTree", "Double click to display the note", 0));
+        setToolTip(0, ""); 
     }
     else
     {

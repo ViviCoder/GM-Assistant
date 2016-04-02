@@ -10,7 +10,7 @@
     <x>0</x>
     <y>0</y>
     <width>325</width>
-    <height>483</height>
+    <height>487</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -108,6 +108,17 @@
         </property>
         <property name="checked">
          <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QRadioButton" name="radioNote">
+        <property name="text">
+         <string>N&amp;ote</string>
+        </property>
+        <property name="icon">
+         <iconset resource="../../ressource.qrc">
+          <normaloff>:/data/images/text.svg</normaloff>:/data/images/text.svg</iconset>
         </property>
        </widget>
       </item>

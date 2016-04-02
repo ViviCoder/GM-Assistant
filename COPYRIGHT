@@ -2,10 +2,10 @@ Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Contact: Vincent Prat <vinceprat@free.fr>
 Source: http://vivicoder.github.com/GM-Assistant
 License: GPL-3.0+
-Copyright: 2011-2013 Vincent Prat & Simon Nicolas
+Copyright: 2011-2016 Vincent Prat & Simon Nicolas
 
 Files: *
-Copyright: 2011-2013 Vincent Prat & Simon Nicolas
+Copyright: 2011-2016 Vincent Prat & Simon Nicolas
 License: GPL-3.0+
 
 Files: data/images/*
@@ -22,6 +22,7 @@ Comment:
  son.svg:       http://openclipart.org/detail/24063
  speaker.svg:   http://openclipart.org/detail/168846
  stop.svg:      http://openclipart.org/detail/57745
+ text.svg:      https://openclipart.org/detail/237988
  uncheck.svg:   http://openclipart.org/detail/33685
  up.svg:        http://openclipart.org/detail/12115
 

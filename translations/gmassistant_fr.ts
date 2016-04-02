@@ -299,142 +299,147 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>customTree</name>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="750"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="156"/>
+        <source>Display the note</source>
+        <translation>Affiche la note</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="757"/>
         <source>&amp;None</source>
         <translation>&amp;Aucun</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="751"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="758"/>
         <source>Untag the item</source>
         <translation>Retire toute étiquette de l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="752"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="759"/>
         <source>Ctrl+F5</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="753"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="760"/>
         <source>In &amp;progress</source>
         <translation>En &amp;cours</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="754"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="761"/>
         <source>Tag the item as being in progress</source>
         <translation>Marque l&apos;item comme étant en cours</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="755"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="762"/>
         <source>Ctrl+F6</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="756"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="763"/>
         <source>&amp;Failed</source>
         <translation>&amp;Échoué</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="757"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="764"/>
         <source>Tag the item as failed</source>
         <translation>Marque l&apos;item comme échoué</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="758"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="765"/>
         <source>Ctrl+F7</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="759"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="766"/>
         <source>&amp;Succeeded</source>
         <translation>&amp;Réussi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="760"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="767"/>
         <source>Tag the item as succeeded</source>
         <translation>Marque l&apos;item comme réussi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="761"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="768"/>
         <source>Ctrl+F8</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="762"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="769"/>
         <source>&amp;Add</source>
         <translation>A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="763"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="770"/>
         <source>Add a new item</source>
         <translation>Ajoute un nouvel item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="764"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="771"/>
         <source>Ins</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="765"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="772"/>
         <source>&amp;Delete</source>
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="766"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="773"/>
         <source>Delete the item</source>
         <translation>Supprime l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="767"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="774"/>
         <source>Del</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="768"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="775"/>
         <source>&amp;Edit</source>
         <translation>É&amp;diter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="769"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="776"/>
         <source>Edit the item</source>
         <translation>Édite l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="770"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="777"/>
         <source>Ctrl+F2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="771"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="778"/>
         <source>Space</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="772"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="779"/>
         <source>E&amp;xport</source>
         <translation>E&amp;xporter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="773"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="780"/>
         <source>Export the file associated to the item</source>
         <translation>Exporte le fichier associé à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="774"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="781"/>
         <source>Ctrl+Space</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="802"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="809"/>
         <source>Select where to export the file</source>
         <translation>Sélectionnez où exporter le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="807"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="814"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="807"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="814"/>
         <source>Unable to export the file</source>
         <translation>Impossible d&apos;exporter le fichier</translation>
     </message>
@@ -465,6 +470,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="152"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="157"/>
         <source>Disp&amp;lay</source>
         <translation>A&amp;fficher</translation>
     </message>
@@ -480,8 +486,13 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="75"/>
-        <source>Double click to show the file</source>
+        <source>Double click to display the image</source>
         <translation>Double-cliquez pour afficher l&apos;image</translation>
+    </message>
+    <message>
+        <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="83"/>
+        <source>Double click to display the note</source>
+        <translation>Double-cliquez pour afficher la note</translation>
     </message>
 </context>
 <context>
@@ -566,7 +577,7 @@ p, li { white-space: pre-wrap; }
     <name>itemDialog</name>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="17"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="179"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="176"/>
         <source>Create a new item</source>
         <translation>Créer un nouvel item</translation>
     </message>
@@ -613,67 +624,72 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="117"/>
+        <source>N&amp;ote</source>
+        <translation>N&amp;ote</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.ui" line="128"/>
         <source>A&amp;udio</source>
         <translation>A&amp;udio</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="128"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="139"/>
         <source>I&amp;mage</source>
         <translation>&amp;Image</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="141"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="152"/>
         <source>File:</source>
         <translation>Fichier :</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="158"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="169"/>
         <source>...</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="172"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="183"/>
         <source>&amp;Add</source>
         <translation>A&amp;jouter</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="183"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="182"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="194"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="179"/>
         <source>C&amp;hild</source>
         <translation>En&amp;fant</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="194"/>
+        <location filename="../sources/windows/ItemDialog.ui" line="205"/>
         <source>&amp;Cancel</source>
         <translation>A&amp;nnuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="212"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="210"/>
         <source>Audio files (*)</source>
         <translation>Fichiers audio (*)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="85"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="90"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="105"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="110"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="82"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="87"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="102"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="107"/>
         <source>Uncomplete data</source>
         <translation>Données incomplètes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="85"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="105"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="82"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="102"/>
         <source>You must select a file before validating.</source>
         <translation>Vous devez sélectionner un fichier avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="90"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="110"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="87"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="107"/>
         <source>You must fill the content before validating.</source>
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="148"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="145"/>
         <source>Select the image file to associate to the item</source>
         <translation>Sélectionnez le fichier image à associer à l&apos;item</translation>
     </message>
@@ -683,17 +699,17 @@ p, li { white-space: pre-wrap; }
         <translation>Sélectionnez le fichier audio à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="148"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="145"/>
         <source>Image files (*.jpg *.jpeg *.png *.bmp *.svg)</source>
         <translation>Fichiers image (*.jpg *.jpeg *.png *.bmp *.svg)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="163"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="160"/>
         <source>Edit the item</source>
         <translation>Éditer l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="166"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="163"/>
         <source>&amp;Validate</source>
         <translation>&amp;Valider</translation>
     </message>
@@ -1085,7 +1101,7 @@ p, li { white-space: pre-wrap; }
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="109"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="502"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="509"/>
         <location filename="../sources/windows/MainWindow.cpp" line="303"/>
         <location filename="../sources/windows/MainWindow.cpp" line="309"/>
         <location filename="../sources/windows/MainWindow.cpp" line="350"/>
