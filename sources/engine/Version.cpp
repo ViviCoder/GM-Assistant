@@ -28,11 +28,16 @@ Version::Version(int major, int minor, int release): iMajor(major), iMinor(minor
 Version::Version(const string &version): iMajor(MAJOR_VERSION), iMinor(MINOR_VERSION), iRelease(RELEASE_VERSION)
 {
     istringstream buf(version);
-    buf >> iMajor;
-    buf.ignore(1);
-    buf >> iMinor;
-    buf.ignore(1);
-    buf >> iRelease;
+    int test;
+    buf >> test;
+    if (test)
+    {
+        iMajor = test;
+        buf.ignore(1);
+        buf >> iMinor;
+        buf.ignore(1);
+        buf >> iRelease;
+    }
 }
 
 string Version::shortVersion()

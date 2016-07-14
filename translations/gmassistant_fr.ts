@@ -1156,8 +1156,8 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="357"/>
-        <source>GM-Assistant files (1.2) (*.gms)</source>
-        <translation>Fichiers GM-Assistant (1.2) (*.gms)</translation>
+        <source>GM-Assistant files (*.gms)</source>
+        <translation>Fichiers GM-Assistant (*.gms)</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="360"/>

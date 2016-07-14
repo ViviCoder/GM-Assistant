@@ -354,7 +354,7 @@ void MainWindow::on_action_Save_triggered(bool askForUpdate)
 
 bool MainWindow::on_actionS_ave_as_triggered()
 {
-    QString filters(QApplication::translate("mainWindow","GM-Assistant files (1.2) (*.gms)",0));
+    QString filters(QApplication::translate("mainWindow","GM-Assistant files (*.gms)",0));
     if (!sGame.configuration().isArchived())
     {
         filters += QApplication::translate("mainWindow",";;GM-Assistant files (1.1) (*.gma);;GM-Assistant files (1.0) (*.xml)",0);
