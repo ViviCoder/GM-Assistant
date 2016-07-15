@@ -16,35 +16,47 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "NoteItem.h"
+#include "Note.h"
+#include "Item.h"
 
 using namespace std;
 
-NoteItem::NoteItem(const string &content, State state, bool expanded, const Note &note): Item(content,state,expanded), nNote(note)
+Note::Note(const string &title, const string &text, bool visible): sTitle(title), sText(text), bVisible(visible)
 {
 }
 
-void NoteItem::fromXML(const IOConfig &config, const xmlpp::Element &root) throw(xmlpp::exception)
+void Note::fromXML(const xmlpp::Element &root)
 {
     using namespace xmlpp;
 
-    if (config.hasNotes())
+    Attribute *attr;
+    // title
+    attr = root.get_attribute("title");
+    sTitle = "";
+    if (attr)
     {
-        Node::NodeList node = root.get_children("note");
-        if (!node.empty())
-        {
-            nNote.fromXML(*dynamic_cast<Element*>(node.front()));
-        }
+        sTitle = attr->get_value();
+    }
+    // visibility
+    attr = root.get_attribute("visible");
+    bVisible = false;
+    if (attr)
+    {
+        bVisible = Item::strToBool(attr->get_value());
+    }
+    // text
+    sText = "";
+    if (root.has_child_text())
+    {
+        sText = root.get_child_text()->get_content();
     }
 }
 
-void NoteItem::toXML(const IOConfig &config, xmlpp::Element &root)
+void Note::toXML(xmlpp::Element &root) const
 {
     using namespace xmlpp;
 
-    if (config.hasNotes())
-    {
-        Element *tmp = root.add_child("note");
-        nNote.toXML(*tmp);
-    }
+    root.set_attribute("title", sTitle);
+    root.set_attribute("visible", Item::boolToStr(bVisible));
+    root.add_child_text(sText);
 }

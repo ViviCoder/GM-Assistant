@@ -20,6 +20,7 @@
 #define HEADER_NOTEITEM
 
 #include "Item.h"
+#include "Note.h"
 
 /*!
  * \brief Item containing a note
@@ -28,15 +29,15 @@ class NoteItem: public Item
 {
     private:
         /*!
-         * \brief Content of the note associated with the item
+         * \brief Note associated with the item
          */
-        std::string sNote;
+        Note nNote;
     public:
         /*!
-         * \brief Setter for the content of the note
-         * \param note New content of the note
+         * \brief Setter for the note
+         * \param note New note
          */
-        inline void setNote(const std::string &note);
+        inline void setNote(const Note &note);
         /*!
          *  \brief Constructor
          *  \param content Content of the item
@@ -44,7 +45,7 @@ class NoteItem: public Item
          *  \param expanded Expanded/collapsed state of the item
          *  \param note Content of the note
          */
-        NoteItem(const std::string &content="", State state=sNone, bool expanded=false, const std::string &note="");
+        NoteItem(const std::string &content="", State state=sNone, bool expanded=false, const Note &note=Note());
         // accessors
         /*!
          * \brief Getter for the type of the item
@@ -52,10 +53,10 @@ class NoteItem: public Item
          */
         inline Type type() const;
         /*!
-         * \brief Getter for the content of the note
-         * \return The content of the note associated with the item
+         * \brief Getter for the note
+         * \return Note associated with the item
          */
-        inline std::string note() const;
+        inline Note* note();
         // overriden XML-related methods
         /*!
          * \brief Loads the item from a XML tree
@@ -77,14 +78,14 @@ Item::Type NoteItem::type() const
     return tNote;
 }
 
-std::string NoteItem::note() const
+Note* NoteItem::note()
 {
-    return sNote;
+    return &nNote;
 }
 
-void NoteItem::setNote(const std::string &note)
+void NoteItem::setNote(const Note &note)
 {
-    sNote = note;
+    nNote = note;
 }
 
 #endif

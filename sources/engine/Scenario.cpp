@@ -23,6 +23,7 @@
 #include <Poco/FileStream.h>
 #include <Poco/TemporaryFile.h>
 #include <Poco/Zip/Compress.h>
+#include "NoteItem.h"
 
 using namespace std;
 
@@ -156,14 +157,12 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     else
     {
         Element *elem = dynamic_cast<Element*>(node.front());
+        string mainText = "";
         if (elem->has_child_text())
         {
-            sNotes = elem->get_child_text()->get_content();
+            mainText = elem->get_child_text()->get_content();
         }
-        else
-        {
-            sNotes = "";
-        }
+        nMain = Note("", mainText);
     }
     node = root->get_children(ioConfig.propertiesName());
     if (node.empty())
@@ -232,7 +231,7 @@ void Scenario::toFile(const string &fileName) const
     tmp = root->add_child(ioConfig.plotName());
     tPlot.toXML(ioConfig, *tmp, fileMapping);
     tmp = root->add_child("notes");
-    tmp->add_child_text(sNotes);
+    tmp->add_child_text(nMain.text());
     tmp = root->add_child(ioConfig.propertiesName());
     lProperties.toXML(ioConfig, *tmp);
     tmp = root->add_child("characters");
@@ -278,39 +277,12 @@ void Scenario::toFile(const string &fileName) const
     }
 }
 
-// accessors
-
-Tree& Scenario::plot()
-{
-    return tPlot;
-}
-
-string& Scenario::notes()
-{
-    return sNotes;
-}
-
-Tree& Scenario::history()
-{
-    return tHistory;
-}
-
-Tree& Scenario::music()
-{
-    return tMusic;
-}
-
-Tree& Scenario::effects()
-{
-    return tEffects;
-}
-
 // methods
 
 void Scenario::clear()
 {
     tPlot.clear();
-    sNotes = "";
+    nMain = Note();
     tHistory.clear();
     tMusic.clear();
     tEffects.clear();
@@ -329,16 +301,6 @@ void Scenario::clear()
         }
         sTempDir = "";
     }
-}
-
-CharacterList& Scenario::characters()
-{
-    return lCharacters;
-}
-
-PropertyList& Scenario::properties()
-{
-    return lProperties;
 }
 
 string Scenario::interfaceToString(UserInterface interface)
@@ -369,27 +331,17 @@ Scenario::UserInterface Scenario::stringToInterface(const std::string& interface
         throw invalid_argument("Invalid user interface");
 }
 
-Scenario::UserInterface Scenario::userInterface() const
+vector<Note*> Scenario::notes()
 {
-    return uiInterface;
-}
-
-void Scenario::setUserInterface(Scenario::UserInterface interface)
-{
-    uiInterface = interface;
-}
-
-IOConfig Scenario::configuration() const
-{
-    return ioConfig;
-}
-
-void Scenario::setVersion(const Version &version)
-{
-    ioConfig = IOConfig(version);
-}
-
-Metadata& Scenario::metadata()
-{
-    return mMetadata;
+    vector<Note*> list;
+    list.push_back(&nMain);
+    for (Tree::iterator it = tPlot.begin(); it != tPlot.end(); it++)
+    {
+        Item *item = it.branch()->item();
+        if (item->type() == Item::tNote)
+        {
+            list.push_back(dynamic_cast<NoteItem*>(item)->note());
+        }
+    }
+    return list;
 }

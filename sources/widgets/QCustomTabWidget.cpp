@@ -16,35 +16,61 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#include "NoteItem.h"
+#include "QCustomTabWidget.h"
 
 using namespace std;
 
-NoteItem::NoteItem(const string &content, State state, bool expanded, const Note &note): Item(content,state,expanded), nNote(note)
+QCustomTabWidget::QCustomTabWidget(QWidget *parent): QTabWidget(parent)
 {
+    connect(this, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
 }
 
-void NoteItem::fromXML(const IOConfig &config, const xmlpp::Element &root) throw(xmlpp::exception)
+void QCustomTabWidget::setNotes(const vector<Note*> &notes)
 {
-    using namespace xmlpp;
-
-    if (config.hasNotes())
+    clear();
+    for (vector<Note*>::const_iterator it = notes.begin(); it != notes.end(); it++)
     {
-        Node::NodeList node = root.get_children("note");
-        if (!node.empty())
+        if ((*it)->visible())
         {
-            nNote.fromXML(*dynamic_cast<Element*>(node.front()));
+            QCustomTextEdit *widget = new QCustomTextEdit(this);
+            addTab(widget, (*it)->title().c_str());
         }
-    }
+    } 
+    updateDisplay();
 }
 
-void NoteItem::toXML(const IOConfig &config, xmlpp::Element &root)
+void QCustomTabWidget::clear()
 {
-    using namespace xmlpp;
+    // TODO
+}
 
-    if (config.hasNotes())
-    {
-        Element *tmp = root.add_child("note");
-        nNote.toXML(*tmp);
-    }
+void QCustomTabWidget::updateDisplay()
+{
+    // TODO
+}
+
+bool QCustomTabWidget::unregisteredModification() const
+{
+    // TODO
+    return false;
+}
+
+void QCustomTabWidget::checkModification()
+{
+    // TODO
+}
+
+void QCustomTabWidget::updateModification(NoteModification*, bool)
+{
+    // TODO
+}
+
+void QCustomTabWidget::forceCut()
+{
+    // TODO
+}
+
+void QCustomTabWidget::forcePaste()
+{
+    // TODO
 }

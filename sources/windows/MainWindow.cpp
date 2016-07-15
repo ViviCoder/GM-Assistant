@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -102,9 +102,9 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     treeMusic->installEventFilter(this);
     connect(treeFX, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     treeFX->installEventFilter(this);
-    connect(textNotes, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
-    connect(textNotes, SIGNAL(unregistered()), this, SLOT(updateUndoRedo()));
-    textNotes->installEventFilter(this);
+    connect(tabNotes, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    connect(tabNotes, SIGNAL(unregistered()), this, SLOT(updateUndoRedo()));
+    tabNotes->installEventFilter(this);
     connect(tableStats, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     tableStats->installEventFilter(this);
 
@@ -428,7 +428,7 @@ void MainWindow::updateDisplay()
                                 break;
     }
     treePlot->setTree(&sGame.plot());
-    textNotes->setNotes(&sGame.notes());
+    tabNotes->setNotes(sGame.notes());
     treeHistory->setTree(&sGame.history());
     treeMusic->setTree(&sGame.music());
     treeFX->setTree(&sGame.effects());
@@ -681,7 +681,7 @@ void MainWindow::updateModification(Modification *modification, bool undo)
                 }
                 break;
             }
-        case Modification::tNote:   textNotes->updateModification(dynamic_cast<NoteModification*>(modification), undo);
+        case Modification::tNote:   tabNotes->updateModification(dynamic_cast<NoteModification*>(modification), undo);
                                     break;
         case Modification::tCharacter:  tableStats->updateModification(dynamic_cast<CharacterModification*>(modification), undo);
                                         break;
@@ -705,7 +705,7 @@ void MainWindow::updateUndoRedo()
 {
     action_Undo->setEnabled(mqQueue.undoable());
     action_Redo->setEnabled(mqQueue.redoable());
-    bool modified = !mqQueue.isUpToDate() || textNotes->unregisteredModification();
+    bool modified = !mqQueue.isUpToDate() || tabNotes->unregisteredModification();
     action_Save->setEnabled(modified);
     QString windowTitle("GM-Assistant - ");
     QString title(sGame.metadata().title().c_str());
@@ -739,9 +739,9 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
             case Qt::Key_Z: // undo - redo
                             if (modifiers == Qt::ControlModifier)
                             {
-                                if (source == textNotes)
+                                if (source == tabNotes)
                                 {
-                                    textNotes->checkModification();
+                                    tabNotes->checkModification();
                                 }
                                 if (mqQueue.undoable())
                                 {
@@ -751,9 +751,9 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
                             }
                             else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier))
                             {
-                                if (source == textNotes)
+                                if (source == tabNotes)
                                 {
-                                    textNotes->checkModification();
+                                    tabNotes->checkModification();
                                 }
                                 if (mqQueue.redoable())
                                 {
@@ -762,19 +762,19 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
                                 return true;
                             }
                             break;
-            case Qt::Key_V: if (source == textNotes && modifiers == Qt::ControlModifier)
+            case Qt::Key_V: if (source == tabNotes && modifiers == Qt::ControlModifier)
                             {
-                                textNotes->forcePaste();
+                                tabNotes->forcePaste();
                             }
                             break;
-            case Qt::Key_X: if (source == textNotes && modifiers == Qt::ControlModifier)
+            case Qt::Key_X: if (source == tabNotes && modifiers == Qt::ControlModifier)
                             {
-                                textNotes->forceCut();
+                                tabNotes->forceCut();
                             }
                             break;
-            default:    if (source == textNotes && modifiers & Qt::ControlModifier)
+            default:    if (source == tabNotes && modifiers & Qt::ControlModifier)
                         {
-                            textNotes->checkModification();
+                            tabNotes->checkModification();
                         }
                         break;
         }
@@ -784,7 +784,7 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
 
 bool MainWindow::canClose()
 {
-    textNotes->clearFocus();
+    tabNotes->clearFocus();
     if (mqQueue.isUpToDate())
     {
         // no need for confirmation

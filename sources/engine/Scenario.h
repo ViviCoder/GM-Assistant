@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -25,6 +25,7 @@
 #include "IOConfig.h"
 #include "Metadata.h"
 #include "FileDetector.h"
+#include "Note.h"
 
 /*!
  * \brief Game scenario
@@ -69,24 +70,52 @@ class Scenario
          * \param fileName Name of the file to be saved
          */
         void toFile(const std::string &fileName) const;
+        /*!
+         * \brief List all notes in the scenario
+         * \return List of notes
+         */
+        std::vector<Note*> notes();
         // accessors
-        Tree& plot();
-        std::string& notes();
-        Tree& history();
-        Tree& music();
-        Tree& effects();
-        PropertyList& properties();
-        CharacterList& characters();
+        /*!
+         * \brief Getter for the plot tree
+         * \return Plot tree
+         */
+        inline Tree& plot();
+        /*!
+         * \brief Getter for the history tree
+         * \return History tree
+         */
+        inline Tree& history();
+        /*!
+         * \brief Getter for the music tree
+         * \return Music tree
+         */
+        inline Tree& music();
+        /*!
+         * \brief Getter for the sound effect tree
+         * \return Sound effect tree
+         */
+        inline Tree& effects();
+        /*!
+         * \brief Getter for the property list
+         * \return Property list
+         */
+        inline PropertyList& properties();
+        /*!
+         * \brief Getter for the character list
+         * \return Character list
+         */
+        inline CharacterList& characters();
         /*!
          * \brief Get the user interface
          * \return Current user interface
          */
-        UserInterface userInterface() const;
+        inline UserInterface userInterface() const;
         /*!
          * \brief Set the user interface
          * \param interface New value of the user interface
          */
-        void setUserInterface(UserInterface interface);
+        inline void setUserInterface(UserInterface interface);
         //! Clear the current scenario
         void clear();
         /*!
@@ -106,28 +135,38 @@ class Scenario
          * \brief Getter for the IO configuration
          * \return IO configuration
          */
-        IOConfig configuration() const;
+        inline IOConfig configuration() const;
         /*!
          * \brief Setter for the IO configuration version
          * \param version Version
          *
          * Sets the IO configuration to the default for the given version
          */
-        void setVersion(const Version &version);
+        inline void setVersion(const Version &version);
         /*!
          * \brief Getter for the metadata
          * \return Metadata of the game
          */
-        Metadata& metadata();
+        inline Metadata& metadata();
         /*!
          * \brief Setter for the IO configuration
          * \param config IO configuration
          */
-        void setConfig(const IOConfig &config);
+        inline void setConfig(const IOConfig &config);
     private:
-        Tree tPlot, tHistory, tMusic, tEffects;
-        std::string sNotes;
+        //! Plot tree
+        Tree tPlot;
+        //! History tree
+        Tree tHistory;
+        //! Music tree
+        Tree tMusic;
+        //! Sound effect tree
+        Tree tEffects;
+        //! Main note
+        Note nMain;
+        //! Character list
         CharacterList lCharacters;
+        //! Property list
         PropertyList lProperties;
         //! User interface used by the game
         UserInterface uiInterface;
@@ -141,9 +180,66 @@ class Scenario
         std::string sTempDir;
 };
 
-inline void Scenario::setConfig(const IOConfig &config)
+// inline methods
+
+void Scenario::setConfig(const IOConfig &config)
 {
     ioConfig = config;
+}
+
+Tree& Scenario::plot()
+{
+    return tPlot;
+}
+
+Tree& Scenario::history()
+{
+    return tHistory;
+}
+
+Tree& Scenario::music()
+{
+    return tMusic;
+}
+
+Tree& Scenario::effects()
+{
+    return tEffects;
+}
+
+CharacterList& Scenario::characters()
+{
+    return lCharacters;
+}
+
+PropertyList& Scenario::properties()
+{
+    return lProperties;
+}
+
+Scenario::UserInterface Scenario::userInterface() const
+{
+    return uiInterface;
+}
+
+void Scenario::setUserInterface(Scenario::UserInterface interface)
+{
+    uiInterface = interface;
+}
+
+IOConfig Scenario::configuration() const
+{
+    return ioConfig;
+}
+
+void Scenario::setVersion(const Version &version)
+{
+    ioConfig = IOConfig(version);
+}
+
+Metadata& Scenario::metadata()
+{
+    return mMetadata;
 }
 
 #endif

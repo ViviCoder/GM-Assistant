@@ -112,16 +112,23 @@
         </property>
         <layout class="QVBoxLayout" name="verticalLayout4">
          <item>
-          <widget class="QCustomTextEdit" name="textNotes">
-           <property name="contextMenuPolicy">
-            <enum>Qt::NoContextMenu</enum>
+          <widget class="QCustomTabWidget" name="tabNotes">
+           <property name="currentIndex">
+            <number>0</number>
            </property>
-           <property name="undoRedoEnabled">
-            <bool>false</bool>
+           <property name="tabsClosable">
+            <bool>true</bool>
            </property>
-           <property name="acceptRichText">
-            <bool>false</bool>
-           </property>
+           <widget class="QWidget" name="tab">
+            <attribute name="title">
+             <string notr="true">Tab 1</string>
+            </attribute>
+           </widget>
+           <widget class="QWidget" name="tab_2">
+            <attribute name="title">
+             <string notr="true">Tab 2</string>
+            </attribute>
+           </widget>
           </widget>
          </item>
         </layout>
@@ -288,7 +295,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>23</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
@@ -599,9 +606,10 @@
    <header>QCustomTableWidget.h</header>
   </customwidget>
   <customwidget>
-   <class>QCustomTextEdit</class>
-   <extends>QTextEdit</extends>
-   <header>QCustomTextEdit.h</header>
+   <class>QCustomTabWidget</class>
+   <extends>QTabWidget</extends>
+   <header>QCustomTabWidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
