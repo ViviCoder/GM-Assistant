@@ -47,7 +47,7 @@ class Note
         inline void setTitle(const std::string &title);
         /*!
          * \brief Getter for the text
-         * \return Pointer to the text
+         * \return Reference to the text
          */
         inline std::string& text();
         /*!
