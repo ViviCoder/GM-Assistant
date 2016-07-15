@@ -47,14 +47,14 @@ class Note
         inline void setTitle(const std::string &title);
         /*!
          * \brief Getter for the text
-         * \return Text of the note
+         * \return Pointer to the text
          */
-        inline std::string text() const;
+        inline std::string* text();
         /*!
-         * \brief Setter for the text
-         * \param text New text
+         * \brief Const getter for the text
+         * \return Text
          */
-        inline void setText(const std::string &text);
+        inline const std::string& text() const;
         /*!
          * \brief Getter for the visibility
          * \return Visibility of the note
@@ -96,16 +96,6 @@ void Note::setTitle(const std::string &title)
     sTitle = title;
 }
 
-std::string Note::text() const
-{
-    return sText;
-}
-
-void Note::setText(const std::string &text)
-{
-    sText = text;
-}
-
 bool Note::visible() const
 {
     return bVisible;
@@ -114,6 +104,16 @@ bool Note::visible() const
 void Note::setVisible(bool visible)
 {
     bVisible = visible;
+}
+
+std::string* Note::text()
+{
+    return &sText;
+}
+
+const std::string& Note::text() const
+{
+    return sText;
 }
 
 #endif

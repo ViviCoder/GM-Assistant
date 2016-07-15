@@ -62,15 +62,17 @@ class NoteItem: public Item
          * \brief Loads the item from a XML tree
          * \param config IO configuration
          * \param root Position of the item in the XML tree
+         * \param checkFiles Indicates if the existence of potential files is checked (useless here)
          * \throw xmlpp::exception Thrown when there is an error in the XML tree
          */
-        void fromXML(const IOConfig &config, const xmlpp::Element &root) throw(xmlpp::exception);
+        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles) throw(xmlpp::exception);
         /*!
          * \brief Saves the item into a XML tree
          * \param config IO configuration
          * \param root Position of the item in the XML tree
+         * \param fileMapping Mapping of files associated with items (useless here)
          */
-        void toXML(const IOConfig &config, xmlpp::Element &root);
+        void toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping);
 };
 
 Item::Type NoteItem::type() const

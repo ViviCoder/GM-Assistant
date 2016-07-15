@@ -24,7 +24,7 @@ NoteItem::NoteItem(const string &content, State state, bool expanded, const Note
 {
 }
 
-void NoteItem::fromXML(const IOConfig &config, const xmlpp::Element &root) throw(xmlpp::exception)
+void NoteItem::fromXML(const IOConfig &config, const xmlpp::Element &root, bool) throw(xmlpp::exception)
 {
     using namespace xmlpp;
 
@@ -38,7 +38,7 @@ void NoteItem::fromXML(const IOConfig &config, const xmlpp::Element &root) throw
     }
 }
 
-void NoteItem::toXML(const IOConfig &config, xmlpp::Element &root)
+void NoteItem::toXML(const IOConfig &config, xmlpp::Element &root, FileMapping&)
 {
     using namespace xmlpp;
 
