@@ -49,7 +49,7 @@ class Note
          * \brief Getter for the text
          * \return Pointer to the text
          */
-        inline std::string* text();
+        inline std::string& text();
         /*!
          * \brief Const getter for the text
          * \return Text
@@ -106,9 +106,9 @@ void Note::setVisible(bool visible)
     bVisible = visible;
 }
 
-std::string* Note::text()
+std::string& Note::text()
 {
-    return &sText;
+    return sText;
 }
 
 const std::string& Note::text() const

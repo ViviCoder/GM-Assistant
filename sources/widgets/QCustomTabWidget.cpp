@@ -33,7 +33,7 @@ void QCustomTabWidget::setNotes(const vector<Note*> &notes)
         if ((*it)->visible())
         {
             QCustomTextEdit *widget = new QCustomTextEdit(this);
-            widget->setNotes((*it)->text());
+            widget->setNotes(&(*it)->text());
             addTab(widget, (*it)->title().c_str());
         }
     } 
