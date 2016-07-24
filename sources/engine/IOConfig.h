@@ -193,7 +193,7 @@ class IOConfig
         inline bool hasNotes() const;
         /*!
          * \brief Setter for the flag of availability of notes
-         * \param Flag of availability of notes
+         * \param hasNotes Flag of availability of notes
          */
         inline void setHasNotes(bool hasNotes);
 };
