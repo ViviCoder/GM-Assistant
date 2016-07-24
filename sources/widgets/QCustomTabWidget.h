@@ -78,6 +78,12 @@ class QCustomTabWidget: public QTabWidget
 
         //! Clear the widget
         void clear();
+    signals:
+        /*!
+         * \brief Signal emitted when a note is opened
+         * \param note Editor for this note
+         */
+        void noteOpened(QCustomTextEdit *note);
 };
 
 #endif

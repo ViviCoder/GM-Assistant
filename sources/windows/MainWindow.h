@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -371,6 +371,11 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * It is used to detect when the playback starts
          */
         void onMusicStateChanged(Phonon::State newState, Phonon::State oldState);
+        /*!
+         * \brief Slot used when a note is opened
+         * \param note Editor for the note
+         */
+        void connectNote(QCustomTextEdit *note);
 };
 
 #endif

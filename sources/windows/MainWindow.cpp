@@ -102,8 +102,7 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     treeMusic->installEventFilter(this);
     connect(treeFX, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     treeFX->installEventFilter(this);
-    connect(tabNotes, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
-    connect(tabNotes, SIGNAL(unregistered()), this, SLOT(updateUndoRedo()));
+    connect(tabNotes, SIGNAL(noteOpened(QCustomTextEdit*)), this, SLOT(connectNote(QCustomTextEdit*)));
     tabNotes->installEventFilter(this);
     connect(tableStats, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     tableStats->installEventFilter(this);
@@ -910,4 +909,10 @@ void MainWindow::onMusicStateChanged(Phonon::State newState, Phonon::State oldSt
         sliderMusic->setEnabled(true);
         buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
     }
+}
+
+void MainWindow::connectNote(QCustomTextEdit *note)
+{
+    connect(note, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
+    connect(note, SIGNAL(unregistered()), this, SLOT(updateUndoRedo()));
 }

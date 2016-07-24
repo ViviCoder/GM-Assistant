@@ -22,7 +22,6 @@ using namespace std;
 
 QCustomTabWidget::QCustomTabWidget(QWidget *parent): QTabWidget(parent)
 {
-    connect(this, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
 }
 
 void QCustomTabWidget::setNotes(const vector<Note*> &notes)
@@ -34,6 +33,7 @@ void QCustomTabWidget::setNotes(const vector<Note*> &notes)
         {
             QCustomTextEdit *widget = new QCustomTextEdit(this);
             widget->setNotes(&(*it)->text());
+            emit noteOpened(widget);
             addTab(widget, (*it)->title().c_str());
         }
     } 
@@ -56,8 +56,7 @@ void QCustomTabWidget::updateDisplay()
 
 bool QCustomTabWidget::unregisteredModification() const
 {
-    // TODO
-    return false;
+    return dynamic_cast<QCustomTextEdit*>(currentWidget())->unregisteredModification();
 }
 
 void QCustomTabWidget::checkModification()
