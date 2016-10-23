@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -37,10 +37,10 @@ class QCustomTextEdit: public QTextEdit
          */
         QCustomTextEdit(QWidget *parent=0);
         /*!
-         * \brief Setter for the underlying notes
-         * \param text Text of the notes
+         * \brief Setter for the underlying note
+         * \param note Note
          */
-        void setNotes(std::string *text); 
+        void setNote(Note *note);
         /*!
          * \brief Indicator of unregistered modifications
          * \return True if there is an unregistered modification
@@ -136,8 +136,8 @@ class QCustomTextEdit: public QTextEdit
         };
         //! Reference text
         QString sRef;
-        //! Underlying notes
-        std::string *pNotes;
+        //! Underlying note
+        Note *pNote;
         //! Edition status
         Status sStatus; 
         //! Modified string

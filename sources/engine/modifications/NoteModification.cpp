@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,15 +20,15 @@
 
 using namespace std;
 
-NoteModification::NoteModification(string &note, const string &content, const string &newContent, int index): Modification(aEdition), rNote(note), sContent(content), sNewContent(newContent), iIndex(index)
+NoteModification::NoteModification(Note &note, const string &content, const string &newContent, int index): Modification(aEdition), rNote(note), sContent(content), sNewContent(newContent), iIndex(index)
 {
 }
 
-NoteModification::NoteModification(string &note, int index, int newIndex, int length): Modification(aMovement), rNote(note), iIndex(index), iNewIndex(newIndex), iLength(length)
+NoteModification::NoteModification(Note &note, int index, int newIndex, int length): Modification(aMovement), rNote(note), iIndex(index), iNewIndex(newIndex), iLength(length)
 {
 }
 
-NoteModification::NoteModification(string &note, Action action, const string &content, int index): Modification(action), rNote(note), sContent(content), iIndex(index)
+NoteModification::NoteModification(Note &note, Action action, const string &content, int index): Modification(action), rNote(note), sContent(content), iIndex(index)
 {
 }
 
@@ -36,30 +36,26 @@ NoteModification::~NoteModification()
 {
 }
 
-Modification::Type NoteModification::type() const
-{
-    return tNote;
-}
-
 void NoteModification::undo()
 {
     int l = sContent.size();
+    string text = rNote.text();
     switch (action())
     {
         case aMovement: if (iIndex < iNewIndex)
                         {
-                            rNote = rNote.substr(0, iIndex) + rNote.substr(iNewIndex - iLength, iLength) + rNote.substr(iIndex, iNewIndex - iIndex - iLength) + rNote.substr(iNewIndex);
+                            rNote.text() = text.substr(0, iIndex) + text.substr(iNewIndex - iLength, iLength) + text.substr(iIndex, iNewIndex - iIndex - iLength) + text.substr(iNewIndex);
                         }
                         else
                         {
-                            rNote = rNote.substr(0, iNewIndex) + rNote.substr(iNewIndex + iLength, iIndex - iNewIndex) + rNote.substr(iNewIndex, iLength) + rNote.substr(iIndex + iLength);
+                            rNote.text() = text.substr(0, iNewIndex) + text.substr(iNewIndex + iLength, iIndex - iNewIndex) + text.substr(iNewIndex, iLength) + text.substr(iIndex + iLength);
                         }
                         break;
-        case aEdition:  rNote = rNote.substr(0, iIndex) + sContent + rNote.substr(iIndex + sNewContent.size());
+        case aEdition:  rNote.text() = text.substr(0, iIndex) + sContent + text.substr(iIndex + sNewContent.size());
                         break;
-        case aAddition: rNote = rNote.substr(0, iIndex) + rNote.substr(iIndex + l);
+        case aAddition: rNote.text() = text.substr(0, iIndex) + text.substr(iIndex + l);
                         break;
-        case aDeletion: rNote = rNote.substr(0, iIndex) + sContent + rNote.substr(iIndex);
+        case aDeletion: rNote.text() = text.substr(0, iIndex) + sContent + text.substr(iIndex);
                         break;
     }
 }
@@ -67,47 +63,23 @@ void NoteModification::undo()
 void NoteModification::redo()
 {
     int l = sContent.size();
+    string text = rNote.text();
     switch (action())
     {
         case aMovement: if (iIndex < iNewIndex)
                         {
-                            rNote = rNote.substr(0, iIndex) + rNote.substr(iIndex + iLength, iNewIndex - iIndex - iLength) + rNote.substr(iIndex, iLength) + rNote.substr(iNewIndex);
+                            rNote.text() = text.substr(0, iIndex) + text.substr(iIndex + iLength, iNewIndex - iIndex - iLength) + text.substr(iIndex, iLength) + text.substr(iNewIndex);
                         }
                         else
                         {
-                            rNote = rNote.substr(0, iNewIndex) + rNote.substr(iIndex, iLength) + rNote.substr(iNewIndex, iIndex - iNewIndex) + rNote.substr(iIndex + iLength);
+                            rNote.text() = text.substr(0, iNewIndex) + text.substr(iIndex, iLength) + text.substr(iNewIndex, iIndex - iNewIndex) + text.substr(iIndex + iLength);
                         }
                         break;
-        case aEdition:  rNote = rNote.substr(0, iIndex) + sNewContent + rNote.substr(iIndex + l);
+        case aEdition:  rNote.text() = text.substr(0, iIndex) + sNewContent + text.substr(iIndex + l);
                         break;
-        case aAddition: rNote = rNote.substr(0, iIndex) + sContent + rNote.substr(iIndex);
+        case aAddition: rNote.text() = text.substr(0, iIndex) + sContent + text.substr(iIndex);
                         break;
-        case aDeletion: rNote = rNote.substr(0, iIndex) + rNote.substr(iIndex + l);
+        case aDeletion: rNote.text() = text.substr(0, iIndex) + text.substr(iIndex + l);
                         break;
     }
-}
-
-int NoteModification::index() const
-{
-    return iIndex;
-}
-
-int NoteModification::newIndex() const
-{
-    return iNewIndex;
-}
-
-int NoteModification::length() const
-{
-    return iLength;
-}
-
-string NoteModification::content() const
-{
-    return sContent;
-}
-
-string NoteModification::newContent() const
-{
-    return sNewContent;
 }

@@ -32,7 +32,8 @@ void QCustomTabWidget::setNotes(const vector<Note*> &notes)
         if ((*it)->visible())
         {
             QCustomTextEdit *widget = new QCustomTextEdit(this);
-            widget->setNotes(&(*it)->text());
+            mNotes[*it] = widget;
+            widget->setNote(*it);
             emit noteOpened(widget);
             addTab(widget, (*it)->title().c_str());
         }
@@ -47,6 +48,7 @@ void QCustomTabWidget::clear()
         delete widget(i);
     }
     QTabWidget::clear();
+    mNotes.clear();
 }
 
 void QCustomTabWidget::updateDisplay()
@@ -64,9 +66,14 @@ void QCustomTabWidget::checkModification()
     // TODO
 }
 
-void QCustomTabWidget::updateModification(NoteModification*, bool)
+void QCustomTabWidget::updateModification(NoteModification *modification, bool undo)
 {
-    // TODO
+    map<Note*, QCustomTextEdit*>::const_iterator it = mNotes.find(&modification->note());
+    if (it != mNotes.end())
+    {
+        it->second->updateModification(modification, undo);
+    }
+    // TODO add it if not found + set focus
 }
 
 void QCustomTabWidget::forceCut()

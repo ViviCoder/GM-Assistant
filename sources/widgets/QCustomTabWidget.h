@@ -84,6 +84,9 @@ class QCustomTabWidget: public QTabWidget
          * \param note Editor for this note
          */
         void noteOpened(QCustomTextEdit *note);
+    private:
+        //! Map of notes and widgets
+        std::map<Note*, QCustomTextEdit*> mNotes;
 };
 
 #endif

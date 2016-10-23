@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 
 #include "Modification.h"
 #include <string>
+#include "Note.h"
 
 /*!
  * \brief Modification of the notes
@@ -35,7 +36,7 @@ class NoteModification: public Modification
          * \param newContent Modified content
          * \param index Index of the modification
          */
-        NoteModification(std::string &note, const std::string &content, const std::string &newContent, int index);
+        NoteModification(Note &note, const std::string &content, const std::string &newContent, int index);
         /*!
          * \brief Constructor for moves
          * \param note Modified note
@@ -43,7 +44,7 @@ class NoteModification: public Modification
          * \param newIndex New index of the moved text
          * \param length Length of the moved text
          */
-        NoteModification(std::string &note, int index, int newIndex, int length);
+        NoteModification(Note &note, int index, int newIndex, int length);
         /*!
          * \brief Constructor for additions and deletions
          * \param note Modified note
@@ -51,43 +52,48 @@ class NoteModification: public Modification
          * \param content Added or deleted text
          * \param index Index of the modification
          */
-        NoteModification(std::string &note, Action action, const std::string &content, int index);
+        NoteModification(Note &note, Action action, const std::string &content, int index);
         /*!
          * \brief Destructor
          */
         virtual ~NoteModification();
         // inherited pure virtual methods
-        Type type() const;
+        inline Type type() const;
         void undo();
         void redo();
         /*!
          * \brief Getter for the index
          * \return Index of the modification
          */
-        int index() const;
+        inline int index() const;
         /*!
          * \brief Getter for the new index
          * \return New index of the modification
          */
-        int newIndex() const;
+        inline int newIndex() const;
         /*!
          * \brief Getter for the length
          * \return Length of the moved text
          */
-        int length() const;
+        inline int length() const;
         /*!
          * \brief Getter for the modified content
          * \return Modified text
          */
-        std::string content() const;
+        inline std::string content() const;
         /*!
          * \brief Getter for the new content
          * \return New text
          */
-        std::string newContent() const;
+        inline std::string newContent() const;
+        /*!
+         * \brief Getter for the note
+         *  \return Note
+         */
+        inline Note& note();
     private:
         //! Modified note
-        std::string &rNote;
+        Note &rNote;
         //! Previous content
         std::string sContent;
         //! Modified content
@@ -99,5 +105,40 @@ class NoteModification: public Modification
         //! Length of the moved text
         int iLength;
 };
+
+Modification::Type NoteModification::type() const
+{
+    return tNote;
+}
+
+int NoteModification::index() const
+{
+    return iIndex;
+}
+
+int NoteModification::newIndex() const
+{
+    return iNewIndex;
+}
+
+int NoteModification::length() const
+{
+    return iLength;
+}
+
+std::string NoteModification::content() const
+{
+    return sContent;
+}
+
+std::string NoteModification::newContent() const
+{
+    return sNewContent;
+}
+
+Note& NoteModification::note()
+{
+    return rNote;
+}
 
 #endif

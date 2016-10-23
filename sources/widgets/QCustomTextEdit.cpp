@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2016 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,27 +23,27 @@
 
 using namespace std;
 
-QCustomTextEdit::QCustomTextEdit(QWidget *parent): QTextEdit(parent), pNotes(0), sStatus(sMove), bDropped(false), bPasted(false), bCut(false)
+QCustomTextEdit::QCustomTextEdit(QWidget *parent): QTextEdit(parent), pNote(0), sStatus(sMove), bDropped(false), bPasted(false), bCut(false)
 {
     connect(this, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
 }
 
-void QCustomTextEdit::setNotes(string *text)
+void QCustomTextEdit::setNote(Note *note)
 {
-    pNotes = text;
+    pNote = note;
     updateDisplay();
 }
 
 void QCustomTextEdit::updateDisplay(int position, int length)
 {
-    if (pNotes)
+    if (pNote)
     {
         QScrollBar *hbar = horizontalScrollBar();
         QScrollBar *vbar = verticalScrollBar();
         int h = hbar->value();
         int v = vbar->value();
         bUpdate = true;
-        setText(pNotes->c_str());
+        setText(pNote->text().c_str());
         bUpdate = false;
         sStatus = sMove;
         sRef = toPlainText();
@@ -52,8 +52,8 @@ void QCustomTextEdit::updateDisplay(int position, int length)
             hbar->setValue(h);
             vbar->setValue(v);
             QTextCursor cursor = textCursor();
-            cursor.setPosition(QString(pNotes->substr(0, position).c_str()).length());
-            cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, QString(pNotes->substr(position, length).c_str()).length());
+            cursor.setPosition(QString(pNote->text().substr(0, position).c_str()).length());
+            cursor.movePosition(QTextCursor::Right, QTextCursor::KeepAnchor, QString(pNote->text().substr(position, length).c_str()).length());
             setTextCursor(cursor);
         }
     }
@@ -62,10 +62,10 @@ void QCustomTextEdit::updateDisplay(int position, int length)
 #include <algorithm>
 void QCustomTextEdit::onTextChanged()
 {
-    if (pNotes)
+    if (pNote)
     {
         QString sText = toPlainText();
-        *pNotes = sText.toStdString();
+        pNote->text() = sText.toStdString();
         if (sRef == sText || bDropped || bUpdate)
         {
             bPasted = false;
@@ -156,7 +156,7 @@ void QCustomTextEdit::onTextChanged()
                 sModif = sText.mid(index, l2 - rindex - index);
                 sOldModif = sRef.mid(index, l1 - rindex - index);
                 iIndex = sRef.left(index).toStdString().length();
-                emit modificationDone(new NoteModification(*pNotes, sOldModif.toStdString(), sModif.toStdString(), iIndex));
+                emit modificationDone(new NoteModification(*pNote, sOldModif.toStdString(), sModif.toStdString(), iIndex));
                 sRef = sText;
             }
         }
@@ -167,13 +167,13 @@ void QCustomTextEdit::onTextChanged()
 
 void QCustomTextEdit::checkModification()
 {
-    if (pNotes)
+    if (pNote)
     {
         switch (sStatus)
         {
-            case sInsertion:    emit modificationDone(new NoteModification(*pNotes, Modification::aAddition, sModif.toStdString(), iIndex));
+            case sInsertion:    emit modificationDone(new NoteModification(*pNote, Modification::aAddition, sModif.toStdString(), iIndex));
                                 break;
-            case sDeletion:     emit modificationDone(new NoteModification(*pNotes, Modification::aDeletion, sModif.toStdString(), iIndex));
+            case sDeletion:     emit modificationDone(new NoteModification(*pNote, Modification::aDeletion, sModif.toStdString(), iIndex));
                                 break;
             default:    return;
         }
@@ -248,9 +248,9 @@ void QCustomTextEdit::dropEvent(QDropEvent *e)
     if (e->source()->parent() == this)
     {
         QString sNewText = toPlainText();
-        if (pNotes && sText != sNewText)
+        if (pNote && sText != sNewText)
         {
-            emit modificationDone(new NoteModification(*pNotes, iIndex, iNewIndex, iLength));
+            emit modificationDone(new NoteModification(*pNote, iIndex, iNewIndex, iLength));
             sRef = sNewText;
         }
     }
