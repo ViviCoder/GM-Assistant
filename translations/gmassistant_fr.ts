@@ -1089,7 +1089,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="451"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="910"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="916"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
@@ -1110,7 +1110,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="535"/>
         <location filename="../sources/windows/MainWindow.cpp" line="546"/>
         <location filename="../sources/windows/MainWindow.cpp" line="552"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="852"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="858"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>
@@ -1180,12 +1180,12 @@ p, li { white-space: pre-wrap; }
         <translation>Le fichier &quot;%1&quot; n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="792"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="798"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="792"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="798"/>
         <source>The current game has been modified since the last save. If you continue, unsaved changes will be discarded.</source>
         <translation>Le jeu en cours a été modifié depuis la dernière sauvegarde. Si vous continuez, les changements non sauvegardés seront perdus.</translation>
     </message>

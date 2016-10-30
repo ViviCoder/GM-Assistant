@@ -738,9 +738,10 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
             case Qt::Key_Z: // undo - redo
                             if (modifiers == Qt::ControlModifier)
                             {
-                                if (source == tabNotes)
+                                QCustomTextEdit *edit = dynamic_cast<QCustomTextEdit*>(source);
+                                if (edit)
                                 {
-                                    tabNotes->checkModification();
+                                    edit->checkModification();
                                 }
                                 if (mqQueue.undoable())
                                 {
@@ -750,9 +751,10 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
                             }
                             else if (modifiers == (Qt::ControlModifier | Qt::ShiftModifier))
                             {
-                                if (source == tabNotes)
+                                QCustomTextEdit *edit = dynamic_cast<QCustomTextEdit*>(source);
+                                if (edit)
                                 {
-                                    tabNotes->checkModification();
+                                    edit->checkModification();
                                 }
                                 if (mqQueue.redoable())
                                 {
@@ -771,9 +773,13 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
                                 tabNotes->forceCut();
                             }
                             break;
-            default:    if (source == tabNotes && modifiers & Qt::ControlModifier)
+            default:    if (modifiers & Qt::ControlModifier)
                         {
-                            tabNotes->checkModification();
+                            QCustomTextEdit *edit = dynamic_cast<QCustomTextEdit*>(source);
+                            if (edit)
+                            {
+                                edit->checkModification();
+                            }
                         }
                         break;
         }

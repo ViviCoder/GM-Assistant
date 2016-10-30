@@ -46,17 +46,18 @@ class QCustomTabWidget: public QTabWidget
          * \return True if there is an unregistered modification
          */
         bool unregisteredModification() const;
+        /*!
+         * \brief Overriden method for installing event filter
+         * \param filter Filter
+         *
+         * This method stores the filter instead of actually using it, and installs it for all subwidgets
+         */
+        void installEventFilter(QObject *filter);
     public slots:
         /*!
          * \brief Update of the display
          */
         void updateDisplay();
-        /*!
-         * \brief Modification checking
-         *
-         * Checks if the text has been modified and send the corresponding signal if it is the case
-         */
-        void checkModification();
         /*!
          * \brief Update after a modification
          * \param modification Modification to undo or redo
@@ -87,6 +88,8 @@ class QCustomTabWidget: public QTabWidget
     private:
         //! Map of notes and widgets
         std::map<Note*, QCustomTextEdit*> mNotes;
+        //! Event filter
+        QObject *pFilter;
 };
 
 #endif

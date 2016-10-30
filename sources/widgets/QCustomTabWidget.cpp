@@ -20,7 +20,7 @@
 
 using namespace std;
 
-QCustomTabWidget::QCustomTabWidget(QWidget *parent): QTabWidget(parent)
+QCustomTabWidget::QCustomTabWidget(QWidget *parent): QTabWidget(parent), pFilter(0)
 {
 }
 
@@ -32,6 +32,10 @@ void QCustomTabWidget::setNotes(const vector<Note*> &notes)
         if ((*it)->visible())
         {
             QCustomTextEdit *widget = new QCustomTextEdit(this);
+            if (pFilter)
+            {
+                widget->installEventFilter(pFilter);
+            }
             mNotes[*it] = widget;
             widget->setNote(*it);
             emit noteOpened(widget);
@@ -61,11 +65,6 @@ bool QCustomTabWidget::unregisteredModification() const
     return dynamic_cast<QCustomTextEdit*>(currentWidget())->unregisteredModification();
 }
 
-void QCustomTabWidget::checkModification()
-{
-    // TODO
-}
-
 void QCustomTabWidget::updateModification(NoteModification *modification, bool undo)
 {
     map<Note*, QCustomTextEdit*>::const_iterator it = mNotes.find(&modification->note());
@@ -84,4 +83,9 @@ void QCustomTabWidget::forceCut()
 void QCustomTabWidget::forcePaste()
 {
     // TODO
+}
+
+void QCustomTabWidget::installEventFilter(QObject *filter)
+{
+    pFilter = filter;
 }
