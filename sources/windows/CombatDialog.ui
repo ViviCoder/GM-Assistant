@@ -70,22 +70,5 @@
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>pushClose</sender>
-   <signal>clicked()</signal>
-   <receiver>combatDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>318</x>
-     <y>281</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>278</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

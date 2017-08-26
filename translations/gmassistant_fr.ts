@@ -196,6 +196,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/CombatDialog.cpp" line="102"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="134"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
@@ -203,6 +204,11 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/CombatDialog.cpp" line="102"/>
         <source>You are about to remove %1 from the combat manager. Are you sure you want to do it?</source>
         <translation>Vous êtes sur le point de retirer %1 du gestionnaire de combat. Êtes-vous sûr de vouloir le faire ?</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/CombatDialog.cpp" line="134"/>
+        <source>You are about to close the combat manager. You will lose all information about the ongoing combat. Are you sure you want to do it?</source>
+        <translation>Vous êtes sur le point de fermer le gestionnaire de combat. Vous perdrez toutes les informations sur le combat en cours. Êtes-vous sûr de vouloir le faire ?</translation>
     </message>
 </context>
 <context>

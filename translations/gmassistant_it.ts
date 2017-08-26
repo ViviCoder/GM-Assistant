@@ -180,6 +180,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/CombatDialog.cpp" line="102"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="134"/>
         <source>Confirmation</source>
         <translation>Conferma</translation>
     </message>
@@ -188,6 +189,11 @@ p, li { white-space: pre-wrap; }
         <source>You are about to remove %1 from the combat manager. Are you sure you want to do it?</source>
         <translatorcomment>Same combat manager doubt.</translatorcomment>
         <translation type="unfinished">Stai per rimuovere %1 dal gestore di combattimento. Sei sicuro di volerlo fare?</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/CombatDialog.cpp" line="134"/>
+        <source>You are about to close the combat manager. You will lose all information about the ongoing combat. Are you sure you want to do it?</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>

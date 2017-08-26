@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2017 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -127,4 +127,21 @@ void CombatDialog::onCharacterSelected(int logicalIndex)
 {
     iCharacter = header->visualIndex(logicalIndex);
     updateDisplay();
+}
+
+void CombatDialog::closeEvent(QCloseEvent *e)
+{
+    if (QMessageBox::question(this, QApplication::translate("combatDialog", "Confirmation", 0), QApplication::translate("combatDialog", "You are about to close the combat manager. You will lose all information about the ongoing combat. Are you sure you want to do it?", 0), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes)
+    {
+        e->accept();
+    }
+    else
+    {
+        e->ignore();
+    }
+}
+
+void CombatDialog::on_pushClose_clicked()
+{
+    close();
 }
