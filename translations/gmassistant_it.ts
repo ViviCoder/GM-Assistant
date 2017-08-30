@@ -154,7 +154,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/CombatDialog.ui" line="20"/>
-        <location filename="../sources/windows/CombatDialog.cpp" line="70"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="71"/>
         <source>Current character:</source>
         <translation>Personaggio corrente:</translation>
     </message>
@@ -179,19 +179,19 @@ p, li { white-space: pre-wrap; }
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sources/windows/CombatDialog.cpp" line="102"/>
-        <location filename="../sources/windows/CombatDialog.cpp" line="134"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="103"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="135"/>
         <source>Confirmation</source>
         <translation>Conferma</translation>
     </message>
     <message>
-        <location filename="../sources/windows/CombatDialog.cpp" line="102"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="103"/>
         <source>You are about to remove %1 from the combat manager. Are you sure you want to do it?</source>
         <translatorcomment>Same combat manager doubt.</translatorcomment>
         <translation type="unfinished">Stai per rimuovere %1 dal gestore di combattimento. Sei sicuro di volerlo fare?</translation>
     </message>
     <message>
-        <location filename="../sources/windows/CombatDialog.cpp" line="134"/>
+        <location filename="../sources/windows/CombatDialog.cpp" line="135"/>
         <source>You are about to close the combat manager. You will lose all information about the ongoing combat. Are you sure you want to do it?</source>
         <translation type="unfinished"></translation>
     </message>

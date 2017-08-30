@@ -24,6 +24,7 @@ CombatDialog::CombatDialog(QWidget *parent): QDialog(parent)
     setupUi(this);
     header = tableWidget->verticalHeader();
     header->setMovable(true);
+    header->setResizeMode(QHeaderView::Fixed);
     connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onCharacterMoved(int, int, int)));
     connect(header, SIGNAL(sectionDoubleClicked(int)), this, SLOT(onCharacterSelected(int)));
 }
