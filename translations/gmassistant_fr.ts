@@ -1271,12 +1271,22 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Bas</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.cpp" line="54"/>
+        <location filename="../sources/windows/SelectCharacterDialog.cpp" line="33"/>
+        <source>Confirmation</source>
+        <translation>Confirmation</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/SelectCharacterDialog.cpp" line="33"/>
+        <source>You are about to reset the combat manager. You will lose all information about the ongoing combat. Are you sure you want to do it?</source>
+        <translation>Vous êtes sur le point de réinitialiser le gestionnaire de combat. Vous perdrez toutes les informations sur le combat en cours. Êtes-vous sûr de vouloir le faire ?</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/SelectCharacterDialog.cpp" line="68"/>
         <source>Uncompleted character selection</source>
         <translation>Sélection des personnages incomplète</translation>
     </message>
     <message>
-        <location filename="../sources/windows/SelectCharacterDialog.cpp" line="54"/>
+        <location filename="../sources/windows/SelectCharacterDialog.cpp" line="68"/>
         <source>You have selected too few characters. There must be at least two of them.</source>
         <translation>Vous avez sélectionné trop peu de personnages. Il doit y en avoir au moins deux.</translation>
     </message>

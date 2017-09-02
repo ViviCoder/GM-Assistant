@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2017 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -27,6 +27,20 @@ SelectCharacterDialog::SelectCharacterDialog(QWidget *parent): QDialog(parent), 
 
 void SelectCharacterDialog::show(const CharacterList &list)
 {
+    // ask confirmation before closing the combat manager if already open
+    if (pCombat->isVisible())
+    {
+        if (QMessageBox::question(this, QApplication::translate("selectCharacterDialog", "Confirmation", 0), QApplication::translate("selectCharacterDialog", "You are about to reset the combat manager. You will lose all information about the ongoing combat. Are you sure you want to do it?", 0), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::No)
+        {
+            reject();
+            return;
+        }
+        else
+        {
+            pCombat->setVisible(false);
+        }
+    }
+    // initialisation
     listAll->clear();
     for (CharacterList::const_iterator it = list.begin(); it != list.end(); it++)
     {
