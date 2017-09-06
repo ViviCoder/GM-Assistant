@@ -82,7 +82,17 @@ void SelectCharacterDialog::on_pushAdd_clicked()
     QListWidgetItem *item = listAll->currentItem();
     if (item)
     {
-        listInvolved->addItem(item->text());
+        int position = listInvolved->currentRow();
+        if (position < 0)
+        {
+            listInvolved->addItem(item->text());
+        }
+        else
+        {
+            // if an item is selected in the list of involved characters, insert the new one just after and select it
+            listInvolved->insertItem(position+1, item->text());
+            listInvolved->setCurrentRow(position+1);
+        }
     }
 }
 
