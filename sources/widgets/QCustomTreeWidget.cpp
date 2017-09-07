@@ -542,6 +542,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                 }
                 else
                 {    
+                    // new item is created
                     QCustomTreeWidgetItem *newQItem = 0;
                     switch (pItemDial->selectionResult())
                     {
@@ -555,6 +556,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                                         }
                                                         else
                                                         {
+                                                            // if there is no parent, add it directly to the tree
                                                             newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
                                                             newQItem = new QCustomTreeWidgetItem(this,newBranch,item);
                                                         }
@@ -569,13 +571,14 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                                     }
                     }
                     scrollTo(newQItem);
+                    setCurrentItem(newQItem);
                 }
             }
             else
             {
                 // There is no item in the tree
                 newBranch = pTree->add(newItem);
-                new QCustomTreeWidgetItem(this,newBranch);
+                setCurrentItem(new QCustomTreeWidgetItem(this,newBranch));
             }
             // creating the modification
             if (!edition)
