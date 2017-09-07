@@ -4,6 +4,7 @@ Changes in version 1.2.1
     - fixed height of rows
 * Others
     - partial Italian translation
+    - item-only selection in character table
 
 Changes in version 1.2.0
 * New features
