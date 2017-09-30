@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2017 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -270,7 +270,7 @@ void QCustomTableWidget::updateDisplay(int row, int column)
         vbar->setValue(y);
         scrollTo(row, column);
         // setting the current cell, row or column
-        QItemSelectionModel::SelectionFlags flags = QItemSelectionModel::Select;
+        QItemSelectionModel::SelectionFlags flags = QItemSelectionModel::ClearAndSelect;
         if (row == -1)
         {
             flags |= QItemSelectionModel::Columns;
@@ -461,7 +461,7 @@ void QCustomTableWidget::removeCharacter(int index)
         {
             index--;
         }
-        setCurrentCell(index, 0, QItemSelectionModel::Select | QItemSelectionModel::Rows);
+        setCurrentCell(index, 0, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     }
 }
 
@@ -495,7 +495,7 @@ void QCustomTableWidget::removeProperty(int index)
         {
             index--;
         }
-        setCurrentCell(0, index, QItemSelectionModel::Select | QItemSelectionModel::Columns);
+        setCurrentCell(0, index, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Columns);
     }
 }
 
