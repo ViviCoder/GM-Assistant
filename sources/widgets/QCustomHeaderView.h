@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2017 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -46,11 +46,12 @@ class QCustomHeaderView: public QHeaderView
 
     signals:
         /*!
-         * \brief Signal emitted when the header is right clicked
+         * \brief Signal emitted when the header is clicked
          * \param index Visual index of the click
+         * \param button Mouse button
          * \param position Global position of the click (used for showing a popup menu)
          */
-        void rightClicked(int index, const QPoint &position);
+        void clicked(int index, Qt::MouseButton button, const QPoint &position);
 };
 
 #endif

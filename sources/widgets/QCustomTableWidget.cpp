@@ -56,10 +56,10 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
 
     // connection of signals
     QCustomHeaderView *header = dynamic_cast<QCustomHeaderView*>(horizontalHeader());
-    connect(header, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onHHeaderClicked(int, const QPoint&)));
+    connect(header, SIGNAL(clicked(int, Qt::MouseButton, const QPoint&)), this, SLOT(onHHeaderClicked(int, Qt::MouseButton, const QPoint&)));
     connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onHHeaderMoved(int, int, int)));
     header = dynamic_cast<QCustomHeaderView*>(verticalHeader());
-    connect(header, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onVHeaderClicked(int, const QPoint&)));
+    connect(header, SIGNAL(clicked(int, Qt::MouseButton, const QPoint&)), this, SLOT(onVHeaderClicked(int, Qt::MouseButton, const QPoint&)));
     connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onVHeaderMoved(int, int, int)));
     connect(this, SIGNAL(itemSelectionChanged()), this, SLOT(on_itemSelectionChanged()));
     connect(this, SIGNAL(cellChanged(int,int)), this, SLOT(onCellChanged(int,int)));
@@ -313,43 +313,63 @@ void QCustomTableWidget::onCellChanged(int logicalRow, int logicalColumn)
     }
 }
 
-void QCustomTableWidget::onHHeaderClicked(int index, const QPoint &position)
+void QCustomTableWidget::onHHeaderClicked(int index, Qt::MouseButton button, const QPoint &position)
 {
-    bool null = (index != -1);
-    actionRemoveColumn->setVisible(null);
-    actionEditColumn->setVisible(null);
-    QAction *action = hMenu->exec(position);
-    if (action == actionAddColumn)
+    if (button == Qt::LeftButton)
     {
-        addProperty(index);
+        // select the column
+        setCurrentCell(0, index, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Columns);
     }
-    else if (action == actionRemoveColumn)
+    else if (button == Qt::RightButton)
     {
-        removeProperty(index);
-    }
-    else if (action == actionEditColumn)
-    {
-        editProperty(index);
+        index = visualColumn(index);
+        // show the popup menu
+        bool null = (index != -1);
+        actionRemoveColumn->setVisible(null);
+        actionEditColumn->setVisible(null);
+        QAction *action = hMenu->exec(position);
+        if (action == actionAddColumn)
+        {
+            addProperty(index);
+        }
+        else if (action == actionRemoveColumn)
+        {
+            removeProperty(index);
+        }
+        else if (action == actionEditColumn)
+        {
+            editProperty(index);
+        }
     }
 }
 
-void QCustomTableWidget::onVHeaderClicked(int index, const QPoint &position)
+void QCustomTableWidget::onVHeaderClicked(int index, Qt::MouseButton button, const QPoint &position)
 {
-    bool null = (index != -1);
-    actionRemoveRow->setVisible(null);
-    actionEditRow->setVisible(null);
-    QAction *action = vMenu->exec(position);
-    if (action == actionAddRow)
+    if (button == Qt::LeftButton)
     {
-        addCharacter(index);
+        // select the row
+        setCurrentCell(index, 0, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     }
-    else if (action == actionRemoveRow)
+    else if (button == Qt::RightButton)
     {
-        removeCharacter(index);
-    }
-    else if (action == actionEditRow)
-    {
-        editCharacter(index);
+        index = visualRow(index);
+        // show the popup menu
+        bool null = (index != -1);
+        actionRemoveRow->setVisible(null);
+        actionEditRow->setVisible(null);
+        QAction *action = vMenu->exec(position);
+        if (action == actionAddRow)
+        {
+            addCharacter(index);
+        }
+        else if (action == actionRemoveRow)
+        {
+            removeCharacter(index);
+        }
+        else if (action == actionEditRow)
+        {
+            editCharacter(index);
+        }
     }
 }
 

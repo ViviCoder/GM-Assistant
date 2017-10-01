@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2017 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -30,9 +30,6 @@ QCustomHeaderView::QCustomHeaderView(Qt::Orientation orientation, QWidget *paren
 
 void QCustomHeaderView::mousePressEvent(QMouseEvent *e)
 {
-    if (e->button()==Qt::RightButton)
-    {
-        emit rightClicked(visualIndex(logicalIndexAt(e->pos())), e->globalPos());
-    }
+    emit clicked(logicalIndexAt(e->pos()), e->button(), e->globalPos());
     QHeaderView::mousePressEvent(e);
 }

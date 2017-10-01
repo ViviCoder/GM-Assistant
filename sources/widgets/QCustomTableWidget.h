@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2017 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -146,17 +146,19 @@ class QCustomTableWidget: public QTableWidget
          */
         void onCellChanged(int logicalRow, int logicalColumn);
         /*!
-         * \brief Slot for when the horizontal header is right-clicked
+         * \brief Slot for when the horizontal header is clicked
          * \param index Index of the clicked column
+         * \param button Mouse button used to click
          * \param position Global position of the click for popups
          */
-        void onHHeaderClicked(int index, const QPoint &position);
+        void onHHeaderClicked(int index, Qt::MouseButton button, const QPoint &position);
         /*!
-         * \brief Slot for when the vertical header is right-clicked
+         * \brief Slot for when the vertical header is clicked
          * \param index Index of the clicked row
+         * \param button Mouse button used to click
          * \param position Global position of the click for popups
          */
-        void onVHeaderClicked(int index, const QPoint &position);
+        void onVHeaderClicked(int index, Qt::MouseButton button, const QPoint &position);
         /*!
          * \brief Slot for when a section of the horizontal header is moved
          * \param oldColumn Old visual column

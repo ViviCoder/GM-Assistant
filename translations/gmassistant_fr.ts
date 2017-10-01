@@ -214,90 +214,90 @@ p, li { white-space: pre-wrap; }
 <context>
     <name>customTable</name>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="717"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="727"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="737"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="747"/>
         <source>&amp;Add</source>
         <translation>&amp;Ajouter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="729"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="749"/>
         <source>Ctrl+Shift+Ins</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="732"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="752"/>
         <source>Ctrl+Shift+Del</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="735"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="755"/>
         <source>Ctrl+Shift+F2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="719"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="739"/>
         <source>Ctrl+Ins</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="716"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="736"/>
         <source>&amp;Property</source>
         <translation>&amp;Propriété</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="718"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="738"/>
         <source>Add a new property</source>
         <translation>Ajoute une nouvelle propriété</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="720"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="730"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="740"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="750"/>
         <source>&amp;Remove</source>
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="722"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="742"/>
         <source>Ctrl+Del</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="723"/>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="733"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="743"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="753"/>
         <source>&amp;Edit</source>
         <translation>&amp;Éditer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="721"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="741"/>
         <source>Remove the property</source>
         <translation>Supprime la propriété</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="724"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="744"/>
         <source>Edit the property</source>
         <translation>Édite la propriété</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="725"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="745"/>
         <source>Ctrl+F2</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="726"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="746"/>
         <source>&amp;Character</source>
         <translation>&amp;Personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="728"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="748"/>
         <source>Add a new character</source>
         <translation>Ajoute un nouveau personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="731"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="751"/>
         <source>Remove the character</source>
         <translation>Supprime le personnage</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="734"/>
+        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="754"/>
         <source>Edit the character</source>
         <translation>Édite le personnage</translation>
     </message>
