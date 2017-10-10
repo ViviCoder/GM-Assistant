@@ -69,6 +69,8 @@ class QCustomTableWidget: public QTableWidget
         bool bUpdate;
         //! Number of recently created cells
         int iCreatedCells;
+        //! Type of selection
+        QAbstractItemView::SelectionBehavior eSelected;
     protected:
         /*!
          * \brief Event raised when the table is clicked

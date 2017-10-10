@@ -22,7 +22,7 @@
 #include <QApplication>
 #include <QScrollBar>
 
-QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangePropertyDial(new ChangePropertyDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pProperties(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0)
+QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangePropertyDial(new ChangePropertyDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pProperties(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0), eSelected(QAbstractItemView::SelectItems)
 {
     // property menu
     actionAddColumn = new QAction(this);
@@ -161,13 +161,19 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
                             {
                                 if (modifs == Qt::ControlModifier)
                                 {
-                                    editProperty(column);
+                                    if (eSelected != QAbstractItemView::SelectRows)
+                                    {
+                                        editProperty(column);
+                                    }
                                 }
                                 else if (modifs == (Qt::ControlModifier | Qt::ShiftModifier))
                                 {
-                                    editCharacter(row);
+                                    if (eSelected != QAbstractItemView::SelectColumns)
+                                    {
+                                        editCharacter(row);
+                                    }
                                 }
-                                else if (item)
+                                else if (item && eSelected == QAbstractItemView::SelectItems)
                                 {
                                     bEditing = true;
                                     editItem(item);
@@ -178,13 +184,19 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
                                 {
                                     if (modifs == Qt::ControlModifier)
                                     {
-                                        removeProperty(column);
+                                        if (eSelected != QAbstractItemView::SelectRows)
+                                        {
+                                            removeProperty(column);
+                                        }
                                     }
                                     else if (modifs == (Qt::ControlModifier | Qt::ShiftModifier))
                                     {
-                                        removeCharacter(row);
+                                        if (eSelected != QAbstractItemView::SelectColumns)
+                                        {
+                                            removeCharacter(row);
+                                        }
                                     }
-                                    else if (item)
+                                    else if (item && eSelected == QAbstractItemView::SelectItems)
                                     {
                                         item->setText("0");
                                     }
@@ -194,11 +206,17 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
                                 {
                                     if (modifs == Qt::ControlModifier)
                                     {
-                                        addProperty(column);
+                                        if (eSelected != QAbstractItemView::SelectRows)
+                                        {
+                                            addProperty(column);
+                                        }
                                     }
                                     else if (modifs == (Qt::ControlModifier | Qt::ShiftModifier))
                                     {
-                                        addCharacter(row);
+                                        if (eSelected != QAbstractItemView::SelectColumns)
+                                        {
+                                            addCharacter(row);
+                                        }
                                     }
                                     else
                                     {
@@ -569,6 +587,23 @@ void QCustomTableWidget::editProperty(int index)
 void QCustomTableWidget::on_itemSelectionChanged()
 {
     bEditing = false;
+    // by default: an item is selected
+    eSelected = QAbstractItemView::SelectItems;
+    QList<QTableWidgetSelectionRange> ranges = selectedRanges();
+    if (!ranges.isEmpty())
+    {
+        QTableWidgetSelectionRange range = ranges.first();
+        if (range.columnCount() > 1)
+        {
+            // a row is selected
+            eSelected = QAbstractItemView::SelectRows;
+        }
+        else if (range.rowCount() > 1)
+        {
+            // a column is selected
+            eSelected = QAbstractItemView::SelectColumns;
+        }
+    }
 }
 
 void QCustomTableWidget::mouseDoubleClickEvent(QMouseEvent *)
