@@ -1,5 +1,5 @@
 ##########################################################################
-# Copyright © 2011-2015 Vincent Prat & Simon Nicolas
+# Copyright © 2011-2017 Vincent Prat & Simon Nicolas
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -220,7 +220,7 @@ else
     dot="YES"
     echo dot: $path        
 fi
-sed $sed_i "s/HAVE_DOT.*=.*/HAVE_DOT\t\t= $dot/" dox.conf
+sed $sed_i "s/\(HAVE_DOT.*=.*\)\(YES\|NO\)/\1$dot/" dox.conf
 
 echo
 echo "*********************************"
