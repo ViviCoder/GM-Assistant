@@ -429,6 +429,7 @@ void QCustomTableWidget::addCharacter(int index)
             setVerticalHeaderItem(index+1, rowHeaderItem);
         }
         scrollTo(index+1, -1);
+        setCurrentCell(index+1, 0, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     }
 }
 
@@ -481,6 +482,7 @@ void QCustomTableWidget::addProperty(int index)
             setHorizontalHeaderItem(index+1, columnHeaderItem);
         }
         scrollTo(-1, index+1);
+        setCurrentCell(0, index+1, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Columns);
     }
 }
 
