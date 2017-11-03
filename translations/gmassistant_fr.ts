@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1089,9 +1089,6 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Reprise</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="109"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="502"/>
         <location filename="../sources/windows/MainWindow.cpp" line="303"/>
         <location filename="../sources/windows/MainWindow.cpp" line="309"/>
         <location filename="../sources/windows/MainWindow.cpp" line="350"/>
@@ -1101,6 +1098,9 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="547"/>
         <location filename="../sources/windows/MainWindow.cpp" line="553"/>
         <location filename="../sources/windows/MainWindow.cpp" line="853"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="109"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="502"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>

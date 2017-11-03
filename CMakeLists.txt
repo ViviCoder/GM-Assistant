@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 3.1)
 
 # project information
-set (PROJECT_NAME GM-Assistant)
+set (PROJECT_NAME gm-assistant)
 project (${PROJECT_NAME})
 
 # options
@@ -61,6 +61,16 @@ set (PROJECT_SOURCES
     sources/windows/MainWindow.cpp
     sources/windows/MetadataDialog.cpp
     sources/windows/SelectCharacterDialog.cpp)
+set (PROJECT_FORMS
+    sources/windows/AboutDialog.ui
+    sources/windows/ChangeCharacterDialog.ui
+    sources/windows/ChangePropertyDialog.ui
+    sources/windows/CombatDialog.ui
+    sources/windows/DiceDialog.ui
+    sources/windows/ItemDialog.ui
+    sources/windows/MainWindow.ui
+    sources/windows/MetadataDialog.ui
+    sources/windows/SelectCharacterDialog.ui)
 
 # find libraries
 find_package(Qt5Widgets REQUIRED)
@@ -106,9 +116,25 @@ include_directories(
     ${POCO_INCLUDE_DIR}
     ${MAGIC_INCLUDE_DIR})
 
+# linguist tools
+find_package(Qt5LinguistTools)
+if (${Qt5LinguistTools_FOUND})
+    set (TRANSLATION_FILES
+        translations/gmassistant_fr.ts
+        translations/gmassistant_it.ts)
+    qt5_create_translation(TRANSLATION_QM
+        ${PROJECT_FORMS}
+        ${PROJECT_SOURCES}
+        ${TRANSLATION_FILES})
+else()
+    set (TRANSLATION_QM)
+endif()
+
 # executable
-set (EXEC_NAME gm-assistant)
-add_executable(${EXEC_NAME} ${PROJECT_SOURCES})
+set (EXEC_NAME ${PROJECT_NAME})
+add_executable(${EXEC_NAME}
+    ${PROJECT_SOURCES}
+    ${TRANSLATION_QM})
 
 # link libraries
 target_link_libraries(${EXEC_NAME}
