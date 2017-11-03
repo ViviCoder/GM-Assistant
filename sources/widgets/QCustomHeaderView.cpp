@@ -21,11 +21,11 @@
 QCustomHeaderView::QCustomHeaderView(Qt::Orientation orientation, QWidget *parent): QHeaderView(orientation,parent)
 {
     // enabling drag & drop
-    setMovable(true);
+    setSectionsMovable(true);
     // enabling auto-resize
-    setResizeMode(QHeaderView::ResizeToContents);
+    setSectionResizeMode(QHeaderView::ResizeToContents);
     // enabling row or column selection
-    setClickable(true);
+    setSectionsClickable(true);
 }
 
 void QCustomHeaderView::mousePressEvent(QMouseEvent *e)
