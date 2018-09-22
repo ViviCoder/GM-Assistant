@@ -145,3 +145,16 @@ target_link_libraries(${EXEC_NAME}
     ${POCOZIP_LIBRARY}
     ${MAGIC_LIBRARY}
     ${PHONON_LIBRARY})
+
+# installation
+install(TARGETS ${EXEC_NAME}
+    DESTINATION games)
+set (DATA_DIR share/games/${EXEC_NAME})
+install(FILES data/images/GMA.svg
+    DESTINATION ${DATA_DIR})
+install(FILES ${TRANSLATION_QM} translations/languages
+    DESTINATION ${DATA_DIR}/translations)
+install(FILES doc/gm-assistant.6
+    DESTINATION man/man6)
+install(FILES gm-assistant.desktop
+    DESTINATION share/applications)
