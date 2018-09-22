@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2017 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -44,20 +44,12 @@ int main(int argc, char* argv[])
     // icon visibility in menus
     app.setAttribute(Qt::AA_DontShowIconsInMenus, false);
 
-    // getting install directory (on Linux only)
-    QString install_dir;
+    // getting install directory
+    QString install_dir(QCoreApplication::applicationDirPath());
 #ifdef __linux__
-    #ifdef SYSTEM_INSTALL
-    QSettings settings(QSettings::SystemScope,APPLICATION_NAME,APPLICATION_NAME);
-    #else
-    QSettings settings;
-    #endif
-    settings.beginGroup("directories");
-    install_dir = settings.value("install").toString();
-    settings.endGroup();
+    install_dir += "/../share/games/gm-assistant";
 #endif
 #ifdef _WIN32
-	install_dir = QDir::currentPath();
 	QDir home = QDir::home();
 	QString dirName = "GM-Assistant";
 	if (home.exists(dirName) || home.mkdir(dirName))
