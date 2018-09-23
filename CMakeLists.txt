@@ -19,8 +19,14 @@
 cmake_minimum_required (VERSION 3.1)
 
 # project information
-set (PROJECT_NAME gm-assistant)
+set (PROJECT_NAME GM-Assistant)
 project (${PROJECT_NAME})
+
+# handling version
+set (VERSION_MAJOR 1)
+set (VERSION_MINOR 2)
+set (VERSION_PATCH 0)
+configure_file(sources/engine/Version.h.in Version.h)
 
 # options
 set (CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -29,7 +35,7 @@ set (CMAKE_AUTORCC ON)
 set (CMAKE_AUTOUIC ON)
 
 # source directory
-include_directories (
+include_directories(
     sources/engine
     sources/engine/items
     sources/engine/modifications
@@ -149,7 +155,7 @@ else()
 endif()
 
 # executable
-set (EXEC_NAME ${PROJECT_NAME})
+set (EXEC_NAME gm-assistant)
 add_executable(${EXEC_NAME}
     ${PROJECT_SOURCES}
     ${TRANSLATION_QM})
