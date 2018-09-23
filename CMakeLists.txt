@@ -176,3 +176,25 @@ install(FILES doc/gm-assistant.6
     DESTINATION man/man6)
 install(FILES gm-assistant.desktop
     DESTINATION share/applications)
+
+# API documentation with Doxygen
+find_package(Doxygen)
+option(BUILD_API_DOC "Create and install the HTML-based API documentation (requires Doxygen)" ${DOXYGEN_FOUND})
+
+if(${BUILD_API_DOC})
+    if(NOT ${DOXYGEN_FOUND})
+        message(FATAL_ERROR "Doxygen is needed to build the documentation.")
+    endif()
+
+    set(doxyfile_in ${CMAKE_CURRENT_SOURCE_DIR}/dox.conf.in)
+    set(doxyfile ${CMAKE_CURRENT_BINARY_DIR}/dox.conf)
+
+    configure_file(${doxyfile_in} ${doxyfile})
+
+    add_custom_target(api
+        COMMAND ${DOXYGEN_EXECUTABLE} ${doxyfile}
+        COMMENT "Generating API documentation with Doxygen"
+        VERBATIM)
+
+    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html DESTINATION share/doc/${EXEC_NAME})
+endif()
