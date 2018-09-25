@@ -171,9 +171,11 @@ target_link_libraries(${EXEC_NAME}
     ${PHONON_LIBRARY})
 
 # installation
+set (DATA_DIR share/games/${EXEC_NAME})
+set (DOC_DIR share/doc/${EXEC_NAME})
+
 install(TARGETS ${EXEC_NAME}
     DESTINATION games)
-set (DATA_DIR share/games/${EXEC_NAME})
 install(FILES data/images/GMA.svg
     DESTINATION ${DATA_DIR})
 install(FILES ${TRANSLATION_QM} translations/languages
@@ -202,5 +204,39 @@ if(${BUILD_API_DOC})
         COMMENT "Generating API documentation with Doxygen"
         VERBATIM)
 
-    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html DESTINATION share/doc/${EXEC_NAME})
+    install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html DESTINATION ${DOC_DIR})
+endif()
+
+# user guide with LATEX
+find_package(LATEX COMPONENTS PDFLATEX)
+option(BUILD_USERGUIDE "Build and install the PDF-based user guide (requires PDFLaTeX)" ${LATEX_PDFLATEX_FOUND})
+
+if (${BUILD_USERGUIDE})
+    if (NOT ${LATEX_PDFLATEX_FOUND})
+        message(FATAL_ERROR "pdflatex is needed to build the user guide.")
+    endif()
+
+    # list of PDF files to build
+    set (LIST_PDF)
+    foreach (LANG en fr)
+        set (TARGET_NAME userguide_${LANG}.pdf)
+        set (TEXFILE_NAME ${CMAKE_CURRENT_BINARY_DIR}/userguide_${LANG}.tex)
+        set (TEX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/doc/userguide/${LANG})
+
+        configure_file(${TEX_PATH}/userguide.tex.in ${TEXFILE_NAME})
+        list (APPEND LIST_PDF ${TARGET_NAME})
+
+        add_custom_target(${TARGET_NAME}
+            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME}
+            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME}
+            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME}
+            COMMENT "Generating user guide: ${LANG}"
+            VERBATIM)
+
+        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME} DESTINATION ${DOC_DIR})
+    endforeach()
+
+    add_custom_target(userguide
+        DEPENDS ${LIST_PDF})
+
 endif()
