@@ -171,6 +171,7 @@ target_link_libraries(${EXEC_NAME}
     ${PHONON_LIBRARY})
 
 # installation
+set (BIN_DIR games)
 set (DATA_DIR share/games/${EXEC_NAME})
 set (DOC_DIR share/doc/${EXEC_NAME})
 
@@ -182,7 +183,13 @@ install(FILES ${TRANSLATION_QM} translations/languages
     DESTINATION ${DATA_DIR}/translations)
 install(FILES doc/gm-assistant.6
     DESTINATION man/man6)
-install(FILES gm-assistant.desktop
+
+# desktop file
+set (DESKTOP_FILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/${EXEC_NAME}.desktop.in)
+set (DESKTOP_FILE ${CMAKE_CURRENT_BINARY_DIR}/${EXEC_NAME}.desktop)
+configure_file(${DESKTOP_FILE_IN} ${DESKTOP_FILE})
+
+install(FILES ${DESKTOP_FILE}
     DESTINATION share/applications)
 
 # API documentation with Doxygen
