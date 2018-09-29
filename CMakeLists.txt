@@ -176,7 +176,7 @@ set (DATA_DIR share/games/${EXEC_NAME})
 set (DOC_DIR share/doc/${EXEC_NAME})
 
 install(TARGETS ${EXEC_NAME}
-    DESTINATION games)
+    DESTINATION ${BIN_DIR})
 install(FILES data/images/GMA.svg
     DESTINATION ${DATA_DIR})
 install(FILES ${TRANSLATION_QM} translations/languages
