@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -1079,7 +1079,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="452"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="911"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="916"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
@@ -1097,7 +1097,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="536"/>
         <location filename="../sources/windows/MainWindow.cpp" line="547"/>
         <location filename="../sources/windows/MainWindow.cpp" line="553"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="853"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="858"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="109"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="502"/>
@@ -1170,17 +1170,17 @@ p, li { white-space: pre-wrap; }
         <translation>Le fichier &quot;%1&quot; n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="793"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="798"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="793"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="798"/>
         <source>The current game has been modified since the last save. If you continue, unsaved changes will be discarded.</source>
         <translation>Le jeu en cours a été modifié depuis la dernière sauvegarde. Si vous continuez, les changements non sauvegardés seront perdus.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="718"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="716"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>

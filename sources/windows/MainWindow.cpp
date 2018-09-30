@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -707,20 +707,28 @@ void MainWindow::updateUndoRedo()
     action_Redo->setEnabled(mqQueue.redoable());
     bool modified = !mqQueue.isUpToDate() || textNotes->unregisteredModification();
     action_Save->setEnabled(modified);
+
     QString windowTitle("GM-Assistant - ");
     QString title(sGame.metadata().title().c_str());
+    QString fileName(QFileInfo(sFileName).absoluteFilePath());
+
+    if (sFileName.isEmpty())
+    {
+        // if no file name is given, we put "New game" instead
+        fileName = QApplication::translate("mainWindow", "New game", 0);
+    }
+
     if (!title.isEmpty())
     {
-        windowTitle += title;
-    }
-    else if (sFileName.isEmpty())
-    {
-        windowTitle += QApplication::translate("mainWindow", "New game", 0);
+        // if there is a title, we put the file name in parentheses
+        windowTitle += title + " (" + fileName + ")";
     }
     else
     {
-        windowTitle += QFileInfo(sFileName).fileName();
+        // otherwise we just put the file name
+        windowTitle += fileName;
     }
+
     if (modified)
     {
         windowTitle += "*";
