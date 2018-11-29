@@ -10,65 +10,42 @@
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="26"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Ubuntu&apos;; font-size:11pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;GM-Assistant&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <source>&lt;h1&gt;GM-Assistant&lt;/h1&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="42"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;body&gt;
-&lt;p&gt;Version:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <location filename="../sources/windows/AboutDialog.ui" line="41"/>
+        <source>Version:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="90"/>
+        <source>Original idea: Simon Nicolas</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="100"/>
+        <source>Development: Vincent Prat</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="113"/>
+        <source>&lt;a href=&quot;http://gmassistant.free.fr&quot;&gt;http://gmassistant.free.fr&lt;/a&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="126"/>
+        <source>GM-Assistant is a free software designed to assist the Game Master during role-playing games.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="139"/>
+        <source>License: GPLv3+</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="66"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="77"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;body&gt;
-&lt;p style=&quot;text-decoration: underline&quot;&gt;Developed and maintained by:&lt;/p&gt;
-&lt;p&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;br /&gt;
-&lt;a href=&quot;http://gmassistant.free.fr&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://gmassistant.free.fr&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translatorcomment>Should I translate this as well?
-i.e.: Sviluppato e curato da Simon Nicolas &amp; Vincent Prat</translatorcomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="91"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Description:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;GM-Assistant is a free software designed to assist the Game Master during role-playing games.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translatorcomment>Also here: &quot;GM-Assistant è un software libero progettato per assistere il Game Master durante giochi di ruolo.&quot;</translatorcomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="106"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;body&gt;
-&lt;p style=&quot; text-decoration: underline;&quot;&gt;License:&lt;/p&gt;
-&lt;p&gt;GPLv3+&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="116"/>
-        <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
-&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
-p, li { white-space: pre-wrap; }
-&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Using:&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt; with the Phonon module&lt;br /&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
-&lt;a href=&quot;http://pocoproject.org/&quot;&gt;Poco&lt;/a&gt;
-&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1074,7 +1051,7 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="536"/>
         <location filename="../sources/windows/MainWindow.cpp" line="547"/>
         <location filename="../sources/windows/MainWindow.cpp" line="553"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="858"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="861"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="109"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="502"/>
@@ -1143,7 +1120,7 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="452"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="916"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="919"/>
         <source>&amp;Pause</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1158,17 +1135,17 @@ p, li { white-space: pre-wrap; }
         <translation>Il file &quot;%1&quot; non esiste.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="716"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="718"/>
         <source>New game</source>
         <translation>Nuovo gioco</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="798"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="801"/>
         <source>Confirmation</source>
         <translation>Conferma</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="798"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="801"/>
         <source>The current game has been modified since the last save. If you continue, unsaved changes will be discarded.</source>
         <translation>Il gioco corrente è stato modificato dall&apos;ultimo salvataggio. Se continui, le modifiche non salvate andranno perse.</translation>
     </message>
