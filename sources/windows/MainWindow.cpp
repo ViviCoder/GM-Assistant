@@ -155,6 +155,9 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     
     // menu updates
     connect(actionR_ecent->menu(),SIGNAL(aboutToShow()),this,SLOT(updateRecent()));
+
+    // about Qt
+    connect(actionAbout_Qt, SIGNAL(triggered(bool)), QApplication::instance(), SLOT(aboutQt()));
 }
 
 MainWindow::~MainWindow()
