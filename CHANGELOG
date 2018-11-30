@@ -1,4 +1,7 @@
 Changes in version 1.2.1
+* Transitions
+    - CMake as a build system
+    - Qt5
 * Combat Manager
     - confirmation before leaving
     - fixed height of rows
@@ -8,6 +11,10 @@ Changes in version 1.2.1
 * Others
     - partial Italian translation
     - newly created items/characters/properties automatically selected
+    - file name added to the window title
+    - simplification of the "About" window -> "About GM-Assistant"
+    - new "About Qt" menu entry
+    - some bug fixes
 
 Changes in version 1.2.0
 * New features
