@@ -149,7 +149,8 @@ if (${Qt5LinguistTools_FOUND})
     qt5_create_translation(TRANSLATION_QM
         ${PROJECT_FORMS}
         ${PROJECT_SOURCES}
-        ${TRANSLATION_FILES})
+        ${TRANSLATION_FILES}
+        OPTIONS -no-obsolete)
 else()
     set (TRANSLATION_QM)
 endif()

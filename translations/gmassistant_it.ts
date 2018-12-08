@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it_IT">
+<TS version="2.1" language="it_IT">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -72,10 +72,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <source>Uncomplete data</source>
-        <translation>Dati incompleti</translation>
-    </message>
-    <message>
         <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="36"/>
         <source>You must fill the content before validating.</source>
         <translation>Devi inserire il contenuto prima di confermare.</translation>
@@ -108,10 +104,6 @@
         <location filename="../sources/windows/ChangePropertyDialog.ui" line="52"/>
         <source>&amp;Cancel</source>
         <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <source>Uncomplete data</source>
-        <translation>Dati incompleti</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangePropertyDialog.cpp" line="41"/>
@@ -342,10 +334,6 @@
         <translation>Modifica l&apos;oggetto</translation>
     </message>
     <message>
-        <source>Space</source>
-        <translation>Spazio</translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="775"/>
         <source>E&amp;xport</source>
         <translation type="unfinished"></translation>
@@ -502,10 +490,6 @@
         <location filename="../sources/windows/ItemDialog.cpp" line="22"/>
         <source>Select the audio file to associate to the item</source>
         <translation>Seleziona il file audio associato all&apos;oggetto</translation>
-    </message>
-    <message>
-        <source>Uncomplete data</source>
-        <translation>Dati incompleti</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="85"/>
