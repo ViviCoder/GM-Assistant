@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -33,7 +33,7 @@ void ChangeCharacterDialog::on_pushEdit_clicked()
     }
     else
     {
-        QMessageBox::critical(this,QApplication::translate("changeCharacterDialog","Uncomplete data",0),QApplication::translate("changeCharacterDialog","You must fill the content before validating.",0));
+        QMessageBox::critical(this,QApplication::translate("changeCharacterDialog","Incomplete data",0),QApplication::translate("changeCharacterDialog","You must fill the content before validating.",0));
     }
 }
 

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ void ChangePropertyDialog::on_pushEdit_clicked()
     }
     else
     {
-        QMessageBox::critical(this,QApplication::translate("changePropertyDialog","Uncomplete data",0),QApplication::translate("changePropertyDialog","You must fill the content before validating.",0));
+        QMessageBox::critical(this,QApplication::translate("changePropertyDialog","Incomplete data",0),QApplication::translate("changePropertyDialog","You must fill the content before validating.",0));
     }
 }
 

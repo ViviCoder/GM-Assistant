@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -82,12 +82,12 @@ void ItemDialog::on_pushChild_clicked()
         }
         else
         {
-        QMessageBox::critical(this,QApplication::translate("itemDialog","Uncomplete data",0),QApplication::translate("itemDialog","You must select a file before validating.",0));
+        QMessageBox::critical(this,QApplication::translate("itemDialog","Incomplete data",0),QApplication::translate("itemDialog","You must select a file before validating.",0));
         }
     }
     else
     {
-        QMessageBox::critical(this,QApplication::translate("itemDialog","Uncomplete data",0),QApplication::translate("itemDialog","You must fill the content before validating.",0));
+        QMessageBox::critical(this,QApplication::translate("itemDialog","Incomplete data",0),QApplication::translate("itemDialog","You must fill the content before validating.",0));
     }
 }
 
@@ -102,12 +102,12 @@ void ItemDialog::on_pushBrother_clicked()
         }
         else
         {
-        QMessageBox::critical(this,QApplication::translate("itemDialog","Uncomplete data",0),QApplication::translate("itemDialog","You must select a file before validating.",0));
+        QMessageBox::critical(this,QApplication::translate("itemDialog","Incomplete data",0),QApplication::translate("itemDialog","You must select a file before validating.",0));
         }
     }
     else
     {
-        QMessageBox::critical(this,QApplication::translate("itemDialog","Uncomplete data",0),QApplication::translate("itemDialog","You must fill the content before validating.",0));
+        QMessageBox::critical(this,QApplication::translate("itemDialog","Incomplete data",0),QApplication::translate("itemDialog","You must fill the content before validating.",0));
     }
 }
 

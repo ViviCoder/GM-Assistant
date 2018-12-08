@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="it_IT">
+<TS version="2.0" language="it_IT">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -72,7 +72,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="36"/>
         <source>Uncomplete data</source>
         <translation>Dati incompleti</translation>
     </message>
@@ -80,6 +79,11 @@
         <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="36"/>
         <source>You must fill the content before validating.</source>
         <translation>Devi inserire il contenuto prima di confermare.</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="36"/>
+        <source>Incomplete data</source>
+        <translation>Dati incompleti</translation>
     </message>
 </context>
 <context>
@@ -106,7 +110,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sources/windows/ChangePropertyDialog.cpp" line="41"/>
         <source>Uncomplete data</source>
         <translation>Dati incompleti</translation>
     </message>
@@ -114,6 +117,11 @@
         <location filename="../sources/windows/ChangePropertyDialog.cpp" line="41"/>
         <source>You must fill the content before validating.</source>
         <translation>Devi inserire il contenuto prima di confermare.</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ChangePropertyDialog.cpp" line="41"/>
+        <source>Incomplete data</source>
+        <translation>Dati incompleti</translation>
     </message>
 </context>
 <context>
@@ -335,7 +343,7 @@
     </message>
     <message>
         <source>Space</source>
-        <translation type="vanished">Spazio</translation>
+        <translation>Spazio</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="775"/>
@@ -496,10 +504,6 @@
         <translation>Seleziona il file audio associato all&apos;oggetto</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="85"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="90"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="105"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="110"/>
         <source>Uncomplete data</source>
         <translation>Dati incompleti</translation>
     </message>
@@ -508,6 +512,14 @@
         <location filename="../sources/windows/ItemDialog.cpp" line="105"/>
         <source>You must select a file before validating.</source>
         <translation>Devi selezionare un file prima di confermare.</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/ItemDialog.cpp" line="85"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="90"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="105"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="110"/>
+        <source>Incomplete data</source>
+        <translation>Dati incompleti</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="90"/>
@@ -1025,7 +1037,7 @@
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.cpp" line="33"/>
         <source>Confirmation</source>
-        <translation type="unfinished">Conferma</translation>
+        <translation>Conferma</translation>
     </message>
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.cpp" line="33"/>
