@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2017 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -773,23 +773,23 @@ void QCustomTableWidget::retranslate()
     hMenu->setTitle(QApplication::translate("customTable","&Property",0));
     actionAddColumn->setText(QApplication::translate("customTable","&Add",0));
     actionAddColumn->setStatusTip(QApplication::translate("customTable","Add a new property",0));
-    actionAddColumn->setShortcut(QApplication::translate("customTable","Ctrl+Ins", 0));
+    actionAddColumn->setShortcut(QString("Ctrl+Ins"));
     actionRemoveColumn->setText(QApplication::translate("customTable","&Remove",0));
     actionRemoveColumn->setStatusTip(QApplication::translate("customTable","Remove the property",0));
-    actionRemoveColumn->setShortcut(QApplication::translate("customTable","Ctrl+Del", 0));
+    actionRemoveColumn->setShortcut(QString("Ctrl+Del"));
     actionEditColumn->setText(QApplication::translate("customTable","&Edit",0));
     actionEditColumn->setStatusTip(QApplication::translate("customTable","Edit the property",0));
-    actionEditColumn->setShortcut(QApplication::translate("customTable","Ctrl+F2", 0));
+    actionEditColumn->setShortcut(QString("Ctrl+F2"));
     vMenu->setTitle(QApplication::translate("customTable","&Character",0));
     actionAddRow->setText(QApplication::translate("customTable","&Add",0));
     actionAddRow->setStatusTip(QApplication::translate("customTable","Add a new character",0));
-    actionAddRow->setShortcut(QApplication::translate("customTable","Ctrl+Shift+Ins", 0));
+    actionAddRow->setShortcut(QString("Ctrl+Shift+Ins"));
     actionRemoveRow->setText(QApplication::translate("customTable","&Remove",0));
     actionRemoveRow->setStatusTip(QApplication::translate("customTable","Remove the character",0));
-    actionRemoveRow->setShortcut(QApplication::translate("customTable","Ctrl+Shift+Del", 0));
+    actionRemoveRow->setShortcut(QString("Ctrl+Shift+Del"));
     actionEditRow->setText(QApplication::translate("customTable","&Edit",0));
     actionEditRow->setStatusTip(QApplication::translate("customTable","Edit the character",0));
-    actionEditRow->setShortcut(QApplication::translate("customTable","Ctrl+Shift+F2", 0));
+    actionEditRow->setShortcut(QString("Ctrl+Shift+F2"));
 }
 
 void QCustomTableWidget::changeEvent(QEvent *e)

@@ -9,11 +9,6 @@
         <translation>A proposito di GM-Assistant</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="26"/>
-        <source>&lt;h1&gt;GM-Assistant&lt;/h1&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/AboutDialog.ui" line="41"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
@@ -31,11 +26,6 @@
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="113"/>
         <source>Translation: Vincent Prat (French), Matteo Bugli (Italian)</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="123"/>
-        <source>&lt;a href=&quot;http://gmassistant.free.fr&quot;&gt;http://gmassistant.free.fr&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -197,11 +187,6 @@
         <translation>Aggiungi una nuova proprietà</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="776"/>
-        <source>Ctrl+Ins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="777"/>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="787"/>
         <source>&amp;Remove</source>
@@ -211,11 +196,6 @@
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="778"/>
         <source>Remove the property</source>
         <translation>Rimuovi la proprietà</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="779"/>
-        <source>Ctrl+Del</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="780"/>
@@ -229,11 +209,6 @@
         <translation>Modifica la proprietà</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="782"/>
-        <source>Ctrl+F2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="783"/>
         <source>&amp;Character</source>
         <translation type="unfinished"></translation>
@@ -244,29 +219,14 @@
         <translation>Aggiungi un nuovo personaggio</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="786"/>
-        <source>Ctrl+Shift+Ins</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="788"/>
         <source>Remove the character</source>
         <translation>Rimuovi il personaggio</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="789"/>
-        <source>Ctrl+Shift+Del</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="791"/>
         <source>Edit the character</source>
         <translation>Modifica il personaggio</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="792"/>
-        <source>Ctrl+Shift+F2</source>
-        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -313,11 +273,6 @@
         <translation type="unfinished">Rimuovi il segnalino dall&apos;oggetto</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="755"/>
-        <source>Ctrl+F5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="756"/>
         <source>In &amp;progress</source>
         <translation type="unfinished"></translation>
@@ -327,11 +282,6 @@
         <source>Tag the item as being in progress</source>
         <translatorcomment>I assumed &apos;in progress&apos; meant &apos;not ready yet, still working on it&apos;.</translatorcomment>
         <translation>Segna l&apos;oggetto come in lavorazione</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="758"/>
-        <source>Ctrl+F6</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="759"/>
@@ -344,11 +294,6 @@
         <translation>Segna l&apos;oggetto come fallimento</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="761"/>
-        <source>Ctrl+F7</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="762"/>
         <source>&amp;Succeeded</source>
         <translation type="unfinished"></translation>
@@ -357,11 +302,6 @@
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="763"/>
         <source>Tag the item as succeeded</source>
         <translation>Segna l&apos;oggetto come successo</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="764"/>
-        <source>Ctrl+F8</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="765"/>
@@ -374,12 +314,6 @@
         <translation>Aggiungi un nuovo oggetto</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="767"/>
-        <source>Ins</source>
-        <translatorcomment>Did you mean &apos;Inns&apos;?</translatorcomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="768"/>
         <source>&amp;Delete</source>
         <translation type="unfinished"></translation>
@@ -388,11 +322,6 @@
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="769"/>
         <source>Delete the item</source>
         <translation>Rimuovi l&apos;oggetto</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="770"/>
-        <source>Del</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="771"/>
@@ -405,14 +334,8 @@
         <translation>Modifica l&apos;oggetto</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="773"/>
-        <source>Ctrl+F2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="774"/>
         <source>Space</source>
-        <translation>Spazio</translation>
+        <translation type="vanished">Spazio</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="775"/>
@@ -423,11 +346,6 @@
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="776"/>
         <source>Export the file associated to the item</source>
         <translation>Esporta il file associato all&apos;oggetto</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="777"/>
-        <source>Ctrl+Space</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="805"/>
@@ -471,51 +389,6 @@
         <location filename="../sources/windows/DiceDialog.ui" line="28"/>
         <source>Die type:</source>
         <translation>Tipo di dado:</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="42"/>
-        <source>d2</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="47"/>
-        <source>d3</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="52"/>
-        <source>d4</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="57"/>
-        <source>d6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="62"/>
-        <source>d8</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="67"/>
-        <source>d10</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="72"/>
-        <source>d12</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="77"/>
-        <source>d20</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="82"/>
-        <source>d100</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/windows/DiceDialog.ui" line="90"/>
@@ -602,11 +475,6 @@
         <translation>File:</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="158"/>
-        <source>...</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/ItemDialog.ui" line="172"/>
         <source>&amp;Add</source>
         <translation type="unfinished"></translation>
@@ -676,12 +544,6 @@
 <context>
     <name>mainWindow</name>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="14"/>
-        <source>GM-Assistant</source>
-        <translatorcomment>I guess this should stay the same.</translatorcomment>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="27"/>
         <source>Plot</source>
         <translation>Trama</translation>
@@ -725,11 +587,6 @@
         <location filename="../sources/windows/MainWindow.ui" line="253"/>
         <location filename="../sources/windows/MainWindow.cpp" line="487"/>
         <source>&amp;Play</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="260"/>
-        <source>0:00/0:00</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -788,11 +645,6 @@
         <translation>Crea un nuovo gioco</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="375"/>
-        <source>Ctrl+N</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="380"/>
         <source>&amp;Load</source>
         <translation type="unfinished"></translation>
@@ -801,11 +653,6 @@
         <location filename="../sources/windows/MainWindow.ui" line="383"/>
         <source>Load a game</source>
         <translation>Carica un gioco</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="386"/>
-        <source>Ctrl+O</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="391"/>
@@ -818,11 +665,6 @@
         <translation>Salva il gioco corrente</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="397"/>
-        <source>Ctrl+S</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="402"/>
         <source>S&amp;ave as</source>
         <translation type="unfinished"></translation>
@@ -831,11 +673,6 @@
         <location filename="../sources/windows/MainWindow.ui" line="405"/>
         <source>Save the current game in a new file</source>
         <translation>Salva il gioco corrente in un nuovo file</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="408"/>
-        <source>Ctrl+Shift+S</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="413"/>
@@ -848,11 +685,6 @@
         <translation>Esci dall&apos;applicazione</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="419"/>
-        <source>Ctrl+Q</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="424"/>
         <source>About &amp;GM-Assistant</source>
         <translation type="unfinished"></translation>
@@ -863,11 +695,6 @@
         <translation>Mostra informazioni riguardo GM-Assistant</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="430"/>
-        <source>F1</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="435"/>
         <source>&amp;Reload</source>
         <translation type="unfinished"></translation>
@@ -876,11 +703,6 @@
         <location filename="../sources/windows/MainWindow.ui" line="438"/>
         <source>Reload the current game</source>
         <translation>Ricarica il gioco corrente</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="441"/>
-        <source>Ctrl+R</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="446"/>
@@ -903,11 +725,6 @@
         <translation>Strumenti visualizzati: Trama, Appunti, Personaggi, Storia, Musica ed Effetti sonori</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="466"/>
-        <source>F5</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="474"/>
         <source>&amp;Music</source>
         <translation type="unfinished"></translation>
@@ -916,11 +733,6 @@
         <location filename="../sources/windows/MainWindow.ui" line="477"/>
         <source>Tools shown : Music and Sound effects</source>
         <translation>Strumenti visualizzati: Musica ed Effetti sonori</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="480"/>
-        <source>F7</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="488"/>
@@ -933,11 +745,6 @@
         <translation>Strumenti visualizzati: Trama, Musica ed Effetti sonori</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="494"/>
-        <source>F6</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="502"/>
         <source>&amp;Design</source>
         <translation type="unfinished"></translation>
@@ -946,11 +753,6 @@
         <location filename="../sources/windows/MainWindow.ui" line="505"/>
         <source>Tools shown : Plot, Characters and Notes</source>
         <translation>Strumenti visualizzati: Trama, Personaggi e Appunti</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="508"/>
-        <source>F8</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="516"/>
@@ -963,11 +765,6 @@
         <translation>Strumenti visualizzati: Trama, Personaggi, Storia e Appunti</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="522"/>
-        <source>F9</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="527"/>
         <source>&amp;Undo</source>
         <translation type="unfinished"></translation>
@@ -976,11 +773,6 @@
         <location filename="../sources/windows/MainWindow.ui" line="530"/>
         <source>Undo the last modification</source>
         <translation>Annulla l&apos;ultima modifica</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="533"/>
-        <source>Ctrl+Z</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="538"/>
@@ -993,11 +785,6 @@
         <translation>Ripeti l&apos;ultima modifica annullata</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="544"/>
-        <source>Ctrl+Shift+Z</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="549"/>
         <source>&amp;Dice simulator</source>
         <translation type="unfinished"></translation>
@@ -1008,11 +795,6 @@
         <translation>Tira i dadi virtuali</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="555"/>
-        <source>Ctrl+D</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="560"/>
         <source>&amp;Combat manager</source>
         <translation type="unfinished"></translation>
@@ -1021,11 +803,6 @@
         <location filename="../sources/windows/MainWindow.ui" line="563"/>
         <source>Manage round per round combats</source>
         <translation>Gestisci i combattimenti round per round</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="566"/>
-        <source>Ctrl+B</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="574"/>
@@ -1041,11 +818,6 @@
         <location filename="../sources/windows/MainWindow.ui" line="582"/>
         <source>Edit the game metadata</source>
         <translation>Modifica i metadati del gioco</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="585"/>
-        <source>Ctrl+M</source>
-        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="590"/>

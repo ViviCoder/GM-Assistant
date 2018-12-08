@@ -23,7 +23,7 @@
    <item>
     <widget class="QLabel" name="labelTitle">
      <property name="text">
-      <string>&lt;h1&gt;GM-Assistant&lt;/h1&gt;</string>
+      <string notr="true">&lt;h1&gt;GM-Assistant&lt;/h1&gt;</string>
      </property>
      <property name="textFormat">
       <enum>Qt::RichText</enum>
@@ -120,7 +120,7 @@
        <item>
         <widget class="QLabel" name="labelWebsite">
          <property name="text">
-          <string>&lt;a href=&quot;http://gmassistant.free.fr&quot;&gt;http://gmassistant.free.fr&lt;/a&gt;</string>
+          <string notr="true">&lt;a href=&quot;http://gmassistant.free.fr&quot;&gt;http://gmassistant.free.fr&lt;/a&gt;</string>
          </property>
          <property name="textFormat">
           <enum>Qt::RichText</enum>

@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="fr_FR">
+<TS version="2.1" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="17"/>
         <source>About GM-Assistant</source>
         <translation>À propos de GM-Assistant</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="26"/>
-        <source>&lt;h1&gt;GM-Assistant&lt;/h1&gt;</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="41"/>
@@ -34,11 +29,6 @@
         <translation>Traduction : Vincent Prat (français), Matteo Bugli (italien)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="123"/>
-        <source>&lt;a href=&quot;http://gmassistant.free.fr&quot;&gt;http://gmassistant.free.fr&lt;/a&gt;</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/AboutDialog.ui" line="136"/>
         <source>GM-Assistant is a free software designed to assist the Game Master during role-playing games.</source>
         <translation>GM-Assistant est un logiciel libre conçu pour assister le Maître du Jeu lors de parties de jeu de rôle.</translation>
@@ -52,7 +42,7 @@
         <source>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p&gt;Version:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//FR&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//FR&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p&gt;Version :&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
@@ -62,7 +52,7 @@
 &lt;p style=&quot;text-decoration: underline&quot;&gt;Developed and maintained by:&lt;/p&gt;
 &lt;p&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;br /&gt;
 &lt;a href=&quot;http://gmassistant.free.fr&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;http://gmassistant.free.fr&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot;text-decoration: underline&quot;&gt;Developpé et maintenu par :&lt;/p&gt;
 &lt;p&gt;Simon Nicolas &amp;amp; Vincent Prat&lt;br /&gt;
@@ -75,7 +65,7 @@ p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; text-decoration: underline;&quot;&gt;Description:&lt;/span&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;GM-Assistant is a free software designed to assist the Game Master during role-playing games.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Sans&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -91,7 +81,7 @@ p, li { white-space: pre-wrap; }
 &lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;a href=&quot;http://qt.nokia.com/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;Qt4&lt;/span&gt;&lt;/a&gt; with the Phonon module&lt;br /&gt;&lt;a href=&quot;http://libxmlplusplus.sourceforge.net/&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;libxml++&lt;/span&gt;&lt;/a&gt;&lt;br /&gt;
 &lt;a href=&quot;http://pocoproject.org/&quot;&gt;Poco&lt;/a&gt;
 &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:&apos;Cantarell&apos;; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
@@ -105,7 +95,7 @@ p, li { white-space: pre-wrap; }
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot; text-decoration: underline;&quot;&gt;License:&lt;/p&gt;
 &lt;p&gt;GPLv3+&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//FR&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+        <translation type="vanished">&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//FR&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
 &lt;html&gt;&lt;body&gt;
 &lt;p style=&quot; text-decoration: underline;&quot;&gt;Licence :&lt;/p&gt;
 &lt;p&gt;GPLv3+&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
@@ -246,26 +236,6 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Ajouter</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="786"/>
-        <source>Ctrl+Shift+Ins</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="789"/>
-        <source>Ctrl+Shift+Del</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="792"/>
-        <source>Ctrl+Shift+F2</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="776"/>
-        <source>Ctrl+Ins</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="773"/>
         <source>&amp;Property</source>
         <translation>&amp;Propriété</translation>
@@ -282,11 +252,6 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Supprimer</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="779"/>
-        <source>Ctrl+Del</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="780"/>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="790"/>
         <source>&amp;Edit</source>
@@ -301,11 +266,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="781"/>
         <source>Edit the property</source>
         <translation>Édite la propriété</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTableWidget.cpp" line="782"/>
-        <source>Ctrl+F2</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="783"/>
@@ -341,11 +301,6 @@ p, li { white-space: pre-wrap; }
         <translation>Retire toute étiquette de l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="755"/>
-        <source>Ctrl+F5</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="756"/>
         <source>In &amp;progress</source>
         <translation>En &amp;cours</translation>
@@ -354,11 +309,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="757"/>
         <source>Tag the item as being in progress</source>
         <translation>Marque l&apos;item comme étant en cours</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="758"/>
-        <source>Ctrl+F6</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="759"/>
@@ -371,11 +321,6 @@ p, li { white-space: pre-wrap; }
         <translation>Marque l&apos;item comme échoué</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="761"/>
-        <source>Ctrl+F7</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="762"/>
         <source>&amp;Succeeded</source>
         <translation>&amp;Réussi</translation>
@@ -384,11 +329,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="763"/>
         <source>Tag the item as succeeded</source>
         <translation>Marque l&apos;item comme réussi</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="764"/>
-        <source>Ctrl+F8</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="765"/>
@@ -401,11 +341,6 @@ p, li { white-space: pre-wrap; }
         <translation>Ajoute un nouvel item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="767"/>
-        <source>Ins</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="768"/>
         <source>&amp;Delete</source>
         <translation>&amp;Supprimer</translation>
@@ -414,11 +349,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="769"/>
         <source>Delete the item</source>
         <translation>Supprime l&apos;item</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="770"/>
-        <source>Del</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="771"/>
@@ -431,16 +361,6 @@ p, li { white-space: pre-wrap; }
         <translation>Édite l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="773"/>
-        <source>Ctrl+F2</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="774"/>
-        <source>Space</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="775"/>
         <source>E&amp;xport</source>
         <translation>E&amp;xporter</translation>
@@ -449,11 +369,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="776"/>
         <source>Export the file associated to the item</source>
         <translation>Exporte le fichier associé à l&apos;item</translation>
-    </message>
-    <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="777"/>
-        <source>Ctrl+Space</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="805"/>
@@ -527,51 +442,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/DiceDialog.ui" line="28"/>
         <source>Die type:</source>
         <translation>Type de dé :</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="42"/>
-        <source>d2</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="47"/>
-        <source>d3</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="52"/>
-        <source>d4</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="57"/>
-        <source>d6</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="62"/>
-        <source>d8</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="67"/>
-        <source>d10</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="72"/>
-        <source>d12</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="77"/>
-        <source>d20</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="82"/>
-        <source>d100</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/DiceDialog.ui" line="90"/>
@@ -659,11 +529,6 @@ p, li { white-space: pre-wrap; }
         <translation>Fichier :</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.ui" line="158"/>
-        <source>...</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/ItemDialog.ui" line="172"/>
         <source>&amp;Add</source>
         <translation>A&amp;jouter</translation>
@@ -748,11 +613,6 @@ p, li { white-space: pre-wrap; }
         <translation>Musique</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="14"/>
-        <source>GM-Assistant</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="27"/>
         <source>Plot</source>
         <translation>Intrigue</translation>
@@ -782,11 +642,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.cpp" line="487"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="260"/>
-        <source>0:00/0:00</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="270"/>
@@ -839,11 +694,6 @@ p, li { white-space: pre-wrap; }
         <translation>Crée un nouveau jeu</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="375"/>
-        <source>Ctrl+N</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="380"/>
         <source>&amp;Load</source>
         <translation>&amp;Charger</translation>
@@ -852,11 +702,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.ui" line="383"/>
         <source>Load a game</source>
         <translation>Charge un jeu</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="386"/>
-        <source>Ctrl+O</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="391"/>
@@ -869,11 +714,6 @@ p, li { white-space: pre-wrap; }
         <translation>Sauvegarde le jeu en cours</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="397"/>
-        <source>Ctrl+S</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="402"/>
         <source>S&amp;ave as</source>
         <translation>Enregistrer &amp;sous</translation>
@@ -884,11 +724,6 @@ p, li { white-space: pre-wrap; }
         <translation>Sauvegarde le jeu en cours dans un nouveau fichier</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="408"/>
-        <source>Ctrl+Shift+S</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="413"/>
         <source>&amp;Quit</source>
         <translation>&amp;Quitter</translation>
@@ -897,11 +732,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.ui" line="416"/>
         <source>Exit the application</source>
         <translation>Sort de l&apos;application</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="419"/>
-        <source>Ctrl+Q</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="590"/>
@@ -915,17 +745,12 @@ p, li { white-space: pre-wrap; }
     </message>
     <message>
         <source>&amp;About</source>
-        <translation>&amp;À propos</translation>
+        <translation type="vanished">&amp;À propos</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="427"/>
         <source>Display information about GM-Assistant</source>
         <translation>Informations à propos de GM-Assistant</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="430"/>
-        <source>F1</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="435"/>
@@ -963,11 +788,6 @@ p, li { white-space: pre-wrap; }
         <translation>Jette des dés virtuels</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="555"/>
-        <source>Ctrl+D</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="560"/>
         <source>&amp;Combat manager</source>
         <translation>&amp;Gestionnaire de combat</translation>
@@ -976,16 +796,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.ui" line="563"/>
         <source>Manage round per round combats</source>
         <translation>Gère les combats au tour par tour</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="566"/>
-        <source>Ctrl+B</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="585"/>
-        <source>Ctrl+M</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="574"/>
@@ -1001,11 +811,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.ui" line="582"/>
         <source>Edit the game metadata</source>
         <translation>Édite les métadonnées du jeu</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="466"/>
-        <source>F5</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="316"/>
@@ -1028,11 +833,6 @@ p, li { white-space: pre-wrap; }
         <translation>&amp;Musique</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="480"/>
-        <source>F7</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="488"/>
         <source>&amp;Simple</source>
         <translation>&amp;Simple</translation>
@@ -1041,11 +841,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.ui" line="491"/>
         <source>Tools shown : Plot, Music and Sound effects</source>
         <translation>Outils affichés : Intrigue, Musique et Bruitages</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="494"/>
-        <source>F6</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="502"/>
@@ -1063,11 +858,6 @@ p, li { white-space: pre-wrap; }
         <translation>Annule la dernière modification</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="533"/>
-        <source>Ctrl+Z</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="538"/>
         <source>&amp;Redo</source>
         <translation>&amp;Refaire</translation>
@@ -1078,19 +868,9 @@ p, li { white-space: pre-wrap; }
         <translation>Refait la dernière modification annulée</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.ui" line="544"/>
-        <source>Ctrl+Shift+Z</source>
-        <translation></translation>
-    </message>
-    <message>
         <location filename="../sources/windows/MainWindow.ui" line="549"/>
         <source>&amp;Dice simulator</source>
         <translation>&amp;Simulateur de dés</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="508"/>
-        <source>F8</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="505"/>
@@ -1106,16 +886,6 @@ p, li { white-space: pre-wrap; }
         <location filename="../sources/windows/MainWindow.ui" line="519"/>
         <source>Tools shown : Plot, Characters, History and Notes</source>
         <translation>Outils affichés : Intrigue, Personnages, Historique et Notes</translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="522"/>
-        <source>F9</source>
-        <translation></translation>
-    </message>
-    <message>
-        <location filename="../sources/windows/MainWindow.ui" line="441"/>
-        <source>Ctrl+R</source>
-        <translation></translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="455"/>

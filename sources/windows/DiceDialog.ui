@@ -39,47 +39,47 @@
        </property>
        <item>
         <property name="text">
-         <string>d2</string>
+         <string notr="true">d2</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>d3</string>
+         <string notr="true">d3</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>d4</string>
+         <string notr="true">d4</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>d6</string>
+         <string notr="true">d6</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>d8</string>
+         <string notr="true">d8</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>d10</string>
+         <string notr="true">d10</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>d12</string>
+         <string notr="true">d12</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>d20</string>
+         <string notr="true">d20</string>
         </property>
        </item>
        <item>
         <property name="text">
-         <string>d100</string>
+         <string notr="true">d100</string>
         </property>
        </item>
       </widget>
