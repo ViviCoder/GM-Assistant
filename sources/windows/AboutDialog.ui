@@ -108,6 +108,16 @@
         </widget>
        </item>
        <item>
+        <widget class="QLabel" name="labelTranslate">
+         <property name="text">
+          <string>Translation: Vincent Prat (French), Matteo Bugli (Italian)</string>
+         </property>
+         <property name="wordWrap">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QLabel" name="labelWebsite">
          <property name="text">
           <string>&lt;a href=&quot;http://gmassistant.free.fr&quot;&gt;http://gmassistant.free.fr&lt;/a&gt;</string>

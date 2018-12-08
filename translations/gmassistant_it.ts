@@ -30,16 +30,21 @@
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="113"/>
+        <source>Translation: Vincent Prat (French), Matteo Bugli (Italian)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/AboutDialog.ui" line="123"/>
         <source>&lt;a href=&quot;http://gmassistant.free.fr&quot;&gt;http://gmassistant.free.fr&lt;/a&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="126"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="136"/>
         <source>GM-Assistant is a free software designed to assist the Game Master during role-playing games.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sources/windows/AboutDialog.ui" line="139"/>
+        <location filename="../sources/windows/AboutDialog.ui" line="149"/>
         <source>License: GPLv3+</source>
         <translation type="unfinished"></translation>
     </message>
