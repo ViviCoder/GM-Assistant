@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2016 Vincent Prat & Simon Nicolas
+* Copyright © 2016-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -76,9 +76,13 @@ class QCustomTabWidget: public QTabWidget
          * Forces the widget to register the next insertion as a separate modification
          */
         void forcePaste();
-
         //! Clear the widget
         void clear();
+        /*!
+         * \brief Open a note
+         * \param note Note to open
+         */
+        void openNote(Note *note);
     signals:
         /*!
          * \brief Signal emitted when a note is opened

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -101,7 +101,7 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
                                 }
                                 break;
                             }
-        case Item::tImage: {
+        case Item::tImage:  {
                                 ImageItem *imageItem = dynamic_cast<ImageItem*>(item);
                                 ImageWindow *image = new ImageWindow(imageItem->fileName(),this);
                                 if (image->error())
@@ -110,7 +110,11 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
                                     delete image;
                                 }
                                 break;
-                             }
+                            }
+        case Item::tNote:   {
+                                NoteItem *noteItem = dynamic_cast<NoteItem*>(item);
+                                emit noteToOpen(noteItem->note());
+                            }
         default:            break;
     }
 }

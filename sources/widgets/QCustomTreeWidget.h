@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -268,6 +268,13 @@ class QCustomTreeWidget: public QTreeWidget
          * \param newItem New sound item
          */
         void fileToChange(const SoundItem *oldItem, const SoundItem *newItem);
+        /*!
+         * \brief Signal to open a note
+         * \param item Pointer to the noteItem we want to open
+         *
+         * This signal is sent when a note has to be opened
+         */
+        void noteToOpen(Note *note);
 };
 
 #endif

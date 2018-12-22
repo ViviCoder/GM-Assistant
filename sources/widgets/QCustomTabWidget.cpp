@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2016 Vincent Prat & Simon Nicolas
+* Copyright © 2016-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -88,4 +88,17 @@ void QCustomTabWidget::forcePaste()
 void QCustomTabWidget::installEventFilter(QObject *filter)
 {
     pFilter = filter;
+}
+
+void QCustomTabWidget::openNote(Note *note)
+{
+    map<Note*, QCustomTextEdit*>::const_iterator it = mNotes.find(note);
+    if (it == mNotes.end())
+    {
+        QCustomTextEdit *textEdit = new QCustomTextEdit(this);
+        addTab(textEdit, note->title().c_str());
+        mNotes.insert(pair<Note*, QCustomTextEdit*>(note, textEdit));
+        emit noteOpened(textEdit);
+    }
+    // TODO: focus if found
 }

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -106,6 +106,11 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     tabNotes->installEventFilter(this);
     connect(tableStats, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     tableStats->installEventFilter(this);
+    // notes
+    connect(treePlot, SIGNAL(noteToOpen(Note*)), tabNotes, SLOT(openNote(Note*)));
+    connect(treeHistory, SIGNAL(noteToOpen(Note*)), tabNotes, SLOT(openNote(Note*)));
+    connect(treeMusic, SIGNAL(noteToOpen(Note*)), tabNotes, SLOT(openNote(Note*)));
+    connect(treeFX, SIGNAL(noteToOpen(Note*)), tabNotes, SLOT(openNote(Note*)));
 
     // Item dialog
     treePlot->setItemDialogWindow(pItemDialog);
