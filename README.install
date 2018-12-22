@@ -1,20 +1,18 @@
-How to install GM-Assistant ?
+How to install GM-Assistant?
 
 **********************
 *    REQUIREMENTS    *
 **********************
 
 To compile, you need:
+- CMake
 - g++ and the C++ standard library (with development files)
-- Qt4 library (with development files)
-- Qt4 linguist and qmake
-- Qt4 Phonon module (with development files)
+- Qt5 library (with development files)
+- QtLinguist tools
+- Qt5 Phonon module (with development files)
 - XML++ library (with development files)
 - PocoZip library (with development files)
 - Magic library (with development files)
-and optionally:
-- ImageMagick
-- RSVG tools
 
 **********************
 *    INSTRUCTIONS    *
@@ -22,10 +20,8 @@ and optionally:
 
 To install GM-Assistant, execute the following commands:
 
-./configure (type './configure --help' for a summary of supported options)
+mkdir build
+cd build
+cmake ..
 make
 make install (may require super-user rights)
-
-Then, to launch GM-Assistant, just type from the install directory:
-
-./gm-assistant
