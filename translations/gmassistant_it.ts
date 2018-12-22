@@ -411,7 +411,7 @@
     <name>itemDialog</name>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="17"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="179"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="180"/>
         <source>Create a new item</source>
         <translation>Crea un nuovo oggetto</translation>
     </message>
@@ -477,7 +477,7 @@
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="183"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="182"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="183"/>
         <source>C&amp;hild</source>
         <translation type="unfinished"></translation>
     </message>
@@ -492,47 +492,47 @@
         <translation>Seleziona il file audio associato all&apos;oggetto</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="85"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="105"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="86"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="106"/>
         <source>You must select a file before validating.</source>
         <translation>Devi selezionare un file prima di confermare.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="85"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="90"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="105"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="110"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="86"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="91"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="106"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="111"/>
         <source>Incomplete data</source>
         <translation>Dati incompleti</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="90"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="110"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="91"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="111"/>
         <source>You must fill the content before validating.</source>
         <translation>Devi inserire il contenuto prima di confermare.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="148"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="149"/>
         <source>Select the image file to associate to the item</source>
         <translation>Seleziona il file immagine da associare all&apos;oggetto</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="148"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="149"/>
         <source>Image files (*.jpg *.jpeg *.png *.bmp *.svg)</source>
         <translation>File immagine (*.jpg *.jpeg *.png *.bmp *.svg)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="163"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="164"/>
         <source>Edit the item</source>
         <translation>Modifica l&apos;oggetto</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="166"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="167"/>
         <source>&amp;Validate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="212"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="213"/>
         <source>Audio files (*)</source>
         <translation>File audio (*)</translation>
     </message>
@@ -581,7 +581,7 @@
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="253"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="487"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="488"/>
         <source>&amp;Play</source>
         <translation type="unfinished"></translation>
     </message>
@@ -829,12 +829,12 @@
         <location filename="../sources/windows/MainWindow.cpp" line="306"/>
         <location filename="../sources/windows/MainWindow.cpp" line="312"/>
         <location filename="../sources/windows/MainWindow.cpp" line="353"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="392"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="501"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="539"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="550"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="556"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="864"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="393"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="502"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="540"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="551"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="557"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="865"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="109"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="502"/>
@@ -853,26 +853,26 @@
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="312"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="556"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="557"/>
         <source>The game cannot be loaded correctly for the following reason: </source>
         <translation>Il gioco non può essere caricato correttamente per i seguenti motivi: </translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="312"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="556"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="557"/>
         <source>The game will be loaded anyway, but some features might not work properly.</source>
         <translation>Il gioco sarà caricato comunque, ma alcuni aspetti potrebbero non funzionare correttamente.</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="322"/>
         <location filename="../sources/windows/MainWindow.cpp" line="341"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="564"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="565"/>
         <source>Warning</source>
         <translation>Attenzione</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="322"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="564"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="565"/>
         <source>The syntax of the game you have just loaded is not rigourously correct. Would you like to fix it now?</source>
         <translation>La sintassi del gioco che hai appena caricato non è rigorosamente corretta. Vuoi correggerla ora?</translation>
     </message>
@@ -897,38 +897,38 @@
         <translation>Seleziona il file da salvare</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="450"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="451"/>
         <source>&amp;Resume</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="455"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="922"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="456"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="923"/>
         <source>&amp;Pause</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="501"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="502"/>
         <source>Unable to play the file</source>
         <translation>Impossibile riprodurre il file</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="539"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="540"/>
         <source>The file &quot;%1&quot; does not exist.</source>
         <translation>Il file &quot;%1&quot; non esiste.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="721"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="722"/>
         <source>New game</source>
         <translation>Nuovo gioco</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="804"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="805"/>
         <source>Confirmation</source>
         <translation>Conferma</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="804"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="805"/>
         <source>The current game has been modified since the last save. If you continue, unsaved changes will be discarded.</source>
         <translation>Il gioco corrente è stato modificato dall&apos;ultimo salvataggio. Se continui, le modifiche non salvate andranno perse.</translation>
     </message>

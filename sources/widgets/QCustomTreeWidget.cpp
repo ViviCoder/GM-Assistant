@@ -802,7 +802,7 @@ void QCustomTreeWidget::exportFile(Item *item)
     if (fileItem)
     {
         QString fileName = fileItem->fileName().c_str();
-        QString newFileName = QFileDialog::getSaveFileName(this, QApplication::translate("customTree", "Select where to export the file", 0), "", "*." + QFileInfo(fileName).suffix());
+        QString newFileName = QFileDialog::getSaveFileName(this, QApplication::translate("customTree", "Select where to export the file", 0), "", "*." + QFileInfo(fileName).suffix(),0,QFileDialog::DontUseNativeDialog);
         if (!newFileName.isEmpty())
         {
             if (!QFile::copy(fileName, newFileName))

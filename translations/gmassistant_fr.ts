@@ -406,7 +406,7 @@
     <name>itemDialog</name>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="17"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="179"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="180"/>
         <source>Create a new item</source>
         <translation>Créer un nouvel item</translation>
     </message>
@@ -473,7 +473,7 @@
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="183"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="182"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="183"/>
         <source>C&amp;hild</source>
         <translation>En&amp;fant</translation>
     </message>
@@ -483,24 +483,24 @@
         <translation>A&amp;nnuler</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="212"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="213"/>
         <source>Audio files (*)</source>
         <translation>Fichiers audio (*)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="85"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="105"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="86"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="106"/>
         <source>You must select a file before validating.</source>
         <translation>Vous devez sélectionner un fichier avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="90"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="110"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="91"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="111"/>
         <source>You must fill the content before validating.</source>
         <translation>Vous devez remplir le contenu avant de valider.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="148"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="149"/>
         <source>Select the image file to associate to the item</source>
         <translation>Sélectionnez le fichier image à associer à l&apos;item</translation>
     </message>
@@ -510,25 +510,25 @@
         <translation>Sélectionnez le fichier audio à associer à l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="85"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="90"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="105"/>
-        <location filename="../sources/windows/ItemDialog.cpp" line="110"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="86"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="91"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="106"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="111"/>
         <source>Incomplete data</source>
         <translation>Données incomplètes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="148"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="149"/>
         <source>Image files (*.jpg *.jpeg *.png *.bmp *.svg)</source>
         <translation>Fichiers image (*.jpg *.jpeg *.png *.bmp *.svg)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="163"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="164"/>
         <source>Edit the item</source>
         <translation>Éditer l&apos;item</translation>
     </message>
     <message>
-        <location filename="../sources/windows/ItemDialog.cpp" line="166"/>
+        <location filename="../sources/windows/ItemDialog.cpp" line="167"/>
         <source>&amp;Validate</source>
         <translation>&amp;Valider</translation>
     </message>
@@ -577,7 +577,7 @@
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="253"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="487"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="488"/>
         <source>&amp;Play</source>
         <translation>&amp;Lecture</translation>
     </message>
@@ -822,13 +822,13 @@
         <translation>Outils affichés : Intrigue, Personnages, Historique et Notes</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="455"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="922"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="456"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="923"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pause</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="450"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="451"/>
         <source>&amp;Resume</source>
         <translation>&amp;Reprise</translation>
     </message>
@@ -836,12 +836,12 @@
         <location filename="../sources/windows/MainWindow.cpp" line="306"/>
         <location filename="../sources/windows/MainWindow.cpp" line="312"/>
         <location filename="../sources/windows/MainWindow.cpp" line="353"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="392"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="501"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="539"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="550"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="556"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="864"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="393"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="502"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="540"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="551"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="557"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="865"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="109"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="502"/>
@@ -860,26 +860,26 @@
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="312"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="556"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="557"/>
         <source>The game will be loaded anyway, but some features might not work properly.</source>
         <translation>Le jeu va tout de même être chargé, mais certaines fonctionnalités peuvent ne pas fonctionner normalement.</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="312"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="556"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="557"/>
         <source>The game cannot be loaded correctly for the following reason: </source>
         <translation>Le jeu n&apos;a pas pu être chargé pour la raison suivante :</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="322"/>
         <location filename="../sources/windows/MainWindow.cpp" line="341"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="564"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="565"/>
         <source>Warning</source>
         <translation>Attention</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="322"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="564"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="565"/>
         <source>The syntax of the game you have just loaded is not rigourously correct. Would you like to fix it now?</source>
         <translation>La syntaxe du jeu que vous venez de charger n&apos;est pas rigoureusement correcte. Voulez-vous la corriger maintenant ?</translation>
     </message>
@@ -904,27 +904,27 @@
         <translation>Sélectionnez le fichier à sauvegarder</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="501"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="502"/>
         <source>Unable to play the file</source>
         <translation>Impossible de jouer le fichier</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="539"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="540"/>
         <source>The file &quot;%1&quot; does not exist.</source>
         <translation>Le fichier &quot;%1&quot; n&apos;existe pas.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="804"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="805"/>
         <source>Confirmation</source>
         <translation>Confirmation</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="804"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="805"/>
         <source>The current game has been modified since the last save. If you continue, unsaved changes will be discarded.</source>
         <translation>Le jeu en cours a été modifié depuis la dernière sauvegarde. Si vous continuez, les changements non sauvegardés seront perdus.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="721"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="722"/>
         <source>New game</source>
         <translation>Nouveau jeu</translation>
     </message>

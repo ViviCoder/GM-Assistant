@@ -292,7 +292,7 @@ void MainWindow::on_action_Load_triggered()
 {
     if (canClose())
     {
-        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gms *.gma);;XML files (*.xml)",0)); 
+        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gms *.gma);;XML files (*.xml)",0),0,QFileDialog::DontUseNativeDialog);
         if (!file.isEmpty())
         {
             // changing current directory
@@ -363,6 +363,7 @@ bool MainWindow::on_actionS_ave_as_triggered()
         filters += QApplication::translate("mainWindow",";;GM-Assistant files (1.1) (*.gma);;GM-Assistant files (1.0) (*.xml)",0);
     }
     QFileDialog *dial = new QFileDialog(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(), filters);
+    dial->setOption(QFileDialog::DontUseNativeDialog, true);
     dial->setAcceptMode(QFileDialog::AcceptSave);
     if (dial->exec() == QFileDialog::Accepted)
     {

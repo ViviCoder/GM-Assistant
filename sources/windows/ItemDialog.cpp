@@ -23,6 +23,7 @@ ItemDialog::ItemDialog(QWidget *parent, QAudioProxyModel *filter): QDialog(paren
 {
     setupUi(this);
     // setting the audio browser up
+    audioBrowser->setOption(QFileDialog::DontUseNativeDialog, true);
     audioBrowser->setFileMode(QFileDialog::ExistingFile);
     audioBrowser->setReadOnly(true);
     audioBrowser->setNameFilterDetailsVisible(false);
@@ -145,7 +146,7 @@ void ItemDialog::on_toolBrowse_clicked()
                                 break;
                             }
         case Item::tImage:  { 
-                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the image file to associate to the item",0),"",QApplication::translate("itemDialog","Image files (*.jpg *.jpeg *.png *.bmp *.svg)",0)));    
+                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the image file to associate to the item",0),"",QApplication::translate("itemDialog","Image files (*.jpg *.jpeg *.png *.bmp *.svg)",0),0,QFileDialog::DontUseNativeDialog));
                                 break;
                             }
         default:            break;
