@@ -143,14 +143,19 @@ include_directories(
 # linguist tools
 find_package(Qt5LinguistTools)
 if (${Qt5LinguistTools_FOUND})
+    # ts -> qm
     set (TRANSLATION_FILES
         translations/gmassistant_fr.ts
         translations/gmassistant_it.ts)
-    qt5_create_translation(TRANSLATION_QM
-        ${PROJECT_FORMS}
-        ${PROJECT_SOURCES}
-        ${TRANSLATION_FILES}
-        OPTIONS -no-obsolete)
+    qt5_add_translation(TRANSLATION_QM
+        ${TRANSLATION_FILES})
+
+    # update of ts
+    add_custom_target(update
+        COMMAND ${Qt5_LUPDATE_EXECUTABLE} -no-obsolete ${PROJECT_SOURCES} ${PROJECT_FORMS} -ts ${TRANSLATION_FILES}
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+        COMMENT "Updating translation files"
+        VERBATIM)
 else()
     set (TRANSLATION_QM)
 endif()
