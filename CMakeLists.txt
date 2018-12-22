@@ -249,5 +249,6 @@ if (${BUILD_USERGUIDE})
     endforeach()
 
     add_custom_target(userguide
+        ALL
         DEPENDS ${LIST_PDF})
 endif()
