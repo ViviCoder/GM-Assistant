@@ -237,10 +237,11 @@ if (${BUILD_USERGUIDE})
         configure_file(${TEX_PATH}/userguide.tex.in ${TEXFILE_NAME})
         list (APPEND LIST_PDF ${TARGET_NAME})
 
-        add_custom_target(${TARGET_NAME}
-            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME}
-            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME}
-            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME}
+        add_custom_command(OUTPUT ${TARGET_NAME}
+            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME} > /dev/null
+            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME} > /dev/null
+            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME} > /dev/null
+            MAIN_DEPENDENCY ${TEXFILE_NAME}
             COMMENT "Generating user guide: ${LANG}"
             VERBATIM)
 
