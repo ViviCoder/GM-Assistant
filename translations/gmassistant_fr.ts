@@ -355,8 +355,8 @@
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="60"/>
-        <source> (included in the loaded file)</source>
-        <translation> (inclus dans le fichier chargé)</translation>
+        <source>included in the loaded file</source>
+        <translation>inclus dans le fichier chargé</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidgetItem.cpp" line="71"/>
@@ -833,6 +833,9 @@
         <translation>&amp;Reprise</translation>
     </message>
     <message>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="109"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="502"/>
         <location filename="../sources/windows/MainWindow.cpp" line="306"/>
         <location filename="../sources/windows/MainWindow.cpp" line="312"/>
         <location filename="../sources/windows/MainWindow.cpp" line="353"/>
@@ -842,9 +845,6 @@
         <location filename="../sources/windows/MainWindow.cpp" line="551"/>
         <location filename="../sources/windows/MainWindow.cpp" line="557"/>
         <location filename="../sources/windows/MainWindow.cpp" line="865"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="109"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="502"/>
         <source>Error</source>
         <translation>Erreur</translation>
     </message>

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -57,7 +57,7 @@ void QCustomTreeWidgetItem::updateDisplay()
         if (fileItem->isIncluded())
         {
             QFileInfo file(fileName.c_str());
-            setToolTip(0, file.fileName() + QApplication::translate("customTree", " (included in the loaded file)", 0));
+            setToolTip(0, file.fileName() + " (" + QApplication::translate("customTree", "included in the loaded file", 0) + ")");
         }
         else
         {
