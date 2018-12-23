@@ -775,6 +775,12 @@ void QCustomTreeWidget::retranslate()
     actionExport->setText(QApplication::translate("customTree", "E&xport", 0));
     actionExport->setStatusTip(QApplication::translate("customTree", "Export the file associated to the item", 0));
     actionExport->setShortcut(QString("Ctrl+Space"));
+
+    // also retranslate the items
+    for (QTreeWidgetItemIterator it(this); *it; it++)
+    {
+        dynamic_cast<QCustomTreeWidgetItem*>(*it)->updateDisplay();
+    }
 }
 
 void QCustomTreeWidget::setItemDialogWindow(ItemDialog *window)
