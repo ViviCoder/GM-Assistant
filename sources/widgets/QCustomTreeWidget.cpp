@@ -502,8 +502,12 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                             }
                     case Item::tImage:      newItem = new ImageItem(pItemDial->text().toStdString(), pItemDial->state(), false, pItemDial->fileName().toStdString());
                                             break;
-                    case Item::tNote:       newItem = new NoteItem(pItemDial->text().toStdString(), pItemDial->state());
-                                            break;
+                    case Item::tNote:       {
+                                                NoteItem *noteItem = new NoteItem(pItemDial->text().toStdString(), pItemDial->state());
+                                                noteItem->note()->setTitle(noteItem->content());
+                                                newItem = noteItem;
+                                                break;
+                                            }
                     default:                newItem = new Item(pItemDial->text().toStdString(),pItemDial->state());
                                             break;
                 }
