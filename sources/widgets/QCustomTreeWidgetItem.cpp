@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -81,7 +81,8 @@ void QCustomTreeWidgetItem::updateDisplay()
     {
         setIcon(0, QIcon(":/data/images/text.svg"));
         setStatusTip(0, QApplication::translate("customTree", "Double click to display the note", 0));
-        setToolTip(0, ""); 
+        NoteItem *noteItem = dynamic_cast<NoteItem*>(item);
+        setToolTip(0, noteItem->note()->title().c_str());
     }
     else
     {
