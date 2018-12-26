@@ -97,6 +97,7 @@ void QCustomTabWidget::openNote(Note *note)
     if (it == mNotes.end())
     {
         QCustomTextEdit *textEdit = new QCustomTextEdit(this);
+        textEdit->setNote(note);
         addTab(textEdit, note->title().c_str());
         mNotes.insert(pair<Note*, QCustomTextEdit*>(note, textEdit));
         emit noteOpened(textEdit);
