@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2016 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -46,6 +46,11 @@ class QCustomTextEdit: public QTextEdit
          * \return True if there is an unregistered modification
          */
         bool unregisteredModification() const;
+        /*!
+         * \brief Getter for the underlying note
+         * \return Pointer to the note
+         */
+        inline Note* note();
     public slots:
         /*!
          * \brief Update of the display
@@ -173,5 +178,10 @@ class QCustomTextEdit: public QTextEdit
          */
         void unregistered();
 };
+
+Note* QCustomTextEdit::note()
+{
+    return pNote;
+}
 
 #endif

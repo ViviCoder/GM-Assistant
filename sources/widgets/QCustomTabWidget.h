@@ -83,6 +83,11 @@ class QCustomTabWidget: public QTabWidget
          * \param note Note to open
          */
         void openNote(Note *note);
+        /*!
+         * \brief Slot for when a tab is closing
+         * \param index Index of the tab to close
+         */
+        void onTabCloseRequested(int index);
     signals:
         /*!
          * \brief Signal emitted when a note is opened

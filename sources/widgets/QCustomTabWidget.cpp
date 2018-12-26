@@ -22,6 +22,7 @@ using namespace std;
 
 QCustomTabWidget::QCustomTabWidget(QWidget *parent): QTabWidget(parent), pFilter(0)
 {
+    connect(this, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequested(int)));
 }
 
 void QCustomTabWidget::setNotes(const vector<Note*> &notes)
@@ -100,5 +101,24 @@ void QCustomTabWidget::openNote(Note *note)
         mNotes.insert(pair<Note*, QCustomTextEdit*>(note, textEdit));
         emit noteOpened(textEdit);
     }
-    // TODO: focus if found
+    else if(note->visible())
+    {
+        // TODO: focus if found
+    }
+    else
+    {
+        // reopen the note if previously closed
+        addTab((*it).second, note->title().c_str());
+        note->setVisible(true);
+    }
+}
+
+void QCustomTabWidget::onTabCloseRequested(int index)
+{
+    if (index > 0)
+    {
+        QCustomTextEdit *textEdit = dynamic_cast<QCustomTextEdit*>(widget(index));
+        textEdit->note()->setVisible(false);
+        removeTab(index);
+    }
 }
