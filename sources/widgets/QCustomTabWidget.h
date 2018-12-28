@@ -88,6 +88,11 @@ class QCustomTabWidget: public QTabWidget
          * \param index Index of the tab to close
          */
         void onTabCloseRequested(int index);
+        /*!
+         * \brief Delete a note
+         * \param note Note to delete
+         */
+        void deleteNote(Note *note);
     signals:
         /*!
          * \brief Signal emitted when a note is opened

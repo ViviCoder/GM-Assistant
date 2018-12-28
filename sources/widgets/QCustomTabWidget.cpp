@@ -123,3 +123,13 @@ void QCustomTabWidget::onTabCloseRequested(int index)
         removeTab(index);
     }
 }
+
+void QCustomTabWidget::deleteNote(Note *note)
+{
+    map<Note*, QCustomTextEdit*>::const_iterator it = mNotes.find(note);
+    if (it != mNotes.end())
+    {
+        delete (*it).second;
+        mNotes.erase(it);
+    }
+}

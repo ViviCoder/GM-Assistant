@@ -372,7 +372,9 @@ void QCustomTreeWidget::updateDisplay(const string &indices)
 void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
 {
     Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
-    // stop the music if the item is a SoundItem
+    // delete notes in the branch
+    deleteNotes(branch);
+    // stop the music if the item is or contains a SoundItem
     if (pmMethod == pmMusic)
     {
         stopMusic(branch);
@@ -531,9 +533,14 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                 {
                     Item *iItem = item->branch()->item();
                     emit modificationDone(new TreeModification(*pTree, iItem, ItemFactory::copyItem(newItem), pTree->indicesOf(item->branch())));
-                    // stopping the music if necessary
-                    if (pmMethod == pmMusic && iItem->type() == Item::tSound)
+                    if (iItem->type() == Item::tNote && newItem->type() != Item::tNote)
                     {
+                        // delete the note
+                        emit noteToDelete(dynamic_cast<NoteItem*>(iItem)->note());
+                    }
+                    else if (pmMethod == pmMusic && iItem->type() == Item::tSound)
+                    {
+                        // stopping the music if necessary
                         SoundItem *siItem = dynamic_cast<SoundItem*>(iItem);
                         if (newItem->type() == Item::tSound)
                         {
@@ -669,10 +676,15 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
             case Modification::aAddition:
                 {
                     indices = modification->deletedIndices();
-                    // stopping music if necessary
                     Item *item = modification->undoneItem();
-                    if (pmMethod == pmMusic && item->type() == Item::tSound)
+                    if (item->type() == Item::tNote)
                     {
+                        // deleting note
+                        emit noteToDelete(dynamic_cast<NoteItem*>(item)->note());
+                    }
+                    else if (pmMethod == pmMusic && item->type() == Item::tSound)
+                    {
+                        // stopping music if necessary
                         emit fileToStop(dynamic_cast<SoundItem*>(item));
                     }
                     modification->freeUndoneItem();
@@ -680,10 +692,15 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                 }
             case Modification::aEdition:    if (modification->editionType() == TreeModification::etFull)
                                             {
-                                                // stopping music if necessary
                                                 Item *item = modification->undoneItem();
-                                                if (pmMethod == pmMusic && item->type() == Item::tSound)
+                                                if (item->type() == Item::tNote && modification->currentItem()->type() != Item::tNote)
                                                 {
+                                                    // deleting note
+                                                    emit noteToDelete(dynamic_cast<NoteItem*>(item)->note());
+                                                }
+                                                else if (pmMethod == pmMusic && item->type() == Item::tSound)
+                                                {
+                                                    // stopping music if necessary
                                                     SoundItem *sItem = dynamic_cast<SoundItem*>(item);
                                                     Item *oldItem = modification->currentItem();
                                                     if (oldItem->type() == Item::tSound)
@@ -713,6 +730,7 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
         switch (modification->action())
         {
             case Modification::aDeletion:   indices = modification->deletedIndices();
+                                            deleteNotes(modification->branch());
                                             if (pmMethod == pmMusic)
                                             {
                                                 stopMusic(modification->branch());
@@ -722,10 +740,15 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                                             break;
             case Modification::aEdition:    if (modification->editionType() == TreeModification::etFull)
                                             {
-                                                // stopping music if necessary
                                                 Item *item = modification->undoneItem();
-                                                if (pmMethod == pmMusic && item->type() == Item::tSound)
+                                                if (item->type() == Item::tNote && modification->currentItem()->type() != Item::tNote)
                                                 {
+                                                    // deleting note
+                                                    emit noteToDelete(dynamic_cast<NoteItem*>(item)->note());
+                                                }
+                                                else if (pmMethod == pmMusic && item->type() == Item::tSound)
+                                                {
+                                                    // stopping music if necessary
                                                     SoundItem *sItem = dynamic_cast<SoundItem*>(item);
                                                     Item *newItem = modification->currentItem();
                                                     if (newItem->type() == Item::tSound)
@@ -843,6 +866,27 @@ void QCustomTreeWidget::stopMusic(Branch *branch)
             if (childItem->type() == Item::tSound)
             {
                 emit fileToStop(dynamic_cast<SoundItem*>(childItem));
+            }
+        }
+    }
+}
+
+void QCustomTreeWidget::deleteNotes(Branch *branch)
+{
+    if (branch)
+    {
+        Item *item = branch->item();
+        Tree &children = branch->tree();
+        if (item->type() == Item::tNote)
+        {
+            emit noteToDelete(dynamic_cast<NoteItem*>(item)->note());
+        }
+        for (Tree::iterator it = children.begin(); it != children.end(); it++)
+        {
+            Item *childItem = it.branch()->item();
+            if (childItem->type() == Item::tNote)
+            {
+                emit noteToDelete(dynamic_cast<NoteItem*>(childItem)->note());
             }
         }
     }

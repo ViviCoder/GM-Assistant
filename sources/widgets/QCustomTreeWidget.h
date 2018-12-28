@@ -242,6 +242,11 @@ class QCustomTreeWidget: public QTreeWidget
          * \param branch Branch where the item to stop would be
          */
         void stopMusic(Branch *branch);
+        /*!
+         * \brief Method to delete notes in a given branch
+         * \param branch Branch where the notes to delete would be
+         */
+        void deleteNotes(Branch *branch);
     signals:
         /*!
          * \brief Signal to play a file
@@ -270,11 +275,18 @@ class QCustomTreeWidget: public QTreeWidget
         void fileToChange(const SoundItem *oldItem, const SoundItem *newItem);
         /*!
          * \brief Signal to open a note
-         * \param item Pointer to the noteItem we want to open
+         * \param note Note we want to open
          *
          * This signal is sent when a note has to be opened
          */
         void noteToOpen(Note *note);
+        /*!
+         * \brief Signal to delete a note
+         * \param note Note we want to delete
+         *
+         * This signal is sent when a note has to be deleted
+         */
+        void noteToDelete(Note *note);
 };
 
 #endif
