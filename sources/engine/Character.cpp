@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ using namespace std;
 
 // constructors
 
-Character::Character(const string &name, const string &shortDescription): sName(name), sShort(shortDescription)
+Character::Character(const string &name, const string &shortDescription): sName(name), sShort(shortDescription), pNote(new Note())
 {
 }
 
@@ -46,6 +46,11 @@ void Character::toXML(const IOConfig &config, xmlpp::Element &root) const
 {
     using namespace xmlpp;
 
+    if (config.hasNotes())
+    {
+        Element *tmp = root.add_child("note");
+        pNote->toXML(*tmp);
+    }
     for (vector<std::string>::const_iterator it = vProperties.begin(); it != vProperties.end(); it++)
     {
         Element *tmp = root.add_child(config.propertyName());
@@ -57,6 +62,14 @@ void Character::fromXML(const IOConfig &config, const xmlpp::Element &root)
 {
     using namespace xmlpp;
 
+    if (config.hasNotes())
+    {
+        Node::NodeList node = root.get_children("note");
+        if (!node.empty())
+        {
+            pNote->fromXML(*dynamic_cast<Element*>(node.front()));
+        }
+    }
     clearProperties();
     Node::NodeList list = root.get_children(config.propertyName());
     for (Node::NodeList::const_iterator it = list.begin(); it != list.end(); it++)

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 #include <libxml++/libxml++.h>
 #include <stdexcept>
 #include "IOConfig.h"
+#include "Note.h"
 
 //! Character (PC or NPC)
 class Character
@@ -33,6 +34,8 @@ class Character
         std::string sShort;
         //! Underlying vector
         std::vector<std::string> vProperties;
+        //! Note associated with the character
+        Note* pNote;
     public:
         // iterator
         class PropertyIterator: public std::vector<std::string>::const_iterator
@@ -99,6 +102,11 @@ class Character
          */
         bool moveProperty(int source, int destination) throw (std::out_of_range);
         void clearProperties();
+        /*!
+         * \brief Getter for the note
+         * \return Note associated with the character
+         */
+        inline Note *note();
         // iterators
         PropertyIterator begin() const;
         PropertyIterator end() const;
@@ -122,6 +130,11 @@ std::string Character::shortDescription() const
 void Character::setShortDescription(const std::string &shortDescription)
 {
     sShort = shortDescription;
+}
+
+Note *Character::note()
+{
+    return pNote;
 }
 
 #endif
