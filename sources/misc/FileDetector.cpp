@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ FileDetector::FileDetector(const std::string &installDir): mCookie(magic_open(MA
 FileDetector::~FileDetector()
 {
     magic_close(mCookie);
-    delete pBuffer;
+    delete[] pBuffer;
 }
 
 std::string FileDetector::typeOfFile(const std::string &fileName) const
