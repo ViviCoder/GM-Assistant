@@ -505,8 +505,17 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                     case Item::tImage:      newItem = new ImageItem(pItemDial->text().toStdString(), pItemDial->state(), false, pItemDial->fileName().toStdString());
                                             break;
                     case Item::tNote:       {
-                                                NoteItem *noteItem = new NoteItem(pItemDial->text().toStdString(), pItemDial->state());
-                                                Note *note = noteItem->note();
+                                                Note *note = 0;
+                                                if (edition)
+                                                {
+                                                    Item *iItem = item->branch()->item();
+                                                    if (iItem->type() == Item::tNote)
+                                                    {
+                                                        note = dynamic_cast<NoteItem*>(iItem)->note();
+                                                    }
+                                                }
+                                                NoteItem *noteItem = new NoteItem(pItemDial->text().toStdString(), pItemDial->state(), false, note);
+                                                note = noteItem->note();
                                                 note->setTitle(noteItem->content());
                                                 note->setVisible(false);
                                                 newItem = noteItem;
@@ -532,7 +541,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                 if (edition)
                 {
                     Item *iItem = item->branch()->item();
-                    emit modificationDone(new TreeModification(*pTree, iItem, ItemFactory::copyItem(newItem), pTree->indicesOf(item->branch())));
+                    emit modificationDone(new TreeModification(*pTree, iItem, pTree->indicesOf(item->branch())));
                     if (iItem->type() == Item::tNote && newItem->type() != Item::tNote)
                     {
                         // delete the note
@@ -604,7 +613,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
             // creating the modification
             if (!edition)
             {
-                emit modificationDone(new TreeModification(*pTree, ItemFactory::copyItem(newItem), pTree->indicesOf(newBranch)));
+                emit modificationDone(new TreeModification(*pTree, pTree->indicesOf(newBranch)));
             }
             resizeColumnToContents(0);
         }
@@ -687,7 +696,6 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                         // stopping music if necessary
                         emit fileToStop(dynamic_cast<SoundItem*>(item));
                     }
-                    modification->freeUndoneItem();
                     break;
                 }
             case Modification::aEdition:    if (modification->editionType() == TreeModification::etFull)
@@ -720,7 +728,6 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                                                         emit fileToStop(sItem);
                                                     }
                                                 }
-                                                modification->freeUndoneItem();
                                             }
             default:    indices = modification->indices();
         }
@@ -740,7 +747,7 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                                             break;
             case Modification::aEdition:    if (modification->editionType() == TreeModification::etFull)
                                             {
-                                                Item *item = modification->undoneItem();
+                                                Item *item = modification->item();
                                                 if (item->type() == Item::tNote && modification->currentItem()->type() != Item::tNote)
                                                 {
                                                     // deleting note
@@ -768,7 +775,6 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                                                         emit fileToStop(sItem);
                                                     }
                                                 }
-                                                modification->freeUndoneItem();
                                             }
             default:    indices = modification->indices();
         }

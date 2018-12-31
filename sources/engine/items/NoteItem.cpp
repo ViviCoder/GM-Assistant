@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2016 Vincent Prat & Simon Nicolas
+* Copyright © 2016-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,20 @@
 
 using namespace std;
 
-NoteItem::NoteItem(const string &content, State state, bool expanded, const Note &note): Item(content,state,expanded), nNote(note)
+NoteItem::NoteItem(const string &content, State state, bool expanded, Note *note): Item(content,state,expanded), pNote(note)
 {
+    if (!note)
+    {
+        pNote = new Note();
+    }
+}
+
+NoteItem::~NoteItem()
+{
+    if (pNote)
+    {
+        delete pNote;
+    }
 }
 
 void NoteItem::fromXML(const IOConfig &config, const xmlpp::Element &root, bool) throw(xmlpp::exception)
@@ -33,7 +45,7 @@ void NoteItem::fromXML(const IOConfig &config, const xmlpp::Element &root, bool)
         Node::NodeList node = root.get_children("note");
         if (!node.empty())
         {
-            nNote.fromXML(*dynamic_cast<Element*>(node.front()));
+            pNote->fromXML(*dynamic_cast<Element*>(node.front()));
         }
     }
 }
@@ -45,6 +57,6 @@ void NoteItem::toXML(const IOConfig &config, xmlpp::Element &root, FileMapping&)
     if (config.hasNotes())
     {
         Element *tmp = root.add_child("note");
-        nNote.toXML(*tmp);
+        pNote->toXML(*tmp);
     }
 }

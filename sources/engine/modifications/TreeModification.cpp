@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,27 +21,28 @@
 
 using namespace std;
 
-TreeModification::TreeModification(Tree &tree, Item *newItem, const string &indices): Modification(aAddition), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pNewItem(newItem), pUndoneItem(0)
+TreeModification::TreeModification(Tree &tree, const string &indices): Modification(aAddition), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pUndoneItem(0), pCurrentItem(0)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, Branch *branch, const string &indices): Modification(aDeletion), sIndices(indices), rTree(tree), pBranch(branch), pItem(0), pNewItem(0), pUndoneItem(0)
+TreeModification::TreeModification(Tree &tree, Branch *branch, const string &indices): Modification(aDeletion), sIndices(indices), rTree(tree), pBranch(branch), pItem(0), pUndoneItem(0), pCurrentItem(0)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, Item *item, Item *newItem, const string &indices): Modification(aEdition), etEditType(etFull), sIndices(indices), rTree(tree), pBranch(0), pItem(item), pNewItem(newItem), pUndoneItem(0)
+TreeModification::TreeModification(Tree &tree, Item *oldItem, const string &indices): Modification(aEdition), etEditType(etFull), sIndices(indices), rTree(tree), pBranch(0), pItem(oldItem), pUndoneItem(0), pCurrentItem(0)
+{
+    bSameType = (oldItem->type() == rTree[indices]->type());
+}
+
+TreeModification::TreeModification(Tree &tree, const string &content, const string &newContent, const string &indices): Modification(aEdition), etEditType(etContent), sIndices(indices), rTree(tree), pBranch(0), pItem(0), sContent(content), sNewContent(newContent), pUndoneItem(0), pCurrentItem(0)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, const string &content, const string &newContent, const string &indices): Modification(aEdition), etEditType(etContent), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pNewItem(0), sContent(content), sNewContent(newContent), pUndoneItem(0)
+TreeModification::TreeModification(Tree &tree, Item::State state, Item::State newState, const string &indices): Modification(aEdition), etEditType(etState), sIndices(indices), rTree(tree), pBranch(0), pItem(0), sState(state), sNewState(newState), pUndoneItem(0), pCurrentItem(0)
 {
 }
 
-TreeModification::TreeModification(Tree &tree, Item::State state, Item::State newState, const string &indices): Modification(aEdition), etEditType(etState), sIndices(indices), rTree(tree), pBranch(0), pItem(0), pNewItem(0), sState(state), sNewState(newState), pUndoneItem(0)
-{
-}
-
-TreeModification::TreeModification(Tree &tree, const string &indices, const string &newIndices): Modification(aMovement), sIndices(indices), sNewIndices(newIndices), rTree(tree), pBranch(0), pItem(0), pNewItem(0), pUndoneItem(0)
+TreeModification::TreeModification(Tree &tree, const string &indices, const string &newIndices): Modification(aMovement), sIndices(indices), sNewIndices(newIndices), rTree(tree), pBranch(0), pItem(0), pUndoneItem(0), pCurrentItem(0)
 {
 }
 
@@ -53,14 +54,20 @@ TreeModification::~TreeModification()
     }
     if (pItem)
     {
+        // to avoid double free of notes
+        if (pItem->type() == Item::tNote && bSameType)
+        {
+            dynamic_cast<NoteItem*>(pItem)->setNote(0);
+        }
         delete pItem;
-    }
-    if (pNewItem)
-    {
-        delete pNewItem;
     }
     if (pUndoneItem)
     {
+        // to avoid double free of notes
+        if (pUndoneItem->type() == Item::tNote && bSameType)
+        {
+            dynamic_cast<NoteItem*>(pUndoneItem)->setNote(0);
+        }
         delete pUndoneItem;
     }
 }
@@ -78,8 +85,9 @@ void TreeModification::undo()
         case aEdition:  switch (etEditType)
                         {
                             case etFull:    pUndoneItem = rTree[sIndices];
-                                            pCurrentItem = ItemFactory::copyItem(pItem);
-                                            rTree.setItem(sIndices, pCurrentItem);
+                                            rTree.setItem(sIndices, pItem);
+                                            pCurrentItem = pItem;
+                                            pItem = 0;
                                             break;
                             case etContent: rTree[sIndices]->setContent(sContent);
                                             break;
@@ -97,16 +105,18 @@ void TreeModification::redo()
 {
     switch (action())
     {
-        case aAddition: rTree.insert(sIndices, new Branch(ItemFactory::copyItem(pNewItem)));
+        case aAddition: rTree.insert(sIndices, new Branch(pUndoneItem));
+                        pUndoneItem = 0;
                         break;
         case aDeletion: pBranch = rTree.branch(sIndices);
                         rTree.remove(sIndices, false);
                         break;
         case aEdition:  switch (etEditType)
                         {
-                            case etFull:    pUndoneItem = rTree[sIndices];
-                                            pCurrentItem = ItemFactory::copyItem(pNewItem);
-                                            rTree.setItem(sIndices, pCurrentItem);
+                            case etFull:    pItem = rTree[sIndices];
+                                            rTree.setItem(sIndices, pUndoneItem);
+                                            pCurrentItem = pUndoneItem;
+                                            pUndoneItem = 0;
                                             break;
                             case etContent: rTree[sIndices]->setContent(sNewContent);
                                             break;
@@ -219,14 +229,5 @@ string TreeModification::deletedIndices() const
         }
         buf << n-1;
         return buf.str();
-    }
-}
-
-void TreeModification::freeUndoneItem()
-{
-    if (pUndoneItem)
-    {
-        delete pUndoneItem;
-        pUndoneItem = 0;
     }
 }

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -43,25 +43,23 @@ class TreeModification: public Modification
         /*!
          * \brief Constructor for additions
          * \param tree Modified tree
-         * \param newItem Copy of the new item
-         * \param indices Indices of the item
+         * \param indices Indices of the new item
          */
-        TreeModification(Tree &tree, Item *newItem, const std::string &indices);
+        TreeModification(Tree &tree, const std::string &indices);
         /*!
          * \brief Constructor for deletions
          * \param tree Modified tree
-         * \param branch Copy of the deleted branch
+         * \param branch Deleted branch
          * \param indices Indices of the branch
          */
         TreeModification(Tree &tree, Branch *branch, const std::string &indices);
         /*!
          * \brief Constructor for full editions
          * \param tree Modified tree
-         * \param item Copy of the previous item
-         * \param newItem Copy of the new item
+         * \param oldItem Previous item
          * \param indices Indices of the item
          */
-        TreeModification(Tree &tree, Item *item, Item *newItem, const std::string &indices);
+        TreeModification(Tree &tree, Item *oldItem, const std::string &indices);
         /*!
          * \brief Constructor for content-only editions
          * \param tree Modified tree
@@ -120,19 +118,10 @@ class TreeModification: public Modification
          */
         std::string deletedIndices() const;
         /*!
-         * \brief Getter for the modified item (or the previous when undoing an addition)
-         * \return Modified item or just undone added item (to be deleted separately by freeItem))
+         * \brief Getter for the old version of a newly edited item
+         * \return Old item
          */
         inline Item* item() const;
-        /*!
-         * \brief Getter for the newly added item
-         * \return New item
-         */
-        inline Item* newItem() const;
-        /*!
-         * \brief Deletion of the undone item
-         */
-        void freeUndoneItem();
         /*!
          * \brief Getter for the deleted branch
          * \return Deleted branch
@@ -168,8 +157,6 @@ class TreeModification: public Modification
         Branch *pBranch;
         //! Copy of the modified item
         Item *pItem;
-        //! Copy of the new item
-        Item *pNewItem;
         //! Previous content
         std::string sContent;
         //! New content
@@ -182,6 +169,8 @@ class TreeModification: public Modification
         Item *pUndoneItem;
         //! Current copy of the item (for editions)
         Item *pCurrentItem; 
+        //! Flag to indicate if a full edition conserves the item type
+        bool bSameType;
 };
 
 Modification::Type TreeModification::type() const
@@ -202,11 +191,6 @@ Tree& TreeModification::tree()
 Item* TreeModification::item() const
 {
     return pItem;
-}
-
-Item* TreeModification::newItem() const
-{
-    return pNewItem;
 }
 
 Branch* TreeModification::branch() const

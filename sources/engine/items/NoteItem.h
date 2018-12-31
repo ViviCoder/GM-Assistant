@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2016 Vincent Prat & Simon Nicolas
+* Copyright © 2016-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -31,21 +31,27 @@ class NoteItem: public Item
         /*!
          * \brief Note associated with the item
          */
-        Note nNote;
+        Note *pNote;
     public:
         /*!
          * \brief Setter for the note
          * \param note New note
          */
-        inline void setNote(const Note &note);
+        inline void setNote(Note *note);
         /*!
-         *  \brief Constructor
-         *  \param content Content of the item
-         *  \param state State of the item
-         *  \param expanded Expanded/collapsed state of the item
-         *  \param note Content of the note
+         * \brief Constructor
+         * \param content Content of the item
+         * \param state State of the item
+         * \param note Note
+         * \param expanded Expanded/collapsed state of the item
+         *
+         * If note is null, creates a new note
          */
-        NoteItem(const std::string &content="", State state=sNone, bool expanded=false, const Note &note=Note());
+        NoteItem(const std::string &content="", State state=sNone, bool expanded=false, Note *note=0);
+        /*!
+         * \brief Destructor
+         */
+        ~NoteItem();
         // accessors
         /*!
          * \brief Getter for the type of the item
@@ -82,12 +88,12 @@ Item::Type NoteItem::type() const
 
 Note* NoteItem::note()
 {
-    return &nNote;
+    return pNote;
 }
 
-void NoteItem::setNote(const Note &note)
+void NoteItem::setNote(Note *note)
 {
-    nNote = note;
+    pNote = note;
 }
 
 #endif
