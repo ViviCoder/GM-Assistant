@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -71,10 +71,10 @@ class Scenario
          */
         void toFile(const std::string &fileName) const;
         /*!
-         * \brief List all notes in the scenario
-         * \return List of notes
+         * \brief Getter for the main note of the scenario
+         * \return Main note
          */
-        std::vector<Note*> notes();
+        inline Note& mainNote();
         // accessors
         /*!
          * \brief Getter for the plot tree
@@ -240,6 +240,11 @@ void Scenario::setVersion(const Version &version)
 Metadata& Scenario::metadata()
 {
     return mMetadata;
+}
+
+Note& Scenario::mainNote()
+{
+    return nMain;
 }
 
 #endif

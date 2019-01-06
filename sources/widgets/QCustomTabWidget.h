@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2016-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2016-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -36,11 +36,6 @@ class QCustomTabWidget: public QTabWidget
          * \param parent Parent widget
          */
         QCustomTabWidget(QWidget *parent=0);
-        /*!
-         * \brief Setter for the underlying notes
-         * \param notes Notes
-         */
-        void setNotes(const std::vector<Note*> &notes); 
         /*!
          * \brief Indicator of unregistered modifications
          * \return True if there is an unregistered modification

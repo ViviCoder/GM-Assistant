@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2016-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2016-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,27 +23,6 @@ using namespace std;
 QCustomTabWidget::QCustomTabWidget(QWidget *parent): QTabWidget(parent), pFilter(0)
 {
     connect(this, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequested(int)));
-}
-
-void QCustomTabWidget::setNotes(const vector<Note*> &notes)
-{
-    clear();
-    for (vector<Note*>::const_iterator it = notes.begin(); it != notes.end(); it++)
-    {
-        if ((*it)->visible())
-        {
-            QCustomTextEdit *widget = new QCustomTextEdit(this);
-            if (pFilter)
-            {
-                widget->installEventFilter(pFilter);
-            }
-            mNotes[*it] = widget;
-            widget->setNote(*it);
-            emit noteOpened(widget);
-            addTab(widget, (*it)->title().c_str());
-        }
-    } 
-    updateDisplay();
 }
 
 void QCustomTabWidget::clear()
@@ -96,9 +75,11 @@ void QCustomTabWidget::openNote(Note *note)
     map<Note*, QCustomTextEdit*>::const_iterator it = mNotes.find(note);
     if (it == mNotes.end())
     {
+        // create a new TextEdit widget and add it to the tab
         QCustomTextEdit *textEdit = new QCustomTextEdit(this);
         textEdit->setNote(note);
         addTab(textEdit, note->title().c_str());
+        note->setVisible(true);
         mNotes.insert(pair<Note*, QCustomTextEdit*>(note, textEdit));
         emit noteOpened(textEdit);
     }

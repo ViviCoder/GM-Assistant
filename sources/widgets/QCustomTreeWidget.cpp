@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -323,35 +323,48 @@ void QCustomTreeWidget::updateDisplay(const string &indices)
         int h = vbar->value();
         // iterating over the tree to populate the widget
         vector<QCustomTreeWidgetItem*> items;
-        QCustomTreeWidgetItem* item, *focusItem=0;
-        int depth=0;        
+        QCustomTreeWidgetItem* widgetItem, *focusItem=0;
+        Branch *branch;
+        Item *item;
+        int depth=0;
         for (Tree::iterator it = pTree->begin(); it != pTree->end(); it++)
         {
             depth = it.depth();
+            branch = it.branch();
+            item = branch->item();
             if (depth==0)
             {
-                item = new QCustomTreeWidgetItem(this, it.branch());
+                widgetItem = new QCustomTreeWidgetItem(this, branch);
             }
             else
             {
-                item = new QCustomTreeWidgetItem(items[depth-1], it.branch());
+                widgetItem = new QCustomTreeWidgetItem(items[depth-1], branch);
             }
             if (items.size() > (unsigned int)(depth))
             {
-                items[depth] = item;
+                items[depth] = widgetItem;
             }
             else
             {
-                items.push_back(item);
+                items.push_back(widgetItem);
             }
             // expand the item if needed
-            if (it.branch()->item()->expanded())
+            if (item->expanded())
             {
-                expandItem(item);
+                expandItem(widgetItem);
+            }
+            // open notes
+            if (item->type() == Item::tNote)
+            {
+                Note* note = dynamic_cast<NoteItem*>(item)->note();
+                if (note->visible())
+                {
+                    emit noteToOpen(note);
+                }
             }
             if (!focusItem && indices == it.indices())
             {
-                focusItem = item;
+                focusItem = widgetItem;
             }
         }
         resizeColumnToContents(0);

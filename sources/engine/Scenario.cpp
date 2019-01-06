@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,6 @@
 #include <Poco/FileStream.h>
 #include <Poco/TemporaryFile.h>
 #include <Poco/Zip/Compress.h>
-#include "NoteItem.h"
 
 using namespace std;
 
@@ -329,19 +328,4 @@ Scenario::UserInterface Scenario::stringToInterface(const std::string& interface
         return uiNoMusic;
     else
         throw invalid_argument("Invalid user interface");
-}
-
-vector<Note*> Scenario::notes()
-{
-    vector<Note*> list;
-    list.push_back(&nMain);
-    for (Tree::iterator it = tPlot.begin(); it != tPlot.end(); it++)
-    {
-        Item *item = it.branch()->item();
-        if (item->type() == Item::tNote)
-        {
-            list.push_back(dynamic_cast<NoteItem*>(item)->note());
-        }
-    }
-    return list;
 }

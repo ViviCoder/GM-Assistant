@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -435,8 +435,9 @@ void MainWindow::updateDisplay()
         case Scenario::uiNoMusic: on_actionNoMusic_triggered();
                                 break;
     }
+    tabNotes->clear();
+    tabNotes->openNote(&sGame.mainNote());
     treePlot->setTree(&sGame.plot());
-    tabNotes->setNotes(sGame.notes());
     treeHistory->setTree(&sGame.history());
     treeMusic->setTree(&sGame.music());
     treeFX->setTree(&sGame.effects());
