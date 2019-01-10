@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -102,7 +102,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     }
     else
     {
-        throw xmlpp::exception("Unreckognized file format");
+        throw xmlpp::exception("Unrecognized file format");
     }
     ioConfig = IOConfig::detect(xmlFile, isArchive);
     DomParser parser(xmlFile);
