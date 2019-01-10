@@ -50,7 +50,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     {
        fileType = pDetector->typeOfFile(fileName);
     }
-    if (fileType == "application/xml")
+    if (fileType == "text/xml" || fileType == "application/xml")
     {
         xmlFile = fileName;
     }
