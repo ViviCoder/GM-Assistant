@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -89,6 +89,13 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         QAudioProxyModel *audioFilter;
         //! Item editor
         ItemDialog *pItemDialog;
+        /*!
+         * \brief Game saver
+         * \param askForUpdate Indicates if the user should be asked to update an outdated game
+         *
+         * Saves the game
+         */
+        void save(bool askForUpdate = true);
     protected:
         // overriden methods
         /*!
@@ -192,11 +199,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void on_action_Load_triggered();
         /*!
          * \brief Slot for the "Save" menu item
-         * \param askForUpdate Indicates if the user should be asked to update an outdated game
          *
          * Saves the game
          */
-        void on_action_Save_triggered(bool askForUpdate = true);
+        void on_action_Save_triggered();
         /*!
          * \brief Slot for the "Save as" menu item
          * \return True if a file has been chosen and saved

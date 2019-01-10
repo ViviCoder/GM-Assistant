@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -328,7 +328,7 @@ void MainWindow::on_action_Load_triggered()
     }
 }
 
-void MainWindow::on_action_Save_triggered(bool askForUpdate)
+void MainWindow::save(bool askForUpdate)
 {
     if (sFileName.isEmpty())
     {
@@ -353,6 +353,11 @@ void MainWindow::on_action_Save_triggered(bool askForUpdate)
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
         }
     }
+}
+
+void MainWindow::on_action_Save_triggered()
+{
+    save();
 }
 
 bool MainWindow::on_actionS_ave_as_triggered()
@@ -804,7 +809,7 @@ bool MainWindow::canClose()
     }
     switch (QMessageBox::question(this, QApplication::translate("mainWindow", "Confirmation", 0), QApplication::translate("mainWindow", "The current game has been modified since the last save. If you continue, unsaved changes will be discarded.", 0), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel))
     {
-        case QMessageBox::Save: on_action_Save_triggered();
+        case QMessageBox::Save: save();
         case QMessageBox::Discard:  return true;
         default:    return false;
     }
@@ -893,7 +898,7 @@ void MainWindow::changeFormatIfNeeded(bool askForUpdate)
     }
     if (config.isArchived() == sGame.configuration().isArchived())
     {
-        on_action_Save_triggered(askForUpdate);
+        save(askForUpdate);
     }
     else
     {
