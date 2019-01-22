@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -122,6 +122,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
     {
         case Qt::LeftButton:    if (item)
                                 {
+                                    pDragSource = item;
                                     bNewlySelected = !item->isSelected();
                                     // the item will be selected (and not be unselected by mouseReleaseEvent)
                                 }
@@ -207,6 +208,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
 
 void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *e)
 {
+    pDragSource = 0;
     QTreeWidgetItem *item = itemAt(e->pos());
     if (!bNewlySelected)
     {
@@ -389,16 +391,6 @@ QIcon QCustomTreeWidget::icon(Item::State state)
         case Item::sSuccess:    return QIcon(":/data/images/check.svg");    break;
         default:                return QIcon(":/data/images/empty.svg");     break;
     }
-}
-
-void QCustomTreeWidget::dragEnterEvent(QDragEnterEvent *e)
-{
-    pDragSource = itemAt(e->pos());
-    if (pDragSource)
-    {
-        e->acceptProposedAction();
-    }
-    QTreeWidget::dragEnterEvent(e);
 }
 
 void QCustomTreeWidget::dropEvent(QDropEvent *e)

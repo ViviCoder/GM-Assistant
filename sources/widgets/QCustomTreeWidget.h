@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -145,13 +145,16 @@ class QCustomTreeWidget: public QTreeWidget
          * \param e Mouse event
          */
         void mousePressEvent(QMouseEvent *e);
+        /*!
+         * \brief Event raised when a mouse button is released
+         * \param e Mouse event
+         */
         void mouseReleaseEvent(QMouseEvent *e);
         /*!
          * \brief Event raised when a key is released
          * \param e Key event
          */
         void keyReleaseEvent(QKeyEvent *e);
-        void dragEnterEvent(QDragEnterEvent *e);
         /*!
          * \brief DropEvent handler
          * \param e Event to handle
