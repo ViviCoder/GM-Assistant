@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,7 @@ using namespace std;
 
 // constructors
 
-Character::Character(const string &name, const string &shortDescription): sName(name), sShort(shortDescription), pNote(new Note())
+Character::Character(const string &name, const string &shortDescription): sName(name), sShort(shortDescription), pNote(new Note(name))
 {
 }
 
