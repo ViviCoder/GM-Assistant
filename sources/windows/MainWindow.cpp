@@ -115,6 +115,7 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     connect(treeHistory, SIGNAL(noteToDelete(Note*)), tabNotes, SLOT(deleteNote(Note*)));
     connect(treeMusic, SIGNAL(noteToDelete(Note*)), tabNotes, SLOT(deleteNote(Note*)));
     connect(treeFX, SIGNAL(noteToDelete(Note*)), tabNotes, SLOT(deleteNote(Note*)));
+    connect(tableStats, SIGNAL(noteToOpen(Note*)), tabNotes, SLOT(openNote(Note*)));
 
     // Item dialog
     treePlot->setItemDialogWindow(pItemDialog);

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -54,13 +54,16 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     setHorizontalHeader(new QCustomHeaderView(Qt::Horizontal,this));
     setVerticalHeader(new QCustomHeaderView(Qt::Vertical,this));
 
-    // connection of signals
+    // connections with the horizontal header
     QCustomHeaderView *header = dynamic_cast<QCustomHeaderView*>(horizontalHeader());
     connect(header, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onHHeaderClicked(int, const QPoint&)));
     connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onHHeaderMoved(int, int, int)));
+    // connections with the vertical header
     header = dynamic_cast<QCustomHeaderView*>(verticalHeader());
     connect(header, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onVHeaderClicked(int, const QPoint&)));
     connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onVHeaderMoved(int, int, int)));
+    connect(header, SIGNAL(sectionDoubleClicked(int)), this, SLOT(onCharacterDoubleClicked(int)));
+    // self-connections
     connect(this, SIGNAL(itemSelectionChanged()), this, SLOT(on_itemSelectionChanged()));
     connect(this, SIGNAL(cellChanged(int,int)), this, SLOT(onCellChanged(int,int)));
 }
@@ -769,4 +772,10 @@ int QCustomTableWidget::sizeHintForColumn(int column) const
     }
 
     return hint;
+}
+
+void QCustomTableWidget::onCharacterDoubleClicked(int index)
+{
+    int row = visualRow(index);
+    emit noteToOpen((*pCharacters)[row].note());
 }

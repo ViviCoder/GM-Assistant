@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -170,6 +170,11 @@ class QCustomTableWidget: public QTableWidget
          */
         void onVHeaderMoved(int, int oldRow, int newRow);
         /*!
+         * \brief Slot for when a character is double-clicked
+         * \param index Index of the clicked row
+         */
+        void onCharacterDoubleClicked(int index);
+        /*!
          * \brief Slot for when the selection changes 
          */
         void on_itemSelectionChanged();
@@ -209,6 +214,13 @@ class QCustomTableWidget: public QTableWidget
          * This signal is sent when the tree is modified
          */
         void modificationDone(Modification *modification);
+        /*!
+         * \brief Signal to open a note
+         * \param note Note we want to open
+         *
+         * This signal is sent when a note has to be opened
+         */
+        void noteToOpen(Note *note);
     public slots:
         /*!
          * \brief Update of the display
