@@ -26,6 +26,14 @@ Character::Character(const string &name, const string &shortDescription): sName(
 {
 }
 
+Character::~Character()
+{
+    if (pNote)
+    {
+        delete pNote;
+    }
+}
+
 std::string& Character::property(int index) throw(out_of_range)
 {
     if (index < 0 || (unsigned int)index >= vProperties.size())

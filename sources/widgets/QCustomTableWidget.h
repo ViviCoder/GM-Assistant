@@ -221,6 +221,13 @@ class QCustomTableWidget: public QTableWidget
          * This signal is sent when a note has to be opened
          */
         void noteToOpen(Note *note);
+        /*!
+         * \brief Signal to delete a note
+         * \param note Note we want to delete
+         *
+         * This signal is sent when a note has to be deleted
+         */
+        void noteToDelete(Note *note);
     public slots:
         /*!
          * \brief Update of the display

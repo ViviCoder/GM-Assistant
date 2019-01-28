@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ void SelectCharacterDialog::show(const CharacterList &list)
     listAll->clear();
     for (CharacterList::const_iterator it = list.begin(); it != list.end(); it++)
     {
-        listAll->addItem((*it).name().c_str());
+        listAll->addItem((*it)->name().c_str());
     }
     listInvolved->clear();
     QDialog::show();

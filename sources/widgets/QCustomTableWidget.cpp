@@ -247,14 +247,15 @@ void QCustomTableWidget::updateDisplay(int row, int column)
     for (CharacterList::iterator it = pCharacters->begin(); it != pCharacters->end(); it++)
     {
         insertRow(j);
-        setVerticalHeaderItem(j, new QTableWidgetItem(headerText((*it).name().c_str(), (*it).shortDescription().c_str())));
+        Character *character = (*it);
+        setVerticalHeaderItem(j, new QTableWidgetItem(headerText(character->name().c_str(), character->shortDescription().c_str())));
         // creating items
         for (k=0;k<i;k++)
         {
         }
         // setting values
         k = 0;
-        for (Character::PropertyIterator itProperty = (*it).begin(); itProperty != (*it).end() && k<i; itProperty++)
+        for (Character::PropertyIterator itProperty = character->begin(); itProperty != character->end() && k<i; itProperty++)
         {
             setItem(j,k,new QTableWidgetItem((*itProperty).c_str()));
             k++;
@@ -295,14 +296,14 @@ void QCustomTableWidget::onCellChanged(int logicalRow, int logicalColumn)
     int column = visualColumn(logicalColumn);
     if (pCharacters)
     {
-        Character &charact = (*pCharacters)[row];
-        for (int i=charact.propertyNumber(); i<column+1; i++)
+        Character *charact = (*pCharacters)[row];
+        for (int i=charact->propertyNumber(); i<column+1; i++)
         {
-            charact.addProperty("0");
+            charact->addProperty("0");
         }
-        std::string value = charact.property(column);
+        std::string value = charact->property(column);
         std::string newValue = item(logicalRow, logicalColumn)->text().toStdString();
-        charact.property(column) = newValue;
+        charact->property(column) = newValue;
         if (iCreatedCells)
         {
             // we ignore the newly created cells
@@ -368,9 +369,9 @@ void QCustomTableWidget::addCharacter(int index)
         // updating the CharacterList
         if (pCharacters)
         {
-            Character character(pChangeCharacterDial->name().toStdString(), pChangeCharacterDial->shortDescription().toStdString());
+            Character *character = new Character(pChangeCharacterDial->name().toStdString(), pChangeCharacterDial->shortDescription().toStdString());
             pCharacters->add(character,index+1);
-            emit modificationDone(new CharacterModification(pCharacters, new Character(character), index+1, true));
+            emit modificationDone(new CharacterModification(pCharacters, index+1));
         }
 
         // updating the display
@@ -417,10 +418,11 @@ void QCustomTableWidget::addProperty(int index)
         {
             for (CharacterList::iterator it=pCharacters->begin(); it != pCharacters->end(); it++)
             {
-                if ((unsigned int)index+1 < it->propertyNumber())
+                Character *character = *it;
+                if ((unsigned int)index+1 < character->propertyNumber())
                 {
                     // adding a property
-                    it->addProperty("0",index+1);
+                    character->addProperty("0",index+1);
                 }
             } 
         }
@@ -457,8 +459,8 @@ void QCustomTableWidget::removeCharacter(int index)
         // updating the CharacterList
         if (pCharacters)
         {
-            emit modificationDone(new CharacterModification(pCharacters, new Character((*pCharacters)[index]), index, false));
-            pCharacters->remove(index);
+            emit modificationDone(new CharacterModification(pCharacters, (*pCharacters)[index], index));
+            pCharacters->remove(index, false);
         }
         if (index == rowCount())
         {
@@ -479,10 +481,11 @@ void QCustomTableWidget::removeProperty(int index)
         {
             for (CharacterList::iterator it = pCharacters->begin(); it != pCharacters->end(); it++)
             {
-                if ((unsigned int)index < it->propertyNumber())
+                Character *character = *it;
+                if ((unsigned int)index < character->propertyNumber())
                 {
-                    values.push_back(it->property(index));
-                    it->removeProperty(index);
+                    values.push_back(character->property(index));
+                    character->removeProperty(index);
                 }
             } 
         }
@@ -509,15 +512,15 @@ void QCustomTableWidget::editCharacter(int index)
         scrollTo(index, -1);
         if (pCharacters)
         {
-            Character &character = (*pCharacters)[index];
-            if(pChangeCharacterDial->exec(&character)==QDialog::Accepted)
+            Character *character = (*pCharacters)[index];
+            if(pChangeCharacterDial->exec(character)==QDialog::Accepted)
             {
                 // updating the CharacterList
-                std::string name = character.name();
-                std::string shortDescription = character.shortDescription();
-                character.setName(pChangeCharacterDial->name().toStdString());
-                character.setShortDescription(pChangeCharacterDial->shortDescription().toStdString());
-                emit modificationDone(new CharacterModification(pCharacters, name, shortDescription, character.name(), character.shortDescription(), index));
+                std::string name = character->name();
+                std::string shortDescription = character->shortDescription();
+                character->setName(pChangeCharacterDial->name().toStdString());
+                character->setShortDescription(pChangeCharacterDial->shortDescription().toStdString());
+                emit modificationDone(new CharacterModification(pCharacters, name, shortDescription, character->name(), character->shortDescription(), index));
                 QTableWidgetItem *rowHeaderItem = verticalHeaderItem(logicalRow(index));
                 rowHeaderItem->setText(headerText(pChangeCharacterDial->name(), pChangeCharacterDial->shortDescription()));
             }
@@ -577,7 +580,7 @@ void QCustomTableWidget::onHHeaderMoved(int, int oldColumn, int newColumn)
     {
         for (CharacterList::iterator it = pCharacters->begin(); it != pCharacters->end(); it++)
         {
-            it->moveProperty(oldColumn, newColumn);
+            (*it)->moveProperty(oldColumn, newColumn);
         }
     }
 }
@@ -777,5 +780,5 @@ int QCustomTableWidget::sizeHintForColumn(int column) const
 void QCustomTableWidget::onCharacterDoubleClicked(int index)
 {
     int row = visualRow(index);
-    emit noteToOpen((*pCharacters)[row].note());
+    emit noteToOpen((*pCharacters)[row]->note());
 }

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -24,16 +24,22 @@ CharacterList::CharacterList()
 {
 }
 
+CharacterList::~CharacterList()
+{
+    clear();
+}
+
 void CharacterList::toXML(const IOConfig &config, xmlpp::Element &root) const
 {
     using namespace xmlpp;
 
-    for (vector<Character>::const_iterator it = vCharacters.begin(); it != vCharacters.end(); it++)
+    for (vector<Character*>::const_iterator it = vCharacters.begin(); it != vCharacters.end(); it++)
     {
         Element *tmp = root.add_child("character");
-        tmp->set_attribute("name",it->name());
-        tmp->set_attribute(config.descriptionName(), it->shortDescription());
-        it->toXML(config, *tmp);
+        Character *character = *it;
+        tmp->set_attribute("name",character->name());
+        tmp->set_attribute(config.descriptionName(), character->shortDescription());
+        character->toXML(config, *tmp);
     }
 }
 
@@ -58,18 +64,22 @@ void CharacterList::fromXML(const IOConfig &config, const xmlpp::Element &root)
         {
             shortDescription = attr->get_value();
         }
-        Character character = Character(name, shortDescription);
-        character.fromXML(config, *elem);
+        Character *character = new Character(name, shortDescription);
+        character->fromXML(config, *elem);
         vCharacters.push_back(character);
-    }        
+    }
 }
 
 void CharacterList::clear()
 {
+    for (vector<Character*>::iterator it = vCharacters.begin(); it != vCharacters.end(); it++)
+    {
+        delete (*it);
+    }
     vCharacters.clear();
 }
 
-void CharacterList::add(const Character &character, int position)
+void CharacterList::add(Character *character, int position)
 {
     // if out if bounds, just push_back
     if (position<0 || (unsigned int)position > vCharacters.size())
@@ -82,13 +92,18 @@ void CharacterList::add(const Character &character, int position)
     }
 }
 
-void CharacterList::remove(int index) throw(out_of_range)
+void CharacterList::remove(int index, bool toDelete) throw(out_of_range)
 {
     if (index < 0 || (unsigned int)index >= vCharacters.size())
     {
         throw out_of_range("Index out of bounds");
     }
-    vCharacters.erase(vCharacters.begin()+index);
+    vector<Character*>::iterator position = vCharacters.begin()+index;
+    if (toDelete)
+    {
+        delete *position;
+    }
+    vCharacters.erase(position);
 }
 
 bool CharacterList::move(int source, int destination) throw(out_of_range)
@@ -106,7 +121,7 @@ bool CharacterList::move(int source, int destination) throw(out_of_range)
         return false;
     }
     // character to move
-    Character& character = vCharacters[source];
+    Character *character = vCharacters[source];
     if (source < destination)
     {
         destination++;
@@ -120,7 +135,7 @@ bool CharacterList::move(int source, int destination) throw(out_of_range)
     return true;
 }
 
-Character& CharacterList::operator[](int index) throw(out_of_range)
+Character* CharacterList::operator[](int index) throw(out_of_range)
 {
     if (index<0 || (unsigned int)index >= vCharacters.size())
     {
@@ -151,11 +166,11 @@ CharacterList::iterator CharacterList::end()
 
 // iterators' methods
 
-CharacterList::iterator::iterator(const vector<Character>::iterator &it): vector<Character>::iterator(it)
+CharacterList::iterator::iterator(const vector<Character*>::iterator &it): vector<Character*>::iterator(it)
 {
 }
 
-CharacterList::const_iterator::const_iterator(const vector<Character>::const_iterator &it): vector<Character>::const_iterator(it)
+CharacterList::const_iterator::const_iterator(const vector<Character*>::const_iterator &it): vector<Character*>::const_iterator(it)
 {
 }
 

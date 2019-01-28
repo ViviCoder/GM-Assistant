@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -42,13 +42,19 @@ class CharacterModification: public Modification
             etValue
         };
         /*!
-         * \brief Constructor for additions/deletions of characters
+         * \brief Constructor for additions of characters
+         * \param list List of characters
+         * \param index Index of the character
+         */
+        CharacterModification(CharacterList *list, int index);
+        /*!
+         * \brief Constructor for deletions of characters
          * \param list List of characters
          * \param character Character added or deleted
          * \param index Index of the character
          * \param isAddition Indicates if the modification is an addition (true) or a deletion (false)
          */
-        CharacterModification(CharacterList *list, Character *character, int index, bool isAddition);
+        CharacterModification(CharacterList *list, Character *character, int index);
         /*!
          * \brief Constructor for additions of properties
          * \param list List of properties

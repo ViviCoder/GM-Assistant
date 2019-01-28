@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -50,6 +50,10 @@ class Character
          * \param shortDescription Short description (typically player's name for PCs or group/race for NPCs)
          */
         Character(const std::string &name, const std::string &shortDescription);
+        /*!
+         * \brief Destructor
+         */
+        ~Character();
         /*!
          * \brief XML saver
          * \param config IO configuration

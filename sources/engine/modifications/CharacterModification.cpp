@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,11 @@
 
 using namespace std;
 
-CharacterModification::CharacterModification(CharacterList *list, Character *character, int index, bool isAddition): Modification(isAddition?(Modification::aAddition):(Modification::aDeletion)), etEditType(etCharacter), iIndex(index), pCharacterList(list), pPropertyList(0), pCharacter(character)
+CharacterModification::CharacterModification(CharacterList *list, int index): Modification(Modification::aAddition), etEditType(etCharacter), iIndex(index), pCharacterList(list), pPropertyList(0), pCharacter(0)
+{
+}
+
+CharacterModification::CharacterModification(CharacterList *list, Character *character, int index): Modification(Modification::aDeletion), etEditType(etCharacter), iIndex(index), pCharacterList(list), pPropertyList(0), pCharacter(character)
 {
 }
 
@@ -73,14 +77,16 @@ void CharacterModification::undo()
                             {
                                 switch (action())
                                 {
-                                    case aAddition: pCharacterList->remove(iIndex);
+                                    case aAddition: pCharacter = (*pCharacterList)[iIndex];
+                                                    pCharacterList->remove(iIndex, false);
                                                     break;
-                                    case aDeletion: pCharacterList->add(*pCharacter, iIndex);
+                                    case aDeletion: pCharacterList->add(pCharacter, iIndex);
+                                                    pCharacter = 0;
                                                     break;
                                     case aEdition:  {
-                                                        Character &character = (*pCharacterList)[iIndex];
-                                                        character.setName(sName);
-                                                        character.setShortDescription(sProperty);
+                                                        Character *character = (*pCharacterList)[iIndex];
+                                                        character->setName(sName);
+                                                        character->setShortDescription(sProperty);
                                                         break;
                                                     }
                                     case aMovement: pCharacterList->move(iNewIndex, iIndex);
@@ -99,7 +105,7 @@ void CharacterModification::undo()
                                             {
                                                 for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
                                                 {
-                                                    it->removeProperty(iIndex);
+                                                    (*it)->removeProperty(iIndex);
                                                 }
                                             }
                                             break;
@@ -112,7 +118,7 @@ void CharacterModification::undo()
                                                 int i = 0;
                                                 for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
                                                 {
-                                                    it->addProperty(vValues[i], iIndex);
+                                                    (*it)->addProperty(vValues[i], iIndex);
                                                     i++;
                                                 }
                                             }
@@ -130,7 +136,7 @@ void CharacterModification::undo()
                                             {
                                                 for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
                                                 {
-                                                    it->moveProperty(iNewIndex, iIndex);
+                                                    (*it)->moveProperty(iNewIndex, iIndex);
                                                 }
                                             }
                                             break;
@@ -139,7 +145,7 @@ void CharacterModification::undo()
                         break;
         case etValue:   if (pCharacterList)
                         {
-                            (*pCharacterList)[iIndex].property(iNewIndex) = sProperty;
+                            (*pCharacterList)[iIndex]->property(iNewIndex) = sProperty;
                         }
                         break;
         default:    break;
@@ -154,14 +160,16 @@ void CharacterModification::redo()
                             {
                                 switch (action())
                                 {
-                                    case aAddition: pCharacterList->add(*pCharacter, iIndex);
+                                    case aAddition: pCharacterList->add(pCharacter, iIndex);
+                                                    pCharacter = 0;
                                                     break;
-                                    case aDeletion: pCharacterList->remove(iIndex);
+                                    case aDeletion: pCharacter = (*pCharacterList)[iIndex];
+                                                    pCharacterList->remove(iIndex, false);
                                                     break;
                                     case aEdition:  {
-                                                        Character &character = (*pCharacterList)[iIndex];
-                                                        character.setName(sNewName);
-                                                        character.setShortDescription(sNewProperty);
+                                                        Character *character = (*pCharacterList)[iIndex];
+                                                        character->setName(sNewName);
+                                                        character->setShortDescription(sNewProperty);
                                                         break;
                                                     }
                                     case aMovement: pCharacterList->move(iIndex, iNewIndex);
@@ -180,7 +188,7 @@ void CharacterModification::redo()
                                             {
                                                 for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
                                                 {
-                                                    it->addProperty("0", iIndex);
+                                                    (*it)->addProperty("0", iIndex);
                                                 }
                                             }
                                             break;
@@ -192,7 +200,7 @@ void CharacterModification::redo()
                                             {
                                                 for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
                                                 {
-                                                    it->removeProperty(iIndex);
+                                                    (*it)->removeProperty(iIndex);
                                                 }
                                             }
                                             break;
@@ -209,7 +217,7 @@ void CharacterModification::redo()
                                             {
                                                 for (CharacterList::iterator it = pCharacterList->begin(); it != pCharacterList->end(); it++)
                                                 {
-                                                    it->moveProperty(iIndex, iNewIndex);
+                                                    (*it)->moveProperty(iIndex, iNewIndex);
                                                 }
                                             }
                                             break;
@@ -218,7 +226,7 @@ void CharacterModification::redo()
                         break;
         case etValue:   if (pCharacterList)
                         {
-                            (*pCharacterList)[iIndex].property(iNewIndex) = sNewProperty;
+                            (*pCharacterList)[iIndex]->property(iNewIndex) = sNewProperty;
                         }
                         break;
         default:    break;

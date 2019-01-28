@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -29,24 +29,26 @@ class CharacterList
 {
     private:
         //! Underlying character vector
-        std::vector<Character> vCharacters;
+        std::vector<Character*> vCharacters;
     public:
         // iterators
-        class const_iterator: public std::vector<Character>::const_iterator
+        class const_iterator: public std::vector<Character*>::const_iterator
         {
             public:
                 // constructor
-                const_iterator(const std::vector<Character>::const_iterator &it);
+                const_iterator(const std::vector<Character*>::const_iterator &it);
         };
-        class iterator: public std::vector<Character>::iterator
+        class iterator: public std::vector<Character*>::iterator
         {
             public:
                 // constructor
-                iterator(const std::vector<Character>::iterator &it);
+                iterator(const std::vector<Character*>::iterator &it);
                 iterator(const const_iterator &it);
         };
         // constructor
         CharacterList();
+        //! Destructor
+        ~CharacterList();
         /*!
          * \brief XML saver
          * \param config IO configuration
@@ -62,13 +64,24 @@ class CharacterList
         /*!
          * \brief Getter of the characters
          * \param index Index of the character
-         * \return Reference to the character at the given index
+         * \return Pointer to the character at the given index
          * \throw std::out_of_range Thrown when the index does not correspond to any character
          */
-        Character& operator[](int index) throw(std::out_of_range);
-        // populating
-        void add(const Character &character, int position=-1);
-        void remove(int index) throw(std::out_of_range);
+        Character* operator[](int index) throw(std::out_of_range);
+        /*!
+         * \brief Method to add a character
+         * \param character Pointer to the character to add
+         * \param position Position where to add the character
+         *
+         * If position is -1, the character is added at the end.
+         */
+        void add(Character *character, int position=-1);
+        /*!
+         * \brief Method to remove a character
+         * \param index Index of the character to remove
+         * \param toDelete True if the character has to be deleted
+         */
+        void remove(int index, bool toDelete=true) throw(std::out_of_range);
         /*!
          * \brief Move of a character
          * \param source Index of the character to be moved
@@ -77,6 +90,11 @@ class CharacterList
          * \throw std::out_of_range Thrown when one of the indices is invalid
          */
         bool move(int source, int destination) throw (std::out_of_range);
+        /*!
+         * \brief Method to clear the list
+         *
+         * Clear the lists and destroys all characters
+         */
         void clear();
         // iterators
         const_iterator begin() const;
