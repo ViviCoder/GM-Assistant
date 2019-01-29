@@ -78,7 +78,7 @@ void CharacterModification::undo()
                                 switch (action())
                                 {
                                     case aAddition: pCharacter = (*pCharacterList)[iIndex];
-                                                    pCharacterList->remove(iIndex, false);
+                                                    pCharacterList->remove(iIndex);
                                                     break;
                                     case aDeletion: pCharacterList->add(pCharacter, iIndex);
                                                     pCharacter = 0;
@@ -164,7 +164,7 @@ void CharacterModification::redo()
                                                     pCharacter = 0;
                                                     break;
                                     case aDeletion: pCharacter = (*pCharacterList)[iIndex];
-                                                    pCharacterList->remove(iIndex, false);
+                                                    pCharacterList->remove(iIndex);
                                                     break;
                                     case aEdition:  {
                                                         Character *character = (*pCharacterList)[iIndex];

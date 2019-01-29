@@ -92,18 +92,13 @@ void CharacterList::add(Character *character, int position)
     }
 }
 
-void CharacterList::remove(int index, bool toDelete) throw(out_of_range)
+void CharacterList::remove(int index) throw(out_of_range)
 {
     if (index < 0 || (unsigned int)index >= vCharacters.size())
     {
         throw out_of_range("Index out of bounds");
     }
-    vector<Character*>::iterator position = vCharacters.begin()+index;
-    if (toDelete)
-    {
-        delete *position;
-    }
-    vCharacters.erase(position);
+    vCharacters.erase(vCharacters.begin()+index);
 }
 
 bool CharacterList::move(int source, int destination) throw(out_of_range)

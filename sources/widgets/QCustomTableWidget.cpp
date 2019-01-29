@@ -460,7 +460,7 @@ void QCustomTableWidget::removeCharacter(int index)
         if (pCharacters)
         {
             emit modificationDone(new CharacterModification(pCharacters, (*pCharacters)[index], index));
-            pCharacters->remove(index, false);
+            pCharacters->remove(index);
         }
         if (index == rowCount())
         {

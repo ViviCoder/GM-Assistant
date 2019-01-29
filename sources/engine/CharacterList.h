@@ -79,9 +79,10 @@ class CharacterList
         /*!
          * \brief Method to remove a character
          * \param index Index of the character to remove
-         * \param toDelete True if the character has to be deleted
+         *
+         * This method does not destroy the character.
          */
-        void remove(int index, bool toDelete=true) throw(std::out_of_range);
+        void remove(int index) throw(std::out_of_range);
         /*!
          * \brief Move of a character
          * \param source Index of the character to be moved
