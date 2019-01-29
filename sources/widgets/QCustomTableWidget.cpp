@@ -459,7 +459,9 @@ void QCustomTableWidget::removeCharacter(int index)
         // updating the CharacterList
         if (pCharacters)
         {
-            emit modificationDone(new CharacterModification(pCharacters, (*pCharacters)[index], index));
+            Character *character = (*pCharacters)[index];
+            emit modificationDone(new CharacterModification(pCharacters, character, index));
+            emit noteToDelete(character->note());
             pCharacters->remove(index);
         }
         if (index == rowCount())
@@ -672,6 +674,7 @@ void QCustomTableWidget::updateModification(CharacterModification *modification,
                                                         switch (modification->action())
                                                         {
                                                             case Modification::aAddition:   row = modification->index()-1;
+                                                                                            emit noteToDelete(modification->character()->note());
                                                                                             break;
                                                             default:    row = modification->index();
                                                         }
@@ -681,6 +684,7 @@ void QCustomTableWidget::updateModification(CharacterModification *modification,
                                                         switch (modification->action())
                                                         {
                                                             case Modification::aDeletion:   row = modification->index()-1;
+                                                                                            emit noteToDelete(modification->character()->note());
                                                                                             break;
                                                             case Modification::aMovement:   row = modification->newIndex();
                                                                                             break;

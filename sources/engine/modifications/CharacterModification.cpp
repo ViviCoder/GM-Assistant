@@ -232,18 +232,3 @@ void CharacterModification::redo()
         default:    break;
     }
 }
-
-int CharacterModification::index() const
-{
-    return iIndex;
-}
-
-int CharacterModification::newIndex() const
-{
-    return iNewIndex;
-}
-
-CharacterModification::EditionType CharacterModification::editionType() const
-{
-    return etEditType;
-}

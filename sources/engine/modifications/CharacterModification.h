@@ -126,17 +126,22 @@ class CharacterModification: public Modification
          * \brief Getter for the index
          * \return The index (or the row for cell editions) of the modification
          */
-        int index() const;
+        inline int index() const;
         /*!
          * \brief Getter for the new index
          * \return The new index (or the column for cell editions) of the modification
          */
-        int newIndex() const;
+        inline int newIndex() const;
         /*!
          * \brief Getter for the edition type
          * \return The edition type of the modification
          */
-        EditionType editionType() const;
+        inline EditionType editionType() const;
+        /*!
+         * \brief Getter for the character
+         * \return The added/deleted character
+         */
+        inline Character *character() const;
     private:
         //! Type of edition
         EditionType etEditType;
@@ -161,5 +166,25 @@ class CharacterModification: public Modification
         //! Copy of the values of a property
         std::vector<std::string> vValues;
 };
+
+int CharacterModification::index() const
+{
+    return iIndex;
+}
+
+int CharacterModification::newIndex() const
+{
+    return iNewIndex;
+}
+
+CharacterModification::EditionType CharacterModification::editionType() const
+{
+    return etEditType;
+}
+
+Character* CharacterModification::character() const
+{
+    return pCharacter;
+}
 
 #endif
