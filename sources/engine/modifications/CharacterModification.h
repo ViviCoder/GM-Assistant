@@ -50,9 +50,8 @@ class CharacterModification: public Modification
         /*!
          * \brief Constructor for deletions of characters
          * \param list List of characters
-         * \param character Character added or deleted
+         * \param character Deleted character
          * \param index Index of the character
-         * \param isAddition Indicates if the modification is an addition (true) or a deletion (false)
          */
         CharacterModification(CharacterList *list, Character *character, int index);
         /*!
