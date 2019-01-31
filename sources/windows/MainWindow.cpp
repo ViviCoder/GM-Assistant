@@ -543,6 +543,8 @@ void MainWindow::on_action_Reload_triggered()
         if (!file.exists())
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QApplication::translate("mainWindow","The file \"%1\" does not exist.",0).arg(sFileName));
+            sFileName = "";
+            updateDisplay();
             return;
         }
         // changing current directory
