@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2012 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -35,6 +35,13 @@ class QCustomHeaderView: public QHeaderView
          * Detect right clicks and send the rightClicked signal
          */
         void mousePressEvent(QMouseEvent *e);
+        /*!
+         * \brief Event handler
+         * \param e Event
+         *
+         * This handler is used to display dynamical tool tips.
+         */
+        bool event(QEvent *e);
 
     public:
         /*!
@@ -51,6 +58,12 @@ class QCustomHeaderView: public QHeaderView
          * \param position Global position of the click (used for showing a popup menu)
          */
         void rightClicked(int index, const QPoint &position);
+        /*!
+         * \brief Signal emitted when a tool tip should be displayed
+         * \param index Visual index of the tool tip
+         * \param position Global position of the tool tip
+         */
+        void toolTipRequested(int index, const QPoint &position);
 };
 
 #endif

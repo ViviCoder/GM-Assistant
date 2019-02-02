@@ -178,6 +178,12 @@ class QCustomTableWidget: public QTableWidget
          * \brief Slot for when the selection changes 
          */
         void on_itemSelectionChanged();
+        /*!
+         * \brief Slot for when the vertical header requests a tool tip
+         * \param index Index of the row
+         * \param position Global position of the event
+         */
+        void onVHeaderToolTipRequested(int index, const QPoint &position);
     public:
         /*!
          * \brief Constructor of the widget

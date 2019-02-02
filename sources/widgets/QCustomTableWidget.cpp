@@ -21,6 +21,7 @@
 #include "ChangePropertyDialog.h"
 #include <QApplication>
 #include <QScrollBar>
+#include <QToolTip>
 
 QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangePropertyDial(new ChangePropertyDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pProperties(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0)
 {
@@ -63,6 +64,7 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     connect(header, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onVHeaderClicked(int, const QPoint&)));
     connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onVHeaderMoved(int, int, int)));
     connect(header, SIGNAL(sectionDoubleClicked(int)), this, SLOT(onCharacterDoubleClicked(int)));
+    connect(header, SIGNAL(toolTipRequested(int, const QPoint&)), this, SLOT(onVHeaderToolTipRequested(int, const QPoint&)));
     // self-connections
     connect(this, SIGNAL(itemSelectionChanged()), this, SLOT(on_itemSelectionChanged()));
     connect(this, SIGNAL(cellChanged(int,int)), this, SLOT(onCellChanged(int,int)));
@@ -785,4 +787,16 @@ void QCustomTableWidget::onCharacterDoubleClicked(int index)
 {
     int row = visualRow(index);
     emit noteToOpen((*pCharacters)[row]->note());
+}
+
+void QCustomTableWidget::onVHeaderToolTipRequested(int index, const QPoint &position)
+{
+    if (index != -1)
+    {
+        QToolTip::showText(position, (*pCharacters)[index]->note()->title().c_str());
+    }
+    else
+    {
+        QToolTip::hideText();
+    }
 }
