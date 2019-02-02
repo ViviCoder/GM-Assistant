@@ -785,8 +785,11 @@ int QCustomTableWidget::sizeHintForColumn(int column) const
 
 void QCustomTableWidget::onCharacterDoubleClicked(int index)
 {
-    int row = visualRow(index);
-    emit noteToOpen((*pCharacters)[row]->note());
+    if (index != -1)
+    {
+        int row = visualRow(index);
+        emit noteToOpen((*pCharacters)[row]->note());
+    }
 }
 
 void QCustomTableWidget::onVHeaderToolTipRequested(int index, const QPoint &position)
