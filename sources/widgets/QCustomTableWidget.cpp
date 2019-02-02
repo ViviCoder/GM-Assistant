@@ -17,13 +17,12 @@
 *************************************************************************/
 
 #include "QCustomTableWidget.h"
-#include "QCustomHeaderView.h"
 #include "ChangePropertyDialog.h"
 #include <QApplication>
 #include <QScrollBar>
 #include <QToolTip>
 
-QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangePropertyDial(new ChangePropertyDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pProperties(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0)
+QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangePropertyDial(new ChangePropertyDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pProperties(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0), pVHeader(new QCustomHeaderView(Qt::Vertical,this))
 {
     // property menu
     actionAddColumn = new QAction(this);
@@ -48,26 +47,26 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     // main menu
     menu->addMenu(hMenu);
     menu->addMenu(vMenu);
-    // sets the text of the menus
-    retranslate();
 
     // headers
-    setHorizontalHeader(new QCustomHeaderView(Qt::Horizontal,this));
-    setVerticalHeader(new QCustomHeaderView(Qt::Vertical,this));
+    setVerticalHeader(pVHeader);
+    QCustomHeaderView *header = new QCustomHeaderView(Qt::Horizontal,this);
+    setHorizontalHeader(header);
 
     // connections with the horizontal header
-    QCustomHeaderView *header = dynamic_cast<QCustomHeaderView*>(horizontalHeader());
     connect(header, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onHHeaderClicked(int, const QPoint&)));
     connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onHHeaderMoved(int, int, int)));
     // connections with the vertical header
-    header = dynamic_cast<QCustomHeaderView*>(verticalHeader());
-    connect(header, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onVHeaderClicked(int, const QPoint&)));
-    connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onVHeaderMoved(int, int, int)));
-    connect(header, SIGNAL(sectionDoubleClicked(int)), this, SLOT(onCharacterDoubleClicked(int)));
-    connect(header, SIGNAL(toolTipRequested(int, const QPoint&)), this, SLOT(onVHeaderToolTipRequested(int, const QPoint&)));
+    connect(pVHeader, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onVHeaderClicked(int, const QPoint&)));
+    connect(pVHeader, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onVHeaderMoved(int, int, int)));
+    connect(pVHeader, SIGNAL(sectionDoubleClicked(int)), this, SLOT(onCharacterDoubleClicked(int)));
+    connect(pVHeader, SIGNAL(toolTipRequested(int, const QPoint&)), this, SLOT(onVHeaderToolTipRequested(int, const QPoint&)));
     // self-connections
     connect(this, SIGNAL(itemSelectionChanged()), this, SLOT(on_itemSelectionChanged()));
     connect(this, SIGNAL(cellChanged(int,int)), this, SLOT(onCellChanged(int,int)));
+
+    // sets the text of the menus and a few other things
+    retranslate();
 }
 
 QCustomTableWidget::~QCustomTableWidget()
@@ -745,6 +744,7 @@ void QCustomTableWidget::retranslate()
     actionEditRow->setText(QApplication::translate("customTable","&Edit",0));
     actionEditRow->setStatusTip(QApplication::translate("customTable","Edit the character",0));
     actionEditRow->setShortcut(QApplication::translate("customTable","Ctrl+Shift+F2", 0));
+    pVHeader->setStatusTip(QApplication::translate("customTable", "Double click to display the note associated with a character", 0));
 }
 
 void QCustomTableWidget::changeEvent(QEvent *e)

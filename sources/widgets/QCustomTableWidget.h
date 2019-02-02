@@ -28,6 +28,7 @@
 #include "PropertyList.h"
 #include "CharacterList.h"
 #include "CharacterModification.h"
+#include "QCustomHeaderView.h"
 
 /*!
  * \brief Custom table widget
@@ -69,6 +70,8 @@ class QCustomTableWidget: public QTableWidget
         bool bUpdate;
         //! Number of recently created cells
         int iCreatedCells;
+        //! Vertical header
+        QCustomHeaderView *pVHeader;
     protected:
         /*!
          * \brief Event raised when the table is clicked
