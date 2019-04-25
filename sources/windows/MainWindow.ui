@@ -116,7 +116,13 @@
            <property name="currentIndex">
             <number>0</number>
            </property>
+           <property name="elideMode">
+            <enum>Qt::ElideRight</enum>
+           </property>
            <property name="tabsClosable">
+            <bool>true</bool>
+           </property>
+           <property name="movable">
             <bool>true</bool>
            </property>
            <widget class="QWidget" name="tab">
@@ -295,7 +301,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>27</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
