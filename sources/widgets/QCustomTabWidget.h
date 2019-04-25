@@ -88,6 +88,18 @@ class QCustomTabWidget: public QTabWidget
          * \param note Note to delete
          */
         void deleteNote(Note *note);
+        /*!
+         * \brief Slot for when a tab is right-clicked
+         * \param index Index of the tab
+         * \param position Global position of the click
+         */
+        void onRightClicked(int index, const QPoint& position);
+        /*!
+         * \brief Slot for when a tool tip is requested
+         * \param index Index of the tab
+         * \param position Global position of the tool tip
+         */
+        void onToolTipRequested(int index, const QPoint& position);
     signals:
         /*!
          * \brief Signal emitted when a note is opened

@@ -17,12 +17,18 @@
 *************************************************************************/
 
 #include "QCustomTabWidget.h"
+#include "QCustomTabBar.h"
+#include <QToolTip>
 
 using namespace std;
 
 QCustomTabWidget::QCustomTabWidget(QWidget *parent): QTabWidget(parent), pFilter(0)
 {
+    QTabBar *bar = new QCustomTabBar(this);
+    setTabBar(bar);
     connect(this, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequested(int)));
+    connect(bar, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onRightClicked(int, const QPoint&)));
+    connect(bar, SIGNAL(toolTipRequested(int, const QPoint&)), this, SLOT(onToolTipRequested(int, const QPoint&)));
 }
 
 void QCustomTabWidget::clear()
@@ -113,4 +119,14 @@ void QCustomTabWidget::deleteNote(Note *note)
         delete (*it).second;
         mNotes.erase(it);
     }
+}
+
+void QCustomTabWidget::onRightClicked(int index, const QPoint& position)
+{
+    // TODO
+}
+
+void QCustomTabWidget::onToolTipRequested(int index, const QPoint& position)
+{
+    QToolTip::showText(position, tabText(index));
 }
