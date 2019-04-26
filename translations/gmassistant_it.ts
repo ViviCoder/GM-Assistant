@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="it_IT">
+<TS version="2.0" language="it_IT">
 <context>
     <name>AboutDialog</name>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="17"/>
         <source>About GM-Assistant</source>
-        <translation>Files di GM-Assistant (1.2) (*.gms)</translation>
+        <translation>A proposito di GM-Assistant</translation>
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="41"/>
@@ -31,7 +31,7 @@
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="136"/>
         <source>GM-Assistant is a free software designed to assist the Game Master during role-playing games.</source>
-        <translation>GM-Assistant è un programma gratuito pensato per assistere il Game Master durante sessioni di giochi di ruolo.</translation>
+        <translation>GM-Assistant è un programma libero pensato per assistere il Game Master durante sessioni di giochi di ruolo.</translation>
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="149"/>
@@ -281,7 +281,7 @@
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="757"/>
         <source>Tag the item as being in progress</source>
         <translatorcomment>I assumed &apos;in progress&apos; meant &apos;not ready yet, still working on it&apos;.</translatorcomment>
-        <translation>Segna l&apos;oggetto come in lavorazione</translation>
+        <translation>Segna l&apos;oggetto come in corso</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="759"/>
