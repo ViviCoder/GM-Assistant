@@ -6,42 +6,42 @@
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="17"/>
         <source>About GM-Assistant</source>
-        <translation>A proposito di GM-Assistant</translation>
+        <translation>Files di GM-Assistant (1.2) (*.gms)</translation>
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="41"/>
         <source>Version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Versione:</translation>
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="90"/>
         <source>Original idea: Simon Nicolas</source>
-        <translation type="unfinished"></translation>
+        <translation>Idea originale: Simon Nicolas</translation>
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="100"/>
         <source>Development: Vincent Prat</source>
-        <translation type="unfinished"></translation>
+        <translation>Sviluppo: Vincent Prat</translation>
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="113"/>
         <source>Translation: Vincent Prat (French), Matteo Bugli (Italian)</source>
-        <translation type="unfinished"></translation>
+        <translation>Traduzione: Vincent Prat (francese), Matteo Bugli (italiano)</translation>
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="136"/>
         <source>GM-Assistant is a free software designed to assist the Game Master during role-playing games.</source>
-        <translation type="unfinished"></translation>
+        <translation>GM-Assistant è un programma gratuito pensato per assistere il Game Master durante sessioni di giochi di ruolo.</translation>
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="149"/>
         <source>License: GPLv3+</source>
-        <translation type="unfinished"></translation>
+        <translation>Licensa: GPLv3+</translation>
     </message>
     <message>
         <location filename="../sources/windows/AboutDialog.ui" line="66"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Chiudi</translation>
     </message>
 </context>
 <context>
@@ -54,7 +54,7 @@
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="29"/>
         <source>Character&apos;s name:</source>
-        <translation>Nome del Personaggio:</translation>
+        <translation>Nome del personaggio:</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="39"/>
@@ -64,12 +64,12 @@
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="51"/>
         <source>&amp;Validate</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Conferma</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.ui" line="62"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Annulla</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangeCharacterDialog.cpp" line="36"/>
@@ -93,17 +93,17 @@
         <location filename="../sources/windows/ChangePropertyDialog.ui" line="29"/>
         <source>Name of the property:</source>
         <translatorcomment>Is property intended as an item or object, a characteristic...?</translatorcomment>
-        <translation type="unfinished">Nome della proprietà:</translation>
+        <translation>Nome della proprietà:</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangePropertyDialog.ui" line="41"/>
         <source>&amp;Validate</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Conferma</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangePropertyDialog.ui" line="52"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Annulla</translation>
     </message>
     <message>
         <location filename="../sources/windows/ChangePropertyDialog.cpp" line="41"/>
@@ -122,7 +122,7 @@
         <location filename="../sources/windows/CombatDialog.ui" line="14"/>
         <source>Combat manager</source>
         <translatorcomment>It sounds a little artificial, maybe we could stick with combat manager</translatorcomment>
-        <translation type="unfinished">Gestore di combattimento</translation>
+        <translation>Gestore di combattimento</translation>
     </message>
     <message>
         <location filename="../sources/windows/CombatDialog.ui" line="20"/>
@@ -138,17 +138,17 @@
     <message>
         <location filename="../sources/windows/CombatDialog.ui" line="47"/>
         <source>&amp;Next</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Successivo</translation>
     </message>
     <message>
         <location filename="../sources/windows/CombatDialog.ui" line="57"/>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rimuovi</translation>
     </message>
     <message>
         <location filename="../sources/windows/CombatDialog.ui" line="64"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Chiudi</translation>
     </message>
     <message>
         <location filename="../sources/windows/CombatDialog.cpp" line="103"/>
@@ -160,12 +160,12 @@
         <location filename="../sources/windows/CombatDialog.cpp" line="103"/>
         <source>You are about to remove %1 from the combat manager. Are you sure you want to do it?</source>
         <translatorcomment>Same combat manager doubt.</translatorcomment>
-        <translation type="unfinished">Stai per rimuovere %1 dal gestore di combattimento. Sei sicuro di volerlo fare?</translation>
+        <translation>Stai per rimuovere %1 dal gestore di combattimento. Sei sicuro di volerlo fare?</translation>
     </message>
     <message>
         <location filename="../sources/windows/CombatDialog.cpp" line="135"/>
         <source>You are about to close the combat manager. You will lose all information about the ongoing combat. Are you sure you want to do it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Stai per chiudere il gestore di combattimento. Perderai tutte le informazioni sul combattimento. Sei sicuro di volerlo fare?</translation>
     </message>
 </context>
 <context>
@@ -173,13 +173,13 @@
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="773"/>
         <source>&amp;Property</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Proprietà</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="774"/>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="784"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aggiungi</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="775"/>
@@ -190,7 +190,7 @@
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="777"/>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="787"/>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rimuovi</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="778"/>
@@ -201,7 +201,7 @@
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="780"/>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="790"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Modifica</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="781"/>
@@ -211,7 +211,7 @@
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="783"/>
         <source>&amp;Character</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Personaggio</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="785"/>
@@ -249,7 +249,7 @@
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="146"/>
         <source>P&amp;lay</source>
-        <translation type="unfinished"></translation>
+        <translation>R&amp;iproduci</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="151"/>
@@ -259,23 +259,23 @@
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="152"/>
         <source>Disp&amp;lay</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Visualizza</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="753"/>
         <source>&amp;None</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nessuno</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="754"/>
         <source>Untag the item</source>
         <translatorcomment>What do you mean by tag?</translatorcomment>
-        <translation type="unfinished">Rimuovi il segnalino dall&apos;oggetto</translation>
+        <translation>Rimuovi il segnalino dall&apos;oggetto</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="756"/>
         <source>In &amp;progress</source>
-        <translation type="unfinished"></translation>
+        <translation>In &amp;corso</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="757"/>
@@ -286,27 +286,27 @@
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="759"/>
         <source>&amp;Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fallito</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="760"/>
         <source>Tag the item as failed</source>
-        <translation>Segna l&apos;oggetto come fallimento</translation>
+        <translation>Segna l&apos;oggetto come fallito</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="762"/>
         <source>&amp;Succeeded</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Riuscito</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="763"/>
         <source>Tag the item as succeeded</source>
-        <translation>Segna l&apos;oggetto come successo</translation>
+        <translation>Segna l&apos;oggetto come riuscito</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="765"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aggiungi</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="766"/>
@@ -316,7 +316,8 @@
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="768"/>
         <source>&amp;Delete</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>There is some ambiguity between Remove and Delete</translatorcomment>
+        <translation>&amp;Cancella</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="769"/>
@@ -326,7 +327,7 @@
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="771"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Modifica</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="772"/>
@@ -336,7 +337,7 @@
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="775"/>
         <source>E&amp;xport</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Esporta</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="776"/>
@@ -394,17 +395,17 @@
     <message>
         <location filename="../sources/windows/DiceDialog.ui" line="118"/>
         <source>&amp;Throw</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lancia</translation>
     </message>
     <message>
         <location filename="../sources/windows/DiceDialog.ui" line="128"/>
         <source>&amp;Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Resetta</translation>
     </message>
     <message>
         <location filename="../sources/windows/DiceDialog.ui" line="135"/>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Chiudi</translation>
     </message>
 </context>
 <context>
@@ -428,22 +429,22 @@
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="47"/>
         <source>&amp;None</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nessuno</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="61"/>
         <source>&amp;In progress</source>
-        <translation type="unfinished"></translation>
+        <translation>In &amp;corso</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="72"/>
         <source>&amp;Failed</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Fallito</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="83"/>
         <source>&amp;Succeeded</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Riuscito</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="97"/>
@@ -453,17 +454,18 @@
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="103"/>
         <source>&amp;Basic</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>A more appropiate translation would maybe be &quot;di base&quot;, but they are two words.</translatorcomment>
+        <translation>&amp;Basilare</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="117"/>
         <source>A&amp;udio</source>
-        <translation type="unfinished"></translation>
+        <translation>A&amp;udio</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="128"/>
         <source>I&amp;mage</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Immagine</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="141"/>
@@ -473,23 +475,23 @@
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="172"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aggiungi</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="183"/>
         <location filename="../sources/windows/ItemDialog.cpp" line="183"/>
         <source>C&amp;hild</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Bambino</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="194"/>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Annulla</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="22"/>
         <source>Select the audio file to associate to the item</source>
-        <translation>Seleziona il file audio associato all&apos;oggetto</translation>
+        <translation>Seleziona il file audio da associare all&apos;oggetto</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="86"/>
@@ -529,7 +531,7 @@
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="167"/>
         <source>&amp;Validate</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Conferma</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="213"/>
@@ -547,7 +549,8 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="69"/>
         <source>History</source>
-        <translation>Storia</translation>
+        <translatorcomment>Does it refer to a list of previous actions/events or has it to do with the story?</translatorcomment>
+        <translation>Cronologia</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="111"/>
@@ -577,63 +580,65 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="250"/>
         <source>Play/Pause/Resume the music</source>
-        <translation>Riproduci/Pausa/Riprendi la musica</translation>
+        <translation>Riproduci/interrompi/riprendi la musica</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="253"/>
         <location filename="../sources/windows/MainWindow.cpp" line="488"/>
         <source>&amp;Play</source>
-        <translation type="unfinished"></translation>
+        <translation>R&amp;iproduci</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="270"/>
         <source>Enable/Disable loop playing</source>
-        <translation>Attiva/Disattiva riproduzione in loop</translation>
+        <translation>Attiva/Disattiva riproduzione continua</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="273"/>
         <source>&amp;Loop</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>The adjective &quot;continua&quot; used to render &quot;loop playing&quot; would be ambiguous here.</translatorcomment>
+        <translation>&amp;Loop</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="299"/>
         <source>&amp;Game</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Gioco</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="316"/>
         <source>&amp;Help</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aiuto</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="323"/>
         <source>&amp;View</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Is it intended as a verb?</translatorcomment>
+        <translation>&amp;Visualizza</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="330"/>
         <source>&amp;Language</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lingua</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="335"/>
         <source>&amp;Interface</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Interfaccia</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="348"/>
         <source>&amp;Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Modifica</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="355"/>
         <source>&amp;Tools</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Strumenti</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="369"/>
         <source>&amp;New</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Nuovo</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="372"/>
@@ -643,7 +648,7 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="380"/>
         <source>&amp;Load</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Carica</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="383"/>
@@ -653,7 +658,7 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="391"/>
         <source>&amp;Save</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Salva</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="394"/>
@@ -663,7 +668,7 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="402"/>
         <source>S&amp;ave as</source>
-        <translation type="unfinished"></translation>
+        <translation>S&amp;alva come</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="405"/>
@@ -673,7 +678,7 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="413"/>
         <source>&amp;Quit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Esci</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="416"/>
@@ -683,7 +688,7 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="424"/>
         <source>About &amp;GM-Assistant</source>
-        <translation type="unfinished"></translation>
+        <translation>A proposito di &amp;GM-Assistant</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="427"/>
@@ -693,7 +698,7 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="435"/>
         <source>&amp;Reload</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ricarica</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="438"/>
@@ -703,7 +708,7 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="446"/>
         <source>R&amp;ecent</source>
-        <translation type="unfinished"></translation>
+        <translation>R&amp;ecente</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="449"/>
@@ -713,17 +718,17 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="460"/>
         <source>&amp;Full</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Completo</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="463"/>
         <source>Tools shown : Plot, Notes, Characters, History, Music and Sound effects</source>
-        <translation>Strumenti visualizzati: Trama, Appunti, Personaggi, Storia, Musica ed Effetti sonori</translation>
+        <translation>Strumenti visualizzati: Trama, Appunti, Personaggi, Cronologia, Musica ed Effetti sonori</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="474"/>
         <source>&amp;Music</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Musica</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="477"/>
@@ -733,7 +738,7 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="488"/>
         <source>&amp;Simple</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Semplice</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="491"/>
@@ -743,7 +748,8 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="502"/>
         <source>&amp;Design</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>What is the context here?</translatorcomment>
+        <translation>&amp;Design</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="505"/>
@@ -753,17 +759,17 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="516"/>
         <source>&amp;No Music</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Niente musica</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="519"/>
         <source>Tools shown : Plot, Characters, History and Notes</source>
-        <translation>Strumenti visualizzati: Trama, Personaggi, Storia e Appunti</translation>
+        <translation>Strumenti visualizzati: Trama, Personaggi, Cronologia e Appunti</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="527"/>
         <source>&amp;Undo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Annulla</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="530"/>
@@ -773,7 +779,7 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="538"/>
         <source>&amp;Redo</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Ripeti</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="541"/>
@@ -783,7 +789,7 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="549"/>
         <source>&amp;Dice simulator</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Simulatore di dadi</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="552"/>
@@ -793,7 +799,7 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="560"/>
         <source>&amp;Combat manager</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Gestore di combattimento</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="563"/>
@@ -803,12 +809,13 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="574"/>
         <source>&amp;English</source>
-        <translation type="unfinished"></translation>
+        <translatorcomment>Is it required? The French file has no entry here</translatorcomment>
+        <translation>&amp;Inglese</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="579"/>
         <source>&amp;Metadata</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Metadati</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="582"/>
@@ -818,12 +825,12 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="590"/>
         <source>About &amp;Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>A proposito di &amp;Qt</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="593"/>
         <source>Display information about Qt</source>
-        <translation type="unfinished"></translation>
+        <translation>Informazioni su Qt</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
@@ -899,13 +906,13 @@
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="451"/>
         <source>&amp;Resume</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Riprendi</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="456"/>
         <location filename="../sources/windows/MainWindow.cpp" line="923"/>
         <source>&amp;Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Pausa</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="502"/>
@@ -973,7 +980,7 @@
     <message>
         <location filename="../sources/windows/MetadataDialog.ui" line="93"/>
         <source>Game date</source>
-        <translation>Dati del gioco</translation>
+        <translation>Data del gioco</translation>
     </message>
     <message>
         <location filename="../sources/windows/MetadataDialog.ui" line="103"/>
@@ -996,12 +1003,12 @@
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.ui" line="36"/>
         <source>&amp;Add</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Aggiungi</translation>
     </message>
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.ui" line="47"/>
         <source>&amp;Remove</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Rimuovi</translation>
     </message>
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.ui" line="63"/>
@@ -1011,12 +1018,12 @@
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.ui" line="74"/>
         <source>&amp;Up</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Su</translation>
     </message>
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.ui" line="85"/>
         <source>&amp;Down</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Giù</translation>
     </message>
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.cpp" line="33"/>
@@ -1026,7 +1033,7 @@
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.cpp" line="33"/>
         <source>You are about to reset the combat manager. You will lose all information about the ongoing combat. Are you sure you want to do it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Stai per resettare il gestore di combattimento. Perderai tutte le informazioni sul combattimento in corso. Sei sicuro di volerlo fare?</translation>
     </message>
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.cpp" line="68"/>
@@ -1036,7 +1043,7 @@
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.cpp" line="68"/>
         <source>You have selected too few characters. There must be at least two of them.</source>
-        <translation>Hai selezionato troppo pochi personaggi. Devono essere almeno in due.</translation>
+        <translation>Hai selezionato troppo pochi personaggi. Ce ne devono essere almeno due.</translation>
     </message>
 </context>
 </TS>
