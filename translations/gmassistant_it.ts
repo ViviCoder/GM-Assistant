@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="it_IT">
+<TS version="2.0" language="it_IT">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -211,7 +211,7 @@
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="783"/>
         <source>&amp;Character</source>
-        <translation>&amp;Personaggio</translation>
+        <translation>P&amp;ersonaggio</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="785"/>
@@ -454,7 +454,7 @@
         <location filename="../sources/windows/ItemDialog.ui" line="103"/>
         <source>&amp;Basic</source>
         <translatorcomment>A more appropiate translation would maybe be &quot;di base&quot;, but they are two words.</translatorcomment>
-        <translation>&amp;Basilare</translation>
+        <translation>Di &amp;base</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="117"/>
@@ -480,12 +480,12 @@
         <location filename="../sources/windows/ItemDialog.ui" line="183"/>
         <location filename="../sources/windows/ItemDialog.cpp" line="183"/>
         <source>C&amp;hild</source>
-        <translation>&amp;Bambino</translation>
+        <translation>Ba&amp;mbino</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.ui" line="194"/>
         <source>&amp;Cancel</source>
-        <translation>&amp;Annulla</translation>
+        <translation>Annu&amp;lla</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="22"/>
@@ -530,7 +530,7 @@
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="167"/>
         <source>&amp;Validate</source>
-        <translation>&amp;Conferma</translation>
+        <translation>C&amp;onferma</translation>
     </message>
     <message>
         <location filename="../sources/windows/ItemDialog.cpp" line="213"/>
@@ -585,7 +585,7 @@
         <location filename="../sources/windows/MainWindow.ui" line="253"/>
         <location filename="../sources/windows/MainWindow.cpp" line="493"/>
         <source>&amp;Play</source>
-        <translation>R&amp;iproduci</translation>
+        <translation>&amp;Riproduci</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="270"/>
@@ -677,7 +677,7 @@
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="413"/>
         <source>&amp;Quit</source>
-        <translation>&amp;Esci</translation>
+        <translation>Esc&amp;i</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="416"/>
@@ -748,7 +748,7 @@
         <location filename="../sources/windows/MainWindow.ui" line="502"/>
         <source>&amp;Design</source>
         <translatorcomment>What is the context here?</translatorcomment>
-        <translation>&amp;Design</translation>
+        <translation>&amp;Progettazione</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="505"/>
@@ -1002,7 +1002,7 @@
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.ui" line="36"/>
         <source>&amp;Add</source>
-        <translation>&amp;Aggiungi</translation>
+        <translation>Agg&amp;iungi</translation>
     </message>
     <message>
         <location filename="../sources/windows/SelectCharacterDialog.ui" line="47"/>
