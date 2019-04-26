@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<TS version="2.0" language="fr_FR">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -208,7 +208,7 @@
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="783"/>
         <source>&amp;Character</source>
-        <translation>&amp;Personnage</translation>
+        <translation>P&amp;ersonnage</translation>
     </message>
     <message>
         <location filename="../sources/widgets/QCustomTableWidget.cpp" line="785"/>
