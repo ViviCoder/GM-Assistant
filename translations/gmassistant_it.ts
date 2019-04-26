@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="it_IT">
+<TS version="2.1" language="it_IT">
 <context>
     <name>AboutDialog</name>
     <message>
@@ -242,120 +242,119 @@
         <translation>Impossibile visualizzare il file</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="145"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="146"/>
         <source>Play the audio file</source>
         <translation>Riproduci il file audio</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="146"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="147"/>
         <source>P&amp;lay</source>
         <translation>R&amp;iproduci</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="151"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="152"/>
         <source>Display the image</source>
         <translation>Visualizza l&apos;immagine</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="152"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="153"/>
         <source>Disp&amp;lay</source>
         <translation>&amp;Visualizza</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="753"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="745"/>
         <source>&amp;None</source>
         <translation>&amp;Nessuno</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="754"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="746"/>
         <source>Untag the item</source>
         <translatorcomment>What do you mean by tag?</translatorcomment>
         <translation>Rimuovi il segnalino dall&apos;oggetto</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="756"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="748"/>
         <source>In &amp;progress</source>
         <translation>In &amp;corso</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="757"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="749"/>
         <source>Tag the item as being in progress</source>
         <translatorcomment>I assumed &apos;in progress&apos; meant &apos;not ready yet, still working on it&apos;.</translatorcomment>
         <translation>Segna l&apos;oggetto come in corso</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="759"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="751"/>
         <source>&amp;Failed</source>
         <translation>&amp;Fallito</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="760"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="752"/>
         <source>Tag the item as failed</source>
         <translation>Segna l&apos;oggetto come fallito</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="762"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="754"/>
         <source>&amp;Succeeded</source>
         <translation>&amp;Riuscito</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="763"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="755"/>
         <source>Tag the item as succeeded</source>
         <translation>Segna l&apos;oggetto come riuscito</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="765"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="757"/>
         <source>&amp;Add</source>
         <translation>&amp;Aggiungi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="766"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="758"/>
         <source>Add a new item</source>
         <translation>Aggiungi un nuovo oggetto</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="768"/>
-        <source>&amp;Delete</source>
-        <translatorcomment>There is some ambiguity between Remove and Delete</translatorcomment>
-        <translation>&amp;Cancella</translation>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="760"/>
+        <source>&amp;Remove</source>
+        <translation>R&amp;imuovi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="769"/>
-        <source>Delete the item</source>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="761"/>
+        <source>Remove the item</source>
         <translation>Rimuovi l&apos;oggetto</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="771"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="763"/>
         <source>&amp;Edit</source>
         <translation>&amp;Modifica</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="772"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="764"/>
         <source>Edit the item</source>
         <translation>Modifica l&apos;oggetto</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="775"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="767"/>
         <source>E&amp;xport</source>
         <translation>&amp;Esporta</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="776"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="768"/>
         <source>Export the file associated to the item</source>
         <translation>Esporta il file associato all&apos;oggetto</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="805"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="803"/>
         <source>Select where to export the file</source>
         <translation>Seleziona dove esportare il file</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="810"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="808"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="810"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="808"/>
         <source>Unable to export the file</source>
         <translation>Impossibile esportare il file</translation>
     </message>
@@ -584,7 +583,7 @@
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.ui" line="253"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="488"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="493"/>
         <source>&amp;Play</source>
         <translation>R&amp;iproduci</translation>
     </message>
@@ -835,16 +834,16 @@
     <message>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="95"/>
         <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="109"/>
-        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="502"/>
+        <location filename="../sources/widgets/QCustomTreeWidget.cpp" line="494"/>
         <location filename="../sources/windows/MainWindow.cpp" line="306"/>
         <location filename="../sources/windows/MainWindow.cpp" line="312"/>
         <location filename="../sources/windows/MainWindow.cpp" line="353"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="393"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="502"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="540"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="551"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="557"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="865"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="398"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="507"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="545"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="558"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="564"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="872"/>
         <source>Error</source>
         <translation>Errore</translation>
     </message>
@@ -860,26 +859,26 @@
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="312"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="557"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="564"/>
         <source>The game cannot be loaded correctly for the following reason: </source>
         <translation>Il gioco non può essere caricato correttamente per i seguenti motivi: </translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="312"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="557"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="564"/>
         <source>The game will be loaded anyway, but some features might not work properly.</source>
         <translation>Il gioco sarà caricato comunque, ma alcuni aspetti potrebbero non funzionare correttamente.</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="322"/>
         <location filename="../sources/windows/MainWindow.cpp" line="341"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="565"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="572"/>
         <source>Warning</source>
         <translation>Attenzione</translation>
     </message>
     <message>
         <location filename="../sources/windows/MainWindow.cpp" line="322"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="565"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="572"/>
         <source>The syntax of the game you have just loaded is not rigourously correct. Would you like to fix it now?</source>
         <translation>La sintassi del gioco che hai appena caricato non è rigorosamente corretta. Vuoi correggerla ora?</translation>
     </message>
@@ -889,53 +888,53 @@
         <translation>Il gioco che vuoi salvare non utilizza la versione più recente di GM-Assistant. Vuoi aggiornarlo? Se no, alcuni aspetti potrebbero non essere salvati correttamente.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="360"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="365"/>
         <source>GM-Assistant files (1.2) (*.gms)</source>
         <translation>File GM-Assistant (1.2) (*.gms)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="363"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="368"/>
         <source>;;GM-Assistant files (1.1) (*.gma);;GM-Assistant files (1.0) (*.xml)</source>
         <translation>;;File GM-Assistant (1.1) (*.gma);;File GM-Assistant (1.0) (*.xml)</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="365"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="370"/>
         <source>Select the file to save</source>
         <translation>Seleziona il file da salvare</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="451"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="456"/>
         <source>&amp;Resume</source>
         <translation>&amp;Riprendi</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="456"/>
-        <location filename="../sources/windows/MainWindow.cpp" line="923"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="461"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="930"/>
         <source>&amp;Pause</source>
         <translation>&amp;Pausa</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="502"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="507"/>
         <source>Unable to play the file</source>
         <translation>Impossibile riprodurre il file</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="540"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="545"/>
         <source>The file &quot;%1&quot; does not exist.</source>
         <translation>Il file &quot;%1&quot; non esiste.</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="722"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="729"/>
         <source>New game</source>
         <translation>Nuovo gioco</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="805"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="812"/>
         <source>Confirmation</source>
         <translation>Conferma</translation>
     </message>
     <message>
-        <location filename="../sources/windows/MainWindow.cpp" line="805"/>
+        <location filename="../sources/windows/MainWindow.cpp" line="812"/>
         <source>The current game has been modified since the last save. If you continue, unsaved changes will be discarded.</source>
         <translation>Il gioco corrente è stato modificato dall&apos;ultimo salvataggio. Se continui, le modifiche non salvate andranno perse.</translation>
     </message>

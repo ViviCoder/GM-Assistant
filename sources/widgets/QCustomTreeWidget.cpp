@@ -757,8 +757,8 @@ void QCustomTreeWidget::retranslate()
     actionAdd->setText(QApplication::translate("customTree","&Add",0));
     actionAdd->setStatusTip(QApplication::translate("customTree","Add a new item",0));
     actionAdd->setShortcut(QString("Ins"));
-    actionDelete->setText(QApplication::translate("customTree","&Delete",0));
-    actionDelete->setStatusTip(QApplication::translate("customTree","Delete the item",0));
+    actionDelete->setText(QApplication::translate("customTree","&Remove",0));
+    actionDelete->setStatusTip(QApplication::translate("customTree","Remove the item",0));
     actionDelete->setShortcut(QString("Del"));
     actionEdit->setText(QApplication::translate("customTree","&Edit",0));
     actionEdit->setStatusTip(QApplication::translate("customTree","Edit the item",0));
