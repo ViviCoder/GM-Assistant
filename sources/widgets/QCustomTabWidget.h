@@ -22,6 +22,8 @@
 #include <QTabWidget>
 #include "QCustomTextEdit.h"
 #include "Note.h"
+#include <QAction>
+#include <QMenu>
 
 /*!
  * \brief Custom tab widget for notes
@@ -48,6 +50,11 @@ class QCustomTabWidget: public QTabWidget
          * This method stores the filter instead of actually using it, and installs it for all subwidgets
          */
         void installEventFilter(QObject *filter);
+        /*!
+         * \brief Method to rename a note
+         * \param index Index of the tab
+         */
+        void renameNote(int index);
     public slots:
         /*!
          * \brief Update of the display
@@ -106,11 +113,24 @@ class QCustomTabWidget: public QTabWidget
          * \param note Editor for this note
          */
         void noteOpened(QCustomTextEdit *note);
+    protected:
+         /*!
+         * \brief Retranslator
+         *
+         * Retranslates the menu
+         */
+        void retranslate();
     private:
         //! Map of notes and widgets
         std::map<Note*, QCustomTextEdit*> mNotes;
         //! Event filter
         QObject *pFilter;
+        //! Popup menu
+        QMenu *pMenu;
+        //! Action for renaming
+        QAction *actionRename;
+        //! Action for closure
+        QAction *actionClose;
 };
 
 #endif

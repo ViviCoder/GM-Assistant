@@ -19,16 +19,32 @@
 #include "QCustomTabWidget.h"
 #include "QCustomTabBar.h"
 #include <QToolTip>
+#include <QApplication>
 
 using namespace std;
 
-QCustomTabWidget::QCustomTabWidget(QWidget *parent): QTabWidget(parent), pFilter(0)
+QCustomTabWidget::QCustomTabWidget(QWidget *parent): QTabWidget(parent), pFilter(0), pMenu(new QMenu(this))
 {
+    // popup menu
+    actionRename = new QAction(this);
+    actionRename->setIcon(QIcon(":/data/images/pencil.svg"));
+    actionClose = new QAction(this);
+    actionClose->setIcon(QIcon(":/data/images/remove.svg"));
+    pMenu->addAction(actionRename);
+    pMenu->addAction(actionClose);
+
+    // tab bar
     QTabBar *bar = new QCustomTabBar(this);
     setTabBar(bar);
+
+    // self-connection
     connect(this, SIGNAL(tabCloseRequested(int)), this, SLOT(onTabCloseRequested(int)));
+    // connections with the bar
     connect(bar, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onRightClicked(int, const QPoint&)));
     connect(bar, SIGNAL(toolTipRequested(int, const QPoint&)), this, SLOT(onToolTipRequested(int, const QPoint&)));
+
+    // text of the menu
+    retranslate();
 }
 
 void QCustomTabWidget::clear()
@@ -123,10 +139,34 @@ void QCustomTabWidget::deleteNote(Note *note)
 
 void QCustomTabWidget::onRightClicked(int index, const QPoint& position)
 {
-    // TODO
+    actionClose->setVisible(index!=0);
+    QAction *action = pMenu->exec(position);
+    if (action == actionRename)
+    {
+        renameNote(index);
+    }
+    else if (action == actionClose)
+    {
+        onTabCloseRequested(index);
+    }
 }
 
 void QCustomTabWidget::onToolTipRequested(int index, const QPoint& position)
 {
     QToolTip::showText(position, tabText(index));
+}
+
+void QCustomTabWidget::retranslate()
+{
+    actionRename->setText(QApplication::translate("customTab", "&Rename", 0));
+    actionRename->setStatusTip(QApplication::translate("customTab", "Rename the note", 0));
+    actionRename->setShortcut(QString("Ctrl+F2"));
+    actionClose->setText(QApplication::translate("customTab", "&Close", 0));
+    actionClose->setStatusTip(QApplication::translate("customTab", "Close the note", 0));
+    actionClose->setShortcut(QString("Ctrl+Del"));
+}
+
+void QCustomTabWidget::renameNote(int index)
+{
+    //TODO
 }
