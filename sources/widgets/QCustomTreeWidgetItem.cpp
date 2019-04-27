@@ -57,7 +57,7 @@ void QCustomTreeWidgetItem::updateDisplay()
         if (fileItem->isIncluded())
         {
             QFileInfo file(fileName.c_str());
-            setToolTip(0, file.fileName() + QApplication::translate("customTree", " (included in the loaded file)", 0));
+            setToolTip(0, file.fileName() + " (" + QApplication::translate("customTree", "included in the loaded file", 0) + ")");
         }
         else
         {

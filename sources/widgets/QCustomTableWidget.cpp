@@ -22,7 +22,7 @@
 #include <QScrollBar>
 #include <QToolTip>
 
-QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangePropertyDial(new ChangePropertyDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pProperties(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0), pVHeader(new QCustomHeaderView(Qt::Vertical,this))
+QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), menu(new QMenu(this)), hMenu(new QMenu(this)), vMenu(new QMenu(this)), pChangePropertyDial(new ChangePropertyDialog(this)), pChangeCharacterDial(new ChangeCharacterDialog(this)), pProperties(0), pCharacters(0), bEditing(false), bUpdate(false), iCreatedCells(0), pVHeader(new QCustomHeaderView(Qt::Vertical,this)), eSelected(QAbstractItemView::SelectItems)
 {
     // property menu
     actionAddColumn = new QAction(this);
@@ -54,10 +54,10 @@ QCustomTableWidget::QCustomTableWidget(QWidget *parent): QTableWidget(parent), m
     setHorizontalHeader(header);
 
     // connections with the horizontal header
-    connect(header, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onHHeaderClicked(int, const QPoint&)));
+    connect(header, SIGNAL(clicked(int, Qt::MouseButton, const QPoint&)), this, SLOT(onHHeaderClicked(int, Qt::MouseButton, const QPoint&)));
     connect(header, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onHHeaderMoved(int, int, int)));
     // connections with the vertical header
-    connect(pVHeader, SIGNAL(rightClicked(int, const QPoint&)), this, SLOT(onVHeaderClicked(int, const QPoint&)));
+    connect(pVHeader, SIGNAL(clicked(int, Qt::MouseButton, const QPoint&)), this, SLOT(onVHeaderClicked(int, Qt::MouseButton, const QPoint&)));
     connect(pVHeader, SIGNAL(sectionMoved(int, int, int)), this, SLOT(onVHeaderMoved(int, int, int)));
     connect(pVHeader, SIGNAL(sectionDoubleClicked(int)), this, SLOT(onCharacterDoubleClicked(int)));
     connect(pVHeader, SIGNAL(toolTipRequested(int, const QPoint&)), this, SLOT(onVHeaderToolTipRequested(int, const QPoint&)));
@@ -165,13 +165,19 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
                             {
                                 if (modifs == Qt::ControlModifier)
                                 {
-                                    editProperty(column);
+                                    if (eSelected != QAbstractItemView::SelectRows)
+                                    {
+                                        editProperty(column);
+                                    }
                                 }
                                 else if (modifs == (Qt::ControlModifier | Qt::ShiftModifier))
                                 {
-                                    editCharacter(row);
+                                    if (eSelected != QAbstractItemView::SelectColumns)
+                                    {
+                                        editCharacter(row);
+                                    }
                                 }
-                                else if (item)
+                                else if (item && eSelected == QAbstractItemView::SelectItems)
                                 {
                                     bEditing = true;
                                     editItem(item);
@@ -182,13 +188,19 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
                                 {
                                     if (modifs == Qt::ControlModifier)
                                     {
-                                        removeProperty(column);
+                                        if (eSelected != QAbstractItemView::SelectRows)
+                                        {
+                                            removeProperty(column);
+                                        }
                                     }
                                     else if (modifs == (Qt::ControlModifier | Qt::ShiftModifier))
                                     {
-                                        removeCharacter(row);
+                                        if (eSelected != QAbstractItemView::SelectColumns)
+                                        {
+                                            removeCharacter(row);
+                                        }
                                     }
-                                    else if (item)
+                                    else if (item && eSelected == QAbstractItemView::SelectItems)
                                     {
                                         item->setText("0");
                                     }
@@ -198,11 +210,17 @@ void QCustomTableWidget::keyReleaseEvent(QKeyEvent *e)
                                 {
                                     if (modifs == Qt::ControlModifier)
                                     {
-                                        addProperty(column);
+                                        if (eSelected != QAbstractItemView::SelectRows)
+                                        {
+                                            addProperty(column);
+                                        }
                                     }
                                     else if (modifs == (Qt::ControlModifier | Qt::ShiftModifier))
                                     {
-                                        addCharacter(row);
+                                        if (eSelected != QAbstractItemView::SelectColumns)
+                                        {
+                                            addCharacter(row);
+                                        }
                                     }
                                     else
                                     {
@@ -275,7 +293,7 @@ void QCustomTableWidget::updateDisplay(int row, int column)
         vbar->setValue(y);
         scrollTo(row, column);
         // setting the current cell, row or column
-        QItemSelectionModel::SelectionFlags flags = QItemSelectionModel::Select;
+        QItemSelectionModel::SelectionFlags flags = QItemSelectionModel::ClearAndSelect;
         if (row == -1)
         {
             flags |= QItemSelectionModel::Columns;
@@ -318,43 +336,63 @@ void QCustomTableWidget::onCellChanged(int logicalRow, int logicalColumn)
     }
 }
 
-void QCustomTableWidget::onHHeaderClicked(int index, const QPoint &position)
+void QCustomTableWidget::onHHeaderClicked(int index, Qt::MouseButton button, const QPoint &position)
 {
-    bool null = (index != -1);
-    actionRemoveColumn->setVisible(null);
-    actionEditColumn->setVisible(null);
-    QAction *action = hMenu->exec(position);
-    if (action == actionAddColumn)
+    if (button == Qt::LeftButton)
     {
-        addProperty(index);
+        // select the column
+        setCurrentCell(0, index, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Columns);
     }
-    else if (action == actionRemoveColumn)
+    else if (button == Qt::RightButton)
     {
-        removeProperty(index);
-    }
-    else if (action == actionEditColumn)
-    {
-        editProperty(index);
+        index = visualColumn(index);
+        // show the popup menu
+        bool null = (index != -1);
+        actionRemoveColumn->setVisible(null);
+        actionEditColumn->setVisible(null);
+        QAction *action = hMenu->exec(position);
+        if (action == actionAddColumn)
+        {
+            addProperty(index);
+        }
+        else if (action == actionRemoveColumn)
+        {
+            removeProperty(index);
+        }
+        else if (action == actionEditColumn)
+        {
+            editProperty(index);
+        }
     }
 }
 
-void QCustomTableWidget::onVHeaderClicked(int index, const QPoint &position)
+void QCustomTableWidget::onVHeaderClicked(int index, Qt::MouseButton button, const QPoint &position)
 {
-    bool null = (index != -1);
-    actionRemoveRow->setVisible(null);
-    actionEditRow->setVisible(null);
-    QAction *action = vMenu->exec(position);
-    if (action == actionAddRow)
+    if (button == Qt::LeftButton)
     {
-        addCharacter(index);
+        // select the row
+        setCurrentCell(index, 0, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     }
-    else if (action == actionRemoveRow)
+    else if (button == Qt::RightButton)
     {
-        removeCharacter(index);
-    }
-    else if (action == actionEditRow)
-    {
-        editCharacter(index);
+        index = visualRow(index);
+        // show the popup menu
+        bool null = (index != -1);
+        actionRemoveRow->setVisible(null);
+        actionEditRow->setVisible(null);
+        QAction *action = vMenu->exec(position);
+        if (action == actionAddRow)
+        {
+            addCharacter(index);
+        }
+        else if (action == actionRemoveRow)
+        {
+            removeCharacter(index);
+        }
+        else if (action == actionEditRow)
+        {
+            editCharacter(index);
+        }
     }
 }
 
@@ -396,6 +434,7 @@ void QCustomTableWidget::addCharacter(int index)
             setVerticalHeaderItem(index+1, rowHeaderItem);
         }
         scrollTo(index+1, -1);
+        setCurrentCell(index+1, 0, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     }
 }
 
@@ -449,6 +488,7 @@ void QCustomTableWidget::addProperty(int index)
             setHorizontalHeaderItem(index+1, columnHeaderItem);
         }
         scrollTo(-1, index+1);
+        setCurrentCell(0, index+1, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Columns);
     }
 }
 
@@ -469,7 +509,7 @@ void QCustomTableWidget::removeCharacter(int index)
         {
             index--;
         }
-        setCurrentCell(index, 0, QItemSelectionModel::Select | QItemSelectionModel::Rows);
+        setCurrentCell(index, 0, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     }
 }
 
@@ -504,7 +544,7 @@ void QCustomTableWidget::removeProperty(int index)
         {
             index--;
         }
-        setCurrentCell(0, index, QItemSelectionModel::Select | QItemSelectionModel::Columns);
+        setCurrentCell(0, index, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Columns);
     }
 }
 
@@ -558,6 +598,23 @@ void QCustomTableWidget::editProperty(int index)
 void QCustomTableWidget::on_itemSelectionChanged()
 {
     bEditing = false;
+    // by default: an item is selected
+    eSelected = QAbstractItemView::SelectItems;
+    QList<QTableWidgetSelectionRange> ranges = selectedRanges();
+    if (!ranges.isEmpty())
+    {
+        QTableWidgetSelectionRange range = ranges.first();
+        if (range.columnCount() > 1)
+        {
+            // a row is selected
+            eSelected = QAbstractItemView::SelectRows;
+        }
+        else if (range.rowCount() > 1)
+        {
+            // a column is selected
+            eSelected = QAbstractItemView::SelectColumns;
+        }
+    }
 }
 
 void QCustomTableWidget::mouseDoubleClickEvent(QMouseEvent *)
@@ -727,23 +784,23 @@ void QCustomTableWidget::retranslate()
     hMenu->setTitle(QApplication::translate("customTable","&Property",0));
     actionAddColumn->setText(QApplication::translate("customTable","&Add",0));
     actionAddColumn->setStatusTip(QApplication::translate("customTable","Add a new property",0));
-    actionAddColumn->setShortcut(QApplication::translate("customTable","Ctrl+Ins", 0));
+    actionAddColumn->setShortcut(QString("Ctrl+Ins"));
     actionRemoveColumn->setText(QApplication::translate("customTable","&Remove",0));
     actionRemoveColumn->setStatusTip(QApplication::translate("customTable","Remove the property",0));
-    actionRemoveColumn->setShortcut(QApplication::translate("customTable","Ctrl+Del", 0));
+    actionRemoveColumn->setShortcut(QString("Ctrl+Del"));
     actionEditColumn->setText(QApplication::translate("customTable","&Edit",0));
     actionEditColumn->setStatusTip(QApplication::translate("customTable","Edit the property",0));
-    actionEditColumn->setShortcut(QApplication::translate("customTable","Ctrl+F2", 0));
+    actionEditColumn->setShortcut(QString("Ctrl+F2"));
     vMenu->setTitle(QApplication::translate("customTable","&Character",0));
     actionAddRow->setText(QApplication::translate("customTable","&Add",0));
     actionAddRow->setStatusTip(QApplication::translate("customTable","Add a new character",0));
-    actionAddRow->setShortcut(QApplication::translate("customTable","Ctrl+Shift+Ins", 0));
+    actionAddRow->setShortcut(QString("Ctrl+Shift+Ins"));
     actionRemoveRow->setText(QApplication::translate("customTable","&Remove",0));
     actionRemoveRow->setStatusTip(QApplication::translate("customTable","Remove the character",0));
-    actionRemoveRow->setShortcut(QApplication::translate("customTable","Ctrl+Shift+Del", 0));
+    actionRemoveRow->setShortcut(QString("Ctrl+Shift+Del"));
     actionEditRow->setText(QApplication::translate("customTable","&Edit",0));
     actionEditRow->setStatusTip(QApplication::translate("customTable","Edit the character",0));
-    actionEditRow->setShortcut(QApplication::translate("customTable","Ctrl+Shift+F2", 0));
+    actionEditRow->setShortcut(QString("Ctrl+Shift+F2"));
     pVHeader->setStatusTip(QApplication::translate("customTable", "Double click to display the note associated with a character", 0));
 }
 

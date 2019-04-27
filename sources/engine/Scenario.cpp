@@ -50,7 +50,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     {
        fileType = pDetector->typeOfFile(fileName);
     }
-    if (fileType == "application/xml")
+    if (fileType == "text/xml" || fileType == "application/xml")
     {
         xmlFile = fileName;
     }
@@ -102,7 +102,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     }
     else
     {
-        throw xmlpp::exception("Unreckognized file format");
+        throw xmlpp::exception("Unrecognized file format");
     }
     ioConfig = IOConfig::detect(xmlFile, isArchive);
     DomParser parser(xmlFile);

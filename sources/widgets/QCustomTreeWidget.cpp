@@ -126,6 +126,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
     {
         case Qt::LeftButton:    if (item)
                                 {
+                                    pDragSource = item;
                                     bNewlySelected = !item->isSelected();
                                     // the item will be selected (and not be unselected by mouseReleaseEvent)
                                 }
@@ -216,6 +217,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
 
 void QCustomTreeWidget::mouseReleaseEvent(QMouseEvent *e)
 {
+    pDragSource = 0;
     QTreeWidgetItem *item = itemAt(e->pos());
     if (!bNewlySelected)
     {
@@ -415,16 +417,6 @@ QIcon QCustomTreeWidget::icon(Item::State state)
     }
 }
 
-void QCustomTreeWidget::dragEnterEvent(QDragEnterEvent *e)
-{
-    pDragSource = itemAt(e->pos());
-    if (pDragSource)
-    {
-        e->acceptProposedAction();
-    }
-    QTreeWidget::dragEnterEvent(e);
-}
-
 void QCustomTreeWidget::dropEvent(QDropEvent *e)
 {
     bool valid = false;
@@ -588,6 +580,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                 }
                 else
                 {    
+                    // new item is created
                     QCustomTreeWidgetItem *newQItem = 0;
                     switch (pItemDial->selectionResult())
                     {
@@ -601,6 +594,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                                         }
                                                         else
                                                         {
+                                                            // if there is no parent, add it directly to the tree
                                                             newBranch = pTree->insert(pTree->indexOf(item->branch())+1,newItem);
                                                             newQItem = new QCustomTreeWidgetItem(this,newBranch,item);
                                                         }
@@ -615,13 +609,14 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                                     }
                     }
                     scrollTo(newQItem);
+                    setCurrentItem(newQItem);
                 }
             }
             else
             {
                 // There is no item in the tree
                 newBranch = pTree->add(newItem);
-                new QCustomTreeWidgetItem(this,newBranch);
+                setCurrentItem(new QCustomTreeWidgetItem(this,newBranch));
             }
             // creating the modification
             if (!edition)
@@ -808,29 +803,35 @@ void QCustomTreeWidget::retranslate()
 {
     actionNone->setText(QApplication::translate("customTree","&None",0));
     actionNone->setStatusTip(QApplication::translate("customTree","Untag the item",0));
-    actionNone->setShortcut(QApplication::translate("customTree", "Ctrl+F5", 0));
+    actionNone->setShortcut(QString("Ctrl+F5"));
     actionProgress->setText(QApplication::translate("customTree","In &progress",0));
     actionProgress->setStatusTip(QApplication::translate("customTree","Tag the item as being in progress",0));
-    actionProgress->setShortcut(QApplication::translate("customTree", "Ctrl+F6", 0));
+    actionProgress->setShortcut(QString("Ctrl+F6"));
     actionFailure->setText(QApplication::translate("customTree","&Failed",0));
     actionFailure->setStatusTip(QApplication::translate("customTree","Tag the item as failed",0));
-    actionFailure->setShortcut(QApplication::translate("customTree", "Ctrl+F7", 0));
+    actionFailure->setShortcut(QString("Ctrl+F7"));
     actionSuccess->setText(QApplication::translate("customTree","&Succeeded",0));
     actionSuccess->setStatusTip(QApplication::translate("customTree","Tag the item as succeeded",0));
-    actionSuccess->setShortcut(QApplication::translate("customTree", "Ctrl+F8", 0));
+    actionSuccess->setShortcut(QString("Ctrl+F8"));
     actionAdd->setText(QApplication::translate("customTree","&Add",0));
     actionAdd->setStatusTip(QApplication::translate("customTree","Add a new item",0));
-    actionAdd->setShortcut(QApplication::translate("customTree","Ins",0));
-    actionDelete->setText(QApplication::translate("customTree","&Delete",0));
-    actionDelete->setStatusTip(QApplication::translate("customTree","Delete the item",0));
-    actionDelete->setShortcut(QApplication::translate("customTree","Del",0));
+    actionAdd->setShortcut(QString("Ins"));
+    actionDelete->setText(QApplication::translate("customTree","&Remove",0));
+    actionDelete->setStatusTip(QApplication::translate("customTree","Remove the item",0));
+    actionDelete->setShortcut(QString("Del"));
     actionEdit->setText(QApplication::translate("customTree","&Edit",0));
     actionEdit->setStatusTip(QApplication::translate("customTree","Edit the item",0));
-    actionEdit->setShortcut(QApplication::translate("customTree","Ctrl+F2",0));
-    actionLaunch->setShortcut(QApplication::translate("customTree","Space",0));
+    actionEdit->setShortcut(QString("Ctrl+F2"));
+    actionLaunch->setShortcut(QString("Space"));
     actionExport->setText(QApplication::translate("customTree", "E&xport", 0));
     actionExport->setStatusTip(QApplication::translate("customTree", "Export the file associated to the item", 0));
-    actionExport->setShortcut(QApplication::translate("customTree", "Ctrl+Space", 0));
+    actionExport->setShortcut(QString("Ctrl+Space"));
+
+    // also retranslate the items
+    for (QTreeWidgetItemIterator it(this); *it; it++)
+    {
+        dynamic_cast<QCustomTreeWidgetItem*>(*it)->updateDisplay();
+    }
 }
 
 void QCustomTreeWidget::setItemDialogWindow(ItemDialog *window)
@@ -858,7 +859,7 @@ void QCustomTreeWidget::exportFile(Item *item)
     if (fileItem)
     {
         QString fileName = fileItem->fileName().c_str();
-        QString newFileName = QFileDialog::getSaveFileName(this, QApplication::translate("customTree", "Select where to export the file", 0), "", "*." + QFileInfo(fileName).suffix());
+        QString newFileName = QFileDialog::getSaveFileName(this, QApplication::translate("customTree", "Select where to export the file", 0), "", "*." + QFileInfo(fileName).suffix(),0,QFileDialog::DontUseNativeDialog);
         if (!newFileName.isEmpty())
         {
             if (!QFile::copy(fileName, newFileName))

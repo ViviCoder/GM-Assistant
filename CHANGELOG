@@ -1,11 +1,29 @@
-Changes in version 1.2.0
+Changes in version 1.2.1
+* Transitions
+    - CMake as a build system
+    - Qt5
+* Combat Manager
+    - confirmation before leaving
+    - fixed height of rows
+* Character table
+    - single item/row/column selection
+    - item/row operations disabled when column is selected (and vice-versa)
+* Others
+    - partial Italian translation
+    - newly created items/characters/properties automatically selected
+    - file name added to the window title
+    - simplification of the "About" window -> "About GM-Assistant"
+    - new "About Qt" menu entry
+    - some bug fixes
 
+Changes in version 1.2.0
 * New features
     - possibility to undo/redo modifications
     - metadata added to the scenario
     - possibility to move characters and properties
     - new tools: dice simulator and combat manager
-    - scenario file format changed to an archive containing all audio and image files
+    - scenario file format changed to an archive containing all audio and
+ image files
     - save of the expanded/collapsed state of items
     - confirmation before closing
     - possibility to choose the language of the interface
@@ -35,7 +53,8 @@ Changes in version 1.1.9
 Changes in version 1.1.8
 - Interface menu renamed View
 - ambiguous shortcut to add an item modified (now Ins)
-- crash when trying to play music or move the slider without a selected file fixed
+- crash when trying to play music or move the slider without a selected file
+ fixed
 - various interface bugs fixed
 
 Changes in version 1.1.7
@@ -55,7 +74,8 @@ Changes in version 1.1.7
 Changes in version 1.1.6
 - depencies modified to work on Fedora
 - error message added when a music file cannot be read
-- display of a default image when an image file cannot be read replaced by an error message
+- display of a default image when an image file cannot be read replaced by
+ an error message
 - useless source files deleted
 
 Changes in version 1.1.5
@@ -69,24 +89,20 @@ Changes in version 1.1.4
 - Bug on start-up when the last opened file does not exist (Windows) fixed
 
 Changes in version 1.1.3
-
 - installation process made more generic
 - README file splitted into README and README.install
 - compilation warnings eliminated
 - icon built during compilation
 
 Changes in version 1.1.2
-
 - deletion or replacement of non-DFSG-compatible content
 - standardization of the installation process
 - manpage and detailed copyright added
 
 Changes in version 1.1.1
-
 - Issue with non-existent recently opened files fixed
 
 Changes in version 1.1.0
-
 - new menu to choose displayed widgets
 - basic settings support, with recently opened files, etc.
 - save files extension changed to .gma
@@ -96,64 +112,53 @@ Changes in version 1.1.0
 - new keyboard shortcuts and status tips
 
 Changes in version 1.0.15
-
 - resizing bug in table widget fixed
 
 Changes in version 1.0.14
-
 - the slider now accepts wheel events and clicks 
 - modification of the child-adding method of trees
 - now requires SDL_mixer version >= 1.2.12
 - reset of the sound engine when loading a game file
 
 Changes in version 1.0.13
-
 - Dialog windows are no longer reset on minimizing/restoring
 
 Changes in version 1.0.12
-
 - bug when right-clicking in the table widget fixed
 - restoration of the default behaviour of the table widget header when
-right-clicking
+ right-clicking
 
 Changes in version 1.0.11
-
 - bug in finding translation files in non-linux systems fixed
 
 Changes in version 1.0.10:
-
 - resize problem for rows in the table of characters
 - reorganization of the menus of the table
 
 Changes in version 1.0.9:
-
 - bug when adding a new item at the root of a tree fixed
 
 Changes in version 1.0.8:
-
 - crash when moving an item into another (due to creation with bad parent)
-fixed (I hope definitively!)
+ fixed (I hope definitively!)
 
 Changes in version 1.0.7:
-
 - crash when moving an item created with child (or into one) fixed
 - default widgets get automatically the focus in dialog windows
 - default work directory set to the executable's directory
 
 Changes in version 1.0.6:
-
 * Trees:
 	- crash when moving an item into a previously moved one fixed
 	- resize of the items when moved
 * Others
-	- path (translations ans examples) issue on Linux when using a launcher solved
+	- path (translations ans examples) issue on Linux when using a launcher
+ solved
 	
 Changes in version 1.0.5:
-
 - crash when typing 'Del' while editing an item fixed
 
 Changes in version 1.0.4:
-
 * Uninstallation:
 	- 'make install' creates a log file which contains the list of the files
 	to remove during uninstallation
@@ -163,16 +168,13 @@ Changes in version 1.0.4:
 	- the configure script displays the list of linked libraries
 
 Changes in version 1.0.3:
-
 - crash when moving an item in a following branch fixed
 - minor modifications of the french translation
 
 Changes in version 1.0.2:
-
 - crash when clicking an empty tree fixed
 
 Changes in version 1.0.1:
-
 * Trees:
 	- drag & drop bug fixed
 	- selected items can now be dragged

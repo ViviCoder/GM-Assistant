@@ -53,11 +53,12 @@ class QCustomHeaderView: public QHeaderView
 
     signals:
         /*!
-         * \brief Signal emitted when the header is right clicked
+         * \brief Signal emitted when the header is clicked
          * \param index Visual index of the click
+         * \param button Mouse button
          * \param position Global position of the click (used for showing a popup menu)
          */
-        void rightClicked(int index, const QPoint &position);
+        void clicked(int index, Qt::MouseButton button, const QPoint &position);
         /*!
          * \brief Signal emitted when a tool tip should be displayed
          * \param index Visual index of the tool tip

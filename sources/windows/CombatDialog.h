@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2017 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,6 +20,7 @@
 #define HEADER_COMBATDIALOG
 
 #include "ui_CombatDialog.h"
+#include <QCloseEvent>
 
 /*!
  * \brief Dialog window which manages the action order in a turn-per-turn combat
@@ -40,6 +41,13 @@ class CombatDialog: public QDialog, private Ui::combatDialog
          * Updates the translation when changing language
          */
         void changeEvent(QEvent *e);
+        /*!
+         * \brief CloseEvent handler
+         * \param e Event to handle
+         *
+         * Asks for confirmation before closing the dialog window
+         */
+        void closeEvent(QCloseEvent *e);
     public:
         //! Default constructor
         CombatDialog(QWidget *parent);
@@ -79,6 +87,12 @@ class CombatDialog: public QDialog, private Ui::combatDialog
          * \param logicalIndex Logical index of the header section
          */
         void onCharacterSelected(int logicalIndex);
+        /*!
+         * \brief Slot for when the Close button is clicked
+         *
+         * Closes the dialog window
+         */
+        void on_pushClose_clicked();
 };
 
 #endif

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>GM-Assistant</string>
+   <string notr="true">GM-Assistant</string>
   </property>
   <property name="windowIcon">
    <iconset resource="../../ressource.qrc">
@@ -151,6 +151,9 @@
            <property name="editTriggers">
             <set>QAbstractItemView::AnyKeyPressed|QAbstractItemView::DoubleClicked</set>
            </property>
+           <property name="selectionMode">
+            <enum>QAbstractItemView::SingleSelection</enum>
+           </property>
            <property name="verticalScrollMode">
             <enum>QAbstractItemView::ScrollPerPixel</enum>
            </property>
@@ -267,7 +270,7 @@
              <item>
               <widget class="QLabel" name="labelPosition">
                <property name="text">
-                <string>0:00/0:00</string>
+                <string notr="true">0:00/0:00</string>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -326,6 +329,7 @@
      <string>&amp;Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionAbout_Qt"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -381,7 +385,7 @@
     <string>Create a new game</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+N</string>
+    <string notr="true">Ctrl+N</string>
    </property>
   </action>
   <action name="action_Load">
@@ -392,7 +396,7 @@
     <string>Load a game</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+O</string>
+    <string notr="true">Ctrl+O</string>
    </property>
   </action>
   <action name="action_Save">
@@ -403,7 +407,7 @@
     <string>Save the current game</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+S</string>
+    <string notr="true">Ctrl+S</string>
    </property>
   </action>
   <action name="actionS_ave_as">
@@ -414,7 +418,7 @@
     <string>Save the current game in a new file</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+S</string>
+    <string notr="true">Ctrl+Shift+S</string>
    </property>
   </action>
   <action name="action_Quit">
@@ -425,18 +429,18 @@
     <string>Exit the application</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Q</string>
+    <string notr="true">Ctrl+Q</string>
    </property>
   </action>
   <action name="actionAbout">
    <property name="text">
-    <string>&amp;About</string>
+    <string>About &amp;GM-Assistant</string>
    </property>
    <property name="statusTip">
     <string>Display information about GM-Assistant</string>
    </property>
    <property name="shortcut">
-    <string>F1</string>
+    <string notr="true">F1</string>
    </property>
   </action>
   <action name="action_Reload">
@@ -447,7 +451,7 @@
     <string>Reload the current game</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+R</string>
+    <string notr="true">Ctrl+R</string>
    </property>
   </action>
   <action name="actionR_ecent">
@@ -472,7 +476,7 @@
     <string>Tools shown : Plot, Notes, Characters, History, Music and Sound effects</string>
    </property>
    <property name="shortcut">
-    <string>F5</string>
+    <string notr="true">F5</string>
    </property>
   </action>
   <action name="actionMusic">
@@ -486,7 +490,7 @@
     <string>Tools shown : Music and Sound effects</string>
    </property>
    <property name="shortcut">
-    <string>F7</string>
+    <string notr="true">F7</string>
    </property>
   </action>
   <action name="actionSimple">
@@ -500,7 +504,7 @@
     <string>Tools shown : Plot, Music and Sound effects</string>
    </property>
    <property name="shortcut">
-    <string>F6</string>
+    <string notr="true">F6</string>
    </property>
   </action>
   <action name="actionDesign">
@@ -514,7 +518,7 @@
     <string>Tools shown : Plot, Characters and Notes</string>
    </property>
    <property name="shortcut">
-    <string>F8</string>
+    <string notr="true">F8</string>
    </property>
   </action>
   <action name="actionNoMusic">
@@ -528,7 +532,7 @@
     <string>Tools shown : Plot, Characters, History and Notes</string>
    </property>
    <property name="shortcut">
-    <string>F9</string>
+    <string notr="true">F9</string>
    </property>
   </action>
   <action name="action_Undo">
@@ -539,7 +543,7 @@
     <string>Undo the last modification</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Z</string>
+    <string notr="true">Ctrl+Z</string>
    </property>
   </action>
   <action name="action_Redo">
@@ -550,7 +554,7 @@
     <string>Redo the last undone modification</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+Shift+Z</string>
+    <string notr="true">Ctrl+Shift+Z</string>
    </property>
   </action>
   <action name="action_Dice">
@@ -561,7 +565,7 @@
     <string>Throw virtual dices</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+D</string>
+    <string notr="true">Ctrl+D</string>
    </property>
   </action>
   <action name="action_Combat">
@@ -572,7 +576,7 @@
     <string>Manage round per round combats</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+B</string>
+    <string notr="true">Ctrl+B</string>
    </property>
   </action>
   <action name="action_English">
@@ -591,7 +595,15 @@
     <string>Edit the game metadata</string>
    </property>
    <property name="shortcut">
-    <string>Ctrl+M</string>
+    <string notr="true">Ctrl+M</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qt">
+   <property name="text">
+    <string>About &amp;Qt</string>
+   </property>
+   <property name="statusTip">
+    <string>Display information about Qt</string>
    </property>
   </action>
  </widget>

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 using namespace std;
 
-ModificationQueue::ModificationQueue(): vModifs(), iCurrent(vModifs.end()), iSaved(vModifs.end())
+ModificationQueue::ModificationQueue(): vModifs(), iCurrent(0), iSaved(0)
 {
 }
 
@@ -36,38 +36,31 @@ void ModificationQueue::clear()
         delete *it;
     }
     vModifs.clear();
-    iCurrent = vModifs.rend();
-    iSaved = iCurrent;
+    iCurrent = 0;
+    iSaved = 0;
 }
 
 void ModificationQueue::add(Modification *modification)
 {
-    bool unsaved = (iSaved == vModifs.rend());
-    int i=0;
     // deletes undone modifications
-    for (vector<Modification*>::reverse_iterator it = vModifs.rbegin(); it != iCurrent; it++)
+    for (int i = vModifs.size() - 1; i > iCurrent - 1; i--)
     {
-        delete *it;
-        i++;
+        delete vModifs[i];
     }
-    vModifs.resize(vModifs.size() - i);
+    vModifs.resize(iCurrent);
     // adds the new modification
     vModifs.push_back(modification);
-    iCurrent = vModifs.rbegin();
-    if (unsaved)
-    {
-        iSaved = vModifs.rend();
-    }
+    iCurrent++;
 }
 
 Modification* ModificationQueue::undo()
 {
-    if (iCurrent != vModifs.rend())
+    if (undoable())
     {
         // there is a modification to undo
-        Modification *modif = *iCurrent;
+        Modification *modif = vModifs[iCurrent-1];
         modif->undo();
-        iCurrent++;
+        iCurrent--;
         return modif;
     }
     return 0;
@@ -75,32 +68,13 @@ Modification* ModificationQueue::undo()
 
 Modification* ModificationQueue::redo()
 {
-    if (&(*(iCurrent - 1)) != &(*vModifs.end()))
+    if (redoable())
     {
         // there is a modification to redo
-        iCurrent--;
-        (*iCurrent)->redo();
-        return *iCurrent;
+        iCurrent++;
+        Modification *modif = vModifs[iCurrent-1];
+        modif->redo();
+        return modif;
     }
     return 0;
-}
-
-bool ModificationQueue::undoable() const
-{
-    return (iCurrent != vModifs.rend()); 
-}
-
-bool ModificationQueue::redoable() const
-{
-    return (&(*(iCurrent - 1)) != &(*vModifs.end())); 
-}
-
-bool ModificationQueue::isUpToDate() const
-{
-    return (iCurrent == iSaved);
-}
-
-void ModificationQueue::save()
-{
-    iSaved = iCurrent;
 }

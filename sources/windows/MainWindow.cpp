@@ -165,6 +165,9 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     
     // menu updates
     connect(actionR_ecent->menu(),SIGNAL(aboutToShow()),this,SLOT(updateRecent()));
+
+    // about Qt
+    connect(actionAbout_Qt, SIGNAL(triggered(bool)), QApplication::instance(), SLOT(aboutQt()));
 }
 
 MainWindow::~MainWindow()
@@ -299,7 +302,7 @@ void MainWindow::on_action_Load_triggered()
 {
     if (canClose())
     {
-        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gms *.gma);;XML files (*.xml)",0)); 
+        QString file = QFileDialog::getOpenFileName(this,QApplication::translate("mainWindow","Select the file to open",0),QDir::current().path(),QApplication::translate("mainWindow","GM-Assistant files (*.gms *.gma);;XML files (*.xml)",0),0,QFileDialog::DontUseNativeDialog);
         if (!file.isEmpty())
         {
             // changing current directory
@@ -335,7 +338,7 @@ void MainWindow::on_action_Load_triggered()
     }
 }
 
-void MainWindow::on_action_Save_triggered(bool askForUpdate)
+void MainWindow::save(bool askForUpdate)
 {
     if (sFileName.isEmpty())
     {
@@ -362,6 +365,11 @@ void MainWindow::on_action_Save_triggered(bool askForUpdate)
     }
 }
 
+void MainWindow::on_action_Save_triggered()
+{
+    save();
+}
+
 bool MainWindow::on_actionS_ave_as_triggered()
 {
     QString filters(QApplication::translate("mainWindow","GM-Assistant files (*.gms)",0));
@@ -370,6 +378,7 @@ bool MainWindow::on_actionS_ave_as_triggered()
         filters += QApplication::translate("mainWindow",";;GM-Assistant files (1.1) (*.gma);;GM-Assistant files (1.0) (*.xml)",0);
     }
     QFileDialog *dial = new QFileDialog(this,QApplication::translate("mainWindow","Select the file to save",0),QDir::current().path(), filters);
+    dial->setOption(QFileDialog::DontUseNativeDialog, true);
     dial->setAcceptMode(QFileDialog::AcceptSave);
     if (dial->exec() == QFileDialog::Accepted)
     {
@@ -545,6 +554,8 @@ void MainWindow::on_action_Reload_triggered()
         if (!file.exists())
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QApplication::translate("mainWindow","The file \"%1\" does not exist.",0).arg(sFileName));
+            sFileName = "";
+            updateDisplay();
             return;
         }
         // changing current directory
@@ -718,20 +729,28 @@ void MainWindow::updateUndoRedo()
     action_Redo->setEnabled(mqQueue.redoable());
     bool modified = !mqQueue.isUpToDate() || tabNotes->unregisteredModification();
     action_Save->setEnabled(modified);
+
     QString windowTitle("GM-Assistant - ");
     QString title(sGame.metadata().title().c_str());
+    QString fileName(QFileInfo(sFileName).absoluteFilePath());
+
+    if (sFileName.isEmpty())
+    {
+        // if no file name is given, we put "New game" instead
+        fileName = QApplication::translate("mainWindow", "New game", 0);
+    }
+
     if (!title.isEmpty())
     {
-        windowTitle += title;
-    }
-    else if (sFileName.isEmpty())
-    {
-        windowTitle += QApplication::translate("mainWindow", "New game", 0);
+        // if there is a title, we put the file name in parentheses
+        windowTitle += title + " (" + fileName + ")";
     }
     else
     {
-        windowTitle += QFileInfo(sFileName).fileName();
+        // otherwise we just put the file name
+        windowTitle += fileName;
     }
+
     if (modified)
     {
         windowTitle += "*";
@@ -809,7 +828,7 @@ bool MainWindow::canClose()
     }
     switch (QMessageBox::question(this, QApplication::translate("mainWindow", "Confirmation", 0), QApplication::translate("mainWindow", "The current game has been modified since the last save. If you continue, unsaved changes will be discarded.", 0), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel))
     {
-        case QMessageBox::Save: on_action_Save_triggered();
+        case QMessageBox::Save: save();
         case QMessageBox::Discard:  return true;
         default:    return false;
     }
@@ -898,7 +917,7 @@ void MainWindow::changeFormatIfNeeded(bool askForUpdate)
     }
     if (config.isArchived() == sGame.configuration().isArchived())
     {
-        on_action_Save_triggered(askForUpdate);
+        save(askForUpdate);
     }
     else
     {

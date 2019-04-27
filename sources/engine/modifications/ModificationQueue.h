@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2018 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -85,10 +85,30 @@ class ModificationQueue
     private:
         //! Container for the modifications
         std::vector<Modification*> vModifs;
-        //! Iterator pointing to the last modification
-        std::vector<Modification*>::reverse_iterator iCurrent;
-        //! Iterator pointing to the last saved modification
-        std::vector<Modification*>::const_reverse_iterator iSaved;
+        //! Number of applied modification
+        int iCurrent;
+        //! Number of saved modification
+        int iSaved;
 };
+
+inline bool ModificationQueue::undoable() const
+{
+    return (iCurrent > 0);
+}
+
+inline bool ModificationQueue::redoable() const
+{
+    return (iCurrent < vModifs.size());
+}
+
+inline bool ModificationQueue::isUpToDate() const
+{
+    return (iCurrent == iSaved);
+}
+
+inline void ModificationQueue::save()
+{
+    iSaved = iCurrent;
+}
 
 #endif

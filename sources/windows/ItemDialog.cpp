@@ -23,6 +23,7 @@ ItemDialog::ItemDialog(QWidget *parent, QAudioProxyModel *filter): QDialog(paren
 {
     setupUi(this);
     // setting the audio browser up
+    audioBrowser->setOption(QFileDialog::DontUseNativeDialog, true);
     audioBrowser->setFileMode(QFileDialog::ExistingFile);
     audioBrowser->setReadOnly(true);
     audioBrowser->setNameFilterDetailsVisible(false);
@@ -79,12 +80,12 @@ void ItemDialog::on_pushChild_clicked()
         }
         else
         {
-            QMessageBox::critical(this,QApplication::translate("itemDialog","Uncomplete data",0),QApplication::translate("itemDialog","You must select a file before validating.",0));
+            QMessageBox::critical(this,QApplication::translate("itemDialog","Incomplete data",0),QApplication::translate("itemDialog","You must select a file before validating.",0));
         }
     }
     else
     {
-        QMessageBox::critical(this,QApplication::translate("itemDialog","Uncomplete data",0),QApplication::translate("itemDialog","You must fill the content before validating.",0));
+        QMessageBox::critical(this,QApplication::translate("itemDialog","Incomplete data",0),QApplication::translate("itemDialog","You must fill the content before validating.",0));
     }
 }
 
@@ -99,12 +100,12 @@ void ItemDialog::on_pushBrother_clicked()
         }
         else
         {
-        QMessageBox::critical(this,QApplication::translate("itemDialog","Uncomplete data",0),QApplication::translate("itemDialog","You must select a file before validating.",0));
+        QMessageBox::critical(this,QApplication::translate("itemDialog","Incomplete data",0),QApplication::translate("itemDialog","You must select a file before validating.",0));
         }
     }
     else
     {
-        QMessageBox::critical(this,QApplication::translate("itemDialog","Uncomplete data",0),QApplication::translate("itemDialog","You must fill the content before validating.",0));
+        QMessageBox::critical(this,QApplication::translate("itemDialog","Incomplete data",0),QApplication::translate("itemDialog","You must fill the content before validating.",0));
     }
 }
 
@@ -142,7 +143,7 @@ void ItemDialog::on_toolBrowse_clicked()
                                 break;
                             }
         case Item::tImage:  { 
-                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the image file to associate to the item",0),"",QApplication::translate("itemDialog","Image files (*.jpg *.jpeg *.png *.bmp *.svg)",0)));    
+                                editFile->setText(QFileDialog::getOpenFileName(this,QApplication::translate("itemDialog","Select the image file to associate to the item",0),"",QApplication::translate("itemDialog","Image files (*.jpg *.jpeg *.png *.bmp *.svg)",0),0,QFileDialog::DontUseNativeDialog));
                                 break;
                             }
         default:            break;

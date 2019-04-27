@@ -72,6 +72,8 @@ class QCustomTableWidget: public QTableWidget
         int iCreatedCells;
         //! Vertical header
         QCustomHeaderView *pVHeader;
+        //! Type of selection
+        QAbstractItemView::SelectionBehavior eSelected;
     protected:
         /*!
          * \brief Event raised when the table is clicked
@@ -149,17 +151,19 @@ class QCustomTableWidget: public QTableWidget
          */
         void onCellChanged(int logicalRow, int logicalColumn);
         /*!
-         * \brief Slot for when the horizontal header is right-clicked
+         * \brief Slot for when the horizontal header is clicked
          * \param index Index of the clicked column
+         * \param button Mouse button used to click
          * \param position Global position of the click for popups
          */
-        void onHHeaderClicked(int index, const QPoint &position);
+        void onHHeaderClicked(int index, Qt::MouseButton button, const QPoint &position);
         /*!
-         * \brief Slot for when the vertical header is right-clicked
+         * \brief Slot for when the vertical header is clicked
          * \param index Index of the clicked row
+         * \param button Mouse button used to click
          * \param position Global position of the click for popups
          */
-        void onVHeaderClicked(int index, const QPoint &position);
+        void onVHeaderClicked(int index, Qt::MouseButton button, const QPoint &position);
         /*!
          * \brief Slot for when a section of the horizontal header is moved
          * \param oldColumn Old visual column

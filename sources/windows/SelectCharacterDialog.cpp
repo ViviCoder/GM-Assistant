@@ -27,6 +27,20 @@ SelectCharacterDialog::SelectCharacterDialog(QWidget *parent): QDialog(parent), 
 
 void SelectCharacterDialog::show(const CharacterList &list)
 {
+    // ask confirmation before closing the combat manager if already open
+    if (pCombat->isVisible())
+    {
+        if (QMessageBox::question(this, QApplication::translate("selectCharacterDialog", "Confirmation", 0), QApplication::translate("selectCharacterDialog", "You are about to reset the combat manager. You will lose all information about the ongoing combat. Are you sure you want to do it?", 0), QMessageBox::Yes|QMessageBox::No, QMessageBox::Yes) == QMessageBox::No)
+        {
+            reject();
+            return;
+        }
+        else
+        {
+            pCombat->setVisible(false);
+        }
+    }
+    // initialisation
     listAll->clear();
     for (CharacterList::const_iterator it = list.begin(); it != list.end(); it++)
     {
@@ -68,7 +82,17 @@ void SelectCharacterDialog::on_pushAdd_clicked()
     QListWidgetItem *item = listAll->currentItem();
     if (item)
     {
-        listInvolved->addItem(item->text());
+        int position = listInvolved->currentRow();
+        if (position < 0)
+        {
+            listInvolved->addItem(item->text());
+        }
+        else
+        {
+            // if an item is selected in the list of involved characters, insert the new one just after and select it
+            listInvolved->insertItem(position+1, item->text());
+            listInvolved->setCurrentRow(position+1);
+        }
     }
 }
 
