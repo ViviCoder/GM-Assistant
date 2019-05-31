@@ -56,6 +56,12 @@ class QCustomTabWidget: public QTabWidget
          * \param index Index of the tab
          */
         void renameNote(int index);
+        /*!
+         * \brief Getter for the note at a given index
+         * \param index Index of the tab
+         * \return Note at the given index
+         */
+        inline Note* note(int index);
     public slots:
         /*!
          * \brief Update of the display
@@ -135,5 +141,10 @@ class QCustomTabWidget: public QTabWidget
         //! Dialog window for renaming
         RenameNoteDialog *pRenameDialog;
 };
+
+Note* QCustomTabWidget::note(int index)
+{
+    return dynamic_cast<QCustomTextEdit*>(widget(index))->note();
+}
 
 #endif

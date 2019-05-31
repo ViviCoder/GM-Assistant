@@ -121,8 +121,7 @@ void QCustomTabWidget::onTabCloseRequested(int index)
 {
     if (index > 0)
     {
-        QCustomTextEdit *textEdit = dynamic_cast<QCustomTextEdit*>(widget(index));
-        textEdit->note()->setVisible(false);
+        note(index)->setVisible(false);
         removeTab(index);
     }
 }
@@ -175,9 +174,11 @@ void QCustomTabWidget::renameNote(int index)
     {
         if (pRenameDialog->exec(tabText(index)) == QDialog::Accepted)
         {
-            QString newName = pRenameDialog->text();
-            setTabText(index, newName);
-            // TODO: actually rename the note
+            QString qNewTitle = pRenameDialog->text();
+            setTabText(index, qNewTitle);
+            std::string newTitle = qNewTitle.toStdString();
+            Note *pNote = note(index);
+            pNote->setTitle(newTitle);
             // TODO: emit modification
         }
     }
