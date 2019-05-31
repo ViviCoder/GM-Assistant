@@ -24,6 +24,7 @@
 #include "Note.h"
 #include <QAction>
 #include <QMenu>
+#include "RenameNoteDialog.h"
 
 /*!
  * \brief Custom tab widget for notes
@@ -131,6 +132,8 @@ class QCustomTabWidget: public QTabWidget
         QAction *actionRename;
         //! Action for closure
         QAction *actionClose;
+        //! Dialog window for renaming
+        RenameNoteDialog *pRenameDialog;
 };
 
 #endif

@@ -23,7 +23,7 @@
 
 using namespace std;
 
-QCustomTabWidget::QCustomTabWidget(QWidget *parent): QTabWidget(parent), pFilter(0), pMenu(new QMenu(this))
+QCustomTabWidget::QCustomTabWidget(QWidget *parent): QTabWidget(parent), pFilter(0), pMenu(new QMenu(this)), pRenameDialog(new RenameNoteDialog(this))
 {
     // popup menu
     actionRename = new QAction(this);
@@ -171,5 +171,14 @@ void QCustomTabWidget::retranslate()
 
 void QCustomTabWidget::renameNote(int index)
 {
-    //TODO
+    if (index > 0)
+    {
+        if (pRenameDialog->exec(tabText(index)) == QDialog::Accepted)
+        {
+            QString newName = pRenameDialog->text();
+            setTabText(index, newName);
+            // TODO: actually rename the note
+            // TODO: emit modification
+        }
+    }
 }

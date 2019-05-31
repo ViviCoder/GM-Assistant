@@ -88,6 +88,7 @@ set (PROJECT_SOURCES
     sources/windows/ItemDialog.cpp
     sources/windows/MainWindow.cpp
     sources/windows/MetadataDialog.cpp
+    sources/windows/RenameNoteDialog.cpp
     sources/windows/SelectCharacterDialog.cpp)
 set (PROJECT_FORMS
     sources/windows/AboutDialog.ui
@@ -98,6 +99,7 @@ set (PROJECT_FORMS
     sources/windows/ItemDialog.ui
     sources/windows/MainWindow.ui
     sources/windows/MetadataDialog.ui
+    sources/windows/RenameNoteDialog.ui
     sources/windows/SelectCharacterDialog.ui)
 
 # find libraries

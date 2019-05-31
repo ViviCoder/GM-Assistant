@@ -171,22 +171,22 @@
 <context>
     <name>customTab</name>
     <message>
-        <location filename="../sources/widgets/QCustomTabWidget.cpp" line="161"/>
+        <location filename="../sources/widgets/QCustomTabWidget.cpp" line="164"/>
         <source>&amp;Rename</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTabWidget.cpp" line="162"/>
+        <location filename="../sources/widgets/QCustomTabWidget.cpp" line="165"/>
         <source>Rename the note</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTabWidget.cpp" line="164"/>
+        <location filename="../sources/widgets/QCustomTabWidget.cpp" line="167"/>
         <source>&amp;Close</source>
         <translation type="unfinished">&amp;Chiudi</translation>
     </message>
     <message>
-        <location filename="../sources/widgets/QCustomTabWidget.cpp" line="165"/>
+        <location filename="../sources/widgets/QCustomTabWidget.cpp" line="168"/>
         <source>Close the note</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1029,6 +1029,39 @@
         <location filename="../sources/windows/MetadataDialog.ui" line="103"/>
         <source>Role-playing game</source>
         <translation>Gioco di ruolo</translation>
+    </message>
+</context>
+<context>
+    <name>renameNoteDialog</name>
+    <message>
+        <location filename="../sources/windows/RenameNoteDialog.ui" line="17"/>
+        <source>New title</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/RenameNoteDialog.ui" line="29"/>
+        <source>Title of the note:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/RenameNoteDialog.ui" line="41"/>
+        <source>&amp;Validate</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/RenameNoteDialog.ui" line="52"/>
+        <source>&amp;Cancel</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/RenameNoteDialog.cpp" line="41"/>
+        <source>Incomplete data</source>
+        <translation type="unfinished">Dati incompleti</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/RenameNoteDialog.cpp" line="41"/>
+        <source>You must fill the title before validating.</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
