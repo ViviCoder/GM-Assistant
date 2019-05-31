@@ -579,7 +579,6 @@ void QCustomTableWidget::editProperty(int index)
                 emit modificationDone(new CharacterModification(pProperties, (*pProperties)[index], newProperty, index));
                 (*pProperties)[index] = newProperty;
             }
-            QTableWidgetItem *columnHeaderItem = horizontalHeaderItem(logIndex);
             columnHeaderItem->setText(pChangePropertyDial->text());
             scrollTo(-1, index);
         }
