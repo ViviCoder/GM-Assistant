@@ -139,15 +139,18 @@ void QCustomTabWidget::deleteNote(Note *note)
 
 void QCustomTabWidget::onRightClicked(int index, const QPoint& position)
 {
-    actionClose->setVisible(index!=0);
-    QAction *action = pMenu->exec(position);
-    if (action == actionRename)
+    // the main tab cannot be renamed or closed
+    if (index > 0)
     {
-        renameNote(index);
-    }
-    else if (action == actionClose)
-    {
-        onTabCloseRequested(index);
+        QAction *action = pMenu->exec(position);
+        if (action == actionRename)
+        {
+            renameNote(index);
+        }
+        else if (action == actionClose)
+        {
+            onTabCloseRequested(index);
+        }
     }
 }
 
