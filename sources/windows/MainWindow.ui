@@ -234,14 +234,14 @@
           </widget>
          </item>
          <item>
+          <widget class="QSlider" name="sliderMusic">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
           <layout class="QVBoxLayout" name="verticalLayout_2">
-           <item>
-            <widget class="Phonon::SeekSlider" name="sliderMusic">
-             <property name="statusTip">
-              <string>Browse the music file</string>
-             </property>
-            </widget>
-           </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout1">
              <item>
@@ -291,7 +291,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>23</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
@@ -595,11 +595,6 @@
   </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>Phonon::SeekSlider</class>
-   <extends>QWidget</extends>
-   <header location="global">phonon/seekslider.h</header>
-  </customwidget>
   <customwidget>
    <class>QCustomTreeWidget</class>
    <extends>QTreeWidget</extends>

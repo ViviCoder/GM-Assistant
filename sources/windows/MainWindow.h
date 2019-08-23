@@ -21,7 +21,6 @@
 
 #include "ui_MainWindow.h"
 #include "Scenario.h"
-#include "QSoundEngine.h"
 #include "AboutDialog.h"
 #include "DiceDialog.h"
 #include "SelectCharacterDialog.h"
@@ -31,6 +30,7 @@
 #include "ItemDialog.h"
 #include "MetadataDialog.h"
 #include "FileDetector.h"
+#include <QtMultimedia/QMediaPlayer>
 
 // number of recently opened games stored
 #define RECENT_NUMBER   5
@@ -41,8 +41,10 @@
 class MainWindow: public QMainWindow, private Ui::mainWindow
 {
     private:
-        //! Sound engine
-        QSoundEngine soundEngine;
+        //! Music player
+        QMediaPlayer *musicPlayer;
+        //! Sound player
+        QMediaPlayer *soundPlayer;
         /*!
          * \brief File name of the current game
          */
@@ -241,12 +243,9 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          */
         void on_buttonMusic_clicked();
         /*!
-         * \brief Time display update
-         * \param position Position in the music file, in milliseconds
-         *
-         * Updates the display of the position in the music file
+         * \brief Time display update in the music player
          */
-        void updateTimeDisplay(qint64 position);
+        void updateTimeDisplay();
         /*!
          * \brief Display update
          *
@@ -339,16 +338,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          */
         void translationRequested(const QString &suffix);
         /*!
-         * \brief Slot for when the current song has finished playback
-         *
-         * Restarts the song if the "Repeat" check box is checked
+         * \brief Slot for error messages from the music player
+         * \param error Error to display
          */
-        void onMusicFinished();
-        /*!
-         * \brief Slot for error messages
-         * \param message Message to display
-         */
-        void displayError(const QString &message);
+        void displayError(QMediaPlayer::Error error);
         /*!
          * \brief Slot for the Metadata menu item
          *
@@ -371,12 +364,21 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         void changeCurrentMusic(const SoundItem *oldItem, const SoundItem *newItem);
         /*!
          * \brief Slot used whenever the state of the music player changes
-         * \param newState New state of the music player
-         * \param oldState Old state of the music player
+         * \param state New state of the music player
          *
-         * It is used to detect when the playback starts
+         * It is used to detect when the playback starts and stops
          */
-        void onMusicStateChanged(Phonon::State newState, Phonon::State oldState);
+        void onMusicStateChanged(QMediaPlayer::State state);
+        /*!
+         * \brief Slot used when the position in the music player has changed
+         * \param position
+         */
+        void onMusicPositionChanged(qint64 position);
+        /*!
+         * \brief Slot used when the duration in the music player has changed
+         * \param duration
+         */
+        void onMusicDurationChanged(qint64 duration);
 };
 
 #endif

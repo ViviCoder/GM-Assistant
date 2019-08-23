@@ -1,5 +1,5 @@
 #*************************************************************************
-# Copyright © 2017-2018 Vincent Prat
+# Copyright © 2017-2019 Vincent Prat
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -68,9 +68,7 @@ set (PROJECT_SOURCES
     sources/engine/modifications/TreeModification.cpp
     sources/misc/FileDetector.cpp
     sources/misc/QAudioProxyModel.cpp
-    sources/misc/QSoundEngine.cpp
     sources/widgets/QCustomHeaderView.cpp
-    sources/widgets/QCustomSlider.cpp
     sources/widgets/QCustomTableWidget.cpp
     sources/widgets/QCustomTextEdit.cpp
     sources/widgets/QCustomTreeWidget.cpp
@@ -101,6 +99,7 @@ find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Svg REQUIRED)
 find_package(PkgConfig REQUIRED)
 find_package(Phonon4Qt5 REQUIRED)
+find_package(Qt5Multimedia REQUIRED)
 
 pkg_check_modules(XMLPP REQUIRED libxml++-2.6)
 
@@ -170,6 +169,7 @@ add_executable(${EXEC_NAME}
 target_link_libraries(${EXEC_NAME}
     Qt5::Widgets
     Qt5::Svg
+    Qt5::Multimedia
     ${XMLPP_LIBRARIES}
     ${POCO_LIBRARY}
     ${POCOZIP_LIBRARY}
