@@ -235,6 +235,15 @@
          </item>
          <item>
           <widget class="QSlider" name="sliderMusic">
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="singleStep">
+            <number>0</number>
+           </property>
+           <property name="pageStep">
+            <number>0</number>
+           </property>
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
            </property>

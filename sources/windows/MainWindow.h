@@ -379,6 +379,11 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \param duration
          */
         void onMusicDurationChanged(qint64 duration);
+        /*!
+         * \brief Slot used when the slider is moved
+         * \param position New position
+         */
+        void on_sliderMusic_sliderMoved(int position);
 };
 
 #endif

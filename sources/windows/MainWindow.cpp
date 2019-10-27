@@ -953,3 +953,8 @@ void MainWindow::onMusicDurationChanged(qint64 duration)
     sliderMusic->setMaximum(duration);
     updateTimeDisplay();
 }
+
+void MainWindow::on_sliderMusic_sliderMoved(int position)
+{
+    musicPlayer->setPosition(position);
+}
