@@ -87,8 +87,6 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         FileDetector detector;
         //! Scenario
         Scenario sGame;
-        //! Audio filter
-        QAudioProxyModel *audioFilter;
         //! Item editor
         ItemDialog *pItemDialog;
         /*!

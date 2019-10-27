@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -22,7 +22,6 @@
 #include "ui_ItemDialog.h"
 #include "ItemFactory.h"
 #include <QFileDialog>
-#include "QAudioProxyModel.h"
 
 /*!
  * \brief Dialog window for item creation
@@ -38,7 +37,7 @@ class ItemDialog: public QDialog, private Ui::itemDialog
          * \param parent Parent widget
          * \param filter Filter for audio files
          */
-        ItemDialog(QWidget *parent=0, QAudioProxyModel *filter=0);
+        ItemDialog(QWidget *parent=0);
         // accessors
         Item::State state() const;
         QString text() const;

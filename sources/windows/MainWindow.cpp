@@ -30,7 +30,7 @@
 #include <QTranslator>
 #include "MetadataModification.h"
 
-MainWindow::MainWindow(const QString &install_dir): QMainWindow(), musicPlayer(new QMediaPlayer(this)), soundPlayer(new QMediaPlayer(this)), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), detector(install_dir.toStdString()), sGame(&detector), audioFilter(new QAudioProxyModel(this, &detector)), pItemDialog(new ItemDialog(this, audioFilter))
+MainWindow::MainWindow(const QString &install_dir): QMainWindow(), musicPlayer(new QMediaPlayer(this)), soundPlayer(new QMediaPlayer(this)), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), detector(install_dir.toStdString()), sGame(&detector), pItemDialog(new ItemDialog(this))
 {
     setupUi(this);
     updateDisplay();

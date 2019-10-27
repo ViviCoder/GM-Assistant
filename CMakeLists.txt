@@ -67,7 +67,6 @@ set (PROJECT_SOURCES
     sources/engine/modifications/NoteModification.cpp
     sources/engine/modifications/TreeModification.cpp
     sources/misc/FileDetector.cpp
-    sources/misc/QAudioProxyModel.cpp
     sources/widgets/QCustomHeaderView.cpp
     sources/widgets/QCustomTableWidget.cpp
     sources/widgets/QCustomTextEdit.cpp
@@ -98,7 +97,6 @@ set (PROJECT_FORMS
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Svg REQUIRED)
 find_package(PkgConfig REQUIRED)
-find_package(Phonon4Qt5 REQUIRED)
 find_package(Qt5Multimedia REQUIRED)
 
 pkg_check_modules(XMLPP REQUIRED libxml++-2.6)
@@ -135,7 +133,6 @@ endif()
 
 include_directories(
     ${XMLPP_INCLUDE_DIRS}
-    ${PHONON_INCLUDE_DIR}/phonon
     ${POCO_INCLUDE_DIR}
     ${MAGIC_INCLUDE_DIR})
 
@@ -173,8 +170,7 @@ target_link_libraries(${EXEC_NAME}
     ${XMLPP_LIBRARIES}
     ${POCO_LIBRARY}
     ${POCOZIP_LIBRARY}
-    ${MAGIC_LIBRARY}
-    ${PHONON_LIBRARY})
+    ${MAGIC_LIBRARY})
 
 # installation
 set (BIN_DIR games)
