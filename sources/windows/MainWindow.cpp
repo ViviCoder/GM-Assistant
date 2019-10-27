@@ -481,19 +481,19 @@ void MainWindow::on_buttonMusic_clicked()
 
 void MainWindow::updateTimeDisplay()
 {
-    if (siCurrentMusic)
-    {
-        // update of the position display
-        int position_s = musicPlayer->position() / 1000;
-        int duration = musicPlayer->duration() / 1000;
-        labelPosition->setText(QString("%1:%2/%3:%4").arg(position_s/60).arg(position_s%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
-    }
-    else
+    if (musicPlayer->state() == QMediaPlayer::StoppedState)
     {
         // resets the display
         labelPosition->setText("0:00/0:00");
         buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
         sliderMusic->setEnabled(false);
+    }
+    else
+    {
+        // update of the position display
+        int position_s = musicPlayer->position() / 1000;
+        int duration = musicPlayer->duration() / 1000;
+        labelPosition->setText(QString("%1:%2/%3:%4").arg(position_s/60).arg(position_s%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
     }
 }
 
@@ -933,7 +933,6 @@ void MainWindow::onMusicStateChanged(QMediaPlayer::State state)
                 }
                 else
                 {
-                    siCurrentMusic = 0;
                     updateTimeDisplay();
                 }
                 break;
