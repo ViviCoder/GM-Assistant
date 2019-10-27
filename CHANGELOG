@@ -1,3 +1,6 @@
+Changes in version 1.2.2
+* Transition from Phonon to Qt Multimedia
+
 Changes in version 1.2.1
 * Transitions
     - CMake as a build system
