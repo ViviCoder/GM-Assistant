@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2014 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,7 +23,6 @@
 #include <vector>
 #include <iterator>
 #include "IOConfig.h"
-#include <stdexcept>
 
 class Branch;
 
@@ -74,9 +73,8 @@ class Tree
                 /*!
                  * \brief Incrementation operator
                  * \return The incremented iterator
-                 * \throw std::out_of_range Thrown when the iterator has gone beyond the end
                  */
-                iterator& operator++() throw(std::out_of_range);
+                iterator& operator++();
                 /*!
                  * \brief Incrementation operator
                  * \param i Dummy argument
@@ -122,10 +120,8 @@ class Tree
          * \param config IO configuration
          * \param root Position of the tree in the XML tree
          * \param checkFiles Indicates if the existence of files associated with FileItems is checked
-         * \throw xmlpp::exception Thrown when an item has not been loaded correctly        
-         * \throw std::invalid_argument Thrown when a file cannot be found        
          */
-        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles) throw(xmlpp::exception, std::invalid_argument);
+        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles);
         // iterator-related methods
         iterator begin() const;
         iterator beginUnchecked() const;
@@ -134,7 +130,12 @@ class Tree
         iterator endUnchecked() const;
         iterator endState(Item::State state) const;
         // accessors
-        Item* operator[](const std::string &indices) throw(std::out_of_range);
+        /*!
+         * \brief Getter for tree items
+         * \param indices Indicies of the item
+         * \return Item at the given indices
+         */
+        Item* operator[](const std::string &indices);
         Branch* parent() const;
         unsigned int numberOfChildren() const;
         // populating the list
@@ -142,20 +143,31 @@ class Tree
          * \brief Branch insertion
          * \param indices Indices of where to insert the branch
          * \param branch Branch to insert
-         * \throw std::out_of_range Thrown when it is impossible to insert the branch at the given indices
          */
-        void insert(const std::string &indices, Branch *branch) throw(std::out_of_range);
-        Branch* insert(int index, Item *item) throw(std::out_of_range);
+        void insert(const std::string &indices, Branch *branch);
+        /*!
+         * \brief Item insertion
+         * \param index Index of the new item
+         * \param item New item
+         * \return Branch of the new item
+         *
+         * Insert a new item at the base of the tree
+         */
+        Branch* insert(int index, Item *item);
         Branch* insert(const std::string &indices, Item *item);
         /*!
          * \brief Setter for items
          * \param indices Indices of the item to modify
          * \param newItem New item
-         * \throw std::out_of_range Thrown when there is no item at the given indices
          */
-        void setItem(std::string &indices, Item *newItem) throw(std::out_of_range);
+        void setItem(std::string &indices, Item *newItem);
         Branch* add(Item *item);
-        void remove(int index, bool toDelete=true) throw(std::out_of_range);
+        /*!
+         * \brief Branch removal
+         * \param index Index of the branch to remove
+         * \param toDelete If true, also deletes the branch
+         */
+        void remove(int index, bool toDelete=true);
         void remove(const std::string &indices, bool toDelete=true);
         /*!
          * \brief Moves an item
@@ -176,15 +188,19 @@ class Tree
         static int extractIndex(std::string &indices, bool forward = true);
         // get the index of a branch
         int indexOf(Branch *branch) const;
-        std::string indicesOf(Branch *branch) const throw(std::out_of_range);
+        /*!
+         * \brief Branch search
+         * \param branch Branch to find
+         * \return Indices of the branch
+         */
+        std::string indicesOf(Branch *branch) const;
         std::string indicesOfNext(Branch *branch) const;
         /*!
          * \brief Getter for branches
          * \param indices Indices of the branch
          * \return Branch at the given indices
-         * \throw std::out_of_range Thrown when there is no branch at the given indices
          */
-        Branch* branch(const std::string &indices) throw(std::out_of_range);
+        Branch* branch(const std::string &indices);
 };
 
 #include "Branch.h"

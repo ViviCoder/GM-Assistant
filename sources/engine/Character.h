@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,7 +21,6 @@
 
 #include <vector>
 #include <libxml++/libxml++.h>
-#include <stdexcept>
 #include "IOConfig.h"
 
 //! Character (PC or NPC)
@@ -83,21 +82,23 @@ class Character
          * \brief Getter/setter of the properties
          * \param index Index of the property
          * \return property at the given index
-         * \throw std::out_of_range Thrown when the given index does not correspond to any property
          */
-        std::string& property(int index) throw(std::out_of_range);
+        std::string& property(int index);
         unsigned int propertyNumber() const;
         // populating
         void addProperty(const std::string &property, int position=-1);
-        void removeProperty(int index) throw(std::out_of_range);
+        /*!
+         * \brief Remove a property
+         * \param index Index of the property to remove
+         */
+        void removeProperty(int index);
         /*!
          * \brief Move of a property
          * \param source Index of the property to be moved
          * \param destination Index where to move the property
          * \return True if the move has been made, false otherwise
-         * \throw std::out_of_range Thrown when one of the indices is invalid
          */
-        bool moveProperty(int source, int destination) throw (std::out_of_range);
+        bool moveProperty(int source, int destination);
         void clearProperties();
         // iterators
         PropertyIterator begin() const;

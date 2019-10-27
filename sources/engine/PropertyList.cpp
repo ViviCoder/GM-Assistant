@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -72,7 +72,7 @@ void PropertyList::add(const std::string &property, int position)
     }
 }
 
-void PropertyList::remove(int index) throw(out_of_range)
+void PropertyList::remove(int index)
 {
     if (index < 0 || (unsigned int)index >= vProperties.size())
     {
@@ -81,7 +81,7 @@ void PropertyList::remove(int index) throw(out_of_range)
     vProperties.erase(vProperties.begin()+index);
 }
 
-bool PropertyList::move(int source, int destination) throw(out_of_range)
+bool PropertyList::move(int source, int destination)
 {
     if (source < 0 || (unsigned int)source >= vProperties.size())
     {
@@ -110,7 +110,7 @@ bool PropertyList::move(int source, int destination) throw(out_of_range)
     return true;
 }
 
-std::string& PropertyList::operator[](int index) throw(out_of_range)
+std::string& PropertyList::operator[](int index)
 {
     if (index<0 || (unsigned int)index >= vProperties.size())
     {

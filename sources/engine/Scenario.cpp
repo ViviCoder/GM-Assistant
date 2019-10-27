@@ -38,7 +38,7 @@ Scenario::Scenario(const FileDetector *detector): uiInterface(uiFull), ioConfig(
 
 // XML methods
 
-void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlpp::exception, invalid_argument)
+void Scenario::fromFile(const std::string &fileName, bool checkFiles)
 {
     using namespace xmlpp;
     using namespace Poco;
@@ -353,7 +353,7 @@ string Scenario::interfaceToString(UserInterface interface)
     }
 }
 
-Scenario::UserInterface Scenario::stringToInterface(const std::string& interface) throw(invalid_argument)
+Scenario::UserInterface Scenario::stringToInterface(const std::string& interface)
 {
     if (interface=="full")
         return uiFull;

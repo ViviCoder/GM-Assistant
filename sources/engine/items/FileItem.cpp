@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -30,7 +30,7 @@ FileItem::FileItem(const string &content, State state, bool expanded, const stri
     }
 }
 
-void FileItem::setFileName(const string &fileName, bool checkFile) throw(invalid_argument)
+void FileItem::setFileName(const string &fileName, bool checkFile)
 {
     sFileName = fileName;
     Poco::File file(fileName.c_str());
@@ -40,7 +40,7 @@ void FileItem::setFileName(const string &fileName, bool checkFile) throw(invalid
     }
 }
 
-void FileItem::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, invalid_argument)
+void FileItem::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFile)
 {
     using namespace xmlpp;
     

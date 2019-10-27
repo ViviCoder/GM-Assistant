@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
 #define HEADER_PROPERTYLIST
 
 #include <string>
-#include <stdexcept>
 #include <vector>
 #include <libxml++/libxml++.h>
 #include "IOConfig.h"
@@ -53,19 +52,26 @@ class PropertyList
          * \param root Root of the XML tree
          */
         void fromXML(const IOConfig &config, const xmlpp::Element &root);
-        // accessor
-        std::string& operator[](int index) throw(std::out_of_range);
+        /*!
+         * \brief Getter
+         * \param index Index of the property
+         * \return Name of the property
+         */
+        std::string& operator[](int index);
         // populating
         void add(const std::string &property, int position=-1);
-        void remove(int index) throw(std::out_of_range);
+        /*!
+         * \brief Remove a property
+         * \param index Index of the property to remove
+         */
+        void remove(int index);
         /*!
          * \brief Move of a property
          * \param source Index of the property to be moved
          * \param destination Index where to move the property
          * \return True if the move has been made, false otherwise
-         * \throw std::out_of_range Thrown when one of the indices is invalid
          */
-        bool move(int source, int destination) throw (std::out_of_range);
+        bool move(int source, int destination);
         void clear();
         // iterators
         iterator begin() const;

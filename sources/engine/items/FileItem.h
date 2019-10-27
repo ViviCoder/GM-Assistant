@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
 #define HEADER_FILEITEM
 
 #include "Item.h"
-#include <stdexcept>
 
 /*!
  * \brief Item related to a file
@@ -39,9 +38,8 @@ class FileItem: public Item
          * \brief Setter for the name of the file of the item
          * \param fileName New file name
          * \param checkFile Indicates if the existence of the file is checked
-         * \throw std::invalid_argument Thrown when the file is not readable
          */
-        void setFileName(const std::string &fileName, bool checkFile) throw(std::invalid_argument);
+        void setFileName(const std::string &fileName, bool checkFile);
         /*!
          *  \brief Constructor
          *  \param content Content of the item
@@ -67,10 +65,8 @@ class FileItem: public Item
          * \param config IO configuration
          * \param root Position of the item in the XML tree
          * \param checkFile Indicates if the existence of the file is checked
-         * \throw xmlpp::exception Thrown when there is an error in the XML tree
-         * \throw std::invalid_argument Thrown when a file is not readable 
          */
-        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, std::invalid_argument);
+        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFile);
         void toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping);
         /*!
          * \brief Getter for the archive subdirectory

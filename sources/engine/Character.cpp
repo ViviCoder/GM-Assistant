@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ Character::Character(const string &name, const string &shortDescription): sName(
 {
 }
 
-std::string& Character::property(int index) throw(out_of_range)
+std::string& Character::property(int index)
 {
     if (index < 0 || (unsigned int)index >= vProperties.size())
     {
@@ -85,7 +85,7 @@ void Character::addProperty(const std::string &property, int position)
     }
 }
 
-void Character::removeProperty(int index) throw(out_of_range)
+void Character::removeProperty(int index)
 {
     if (index < 0 || (unsigned int)index >= vProperties.size())
     {
@@ -94,7 +94,7 @@ void Character::removeProperty(int index) throw(out_of_range)
     vProperties.erase(vProperties.begin()+index);
 }
 
-bool Character::moveProperty(int source, int destination) throw(out_of_range)
+bool Character::moveProperty(int source, int destination)
 {
     if (source < 0 || (unsigned int)source >= vProperties.size())
     {

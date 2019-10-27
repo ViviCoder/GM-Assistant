@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -89,7 +89,7 @@ string Item::typeToStr(Type type, const IOConfig &config)
     return "";
 }
 
-Item::State Item::strToState(const string &name) throw(xmlpp::exception)
+Item::State Item::strToState(const string &name)
 {
     if (name=="none")   return sNone;
     else if (name=="progress")  return sProgress;
@@ -98,7 +98,7 @@ Item::State Item::strToState(const string &name) throw(xmlpp::exception)
     else    throw xmlpp::exception("Unrecognized \""+name+"\" item state");
 }
 
-Item::Type Item::strToType(const string &name, const IOConfig &config) throw(xmlpp::exception)
+Item::Type Item::strToType(const string &name, const IOConfig &config)
 {
     if (name=="basic")  return tBasic;
     else if (name=="file") return tFile;
@@ -160,7 +160,7 @@ std::string Item::boolToStr(bool value)
     }
 }
 
-bool Item::strToBool(const string &name) throw(xmlpp::exception)
+bool Item::strToBool(const string &name)
 {
     if (name == "true") return true;
     if (name == "false") return false;

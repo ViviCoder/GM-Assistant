@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -82,7 +82,7 @@ void CharacterList::add(const Character &character, int position)
     }
 }
 
-void CharacterList::remove(int index) throw(out_of_range)
+void CharacterList::remove(int index)
 {
     if (index < 0 || (unsigned int)index >= vCharacters.size())
     {
@@ -91,7 +91,7 @@ void CharacterList::remove(int index) throw(out_of_range)
     vCharacters.erase(vCharacters.begin()+index);
 }
 
-bool CharacterList::move(int source, int destination) throw(out_of_range)
+bool CharacterList::move(int source, int destination)
 {
     if (source < 0 || (unsigned int)source >= vCharacters.size())
     {
@@ -120,7 +120,7 @@ bool CharacterList::move(int source, int destination) throw(out_of_range)
     return true;
 }
 
-Character& CharacterList::operator[](int index) throw(out_of_range)
+Character& CharacterList::operator[](int index)
 {
     if (index<0 || (unsigned int)index >= vCharacters.size())
     {

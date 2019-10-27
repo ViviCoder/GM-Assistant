@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -85,7 +85,7 @@ void Tree::toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &file
     }
 }
 
-void Tree::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles) throw(xmlpp::exception, invalid_argument)
+void Tree::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles)
 {
     clear();
     using namespace xmlpp;
@@ -242,7 +242,7 @@ int Tree::extractIndex(string &indices, bool forward)
     return n;
 }
 
-Item* Tree::operator[](const string &indices) throw(out_of_range)
+Item* Tree::operator[](const string &indices)
 {
     string sub(indices);
     int n = extractIndex(sub);
@@ -270,7 +270,7 @@ unsigned int Tree::numberOfChildren() const
     return vChildren.size();
 }
 
-Branch* Tree::branch(const string &indices) throw(out_of_range)
+Branch* Tree::branch(const string &indices)
 {
     string sub(indices);
     int n = extractIndex(sub);
@@ -288,7 +288,7 @@ Branch* Tree::branch(const string &indices) throw(out_of_range)
     }
 }
 
-Branch* Tree::insert(int index, Item *item) throw(out_of_range)
+Branch* Tree::insert(int index, Item *item)
 {
     if (index<0 || (unsigned int) index > vChildren.size()) // n can be equal to vChildren.size() but only for the last index
     {
@@ -313,7 +313,7 @@ Branch* Tree::insert(const string &indices, Item *item)
     }
 }
 
-void Tree::insert(const string &indices, Branch *branch) throw(out_of_range)
+void Tree::insert(const string &indices, Branch *branch)
 { 
     string sub(indices);
     int n = extractIndex(sub);
@@ -343,7 +343,7 @@ Branch* Tree::add(Item *item)
     return branch;
 }
 
-void Tree::remove(int index, bool toDelete) throw(out_of_range)
+void Tree::remove(int index, bool toDelete)
 {
     if (index<0 || (unsigned int) index >= vChildren.size())
     {
@@ -438,7 +438,7 @@ int Tree::indexOf(Branch *branch) const
     }
 }
 
-string Tree::indicesOf(Branch *branch) const throw(out_of_range)
+string Tree::indicesOf(Branch *branch) const
 {
     ostringstream buf;
     int n = indexOf(branch);
@@ -534,7 +534,7 @@ bool Tree::iterator::operator==(const iterator& it) const
     return !operator!=(it);
 }
 
-Tree::iterator& Tree::iterator::operator++() throw(out_of_range)
+Tree::iterator& Tree::iterator::operator++()
 {
     vector<vector<Branch*>::const_iterator>::reverse_iterator it = qIts.rbegin();
     if (it==qIts.rend())
@@ -618,7 +618,7 @@ Branch* Tree::iterator::branch() const
     
 }
 
-void Tree::setItem(string &indices, Item *item) throw(out_of_range)
+void Tree::setItem(string &indices, Item *item)
 {
     branch(indices)->setItem(item);
 }

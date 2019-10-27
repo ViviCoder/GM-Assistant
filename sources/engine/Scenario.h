@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -60,10 +60,8 @@ class Scenario
          * \brief Loads a scenario from a file
          * \param fileName File name of the scenario to load
          * \param checkFiles Indicates if the existence of files associated with FileItems is checked
-         * \throw xmlpp::exception Thrown when the file is uncorrect
-         * \throw std::invalid_argument Thrown when an item has not been loaded correctly
          */
-        void fromFile(const std::string &fileName, bool checkFiles = true) throw(xmlpp::exception, std::invalid_argument);
+        void fromFile(const std::string &fileName, bool checkFiles = true);
         /*!
          * \brief Saves a game into a file
          * \param fileName Name of the file to be saved
@@ -99,9 +97,8 @@ class Scenario
          * \brief Convertion method form string to UserInterface
          * \param interface String to convert
          * \return User interface equivalent to the string 
-         * \throw std::invalid_argument Exception thrown when the string does not correspond to any user interface
          */
-        static UserInterface stringToInterface(const std::string& interface) throw(std::invalid_argument);
+        static UserInterface stringToInterface(const std::string& interface);
         /*!
          * \brief Getter for the IO configuration
          * \return IO configuration

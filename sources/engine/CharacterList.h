@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,6 @@
 #define HEADER_CHARACTERLIST
 
 #include "Character.h"
-#include <stdexcept>
 #include <vector>
 #include <libxml++/libxml++.h>
 
@@ -63,20 +62,22 @@ class CharacterList
          * \brief Getter of the characters
          * \param index Index of the character
          * \return Reference to the character at the given index
-         * \throw std::out_of_range Thrown when the index does not correspond to any character
          */
-        Character& operator[](int index) throw(std::out_of_range);
+        Character& operator[](int index);
         // populating
         void add(const Character &character, int position=-1);
-        void remove(int index) throw(std::out_of_range);
+        /*!
+         * \brief Remove a character
+         * \param index Index of the character to remove
+         */
+        void remove(int index);
         /*!
          * \brief Move of a character
          * \param source Index of the character to be moved
          * \param destination Index where to move the character
          * \return True if the move has been made, false otherwise
-         * \throw std::out_of_range Thrown when one of the indices is invalid
          */
-        bool move(int source, int destination) throw (std::out_of_range);
+        bool move(int source, int destination);
         void clear();
         // iterators
         const_iterator begin() const;
