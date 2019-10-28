@@ -25,6 +25,7 @@
 #include <exception>
 #include <QScrollBar>
 #include <QFileDialog>
+#include <QToolTip>
 
 using namespace std;
 
@@ -910,4 +911,29 @@ void QCustomTreeWidget::deleteNotes(Branch *branch)
             }
         }
     }
+}
+
+bool QCustomTreeWidget::viewportEvent(QEvent *e)
+{
+    // dynamical tool tip for note items
+    if (e->type() == QEvent::ToolTip)
+    {
+        QHelpEvent *helpEvent = dynamic_cast<QHelpEvent*>(e);
+        // only the first column
+        if (columnAt(helpEvent->x()) == 0)
+        {
+            QCustomTreeWidgetItem *qItem = dynamic_cast<QCustomTreeWidgetItem*>(itemAt(helpEvent->pos()));
+            if (qItem)
+            {
+                Item *item = qItem->branch()->item();
+                if (item->type() == Item::tNote)
+                {
+                    QToolTip::showText(helpEvent->globalPos(), dynamic_cast<NoteItem*>(item)->note()->title().c_str());
+                    return true;
+                }
+            }
+        }
+        QToolTip::hideText();
+    }
+    return QTreeWidget::viewportEvent(e);
 }

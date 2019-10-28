@@ -171,6 +171,12 @@ class QCustomTreeWidget: public QTreeWidget
          * Retranslates the menu
          */
         void retranslate();
+        /*!
+         * \brief Viewport event handler (used for dynamical tool tips)
+         * \param e Event
+         * \return True if the event is handled
+         */
+        bool viewportEvent(QEvent *e);
     protected slots:
         /*!
          * \brief Slot for when an item is expanded
