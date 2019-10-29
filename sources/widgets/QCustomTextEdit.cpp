@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2016 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,9 +23,10 @@
 
 using namespace std;
 
-QCustomTextEdit::QCustomTextEdit(QWidget *parent): QTextEdit(parent), pNote(0), sStatus(sMove), bDropped(false), bPasted(false), bCut(false)
+QCustomTextEdit::QCustomTextEdit(QWidget *parent, QObject *filter): QTextEdit(parent), pNote(0), sStatus(sMove), bDropped(false), bPasted(false), bCut(false)
 {
     connect(this, SIGNAL(textChanged()), this, SLOT(onTextChanged()));
+    installEventFilter(filter);
 }
 
 void QCustomTextEdit::setNote(Note *note)

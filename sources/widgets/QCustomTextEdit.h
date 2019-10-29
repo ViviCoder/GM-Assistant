@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -34,8 +34,9 @@ class QCustomTextEdit: public QTextEdit
         /*!
          * \brief Constructor
          * \param parent Parent widget
+         * \param filter Event filter
          */
-        QCustomTextEdit(QWidget *parent=0);
+        QCustomTextEdit(QWidget *parent=0, QObject *filter=0);
         /*!
          * \brief Setter for the underlying note
          * \param note Note
