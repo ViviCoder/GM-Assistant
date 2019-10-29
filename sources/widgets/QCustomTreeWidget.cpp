@@ -931,6 +931,10 @@ bool QCustomTreeWidget::viewportEvent(QEvent *e)
                     QToolTip::showText(helpEvent->globalPos(), dynamic_cast<NoteItem*>(item)->note()->title().c_str());
                     return true;
                 }
+                else
+                {
+                    return QTreeWidget::viewportEvent(e);
+                }
             }
         }
         QToolTip::hideText();
