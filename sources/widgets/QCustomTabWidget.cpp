@@ -69,12 +69,17 @@ bool QCustomTabWidget::unregisteredModification() const
 
 void QCustomTabWidget::updateModification(NoteModification *modification, bool undo)
 {
-    map<Note*, QCustomTextEdit*>::const_iterator it = mNotes.find(&modification->note());
-    if (it != mNotes.end())
+    Note *note = &modification->note();
+    QCustomTextEdit *textEdit = openNote(note);
+    if (modification->action() == Modification::aEdition && modification->editionType() == NoteModification::etTitle)
     {
-        it->second->updateModification(modification, undo);
+        int index = indexOf(textEdit);
+        setTabText(index, note->title().c_str());
     }
-    // TODO add it if not found + set focus
+    else
+    {
+        textEdit->updateModification(modification, undo);
+    }
 }
 
 void QCustomTabWidget::forceCut()
@@ -92,7 +97,7 @@ void QCustomTabWidget::installEventFilter(QObject *filter)
     pFilter = filter;
 }
 
-void QCustomTabWidget::openNote(Note *note)
+QCustomTextEdit* QCustomTabWidget::openNote(Note *note)
 {
     map<Note*, QCustomTextEdit*>::const_iterator it = mNotes.find(note);
     if (it == mNotes.end())
@@ -104,6 +109,7 @@ void QCustomTabWidget::openNote(Note *note)
         note->setVisible(true);
         mNotes.insert(pair<Note*, QCustomTextEdit*>(note, textEdit));
         emit noteOpened(textEdit);
+        return textEdit;
     }
     else if(note->visible())
     {
@@ -115,6 +121,7 @@ void QCustomTabWidget::openNote(Note *note)
         addTab((*it).second, note->title().c_str());
         note->setVisible(true);
     }
+    return it->second;
 }
 
 void QCustomTabWidget::onTabCloseRequested(int index)

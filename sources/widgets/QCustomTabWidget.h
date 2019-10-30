@@ -90,8 +90,9 @@ class QCustomTabWidget: public QTabWidget
         /*!
          * \brief Open a note
          * \param note Note to open
+         * \return TextEdit widget corresponding to the note
          */
-        void openNote(Note *note);
+        QCustomTextEdit* openNote(Note *note);
         /*!
          * \brief Slot for when a tab is closing
          * \param index Index of the tab to close
