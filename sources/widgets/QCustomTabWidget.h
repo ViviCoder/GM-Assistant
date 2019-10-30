@@ -120,6 +120,11 @@ class QCustomTabWidget: public QTabWidget
          * \param note Editor for this note
          */
         void noteOpened(QCustomTextEdit *note);
+        /*!
+         * \brief Signal to register a modification
+         * \param modification Modification to register
+         */
+        void modificationDone(Modification *modification);
     protected:
          /*!
          * \brief Retranslator

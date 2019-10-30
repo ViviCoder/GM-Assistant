@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2016 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 
 using namespace std;
 
-NoteModification::NoteModification(Note &note, const string &content, const string &newContent, int index): Modification(aEdition), rNote(note), sContent(content), sNewContent(newContent), iIndex(index)
+NoteModification::NoteModification(Note &note, const string &content, const string &newContent, int index): Modification(aEdition), rNote(note), sContent(content), sNewContent(newContent), iIndex(index), etEditType(etText)
 {
 }
 
@@ -29,6 +29,10 @@ NoteModification::NoteModification(Note &note, int index, int newIndex, int leng
 }
 
 NoteModification::NoteModification(Note &note, Action action, const string &content, int index): Modification(action), rNote(note), sContent(content), iIndex(index)
+{
+}
+
+NoteModification::NoteModification(Note &note, const string &title, const string &newTitle): Modification(aEdition), rNote(note), sContent(title), sNewContent(newTitle), etEditType(etTitle)
 {
 }
 
@@ -51,7 +55,14 @@ void NoteModification::undo()
                             rNote.text() = text.substr(0, iNewIndex) + text.substr(iNewIndex + iLength, iIndex - iNewIndex) + text.substr(iNewIndex, iLength) + text.substr(iIndex + iLength);
                         }
                         break;
-        case aEdition:  rNote.text() = text.substr(0, iIndex) + sContent + text.substr(iIndex + sNewContent.size());
+        case aEdition:  if (etEditType == etText)
+                        {
+                            rNote.text() = text.substr(0, iIndex) + sContent + text.substr(iIndex + sNewContent.size());
+                        }
+                        else
+                        {
+                            rNote.setTitle(sContent);
+                        }
                         break;
         case aAddition: rNote.text() = text.substr(0, iIndex) + text.substr(iIndex + l);
                         break;
@@ -75,7 +86,14 @@ void NoteModification::redo()
                             rNote.text() = text.substr(0, iNewIndex) + text.substr(iIndex, iLength) + text.substr(iNewIndex, iIndex - iNewIndex) + text.substr(iIndex + iLength);
                         }
                         break;
-        case aEdition:  rNote.text() = text.substr(0, iIndex) + sNewContent + text.substr(iIndex + l);
+        case aEdition:  if (etEditType == etText)
+                        {
+                            rNote.text() = text.substr(0, iIndex) + sNewContent + text.substr(iIndex + l);
+                        }
+                        else
+                        {
+                            rNote.setTitle(sNewContent);
+                        }
                         break;
         case aAddition: rNote.text() = text.substr(0, iIndex) + sContent + text.substr(iIndex);
                         break;

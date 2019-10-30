@@ -103,6 +103,7 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     connect(treeFX, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     treeFX->installEventFilter(this);
     connect(tabNotes, SIGNAL(noteOpened(QCustomTextEdit*)), this, SLOT(connectNote(QCustomTextEdit*)));
+    connect(tabNotes, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     tabNotes->installEventFilter(this);
     connect(tableStats, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     tableStats->installEventFilter(this);

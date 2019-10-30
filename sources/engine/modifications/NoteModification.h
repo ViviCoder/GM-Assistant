@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2016 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2019 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,12 @@
 class NoteModification: public Modification
 {
     public:
+        //! Edition type
+        enum EditionType
+        {
+            etTitle,
+            etText
+        };
         /*!
          * \brief Constructor for replacements
          * \param note Modified note
@@ -53,6 +59,13 @@ class NoteModification: public Modification
          * \param index Index of the modification
          */
         NoteModification(Note &note, Action action, const std::string &content, int index);
+        /*!
+         * \brief Constructor for renaming
+         * \param note Modified note
+         * \param title Previous title
+         * \param newTitle Modified title
+         */
+        NoteModification(Note &note, const std::string &title, const std::string &newTitle);
         /*!
          * \brief Destructor
          */
@@ -91,6 +104,11 @@ class NoteModification: public Modification
          *  \return Note
          */
         inline Note& note();
+        /*!
+         * \brief Getter for the edition type
+         * \return Edition type
+         */
+        inline EditionType editionType() const;
     private:
         //! Modified note
         Note &rNote;
@@ -104,6 +122,8 @@ class NoteModification: public Modification
         int iNewIndex;
         //! Length of the moved text
         int iLength;
+        //! Edition type
+        EditionType etEditType;
 };
 
 Modification::Type NoteModification::type() const
@@ -139,6 +159,11 @@ std::string NoteModification::newContent() const
 Note& NoteModification::note()
 {
     return rNote;
+}
+
+NoteModification::EditionType NoteModification::editionType() const
+{
+    return etEditType;
 }
 
 #endif

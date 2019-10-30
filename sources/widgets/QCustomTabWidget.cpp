@@ -178,8 +178,8 @@ void QCustomTabWidget::renameNote(int index)
             setTabText(index, qNewTitle);
             std::string newTitle = qNewTitle.toStdString();
             Note *pNote = note(index);
+            emit modificationDone(new NoteModification(*pNote, pNote->title(), newTitle));
             pNote->setTitle(newTitle);
-            // TODO: emit modification
         }
     }
 }
