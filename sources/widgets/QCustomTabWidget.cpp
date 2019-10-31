@@ -99,29 +99,30 @@ void QCustomTabWidget::installEventFilter(QObject *filter)
 
 QCustomTextEdit* QCustomTabWidget::openNote(Note *note)
 {
+    QCustomTextEdit *textEdit;
     map<Note*, QCustomTextEdit*>::const_iterator it = mNotes.find(note);
     if (it == mNotes.end())
     {
         // create a new TextEdit widget and add it to the tab
-        QCustomTextEdit *textEdit = new QCustomTextEdit(this, pFilter);
+        textEdit = new QCustomTextEdit(this, pFilter);
         textEdit->setNote(note);
         addTab(textEdit, note->title().c_str());
         note->setVisible(true);
         mNotes.insert(pair<Note*, QCustomTextEdit*>(note, textEdit));
         emit noteOpened(textEdit);
-        return textEdit;
-    }
-    else if(note->visible())
-    {
-        // TODO: focus if found
     }
     else
     {
-        // reopen the note if previously closed
-        addTab((*it).second, note->title().c_str());
-        note->setVisible(true);
+        textEdit = it->second;
+        if(!note->visible())
+        {
+            // reopen the note if previously closed
+            addTab(it->second, note->title().c_str());
+            note->setVisible(true);
+        }
     }
-    return it->second;
+    setCurrentWidget(textEdit);
+    return textEdit;
 }
 
 void QCustomTabWidget::onTabCloseRequested(int index)
@@ -148,6 +149,7 @@ void QCustomTabWidget::onRightClicked(int index, const QPoint& position)
     // the main tab cannot be renamed or closed
     if (index > 0)
     {
+        setCurrentIndex(index);
         QAction *action = pMenu->exec(position);
         if (action == actionRename)
         {
