@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,11 +17,13 @@
 *************************************************************************/
 
 #include "IOConfig.h"
-#include <libxml++/libxml++.h>
+#include <Poco/DOM/DOMParser.h>
+#include <Poco/DOM/Document.h>
+#include <Poco/DOM/Element.h>
 #include <Poco/Path.h>
 
 using namespace std;
-using namespace xmlpp;
+using namespace Poco::XML;
 
 IOConfig::IOConfig(const Version &version): vVersion(version), bValid(true)
 {
@@ -61,14 +63,14 @@ IOConfig::IOConfig(const Version &version): vVersion(version), bValid(true)
 
 IOConfig IOConfig::detect(const string &fileName, bool isArchived)
 {
-    DomParser parser(fileName);
-    Document *document = parser.get_document();
-    Element *root = document->get_root_node();
-    Attribute *attr = root->get_attribute("version");
+    DOMParser parser;
+    Document *document = parser.parse(fileName);
+    Element *root = document->documentElement();
+    string attr = root->getAttribute("version");
     Version version;
-    if (attr)
+    if (!attr.empty())
     {
-        version = Version(attr->get_value());
+        version = Version(attr);
     }
     IOConfig res(version);
     res.setArchived(isArchived);
@@ -77,52 +79,59 @@ IOConfig IOConfig::detect(const string &fileName, bool isArchived)
     {
         res.sTempDir = Poco::Path(fileName).parent().toString();
     }
-    string newRoot = root->get_name();
+    string newRoot = root->localName();
+    // game or scenario
     if (newRoot == "game" || newRoot == "scenario")
     {
         res.setRootName(newRoot);
     }
-    if (!root->get_children("metadata").empty())
+    // metadata
+    if (root->getChildElement("metadata"))
     {
         res.setHasMetadata(true);
     }
-    if (!root->get_children("plot").empty())
+    // plot or scenario
+    if (root->getChildElement("plot"))
     {
         res.setPlotName("plot");
     }
-    else if (!root->get_children("scenario").empty())
+    else if (root->getChildElement("scenario"))
     {
         res.setPlotName("scenario");
     }
-    if (!root->get_children("properties").empty())
+    // propertie or skill
+    if (root->getChildElement("properties"))
     {
         res.setPropertiesName("properties");
         res.setPropertyName("property");
     }
-    else if (!root->get_children("skills").empty())
+    else if (root->getChildElement("skills"))
     {
         res.setPropertiesName("skills");
         res.setPropertyName("skill");
     }
-    if (!root->find("//item[@type='image']").empty())
+    // image or picture
+    if (root->getNodeByPath("//item[@type='image']"))
     {
         res.setImageName("image");
         res.setHasImages(true);
     }
-    else if (!root->find("//item[@type='picture']").empty())
+    else if (root->getNodeByPath("//item[@type='picture']"))
     {
         res.setImageName("picture");
         res.setHasImages(true);
     }
-    if (!root->find("//item[@expanded]").empty())
+    // expanded
+    if (root->getNodeByPath("//item[@expanded]"))
     {
         res.setHasExpanded(true);
     }
-    if (!root->find("//character[@description]").empty())
+    // description or playername
+    if (root->getNodeByPath("//character[@description]"))
     {
         res.setDescriptionName("description");
     }
-    else if (!root->find("//character[@playername]").empty())
+    else if (root->getNodeByPath("//character[@playername]"))
     {
         res.setDescriptionName("playername");
     }

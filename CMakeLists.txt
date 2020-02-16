@@ -118,6 +118,11 @@ find_library(POCOZIP_LIBRARY
 if (${POCOZIP_LIBRARY} STREQUAL POCOZIP_LIBRARY-NOTFOUND)
     message(FATAL_ERROR "Could not find PocoZip library.")
 endif()
+find_library(POCOXML_LIBRARY
+    NAMES PocoXML)
+if (${POCOXML_LIBRARY} STREQUAL POCOXML_LIBRARY-NOTFOUND)
+    message(FATAL_ERROR "Could not find PocoXML library.")
+endif()
 
 # Magic
 find_path(MAGIC_INCLUDE_DIR
@@ -170,6 +175,7 @@ target_link_libraries(${EXEC_NAME}
     ${XMLPP_LIBRARIES}
     ${POCO_LIBRARY}
     ${POCOZIP_LIBRARY}
+    ${POCOXML_LIBRARY}
     ${MAGIC_LIBRARY})
 
 # installation
