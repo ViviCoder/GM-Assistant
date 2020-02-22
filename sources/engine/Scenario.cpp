@@ -108,10 +108,13 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     {
         throw xmlpp::exception("Unrecognized file format");
     }
-    ioConfig = IOConfig::detect(xmlFile, isArchive);
+
+    // reading the XML file
     DOMParser parser;
     Document *document = parser.parse(xmlFile);
     Element *root = document->documentElement();
+    ioConfig = IOConfig::detect(xmlFile, root, isArchive);
+
     if (root->localName() != ioConfig.rootName())
     {
         throw xmlpp::exception("Bad document content type: " + ioConfig.rootName() + " expected");

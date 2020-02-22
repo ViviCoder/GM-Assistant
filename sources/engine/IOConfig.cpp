@@ -17,9 +17,6 @@
 *************************************************************************/
 
 #include "IOConfig.h"
-#include <Poco/DOM/DOMParser.h>
-#include <Poco/DOM/Document.h>
-#include <Poco/DOM/Element.h>
 #include <Poco/Path.h>
 
 using namespace std;
@@ -61,11 +58,8 @@ IOConfig::IOConfig(const Version &version): vVersion(version), bValid(true)
     }
 }
 
-IOConfig IOConfig::detect(const string &fileName, bool isArchived)
+IOConfig IOConfig::detect(const string &fileName, const Element *root, bool isArchived)
 {
-    DOMParser parser;
-    Document *document = parser.parse(fileName);
-    Element *root = document->documentElement();
     string attr = root->getAttribute("version");
     Version version;
     if (!attr.empty())
