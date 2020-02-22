@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,7 @@
 #include <vector>
 #include <iterator>
 #include "IOConfig.h"
+#include <Poco/DOM/Element.h>
 
 class Branch;
 
@@ -98,11 +99,11 @@ class Tree
         /*!
          * \brief Constructor which read directly in a XML tree
          * \param config IO configuration
-         * \param root Root of the XML tree
+         * \param root Root of the XML subtree
          * \param checkFiles Indicates if the existence of files associated with FileItems is checked
          * \param parent Pointer to the parent branch of the tree
          */
-        Tree(const IOConfig &config, const xmlpp::Element &root, bool checkFiles, Branch* parent);
+        Tree(const IOConfig &config, const Poco::XML::Element *root, bool checkFiles, Branch* parent);
         // destructor
         ~Tree();
         // copy operator
@@ -121,7 +122,7 @@ class Tree
          * \param root Position of the tree in the XML tree
          * \param checkFiles Indicates if the existence of files associated with FileItems is checked
          */
-        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles);
+        void fromXML(const IOConfig &config, const Poco::XML::Element *root, bool checkFiles);
         // iterator-related methods
         iterator begin() const;
         iterator beginUnchecked() const;

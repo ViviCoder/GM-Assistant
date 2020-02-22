@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 
 #include <vector>
 #include <libxml++/libxml++.h>
+#include <Poco/DOM/Element.h>
 #include "IOConfig.h"
 
 //! Character (PC or NPC)
@@ -55,9 +56,9 @@ class Character
         /*!
          * \brief XML loader
          * \param config IO configuration
-         * \param root Root of the XML tree
+         * \param root Root of the XML subtree
          */
-        void fromXML(const IOConfig &config, const xmlpp::Element &root);
+        void fromXML(const IOConfig &config, const Poco::XML::Element *root);
         /*!
          * \brief Getter of the name
          * \return Character's name

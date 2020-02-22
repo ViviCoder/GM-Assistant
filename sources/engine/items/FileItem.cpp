@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -40,24 +40,19 @@ void FileItem::setFileName(const string &fileName, bool checkFile)
     }
 }
 
-void FileItem::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFile)
+void FileItem::fromXML(const IOConfig &config, const Poco::XML::Element *root, bool checkFile)
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
     
-    Node::NodeList list = root.get_children("file");
-    string name = "";
-    if (list.size()==0)
+    Element *elem = root->getChildElement("file");
+    string name;
+    if (elem)
     {
-        throw xmlpp::exception("Missing file name");
+        name = elem->getAttribute("name");
     }
     else
     {
-        Element *tmp = dynamic_cast<Element*>(list.front());
-        Attribute *attr = tmp->get_attribute("name");
-        if (attr)
-        {
-            name = attr->get_value();
-        }
+        throw xmlpp::exception("Missing file name");
     }
     if (config.isArchived())
     {

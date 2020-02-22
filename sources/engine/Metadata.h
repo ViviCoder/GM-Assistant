@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 
 #include <string>
 #include <libxml++/libxml++.h>
+#include <Poco/DOM/Element.h>
 
 /*!
  * \brief Class encapsulating metadata for games
@@ -152,9 +153,9 @@ class Metadata
         inline void setGameDate(const Date &gameDate);
         /*!
          * \brief XML loader
-         * \param root Root of the XML tree
+         * \param root Root of the XML subtree
          */
-        void fromXML(const xmlpp::Element &root);
+        void fromXML(const Poco::XML::Element *root);
         /*!
          * \brief XML saver
          * \param root Root of the XML tree

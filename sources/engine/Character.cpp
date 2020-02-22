@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 *************************************************************************/
 
 #include "Character.h"
+#include <Poco/DOM/NodeList.h>
 
 using namespace std;
 
@@ -53,23 +54,19 @@ void Character::toXML(const IOConfig &config, xmlpp::Element &root) const
     }
 }
 
-void Character::fromXML(const IOConfig &config, const xmlpp::Element &root)
+void Character::fromXML(const IOConfig &config, const Poco::XML::Element *root)
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
     clearProperties();
-    Node::NodeList list = root.get_children(config.propertyName());
-    for (Node::NodeList::const_iterator it = list.begin(); it != list.end(); it++)
+    NodeList *list = root->getElementsByTagName(config.propertyName());
+    for (int i = 0; i < list->length(); i++)
     {
-        Element *elem = dynamic_cast<Element *>(*it);
-        string value;
-        Attribute *attr = elem->get_attribute("value");
-        if (attr)
-        {
-            value = attr->get_value();
-        }
+        Element *elem = static_cast<Element*>(list->item(i));
+        string value = elem->getAttribute("value");
         vProperties.push_back(value);
     }
+    list->release();
 }
 
 void Character::addProperty(const std::string &property, int position)

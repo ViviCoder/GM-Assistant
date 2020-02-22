@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -26,73 +26,42 @@ Metadata::Metadata()
 {
 }
 
-void Metadata::fromXML(const xmlpp::Element &root)
+void Metadata::fromXML(const Poco::XML::Element *root)
 {
-    using namespace xmlpp;
-
-    Attribute *attr;
-    Node::NodeList node = root.get_children("title");
-    if (!node.empty())
+    Poco::XML::Element *element = root->getChildElement("title");
+    if (element)
     {
-        attr = dynamic_cast<Element*>(node.front())->get_attribute("value");
-        if (attr)
-        {
-            setTitle(attr->get_value());
-        }
+        setTitle(element->getAttribute("value"));
     }
-    node = root.get_children("author");
-    if (!node.empty())
+    element = root->getChildElement("author");
+    if (element)
     {
-        attr = dynamic_cast<Element*>(node.front())->get_attribute("value");
-        if (attr)
-        {
-            setAuthor(attr->get_value());
-        }
+        setAuthor(element->getAttribute("value"));
     }
-    node = root.get_children("creation");
-    if (!node.empty())
+    element = root->getChildElement("creation");
+    if (element)
     {
-        attr = dynamic_cast<Element*>(node.front())->get_attribute("date");
-        if (attr)
-        {
-            setCreationDate(Date(attr->get_value()));
-        }
+        setCreationDate(element->getAttribute("date"));
     }
-    node = root.get_children("description");
-    if (!node.empty())
+    element = root->getChildElement("description");
+    if (element)
     {
-        Element *tmp = dynamic_cast<Element*>(node.front());
-        if (tmp->has_child_text())
-        {
-            setDescription(tmp->get_child_text()->get_content());
-        }
+        setDescription(element->innerText());
     }
-    node = root.get_children("rpg");
-    if (!node.empty())
+    element = root->getChildElement("rpg");
+    if (element)
     {
-        attr = dynamic_cast<Element*>(node.front())->get_attribute("value");
-        if (attr)
-        {
-            setRpg(attr->get_value());
-        }
+        setRpg(element->getAttribute("value"));
     }
-    node = root.get_children("players");
-    if (!node.empty())
+    element = root->getChildElement("players");
+    if (element)
     {
-        attr = dynamic_cast<Element*>(node.front())->get_attribute("value");
-        if (attr)
-        {
-            setPlayers(attr->get_value());
-        }
+        setPlayers(element->getAttribute("value"));
     }
-    node = root.get_children("game");
-    if (!node.empty())
+    element = root->getChildElement("game");
+    if (element)
     {
-        attr = dynamic_cast<Element*>(node.front())->get_attribute("date");
-        if (attr)
-        {
-            setGameDate(Date(attr->get_value()));
-        }
+        setGameDate(element->getAttribute("date"));
     }
 }
 

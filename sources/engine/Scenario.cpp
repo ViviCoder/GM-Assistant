@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,6 +23,10 @@
 #include <Poco/FileStream.h>
 #include <Poco/TemporaryFile.h>
 #include <Poco/Zip/Compress.h>
+#include <Poco/DOM/DOMParser.h>
+#include <Poco/DOM/Document.h>
+#include <Poco/DOM/Element.h>
+
 
 using namespace std;
 
@@ -40,8 +44,8 @@ Scenario::Scenario(const FileDetector *detector): uiInterface(uiFull), ioConfig(
 
 void Scenario::fromFile(const std::string &fileName, bool checkFiles)
 {
-    using namespace xmlpp;
     using namespace Poco;
+    using namespace Poco::XML;
     string xmlFile, fileType;
     bool isArchive = false;
 
@@ -105,20 +109,20 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
         throw xmlpp::exception("Unrecognized file format");
     }
     ioConfig = IOConfig::detect(xmlFile, isArchive);
-    DomParser parser(xmlFile);
-    Document *document = parser.get_document();
-    Element *root = document->get_root_node();
-    if (root->get_name() != ioConfig.rootName())
+    DOMParser parser;
+    Document *document = parser.parse(xmlFile);
+    Element *root = document->documentElement();
+    if (root->localName() != ioConfig.rootName())
     {
         throw xmlpp::exception("Bad document content type: " + ioConfig.rootName() + " expected");
     }
     // getting the user interface
     try
     {
-        Attribute *attr = root->get_attribute("interface");
-        if (attr)
+        string attr = root->getAttribute("interface");
+        if (!attr.empty())
         {
-            uiInterface = stringToInterface(attr->get_value());
+            uiInterface = stringToInterface(attr);
         }
         else
         {
@@ -130,85 +134,77 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
         throw xmlpp::exception("Bad user interface");
     }
     // now loading the different parts of the game
-    Node::NodeList node;
+    Element *element;
     if (ioConfig.hasMetadata())
     {
-        node = root->get_children("metadata");
-        if (!node.empty())
+        element = root->getChildElement("metadata");
+        if (element)
         {
-            mMetadata.fromXML(*dynamic_cast<Element*>(node.front()));
+            mMetadata.fromXML(element);
         }
     }
-    node = root->get_children(ioConfig.plotName());
-    if (node.empty())
+    element = root->getChildElement(ioConfig.plotName());
+    if (!element)
     {
         throw xmlpp::exception("Missing \"" + ioConfig.plotName() + "\" section");
     }
     else
     {
-        tPlot.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles);
+        tPlot.fromXML(ioConfig, element, checkFiles);
     }
-    node = root->get_children("notes");
-    if (node.empty())
+    element = root->getChildElement("notes");
+    if (!element)
     {
         throw xmlpp::exception("Missing \"notes\" section");
     }
     else
     {
-        Element *elem = dynamic_cast<Element*>(node.front());
-        if (elem->has_child_text())
-        {
-            sNotes = elem->get_child_text()->get_content();
-        }
-        else
-        {
-            sNotes = "";
-        }
+        sNotes = element->innerText();
     }
-    node = root->get_children(ioConfig.propertiesName());
-    if (node.empty())
+    element = root->getChildElement(ioConfig.propertiesName());
+    if (!element)
     {
         throw xmlpp::exception("Missing \"" + ioConfig.propertiesName() + "\" section");
     }
     else
     {
-        lProperties.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()));
+        lProperties.fromXML(ioConfig, element);
     }
-    node = root->get_children("characters");
-    if (node.empty())
+    element = root->getChildElement("characters");
+    if (!element)
     {
         throw xmlpp::exception("Missing \"characters\" section");
     }
     else
     {
-        lCharacters.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()));
+        lCharacters.fromXML(ioConfig, element);
     }
-    node = root->get_children("history");
-    if (node.empty())
+    element = root->getChildElement("history");
+    if (!element)
     {
         throw xmlpp::exception("Missing \"history\" section");
     }
     else
     {
-        tHistory.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles);
+        tHistory.fromXML(ioConfig, element, checkFiles);
     }
-    node = root->get_children("music");
-    if (node.empty())
+    element = root->getChildElement("music");
+    if (!element)
     {
         throw xmlpp::exception("Missing \"music\" section");
     }
     else
     {
-        tMusic.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles);
+        tMusic.fromXML(ioConfig, element, checkFiles);
     }
-    node = root->get_children("effects");
-    if (node.empty())
+    element = root->getChildElement("effects");
+    if (!element)
     {
         throw xmlpp::exception("Missing \"effects\" section");
     }
     else
     {
-        tEffects.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles);
+        tEffects.fromXML(ioConfig, element, checkFiles);
     }
 }
 

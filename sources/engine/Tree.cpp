@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 #include "Tree.h"
 #include <sstream>
 #include "ItemFactory.h"
+#include <Poco/DOM/NodeList.h>
 
 using namespace std;
 
@@ -34,7 +35,7 @@ Tree::Tree(const Tree &tree, Branch* parent)
     pParent = parent;
 }
 
-Tree::Tree(const IOConfig &config, const xmlpp::Element &root, bool checkFiles, Branch* parent): pParent(parent)
+Tree::Tree(const IOConfig &config, const Poco::XML::Element *root, bool checkFiles, Branch* parent): pParent(parent)
 {
     fromXML(config, root, checkFiles);
 }
@@ -85,47 +86,50 @@ void Tree::toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &file
     }
 }
 
-void Tree::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles)
+void Tree::fromXML(const IOConfig &config, const Poco::XML::Element *root, bool checkFiles)
 {
     clear();
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
-    Node::NodeList list = root.get_children("item");
-    for (Node::NodeList::const_iterator it = list.begin(); it != list.end(); it++)
+    NodeList *list = root->childNodes();
+    for (int i = 0; i < list->length(); i++)
     {
-        Element *elem = dynamic_cast<Element*>(*it);
-        Attribute *attr = elem->get_attribute("state");
-        Item::State state =  Item::sNone;
-        if (attr)
+        Node *node = list->item(i);
+        if (node->nodeType() == Node::ELEMENT_NODE)
         {
-            state = Item::strToState(attr->get_value());
-        }
-        attr = elem->get_attribute("type");
-        Item::Type type = Item::tBasic;
-        if (attr)
-        {
-            type = Item::strToType(attr->get_value(), config);
-        }
-        attr = elem->get_attribute("content");
-        string content="";
-        if (attr)
-        {
-            content = attr->get_value();
-        }
-        bool expanded = false;
-        if (config.hasExpanded())
-        {
-            attr = elem->get_attribute("expanded");
-            if (attr)
+            Element *elem = static_cast<Element*>(node);
+            if (elem->tagName() == "item")
             {
-                expanded = Item::strToBool(attr->get_value());
+                string attr = elem->getAttribute("state");
+                Item::State state = Item::sNone;
+                if (!attr.empty())
+                {
+                    state = Item::strToState(attr);
+                }
+                attr = elem->getAttribute("type");
+                Item::Type type = Item::tBasic;
+                if (!attr.empty())
+                {
+                    type = Item::strToType(attr, config);
+                }
+                string content = elem->getAttribute("content");
+                bool expanded = false;
+                if (config.hasExpanded())
+                {
+                    attr = elem->getAttribute("expanded");
+                    if (!attr.empty())
+                    {
+                        expanded = Item::strToBool(attr);
+                    }
+                }
+                Item *item = ItemFactory::createItem(type,content,state,expanded);
+                item->fromXML(config, elem, checkFiles);
+                Branch *branch = new Branch(item, config, elem, checkFiles, this);
+                vChildren.push_back(branch);
             }
         }
-        Item *item = ItemFactory::createItem(type,content,state,expanded);
-        item->fromXML(config, *elem, checkFiles);
-        Branch *branch = new Branch(item, config, *elem, checkFiles, this);
-        vChildren.push_back(branch);
     }
+    list->release();
 }
 
 void Tree::clear()

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 *************************************************************************/
 
 #include "CharacterList.h"
+#include <Poco/DOM/NodeList.h>
 
 using namespace std;
 
@@ -37,31 +38,22 @@ void CharacterList::toXML(const IOConfig &config, xmlpp::Element &root) const
     }
 }
 
-void CharacterList::fromXML(const IOConfig &config, const xmlpp::Element &root)
+void CharacterList::fromXML(const IOConfig &config, const Poco::XML::Element *root)
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
     clear();
-    Node::NodeList node = root.get_children("character");
-    for (Node::NodeList::const_iterator it = node.begin(); it != node.end(); it++)
+    NodeList *list = root->getElementsByTagName("character");
+    for (int i = 0; i < list->length(); i++)
     {
-        Element *elem = dynamic_cast<Element*>(*it);
-        string name;
-        Attribute *attr = elem->get_attribute("name");
-        if (attr)
-        {
-            name = attr->get_value();
-        }
-        string shortDescription = "";
-        attr = elem->get_attribute(config.descriptionName());
-        if (attr)
-        {
-            shortDescription = attr->get_value();
-        }
+        Element *elem = static_cast<Element*>(list->item(i));
+        string name = elem->getAttribute("name");
+        string shortDescription = elem->getAttribute(config.descriptionName());
         Character character = Character(name, shortDescription);
-        character.fromXML(config, *elem);
+        character.fromXML(config, elem);
         vCharacters.push_back(character);
-    }        
+    }
+    list->release();
 }
 
 void CharacterList::clear()

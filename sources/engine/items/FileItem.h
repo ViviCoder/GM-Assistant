@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -66,7 +66,7 @@ class FileItem: public Item
          * \param root Position of the item in the XML tree
          * \param checkFile Indicates if the existence of the file is checked
          */
-        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFile);
+        void fromXML(const IOConfig &config, const Poco::XML::Element *root, bool checkFile);
         void toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping);
         /*!
          * \brief Getter for the archive subdirectory
