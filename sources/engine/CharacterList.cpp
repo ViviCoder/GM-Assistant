@@ -18,6 +18,7 @@
 
 #include "CharacterList.h"
 #include <Poco/DOM/NodeList.h>
+#include <Poco/DOM/Document.h>
 
 using namespace std;
 
@@ -25,16 +26,18 @@ CharacterList::CharacterList()
 {
 }
 
-void CharacterList::toXML(const IOConfig &config, xmlpp::Element &root) const
+void CharacterList::toXML(const IOConfig &config, Poco::XML::Element *root) const
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
+    Document *document = root->ownerDocument();
     for (vector<Character>::const_iterator it = vCharacters.begin(); it != vCharacters.end(); it++)
     {
-        Element *tmp = root.add_child("character");
-        tmp->set_attribute("name",it->name());
-        tmp->set_attribute(config.descriptionName(), it->shortDescription());
-        it->toXML(config, *tmp);
+        Element *tmp = document->createElement("character");
+        root->appendChild(tmp);
+        tmp->setAttribute("name", it->name());
+        tmp->setAttribute(config.descriptionName(), it->shortDescription());
+        it->toXML(config, tmp);
     }
 }
 

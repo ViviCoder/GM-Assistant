@@ -18,6 +18,7 @@
 
 #include "PropertyList.h"
 #include <Poco/DOM/NodeList.h>
+#include <Poco/DOM/Document.h>
 
 using namespace std;
 
@@ -25,14 +26,16 @@ PropertyList::PropertyList()
 {
 }
 
-void PropertyList::toXML(const IOConfig &config, xmlpp::Element &root) const
+void PropertyList::toXML(const IOConfig &config, Poco::XML::Element *root) const
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
+    Document *document = root->ownerDocument();
     for (vector<string>::const_iterator it = vProperties.begin(); it != vProperties.end(); it++)
     {
-        Element *tmp = root.add_child(config.propertyName());
-        tmp->set_attribute("name",*it);
+        Element *tmp = document->createElement(config.propertyName());
+        root->appendChild(tmp);
+        tmp->setAttribute("name", *it);
     }
 }
 

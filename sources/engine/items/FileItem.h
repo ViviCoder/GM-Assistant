@@ -53,7 +53,7 @@ class FileItem: public Item
          * \brief Getter for the type of the item
          * \return tFile
          */
-        Type type() const;
+        Type type() const override;
         /*!
          * \brief Getter for the file name
          * \return The name of the file associated to the item
@@ -66,8 +66,14 @@ class FileItem: public Item
          * \param root Position of the item in the XML tree
          * \param checkFile Indicates if the existence of the file is checked
          */
-        void fromXML(const IOConfig &config, const Poco::XML::Element *root, bool checkFile);
-        void toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping);
+        void fromXML(const IOConfig &config, const Poco::XML::Element *root, bool checkFile) override;
+        /*!
+         * \brief Write the item to a XML tree
+         * \param config IO configuration
+         * \param root Position of the item in the XML tree
+         * \param checkFile Indicates if the existence of the file is checked
+         */
+        void toXML(const IOConfig &config, Poco::XML::Element *root, FileMapping &fileMapping) override;
         /*!
          * \brief Getter for the archive subdirectory
          * \return Subdirectory of the archive in which the file is stored

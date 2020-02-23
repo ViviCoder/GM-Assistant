@@ -19,6 +19,8 @@
 #include "FileItem.h"
 #include <Poco/File.h>
 #include <Poco/Path.h>
+#include <Poco/XML/XMLException.h>
+#include <Poco/DOM/Document.h>
 
 using namespace std;
 
@@ -52,7 +54,7 @@ void FileItem::fromXML(const IOConfig &config, const Poco::XML::Element *root, b
     }
     else
     {
-        throw xmlpp::exception("Missing file name");
+        throw Poco::XML::XMLException("Missing file name");
     }
     if (config.isArchived())
     {
@@ -62,16 +64,18 @@ void FileItem::fromXML(const IOConfig &config, const Poco::XML::Element *root, b
     setFileName(name, checkFile);
 }
 
-void FileItem::toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping)
+void FileItem::toXML(const IOConfig &config, Poco::XML::Element *root, FileMapping &fileMapping)
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
-    Element *tmp = root.add_child("file");
+    Document *document = root->ownerDocument();
+    Element *tmp = document->createElement("file");
+    root->appendChild(tmp);
     std::string fileName(sFileName);
     if (config.isArchived())
     {
         fileName = Poco::Path(sFileName).getFileName();
         fileName = Poco::Path(fileMapping.addFile(sFileName, subdirectory() + fileName)).getFileName();
     }
-    tmp->set_attribute("name", fileName);
+    tmp->setAttribute("name", fileName);
 }

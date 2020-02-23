@@ -20,7 +20,6 @@
 #define HEADER_ITEM
 
 #include "FileMapping.h"
-#include <libxml++/libxml++.h>
 #include <Poco/DOM/Element.h>
 #include "IOConfig.h"
 #include "FileMapping.h"
@@ -85,10 +84,10 @@ class Item
         /*!
          * \brief XML saver
          * \param config IO configuration
-         * \param root Root of the XML tree
+         * \param root Root of the XML subtree
          * \param fileMapping Mapping of files associated with items (for archives)
          */
-        virtual void toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping);
+        virtual void toXML(const IOConfig &config, Poco::XML::Element *root, FileMapping &fileMapping);
         // static methods to get a link between strings and state or type
         static std::string stateToStr(State state);
         /*!

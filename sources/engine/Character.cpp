@@ -18,6 +18,7 @@
 
 #include "Character.h"
 #include <Poco/DOM/NodeList.h>
+#include <Poco/DOM/Document.h>
 
 using namespace std;
 
@@ -43,14 +44,16 @@ unsigned int Character::propertyNumber() const
 
 // methods
 
-void Character::toXML(const IOConfig &config, xmlpp::Element &root) const
+void Character::toXML(const IOConfig &config, Poco::XML::Element *root) const
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
+    Document *document = root->ownerDocument();
     for (vector<std::string>::const_iterator it = vProperties.begin(); it != vProperties.end(); it++)
     {
-        Element *tmp = root.add_child(config.propertyName());
-        tmp->set_attribute("value",*it);
+        Element *tmp = document->createElement(config.propertyName());
+        root->appendChild(tmp);
+        tmp->setAttribute("value", *it);
     }
 }
 

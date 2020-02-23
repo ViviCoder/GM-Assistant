@@ -26,7 +26,11 @@
 #include <Poco/DOM/DOMParser.h>
 #include <Poco/DOM/Document.h>
 #include <Poco/DOM/Element.h>
-
+#include <Poco/DOM/Text.h>
+#include <Poco/DOM/DOMWriter.h>
+#include <Poco/UTF8Encoding.h>
+#include <Poco/XML/XMLWriter.h>
+#include <fstream>
 
 using namespace std;
 
@@ -209,39 +213,50 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     {
         tEffects.fromXML(ioConfig, element, checkFiles);
     }
+
+    document->release();
 }
 
 void Scenario::toFile(const string &fileName) const
 {
-    using namespace xmlpp;
     using namespace Poco;
+    using namespace Poco::XML;
 
     // file mapping (for archives)
     FileMapping fileMapping;
-    Document document;
-    Element *root = document.create_root_node(ioConfig.rootName());
-    root->set_attribute("version",ioConfig.version().shortVersion());
-    root->set_attribute("interface",interfaceToString(uiInterface));
+    Document *document = new Document;
+    Element *root = document->createElement(ioConfig.rootName());
+    document->appendChild(root);
+    root->setAttribute("version", ioConfig.version().shortVersion());
+    root->setAttribute("interface", interfaceToString(uiInterface));
     Element *tmp;
     if (ioConfig.hasMetadata())
     {
-       tmp = root->add_child("metadata");
-       mMetadata.toXML(*tmp);
+        tmp = document->createElement("metadata");
+        root->appendChild(tmp);
+        mMetadata.toXML(tmp);
     }
-    tmp = root->add_child(ioConfig.plotName());
-    tPlot.toXML(ioConfig, *tmp, fileMapping);
-    tmp = root->add_child("notes");
-    tmp->add_child_text(sNotes);
-    tmp = root->add_child(ioConfig.propertiesName());
-    lProperties.toXML(ioConfig, *tmp);
-    tmp = root->add_child("characters");
-    lCharacters.toXML(ioConfig, *tmp);
-    tmp = root->add_child("history");
-    tHistory.toXML(ioConfig, *tmp, fileMapping);
-    tmp = root->add_child("music");
-    tMusic.toXML(ioConfig, *tmp, fileMapping);
-    tmp = root->add_child("effects");
-    tEffects.toXML(ioConfig, *tmp, fileMapping);
+    tmp = document->createElement(ioConfig.plotName());
+    root->appendChild(tmp);
+    tPlot.toXML(ioConfig, tmp, fileMapping);
+    tmp = document->createElement("notes");
+    root->appendChild(tmp);
+    tmp->appendChild(document->createTextNode(sNotes));
+    tmp = document->createElement(ioConfig.propertiesName());
+    root->appendChild(tmp);
+    lProperties.toXML(ioConfig, tmp);
+    tmp = document->createElement("characters");
+    root->appendChild(tmp);
+    lCharacters.toXML(ioConfig, tmp);
+    tmp = document->createElement("history");
+    root->appendChild(tmp);
+    tHistory.toXML(ioConfig, tmp, fileMapping);
+    tmp = document->createElement("music");
+    root->appendChild(tmp);
+    tMusic.toXML(ioConfig, tmp, fileMapping);
+    tmp = document->createElement("effects");
+    root->appendChild(tmp);
+    tEffects.toXML(ioConfig, tmp, fileMapping);
     // saved XML file and temporary directory (if needed)
     string xmlFile(fileName);
     File tempDir;
@@ -252,7 +267,14 @@ void Scenario::toFile(const string &fileName) const
         TemporaryFile::registerForDeletion(tempDir.path());
         xmlFile = tempDir.path() + "/scenario.xml";        
     }
-    document.write_to_file_formatted(xmlFile, "UTF-8");
+    DOMWriter writer;
+    writer.setNewLine("\n");
+    UTF8Encoding encoding;
+    writer.setEncoding("UTF-8", encoding);
+    writer.setOptions(XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
+    FileOutputStream outputXML(xmlFile.c_str());
+    writer.writeNode(outputXML, document);
+    outputXML.close();
     if (ioConfig.isArchived())
     {
         // adding files to the archive
@@ -275,6 +297,8 @@ void Scenario::toFile(const string &fileName) const
         comp.close();
         tempDir.remove(true);
     }
+
+    document->release();
 }
 
 // accessors

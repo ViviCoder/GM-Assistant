@@ -17,6 +17,7 @@
 *************************************************************************/
 
 #include "Item.h"
+#include <Poco/XML/XMLException.h>
 
 using namespace std;
 
@@ -57,7 +58,7 @@ void Item::fromXML(const IOConfig&, const Poco::XML::Element*, bool)
 {
 }
 
-void Item::toXML(const IOConfig&, xmlpp::Element&, FileMapping&)
+void Item::toXML(const IOConfig&, Poco::XML::Element*, FileMapping&)
 {
 }
 
@@ -95,7 +96,7 @@ Item::State Item::strToState(const string &name)
     else if (name=="progress")  return sProgress;
     else if (name=="failure")   return sFailure;
     else if (name=="success")   return sSuccess;
-    else    throw xmlpp::exception("Unrecognized \""+name+"\" item state");
+    else    throw Poco::XML::XMLException("Unrecognized \""+name+"\" item state");
 }
 
 Item::Type Item::strToType(const string &name, const IOConfig &config)
@@ -104,7 +105,7 @@ Item::Type Item::strToType(const string &name, const IOConfig &config)
     else if (name=="file") return tFile;
     else if (name=="sound") return tSound;
     else if (config.hasImages() && name == config.imageName()) return tImage;
-    else    throw xmlpp::exception("Unrecognized \""+name+"\" item type");
+    else    throw Poco::XML::XMLException("Unrecognized \""+name+"\" item type");
 }
 
 bool Item::is(Type type, Type isType)
@@ -164,5 +165,5 @@ bool Item::strToBool(const string &name)
 {
     if (name == "true") return true;
     if (name == "false") return false;
-    else    throw xmlpp::exception("Unrecognized \""+name+"\" boolean");
+    else    throw Poco::XML::XMLException("Unrecognized \""+name+"\" boolean");
 }

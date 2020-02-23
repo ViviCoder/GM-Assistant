@@ -49,9 +49,9 @@ class CharacterList
         /*!
          * \brief XML saver
          * \param config IO configuration
-         * \param root Root of the XML tree
+         * \param root Root of the XML subtree
          */
-        void toXML(const IOConfig &config, xmlpp::Element &root) const;
+        void toXML(const IOConfig &config, Poco::XML::Element *root) const;
         /*!
          * \brief XML loader
          * \param config IO configuration

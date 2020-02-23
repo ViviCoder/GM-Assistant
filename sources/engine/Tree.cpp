@@ -20,6 +20,7 @@
 #include <sstream>
 #include "ItemFactory.h"
 #include <Poco/DOM/NodeList.h>
+#include <Poco/DOM/Document.h>
 
 using namespace std;
 
@@ -63,26 +64,28 @@ Tree& Tree::operator=(const Tree &tree)
 
 // methods
 
-void Tree::toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping) const
+void Tree::toXML(const IOConfig &config, Poco::XML::Element *root, FileMapping &fileMapping) const
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
+    Document *document = root->ownerDocument();
     for (vector<Branch*>::const_iterator it=vChildren.begin(); it != vChildren.end(); it++)
     {
-        Element *tmp = root.add_child("item");
+        Element *tmp = document->createElement("item");
+        root->appendChild(tmp);
         Item *item = (*it)->item();
-        tmp->set_attribute("state", Item::stateToStr(item->state()));
-        tmp->set_attribute("type", Item::typeToStr(item->type(), config));
-        tmp->set_attribute("content", item->content());
+        tmp->setAttribute("state", Item::stateToStr(item->state()));
+        tmp->setAttribute("type", Item::typeToStr(item->type(), config));
+        tmp->setAttribute("content", item->content());
         if (config.hasExpanded())
         {
-            tmp->set_attribute("expanded", Item::boolToStr((*it)->item()->expanded()));
+            tmp->setAttribute("expanded", Item::boolToStr((*it)->item()->expanded()));
         }
         if (item->type() != Item::tImage || config.hasImages())
         {
-            item->toXML(config, *tmp, fileMapping);
+            item->toXML(config, tmp, fileMapping);
         }
-        (*it)->tree().toXML(config, *tmp, fileMapping);
+        (*it)->tree().toXML(config, tmp, fileMapping);
     }
 }
 

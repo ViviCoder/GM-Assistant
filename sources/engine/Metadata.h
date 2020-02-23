@@ -21,6 +21,7 @@
 
 #include <string>
 #include <libxml++/libxml++.h>
+#include <Poco/DOM/Document.h>
 #include <Poco/DOM/Element.h>
 
 /*!
@@ -158,9 +159,9 @@ class Metadata
         void fromXML(const Poco::XML::Element *root);
         /*!
          * \brief XML saver
-         * \param root Root of the XML tree
+         * \param root Root of the XML subtree
          */
-        void toXML(xmlpp::Element &root) const;
+        void toXML(Poco::XML::Element *root) const;
         /*!
          * \brief Comparison operator
          * \param metadata Metadata to compare with

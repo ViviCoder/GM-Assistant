@@ -19,6 +19,7 @@
 #include "Metadata.h"
 #include <ctime>
 #include <sstream>
+#include <Poco/DOM/Text.h>
 
 using namespace std;
 
@@ -65,28 +66,36 @@ void Metadata::fromXML(const Poco::XML::Element *root)
     }
 }
 
-void Metadata::toXML(xmlpp::Element &root) const
+void Metadata::toXML(Poco::XML::Element *root) const
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
-    Element *tmp = root.add_child("title");
-    tmp->set_attribute("value", sTitle);
-    tmp = root.add_child("author");
-    tmp->set_attribute("value", sAuthor);
-    tmp = root.add_child("creation");
+    Document *document = root->ownerDocument();
+    Element *tmp = document->createElement("title");
+    root->appendChild(tmp);
+    tmp->setAttribute("value", sTitle);
+    tmp = document->createElement("author");
+    root->appendChild(tmp);
+    tmp->setAttribute("value", sAuthor);
+    tmp = document->createElement("creation");
+    root->appendChild(tmp);
     stringstream bufCreation;
     bufCreation << dCreation.day() << "/" << dCreation.month() << "/" << dCreation.year();
-    tmp->set_attribute("date", bufCreation.str());
-    tmp = root.add_child("description");
-    tmp->add_child_text(sDescription);
-    tmp = root.add_child("rpg");
-    tmp->set_attribute("value", sRpg);
-    tmp = root.add_child("players");
-    tmp->set_attribute("value", sPlayers);
-    tmp = root.add_child("game");
+    tmp->setAttribute("date", bufCreation.str());
+    tmp = document->createElement("description");
+    root->appendChild(tmp);
+    tmp->appendChild(document->createTextNode(sDescription));
+    tmp = document->createElement("rpg");
+    root->appendChild(tmp);
+    tmp->setAttribute("value", sRpg);
+    tmp = document->createElement("players");
+    root->appendChild(tmp);
+    tmp->setAttribute("value", sPlayers);
+    tmp = document->createElement("game");
+    root->appendChild(tmp);
     stringstream bufGame;
     bufGame << dGame.day() << "/" << dGame.month() << "/" << dGame.year();
-    tmp->set_attribute("date", bufGame.str());
+    tmp->setAttribute("date", bufGame.str());
 }
 
 bool Metadata::operator!=(const Metadata &metadata) const

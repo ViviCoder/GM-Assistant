@@ -112,10 +112,10 @@ class Tree
         /*!
          * \brief XML saver
          * \param config IO configuration
-         * \param root Root of the XML tree
+         * \param root Root of the XML subtree
          * \param fileMapping Mapping of files associated with items (for archives)
          */
-        void toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping) const;
+        void toXML(const IOConfig &config, Poco::XML::Element *root, FileMapping &fileMapping) const;
         /*!
          * \brief XML loader
          * \param config IO configuration
