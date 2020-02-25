@@ -1,5 +1,7 @@
 Changes in version 1.2.2
-* Transition from Phonon to Qt Multimedia
+* Transitions
+    - from Phonon to Qt Multimedia
+    - from libxml++ to PocoXML
 
 Changes in version 1.2.1
 * Transitions
@@ -12,7 +14,7 @@ Changes in version 1.2.1
     - single item/row/column selection
     - item/row operations disabled when column is selected (and vice-versa)
 * Others
-    - partial Italian translation
+    - Italian translation
     - newly created items/characters/properties automatically selected
     - file name added to the window title
     - simplification of the "About" window -> "About GM-Assistant"
