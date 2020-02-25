@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 #include "MetadataModification.h"
+#include <Poco/XML/XMLException.h>
 
 MainWindow::MainWindow(const QString &install_dir): QMainWindow(), musicPlayer(new QMediaPlayer(this)), soundPlayer(new QMediaPlayer(this)), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), detector(install_dir.toStdString()), sGame(&detector), pItemDialog(new ItemDialog(this))
 {
@@ -299,7 +300,7 @@ void MainWindow::on_action_Load_triggered()
             {
                 sGame.fromFile(file.toStdString());
             }
-            catch (xmlpp::exception &xml)
+            catch (Poco::XML::XMLException &xml)
             {
                 QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
                 sGame.clear();
@@ -346,7 +347,7 @@ void MainWindow::save(bool askForUpdate)
             action_Save->setEnabled(false);
             updateUndoRedo();
         }
-        catch (xmlpp::exception &xml)
+        catch (Poco::XML::XMLException &xml)
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
         }
@@ -391,7 +392,7 @@ bool MainWindow::on_actionS_ave_as_triggered()
             QDir::setCurrent(QFileInfo(sFileName).dir().path());
             updateUndoRedo();
         }
-        catch (xmlpp::exception &xml)
+        catch (Poco::XML::XMLException &xml)
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
             return false;
@@ -557,7 +558,7 @@ void MainWindow::on_action_Reload_triggered()
         {
             sGame.fromFile(sFileName.toStdString());
         }
-        catch (xmlpp::exception &xml)
+        catch (Poco::XML::XMLException &xml)
         {
             QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
             sGame.clear();

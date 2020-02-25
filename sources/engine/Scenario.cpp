@@ -31,6 +31,7 @@
 #include <Poco/UTF8Encoding.h>
 #include <Poco/XML/XMLWriter.h>
 #include <fstream>
+#include <Poco/XML/XMLException.h>
 
 using namespace std;
 
@@ -87,7 +88,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
                 }
                 else
                 {
-                    throw xmlpp::exception("Bad file format");
+                    throw Poco::XML::XMLException("Bad file format");
                 }
             }
             if (isArchive)
@@ -99,18 +100,18 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
                 }
                 catch(out_of_range &e)
                 {
-                    throw xmlpp::exception("No scenario in file " + fileName);
+                    throw Poco::XML::XMLException("No scenario in file " + fileName);
                 }
             }
         }
         else
         {
-            throw xmlpp::exception("Unable to open the file " + fileName);
+            throw Poco::XML::XMLException("Unable to open the file " + fileName);
         }
     }
     else
     {
-        throw xmlpp::exception("Unrecognized file format");
+        throw Poco::XML::XMLException("Unrecognized file format");
     }
 
     // reading the XML file
@@ -121,7 +122,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
 
     if (root->localName() != ioConfig.rootName())
     {
-        throw xmlpp::exception("Bad document content type: " + ioConfig.rootName() + " expected");
+        throw Poco::XML::XMLException("Bad document content type: " + ioConfig.rootName() + " expected");
     }
     // getting the user interface
     try
@@ -138,7 +139,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     }
     catch (invalid_argument)
     {
-        throw xmlpp::exception("Bad user interface");
+        throw Poco::XML::XMLException("Bad user interface");
     }
     // now loading the different parts of the game
     Element *element;
@@ -153,7 +154,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement(ioConfig.plotName());
     if (!element)
     {
-        throw xmlpp::exception("Missing \"" + ioConfig.plotName() + "\" section");
+        throw Poco::XML::XMLException("Missing \"" + ioConfig.plotName() + "\" section");
     }
     else
     {
@@ -162,7 +163,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement("notes");
     if (!element)
     {
-        throw xmlpp::exception("Missing \"notes\" section");
+        throw Poco::XML::XMLException("Missing \"notes\" section");
     }
     else
     {
@@ -171,7 +172,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement(ioConfig.propertiesName());
     if (!element)
     {
-        throw xmlpp::exception("Missing \"" + ioConfig.propertiesName() + "\" section");
+        throw Poco::XML::XMLException("Missing \"" + ioConfig.propertiesName() + "\" section");
     }
     else
     {
@@ -180,7 +181,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement("characters");
     if (!element)
     {
-        throw xmlpp::exception("Missing \"characters\" section");
+        throw Poco::XML::XMLException("Missing \"characters\" section");
     }
     else
     {
@@ -189,7 +190,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement("history");
     if (!element)
     {
-        throw xmlpp::exception("Missing \"history\" section");
+        throw Poco::XML::XMLException("Missing \"history\" section");
     }
     else
     {
@@ -198,7 +199,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement("music");
     if (!element)
     {
-        throw xmlpp::exception("Missing \"music\" section");
+        throw Poco::XML::XMLException("Missing \"music\" section");
     }
     else
     {
@@ -207,7 +208,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement("effects");
     if (!element)
     {
-        throw xmlpp::exception("Missing \"effects\" section");
+        throw Poco::XML::XMLException("Missing \"effects\" section");
     }
     else
     {

@@ -20,7 +20,6 @@
 #define HEADER_METADATA
 
 #include <string>
-#include <libxml++/libxml++.h>
 #include <Poco/DOM/Document.h>
 #include <Poco/DOM/Element.h>
 

@@ -1,5 +1,5 @@
 #*************************************************************************
-# Copyright © 2017-2019 Vincent Prat
+# Copyright © 2017-2020 Vincent Prat
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -96,10 +96,7 @@ set (PROJECT_FORMS
 # find libraries
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Svg REQUIRED)
-find_package(PkgConfig REQUIRED)
 find_package(Qt5Multimedia REQUIRED)
-
-pkg_check_modules(XMLPP REQUIRED libxml++-2.6)
 
 # Poco
 find_path(POCO_INCLUDE_DIR
@@ -137,7 +134,6 @@ if (${MAGIC_LIBRARY} STREQUAL MAGIC_LIBRARY-NOTFOUND)
 endif()
 
 include_directories(
-    ${XMLPP_INCLUDE_DIRS}
     ${POCO_INCLUDE_DIR}
     ${MAGIC_INCLUDE_DIR})
 
@@ -172,7 +168,6 @@ target_link_libraries(${EXEC_NAME}
     Qt5::Widgets
     Qt5::Svg
     Qt5::Multimedia
-    ${XMLPP_LIBRARIES}
     ${POCO_LIBRARY}
     ${POCOZIP_LIBRARY}
     ${POCOXML_LIBRARY}
