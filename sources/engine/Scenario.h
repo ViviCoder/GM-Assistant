@@ -24,7 +24,6 @@
 #include "PropertyList.h"
 #include "IOConfig.h"
 #include "Metadata.h"
-#include "FileDetector.h"
 
 /*!
  * \brief Game scenario
@@ -52,9 +51,8 @@ class Scenario
         };
         /*
          * \brief Default constructor
-         * \param detector File type detector
          */
-        Scenario(const FileDetector *detector = 0);
+        Scenario();
         // loading and saving methods
         /*!
          * \brief Loads a scenario from a file
@@ -132,8 +130,6 @@ class Scenario
         IOConfig ioConfig;
         //! Metadata
         Metadata mMetadata;
-        //! File type detector
-        const FileDetector *pDetector;
         //! Temporary directory (for the archive format)
         std::string sTempDir;
 };

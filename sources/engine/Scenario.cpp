@@ -32,97 +32,92 @@
 #include <Poco/XML/XMLWriter.h>
 #include <fstream>
 #include <Poco/XML/XMLException.h>
+#include <cstring>
+#include <Poco/Zip/ZipException.h>
+
+#define BUFFER_SIZE   4
 
 using namespace std;
 
 // constructors
 
-Scenario::Scenario(const FileDetector *detector): uiInterface(uiFull), ioConfig(Version()), pDetector(0)
+Scenario::Scenario(): uiInterface(uiFull), ioConfig(Version())
 {
-    if (detector && detector->isValid())
-    {
-        pDetector = detector;
-    }
 }
 
 // XML methods
 
+#include <iostream>
 void Scenario::fromFile(const std::string &fileName, bool checkFiles)
 {
     using namespace Poco;
     using namespace Poco::XML;
+    using namespace Poco::Zip;
     string xmlFile, fileType;
     bool isArchive = false;
 
     clear();
-    if (pDetector)
-    {
-       fileType = pDetector->typeOfFile(fileName);
-    }
-    if (fileType == "text/xml" || fileType == "application/xml")
-    {
-        xmlFile = fileName;
-    }
-    else if (!pDetector || fileType == "application/zip")
+
+    // search for the signature of zip files
+    char buffer[BUFFER_SIZE];
+
+    FileInputStream input_test(fileName.c_str(), std::ios::binary);
+    input_test.read(buffer, BUFFER_SIZE);
+    input_test.close();
+
+    if (!strncmp(buffer, "PK\3\4", BUFFER_SIZE))
     {
         // attempt to unzip
         FileInputStream input(fileName.c_str());
-        if (input.good())
+
+        // creating new temporary directory
+        sTempDir = TemporaryFile::tempName();
+        Decompress dec(input, sTempDir);
+        TemporaryFile::registerForDeletion(sTempDir);
+
+        // extraction
+        try
         {
-            // creating new temporary directory and extracting into it
-            sTempDir = TemporaryFile::tempName();
-            Zip::Decompress dec(input, sTempDir);
-            TemporaryFile::registerForDeletion(sTempDir);
-            // valid extraction
-            isArchive = false;
-            try
-            {
-                dec.decompressAllFiles();
-                isArchive = true;
-            }
-            catch (Poco::Exception)
-            {
-                if (!pDetector)
-                {
-                    xmlFile = fileName;
-                }
-                else
-                {
-                    throw Poco::XML::XMLException("Bad file format");
-                }
-            }
-            if (isArchive)
-            {
-                Zip::Decompress::ZipMapping mapping = dec.mapping();
-                try
-                {
-                    xmlFile = mapping.at("scenario.xml").makeAbsolute(sTempDir).toString();
-                }
-                catch(out_of_range &e)
-                {
-                    throw Poco::XML::XMLException("No scenario in file " + fileName);
-                }
-            }
+            dec.decompressAllFiles();
+            isArchive = true;
         }
-        else
+        catch(exception)
         {
-            throw Poco::XML::XMLException("Unable to open the file " + fileName);
+            throw ZipException("Unable to unzip file");
+        }
+
+        Decompress::ZipMapping mapping = dec.mapping();
+        try
+        {
+            xmlFile = mapping.at("scenario.xml").makeAbsolute(sTempDir).toString();
+        }
+        catch(out_of_range)
+        {
+            throw XMLException("No scenario in the file");
         }
     }
     else
     {
-        throw Poco::XML::XMLException("Unrecognized file format");
+        xmlFile = fileName;
     }
 
     // reading the XML file
     DOMParser parser;
-    Document *document = parser.parse(xmlFile);
+    Document *document;
+    try
+    {
+        document = parser.parse(xmlFile);
+    }
+    catch (XMLException)
+    {
+        throw XMLException("Unable to parse the document");
+    }
     Element *root = document->documentElement();
     ioConfig = IOConfig::detect(xmlFile, root, isArchive);
 
     if (root->localName() != ioConfig.rootName())
     {
-        throw Poco::XML::XMLException("Bad document content type: " + ioConfig.rootName() + " expected");
+        throw XMLException("Bad document content type: " + ioConfig.rootName() + " expected");
     }
     // getting the user interface
     try
@@ -139,7 +134,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     }
     catch (invalid_argument)
     {
-        throw Poco::XML::XMLException("Bad user interface");
+        throw XMLException("Bad user interface");
     }
     // now loading the different parts of the game
     Element *element;
@@ -154,7 +149,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement(ioConfig.plotName());
     if (!element)
     {
-        throw Poco::XML::XMLException("Missing \"" + ioConfig.plotName() + "\" section");
+        throw XMLException("Missing \"" + ioConfig.plotName() + "\" section");
     }
     else
     {
@@ -163,7 +158,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement("notes");
     if (!element)
     {
-        throw Poco::XML::XMLException("Missing \"notes\" section");
+        throw XMLException("Missing \"notes\" section");
     }
     else
     {
@@ -172,7 +167,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement(ioConfig.propertiesName());
     if (!element)
     {
-        throw Poco::XML::XMLException("Missing \"" + ioConfig.propertiesName() + "\" section");
+        throw XMLException("Missing \"" + ioConfig.propertiesName() + "\" section");
     }
     else
     {
@@ -181,7 +176,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement("characters");
     if (!element)
     {
-        throw Poco::XML::XMLException("Missing \"characters\" section");
+        throw XMLException("Missing \"characters\" section");
     }
     else
     {
@@ -190,7 +185,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement("history");
     if (!element)
     {
-        throw Poco::XML::XMLException("Missing \"history\" section");
+        throw XMLException("Missing \"history\" section");
     }
     else
     {
@@ -199,7 +194,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement("music");
     if (!element)
     {
-        throw Poco::XML::XMLException("Missing \"music\" section");
+        throw XMLException("Missing \"music\" section");
     }
     else
     {
@@ -208,7 +203,7 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles)
     element = root->getChildElement("effects");
     if (!element)
     {
-        throw Poco::XML::XMLException("Missing \"effects\" section");
+        throw XMLException("Missing \"effects\" section");
     }
     else
     {

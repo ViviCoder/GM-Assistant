@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -29,7 +29,6 @@
 #include "ModificationQueue.h"
 #include "ItemDialog.h"
 #include "MetadataDialog.h"
-#include "FileDetector.h"
 #include <QtMultimedia/QMediaPlayer>
 
 // number of recently opened games stored
@@ -83,8 +82,6 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         QSignalMapper *smLanguage;
         //! Metadata editor
         MetadataDialog *pMetadataDialog;
-        //! File detector
-        FileDetector detector;
         //! Scenario
         Scenario sGame;
         //! Item editor

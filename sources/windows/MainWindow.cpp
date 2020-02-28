@@ -29,9 +29,9 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 #include "MetadataModification.h"
-#include <Poco/XML/XMLException.h>
+#include <Poco/Exception.h>
 
-MainWindow::MainWindow(const QString &install_dir): QMainWindow(), musicPlayer(new QMediaPlayer(this)), soundPlayer(new QMediaPlayer(this)), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), detector(install_dir.toStdString()), sGame(&detector), pItemDialog(new ItemDialog(this))
+MainWindow::MainWindow(const QString &install_dir): QMainWindow(), musicPlayer(new QMediaPlayer(this)), soundPlayer(new QMediaPlayer(this)), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), pItemDialog(new ItemDialog(this))
 {
     setupUi(this);
     updateDisplay();
@@ -300,9 +300,9 @@ void MainWindow::on_action_Load_triggered()
             {
                 sGame.fromFile(file.toStdString());
             }
-            catch (Poco::XML::XMLException &xml)
+            catch (Poco::Exception &poco)
             {
-                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0), QString(poco.displayText().c_str()));
                 sGame.clear();
                 file = "";
             }
@@ -347,9 +347,9 @@ void MainWindow::save(bool askForUpdate)
             action_Save->setEnabled(false);
             updateUndoRedo();
         }
-        catch (Poco::XML::XMLException &xml)
+        catch (Poco::Exception &poco)
         {
-            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0), QString(poco.displayText().c_str()));
         }
     }
 }
@@ -392,9 +392,9 @@ bool MainWindow::on_actionS_ave_as_triggered()
             QDir::setCurrent(QFileInfo(sFileName).dir().path());
             updateUndoRedo();
         }
-        catch (Poco::XML::XMLException &xml)
+        catch (Poco::Exception &poco)
         {
-            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),  QString(poco.displayText().c_str()));
             return false;
         }
     }
@@ -558,9 +558,9 @@ void MainWindow::on_action_Reload_triggered()
         {
             sGame.fromFile(sFileName.toStdString());
         }
-        catch (Poco::XML::XMLException &xml)
+        catch (Poco::Exception &poco)
         {
-            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0), QString(poco.displayText().c_str()));
             sGame.clear();
             sFileName = "";
         }

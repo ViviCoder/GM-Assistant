@@ -20,4 +20,3 @@ Once installed (see README.install), to launch GM-Assistant you need:
 - C++ standard library
 - Qt5 library (including the Multimedia module)
 - Poco library (including the XML and Zip modules)
-- Magic library

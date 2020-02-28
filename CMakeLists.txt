@@ -66,7 +66,6 @@ set (PROJECT_SOURCES
     sources/engine/modifications/ModificationQueue.cpp
     sources/engine/modifications/NoteModification.cpp
     sources/engine/modifications/TreeModification.cpp
-    sources/misc/FileDetector.cpp
     sources/widgets/QCustomHeaderView.cpp
     sources/widgets/QCustomTableWidget.cpp
     sources/widgets/QCustomTextEdit.cpp
@@ -121,21 +120,8 @@ if (${POCOXML_LIBRARY} STREQUAL POCOXML_LIBRARY-NOTFOUND)
     message(FATAL_ERROR "Could not find PocoXML library.")
 endif()
 
-# Magic
-find_path(MAGIC_INCLUDE_DIR
-    NAMES magic.h)
-if (${MAGIC_INCLUDE_DIR} STREQUAL MAGIC_INCLUDE_DIR-NOTFOUND)
-    message(FATAL_ERROR "Could not find magic.h.")
-endif()
-find_library(MAGIC_LIBRARY
-    NAMES magic)
-if (${MAGIC_LIBRARY} STREQUAL MAGIC_LIBRARY-NOTFOUND)
-    message(FATAL_ERROR "Could not find magic library.")
-endif()
-
 include_directories(
-    ${POCO_INCLUDE_DIR}
-    ${MAGIC_INCLUDE_DIR})
+    ${POCO_INCLUDE_DIR})
 
 # linguist tools
 find_package(Qt5LinguistTools)
@@ -170,8 +156,7 @@ target_link_libraries(${EXEC_NAME}
     Qt5::Multimedia
     ${POCO_LIBRARY}
     ${POCOZIP_LIBRARY}
-    ${POCOXML_LIBRARY}
-    ${MAGIC_LIBRARY})
+    ${POCOXML_LIBRARY})
 
 # installation
 set (BIN_DIR games)

@@ -10,7 +10,6 @@ To compile, you need:
 - Qt5 library, including the Multimedia module (with development files)
 - QtLinguist tools
 - Poco library, including the XML and Zip modules (with development files)
-- Magic library (with development files)
 
 **********************
 *    INSTRUCTIONS    *
