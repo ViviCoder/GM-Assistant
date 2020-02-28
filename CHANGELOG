@@ -2,6 +2,8 @@ Changes in version 1.2.2
 * Transitions
     - from Phonon to Qt Multimedia
     - from libxml++ to PocoXML
+* dropped dependency on libmagic
+* minor bug fixes
 
 Changes in version 1.2.1
 * Transitions
