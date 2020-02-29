@@ -47,7 +47,6 @@ Scenario::Scenario(): uiInterface(uiFull), ioConfig(Version())
 
 // XML methods
 
-#include <iostream>
 void Scenario::fromFile(const std::string &fileName, bool checkFiles)
 {
     using namespace Poco;
