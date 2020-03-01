@@ -856,7 +856,11 @@ void MainWindow::changeEvent(QEvent *e)
 void MainWindow::translationRequested(const QString &suffix)
 {
     tApplication->load(sInstall + "translations/gmassistant_" + suffix);
-    tSystem->load("qt_" + suffix, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+#ifdef _WIN32
+    tSystem->load(sInstall + "translations/qtbase_" + suffix);
+#else
+    tSystem->load("qtbase_" + suffix, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+#endif
 }
 
 void MainWindow::displayError(QMediaPlayer::Error error)
