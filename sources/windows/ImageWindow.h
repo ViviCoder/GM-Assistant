@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -16,8 +16,8 @@
 * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 *************************************************************************/
 
-#ifndef HEADER_PICTUREWINDOW
-#define HEADER_PICTUREWINDOW
+#ifndef HEADER_IMAGEWINDOW
+#define HEADER_IMAGEWINDOW
 
 #include <QLabel>
 #include <QMouseEvent>
@@ -85,6 +85,11 @@ class ImageWindow: public QLabel
          * \return True if the image was not loaded correctly
          */
         bool error() const;
+        /*!
+         * \brief Preferred size of the window
+         * \return Default size
+         */
+        QSize sizeHint() const override;
 };
 
 #endif
