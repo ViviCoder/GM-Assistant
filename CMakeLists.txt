@@ -162,6 +162,7 @@ target_link_libraries(${EXEC_NAME}
 set (BIN_DIR games)
 set (DATA_DIR share/games/${EXEC_NAME})
 set (DOC_DIR share/doc/${EXEC_NAME})
+set (MAN_DIR share/man)
 
 install(TARGETS ${EXEC_NAME}
     DESTINATION ${BIN_DIR})
@@ -170,7 +171,7 @@ install(FILES data/images/GMA.svg
 install(FILES ${TRANSLATION_QM} translations/languages
     DESTINATION ${DATA_DIR}/translations)
 install(FILES doc/gm-assistant.6
-    DESTINATION man/man6)
+    DESTINATION ${MAN_DIR}/man6)
 
 # desktop file
 set (DESKTOP_FILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/${EXEC_NAME}.desktop.in)
