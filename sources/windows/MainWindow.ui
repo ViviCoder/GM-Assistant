@@ -247,14 +247,26 @@
           </widget>
          </item>
          <item>
+          <widget class="QSlider" name="sliderMusic">
+           <property name="focusPolicy">
+            <enum>Qt::NoFocus</enum>
+           </property>
+           <property name="statusTip">
+            <string>Browse the music file</string>
+           </property>
+           <property name="singleStep">
+            <number>0</number>
+           </property>
+           <property name="pageStep">
+            <number>0</number>
+           </property>
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
           <layout class="QVBoxLayout" name="verticalLayout_2">
-           <item>
-            <widget class="Phonon::SeekSlider" name="sliderMusic">
-             <property name="statusTip">
-              <string>Browse the music file</string>
-             </property>
-            </widget>
-           </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout1">
              <item>
@@ -473,7 +485,7 @@
     <string>&amp;Full</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Plot, Notes, Characters, History, Music and Sound effects</string>
+    <string>Tools shown: Plot, Notes, Characters, History, Music and Sound effects</string>
    </property>
    <property name="shortcut">
     <string notr="true">F5</string>
@@ -487,7 +499,7 @@
     <string>&amp;Music</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Music and Sound effects</string>
+    <string>Tools shown: Music and Sound effects</string>
    </property>
    <property name="shortcut">
     <string notr="true">F7</string>
@@ -501,7 +513,7 @@
     <string>&amp;Simple</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Plot, Music and Sound effects</string>
+    <string>Tools shown: Plot, Music and Sound effects</string>
    </property>
    <property name="shortcut">
     <string notr="true">F6</string>
@@ -515,7 +527,7 @@
     <string>&amp;Design</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Plot, Characters and Notes</string>
+    <string>Tools shown: Plot, Characters and Notes</string>
    </property>
    <property name="shortcut">
     <string notr="true">F8</string>
@@ -529,7 +541,7 @@
     <string>&amp;No Music</string>
    </property>
    <property name="statusTip">
-    <string>Tools shown : Plot, Characters, History and Notes</string>
+    <string>Tools shown: Plot, Characters, History and Notes</string>
    </property>
    <property name="shortcut">
     <string notr="true">F9</string>
@@ -608,11 +620,6 @@
   </action>
  </widget>
  <customwidgets>
-  <customwidget>
-   <class>Phonon::SeekSlider</class>
-   <extends>QWidget</extends>
-   <header location="global">phonon/seekslider.h</header>
-  </customwidget>
   <customwidget>
    <class>QCustomTreeWidget</class>
    <extends>QTreeWidget</extends>

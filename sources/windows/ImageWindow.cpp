@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@
 #include "ImageWindow.h"
 #include <QPainter>
 #include <QFileInfo>
+#include <QApplication>
+#include <QDesktopWidget>
 
 ImageWindow::ImageWindow(const std::string &pictureFileName, QWidget *parent): QLabel(parent), bError(false), sImageFileName(pictureFileName), bSvg(true), renderer(0) 
 {
@@ -62,6 +64,7 @@ ImageWindow::ImageWindow(const std::string &pictureFileName, QWidget *parent): Q
         // the size is fixed when the image does not exist
         QRectF rect = renderer->viewBoxF();
         dAspectRatio = rect.width()/rect.height();
+
     }
     showNormal();
 }
@@ -70,6 +73,7 @@ void ImageWindow::mouseReleaseEvent(QMouseEvent *)
 {
     if (!isFullScreen())
     {
+        setWindowState(Qt::WindowMaximized);
         showFullScreen();
     }
     else
@@ -118,4 +122,10 @@ void ImageWindow::resizeEvent(QResizeEvent *e)
 bool ImageWindow::error() const
 {
     return bError;
+}
+
+QSize ImageWindow::sizeHint() const
+{
+    QRect screen = QApplication::desktop()->screenGeometry(this);
+    return QSize(screen.width() / 2, (2 * screen.height() / 3));
 }

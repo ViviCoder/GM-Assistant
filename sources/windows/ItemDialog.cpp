@@ -19,7 +19,7 @@
 #include "ItemDialog.h"
 #include <QMessageBox>
 
-ItemDialog::ItemDialog(QWidget *parent, QAudioProxyModel *filter): QDialog(parent), audioBrowser(new QFileDialog(this, QApplication::translate("itemDialog", "Select the audio file to associate to the item", 0)))
+ItemDialog::ItemDialog(QWidget *parent): QDialog(parent), audioBrowser(new QFileDialog(this, QApplication::translate("itemDialog", "Select the audio file to associate to the item", 0)))
 {
     setupUi(this);
     // setting the audio browser up
@@ -27,10 +27,6 @@ ItemDialog::ItemDialog(QWidget *parent, QAudioProxyModel *filter): QDialog(paren
     audioBrowser->setFileMode(QFileDialog::ExistingFile);
     audioBrowser->setReadOnly(true);
     audioBrowser->setNameFilterDetailsVisible(false);
-    if (filter)
-    {
-        audioBrowser->setProxyModel(filter);
-    }
 }
 
 Item::State ItemDialog::state() const

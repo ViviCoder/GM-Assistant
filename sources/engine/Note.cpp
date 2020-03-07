@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2016 Vincent Prat & Simon Nicolas
+* Copyright © 2016-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,8 @@
 
 #include "Note.h"
 #include "Item.h"
+#include <Poco/DOM/Document.h>
+#include <Poco/DOM/Text.h>
 
 using namespace std;
 
@@ -25,38 +27,28 @@ Note::Note(const string &title, const string &text, bool visible): sTitle(title)
 {
 }
 
-void Note::fromXML(const xmlpp::Element &root)
+void Note::fromXML(const Poco::XML::Element *root)
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
-    Attribute *attr;
-    // title
-    attr = root.get_attribute("title");
-    sTitle = "";
-    if (attr)
-    {
-        sTitle = attr->get_value();
-    }
+    sTitle = root->getAttribute("title");
     // visibility
-    attr = root.get_attribute("visible");
+    string attr = root->getAttribute("visible");
     bVisible = false;
-    if (attr)
+    if (!attr.empty())
     {
-        bVisible = Item::strToBool(attr->get_value());
+        bVisible = Item::strToBool(attr);
     }
     // text
-    sText = "";
-    if (root.has_child_text())
-    {
-        sText = root.get_child_text()->get_content();
-    }
+    sText = root->innerText();
 }
 
-void Note::toXML(xmlpp::Element &root) const
+void Note::toXML(Poco::XML::Element *root) const
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
-    root.set_attribute("title", sTitle);
-    root.set_attribute("visible", Item::boolToStr(bVisible));
-    root.add_child_text(sText);
+    root->setAttribute("title", sTitle);
+    root->setAttribute("visible", Item::boolToStr(bVisible));
+    Document *document = root->ownerDocument();
+    root->appendChild(document->createTextNode(sText));
 }

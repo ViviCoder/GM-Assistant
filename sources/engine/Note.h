@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2016 Vincent Prat & Simon Nicolas
+* Copyright © 2016-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #define HEADER_NOTE
 
 #include <string>
-#include <libxml++/libxml++.h>
+#include <Poco/DOM/Element.h>
 
 /*!
  * \brief Text note
@@ -69,12 +69,12 @@ class Note
          * \brief XML loader
          * \param root Root of the XML tree
          */
-        void fromXML(const xmlpp::Element &root);
+        void fromXML(const Poco::XML::Element *root);
         /*!
          * \brief XML saver
          * \param root Root of the XML tree
          */
-        void toXML(xmlpp::Element &root) const;
+        void toXML(Poco::XML::Element *root) const;
     private:
         //! Title
         std::string sTitle;

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,102 +23,108 @@
 #include <Poco/FileStream.h>
 #include <Poco/TemporaryFile.h>
 #include <Poco/Zip/Compress.h>
+#include <Poco/DOM/DOMParser.h>
+#include <Poco/DOM/Document.h>
+#include <Poco/DOM/Element.h>
+#include <Poco/DOM/Text.h>
+#include <Poco/DOM/DOMWriter.h>
+#include <Poco/UTF8Encoding.h>
+#include <Poco/XML/XMLWriter.h>
+#include <fstream>
+#include <Poco/XML/XMLException.h>
+#include <cstring>
+#include <Poco/Zip/ZipException.h>
+
+#define BUFFER_SIZE   4
 
 using namespace std;
 
 // constructors
 
-Scenario::Scenario(const FileDetector *detector): uiInterface(uiFull), ioConfig(Version()), pDetector(0)
+Scenario::Scenario(): uiInterface(uiFull), ioConfig(Version())
 {
-    if (detector && detector->isValid())
-    {
-        pDetector = detector;
-    }
 }
 
 // XML methods
 
-void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlpp::exception, invalid_argument)
+void Scenario::fromFile(const std::string &fileName, bool checkFiles)
 {
-    using namespace xmlpp;
     using namespace Poco;
+    using namespace Poco::XML;
+    using namespace Poco::Zip;
     string xmlFile, fileType;
     bool isArchive = false;
 
     clear();
-    if (pDetector)
-    {
-       fileType = pDetector->typeOfFile(fileName);
-    }
-    if (fileType == "text/xml" || fileType == "application/xml")
-    {
-        xmlFile = fileName;
-    }
-    else if (!pDetector || fileType == "application/zip")
+
+    // search for the signature of zip files
+    char buffer[BUFFER_SIZE];
+
+    FileInputStream input_test(fileName.c_str(), std::ios::binary);
+    input_test.read(buffer, BUFFER_SIZE);
+    input_test.close();
+
+    if (!strncmp(buffer, "PK\3\4", BUFFER_SIZE))
     {
         // attempt to unzip
         FileInputStream input(fileName.c_str());
-        if (input.good())
+
+        // creating new temporary directory
+        sTempDir = TemporaryFile::tempName();
+        Decompress dec(input, sTempDir);
+        TemporaryFile::registerForDeletion(sTempDir);
+
+        // extraction
+        try
         {
-            // creating new temporary directory and extracting into it
-            sTempDir = TemporaryFile::tempName();
-            Zip::Decompress dec(input, sTempDir);
-            TemporaryFile::registerForDeletion(sTempDir);
-            // valid extraction
-            isArchive = false;
-            try
-            {
-                dec.decompressAllFiles();
-                isArchive = true;
-            }
-            catch (Poco::Exception)
-            {
-                if (!pDetector)
-                {
-                    xmlFile = fileName;
-                }
-                else
-                {
-                    throw xmlpp::exception("Bad file format");
-                }
-            }
-            if (isArchive)
-            {
-                Zip::Decompress::ZipMapping mapping = dec.mapping();
-                try
-                {
-                    xmlFile = mapping.at("scenario.xml").makeAbsolute(sTempDir).toString();
-                }
-                catch(out_of_range &e)
-                {
-                    throw xmlpp::exception("No scenario in file " + fileName);
-                }
-            }
+            dec.decompressAllFiles();
+            isArchive = true;
         }
-        else
+        catch(exception)
         {
-            throw xmlpp::exception("Unable to open the file " + fileName);
+            throw ZipException("Unable to unzip file");
+        }
+
+        Decompress::ZipMapping mapping = dec.mapping();
+        try
+        {
+            xmlFile = mapping.at("scenario.xml").makeAbsolute(sTempDir).toString();
+        }
+        catch(out_of_range)
+        {
+            throw XMLException("No scenario in the file");
         }
     }
     else
     {
-        throw xmlpp::exception("Unrecognized file format");
+        xmlFile = fileName;
     }
-    ioConfig = IOConfig::detect(xmlFile, isArchive);
-    DomParser parser(xmlFile);
-    Document *document = parser.get_document();
-    Element *root = document->get_root_node();
-    if (root->get_name() != ioConfig.rootName())
+
+    // reading the XML file
+    DOMParser parser;
+    Document *document;
+    try
     {
-        throw xmlpp::exception("Bad document content type: " + ioConfig.rootName() + " expected");
+        document = parser.parse(xmlFile);
+    }
+    catch (XMLException)
+    {
+        throw XMLException("Unable to parse the document");
+    }
+    Element *root = document->documentElement();
+    ioConfig = IOConfig::detect(xmlFile, root, isArchive);
+
+    if (root->localName() != ioConfig.rootName())
+    {
+        throw XMLException("Bad document content type: " + ioConfig.rootName() + " expected");
     }
     // getting the user interface
     try
     {
-        Attribute *attr = root->get_attribute("interface");
-        if (attr)
+        string attr = root->getAttribute("interface");
+        if (!attr.empty())
         {
-            uiInterface = stringToInterface(attr->get_value());
+            uiInterface = stringToInterface(attr);
         }
         else
         {
@@ -127,120 +133,125 @@ void Scenario::fromFile(const std::string &fileName, bool checkFiles) throw(xmlp
     }
     catch (invalid_argument)
     {
-        throw xmlpp::exception("Bad user interface");
+        throw XMLException("Bad user interface");
     }
     // now loading the different parts of the game
-    Node::NodeList node;
+    Element *element;
     if (ioConfig.hasMetadata())
     {
-        node = root->get_children("metadata");
-        if (!node.empty())
+        element = root->getChildElement("metadata");
+        if (element)
         {
-            mMetadata.fromXML(*dynamic_cast<Element*>(node.front()));
+            mMetadata.fromXML(element);
         }
     }
-    node = root->get_children(ioConfig.plotName());
-    if (node.empty())
+    element = root->getChildElement(ioConfig.plotName());
+    if (!element)
     {
-        throw xmlpp::exception("Missing \"" + ioConfig.plotName() + "\" section");
+        throw XMLException("Missing \"" + ioConfig.plotName() + "\" section");
     }
     else
     {
-        tPlot.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles);
+        tPlot.fromXML(ioConfig, element, checkFiles);
     }
-    node = root->get_children("notes");
-    if (node.empty())
+    element = root->getChildElement("notes");
+    if (!element)
     {
-        throw xmlpp::exception("Missing \"notes\" section");
+        throw XMLException("Missing \"notes\" section");
     }
     else
     {
-        Element *elem = dynamic_cast<Element*>(node.front());
-        string mainText = "";
-        if (elem->has_child_text())
-        {
-            mainText = elem->get_child_text()->get_content();
-        }
-        nMain = Note("", mainText);
+        nMain = Note("", element->innerText());
     }
-    node = root->get_children(ioConfig.propertiesName());
-    if (node.empty())
+    element = root->getChildElement(ioConfig.propertiesName());
+    if (!element)
     {
-        throw xmlpp::exception("Missing \"" + ioConfig.propertiesName() + "\" section");
+        throw XMLException("Missing \"" + ioConfig.propertiesName() + "\" section");
     }
     else
     {
-        lProperties.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()));
+        lProperties.fromXML(ioConfig, element);
     }
-    node = root->get_children("characters");
-    if (node.empty())
+    element = root->getChildElement("characters");
+    if (!element)
     {
-        throw xmlpp::exception("Missing \"characters\" section");
+        throw XMLException("Missing \"characters\" section");
     }
     else
     {
-        lCharacters.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()));
+        lCharacters.fromXML(ioConfig, element);
     }
-    node = root->get_children("history");
-    if (node.empty())
+    element = root->getChildElement("history");
+    if (!element)
     {
-        throw xmlpp::exception("Missing \"history\" section");
+        throw XMLException("Missing \"history\" section");
     }
     else
     {
-        tHistory.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles);
+        tHistory.fromXML(ioConfig, element, checkFiles);
     }
-    node = root->get_children("music");
-    if (node.empty())
+    element = root->getChildElement("music");
+    if (!element)
     {
-        throw xmlpp::exception("Missing \"music\" section");
+        throw XMLException("Missing \"music\" section");
     }
     else
     {
-        tMusic.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles);
+        tMusic.fromXML(ioConfig, element, checkFiles);
     }
-    node = root->get_children("effects");
-    if (node.empty())
+    element = root->getChildElement("effects");
+    if (!element)
     {
-        throw xmlpp::exception("Missing \"effects\" section");
+        throw XMLException("Missing \"effects\" section");
     }
     else
     {
-        tEffects.fromXML(ioConfig, *dynamic_cast<Element*>(node.front()), checkFiles);
+        tEffects.fromXML(ioConfig, element, checkFiles);
     }
+
+    document->release();
 }
 
 void Scenario::toFile(const string &fileName) const
 {
-    using namespace xmlpp;
     using namespace Poco;
+    using namespace Poco::XML;
 
     // file mapping (for archives)
     FileMapping fileMapping;
-    Document document;
-    Element *root = document.create_root_node(ioConfig.rootName());
-    root->set_attribute("version",ioConfig.version().shortVersion());
-    root->set_attribute("interface",interfaceToString(uiInterface));
+    Document *document = new Document;
+    Element *root = document->createElement(ioConfig.rootName());
+    document->appendChild(root);
+    root->setAttribute("version", ioConfig.version().shortVersion());
+    root->setAttribute("interface", interfaceToString(uiInterface));
     Element *tmp;
     if (ioConfig.hasMetadata())
     {
-       tmp = root->add_child("metadata");
-       mMetadata.toXML(*tmp);
+        tmp = document->createElement("metadata");
+        root->appendChild(tmp);
+        mMetadata.toXML(tmp);
     }
-    tmp = root->add_child(ioConfig.plotName());
-    tPlot.toXML(ioConfig, *tmp, fileMapping);
-    tmp = root->add_child("notes");
-    tmp->add_child_text(nMain.text());
-    tmp = root->add_child(ioConfig.propertiesName());
-    lProperties.toXML(ioConfig, *tmp);
-    tmp = root->add_child("characters");
-    lCharacters.toXML(ioConfig, *tmp);
-    tmp = root->add_child("history");
-    tHistory.toXML(ioConfig, *tmp, fileMapping);
-    tmp = root->add_child("music");
-    tMusic.toXML(ioConfig, *tmp, fileMapping);
-    tmp = root->add_child("effects");
-    tEffects.toXML(ioConfig, *tmp, fileMapping);
+    tmp = document->createElement(ioConfig.plotName());
+    root->appendChild(tmp);
+    tPlot.toXML(ioConfig, tmp, fileMapping);
+    tmp = document->createElement("notes");
+    root->appendChild(tmp);
+    tmp->appendChild(document->createTextNode(nMain.text()));
+    tmp = document->createElement(ioConfig.propertiesName());
+    root->appendChild(tmp);
+    lProperties.toXML(ioConfig, tmp);
+    tmp = document->createElement("characters");
+    root->appendChild(tmp);
+    lCharacters.toXML(ioConfig, tmp);
+    tmp = document->createElement("history");
+    root->appendChild(tmp);
+    tHistory.toXML(ioConfig, tmp, fileMapping);
+    tmp = document->createElement("music");
+    root->appendChild(tmp);
+    tMusic.toXML(ioConfig, tmp, fileMapping);
+    tmp = document->createElement("effects");
+    root->appendChild(tmp);
+    tEffects.toXML(ioConfig, tmp, fileMapping);
     // saved XML file and temporary directory (if needed)
     string xmlFile(fileName);
     File tempDir;
@@ -251,7 +262,14 @@ void Scenario::toFile(const string &fileName) const
         TemporaryFile::registerForDeletion(tempDir.path());
         xmlFile = tempDir.path() + "/scenario.xml";        
     }
-    document.write_to_file_formatted(xmlFile, "UTF-8");
+    DOMWriter writer;
+    writer.setNewLine("\n");
+    UTF8Encoding encoding;
+    writer.setEncoding("UTF-8", encoding);
+    writer.setOptions(XMLWriter::WRITE_XML_DECLARATION | XMLWriter::PRETTY_PRINT);
+    FileOutputStream outputXML(xmlFile.c_str());
+    writer.writeNode(outputXML, document);
+    outputXML.close();
     if (ioConfig.isArchived())
     {
         // adding files to the archive
@@ -274,6 +292,8 @@ void Scenario::toFile(const string &fileName) const
         comp.close();
         tempDir.remove(true);
     }
+
+    document->release();
 }
 
 // methods
@@ -314,7 +334,7 @@ string Scenario::interfaceToString(UserInterface interface)
     }
 }
 
-Scenario::UserInterface Scenario::stringToInterface(const std::string& interface) throw(invalid_argument)
+Scenario::UserInterface Scenario::stringToInterface(const std::string& interface)
 {
     if (interface=="full")
         return uiFull;

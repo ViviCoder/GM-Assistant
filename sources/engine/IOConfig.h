@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013-2016 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -21,6 +21,7 @@
 
 #include "Version.h"
 #include <string>
+#include <Poco/DOM/Element.h>
 
 /*!
  * \brief Input/Output configuration for games/scenarii
@@ -141,11 +142,12 @@ class IOConfig
         inline Version version() const;
         /*!
          * \brief IOConfig detector
-         * \param fileName Name of the file to scan
+         * \param fileName File name of the XML file (extracted if needed from the game file)
+         * \param root Root element of the corresonding XML tree
          * \param isArchived Indicates if the game file is an archive
-         * \return Pointer to an IO configuration corresponding to the given file
+         * \return IO configuration corresponding to the given file
          */
-        static IOConfig detect(const std::string &fileName, bool isArchived);
+        static IOConfig detect(const std::string &fileName, const Poco::XML::Element *root, bool isArchived);
         /*!
          * \brief Getter for the flag of validity
          * \return Validity of the configuration

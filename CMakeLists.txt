@@ -1,5 +1,5 @@
 #*************************************************************************
-# Copyright © 2017-2019 Vincent Prat
+# Copyright © 2017-2020 Vincent Prat
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -68,11 +68,7 @@ set (PROJECT_SOURCES
     sources/engine/modifications/ModificationQueue.cpp
     sources/engine/modifications/NoteModification.cpp
     sources/engine/modifications/TreeModification.cpp
-    sources/misc/FileDetector.cpp
-    sources/misc/QAudioProxyModel.cpp
-    sources/misc/QSoundEngine.cpp
     sources/widgets/QCustomHeaderView.cpp
-    sources/widgets/QCustomSlider.cpp
     sources/widgets/QCustomTabBar.cpp
     sources/widgets/QCustomTableWidget.cpp
     sources/widgets/QCustomTabWidget.cpp
@@ -105,10 +101,7 @@ set (PROJECT_FORMS
 # find libraries
 find_package(Qt5Widgets REQUIRED)
 find_package(Qt5Svg REQUIRED)
-find_package(PkgConfig REQUIRED)
-find_package(Phonon4Qt5 REQUIRED)
-
-pkg_check_modules(XMLPP REQUIRED libxml++-2.6)
+find_package(Qt5Multimedia REQUIRED)
 
 # Poco
 find_path(POCO_INCLUDE_DIR
@@ -127,24 +120,14 @@ find_library(POCOZIP_LIBRARY
 if (${POCOZIP_LIBRARY} STREQUAL POCOZIP_LIBRARY-NOTFOUND)
     message(FATAL_ERROR "Could not find PocoZip library.")
 endif()
-
-# Magic
-find_path(MAGIC_INCLUDE_DIR
-    NAMES magic.h)
-if (${MAGIC_INCLUDE_DIR} STREQUAL MAGIC_INCLUDE_DIR-NOTFOUND)
-    message(FATAL_ERROR "Could not find magic.h.")
-endif()
-find_library(MAGIC_LIBRARY
-    NAMES magic)
-if (${MAGIC_LIBRARY} STREQUAL MAGIC_LIBRARY-NOTFOUND)
-    message(FATAL_ERROR "Could not find magic library.")
+find_library(POCOXML_LIBRARY
+    NAMES PocoXML)
+if (${POCOXML_LIBRARY} STREQUAL POCOXML_LIBRARY-NOTFOUND)
+    message(FATAL_ERROR "Could not find PocoXML library.")
 endif()
 
 include_directories(
-    ${XMLPP_INCLUDE_DIRS}
-    ${PHONON_INCLUDE_DIR}/phonon
-    ${POCO_INCLUDE_DIR}
-    ${MAGIC_INCLUDE_DIR})
+    ${POCO_INCLUDE_DIR})
 
 # linguist tools
 find_package(Qt5LinguistTools)
@@ -176,16 +159,16 @@ add_executable(${EXEC_NAME}
 target_link_libraries(${EXEC_NAME}
     Qt5::Widgets
     Qt5::Svg
-    ${XMLPP_LIBRARIES}
+    Qt5::Multimedia
     ${POCO_LIBRARY}
     ${POCOZIP_LIBRARY}
-    ${MAGIC_LIBRARY}
-    ${PHONON_LIBRARY})
+    ${POCOXML_LIBRARY})
 
 # installation
 set (BIN_DIR games)
 set (DATA_DIR share/games/${EXEC_NAME})
 set (DOC_DIR share/doc/${EXEC_NAME})
+set (MAN_DIR share/man)
 
 install(TARGETS ${EXEC_NAME}
     DESTINATION ${BIN_DIR})
@@ -194,7 +177,7 @@ install(FILES data/images/GMA.svg
 install(FILES ${TRANSLATION_QM} translations/languages
     DESTINATION ${DATA_DIR}/translations)
 install(FILES doc/gm-assistant.6
-    DESTINATION man/man6)
+    DESTINATION ${MAN_DIR}/man6)
 
 # desktop file
 set (DESKTOP_FILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/${EXEC_NAME}.desktop.in)

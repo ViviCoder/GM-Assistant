@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -18,6 +18,7 @@
 
 #include "TreeModification.h"
 #include "ItemFactory.h"
+#include <sstream>
 
 using namespace std;
 

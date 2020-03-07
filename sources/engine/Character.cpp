@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 *************************************************************************/
 
 #include "Character.h"
+#include <Poco/DOM/NodeList.h>
+#include <Poco/DOM/Document.h>
 
 using namespace std;
 
@@ -34,7 +36,7 @@ Character::~Character()
     }
 }
 
-std::string& Character::property(int index) throw(out_of_range)
+std::string& Character::property(int index)
 {
     if (index < 0 || (unsigned int)index >= vProperties.size())
     {
@@ -50,47 +52,46 @@ unsigned int Character::propertyNumber() const
 
 // methods
 
-void Character::toXML(const IOConfig &config, xmlpp::Element &root) const
+void Character::toXML(const IOConfig &config, Poco::XML::Element *root) const
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
+    Document *document = root->ownerDocument();
     if (config.hasNotes())
     {
-        Element *tmp = root.add_child("note");
-        pNote->toXML(*tmp);
+        Element *tmp = document->createElement("note");
+        root->appendChild(tmp);
+        pNote->toXML(tmp);
     }
     for (vector<std::string>::const_iterator it = vProperties.begin(); it != vProperties.end(); it++)
     {
-        Element *tmp = root.add_child(config.propertyName());
-        tmp->set_attribute("value",*it);
+        Element *tmp = document->createElement(config.propertyName());
+        root->appendChild(tmp);
+        tmp->setAttribute("value", *it);
     }
 }
 
-void Character::fromXML(const IOConfig &config, const xmlpp::Element &root)
+void Character::fromXML(const IOConfig &config, const Poco::XML::Element *root)
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
     if (config.hasNotes())
     {
-        Node::NodeList node = root.get_children("note");
-        if (!node.empty())
+        Element *element = root->getChildElement("note");
+        if (element)
         {
-            pNote->fromXML(*dynamic_cast<Element*>(node.front()));
+            pNote->fromXML(element);
         }
     }
     clearProperties();
-    Node::NodeList list = root.get_children(config.propertyName());
-    for (Node::NodeList::const_iterator it = list.begin(); it != list.end(); it++)
+    NodeList *list = root->getElementsByTagName(config.propertyName());
+    for (int i = 0; i < list->length(); i++)
     {
-        Element *elem = dynamic_cast<Element *>(*it);
-        string value;
-        Attribute *attr = elem->get_attribute("value");
-        if (attr)
-        {
-            value = attr->get_value();
-        }
+        Element *elem = static_cast<Element*>(list->item(i));
+        string value = elem->getAttribute("value");
         vProperties.push_back(value);
     }
+    list->release();
 }
 
 void Character::addProperty(const std::string &property, int position)
@@ -106,7 +107,7 @@ void Character::addProperty(const std::string &property, int position)
     }
 }
 
-void Character::removeProperty(int index) throw(out_of_range)
+void Character::removeProperty(int index)
 {
     if (index < 0 || (unsigned int)index >= vProperties.size())
     {
@@ -115,7 +116,7 @@ void Character::removeProperty(int index) throw(out_of_range)
     vProperties.erase(vProperties.begin()+index);
 }
 
-bool Character::moveProperty(int source, int destination) throw(out_of_range)
+bool Character::moveProperty(int source, int destination)
 {
     if (source < 0 || (unsigned int)source >= vProperties.size())
     {

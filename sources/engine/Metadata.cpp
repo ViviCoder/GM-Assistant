@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 #include "Metadata.h"
 #include <ctime>
 #include <sstream>
+#include <Poco/DOM/Text.h>
 
 using namespace std;
 
@@ -26,98 +27,75 @@ Metadata::Metadata()
 {
 }
 
-void Metadata::fromXML(const xmlpp::Element &root)
+void Metadata::fromXML(const Poco::XML::Element *root)
 {
-    using namespace xmlpp;
-
-    Attribute *attr;
-    Node::NodeList node = root.get_children("title");
-    if (!node.empty())
+    Poco::XML::Element *element = root->getChildElement("title");
+    if (element)
     {
-        attr = dynamic_cast<Element*>(node.front())->get_attribute("value");
-        if (attr)
-        {
-            setTitle(attr->get_value());
-        }
+        setTitle(element->getAttribute("value"));
     }
-    node = root.get_children("author");
-    if (!node.empty())
+    element = root->getChildElement("author");
+    if (element)
     {
-        attr = dynamic_cast<Element*>(node.front())->get_attribute("value");
-        if (attr)
-        {
-            setAuthor(attr->get_value());
-        }
+        setAuthor(element->getAttribute("value"));
     }
-    node = root.get_children("creation");
-    if (!node.empty())
+    element = root->getChildElement("creation");
+    if (element)
     {
-        attr = dynamic_cast<Element*>(node.front())->get_attribute("date");
-        if (attr)
-        {
-            setCreationDate(Date(attr->get_value()));
-        }
+        setCreationDate(element->getAttribute("date"));
     }
-    node = root.get_children("description");
-    if (!node.empty())
+    element = root->getChildElement("description");
+    if (element)
     {
-        Element *tmp = dynamic_cast<Element*>(node.front());
-        if (tmp->has_child_text())
-        {
-            setDescription(tmp->get_child_text()->get_content());
-        }
+        setDescription(element->innerText());
     }
-    node = root.get_children("rpg");
-    if (!node.empty())
+    element = root->getChildElement("rpg");
+    if (element)
     {
-        attr = dynamic_cast<Element*>(node.front())->get_attribute("value");
-        if (attr)
-        {
-            setRpg(attr->get_value());
-        }
+        setRpg(element->getAttribute("value"));
     }
-    node = root.get_children("players");
-    if (!node.empty())
+    element = root->getChildElement("players");
+    if (element)
     {
-        attr = dynamic_cast<Element*>(node.front())->get_attribute("value");
-        if (attr)
-        {
-            setPlayers(attr->get_value());
-        }
+        setPlayers(element->getAttribute("value"));
     }
-    node = root.get_children("game");
-    if (!node.empty())
+    element = root->getChildElement("game");
+    if (element)
     {
-        attr = dynamic_cast<Element*>(node.front())->get_attribute("date");
-        if (attr)
-        {
-            setGameDate(Date(attr->get_value()));
-        }
+        setGameDate(element->getAttribute("date"));
     }
 }
 
-void Metadata::toXML(xmlpp::Element &root) const
+void Metadata::toXML(Poco::XML::Element *root) const
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
-    Element *tmp = root.add_child("title");
-    tmp->set_attribute("value", sTitle);
-    tmp = root.add_child("author");
-    tmp->set_attribute("value", sAuthor);
-    tmp = root.add_child("creation");
+    Document *document = root->ownerDocument();
+    Element *tmp = document->createElement("title");
+    root->appendChild(tmp);
+    tmp->setAttribute("value", sTitle);
+    tmp = document->createElement("author");
+    root->appendChild(tmp);
+    tmp->setAttribute("value", sAuthor);
+    tmp = document->createElement("creation");
+    root->appendChild(tmp);
     stringstream bufCreation;
     bufCreation << dCreation.day() << "/" << dCreation.month() << "/" << dCreation.year();
-    tmp->set_attribute("date", bufCreation.str());
-    tmp = root.add_child("description");
-    tmp->add_child_text(sDescription);
-    tmp = root.add_child("rpg");
-    tmp->set_attribute("value", sRpg);
-    tmp = root.add_child("players");
-    tmp->set_attribute("value", sPlayers);
-    tmp = root.add_child("game");
+    tmp->setAttribute("date", bufCreation.str());
+    tmp = document->createElement("description");
+    root->appendChild(tmp);
+    tmp->appendChild(document->createTextNode(sDescription));
+    tmp = document->createElement("rpg");
+    root->appendChild(tmp);
+    tmp->setAttribute("value", sRpg);
+    tmp = document->createElement("players");
+    root->appendChild(tmp);
+    tmp->setAttribute("value", sPlayers);
+    tmp = document->createElement("game");
+    root->appendChild(tmp);
     stringstream bufGame;
     bufGame << dGame.day() << "/" << dGame.month() << "/" << dGame.year();
-    tmp->set_attribute("date", bufGame.str());
+    tmp->setAttribute("date", bufGame.str());
 }
 
 bool Metadata::operator!=(const Metadata &metadata) const

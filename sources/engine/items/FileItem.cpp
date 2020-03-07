@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@
 #include "FileItem.h"
 #include <Poco/File.h>
 #include <Poco/Path.h>
+#include <Poco/XML/XMLException.h>
+#include <Poco/DOM/Document.h>
 
 using namespace std;
 
@@ -30,7 +32,7 @@ FileItem::FileItem(const string &content, State state, bool expanded, const stri
     }
 }
 
-void FileItem::setFileName(const string &fileName, bool checkFile) throw(invalid_argument)
+void FileItem::setFileName(const string &fileName, bool checkFile)
 {
     sFileName = fileName;
     Poco::File file(fileName.c_str());
@@ -40,24 +42,19 @@ void FileItem::setFileName(const string &fileName, bool checkFile) throw(invalid
     }
 }
 
-void FileItem::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFile) throw(xmlpp::exception, invalid_argument)
+void FileItem::fromXML(const IOConfig &config, const Poco::XML::Element *root, bool checkFile)
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
     
-    Node::NodeList list = root.get_children("file");
-    string name = "";
-    if (list.size()==0)
+    Element *elem = root->getChildElement("file");
+    string name;
+    if (elem)
     {
-        throw xmlpp::exception("Missing file name");
+        name = elem->getAttribute("name");
     }
     else
     {
-        Element *tmp = dynamic_cast<Element*>(list.front());
-        Attribute *attr = tmp->get_attribute("name");
-        if (attr)
-        {
-            name = attr->get_value();
-        }
+        throw Poco::XML::XMLException("Missing file name");
     }
     if (config.isArchived())
     {
@@ -67,16 +64,18 @@ void FileItem::fromXML(const IOConfig &config, const xmlpp::Element &root, bool 
     setFileName(name, checkFile);
 }
 
-void FileItem::toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping)
+void FileItem::toXML(const IOConfig &config, Poco::XML::Element *root, FileMapping &fileMapping)
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
-    Element *tmp = root.add_child("file");
+    Document *document = root->ownerDocument();
+    Element *tmp = document->createElement("file");
+    root->appendChild(tmp);
     std::string fileName(sFileName);
     if (config.isArchived())
     {
         fileName = Poco::Path(sFileName).getFileName();
         fileName = Poco::Path(fileMapping.addFile(sFileName, subdirectory() + fileName)).getFileName();
     }
-    tmp->set_attribute("name", fileName);
+    tmp->setAttribute("name", fileName);
 }

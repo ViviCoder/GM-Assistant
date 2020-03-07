@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #define HEADER_ITEM
 
 #include "FileMapping.h"
-#include <libxml++/libxml++.h>
+#include <Poco/DOM/Element.h>
 #include "IOConfig.h"
 #include "FileMapping.h"
 
@@ -79,17 +79,17 @@ class Item
         /*!
          * \brief XML loader
          * \param config IO configuration
-         * \param root Root of the tree
+         * \param root Root of the XML subtree
          * \param checkFiles Indicates if the existence of potential files is checked
          */
-        virtual void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles);
+        virtual void fromXML(const IOConfig &config, const Poco::XML::Element *root, bool checkFiles);
         /*!
          * \brief XML saver
          * \param config IO configuration
-         * \param root Root of the XML tree
+         * \param root Root of the XML subtree
          * \param fileMapping Mapping of files associated with items (for archives)
          */
-        virtual void toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping);
+        virtual void toXML(const IOConfig &config, Poco::XML::Element *root, FileMapping &fileMapping);
         // static methods to get a link between strings and state or type
         static std::string stateToStr(State state);
         /*!
@@ -97,18 +97,21 @@ class Item
          * \param type Type
          * \param config IO configuration
          * \return String equivalent to the type
-         * \throw xmlpp::exception Thrown when the given string does not correspond to any state
          */
         static std::string typeToStr(Type type, const IOConfig &config);
-        static State strToState(const std::string &name) throw(xmlpp::exception);
+        /*!
+         * \brief Conversion method from string to State
+         * \param name Name of the state
+         * \return State equivalent to the string
+         */
+        static State strToState(const std::string &name);
         /*!
          * \brief Conversion method from string to Type
          * \param name Name of the type
          * \param config IO configuration
          * \return Type equivalent to the string
-         * \throw xmlpp::exception Thrown when the given string does not correspond to any type
          */
-        static Type strToType(const std::string &name, const IOConfig &config) throw(xmlpp::exception);
+        static Type strToType(const std::string &name, const IOConfig &config);
         /*!
          * \brief Subclass hierarchy test method
          * \param type Type to test
@@ -132,9 +135,8 @@ class Item
          * \brief Conversion method from string to boolean
          * \param name String to convert
          * \return Boolean equivalent to the string
-         * \throw xmlpp::exception Thrown when the given string does not correspond to any boolean value
          */
-        static bool strToBool(const std::string &name) throw(xmlpp::exception);
+        static bool strToBool(const std::string &name);
     private:
         State sState;
         std::string sContent;

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,9 +20,8 @@
 #define HEADER_CHARACTERLIST
 
 #include "Character.h"
-#include <stdexcept>
 #include <vector>
-#include <libxml++/libxml++.h>
+#include <Poco/DOM/Element.h>
 
 //! List of characters
 class CharacterList
@@ -52,22 +51,22 @@ class CharacterList
         /*!
          * \brief XML saver
          * \param config IO configuration
-         * \param root Root of the XML tree
+         * \param root Root of the XML subtree
          */
-        void toXML(const IOConfig &config, xmlpp::Element &root) const;
+        void toXML(const IOConfig &config, Poco::XML::Element *root) const;
         /*!
          * \brief XML loader
          * \param config IO configuration
-         * \param root Root of the XML tree
+         * \param root Root of the XML subtree
          */
-        void fromXML(const IOConfig &config, const xmlpp::Element &root);
+        void fromXML(const IOConfig &config, const Poco::XML::Element *root);
         /*!
          * \brief Getter of the characters
          * \param index Index of the character
          * \return Pointer to the character at the given index
          * \throw std::out_of_range Thrown when the index does not correspond to any character
          */
-        Character* operator[](int index) throw(std::out_of_range);
+        Character* operator[](int index);
         /*!
          * \brief Method to add a character
          * \param character Pointer to the character to add
@@ -82,15 +81,14 @@ class CharacterList
          *
          * This method does not destroy the character.
          */
-        void remove(int index) throw(std::out_of_range);
+        void remove(int index);
         /*!
          * \brief Move of a character
          * \param source Index of the character to be moved
          * \param destination Index where to move the character
          * \return True if the move has been made, false otherwise
-         * \throw std::out_of_range Thrown when one of the indices is invalid
          */
-        bool move(int source, int destination) throw (std::out_of_range);
+        bool move(int source, int destination);
         /*!
          * \brief Method to clear the list
          *

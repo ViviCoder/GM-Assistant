@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,8 @@
 #include "Tree.h"
 #include <sstream>
 #include "ItemFactory.h"
+#include <Poco/DOM/NodeList.h>
+#include <Poco/DOM/Document.h>
 
 using namespace std;
 
@@ -34,7 +36,7 @@ Tree::Tree(const Tree &tree, Branch* parent)
     pParent = parent;
 }
 
-Tree::Tree(const IOConfig &config, const xmlpp::Element &root, bool checkFiles, Branch* parent): pParent(parent)
+Tree::Tree(const IOConfig &config, const Poco::XML::Element *root, bool checkFiles, Branch* parent): pParent(parent)
 {
     fromXML(config, root, checkFiles);
 }
@@ -62,70 +64,75 @@ Tree& Tree::operator=(const Tree &tree)
 
 // methods
 
-void Tree::toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping) const
+void Tree::toXML(const IOConfig &config, Poco::XML::Element *root, FileMapping &fileMapping) const
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
+    Document *document = root->ownerDocument();
     for (vector<Branch*>::const_iterator it=vChildren.begin(); it != vChildren.end(); it++)
     {
-        Element *tmp = root.add_child("item");
+        Element *tmp = document->createElement("item");
+        root->appendChild(tmp);
         Item *item = (*it)->item();
-        tmp->set_attribute("state", Item::stateToStr(item->state()));
-        tmp->set_attribute("type", Item::typeToStr(item->type(), config));
-        tmp->set_attribute("content", item->content());
+        tmp->setAttribute("state", Item::stateToStr(item->state()));
+        tmp->setAttribute("type", Item::typeToStr(item->type(), config));
+        tmp->setAttribute("content", item->content());
         if (config.hasExpanded())
         {
-            tmp->set_attribute("expanded", Item::boolToStr((*it)->item()->expanded()));
+            tmp->setAttribute("expanded", Item::boolToStr((*it)->item()->expanded()));
         }
         if (item->type() != Item::tImage || config.hasImages())
         {
-            item->toXML(config, *tmp, fileMapping);
+            item->toXML(config, tmp, fileMapping);
         }
-        (*it)->tree().toXML(config, *tmp, fileMapping);
+        (*it)->tree().toXML(config, tmp, fileMapping);
     }
 }
 
-void Tree::fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles) throw(xmlpp::exception, invalid_argument)
+void Tree::fromXML(const IOConfig &config, const Poco::XML::Element *root, bool checkFiles)
 {
     clear();
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
-    Node::NodeList list = root.get_children("item");
-    for (Node::NodeList::const_iterator it = list.begin(); it != list.end(); it++)
+    NodeList *list = root->childNodes();
+    for (int i = 0; i < list->length(); i++)
     {
-        Element *elem = dynamic_cast<Element*>(*it);
-        Attribute *attr = elem->get_attribute("state");
-        Item::State state =  Item::sNone;
-        if (attr)
+        Node *node = list->item(i);
+        if (node->nodeType() == Node::ELEMENT_NODE)
         {
-            state = Item::strToState(attr->get_value());
-        }
-        attr = elem->get_attribute("type");
-        Item::Type type = Item::tBasic;
-        if (attr)
-        {
-            type = Item::strToType(attr->get_value(), config);
-        }
-        attr = elem->get_attribute("content");
-        string content="";
-        if (attr)
-        {
-            content = attr->get_value();
-        }
-        bool expanded = false;
-        if (config.hasExpanded())
-        {
-            attr = elem->get_attribute("expanded");
-            if (attr)
+            Element *elem = static_cast<Element*>(node);
+            if (elem->tagName() == "item")
             {
-                expanded = Item::strToBool(attr->get_value());
+                string attr = elem->getAttribute("state");
+                Item::State state = Item::sNone;
+                if (!attr.empty())
+                {
+                    state = Item::strToState(attr);
+                }
+                attr = elem->getAttribute("type");
+                Item::Type type = Item::tBasic;
+                if (!attr.empty())
+                {
+                    type = Item::strToType(attr, config);
+                }
+                string content = elem->getAttribute("content");
+                bool expanded = false;
+                if (config.hasExpanded())
+                {
+                    attr = elem->getAttribute("expanded");
+                    if (!attr.empty())
+                    {
+                        expanded = Item::strToBool(attr);
+                    }
+                }
+                Item *item = ItemFactory::createItem(type,content,state,expanded);
+                item->fromXML(config, elem, checkFiles);
+                Branch *branch = new Branch(item, config, elem, checkFiles, this);
+                vChildren.push_back(branch);
             }
         }
-        Item *item = ItemFactory::createItem(type,content,state,expanded);
-        item->fromXML(config, *elem, checkFiles);
-        Branch *branch = new Branch(item, config, *elem, checkFiles, this);
-        vChildren.push_back(branch);
     }
+    list->release();
 }
 
 void Tree::clear()
@@ -242,7 +249,7 @@ int Tree::extractIndex(string &indices, bool forward)
     return n;
 }
 
-Item* Tree::operator[](const string &indices) throw(out_of_range)
+Item* Tree::operator[](const string &indices)
 {
     string sub(indices);
     int n = extractIndex(sub);
@@ -270,7 +277,7 @@ unsigned int Tree::numberOfChildren() const
     return vChildren.size();
 }
 
-Branch* Tree::branch(const string &indices) throw(out_of_range)
+Branch* Tree::branch(const string &indices)
 {
     string sub(indices);
     int n = extractIndex(sub);
@@ -288,7 +295,7 @@ Branch* Tree::branch(const string &indices) throw(out_of_range)
     }
 }
 
-Branch* Tree::insert(int index, Item *item) throw(out_of_range)
+Branch* Tree::insert(int index, Item *item)
 {
     if (index<0 || (unsigned int) index > vChildren.size()) // n can be equal to vChildren.size() but only for the last index
     {
@@ -313,7 +320,7 @@ Branch* Tree::insert(const string &indices, Item *item)
     }
 }
 
-void Tree::insert(const string &indices, Branch *branch) throw(out_of_range)
+void Tree::insert(const string &indices, Branch *branch)
 { 
     string sub(indices);
     int n = extractIndex(sub);
@@ -343,7 +350,7 @@ Branch* Tree::add(Item *item)
     return branch;
 }
 
-void Tree::remove(int index, bool toDelete) throw(out_of_range)
+void Tree::remove(int index, bool toDelete)
 {
     if (index<0 || (unsigned int) index >= vChildren.size())
     {
@@ -438,7 +445,7 @@ int Tree::indexOf(Branch *branch) const
     }
 }
 
-string Tree::indicesOf(Branch *branch) const throw(out_of_range)
+string Tree::indicesOf(Branch *branch) const
 {
     ostringstream buf;
     int n = indexOf(branch);
@@ -534,7 +541,7 @@ bool Tree::iterator::operator==(const iterator& it) const
     return !operator!=(it);
 }
 
-Tree::iterator& Tree::iterator::operator++() throw(out_of_range)
+Tree::iterator& Tree::iterator::operator++()
 {
     vector<vector<Branch*>::const_iterator>::reverse_iterator it = qIts.rbegin();
     if (it==qIts.rend())
@@ -618,7 +625,7 @@ Branch* Tree::iterator::branch() const
     
 }
 
-void Tree::setItem(string &indices, Item *item) throw(out_of_range)
+void Tree::setItem(string &indices, Item *item)
 {
     branch(indices)->setItem(item);
 }

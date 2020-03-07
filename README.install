@@ -7,12 +7,9 @@ How to install GM-Assistant?
 To compile, you need:
 - CMake
 - g++ and the C++ standard library (with development files)
-- Qt5 library (with development files)
+- Qt5 library, including the Multimedia module (with development files)
 - QtLinguist tools
-- Qt5 Phonon module (with development files)
-- XML++ library (with development files)
-- PocoZip library (with development files)
-- Magic library (with development files)
+- Poco library, including the XML and Zip modules (with development files)
 
 **********************
 *    INSTRUCTIONS    *

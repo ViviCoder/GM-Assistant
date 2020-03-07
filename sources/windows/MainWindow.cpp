@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -29,8 +29,9 @@
 #include <QLibraryInfo>
 #include <QTranslator>
 #include "MetadataModification.h"
+#include <Poco/Exception.h>
 
-MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(this), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), detector(install_dir.toStdString()), sGame(&detector), audioFilter(new QAudioProxyModel(this, &detector)), pItemDialog(new ItemDialog(this, audioFilter))
+MainWindow::MainWindow(const QString &install_dir): QMainWindow(), musicPlayer(new QMediaPlayer(this)), soundPlayer(new QMediaPlayer(this)), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), pItemDialog(new ItemDialog(this))
 {
     setupUi(this);
     updateDisplay();
@@ -128,12 +129,10 @@ MainWindow::MainWindow(const QString &install_dir): QMainWindow(), soundEngine(t
     // setting audio options
     treeMusic->setPlayingMethod(this, QCustomTreeWidget::pmMusic);
     treeFX->setPlayingMethod(this, QCustomTreeWidget::pmSound);
-    Phonon::MediaObject *player = soundEngine.musicPlayer();
-    sliderMusic->setMediaObject(player);
-    connect(player, SIGNAL(tick(qint64)), this, SLOT(updateTimeDisplay(qint64)));
-    connect(player, SIGNAL(finished()), this, SLOT(onMusicFinished()));
-    connect(player, SIGNAL(stateChanged(Phonon::State, Phonon::State)), this, SLOT(onMusicStateChanged(Phonon::State, Phonon::State)));
-    connect(&soundEngine, SIGNAL(errorOccured(const QString&)), this, SLOT(displayError(const QString&)));
+    connect(musicPlayer, SIGNAL(positionChanged(qint64)), this, SLOT(onMusicPositionChanged(qint64)));
+    connect(musicPlayer, SIGNAL(durationChanged(qint64)), this, SLOT(onMusicDurationChanged(qint64)));
+    connect(musicPlayer, SIGNAL(stateChanged(QMediaPlayer::State)), this, SLOT(onMusicStateChanged(QMediaPlayer::State)));
+    connect(musicPlayer, SIGNAL(error(QMediaPlayer::Error)), this, SLOT(displayError(QMediaPlayer::Error)));
 
     // loading settings
     QSettings settings;
@@ -312,15 +311,15 @@ void MainWindow::on_action_Load_triggered()
             {
                 sGame.fromFile(file.toStdString());
             }
-            catch (xmlpp::exception &xml)
+            catch (Poco::Exception &poco)
             {
-                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0), QString(poco.displayText().c_str()));
                 sGame.clear();
                 file = "";
             }
             catch (std::exception &e)
             {
-                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QApplication::translate("mainWindow","The game cannot be loaded correctly for the following reason: ",0) + "\n\n" + QString(e.what()) + "\n\n" + QApplication::translate("mainWindow","The game will be loaded anyway, but some features might not work properly.",0));
+                QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QApplication::translate("mainWindow","The game cannot be loaded correctly for the following reason:",0) + "\n\n" + QString(e.what()) + "\n\n" + QApplication::translate("mainWindow","The game will be loaded anyway, but some features might not work properly.",0));
                 sGame.fromFile(file.toStdString(), false);
             }
             updateDisplay();
@@ -359,9 +358,9 @@ void MainWindow::save(bool askForUpdate)
             action_Save->setEnabled(false);
             updateUndoRedo();
         }
-        catch (xmlpp::exception &xml)
+        catch (Poco::Exception &poco)
         {
-            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0), QString(poco.displayText().c_str()));
         }
     }
 }
@@ -404,9 +403,9 @@ bool MainWindow::on_actionS_ave_as_triggered()
             QDir::setCurrent(QFileInfo(sFileName).dir().path());
             updateUndoRedo();
         }
-        catch (xmlpp::exception &xml)
+        catch (Poco::Exception &poco)
         {
-            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),  QString(poco.displayText().c_str()));
             return false;
         }
     }
@@ -454,56 +453,60 @@ void MainWindow::updateDisplay()
     treeMusic->setTree(&sGame.music());
     treeFX->setTree(&sGame.effects());
     tableStats->setLists(&sGame.properties(),&sGame.characters());
-    soundEngine.stop();
+    musicPlayer->stop();
     siCurrentMusic = 0;
     checkRepeat->setChecked(false);
-    updateTimeDisplay(0);
+    updateTimeDisplay();
 }
 
 void MainWindow::on_buttonMusic_clicked()
 {
-    if (soundEngine.isPlayingMusic())
+    switch (musicPlayer->state())
     {
-        soundEngine.pauseMusic();
-        buttonMusic->setText(QApplication::translate("mainWindow","&Resume",0));
-    }
-    else if (soundEngine.isMusicPaused())
-    {
-        soundEngine.resumeMusic();
-        buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
-    }
-    else
-    {
-        // we play the selected song (if it is a sound item)
-        QTreeWidgetItem *qItem = treeMusic->currentItem();
-        if (qItem)
-        {
-            Item *item = dynamic_cast<QCustomTreeWidgetItem*>(qItem)->branch()->item();
-            if (item->type()==Item::tSound)
+        case QMediaPlayer::PlayingState:
             {
-                SoundItem *sItem = dynamic_cast<SoundItem*>(item);
-                playMusic(sItem);
+                musicPlayer->pause();
+                buttonMusic->setText(QApplication::translate("mainWindow","&Resume",0));
+                break;
             }
-            updateTimeDisplay(0);
-        }
+        case QMediaPlayer::PausedState:
+            {
+                musicPlayer->play();
+                buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
+                break;
+            }
+        default:
+            {
+                // we play the selected song (if it is a sound item)
+                QTreeWidgetItem *qItem = treeMusic->currentItem();
+                if (qItem)
+                {
+                    Item *item = dynamic_cast<QCustomTreeWidgetItem*>(qItem)->branch()->item();
+                    if (item->type()==Item::tSound)
+                    {
+                        SoundItem *sItem = dynamic_cast<SoundItem*>(item);
+                        playMusic(sItem);
+                    }
+                }
+            }
     }
 }
 
-void MainWindow::updateTimeDisplay(qint64 position)
+void MainWindow::updateTimeDisplay()
 {
-    if (siCurrentMusic)
-    {
-        // update of the position display
-        int position_s = position / 1000;
-        int duration = soundEngine.musicDuration() / 1000;
-        labelPosition->setText(QString("%1:%2/%3:%4").arg(position_s/60).arg(position_s%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
-    }
-    else
+    if (musicPlayer->state() == QMediaPlayer::StoppedState)
     {
         // resets the display
         labelPosition->setText("0:00/0:00");
         buttonMusic->setText(QApplication::translate("mainWindow","&Play",0));
         sliderMusic->setEnabled(false);
+    }
+    else
+    {
+        // update of the position display
+        int position_s = musicPlayer->position() / 1000;
+        int duration = musicPlayer->duration() / 1000;
+        labelPosition->setText(QString("%1:%2/%3:%4").arg(position_s/60).arg(position_s%60,2,10,QChar('0')).arg(duration/60).arg(duration%60,2,10,QChar('0')));
     }
 }
 
@@ -511,8 +514,9 @@ void MainWindow::playMusic(const SoundItem *item)
 {
     if (item)
     {
-        soundEngine.playMusic(item->fileName().c_str());
         siCurrentMusic = item;
+        musicPlayer->setMedia(QUrl::fromLocalFile(item->fileName().c_str()));
+        musicPlayer->play();
     }
     else
     {
@@ -525,8 +529,8 @@ void MainWindow::stopMusic(const SoundItem *item)
     if (item == siCurrentMusic)
     {
         siCurrentMusic = 0;
-        soundEngine.stopMusic();
-        updateTimeDisplay(0);
+        musicPlayer->stop();
+        updateTimeDisplay();
     }
 }
 
@@ -534,7 +538,8 @@ void MainWindow::playSound(const SoundItem *item)
 {
     if (item)
     {
-        soundEngine.playSound(item->fileName().c_str());
+        soundPlayer->setMedia(QUrl::fromLocalFile(item->fileName().c_str()));
+        soundPlayer->play();
     }
 }
 
@@ -565,15 +570,15 @@ void MainWindow::on_action_Reload_triggered()
         {
             sGame.fromFile(sFileName.toStdString());
         }
-        catch (xmlpp::exception &xml)
+        catch (Poco::Exception &poco)
         {
-            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),xml.what());
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0), QString(poco.displayText().c_str()));
             sGame.clear();
             sFileName = "";
         }
         catch (std::exception &e)
         {
-            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QApplication::translate("mainWindow","The game cannot be loaded correctly for the following reason: ",0) + "\n\n" + QString(e.what()) + "\n\n" + QApplication::translate("mainWindow","The game will be loaded anyway, but some features might not work properly.",0));
+            QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0),QApplication::translate("mainWindow","The game cannot be loaded correctly for the following reason:",0) + "\n\n" + QString(e.what()) + "\n\n" + QApplication::translate("mainWindow","The game will be loaded anyway, but some features might not work properly.",0));
             sGame.fromFile(sFileName.toStdString(), false);
         }
         updateDisplay();
@@ -869,25 +874,19 @@ void MainWindow::changeEvent(QEvent *e)
 void MainWindow::translationRequested(const QString &suffix)
 {
     tApplication->load(sInstall + "translations/gmassistant_" + suffix);
-    tSystem->load("qt_" + suffix, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+#ifdef _WIN32
+    tSystem->load(sInstall + "translations/qtbase_" + suffix);
+#else
+    tSystem->load("qtbase_" + suffix, QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+#endif
 }
 
-void MainWindow::onMusicFinished()
+void MainWindow::displayError(QMediaPlayer::Error error)
 {
-    if (checkRepeat->isChecked())
+    if (error != QMediaPlayer::NoError)
     {
-        playMusic(siCurrentMusic);
+        QMessageBox::critical(this, QApplication::translate("mainWindow", "Error", 0), musicPlayer->errorString());
     }
-    else
-    {
-        siCurrentMusic = 0;
-        updateTimeDisplay(0);
-    }
-}
-
-void MainWindow::displayError(const QString &message)
-{
-    QMessageBox::critical(this, QApplication::translate("mainWindow", "Error", 0), message);
 }
 
 void MainWindow::on_action_Metadata_triggered()
@@ -939,13 +938,29 @@ void MainWindow::changeCurrentMusic(const SoundItem *oldItem, const SoundItem *n
     }
 }
 
-void MainWindow::onMusicStateChanged(Phonon::State newState, Phonon::State oldState)
+void MainWindow::onMusicStateChanged(QMediaPlayer::State state)
 {
-    // first case for Linux and second one for Windows
-    if ((newState == Phonon::PausedState && oldState == Phonon::StoppedState) || (newState == Phonon::PlayingState && oldState != Phonon::PausedState))
+    switch (state)
     {
-        sliderMusic->setEnabled(true);
-        buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
+        case QMediaPlayer::PlayingState:
+            {
+                sliderMusic->setEnabled(true);
+                buttonMusic->setText(QApplication::translate("mainWindow","&Pause",0));
+                break;
+            }
+        case QMediaPlayer::StoppedState:
+            {
+                if (checkRepeat->isChecked())
+                {
+                    playMusic(siCurrentMusic);
+                }
+                else
+                {
+                    updateTimeDisplay();
+                }
+                break;
+            }
+        default: break;
     }
 }
 
@@ -953,4 +968,21 @@ void MainWindow::connectNote(QCustomTextEdit *note)
 {
     connect(note, SIGNAL(modificationDone(Modification*)), this, SLOT(registerModification(Modification*)));
     connect(note, SIGNAL(unregistered()), this, SLOT(updateUndoRedo()));
+}
+
+void MainWindow::onMusicPositionChanged(qint64 position)
+{
+    sliderMusic->setValue(position);
+    updateTimeDisplay();
+}
+
+void MainWindow::onMusicDurationChanged(qint64 duration)
+{
+    sliderMusic->setMaximum(duration);
+    updateTimeDisplay();
+}
+
+void MainWindow::on_sliderMusic_sliderMoved(int position)
+{
+    musicPlayer->setPosition(position);
 }

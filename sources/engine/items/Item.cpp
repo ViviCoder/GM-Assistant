@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 *************************************************************************/
 
 #include "Item.h"
+#include <Poco/XML/XMLException.h>
 
 using namespace std;
 
@@ -53,11 +54,11 @@ Item::Type Item::type() const
     return tBasic;
 }
 
-void Item::fromXML(const IOConfig&, const xmlpp::Element&, bool)
+void Item::fromXML(const IOConfig&, const Poco::XML::Element*, bool)
 {
 }
 
-void Item::toXML(const IOConfig&, xmlpp::Element&, FileMapping&)
+void Item::toXML(const IOConfig&, Poco::XML::Element*, FileMapping&)
 {
 }
 
@@ -94,23 +95,23 @@ string Item::typeToStr(Type type, const IOConfig &config)
     return "";
 }
 
-Item::State Item::strToState(const string &name) throw(xmlpp::exception)
+Item::State Item::strToState(const string &name)
 {
     if (name=="none")   return sNone;
     else if (name=="progress")  return sProgress;
     else if (name=="failure")   return sFailure;
     else if (name=="success")   return sSuccess;
-    else    throw xmlpp::exception("Unrecognized \""+name+"\" item state");
+    else    throw Poco::XML::XMLException("Unrecognized \""+name+"\" item state");
 }
 
-Item::Type Item::strToType(const string &name, const IOConfig &config) throw(xmlpp::exception)
+Item::Type Item::strToType(const string &name, const IOConfig &config)
 {
     if (name=="basic")  return tBasic;
     else if (name=="file") return tFile;
     else if (name=="sound") return tSound;
     else if (config.hasImages() && name == config.imageName()) return tImage;
     else if (config.hasNotes() && name == "note") return tNote;
-    else    throw xmlpp::exception("Unrecognized \""+name+"\" item type");
+    else    throw Poco::XML::XMLException("Unrecognized \""+name+"\" item type");
 }
 
 bool Item::is(Type type, Type isType)
@@ -166,9 +167,9 @@ std::string Item::boolToStr(bool value)
     }
 }
 
-bool Item::strToBool(const string &name) throw(xmlpp::exception)
+bool Item::strToBool(const string &name)
 {
     if (name == "true") return true;
     if (name == "false") return false;
-    else    throw xmlpp::exception("Unrecognized \""+name+"\" boolean");
+    else    throw Poco::XML::XMLException("Unrecognized \""+name+"\" boolean");
 }

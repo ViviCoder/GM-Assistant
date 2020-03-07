@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2016-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2016-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -71,14 +71,14 @@ class NoteItem: public Item
          * \param checkFiles Indicates if the existence of potential files is checked (useless here)
          * \throw xmlpp::exception Thrown when there is an error in the XML tree
          */
-        void fromXML(const IOConfig &config, const xmlpp::Element &root, bool checkFiles) throw(xmlpp::exception);
+        void fromXML(const IOConfig &config, const Poco::XML::Element *root, bool checkFiles) override;
         /*!
          * \brief Saves the item into a XML tree
          * \param config IO configuration
          * \param root Position of the item in the XML tree
          * \param fileMapping Mapping of files associated with items (useless here)
          */
-        void toXML(const IOConfig &config, xmlpp::Element &root, FileMapping &fileMapping);
+        void toXML(const IOConfig &config, Poco::XML::Element *root, FileMapping &fileMapping) override;
 };
 
 Item::Type NoteItem::type() const

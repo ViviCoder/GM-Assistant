@@ -18,7 +18,5 @@ See the LICENSE file for more information about this license.
 
 Once installed (see README.install), to launch GM-Assistant you need:
 - C++ standard library
-- Qt5 library (including the Phonon module)
-- XML++ library
-- PocoZip library
-- Magic library
+- Qt5 library (including the Multimedia module)
+- Poco library (including the XML and Zip modules)

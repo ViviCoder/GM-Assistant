@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2016-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2016-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,7 @@
 *************************************************************************/
 
 #include "NoteItem.h"
+#include <Poco/DOM/Document.h>
 
 using namespace std;
 
@@ -36,27 +37,29 @@ NoteItem::~NoteItem()
     }
 }
 
-void NoteItem::fromXML(const IOConfig &config, const xmlpp::Element &root, bool) throw(xmlpp::exception)
+void NoteItem::fromXML(const IOConfig &config, const Poco::XML::Element *root, bool)
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
     if (config.hasNotes())
     {
-        Node::NodeList node = root.get_children("note");
-        if (!node.empty())
+        Element *element  = root->getChildElement("note");
+        if (element)
         {
-            pNote->fromXML(*dynamic_cast<Element*>(node.front()));
+            pNote->fromXML(element);
         }
     }
 }
 
-void NoteItem::toXML(const IOConfig &config, xmlpp::Element &root, FileMapping&)
+void NoteItem::toXML(const IOConfig &config, Poco::XML::Element *root, FileMapping&)
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
     if (config.hasNotes())
     {
-        Element *tmp = root.add_child("note");
-        pNote->toXML(*tmp);
+        Document *document = root->ownerDocument();
+        Element *tmp = document->createElement("note");
+        root->appendChild(tmp);
+        pNote->toXML(tmp);
     }
 }

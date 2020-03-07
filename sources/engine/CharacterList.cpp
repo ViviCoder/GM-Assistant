@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -17,6 +17,8 @@
 *************************************************************************/
 
 #include "CharacterList.h"
+#include <Poco/DOM/NodeList.h>
+#include <Poco/DOM/Document.h>
 
 using namespace std;
 
@@ -29,45 +31,38 @@ CharacterList::~CharacterList()
     clear();
 }
 
-void CharacterList::toXML(const IOConfig &config, xmlpp::Element &root) const
+void CharacterList::toXML(const IOConfig &config, Poco::XML::Element *root) const
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
+    Document *document = root->ownerDocument();
     for (vector<Character*>::const_iterator it = vCharacters.begin(); it != vCharacters.end(); it++)
     {
-        Element *tmp = root.add_child("character");
+        Element *tmp = document->createElement("character");
         Character *character = *it;
-        tmp->set_attribute("name",character->name());
-        tmp->set_attribute(config.descriptionName(), character->shortDescription());
-        character->toXML(config, *tmp);
+        root->appendChild(tmp);
+        tmp->setAttribute("name", character->name());
+        tmp->setAttribute(config.descriptionName(), character->shortDescription());
+        character->toXML(config, tmp);
     }
 }
 
-void CharacterList::fromXML(const IOConfig &config, const xmlpp::Element &root)
+void CharacterList::fromXML(const IOConfig &config, const Poco::XML::Element *root)
 {
-    using namespace xmlpp;
+    using namespace Poco::XML;
 
     clear();
-    Node::NodeList node = root.get_children("character");
-    for (Node::NodeList::const_iterator it = node.begin(); it != node.end(); it++)
+    NodeList *list = root->getElementsByTagName("character");
+    for (int i = 0; i < list->length(); i++)
     {
-        Element *elem = dynamic_cast<Element*>(*it);
-        string name;
-        Attribute *attr = elem->get_attribute("name");
-        if (attr)
-        {
-            name = attr->get_value();
-        }
-        string shortDescription = "";
-        attr = elem->get_attribute(config.descriptionName());
-        if (attr)
-        {
-            shortDescription = attr->get_value();
-        }
+        Element *elem = static_cast<Element*>(list->item(i));
+        string name = elem->getAttribute("name");
+        string shortDescription = elem->getAttribute(config.descriptionName());
         Character *character = new Character(name, shortDescription);
-        character->fromXML(config, *elem);
+        character->fromXML(config, elem);
         vCharacters.push_back(character);
     }
+    list->release();
 }
 
 void CharacterList::clear()
@@ -92,7 +87,7 @@ void CharacterList::add(Character *character, int position)
     }
 }
 
-void CharacterList::remove(int index) throw(out_of_range)
+void CharacterList::remove(int index)
 {
     if (index < 0 || (unsigned int)index >= vCharacters.size())
     {
@@ -101,7 +96,7 @@ void CharacterList::remove(int index) throw(out_of_range)
     vCharacters.erase(vCharacters.begin()+index);
 }
 
-bool CharacterList::move(int source, int destination) throw(out_of_range)
+bool CharacterList::move(int source, int destination)
 {
     if (source < 0 || (unsigned int)source >= vCharacters.size())
     {
@@ -130,7 +125,7 @@ bool CharacterList::move(int source, int destination) throw(out_of_range)
     return true;
 }
 
-Character* CharacterList::operator[](int index) throw(out_of_range)
+Character* CharacterList::operator[](int index)
 {
     if (index<0 || (unsigned int)index >= vCharacters.size())
     {

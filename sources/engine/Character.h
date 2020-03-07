@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,8 +20,7 @@
 #define HEADER_CHARACTER
 
 #include <vector>
-#include <libxml++/libxml++.h>
-#include <stdexcept>
+#include <Poco/DOM/Element.h>
 #include "IOConfig.h"
 #include "Note.h"
 
@@ -57,15 +56,15 @@ class Character
         /*!
          * \brief XML saver
          * \param config IO configuration
-         * \param root Root of the XML tree
+         * \param root Root of the XML subtree
          */
-        void toXML(const IOConfig &config, xmlpp::Element &root) const;
+        void toXML(const IOConfig &config, Poco::XML::Element *root) const;
         /*!
          * \brief XML loader
          * \param config IO configuration
-         * \param root Root of the XML tree
+         * \param root Root of the XML subtree
          */
-        void fromXML(const IOConfig &config, const xmlpp::Element &root);
+        void fromXML(const IOConfig &config, const Poco::XML::Element *root);
         /*!
          * \brief Getter of the name
          * \return Character's name
@@ -90,21 +89,23 @@ class Character
          * \brief Getter/setter of the properties
          * \param index Index of the property
          * \return property at the given index
-         * \throw std::out_of_range Thrown when the given index does not correspond to any property
          */
-        std::string& property(int index) throw(std::out_of_range);
+        std::string& property(int index);
         unsigned int propertyNumber() const;
         // populating
         void addProperty(const std::string &property, int position=-1);
-        void removeProperty(int index) throw(std::out_of_range);
+        /*!
+         * \brief Remove a property
+         * \param index Index of the property to remove
+         */
+        void removeProperty(int index);
         /*!
          * \brief Move of a property
          * \param source Index of the property to be moved
          * \param destination Index where to move the property
          * \return True if the move has been made, false otherwise
-         * \throw std::out_of_range Thrown when one of the indices is invalid
          */
-        bool moveProperty(int source, int destination) throw (std::out_of_range);
+        bool moveProperty(int source, int destination);
         void clearProperties();
         /*!
          * \brief Getter for the note
