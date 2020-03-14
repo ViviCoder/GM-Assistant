@@ -800,14 +800,22 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
                                 return true;
                             }
                             break;
-            case Qt::Key_V: if (source == tabNotes && modifiers == Qt::ControlModifier)
+            case Qt::Key_V: if (modifiers == Qt::ControlModifier)
                             {
-                                tabNotes->forcePaste();
+                                QCustomTextEdit *edit = dynamic_cast<QCustomTextEdit*>(source);
+                                if (edit)
+                                {
+                                    edit->forcePaste();
+                                }
                             }
                             break;
-            case Qt::Key_X: if (source == tabNotes && modifiers == Qt::ControlModifier)
+            case Qt::Key_X: if (modifiers == Qt::ControlModifier)
                             {
-                                tabNotes->forceCut();
+                                QCustomTextEdit *edit = dynamic_cast<QCustomTextEdit*>(source);
+                                if (edit)
+                                {
+                                    edit->forceCut();
+                                }
                             }
                             break;
             default:    if (modifiers & Qt::ControlModifier)

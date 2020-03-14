@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2016-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2016-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -80,16 +80,6 @@ void QCustomTabWidget::updateModification(NoteModification *modification, bool u
     {
         textEdit->updateModification(modification, undo);
     }
-}
-
-void QCustomTabWidget::forceCut()
-{
-    // TODO
-}
-
-void QCustomTabWidget::forcePaste()
-{
-    // TODO
 }
 
 void QCustomTabWidget::installEventFilter(QObject *filter)

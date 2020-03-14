@@ -73,18 +73,6 @@ class QCustomTabWidget: public QTabWidget
          * \param undo True to undo, false to redo
          */
         void updateModification(NoteModification *modification, bool undo);
-        /*!
-         * \brief Modification forcing for cuts
-         *
-         * Forces the widget to register the next deletion as a separate modification
-         */
-        void forceCut();
-        /*!
-         * \brief Modification forcing for pastings
-         *
-         * Forces the widget to register the next insertion as a separate modification
-         */
-        void forcePaste();
         //! Clear the widget
         void clear();
         /*!
