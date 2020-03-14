@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -90,38 +90,38 @@ class QCustomTextEdit: public QTextEdit
          *
          * Stores the text to compare when focus goes out
          */
-        void focusInEvent(QFocusEvent *e);
+        void focusInEvent(QFocusEvent *e) override;
         /*!
          * \brief FocusOut event handler
          * \param e Event to handle
          *
          * Checks if the text has been modified before releasing focus
          */
-        void focusOutEvent(QFocusEvent *e);
+        void focusOutEvent(QFocusEvent *e) override;
         /*!
          * \brief KeyPress event handler
          * \param e Event to handle
          *
          * Decomposes edition in several modifications (insertion, deletion, etc.)
          */
-        void keyPressEvent(QKeyEvent *e);
+        void keyPressEvent(QKeyEvent *e) override;
         /*!
          * \brief MousePress event handler
          * \param e Event to handle
          *
          * Works together with keyPressEvent
          */
-        void mousePressEvent(QMouseEvent *e);
+        void mousePressEvent(QMouseEvent *e) override;
         /*!
          * \brief DragEnter event handler
          * \param e Event to handle
          */
-        void dragEnterEvent(QDragEnterEvent *e);
+        void dragEnterEvent(QDragEnterEvent *e) override;
         /*!
          * \brief Drop event handler
          * \param e Event to handle
          */
-        void dropEvent(QDropEvent *e);
+        void dropEvent(QDropEvent *e) override;
     protected slots:
         /*!
          * \brief Slot for when the text has changed

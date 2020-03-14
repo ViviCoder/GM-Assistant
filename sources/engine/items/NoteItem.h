@@ -57,7 +57,7 @@ class NoteItem: public Item
          * \brief Getter for the type of the item
          * \return tNote
          */
-        inline Type type() const;
+        inline Type type() const override;
         /*!
          * \brief Getter for the note
          * \return Note associated with the item

@@ -120,7 +120,7 @@ class ItemDialog: public QDialog, private Ui::itemDialog
          *
          * Updates the translation when changing language
          */
-        void changeEvent(QEvent *e);
+        void changeEvent(QEvent *e) override;
     private:
         //! Modal result
         Result rRes;

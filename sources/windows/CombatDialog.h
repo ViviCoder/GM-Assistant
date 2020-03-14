@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013-2017 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -40,14 +40,14 @@ class CombatDialog: public QDialog, private Ui::combatDialog
          *
          * Updates the translation when changing language
          */
-        void changeEvent(QEvent *e);
+        void changeEvent(QEvent *e) override;
         /*!
          * \brief CloseEvent handler
          * \param e Event to handle
          *
          * Asks for confirmation before closing the dialog window
          */
-        void closeEvent(QCloseEvent *e);
+        void closeEvent(QCloseEvent *e) override;
     public:
         //! Default constructor
         CombatDialog(QWidget *parent);

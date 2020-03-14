@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -87,16 +87,21 @@ class TreeModification: public Modification
          * \brief Destructor
          */
         virtual ~TreeModification();
-        // inherited pure virtual getter
-        inline Type type() const;
+        /*!
+         * \brief Getter for the type
+         * \return tTree
+         */
+        inline Type type() const override;
         /*!
          * \brief Getter for the tree
          * \return Modified tree
          */
         inline Tree& tree();
         // inherited pure virtual methods
-        void undo();
-        void redo();
+        //! Undo the modification
+        void undo() override;
+        //! Redo the modification
+        void redo() override;
         /*!
          * \brief Getter for the indices
          * \return Indices of the modification

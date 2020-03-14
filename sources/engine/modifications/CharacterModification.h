@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2012-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2012-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -117,11 +117,15 @@ class CharacterModification: public Modification
          * \brief Destructor
          */
         virtual ~CharacterModification();
-        // inherited pure virtual getter
-        Type type() const;
-        // inherited pure virtual methods
-        void undo();
-        void redo();
+        /*!
+         * \brief Getter for the type
+         * \return tCharacter
+         */
+        Type type() const override;
+        //! Undo the modification
+        void undo() override;
+        //! Redo the modification
+        void redo() override;
         /*!
          * \brief Getter for the index
          * \return The index (or the row for cell editions) of the modification

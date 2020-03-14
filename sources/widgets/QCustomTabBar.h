@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2019 Vincent Prat & Simon Nicolas
+* Copyright © 2019-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -34,14 +34,14 @@ class QCustomTabBar: public QTabBar
          *
          * Detect right clicks and send the rightClicked signal
          */
-        void mousePressEvent(QMouseEvent *e);
+        void mousePressEvent(QMouseEvent *e) override;
         /*!
          * \brief Event handler
          * \param e Event
          *
          * This handler is used to display dynamical tool tips.
          */
-        bool event(QEvent *e);
+        bool event(QEvent *e) override;
 
     public:
         /*!

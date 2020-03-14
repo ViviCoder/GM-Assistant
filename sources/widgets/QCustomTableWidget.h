@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -79,22 +79,22 @@ class QCustomTableWidget: public QTableWidget
          * \brief Event raised when the table is clicked
          * \param e Mouse event
          */
-        void mousePressEvent(QMouseEvent *e);
+        void mousePressEvent(QMouseEvent *e) override;
         /*!
          * \brief KeyReleaseEvent handler
          * \param e Key event
          */
-        void keyReleaseEvent(QKeyEvent *e);
+        void keyReleaseEvent(QKeyEvent *e) override;
         /*!
          * \brief DoubleClickEvent handler
          * \param e Mouse event
          */
-        void mouseDoubleClickEvent(QMouseEvent *e);
+        void mouseDoubleClickEvent(QMouseEvent *e) override;
         /*!
          * \brief ChangeEvent handler
          * \param e Event to handle
          */
-        void changeEvent(QEvent *e);
+        void changeEvent(QEvent *e) override;
         /*!
          * \brief Addition of a property
          * \param index Index where to add the property
@@ -142,7 +142,7 @@ class QCustomTableWidget: public QTableWidget
          * \brief Size hint for columns taking into account unvisible ones
          * \param column Column to resize
          */
-        int sizeHintForColumn(int column) const;
+        int sizeHintForColumn(int column) const override;
     protected slots:
         /*!
          * \brief Slot for when a cell changes 

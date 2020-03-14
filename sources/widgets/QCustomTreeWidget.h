@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -138,32 +138,32 @@ class QCustomTreeWidget: public QTreeWidget
          * \brief DoubleClickEvent handler
          * \param e Mouse event
          */
-        void mouseDoubleClickEvent(QMouseEvent *e);
+        void mouseDoubleClickEvent(QMouseEvent *e) override;
         /*!
          * \brief Event raised when a mouse button is pressed
          * \param e Mouse event
          */
-        void mousePressEvent(QMouseEvent *e);
+        void mousePressEvent(QMouseEvent *e) override;
         /*!
          * \brief Event raised when a mouse button is released
          * \param e Mouse event
          */
-        void mouseReleaseEvent(QMouseEvent *e);
+        void mouseReleaseEvent(QMouseEvent *e) override;
         /*!
          * \brief Event raised when a key is released
          * \param e Key event
          */
-        void keyReleaseEvent(QKeyEvent *e);
+        void keyReleaseEvent(QKeyEvent *e) override;
         /*!
          * \brief DropEvent handler
          * \param e Event to handle
          */
-        void dropEvent(QDropEvent *e);
+        void dropEvent(QDropEvent *e) override;
         /*!
          * \brief ChangeEvent handler
          * \param e Event to handle
          */
-        void changeEvent(QEvent *e);
+        void changeEvent(QEvent *e) override;
         /*!
          * \brief Retranslator
          *
@@ -175,7 +175,7 @@ class QCustomTreeWidget: public QTreeWidget
          * \param e Event
          * \return True if the event is handled
          */
-        bool viewportEvent(QEvent *e);
+        bool viewportEvent(QEvent *e) override;
     protected slots:
         /*!
          * \brief Slot for when an item is expanded

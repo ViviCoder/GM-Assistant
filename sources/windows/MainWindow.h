@@ -101,7 +101,7 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          *
          * Stores the old size for unmaximizing just after startup
          */
-        void resizeEvent(QResizeEvent *e);
+        void resizeEvent(QResizeEvent *e) override;
         /*!
          * \brief Event filter
          * \param source Source of the event
@@ -109,21 +109,21 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          *
          * Intercepts locally handled events related to global shortcuts
          */
-        bool eventFilter(QObject *source, QEvent *e);
+        bool eventFilter(QObject *source, QEvent *e) override;
         /*!
          * \brief CloseEvent handler
          * \param e Event to handle
          *
          * Checks unsaved modifications before closing
          */
-        void closeEvent(QCloseEvent *e);
+        void closeEvent(QCloseEvent *e) override;
         /*!
          * \brief ChangeEvent handler
          * \param e Event to handle
          *
          * Updates the translation when changing language
          */
-        void changeEvent(QEvent *e);
+        void changeEvent(QEvent *e) override;
     public:
         /*!
          * \brief Constructor of the main window

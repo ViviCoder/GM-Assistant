@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -39,7 +39,7 @@ class SelectCharacterDialog: public QDialog, private Ui::selectCharacterDialog
          *
          * Updates the translation when changing language
          */
-        void changeEvent(QEvent *e);
+        void changeEvent(QEvent *e) override;
     public:
         //! Default constructor
         SelectCharacterDialog(QWidget *parent);
@@ -75,8 +75,8 @@ class SelectCharacterDialog: public QDialog, private Ui::selectCharacterDialog
          * Put a character a lot lower
          */
         void on_pushDown_clicked();
-        // Overriden slot
-        void accept();
+        //! Slot called when the modifications are accepted
+        void accept() override;
 };
 
 #endif

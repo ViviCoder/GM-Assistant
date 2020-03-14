@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2013 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -65,7 +65,7 @@ class ChangeCharacterDialog: public QDialog, private Ui::changeCharacterDialog
          *
          * Updates the translation when changing language
          */
-        void changeEvent(QEvent *e);
+        void changeEvent(QEvent *e) override;
 };
 
 QString ChangeCharacterDialog::name() const

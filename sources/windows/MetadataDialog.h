@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -37,7 +37,7 @@ class MetadataDialog: public QDialog, private Ui::metadataDialog
          *
          * Updates the translation when changing language
          */
-        void changeEvent(QEvent *e);
+        void changeEvent(QEvent *e) override;
     public:
         /*!
          * \brief Constructor
@@ -55,7 +55,7 @@ class MetadataDialog: public QDialog, private Ui::metadataDialog
          *
          * Modifies the underlying metadata
          */
-        void accept();
+        void accept() override;
         /*!
          * \brief Getter for the metadata
          * \return Metadata
