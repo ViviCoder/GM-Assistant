@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -267,11 +267,14 @@ void QCustomTableWidget::updateDisplay(int row, int column)
     {
         insertRow(j);
         Character *character = (*it);
-        setVerticalHeaderItem(j, new QTableWidgetItem(headerText(character->name().c_str(), character->shortDescription().c_str())));
-        // creating items
-        for (k=0;k<i;k++)
+        // open the associated note if necessary
+        Note *note = character->note();
+        if (note->visible())
         {
+            emit noteToOpen(note);
         }
+        // create the header
+        setVerticalHeaderItem(j, new QTableWidgetItem(headerText(character->name().c_str(), character->shortDescription().c_str())));
         // setting values
         k = 0;
         for (Character::PropertyIterator itProperty = character->begin(); itProperty != character->end() && k<i; itProperty++)
