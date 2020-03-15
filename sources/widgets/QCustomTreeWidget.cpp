@@ -87,11 +87,11 @@ void QCustomTreeWidget::mouseDoubleClickEvent(QMouseEvent *e)
 
 void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
 {
-    Item *item = dynamic_cast<QCustomTreeWidgetItem*>(qItem)->branch()->item();
+    Item *item = static_cast<QCustomTreeWidgetItem*>(qItem)->branch()->item();
     switch (item->type())
     {
         case Item::tSound:  {
-                                SoundItem *soundItem = dynamic_cast<SoundItem*>(item);
+                                SoundItem *soundItem = static_cast<SoundItem*>(item);
                                 if (pmMethod == pmNone)
                                 {
                                     QMessageBox::critical(this,QApplication::translate("mainWindow","Error",0), QApplication::translate("customTree","Audio files can be played only in the Music and Sound effects modules.",0));
@@ -104,7 +104,7 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
                                 break;
                             }
         case Item::tImage:  {
-                                ImageItem *imageItem = dynamic_cast<ImageItem*>(item);
+                                ImageItem *imageItem = static_cast<ImageItem*>(item);
                                 ImageWindow *image = new ImageWindow(imageItem->fileName(),this);
                                 if (image->error())
                                 {
@@ -114,7 +114,7 @@ void QCustomTreeWidget::launchItem(QTreeWidgetItem *qItem)
                                 break;
                             }
         case Item::tNote:   {
-                                NoteItem *noteItem = dynamic_cast<NoteItem*>(item);
+                                NoteItem *noteItem = static_cast<NoteItem*>(item);
                                 emit noteToOpen(noteItem->note());
                             }
         default:            break;
@@ -137,7 +137,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
         case Qt::RightButton:   if (item)
                                 {
                                     setCurrentItem(item);
-                                    QCustomTreeWidgetItem *qItem = dynamic_cast<QCustomTreeWidgetItem*>(item);
+                                    QCustomTreeWidgetItem *qItem = static_cast<QCustomTreeWidgetItem*>(item);
                                     Item *treeItem = qItem->branch()->item();
                                     Item::Type type = treeItem->type();
                                     switch (type)
@@ -168,7 +168,7 @@ void QCustomTreeWidget::mousePressEvent(QMouseEvent *e)
                                                     break;
                                     }
                                     // export
-                                    actionExport->setVisible(Item::is(type, Item::tFile) && dynamic_cast<FileItem*>(treeItem)->isIncluded());
+                                    actionExport->setVisible(Item::is(type, Item::tFile) && static_cast<FileItem*>(treeItem)->isIncluded());
                                     // execute menu
                                     QAction* action = menuIcons->exec(e->globalPos());
                                     if (action == actionNone)
@@ -238,7 +238,7 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
     if (qItem)
     {
         scrollTo(qItem);
-        QCustomTreeWidgetItem *customItem = dynamic_cast<QCustomTreeWidgetItem*>(qItem);
+        QCustomTreeWidgetItem *customItem = static_cast<QCustomTreeWidgetItem*>(qItem);
         switch (e->key())
         {
             case Qt::Key_F2:    if (!bEditing)
@@ -290,7 +290,7 @@ void QCustomTreeWidget::keyReleaseEvent(QKeyEvent *e)
                                 break;
             case Qt::Key_F8:    changeState(customItem, Item::sSuccess);
                                 break;
-            default:    QTreeWidget::keyReleaseEvent(e); break; 
+            default:    QTreeWidget::keyReleaseEvent(e); break;
         }
     }
 }
@@ -299,7 +299,7 @@ void QCustomTreeWidget::on_itemChanged(QTreeWidgetItem* item, int column)
 {
     if (pTree && item && column == 0)
     {
-        Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
+        Branch *branch = static_cast<QCustomTreeWidgetItem*>(item)->branch();
         if (bEditing && branch->item()->content() != item->text(0).toStdString())
         {
             string content = branch->item()->content();
@@ -360,7 +360,7 @@ void QCustomTreeWidget::updateDisplay(const string &indices)
             // open notes
             if (item->type() == Item::tNote)
             {
-                Note* note = dynamic_cast<NoteItem*>(item)->note();
+                Note* note = static_cast<NoteItem*>(item)->note();
                 if (note->visible())
                 {
                     emit noteToOpen(note);
@@ -388,7 +388,7 @@ void QCustomTreeWidget::updateDisplay(const string &indices)
 
 void QCustomTreeWidget::deleteItem(QTreeWidgetItem *item)
 {
-    Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
+    Branch *branch = static_cast<QCustomTreeWidgetItem*>(item)->branch();
     // delete notes in the branch
     deleteNotes(branch);
     // stop the music if the item is or contains a SoundItem
@@ -436,25 +436,25 @@ void QCustomTreeWidget::dropEvent(QDropEvent *e)
         // now we have an item, we check whether we are above, below or on it
         QRect rect = visualRect(index);
         const int margin = 2;
-       
-        string indices = pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(pDragSource)->branch()); 
+
+        string indices = pTree->indicesOf(static_cast<QCustomTreeWidgetItem*>(pDragSource)->branch());
         string newIndices;
         // different positions
         if (pos.y() - rect.top() < margin)
         {
             // we are above it
-            newIndices = pTree->indicesOf(dynamic_cast<QCustomTreeWidgetItem*>(item)->branch());
+            newIndices = pTree->indicesOf(static_cast<QCustomTreeWidgetItem*>(item)->branch());
         }
         else if (rect.bottom() - pos.y() < margin)
         {
             // we are below it
-            newIndices = pTree->indicesOfNext(dynamic_cast<QCustomTreeWidgetItem*>(item)->branch());
+            newIndices = pTree->indicesOfNext(static_cast<QCustomTreeWidgetItem*>(item)->branch());
         }
         else if (rect.contains(pos, true))
         {
             // we are on it : new child
             stringstream buf(stringstream::in|stringstream::out);
-            Branch *branch = dynamic_cast<QCustomTreeWidgetItem*>(item)->branch();
+            Branch *branch = static_cast<QCustomTreeWidgetItem*>(item)->branch();
             buf << pTree->indicesOf(branch);
             // we want to add it as the last child
             buf << "_" << branch->tree().numberOfChildren();
@@ -518,7 +518,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                                     Item *iItem = item->branch()->item();
                                                     if (iItem->type() == Item::tNote)
                                                     {
-                                                        note = dynamic_cast<NoteItem*>(iItem)->note();
+                                                        note = static_cast<NoteItem*>(iItem)->note();
                                                     }
                                                 }
                                                 NoteItem *noteItem = new NoteItem(pItemDial->text().toStdString(), pItemDial->state(), false, note);
@@ -552,15 +552,15 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                     if (iItem->type() == Item::tNote && newItem->type() != Item::tNote)
                     {
                         // delete the note
-                        emit noteToDelete(dynamic_cast<NoteItem*>(iItem)->note());
+                        emit noteToDelete(static_cast<NoteItem*>(iItem)->note());
                     }
                     else if (pmMethod == pmMusic && iItem->type() == Item::tSound)
                     {
                         // stopping the music if necessary
-                        SoundItem *siItem = dynamic_cast<SoundItem*>(iItem);
+                        SoundItem *siItem = static_cast<SoundItem*>(iItem);
                         if (newItem->type() == Item::tSound)
                         {
-                            SoundItem* newSItem = dynamic_cast<SoundItem*>(newItem);
+                            SoundItem* newSItem = static_cast<SoundItem*>(newItem);
                             if (newSItem->fileName() != siItem->fileName())
                             {
                                 emit fileToStop(siItem);
@@ -577,11 +577,11 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                     }
                     // replacement
                     item->branch()->setItem(newItem);
-                    item->updateDisplay(); 
+                    item->updateDisplay();
                     scrollTo(item);
                 }
                 else
-                {    
+                {
                     // new item is created
                     QCustomTreeWidgetItem *newQItem = 0;
                     switch (pItemDial->selectionResult())
@@ -592,7 +592,7 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                                         if (parent)
                                                         {
                                                             newBranch = parent->tree().insert(parent->tree().indexOf(item->branch())+1,newItem);
-                                                            newQItem = new QCustomTreeWidgetItem(dynamic_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
+                                                            newQItem = new QCustomTreeWidgetItem(static_cast<QCustomTreeWidgetItem*>(item->parent()),newBranch,item);
                                                         }
                                                         else
                                                         {
@@ -646,7 +646,7 @@ void QCustomTreeWidget::setPlayingMethod(QWidget *player, PlayingMethod playingM
                         // connection for changing without modifying playback
                         connect(this, SIGNAL(fileToChange(const SoundItem*, const SoundItem*)), player, SLOT(changeCurrentMusic(const SoundItem*, const SoundItem*)));
                         break;
-        default:        break;                        
+        default:        break;
     }
 }
 
@@ -657,13 +657,13 @@ QCustomTreeWidget::PlayingMethod QCustomTreeWidget::playingMethod() const
 
 void QCustomTreeWidget::onItemExpanded(QTreeWidgetItem *item)
 {
-    dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()->item()->setExpanded(true);
+    static_cast<QCustomTreeWidgetItem*>(item)->branch()->item()->setExpanded(true);
     resizeColumnToContents(0);
 }
 
 void QCustomTreeWidget::onItemCollapsed(QTreeWidgetItem *item)
 {
-    dynamic_cast<QCustomTreeWidgetItem*>(item)->branch()->item()->setExpanded(false);
+    static_cast<QCustomTreeWidgetItem*>(item)->branch()->item()->setExpanded(false);
     resizeColumnToContents(0);
 }
 
@@ -699,12 +699,12 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                     if (item->type() == Item::tNote)
                     {
                         // deleting note
-                        emit noteToDelete(dynamic_cast<NoteItem*>(item)->note());
+                        emit noteToDelete(static_cast<NoteItem*>(item)->note());
                     }
                     else if (pmMethod == pmMusic && item->type() == Item::tSound)
                     {
                         // stopping music if necessary
-                        emit fileToStop(dynamic_cast<SoundItem*>(item));
+                        emit fileToStop(static_cast<SoundItem*>(item));
                     }
                     break;
                 }
@@ -714,16 +714,16 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                                                 if (item->type() == Item::tNote && modification->currentItem()->type() != Item::tNote)
                                                 {
                                                     // deleting note
-                                                    emit noteToDelete(dynamic_cast<NoteItem*>(item)->note());
+                                                    emit noteToDelete(static_cast<NoteItem*>(item)->note());
                                                 }
                                                 else if (pmMethod == pmMusic && item->type() == Item::tSound)
                                                 {
                                                     // stopping music if necessary
-                                                    SoundItem *sItem = dynamic_cast<SoundItem*>(item);
+                                                    SoundItem *sItem = static_cast<SoundItem*>(item);
                                                     Item *oldItem = modification->currentItem();
                                                     if (oldItem->type() == Item::tSound)
                                                     {
-                                                        SoundItem *oldSItem = dynamic_cast<SoundItem*>(oldItem);
+                                                        SoundItem *oldSItem = static_cast<SoundItem*>(oldItem);
                                                         if (oldSItem->fileName() != sItem->fileName())
                                                         {
                                                             emit fileToStop(sItem);
@@ -761,16 +761,16 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
                                                 if (item->type() == Item::tNote && modification->currentItem()->type() != Item::tNote)
                                                 {
                                                     // deleting note
-                                                    emit noteToDelete(dynamic_cast<NoteItem*>(item)->note());
+                                                    emit noteToDelete(static_cast<NoteItem*>(item)->note());
                                                 }
                                                 else if (pmMethod == pmMusic && item->type() == Item::tSound)
                                                 {
                                                     // stopping music if necessary
-                                                    SoundItem *sItem = dynamic_cast<SoundItem*>(item);
+                                                    SoundItem *sItem = static_cast<SoundItem*>(item);
                                                     Item *newItem = modification->currentItem();
                                                     if (newItem->type() == Item::tSound)
                                                     {
-                                                        SoundItem *newSItem = dynamic_cast<SoundItem*>(newItem);
+                                                        SoundItem *newSItem = static_cast<SoundItem*>(newItem);
                                                         if (newSItem->fileName() != sItem->fileName())
                                                         {
                                                             emit fileToStop(sItem);
@@ -791,7 +791,7 @@ void QCustomTreeWidget::updateModification(TreeModification *modification, bool 
     }
     updateDisplay(indices);
     setFocus(Qt::OtherFocusReason);
-} 
+}
 
 void QCustomTreeWidget::changeEvent(QEvent *e)
 {
@@ -832,7 +832,7 @@ void QCustomTreeWidget::retranslate()
     // also retranslate the items
     for (QTreeWidgetItemIterator it(this); *it; it++)
     {
-        dynamic_cast<QCustomTreeWidgetItem*>(*it)->updateDisplay();
+        static_cast<QCustomTreeWidgetItem*>(*it)->updateDisplay();
     }
 }
 
@@ -880,14 +880,14 @@ void QCustomTreeWidget::stopMusic(Branch *branch)
         Tree &children = branch->tree();
         if (item->type() == Item::tSound)
         {
-            emit fileToStop(dynamic_cast<SoundItem*>(item));
+            emit fileToStop(static_cast<SoundItem*>(item));
         }
         for (Tree::iterator it = children.begin(); it != children.end(); it++)
         {
             Item *childItem = it.branch()->item();
             if (childItem->type() == Item::tSound)
             {
-                emit fileToStop(dynamic_cast<SoundItem*>(childItem));
+                emit fileToStop(static_cast<SoundItem*>(childItem));
             }
         }
     }
@@ -901,14 +901,14 @@ void QCustomTreeWidget::deleteNotes(Branch *branch)
         Tree &children = branch->tree();
         if (item->type() == Item::tNote)
         {
-            emit noteToDelete(dynamic_cast<NoteItem*>(item)->note());
+            emit noteToDelete(static_cast<NoteItem*>(item)->note());
         }
         for (Tree::iterator it = children.begin(); it != children.end(); it++)
         {
             Item *childItem = it.branch()->item();
             if (childItem->type() == Item::tNote)
             {
-                emit noteToDelete(dynamic_cast<NoteItem*>(childItem)->note());
+                emit noteToDelete(static_cast<NoteItem*>(childItem)->note());
             }
         }
     }
@@ -919,7 +919,7 @@ bool QCustomTreeWidget::viewportEvent(QEvent *e)
     // dynamical tool tip for note items
     if (e->type() == QEvent::ToolTip)
     {
-        QHelpEvent *helpEvent = dynamic_cast<QHelpEvent*>(e);
+        QHelpEvent *helpEvent = static_cast<QHelpEvent*>(e);
         // only the first column
         if (columnAt(helpEvent->x()) == 0)
         {
@@ -929,7 +929,7 @@ bool QCustomTreeWidget::viewportEvent(QEvent *e)
                 Item *item = qItem->branch()->item();
                 if (item->type() == Item::tNote)
                 {
-                    QToolTip::showText(helpEvent->globalPos(), dynamic_cast<NoteItem*>(item)->note()->title().c_str());
+                    QToolTip::showText(helpEvent->globalPos(), static_cast<NoteItem*>(item)->note()->title().c_str());
                     return true;
                 }
                 else

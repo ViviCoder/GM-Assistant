@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2016-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2016-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -138,7 +138,7 @@ class QCustomTabWidget: public QTabWidget
 
 Note* QCustomTabWidget::note(int index)
 {
-    return dynamic_cast<QCustomTextEdit*>(widget(index))->note();
+    return static_cast<QCustomTextEdit*>(widget(index))->note();
 }
 
 #endif

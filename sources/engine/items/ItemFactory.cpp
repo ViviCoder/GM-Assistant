@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2016 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -23,10 +23,10 @@ Item* ItemFactory::copyItem(Item *item)
     switch (item->type())
     {
         case Item::tBasic:  return new Item(*item); break;
-        case Item::tFile:   return new FileItem(*dynamic_cast<FileItem*>(item)); break;
-        case Item::tSound:  return new SoundItem(*dynamic_cast<SoundItem*>(item)); break;
-        case Item::tImage:  return new ImageItem(*dynamic_cast<ImageItem*>(item)); break;
-        case Item::tNote:   return new NoteItem(*dynamic_cast<NoteItem*>(item)); break;
+        case Item::tFile:   return new FileItem(*static_cast<FileItem*>(item)); break;
+        case Item::tSound:  return new SoundItem(*static_cast<SoundItem*>(item)); break;
+        case Item::tImage:  return new ImageItem(*static_cast<ImageItem*>(item)); break;
+        case Item::tNote:   return new NoteItem(*static_cast<NoteItem*>(item)); break;
     }
     return 0;
 }

@@ -64,7 +64,7 @@ void QCustomTabWidget::updateDisplay()
 
 bool QCustomTabWidget::unregisteredModification() const
 {
-    return dynamic_cast<QCustomTextEdit*>(currentWidget())->unregisteredModification();
+    return static_cast<QCustomTextEdit*>(currentWidget())->unregisteredModification();
 }
 
 void QCustomTabWidget::updateModification(NoteModification *modification, bool undo)

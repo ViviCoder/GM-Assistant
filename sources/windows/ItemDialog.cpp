@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -165,7 +165,7 @@ int ItemDialog::exec(Item *item)
         itemState = item->state();
         if (Item::is(itemType, Item::tFile))
         {
-            file = dynamic_cast<FileItem*>(item)->fileName().c_str();
+            file = static_cast<FileItem*>(item)->fileName().c_str();
         }
     }
     else

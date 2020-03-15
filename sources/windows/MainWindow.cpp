@@ -481,10 +481,10 @@ void MainWindow::on_buttonMusic_clicked()
                 QTreeWidgetItem *qItem = treeMusic->currentItem();
                 if (qItem)
                 {
-                    Item *item = dynamic_cast<QCustomTreeWidgetItem*>(qItem)->branch()->item();
+                    Item *item = static_cast<QCustomTreeWidgetItem*>(qItem)->branch()->item();
                     if (item->type()==Item::tSound)
                     {
-                        SoundItem *sItem = dynamic_cast<SoundItem*>(item);
+                        SoundItem *sItem = static_cast<SoundItem*>(item);
                         playMusic(sItem);
                     }
                 }
@@ -689,7 +689,7 @@ void MainWindow::updateModification(Modification *modification, bool undo)
     {
         case Modification::tTree:   
             {
-                TreeModification* treeModif = dynamic_cast<TreeModification*>(modification);
+                TreeModification* treeModif = static_cast<TreeModification*>(modification);
                 Tree *adr = &treeModif->tree();
                 if (adr == &sGame.plot())
                 {
@@ -709,9 +709,9 @@ void MainWindow::updateModification(Modification *modification, bool undo)
                 }
                 break;
             }
-        case Modification::tNote:   tabNotes->updateModification(dynamic_cast<NoteModification*>(modification), undo);
+        case Modification::tNote:   tabNotes->updateModification(static_cast<NoteModification*>(modification), undo);
                                     break;
-        case Modification::tCharacter:  tableStats->updateModification(dynamic_cast<CharacterModification*>(modification), undo);
+        case Modification::tCharacter:  tableStats->updateModification(static_cast<CharacterModification*>(modification), undo);
                                         break;
         default : break;
     }
@@ -768,7 +768,7 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
 {
     if (e->type() == QEvent::KeyPress)
     {
-        QKeyEvent *event = dynamic_cast<QKeyEvent*>(e);
+        QKeyEvent *event = static_cast<QKeyEvent*>(e);
         Qt::KeyboardModifiers modifiers = event->modifiers();
         switch (event->key())
         {

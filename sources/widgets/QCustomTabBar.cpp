@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2019 Vincent Prat & Simon Nicolas
+* Copyright © 2019-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -35,7 +35,7 @@ bool QCustomTabBar::event(QEvent *e)
 {
     if (e->type() == QEvent::ToolTip)
     {
-        QHelpEvent *helpEvent = dynamic_cast<QHelpEvent*>(e);
+        QHelpEvent *helpEvent = static_cast<QHelpEvent*>(e);
         emit toolTipRequested(tabAt(helpEvent->pos()), helpEvent->globalPos());
         return true;
     }

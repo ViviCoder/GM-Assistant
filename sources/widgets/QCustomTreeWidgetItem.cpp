@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -52,7 +52,7 @@ void QCustomTreeWidgetItem::updateDisplay()
     Item::Type type = item->type();
     if (Item::is(type, Item::tFile))
     {
-        FileItem *fileItem = dynamic_cast<FileItem*>(item);
+        FileItem *fileItem = static_cast<FileItem*>(item);
         std::string fileName = fileItem->fileName(); 
         if (fileItem->isIncluded())
         {
@@ -66,7 +66,7 @@ void QCustomTreeWidgetItem::updateDisplay()
         switch (type)
         {
             case Item::tSound:  setIcon(0,QIcon(":/data/images/speaker.svg"));
-                                if (dynamic_cast<QCustomTreeWidget*>(treeWidget())->playingMethod() != QCustomTreeWidget::pmNone)
+                                if (static_cast<QCustomTreeWidget*>(treeWidget())->playingMethod() != QCustomTreeWidget::pmNone)
                                 {
                                     setStatusTip(0,QApplication::translate("customTree","Double click to play the file",0));
                                 }
@@ -81,7 +81,7 @@ void QCustomTreeWidgetItem::updateDisplay()
     {
         setIcon(0, QIcon(":/data/images/text.svg"));
         setStatusTip(0, QApplication::translate("customTree", "Double click to display the note", 0));
-        NoteItem *noteItem = dynamic_cast<NoteItem*>(item);
+        NoteItem *noteItem = static_cast<NoteItem*>(item);
         setToolTip(0, noteItem->note()->title().c_str());
     }
     else

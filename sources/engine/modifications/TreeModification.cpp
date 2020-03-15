@@ -58,7 +58,7 @@ TreeModification::~TreeModification()
         // to avoid double free of notes
         if (pItem->type() == Item::tNote && bSameType)
         {
-            dynamic_cast<NoteItem*>(pItem)->setNote(0);
+            static_cast<NoteItem*>(pItem)->setNote(0);
         }
         delete pItem;
     }
@@ -67,7 +67,7 @@ TreeModification::~TreeModification()
         // to avoid double free of notes
         if (pUndoneItem->type() == Item::tNote && bSameType)
         {
-            dynamic_cast<NoteItem*>(pUndoneItem)->setNote(0);
+            static_cast<NoteItem*>(pUndoneItem)->setNote(0);
         }
         delete pUndoneItem;
     }
