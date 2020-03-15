@@ -57,11 +57,6 @@ void QCustomTabWidget::clear()
     mNotes.clear();
 }
 
-void QCustomTabWidget::updateDisplay()
-{
-    // TODO
-}
-
 bool QCustomTabWidget::unregisteredModification() const
 {
     return static_cast<QCustomTextEdit*>(currentWidget())->unregisteredModification();

@@ -64,10 +64,6 @@ class QCustomTabWidget: public QTabWidget
         inline Note* note(int index);
     public slots:
         /*!
-         * \brief Update of the display
-         */
-        void updateDisplay();
-        /*!
          * \brief Update after a modification
          * \param modification Modification to undo or redo
          * \param undo True to undo, false to redo
