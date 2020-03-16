@@ -1,3 +1,9 @@
+Changes in version 1.3.0
+* Notes
+    - new item type containing a note
+    - note associated with every character
+    - tabs for the differents notes
+
 Changes in version 1.2.2
 * Transitions
     - from Phonon to Qt Multimedia
