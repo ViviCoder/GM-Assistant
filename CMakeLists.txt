@@ -84,6 +84,7 @@ set (PROJECT_SOURCES
     sources/windows/ItemDialog.cpp
     sources/windows/MainWindow.cpp
     sources/windows/MetadataDialog.cpp
+    sources/windows/ReleaseNotesDialog.cpp
     sources/windows/RenameNoteDialog.cpp
     sources/windows/SelectCharacterDialog.cpp)
 set (PROJECT_FORMS
@@ -95,6 +96,7 @@ set (PROJECT_FORMS
     sources/windows/ItemDialog.ui
     sources/windows/MainWindow.ui
     sources/windows/MetadataDialog.ui
+    sources/windows/ReleaseNotesDialog.ui
     sources/windows/RenameNoteDialog.ui
     sources/windows/SelectCharacterDialog.ui)
 
@@ -178,6 +180,8 @@ install(FILES ${TRANSLATION_QM} translations/languages
     DESTINATION ${DATA_DIR}/translations)
 install(FILES doc/gm-assistant.6
     DESTINATION ${MAN_DIR}/man6)
+install(FILES CHANGELOG
+    DESTINATION ${DATA_DIR})
 
 # desktop file
 set (DESKTOP_FILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/${EXEC_NAME}.desktop.in)

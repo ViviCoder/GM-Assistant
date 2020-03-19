@@ -31,7 +31,7 @@
 #include "MetadataModification.h"
 #include <Poco/Exception.h>
 
-MainWindow::MainWindow(const QString &install_dir): QMainWindow(), musicPlayer(new QMediaPlayer(this)), soundPlayer(new QMediaPlayer(this)), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), pItemDialog(new ItemDialog(this))
+MainWindow::MainWindow(const QString &install_dir): QMainWindow(), musicPlayer(new QMediaPlayer(this)), soundPlayer(new QMediaPlayer(this)), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), pItemDialog(new ItemDialog(this)), pReleaseNotesDialog(new ReleaseNotesDialog(this, install_dir))
 {
     setupUi(this);
     updateDisplay();
@@ -993,4 +993,9 @@ void MainWindow::onMusicDurationChanged(qint64 duration)
 void MainWindow::on_sliderMusic_sliderMoved(int position)
 {
     musicPlayer->setPosition(position);
+}
+
+void MainWindow::on_action_Release_notes_triggered()
+{
+    pReleaseNotesDialog->exec();
 }

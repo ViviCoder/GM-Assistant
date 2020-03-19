@@ -316,7 +316,7 @@
      <x>0</x>
      <y>0</y>
      <width>878</width>
-     <height>28</height>
+     <height>24</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuGame">
@@ -340,6 +340,8 @@
     <property name="title">
      <string>&amp;Help</string>
     </property>
+    <addaction name="action_Release_notes"/>
+    <addaction name="separator"/>
     <addaction name="actionAbout"/>
     <addaction name="actionAbout_Qt"/>
    </widget>
@@ -616,6 +618,14 @@
    </property>
    <property name="statusTip">
     <string>Display information about Qt</string>
+   </property>
+  </action>
+  <action name="action_Release_notes">
+   <property name="text">
+    <string>&amp;Release notes</string>
+   </property>
+   <property name="statusTip">
+    <string>Display the release notes</string>
    </property>
   </action>
  </widget>

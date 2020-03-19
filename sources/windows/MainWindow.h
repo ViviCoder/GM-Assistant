@@ -30,6 +30,7 @@
 #include "ItemDialog.h"
 #include "MetadataDialog.h"
 #include <QtMultimedia/QMediaPlayer>
+#include "ReleaseNotesDialog.h"
 
 // number of recently opened games stored
 #define RECENT_NUMBER   5
@@ -93,6 +94,8 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * Saves the game
          */
         void save(bool askForUpdate = true);
+        //! Release notes displayer
+        ReleaseNotesDialog *pReleaseNotesDialog;
     protected:
         // overriden methods
         /*!
@@ -384,6 +387,12 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          * \param note Editor for the note
          */
         void connectNote(QCustomTextEdit *note);
+        /*!
+         * \brief Slot for the Release notes menu item
+         *
+         * Displays the release notes
+         */
+        void on_action_Release_notes_triggered();
 };
 
 #endif
