@@ -36,8 +36,7 @@ Changes in version 1.2.0
     - metadata added to the scenario
     - possibility to move characters and properties
     - new tools: dice simulator and combat manager
-    - scenario file format changed to an archive containing all audio and
- image files
+    - scenario file format changed to an archive containing all audio and image files
     - save of the expanded/collapsed state of items
     - confirmation before closing
     - possibility to choose the language of the interface
@@ -54,7 +53,7 @@ Changes in version 1.2.0
 
 Changes in version 1.1.9
 - reorganization of the info dialog window to fit in low-resolution screens
-- auto-scrolling in table/tree widgets when adding/editing skill/character 
+- auto-scrolling in table/tree widgets when adding/editing skill/character
 - new options added to the configure script
 - default working directory for Windows
 - new icon for the edition in table/tree widget
@@ -67,8 +66,7 @@ Changes in version 1.1.9
 Changes in version 1.1.8
 - Interface menu renamed View
 - ambiguous shortcut to add an item modified (now Ins)
-- crash when trying to play music or move the slider without a selected file
- fixed
+- crash when trying to play music or move the slider without a selected file fixed
 - various interface bugs fixed
 
 Changes in version 1.1.7
@@ -88,8 +86,7 @@ Changes in version 1.1.7
 Changes in version 1.1.6
 - depencies modified to work on Fedora
 - error message added when a music file cannot be read
-- display of a default image when an image file cannot be read replaced by
- an error message
+- display of a default image when an image file cannot be read replaced by an error message
 - useless source files deleted
 
 Changes in version 1.1.5
@@ -129,7 +126,7 @@ Changes in version 1.0.15
 - resizing bug in table widget fixed
 
 Changes in version 1.0.14
-- the slider now accepts wheel events and clicks 
+- the slider now accepts wheel events and clicks
 - modification of the child-adding method of trees
 - now requires SDL_mixer version >= 1.2.12
 - reset of the sound engine when loading a game file
@@ -139,8 +136,7 @@ Changes in version 1.0.13
 
 Changes in version 1.0.12
 - bug when right-clicking in the table widget fixed
-- restoration of the default behaviour of the table widget header when
- right-clicking
+- restoration of the default behaviour of the table widget header when right-clicking
 
 Changes in version 1.0.11
 - bug in finding translation files in non-linux systems fixed
@@ -153,8 +149,7 @@ Changes in version 1.0.9:
 - bug when adding a new item at the root of a tree fixed
 
 Changes in version 1.0.8:
-- crash when moving an item into another (due to creation with bad parent)
- fixed (I hope definitively!)
+- crash when moving an item into another (due to creation with bad parent) fixed
 
 Changes in version 1.0.7:
 - crash when moving an item created with child (or into one) fixed
@@ -163,23 +158,20 @@ Changes in version 1.0.7:
 
 Changes in version 1.0.6:
 * Trees:
-	- crash when moving an item into a previously moved one fixed
-	- resize of the items when moved
+    - crash when moving an item into a previously moved one fixed
+    - resize of the items when moved
 * Others
-	- path (translations ans examples) issue on Linux when using a launcher
- solved
-	
+    - path (translations ans examples) issue on Linux when using a launcher solved
+
 Changes in version 1.0.5:
 - crash when typing 'Del' while editing an item fixed
 
 Changes in version 1.0.4:
 * Uninstallation:
-	- 'make install' creates a log file which contains the list of the files
-	to remove during uninstallation
-	- 'make uninstall' removes only those files and the empty directories
-	instead of a raw 'rm -r *'
+    - 'make install' creates a log file which contains the list of the files to remove during uninstallation
+    - 'make uninstall' removes only those files and the empty directories instead of a raw 'rm -r *'
 * Others:
-	- the configure script displays the list of linked libraries
+    - the configure script displays the list of linked libraries
 
 Changes in version 1.0.3:
 - crash when moving an item in a following branch fixed
@@ -190,8 +182,8 @@ Changes in version 1.0.2:
 
 Changes in version 1.0.1:
 * Trees:
-	- drag & drop bug fixed
-	- selected items can now be dragged
-	- right-clicking an item selects it
+    - drag & drop bug fixed
+    - selected items can now be dragged
+    - right-clicking an item selects it
 * Others:
-	- non-player characters can be added in the table
+    - non-player characters can be added in the table
