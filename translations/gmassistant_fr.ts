@@ -426,17 +426,47 @@
         <translation>Nombre de dés :</translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="118"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="125"/>
+        <source>Sum:</source>
+        <translation>Somme :</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/DiceDialog.ui" line="167"/>
+        <source>Equal to</source>
+        <translation>Égal à</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/DiceDialog.ui" line="174"/>
+        <source>Minimum:</source>
+        <translation>Minimum :</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/DiceDialog.ui" line="181"/>
+        <source>Maximum:</source>
+        <translation>Maximum :</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/DiceDialog.ui" line="195"/>
+        <source>At least</source>
+        <translation>Au moins</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/DiceDialog.ui" line="202"/>
+        <source>At most</source>
+        <translation>Au plus</translation>
+    </message>
+    <message>
+        <location filename="../sources/windows/DiceDialog.ui" line="227"/>
         <source>&amp;Throw</source>
         <translation>&amp;Lancer</translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="128"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="237"/>
         <source>&amp;Reset</source>
         <translation>&amp;Mettre à zéro</translation>
     </message>
     <message>
-        <location filename="../sources/windows/DiceDialog.ui" line="135"/>
+        <location filename="../sources/windows/DiceDialog.ui" line="244"/>
         <source>&amp;Close</source>
         <translation>&amp;Fermer</translation>
     </message>

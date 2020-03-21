@@ -20,6 +20,7 @@
 #define HEADER_DICEDIALOG
 
 #include "ui_DiceDialog.h"
+#include <vector>
 
 /*!
  * \brief Dialog window for dice simulation
@@ -52,6 +53,21 @@ class DiceDialog: public QDialog, private Ui::diceDialog
          * Resets the results
          */
         void show();
+        /*!
+         * \brief Slot for when the number of dice equal to a certain number needs to be recomputed
+         * \param value Value to compare to the dice
+         */
+        void on_spinEqual_valueChanged(int value);
+        /*!
+         * \brief Slot for when the number of dice greater or equal to a certain number needs to be recomputed
+         * \param value Value to compare to the dice
+         */
+        void on_spinLeast_valueChanged(int value);
+        /*!
+         * \brief Slot for when the number of dice lower or equal to a certain number needs to be recomputed
+         * \param value Value to compare to the dice
+         */
+        void on_spinMost_valueChanged(int value);
     protected:
         /*!
          * \brief ChangeEvent handler
@@ -60,6 +76,9 @@ class DiceDialog: public QDialog, private Ui::diceDialog
          * Updates the translation when changing language
          */
         void changeEvent(QEvent *e) override;
+    private:
+        //! List of results
+        std::vector<int> vResults;
 };
 
 #endif

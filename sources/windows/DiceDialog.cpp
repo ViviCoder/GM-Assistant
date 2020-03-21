@@ -49,22 +49,74 @@ void DiceDialog::on_pushThrow_clicked()
                     break;
         default:    faces = 100;
     }
-    QString result;
+    // limiting the possible values for counting
+    spinEqual->setMaximum(faces);
+    spinLeast->setMaximum(faces);
+    spinMost->setMaximum(faces);
+
     int nb = spinNumber->value();
+
+    // results
+    vResults.resize(nb);
+    QString result;
+    int sum = 0;
+    int min = faces;
+    int max = 1;
+    int nequal = 0;
+    int nleast = 0;
+    int nmost = 0;
+
     for (int i = 0; i < nb; i++)
     {
-        result += QString("%1").arg(rand() % faces + 1);
+        int res = rand() % faces + 1;
+        vResults[i] = res;
+        result += QString("%1").arg(res);
         if (i+1 < nb)
         {
             result += " ";
         }
+        // computations
+        sum += res;
+        if (res > max)
+        {
+            max = res;
+        }
+        if (res < min)
+        {
+            min = res;
+        }
+        if (res == spinEqual->value())
+        {
+            nequal++;
+        }
+        if (res >= spinLeast->value())
+        {
+            nleast++;
+        }
+        if (res <= spinMost->value())
+        {
+            nmost++;
+        }
     }
     textResult->setPlainText(result);
+    lineSum->setText(QString("%1").arg(sum));
+    lineMin->setText(QString("%1").arg(min));
+    lineMax->setText(QString("%1").arg(max));
+    lineEqual->setText(QString("%1").arg(nequal));
+    lineLeast->setText(QString("%1").arg(nleast));
+    lineMost->setText(QString("%1").arg(nmost));
 }
 
 void DiceDialog::on_pushReset_clicked()
 {
+    vResults.clear();
     textResult->clear();
+    lineSum->clear();
+    lineMin->clear();
+    lineMax->clear();
+    lineEqual->clear();
+    lineLeast->clear();
+    lineMost->clear();
 }
 
 void DiceDialog::show()
@@ -78,5 +130,53 @@ void DiceDialog::changeEvent(QEvent *e)
     if (e->type() == QEvent::LanguageChange)
     {
         retranslateUi(this);
+    }
+}
+
+void DiceDialog::on_spinEqual_valueChanged(int value)
+{
+    int count = 0;
+    for (std::vector<int>::const_iterator it = vResults.begin(); it != vResults.end(); it++)
+    {
+        if (*it == value)
+        {
+            count++;
+        }
+    }
+    if (vResults.size() > 0)
+    {
+        lineEqual->setText(QString("%1").arg(count));
+    }
+}
+
+void DiceDialog::on_spinLeast_valueChanged(int value)
+{
+    int count = 0;
+    for (std::vector<int>::const_iterator it = vResults.begin(); it != vResults.end(); it++)
+    {
+        if (*it >= value)
+        {
+            count++;
+        }
+    }
+    if (vResults.size() > 0)
+    {
+        lineLeast->setText(QString("%1").arg(count));
+    }
+}
+
+void DiceDialog::on_spinMost_valueChanged(int value)
+{
+    int count = 0;
+    for (std::vector<int>::const_iterator it = vResults.begin(); it != vResults.end(); it++)
+    {
+        if (*it <= value)
+        {
+            count++;
+        }
+    }
+    if (vResults.size() > 0)
+    {
+        lineMost->setText(QString("%1").arg(count));
     }
 }
