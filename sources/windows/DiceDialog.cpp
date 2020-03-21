@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -59,12 +59,12 @@ void DiceDialog::on_pushThrow_clicked()
             result += " ";
         }
     }
-    lineResult->setText(result);
+    textResult->setPlainText(result);
 }
 
 void DiceDialog::on_pushReset_clicked()
 {
-    lineResult->setText(QString());
+    textResult->clear();
 }
 
 void DiceDialog::show()

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>305</width>
-    <height>172</height>
+    <height>198</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -96,15 +96,12 @@
        <property name="minimum">
         <number>1</number>
        </property>
-       <property name="maximum">
-        <number>10</number>
-       </property>
       </widget>
      </item>
     </layout>
    </item>
    <item>
-    <widget class="QLineEdit" name="lineResult">
+    <widget class="QPlainTextEdit" name="textResult">
      <property name="readOnly">
       <bool>true</bool>
      </property>
