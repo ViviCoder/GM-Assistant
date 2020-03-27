@@ -31,8 +31,9 @@
 #include "MetadataModification.h"
 #include <Poco/Exception.h>
 
-MainWindow::MainWindow(const QString &install_dir): QMainWindow(), musicPlayer(new QMediaPlayer(this)), soundPlayer(new QMediaPlayer(this)), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), pItemDialog(new ItemDialog(this))
+MainWindow::MainWindow(const QString &install_dir): QMainWindow(), musicPlayer(new QMediaPlayer(this)), soundPlayer(new QMediaPlayer(this)), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pCombatDialog(new CombatDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), pItemDialog(new ItemDialog(this))
 {
+    pSelectCharacterDialog = new SelectCharacterDialog(this, pCombatDialog);
     setupUi(this);
     updateDisplay();
     updateUndoRedo();
@@ -809,6 +810,15 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
 bool MainWindow::canClose()
 {
     textNotes->clearFocus();
+    if (pCombatDialog->isVisible())
+    {
+        // if the combat manager is opened, we try to close it
+        if (!pCombatDialog->close())
+        {
+            // if it is not closed, we cannot close the game
+            return false;
+        }
+    }
     if (mqQueue.isUpToDate())
     {
         // no need for confirmation

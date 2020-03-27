@@ -41,8 +41,12 @@ class SelectCharacterDialog: public QDialog, private Ui::selectCharacterDialog
          */
         void changeEvent(QEvent *e);
     public:
-        //! Default constructor
-        SelectCharacterDialog(QWidget *parent);
+        /*!
+         * \brief Default constructor
+         * \param parent Parent widget
+         * \param combatDialog Combat dialog window
+         */
+        SelectCharacterDialog(QWidget *parent, CombatDialog *combatDialog);
     public slots:
         /*!
          * \brief Overriden slot for showing the dialog window

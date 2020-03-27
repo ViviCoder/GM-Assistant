@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013-2017 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -20,7 +20,7 @@
 #include <QFormLayout>
 #include <QMessageBox>
 
-SelectCharacterDialog::SelectCharacterDialog(QWidget *parent): QDialog(parent), pCombat(new CombatDialog(parent))
+SelectCharacterDialog::SelectCharacterDialog(QWidget *parent, CombatDialog *combatDialog): QDialog(parent), pCombat(combatDialog)
 {
     setupUi(this);
 }
