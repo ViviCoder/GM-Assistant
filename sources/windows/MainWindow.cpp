@@ -31,8 +31,9 @@
 #include "MetadataModification.h"
 #include <Poco/Exception.h>
 
-MainWindow::MainWindow(const QString &install_dir): QMainWindow(), musicPlayer(new QMediaPlayer(this)), soundPlayer(new QMediaPlayer(this)), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pSelectCharacterDialog(new SelectCharacterDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), pItemDialog(new ItemDialog(this)), pReleaseNotesDialog(new ReleaseNotesDialog(this, install_dir))
+MainWindow::MainWindow(const QString &install_dir): QMainWindow(), musicPlayer(new QMediaPlayer(this)), soundPlayer(new QMediaPlayer(this)), pAboutDial(new AboutDialog(this)), pDiceDialog(new DiceDialog(this)), pCombatDialog(new CombatDialog(this)), smRecent(new QSignalMapper(this)), siCurrentMusic(0), tApplication(new QTranslator(this)), tSystem(new QTranslator(this)), sInstall(install_dir), smLanguage(new QSignalMapper(this)), pMetadataDialog(new MetadataDialog(this)), pItemDialog(new ItemDialog(this)), pReleaseNotesDialog(new ReleaseNotesDialog(this, install_dir))
 {
+    pSelectCharacterDialog = new SelectCharacterDialog(this, pCombatDialog);
     setupUi(this);
     updateDisplay();
     updateUndoRedo();
@@ -835,6 +836,16 @@ bool MainWindow::eventFilter(QObject *source, QEvent *e)
 bool MainWindow::canClose()
 {
     tabNotes->clearFocus();
+    if (pCombatDialog->isVisible())
+    {
+        // if the combat manager is opened
+        switch (QMessageBox::question(this, QApplication::translate("mainWindow", "Confirmation", 0), QApplication::translate("mainWindow", "A combat is ongoing. Would you like to save its status before closing?", 0), QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel))
+        {
+            case QMessageBox::Save: save();
+                                    return true;
+            case QMessageBox::Cancel:   return false;
+        }
+    }
     if (mqQueue.isUpToDate())
     {
         // no need for confirmation

@@ -55,6 +55,8 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         DiceDialog *pDiceDialog;
         //! Character selection dialog window
         SelectCharacterDialog *pSelectCharacterDialog;
+        //! Combat manager dialog window
+        CombatDialog *pCombatDialog;
         /*!
          * \brief Previous size of the window before being maximized
          */
