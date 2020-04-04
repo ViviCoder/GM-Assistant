@@ -29,7 +29,9 @@ class CombatDialog: public QDialog, private Ui::combatDialog
 {
     Q_OBJECT
     private:
-        //! Counter
+        //! Round counter
+        int iRound;
+        //! Character counter
         int iCharacter;
         //! Vertical header
         QHeaderView *header;

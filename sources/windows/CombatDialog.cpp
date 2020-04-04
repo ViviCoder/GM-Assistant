@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013-2017 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -31,6 +31,7 @@ CombatDialog::CombatDialog(QWidget *parent): QDialog(parent)
 
 void CombatDialog::show(const QStringList &list)
 {
+    iRound = 1;
     iCharacter = 0;
     tableWidget->setRowCount(0);
     tableWidget->setRowCount(list.size());
@@ -50,7 +51,13 @@ void CombatDialog::show(const QStringList &list)
 
 void CombatDialog::on_pushNext_clicked()
 {
-    iCharacter = (iCharacter + 1) % tableWidget->rowCount();
+    iCharacter++;
+    if (iCharacter == tableWidget->rowCount())
+    {
+        // new round
+        iRound++;
+        iCharacter = 0;
+    }
     updateDisplay();
 }
 
@@ -68,7 +75,8 @@ void CombatDialog::updateDisplay()
             tableWidget->item(n, 0)->setBackground(QPalette().color(QPalette::Base));
         }
     }
-    label->setText(QApplication::translate("combatDialog", "Current character:", 0) + " <strong>"+tableWidget->verticalHeaderItem(logical)->text()+"</strong>");
+    roundLabel->setText(QApplication::translate("combatDialog", "Round number:", 0) + QString(" <strong>%1</strong>").arg(iRound));
+    characterLabel->setText(QApplication::translate("combatDialog", "Current character:", 0) + " <strong>" + tableWidget->verticalHeaderItem(logical)->text() + "</strong>");
 }
 
 void CombatDialog::onCharacterMoved(int, int oldVisualIndex, int newVisualIndex)

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>287</width>
-    <height>245</height>
+    <width>274</width>
+    <height>295</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,7 +15,14 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label">
+    <widget class="QLabel" name="roundLabel">
+     <property name="text">
+      <string>Round number:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="characterLabel">
      <property name="text">
       <string>Current character:</string>
      </property>
