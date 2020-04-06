@@ -524,7 +524,6 @@ void QCustomTreeWidget::addItem(QCustomTreeWidgetItem *item, bool edition)
                                                 NoteItem *noteItem = new NoteItem(pItemDial->text().toStdString(), pItemDial->state(), false, note);
                                                 note = noteItem->note();
                                                 note->setTitle(noteItem->content());
-                                                note->setVisible(false);
                                                 newItem = noteItem;
                                                 break;
                                             }

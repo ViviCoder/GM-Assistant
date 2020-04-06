@@ -34,7 +34,7 @@ class Note
          * \param text Text of the note
          * \param visible Flag that indicates if the note is visible
          */
-        Note(const std::string &title = "", const std::string &text = "", bool visible = true);
+        Note(const std::string &title = "", const std::string &text = "", bool visible = false);
         /*!
          * \brief Getter for the title
          * \return Title of the note
