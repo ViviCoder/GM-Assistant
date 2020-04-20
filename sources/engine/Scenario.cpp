@@ -359,9 +359,9 @@ PropertyList& Scenario::properties()
     return lProperties;
 }
 
-string Scenario::interfaceToString(UserInterface interface)
+string Scenario::interfaceToString(UserInterface userInterface)
 {
-    switch (interface)
+    switch (userInterface)
     {
         case uiFull:    return "full";
         case uiSimple:  return "simple";
@@ -371,17 +371,17 @@ string Scenario::interfaceToString(UserInterface interface)
     }
 }
 
-Scenario::UserInterface Scenario::stringToInterface(const std::string& interface)
+Scenario::UserInterface Scenario::stringToInterface(const std::string& userInterface)
 {
-    if (interface=="full")
+    if (userInterface=="full")
         return uiFull;
-    else if (interface=="simple")
+    else if (userInterface=="simple")
         return uiSimple;
-    else if (interface=="music")
+    else if (userInterface=="music")
         return uiMusic;
-    else if (interface=="design")
+    else if (userInterface=="design")
         return uiDesign;
-    else if (interface=="nomusic")
+    else if (userInterface=="nomusic")
         return uiNoMusic;
     else
         throw invalid_argument("Invalid user interface");
@@ -392,9 +392,9 @@ Scenario::UserInterface Scenario::userInterface() const
     return uiInterface;
 }
 
-void Scenario::setUserInterface(Scenario::UserInterface interface)
+void Scenario::setUserInterface(Scenario::UserInterface userInterface)
 {
-    uiInterface = interface;
+    uiInterface = userInterface;
 }
 
 IOConfig Scenario::configuration() const

@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2019 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -80,23 +80,23 @@ class Scenario
         UserInterface userInterface() const;
         /*!
          * \brief Set the user interface
-         * \param interface New value of the user interface
+         * \param userInterface New value of the user interface
          */
-        void setUserInterface(UserInterface interface);
+        void setUserInterface(UserInterface userInterface);
         //! Clear the current scenario
         void clear();
         /*!
          * \brief Convertion method from UserInterface to string
-         * \param interface User interface
+         * \param userInterface User interface
          * \return String equivalent to the interface
          */
-        static std::string interfaceToString(UserInterface interface);
+        static std::string interfaceToString(UserInterface userInterface);
         /*!
          * \brief Convertion method form string to UserInterface
-         * \param interface String to convert
+         * \param userInterface String to convert
          * \return User interface equivalent to the string 
          */
-        static UserInterface stringToInterface(const std::string& interface);
+        static UserInterface stringToInterface(const std::string& userInterface);
         /*!
          * \brief Getter for the IO configuration
          * \return IO configuration
