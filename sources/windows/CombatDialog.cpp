@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2013-2017 Vincent Prat & Simon Nicolas
+* Copyright © 2013-2020 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -43,6 +43,7 @@ void CombatDialog::show(const QStringList &list)
         tableWidget->setItem(i, 0, item);
         i++;
     }
+    tableWidget->setCurrentCell(iCharacter, 0);
     pushRemove->setEnabled(tableWidget->rowCount() > 2);
     updateDisplay();
     QDialog::show();
