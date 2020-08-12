@@ -1,3 +1,10 @@
+Changes in version 1.2.3
+* Combat manager
+    - alternative ways to manipulate characters in the selection window
+    - confirmation before closing a game if a combat is ongoing
+* renamed variables that were previously named 'interface'
+* bug fixes
+
 Changes in version 1.2.2
 * Transitions
     - from Phonon to Qt Multimedia

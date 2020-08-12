@@ -25,7 +25,7 @@ project (${PROJECT_NAME})
 # handling version
 set (VERSION_MAJOR 1)
 set (VERSION_MINOR 2)
-set (VERSION_PATCH 2)
+set (VERSION_PATCH 3)
 configure_file(sources/engine/Version.h.in Version.h)
 
 # options
