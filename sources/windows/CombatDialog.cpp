@@ -51,12 +51,15 @@ void CombatDialog::show(const QStringList &list)
 
 void CombatDialog::on_pushNext_clicked()
 {
-    iCharacter = (iCharacter + 1) % tableWidget->rowCount();
+    iCharacter++;
     updateDisplay();
 }
 
 void CombatDialog::updateDisplay()
 {
+    // ensure that iCharacter lies within the permitted range
+    iCharacter %= tableWidget->rowCount();
+
     int logical = header->logicalIndex(iCharacter);
     for (int n = 0; n < tableWidget->rowCount(); n++)
     {
