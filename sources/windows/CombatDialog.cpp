@@ -44,6 +44,7 @@ void CombatDialog::show(const QStringList &list)
         tableWidget->setItem(i, 0, item);
         i++;
     }
+    tableWidget->setCurrentCell(iCharacter, 0);
     pushRemove->setEnabled(tableWidget->rowCount() > 2);
     updateDisplay();
     QDialog::show();
@@ -63,6 +64,9 @@ void CombatDialog::on_pushNext_clicked()
 
 void CombatDialog::updateDisplay()
 {
+    // ensure that iCharacter lies within the permitted range
+    iCharacter %= tableWidget->rowCount();
+
     int logical = header->logicalIndex(iCharacter);
     for (int n = 0; n < tableWidget->rowCount(); n++)
     {

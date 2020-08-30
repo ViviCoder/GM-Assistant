@@ -58,7 +58,7 @@ class SelectCharacterDialog: public QDialog, private Ui::selectCharacterDialog
         /*!
          * \brief Slot for the Add button
          *
-         * Adds a character in the list of involved characters
+         * Adds a character to the list of involved characters
          */
         void on_pushAdd_clicked();
         /*!
@@ -81,6 +81,18 @@ class SelectCharacterDialog: public QDialog, private Ui::selectCharacterDialog
         void on_pushDown_clicked();
         //! Slot called when the modifications are accepted
         void accept() override;
+        /*!
+         * \brief Slot for double-clicking an item in the character list
+         *
+         * Adds the double-clicked character to the list of involved characters
+        */
+        void on_listAll_itemDoubleClicked(QListWidgetItem*);
+        /*!
+         * \brief Slot for double-clicking an item in the list of involved characters
+         *
+         * Removes the double-clicked character from the list of involved characters
+        */
+        void on_listInvolved_itemDoubleClicked(QListWidgetItem*);
 };
 
 #endif

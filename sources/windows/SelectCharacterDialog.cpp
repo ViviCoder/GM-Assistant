@@ -127,3 +127,13 @@ void SelectCharacterDialog::on_pushDown_clicked()
         listInvolved->setCurrentRow(n + 1);
     }
 }
+
+void SelectCharacterDialog::on_listAll_itemDoubleClicked(QListWidgetItem*)
+{
+    on_pushAdd_clicked();
+}
+
+void SelectCharacterDialog::on_listInvolved_itemDoubleClicked(QListWidgetItem*)
+{
+    on_pushRemove_clicked();
+}
