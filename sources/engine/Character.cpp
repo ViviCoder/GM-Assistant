@@ -19,6 +19,7 @@
 #include "Character.h"
 #include <Poco/DOM/NodeList.h>
 #include <Poco/DOM/Document.h>
+#include <stdexcept>
 
 using namespace std;
 
