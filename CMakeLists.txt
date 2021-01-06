@@ -210,6 +210,8 @@ if (${BUILD_USERGUIDE})
         message(FATAL_ERROR "pdflatex is needed to build the user guide.")
     endif()
 
+    set (PDFLATEX_OPTIONS -halt-on-error -interaction=nonstopmode)
+
     # list of PDF files to build
     set (LIST_PDF)
     foreach (LANG en fr)
@@ -221,9 +223,9 @@ if (${BUILD_USERGUIDE})
         list (APPEND LIST_PDF ${TARGET_NAME})
 
         add_custom_command(OUTPUT ${TARGET_NAME}
-            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME} > /dev/null
-            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME} > /dev/null
-            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME} > /dev/null
+            COMMAND ${PDFLATEX_COMPILER} ${PDFLATEX_OPTIONS} ${TEXFILE_NAME}
+            COMMAND ${PDFLATEX_COMPILER} ${PDFLATEX_OPTIONS} ${TEXFILE_NAME} > /dev/null
+            COMMAND ${PDFLATEX_COMPILER} ${PDFLATEX_OPTIONS} ${TEXFILE_NAME} > /dev/null
             MAIN_DEPENDENCY ${TEXFILE_NAME}
             COMMENT "Generating user guide: ${LANG}"
             VERBATIM)
