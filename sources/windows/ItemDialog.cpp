@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2018 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2021 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -26,7 +26,7 @@ ItemDialog::ItemDialog(QWidget *parent): QDialog(parent), audioBrowser(new QFile
     audioBrowser->setOption(QFileDialog::DontUseNativeDialog, true);
     audioBrowser->setFileMode(QFileDialog::ExistingFile);
     audioBrowser->setReadOnly(true);
-    audioBrowser->setNameFilterDetailsVisible(false);
+    audioBrowser->setOption(QFileDialog::HideNameFilterDetails, true);
 }
 
 Item::State ItemDialog::state() const
