@@ -168,8 +168,10 @@ install(TARGETS ${EXEC_NAME}
     DESTINATION ${BIN_DIR})
 install(FILES data/images/GMA.svg
     DESTINATION ${DATA_DIR})
-install(FILES ${TRANSLATION_QM} translations/languages
-    DESTINATION ${DATA_DIR}/translations)
+if (${Qt5LinguistTools_FOUND})
+    install(FILES ${TRANSLATION_QM} translations/languages
+        DESTINATION ${DATA_DIR}/translations)
+endif()
 install(FILES doc/gm-assistant.6
     DESTINATION ${MAN_DIR}/man6)
 
