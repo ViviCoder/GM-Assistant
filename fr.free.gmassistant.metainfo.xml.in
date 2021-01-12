@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+    <id>fr.free.gmassistant</id>
+    <metadata_license>CC0-1.0</metadata_license>
+    <name>@PROJECT_NAME@</name>
+    <summary>Assistant for the Game Master during tabletop role-playing games</summary>
+    <icon>@CMAKE_INSTALL_PREFIX@/@DATA_DIR@/GMA.svg</icon>
+    <description>
+        <p>@PROJECT_NAME@ is designed to be the perfect assistant for the Game Master during tabletop role-playing games.</p>
+        <p>@PROJECT_NAME@ allows to build structured scenarii with history and character table before the game, and to take notes, play music or sound effects, and display pictures during the game.</p>
+        <p>It also includes a dice simulator and a combat manager.</p>
+    </description>
+    <categories>
+        <category>Game</category>
+        <category>Utility</category>
+        <category>RolePlaying</category>
+        <category>Qt</category>
+    </categories>
+    <url type="homepage">http://gmassistant.free.fr</url>
+    <url type="bugtracker">https://github.com/ViviCoder/GM-Assistant/issues</url>
+    <url type="help">http://gmassistant.free.fr/?page=doc</url>
+    <url type="contact">http://gmassistant.free.fr/?page=contact</url>
+    <launchable type="desktop-id">fr.free.gmassistant.desktop</launchable>
+    <releases>
+        <release version="1.1.1" date="2012-03-23" />
+        <release version="1.1.2" date="2012-03-25" />
+        <release version="1.1.3" date="2012-04-07" />
+        <release version="1.1.4" date="2012-04-20" />
+        <release version="1.1.5" date="2012-05-02" />
+        <release version="1.1.6" date="2012-05-12" />
+        <release version="1.1.7" date="2012-07-08" />
+        <release version="1.1.8" date="2012-08-28" />
+        <release version="1.1.9" date="2013-02-09" />
+        <release version="1.2.0" date="2016-01-10" />
+        <release version="1.2.1" date="2019-04-26" />
+        <release version="1.2.2" date="2020-03-07" />
+        <release version="1.2.3" date="2020-08-12" />
+    </releases>
+    <provides>
+        <binary>@EXEC_NAME@</binary>
+    </provides>
+    <recommends>
+        <control>pointing</control>
+        <control>keyboard</control>
+    </recommends>
+    <project_licence>GPL-3.0</project_license>
+    <developer_name>Vincent Prat &amp; Simon Nicolas</developer_name>
+    <screenshots>
+        <screenshot type="default">
+            <image>http://gmassistant.free.fr/images/snapshot.png</image>
+            <caption>The @PROJECT_NAME@ main window</caption>
+        </screenshot>
+    </screenshots>
+    <translation type="qt">@EXEC_NAME@</translation>
+    <content_rating type="oars-1.1" />
+    <update_contact>gmassistant_AT_free.fr</update_contact>
+</component>
