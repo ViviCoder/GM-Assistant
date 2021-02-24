@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
-    <id>fr.free.gmassistant</id>
+    <id>@METAINFO_ID@</id>
     <metadata_license>CC0-1.0</metadata_license>
     <name>@PROJECT_NAME@</name>
     <summary>Assistant for the Game Master during tabletop role-playing games</summary>
@@ -20,7 +20,7 @@
     <url type="bugtracker">https://github.com/ViviCoder/GM-Assistant/issues</url>
     <url type="help">http://gmassistant.free.fr/?page=doc</url>
     <url type="contact">http://gmassistant.free.fr/?page=contact</url>
-    <launchable type="desktop-id">fr.free.gmassistant.desktop</launchable>
+    <launchable type="desktop-id">@METAINFO_ID@.desktop</launchable>
     <releases>
         <release version="1.1.1" date="2012-03-23" />
         <release version="1.1.2" date="2012-03-25" />

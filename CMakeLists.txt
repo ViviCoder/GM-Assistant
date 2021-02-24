@@ -175,9 +175,18 @@ endif()
 install(FILES doc/gm-assistant.6
     DESTINATION ${MAN_DIR}/man6)
 
+# metainfo file
+set (METAINFO_ID fr.free.gmassistant)
+set (METAINFO_FILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/${METAINFO_ID}.metainfo.xml.in)
+set (METAINFO_FILE ${CMAKE_CURRENT_BINARY_DIR}/${METAINFO_ID}.metainfo.xml)
+configure_file(${METAINFO_FILE_IN} ${METAINFO_FILE})
+
+install(FILES ${METAINFO_FILE}
+    DESTINATION share/metainfo)
+
 # desktop file
-set (DESKTOP_FILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/${EXEC_NAME}.desktop.in)
-set (DESKTOP_FILE ${CMAKE_CURRENT_BINARY_DIR}/${EXEC_NAME}.desktop)
+set (DESKTOP_FILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/${METAINFO_ID}.desktop.in)
+set (DESKTOP_FILE ${CMAKE_CURRENT_BINARY_DIR}/${METAINFO_ID}.desktop)
 configure_file(${DESKTOP_FILE_IN} ${DESKTOP_FILE})
 
 install(FILES ${DESKTOP_FILE}
