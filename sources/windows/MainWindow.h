@@ -89,15 +89,22 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
         Scenario sGame;
         //! Item editor
         ItemDialog *pItemDialog;
+        //! Release notes displayer
+        ReleaseNotesDialog *pReleaseNotesDialog;
         /*!
-         * \brief Game saver
+         * \brief Game save
          * \param askForUpdate Indicates if the user should be asked to update an outdated game
          *
          * Saves the game
          */
         void save(bool askForUpdate = true);
-        //! Release notes displayer
-        ReleaseNotesDialog *pReleaseNotesDialog;
+        /*!
+         * \brief Modification test
+         * \return True if there are modifications to save
+         *
+         * Tests if the game has been modified since the last save
+         */
+        inline bool isModified() const;
     protected:
         // overriden methods
         /*!
@@ -396,5 +403,10 @@ class MainWindow: public QMainWindow, private Ui::mainWindow
          */
         void on_action_Release_notes_triggered();
 };
+
+bool MainWindow::isModified() const
+{
+    return !mqQueue.isUpToDate() || tabNotes->unregisteredModification();
+}
 
 #endif

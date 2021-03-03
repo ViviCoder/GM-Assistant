@@ -734,7 +734,7 @@ void MainWindow::updateUndoRedo()
 {
     action_Undo->setEnabled(mqQueue.undoable());
     action_Redo->setEnabled(mqQueue.redoable());
-    bool modified = !mqQueue.isUpToDate() || tabNotes->unregisteredModification();
+    bool modified = isModified();
     action_Save->setEnabled(modified);
 
     QString windowTitle("GM-Assistant - ");
@@ -846,7 +846,7 @@ bool MainWindow::canClose()
             case QMessageBox::Cancel:   return false;
         }
     }
-    if (mqQueue.isUpToDate())
+    if (!isModified())
     {
         // no need for confirmation
         return true;
