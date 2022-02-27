@@ -43,7 +43,7 @@
         <control>pointing</control>
         <control>keyboard</control>
     </recommends>
-    <project_licence>GPL-3.0</project_license>
+    <project_license>GPL-3.0</project_license>
     <developer_name>Vincent Prat &amp; Simon Nicolas</developer_name>
     <screenshots>
         <screenshot type="default">
