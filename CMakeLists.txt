@@ -1,5 +1,5 @@
 #*************************************************************************
-# Copyright © 2017-2021 Vincent Prat & Simon Nicolas
+# Copyright © 2017-2022 Vincent Prat & Simon Nicolas
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -143,11 +143,19 @@ else()
     set (TRANSLATION_QM)
 endif()
 
+if (WIN32)
+    set (RCFILE GMA.rc)
+endif()
+
 # executable
 set (EXEC_NAME gm-assistant)
 add_executable(${EXEC_NAME}
     ${PROJECT_SOURCES}
     ${TRANSLATION_QM})
+
+if (WIN32)
+    target_link_options(${EXEC_NAME} PRIVATE -mwindows)
+endif()
 
 # link libraries
 target_link_libraries(${EXEC_NAME}
