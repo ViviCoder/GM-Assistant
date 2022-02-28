@@ -241,7 +241,7 @@ if (${BUILD_USERGUIDE_HTML})
         message(FATAL_ERROR "latex2html is needed to build the user guide in HTML format.")
     endif()
 
-    set (LATEX2HTML_OPTIONS -verbosity 0 -show_section_numbers -info 0)
+    set (LATEX2HTML_OPTIONS -verbosity 0 -show_section_numbers -info 0 -no_auto_link)
 
     # list of HTML
     set (LIST_HTML)
