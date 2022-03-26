@@ -1,5 +1,5 @@
 /*************************************************************************
-* Copyright © 2011-2020 Vincent Prat & Simon Nicolas
+* Copyright © 2011-2021 Vincent Prat & Simon Nicolas
 *
 * This program is free software; you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -19,6 +19,7 @@
 #include "PropertyList.h"
 #include <Poco/DOM/NodeList.h>
 #include <Poco/DOM/Document.h>
+#include <stdexcept>
 
 using namespace std;
 

@@ -1,5 +1,5 @@
 #*************************************************************************
-# Copyright © 2017-2020 Vincent Prat
+# Copyright © 2017-2022 Vincent Prat & Simon Nicolas
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -151,11 +151,19 @@ else()
     set (TRANSLATION_QM)
 endif()
 
+if (WIN32)
+    set (RCFILE GMA.rc)
+endif()
+
 # executable
 set (EXEC_NAME gm-assistant)
 add_executable(${EXEC_NAME}
     ${PROJECT_SOURCES}
     ${TRANSLATION_QM})
+
+if (WIN32)
+    target_link_options(${EXEC_NAME} PRIVATE -mwindows)
+endif()
 
 # link libraries
 target_link_libraries(${EXEC_NAME}
@@ -176,16 +184,27 @@ install(TARGETS ${EXEC_NAME}
     DESTINATION ${BIN_DIR})
 install(FILES data/images/GMA.svg
     DESTINATION ${DATA_DIR})
-install(FILES ${TRANSLATION_QM} translations/languages
-    DESTINATION ${DATA_DIR}/translations)
+if (${Qt5LinguistTools_FOUND})
+    install(FILES ${TRANSLATION_QM} translations/languages
+        DESTINATION ${DATA_DIR}/translations)
+endif()
 install(FILES doc/gm-assistant.6
     DESTINATION ${MAN_DIR}/man6)
 install(FILES CHANGELOG
     DESTINATION ${DATA_DIR})
 
+# metainfo file
+set (METAINFO_ID fr.free.gmassistant)
+set (METAINFO_FILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/${METAINFO_ID}.metainfo.xml.in)
+set (METAINFO_FILE ${CMAKE_CURRENT_BINARY_DIR}/${METAINFO_ID}.metainfo.xml)
+configure_file(${METAINFO_FILE_IN} ${METAINFO_FILE})
+
+install(FILES ${METAINFO_FILE}
+    DESTINATION share/metainfo)
+
 # desktop file
-set (DESKTOP_FILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/${EXEC_NAME}.desktop.in)
-set (DESKTOP_FILE ${CMAKE_CURRENT_BINARY_DIR}/${EXEC_NAME}.desktop)
+set (DESKTOP_FILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/${METAINFO_ID}.desktop.in)
+set (DESKTOP_FILE ${CMAKE_CURRENT_BINARY_DIR}/${METAINFO_ID}.desktop)
 configure_file(${DESKTOP_FILE_IN} ${DESKTOP_FILE})
 
 install(FILES ${DESKTOP_FILE}
@@ -212,36 +231,100 @@ if (${BUILD_API_DOC})
 endif()
 
 # user guide with LATEX
-find_package(LATEX COMPONENTS PDFLATEX)
-option(BUILD_USERGUIDE "Build and install the PDF-based user guide (requires PDFLaTeX)" ${LATEX_PDFLATEX_FOUND})
+find_package(LATEX COMPONENTS PDFLATEX LATEX2HTML)
+option(BUILD_USERGUIDE_PDF "Build and install the user guide in PDF format (requires PDFLaTeX)" ${LATEX_PDFLATEX_FOUND})
+option(BUILD_USERGUIDE_HTML "Build and install the user guide in HTML format (requires LaTeX2HTML)" ${LATEX_LATEX2HTML_FOUND})
 
-if (${BUILD_USERGUIDE})
+if (${BUILD_USERGUIDE_PDF})
     if (NOT ${LATEX_PDFLATEX_FOUND})
-        message(FATAL_ERROR "pdflatex is needed to build the user guide.")
+        message(FATAL_ERROR "pdflatex is needed to build the user guide in PDF format.")
     endif()
+
+    set (PDFLATEX_OPTIONS -halt-on-error -interaction=nonstopmode)
 
     # list of PDF files to build
     set (LIST_PDF)
+endif()
+
+if (${BUILD_USERGUIDE_HTML})
+    if (NOT ${LATEX_LATEX2HTML_FOUND})
+        message(FATAL_ERROR "latex2html is needed to build the user guide in HTML format.")
+    endif()
+
+    set (LATEX2HTML_OPTIONS -verbosity 0 -show_section_numbers -info 0 -no_auto_link)
+
+    # list of HTML
+    set (LIST_HTML)
+else()
+    # removes html.sty from the preamble
+    set (HTML_STY "\\newcommand{\\latex}[1]{#1}%")
+endif()
+
+if (${BUILD_USERGUIDE_PDF} OR ${BUILD_USERGUIDE_HTML})
     foreach (LANG en fr)
-        set (TARGET_NAME userguide_${LANG}.pdf)
         set (TEXFILE_NAME ${CMAKE_CURRENT_BINARY_DIR}/userguide_${LANG}.tex)
         set (TEX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/doc/userguide/${LANG})
 
         configure_file(${TEX_PATH}/userguide.tex.in ${TEXFILE_NAME})
-        list (APPEND LIST_PDF ${TARGET_NAME})
 
-        add_custom_command(OUTPUT ${TARGET_NAME}
-            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME} > /dev/null
-            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME} > /dev/null
-            COMMAND ${PDFLATEX_COMPILER} ${TEXFILE_NAME} > /dev/null
-            MAIN_DEPENDENCY ${TEXFILE_NAME}
-            COMMENT "Generating user guide: ${LANG}"
-            VERBATIM)
+        if (${BUILD_USERGUIDE_PDF})
+            set (TARGET_NAME userguide_${LANG}.pdf)
+            list (APPEND LIST_PDF ${TARGET_NAME})
 
-        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME} DESTINATION ${DOC_DIR})
+            add_custom_command(OUTPUT ${TARGET_NAME}
+                COMMAND ${PDFLATEX_COMPILER} ${PDFLATEX_OPTIONS} ${TEXFILE_NAME}
+                COMMAND ${PDFLATEX_COMPILER} ${PDFLATEX_OPTIONS} ${TEXFILE_NAME} > /dev/null
+                COMMAND ${PDFLATEX_COMPILER} ${PDFLATEX_OPTIONS} ${TEXFILE_NAME} > /dev/null
+                MAIN_DEPENDENCY ${TEXFILE_NAME}
+                COMMENT "Generating PDF user guide: ${LANG}"
+                VERBATIM)
+
+            install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}
+                DESTINATION ${DOC_DIR}/pdf)
+        endif()
+
+        if (${BUILD_USERGUIDE_HTML})
+            set (DIR_NAME userguide_${LANG})
+            set (TARGET_NAME ${DIR_NAME}/index.html)
+            list (APPEND LIST_HTML ${TARGET_NAME})
+            string(TOUPPER ${LANG} LANG_UPPER)
+
+            add_custom_command(OUTPUT ${TARGET_NAME}
+                COMMAND ${LATEX2HTML_CONVERTER} ${LATEX2HTML_OPTIONS} -iso_language ${LANG_UPPER} ${TEXFILE_NAME} > /dev/null
+                MAIN_DEPENDENCY ${TEXFILE_NAME}
+                COMMENT "Generating HTML user guide: ${LANG}"
+                VERBATIM)
+
+            install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${DIR_NAME}
+                DESTINATION ${DOC_DIR}/html
+                FILES_MATCHING
+                PATTERN "*.html"
+                PATTERN "*.png")
+        endif()
     endforeach()
+endif()
 
-    add_custom_target(userguide
+# generate generic targets
+set (TARGETS_ALL)
+
+if (${BUILD_USERGUIDE_PDF})
+    set (TARGET_PDF userguide_pdf)
+    add_custom_target(${TARGET_PDF}
         ALL
         DEPENDS ${LIST_PDF})
+    list (APPEND TARGETS_ALL ${TARGET_PDF})
+endif()
+
+if (${BUILD_USERGUIDE_HTML})
+    set (TARGET_HTML userguide_html)
+    add_custom_target(${TARGET_HTML}
+        ALL
+        DEPENDS ${LIST_HTML})
+    list (APPEND TARGETS_ALL ${TARGET_HTML})
+endif()
+
+if (TARGETS_ALL)
+    add_custom_target(userguide
+        ALL
+        DEPENDS ${TARGETS_ALL})
 endif()

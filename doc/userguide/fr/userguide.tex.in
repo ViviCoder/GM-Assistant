@@ -1,5 +1,5 @@
 %*************************************************************************
-%* Copyright © 2012-2018 Vincent Prat & Simon Nicolas
+%* Copyright © 2012-2021 Vincent Prat & Simon Nicolas
 %*
 %* This document is free; you can redistribute it and/or modify
 %* it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{xspace}
-\usepackage{html}
+@HTML_STY@\usepackage{html}
 
 \graphicspath{{@TEX_PATH@/images/}}
 
